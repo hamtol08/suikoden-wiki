@@ -212,8 +212,8 @@ export const WORLD_STAGE_MARKERS = [
     subLabel: "Dunan Unification War",
     href: buildRegionAtlasGamePath("suikoden-ii"),
     isActive: true,
-    x: "70%",
-    y: "29%",
+    x: "66%",
+    y: "25%",
     tone: "jade",
   },
   {
