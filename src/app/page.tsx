@@ -1,65 +1,217 @@
 import Image from "next/image";
+import {
+  Archive,
+  Compass,
+  History,
+  Sparkles,
+  Swords,
+  Users,
+} from "lucide-react";
+import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import MotionSurface from "@/components/archive/MotionSurface";
+import {
+  DOM_IDS,
+  IMAGE_LOADING,
+  ROUTE_ANCHORS,
+} from "@/constants/app-config";
+import {
+  ARCHIVE_CATEGORIES,
+  ARCHIVE_COPY,
+  ARCHIVE_STATS,
+  FEATURE_CARDS,
+  IMAGE_PATHS,
+  IMAGE_SIZES,
+  TIMELINE_ITEMS,
+  TRENDING_STARS,
+} from "@/constants/archive-content";
+import { THEME_CLASSES } from "@/constants/theme";
+import {
+  APP_SHELL_STYLES,
+  CARD_STYLES,
+  CONTAINER_STYLES,
+  GRID_STYLES,
+  HERO_STYLES,
+  ICON_STYLES,
+  IMAGE_SIZE_HINTS,
+  IMAGE_STYLES,
+  RIGHT_RAIL_STYLES,
+  RESPONSIVE_SHELL,
+  SECTION_STYLES,
+  TEXT_STYLES,
+} from "@/constants/ui-styles";
 
-export default function Home() {
+const categoryIconMap = {
+  archive: Archive,
+  compass: Compass,
+  history: History,
+  sparkles: Sparkles,
+  swords: Swords,
+  users: Users,
+} as const;
+
+const Home = () => {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className={APP_SHELL_STYLES.page}>
+      <ArchiveHeader />
+
+      <div className={RESPONSIVE_SHELL.bodyGrid}>
+        <section className={RESPONSIVE_SHELL.contentPad}>
+          <div className={CONTAINER_STYLES.hero}>
+            <div className={CONTAINER_STYLES.heroMedia}>
+              <Image
+                src={IMAGE_PATHS.hdRemaster}
+                alt={ARCHIVE_COPY.hero.imageAlt}
+                fill
+                loading={IMAGE_LOADING.eager}
+                className={HERO_STYLES.image}
+                sizes={IMAGE_SIZE_HINTS.hero}
+              />
+              <div className={HERO_STYLES.overlay} />
+              <div className={HERO_STYLES.titleScrim} />
+              <div className={HERO_STYLES.content}>
+                <h1 className={HERO_STYLES.title}>
+                  {ARCHIVE_COPY.hero.title}
+                </h1>
+              </div>
+            </div>
+          </div>
+
+          <section className={SECTION_STYLES.block} id={DOM_IDS.featured}>
+            <div className={SECTION_STYLES.headerRow}>
+              <div>
+                <p className={TEXT_STYLES.labelGold}>{ARCHIVE_COPY.featured.eyebrow}</p>
+                <h2 className={TEXT_STYLES.sectionTitle}>{ARCHIVE_COPY.featured.title}</h2>
+              </div>
+              <a className={SECTION_STYLES.viewAllLink} href={ROUTE_ANCHORS.current}>
+                {ARCHIVE_COPY.featured.viewAll}
+              </a>
+            </div>
+            <div className={GRID_STYLES.feature}>
+              {FEATURE_CARDS.map((card, index) => (
+                <MotionSurface className={CARD_STYLES.feature} key={card.title}>
+                  <div className={CARD_STYLES.featureImage}>
+                    <Image
+                      src={card.image}
+                      alt={card.alt}
+                      fill
+                      loading={
+                        index === 0
+                          ? IMAGE_LOADING.eager
+                          : IMAGE_LOADING.lazy
+                      }
+                      className={IMAGE_STYLES.objectCover}
+                      sizes={IMAGE_SIZE_HINTS.feature}
+                    />
+                  </div>
+                  <div className={SECTION_STYLES.cardBody}>
+                    <p className={TEXT_STYLES.featureEyebrow}>
+                      {card.eyebrow}
+                    </p>
+                    <h3 className={TEXT_STYLES.cardTitle}>{card.title}</h3>
+                    <p className={TEXT_STYLES.cardBody}>{card.body}</p>
+                  </div>
+                </MotionSurface>
+              ))}
+            </div>
+          </section>
+
+          <section className={SECTION_STYLES.block}>
+            <h2 className={TEXT_STYLES.sectionTitle}>{ARCHIVE_COPY.explore.title}</h2>
+            <div className={GRID_STYLES.categories}>
+              {ARCHIVE_CATEGORIES.map((category) => {
+                const Icon = categoryIconMap[category.icon];
+
+                return (
+                  <a className={CARD_STYLES.category} href={category.href} key={category.title}>
+                    <span className={SECTION_STYLES.categoryIcon}>
+                      <Icon aria-hidden="true" className={ICON_STYLES.category} />
+                    </span>
+                    <p className={TEXT_STYLES.categoryTitle}>{category.title}</p>
+                    <p className={TEXT_STYLES.cardBody}>{category.body}</p>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className={CONTAINER_STYLES.newsPanel}>
+            <div className={SECTION_STYLES.newsHeader}>
+              <h2 className={SECTION_STYLES.newsTitle}>
+                {ARCHIVE_COPY.news.title}
+              </h2>
+            </div>
+            <div className={SECTION_STYLES.newsList}>
+              {TIMELINE_ITEMS.map((item) => (
+                <article className={CARD_STYLES.timelineItem} key={item.title}>
+                  <div className={SECTION_STYLES.timelineMetaRow}>
+                    <p className={SECTION_STYLES.timelineDate}>
+                      {item.date}
+                    </p>
+                    <span className={SECTION_STYLES.timelineTag}>
+                      {item.tag}
+                    </span>
+                  </div>
+                  <h3 className={SECTION_STYLES.timelineTitle}>{item.title}</h3>
+                  <p className={TEXT_STYLES.cardBody}>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        </section>
+
+        <aside className={RESPONSIVE_SHELL.rightRailPad}>
+          <section className={CONTAINER_STYLES.panel}>
+            <div className={RIGHT_RAIL_STYLES.statHeader}>
+              <Image
+                src={IMAGE_PATHS.logoMark}
+                alt={ARCHIVE_COPY.stats.markAlt}
+                width={IMAGE_SIZES.statMark.width}
+                height={IMAGE_SIZES.statMark.height}
+                className={RIGHT_RAIL_STYLES.statMark}
+              />
+              <div>
+                <h2 className={RIGHT_RAIL_STYLES.statTitle}>{ARCHIVE_COPY.stats.title}</h2>
+                <p className={RIGHT_RAIL_STYLES.statFounded}>
+                  {ARCHIVE_COPY.stats.founded}
+                </p>
+              </div>
+            </div>
+            <dl className={RIGHT_RAIL_STYLES.statList}>
+              {ARCHIVE_STATS.map((stat) => (
+                <div className={RIGHT_RAIL_STYLES.statRow} key={stat.label}>
+                  <dt className={THEME_CLASSES.mutedText}>{stat.label}</dt>
+                  <dd className={RIGHT_RAIL_STYLES.statValue}>{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <blockquote className={RIGHT_RAIL_STYLES.quote}>
+            <p className={RIGHT_RAIL_STYLES.quoteBody}>{ARCHIVE_COPY.quote.body}</p>
+            <footer className={RIGHT_RAIL_STYLES.quoteFooter}>
+              {ARCHIVE_COPY.quote.author}
+            </footer>
+          </blockquote>
+
+          <section className={CONTAINER_STYLES.navyPanel}>
+            <h2 className={RIGHT_RAIL_STYLES.trendingTitle}>{ARCHIVE_COPY.trending.title}</h2>
+            <div className={RIGHT_RAIL_STYLES.trendingList}>
+              {TRENDING_STARS.map((name) => (
+                <a
+                  className={RIGHT_RAIL_STYLES.trendingLink}
+                  href={ROUTE_ANCHORS.current}
+                  key={name}
+                >
+                  {name}
+                </a>
+              ))}
+            </div>
+          </section>
+        </aside>
+      </div>
+
+    </main>
   );
-}
+};
+
+export default Home;
