@@ -98,8 +98,6 @@ for (const source of sources) {
       id: slugify(icon.name),
       name: icon.name,
       file: `/suikoden/characters/${source.game}/${fileName}`,
-      sourcePage: source.pageUrl,
-      sourceUrl: icon.sourceUrl,
     });
   }
 

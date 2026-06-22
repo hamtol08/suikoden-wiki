@@ -1,0 +1,1191 @@
+import suikodenIManifest from "../../public/suikoden/characters/suikoden-i/manifest.json";
+import {
+  SUIKODEN_I_CHARACTER_LOCALIZATION,
+  SUIKODEN_I_RUNE_LABEL,
+} from "@/constants/suikoden-i-character-localization";
+import {
+  SUIKODEN_II_CHARACTER_LOCALIZATION,
+  SUIKODEN_II_CHARACTER_STAR_ORDERS,
+  SUIKODEN_II_CHARACTER_TYPE_LABELS,
+  SUIKODEN_II_RUNE_LABELS,
+} from "@/constants/suikoden-ii-character-localization";
+import {
+  SUIKODEN_II_CHARACTER_COPY,
+  SUIKODEN_II_CHARACTERS,
+} from "@/constants/suikoden-ii-characters";
+import {
+  CHARACTER_DETAIL_RECORDS,
+  type CharacterDetailRecord,
+} from "@/constants/character-detail-records";
+import { translateItemName } from "@/constants/item-content";
+import { resolveRuneReference } from "@/constants/rune-content";
+import { STAR_OF_DESTINY_KOREAN_NAMES } from "@/constants/star-of-destiny";
+
+export const CHARACTER_COPY = {
+  eyebrow: "Characters",
+  title: "Characters",
+  body: "각 작품의 108성 및 주요 동료를 작품별로 정리합니다. 이름, 별의 자리, 구분, 주요 등장 지역을 빠르게 확인할 수 있습니다.",
+  unavailableDetail: "-",
+  entryCountSuffix: "명",
+  portraitAlt: (name: string) => `${name} 초상`,
+  detailNavigationAriaLabel: (name: string) => `${name} 상세 기록 목차`,
+  detailOrderCaption: (order: string) => `No. ${order}`,
+  ariaLabels: {
+    seriesTabs: "Character series",
+    detailLink: (name: string) => `${name} 상세 기록 보기`,
+  },
+  tableLabels: {
+    no: "No",
+    portrait: "초상",
+    character: "이름",
+    star: "108성",
+    type: "구분",
+    appearanceLocation: "등장 마을",
+    rune: "룬",
+    runeSlots: "룬 슬롯",
+    recruitment: "영입 방법",
+    order: "순번",
+  },
+  detailLabels: {
+    profile: "Profile",
+    characterRecord: "Character Record",
+    profileLedger: "Profile Ledger",
+    gameRole: "Game Role",
+    combatData: "Combat Data",
+    entryNo: "No",
+    series: "Series",
+    star: "108성",
+    role: "구분",
+    location: "등장 마을",
+    rune: "룬",
+    runeSlots: "룬 슬롯",
+    recruitmentFlow: "영입 흐름",
+    combatRole: "게임 내 역할",
+    runeRole: "문장 운용",
+  },
+} as const;
+
+const CHARACTER_ORDER_PAD_LENGTH = 3;
+const COMBAT_DATA_ANCHOR_PREFIX = "combat-data";
+
+export const CHARACTER_DETAIL_SECTION_IDS = {
+  profileLedger: "profile-ledger",
+  gameRole: "game-role",
+  combatData: "combat-data",
+} as const;
+
+const CHARACTER_TYPE_VALUE = {
+  combat: "전투",
+} as const;
+
+const CHARACTER_DETAIL_LINE_OVERRIDES = {
+  "suikoden-i": {
+    hero: {
+      overall: [
+        "티르는 항상 파티에서 빠질 수 없는 필수 멤버이며, 평균 이상의 능력치를 갖춘 균형형 캐릭터입니다. 공격력이 안정적으로 성장하고 문장 마법도 준수하게 활용할 수 있습니다. 카이와의 협력 공격은 다수의 적을 상대할 때 유용하며, 소울이터는 즉사 마법과 강력한 공격 주문을 갖춘 핵심 문장입니다.",
+      ],
+    },
+  },
+} as const;
+
+const MAX_LEVEL_STATUS_LABELS = {
+  hp: "HP",
+  "lvl 1": "LV.1",
+  "lvl 2": "LV.2",
+  "lvl 3": "LV.3",
+  "lvl 4": "LV.4",
+  atk: "ATK",
+  def: "DEF",
+  str: "STR",
+  pdf: "PDF",
+  skl: "SKL",
+  mdf: "MDF",
+  mag: "MAG",
+  spd: "SPD",
+  eva: "EVA",
+  luc: "LUC",
+} as const;
+
+const MAX_LEVEL_STATUS_GROUPS = [
+  {
+    title: "HP",
+    keys: ["hp"],
+  },
+  {
+    title: "MP",
+    keys: ["lvl 1", "lvl 2", "lvl 3", "lvl 4"],
+  },
+  {
+    title: "Battle Stats",
+    keys: ["atk", "def", "str", "pdf", "skl", "mdf", "mag", "spd", "eva", "luc"],
+  },
+] as const;
+
+const WEAPON_TYPE_LABELS = {
+  Axe: "도끼",
+  "Bo Staff": "봉",
+  Book: "책",
+  Boomerang: "부메랑",
+  Bow: "활",
+  Claw: "손톱",
+  Claws: "손톱",
+  Dart: "다트",
+  Darts: "다트",
+  "Double Axes": "쌍도끼",
+  "Dual Swords": "쌍검",
+  Fists: "주먹",
+  Gun: "총",
+  Hammer: "망치",
+  Katana: "도",
+  Kicks: "발차기",
+  Knife: "나이프",
+  Naginata: "나기나타",
+  "Needle/Dart": "침/다트",
+  Oar: "노",
+  Pan: "프라이팬",
+  Pickaxe: "곡괭이",
+  Rod: "로드",
+  Saw: "톱",
+  Scythe: "낫",
+  Shawl: "숄",
+  Shuriken: "수리검",
+  Shurikens: "수리검",
+  "Sickle & Chain": "사슬낫",
+  Slingshot: "새총",
+  Spear: "창",
+  Staff: "지팡이",
+  Sword: "검",
+  "Sword (Special)": "검",
+  "Throwing Knife": "투척 나이프",
+  "Throwing Knife (Shuriken)": "투척 나이프",
+  "Throwing Knifes": "투척 나이프",
+  "Throwing Roses": "투척 장미",
+  Tonfas: "톤파",
+  "Tri-Nunchaku": "삼절곤",
+  "Twin Fang": "쌍아",
+  Whip: "채찍",
+  Wok: "웍",
+  Wrench: "렌치",
+} as const;
+
+const WEAPON_RANGE_LABELS = {
+  S: "근거리",
+  M: "중거리",
+  L: "원거리",
+} as const;
+
+const EQUIPMENT_GROUP_LABELS = {
+  default: "초기 장비",
+  recommended: "추천 장비",
+} as const;
+
+const EQUIPMENT_SLOT_LABELS = {
+  helmet: "머리",
+  armor: "몸",
+  shield: "방패",
+  other1: "장신구 1",
+  other2: "장신구 2",
+} as const;
+
+const RUNE_NAME_PATTERN = /[A-Za-z][A-Za-z' -]*(?:Rune|rune)/g;
+
+const UNITE_ATTACK_LABELS = {
+  "100 Kobold Attack": "100 코볼트 공격",
+  "5 Squirrel Attack": "5 다람쥐 공격",
+  "Bandit Attack": "산적 공격",
+  "Beastmaster Attack": "야수 조련사 공격",
+  "Beat Em' Up Attack": "난투 공격",
+  "Beauty Attack": "미녀 공격",
+  "Blacksmith Attack": "대장장이 공격",
+  "Bow Attack": "활 공격",
+  "Bow Wow Attack": "멍멍 공격",
+  "Buddy Attack": "친구 공격",
+  "Bumpy Attack": "울퉁불퉁 공격",
+  "Carpenter Attack": "목수 공격",
+  "Circus Attack": "서커스 공격",
+  "Copycat Attack": "흉내 공격",
+  "Couple Attack": "부부 공격",
+  "Dad and Daughter Attack": "부녀 공격",
+  "Double Kraken Attack": "더블 크라켄 공격",
+  "Double Leader Attack": "더블 리더 공격",
+  "Double Monster Attack": "더블 몬스터 공격",
+  "Dragon Knight Attack": "용기사 공격",
+  "Elf Attack": "엘프 공격",
+  "Family Attack": "가족 공격",
+  "Fancy Lad Attack": "미남 공격",
+  "Fatal Attack": "필살 공격",
+  "Flash Attack": "섬광 공격",
+  "Groupie Attack": "팬클럽 공격",
+  "Head Up!!": "헤드 업!!",
+  "Husband and Wife Attack": "부부 공격",
+  "Knight Attack": "기사 공격",
+  "Kobold + 1 Attack": "코볼트+1 공격",
+  "Kobold Attack": "코볼트 공격",
+  "Leisure Attack": "여가 공격",
+  "Loyal Dog Attack": "충견 공격",
+  "Manly Attack": "남자 공격",
+  "Martial Arts Attack": "격투 공격",
+  "Master Pupil Attack": "사제 공격",
+  "Narcissus Attack": "나르시스 공격",
+  "Ninja Attack": "닌자 공격",
+  "Pirate Attack": "해적 공격",
+  "Pretty Boy Attack": "미남 공격",
+  "Pretty Girl Attack": "미소녀 공격",
+  "Rival Attack": "라이벌 공격",
+  "Servant Attack": "종자 공격",
+  "Swordsman Attack": "검사 공격",
+  "Tackle Attack": "태클 공격",
+  "Talisman Attack/Guardian Attack": "부적 공격 / 수호 공격",
+  "Trick Attack": "트릭 공격",
+  "Twin Fighter Attack": "쌍투사 공격",
+  "Warrior Attack": "전사 공격",
+  "Wild Arrow Attack": "와일드 애로우 공격",
+  "Winger Attack": "윙거 공격",
+  "Winger Attacks": "윙거 공격",
+} as const;
+
+const UNITE_CHARACTER_LABELS = new Map<string, string>([
+  ...suikodenIManifest.map((character) => [
+    character.name,
+    SUIKODEN_I_CHARACTER_LOCALIZATION[
+      character.id as keyof typeof SUIKODEN_I_CHARACTER_LOCALIZATION
+    ]?.name ?? character.name,
+  ] as const),
+  ...SUIKODEN_II_CHARACTERS.map((character) => [
+    character.name,
+    SUIKODEN_II_CHARACTER_LOCALIZATION[
+      character.id as keyof typeof SUIKODEN_II_CHARACTER_LOCALIZATION
+    ]?.name ?? character.name,
+  ] as const),
+  ["Tir", "주인공"],
+  ["Riou", "주인공"],
+  ["Jowy", "조이"],
+  ["Rulodia", "루로디아"],
+  ["L.C. Chan", "론챤챤"],
+  ["Georg", "게오르그 프라임"],
+]);
+
+type CharacterDetailLineKey = keyof typeof CHARACTER_DETAIL_LINE_OVERRIDES[
+  "suikoden-i"
+]["hero"];
+
+export type CharacterDetailNavigationItem = {
+  id: string;
+  label: string;
+  href: string;
+};
+
+export type CharacterCombatDataPanel = {
+  id: string;
+  title: string;
+  lines: readonly string[];
+  rowGroups?: readonly {
+    title: string;
+    rows: readonly {
+      label: string;
+      value: string;
+    }[];
+  }[];
+  rows: readonly {
+    label: string;
+    value: string;
+  }[];
+};
+
+export const formatCharacterOrder = (order: number) => {
+  return String(order).padStart(CHARACTER_ORDER_PAD_LENGTH, "0");
+};
+
+const buildStarLabel = (order: number) => {
+  return STAR_OF_DESTINY_KOREAN_NAMES[order - 1] ?? "추가 기록";
+};
+
+const CHARACTER_APPEARANCE_LOCATION_LABELS = {
+  그렉민스터: "그레그민스터",
+  샤사라자드: "샤사라자드 요새",
+  "하이랜드 주둔지": "유니콘 부대 야영지",
+  "유니콘의 숲": "코볼트마을 숲",
+  롯카쿠: "롯카쿠 마을",
+} as const;
+
+const normalizeAppearanceLocation = (location: string) => {
+  return CHARACTER_APPEARANCE_LOCATION_LABELS[
+    location as keyof typeof CHARACTER_APPEARANCE_LOCATION_LABELS
+  ] ?? location;
+};
+
+const SUIKODEN_I_APPEARANCE_MATCHES = [
+  ["레난캄프", "레난캄프"],
+  ["코안", "코안"],
+  ["세이카", "세이카"],
+  ["판누 야쿠타", "판누 야쿠타"],
+  ["네크로드 성", "네크로드 성"],
+  ["모라비아 성", "모라비아 성"],
+  ["비밀 공장", "비밀 공장"],
+  ["그렉민스터", "그레그민스터"],
+  ["엘프 마을", "엘프 마을"],
+  ["북쪽 관문", "북쪽 관문"],
+  ["리콘", "리콘"],
+  ["카쿠", "카쿠"],
+  ["코볼트 마을", "코볼트 마을"],
+  ["스칼레티시아 성", "스칼레티시아 성"],
+  ["샤사라자드", "샤사라자드 요새"],
+  ["해적 요새", "해적 요새"],
+  ["카렉카", "카렉카"],
+  ["키로프", "키로프"],
+  ["안테이", "안테이"],
+  ["테이엔", "테이엔"],
+  ["드워프 마을", "드워프 마을"],
+  ["전사의 마을", "전사의 마을"],
+  ["클론 사원", "클론 사원"],
+  ["대삼림", "대삼림"],
+  ["가란 성새", "가란 성새"],
+  ["시크 계곡", "시크 계곡"],
+  ["쿠와바 성새", "쿠와바 성새"],
+  ["트란 성", "트란 성"],
+  ["본거지", "트란 성"],
+  ["크완다 로스만", "판누 야쿠타"],
+  ["게임 시작", "그레그민스터"],
+] as const;
+
+const SUIKODEN_I_APPEARANCE_OVERRIDES = {
+  kreutz: "전사의 마을",
+  kirkis: "트란 성",
+  luc: "본거지",
+  pahn: "코안",
+  "tai-ho": "카쿠",
+  tengaar: "네크로드 성",
+  varkas: "트란 성",
+  sydonia: "트란 성",
+  glenshiel: "테오와의 전투 이후",
+  alen: "테오와의 전투 이후",
+  tesla: "안테이",
+  joshua: "용동",
+  liukan: "소니에르 감옥",
+  futch: "용동",
+  fuma: "용동",
+  hugo: "과거의 동굴",
+  milia: "용동",
+  taggart: "모라비아 성",
+  kirke: "로리마 성새",
+  maas: "대삼림 마을",
+  sansuke: "대삼림 마을",
+} as const;
+
+const SUIKODEN_II_APPEARANCE_MATCHES = [
+  ["게임 시작", "유니콘 부대 야영지"],
+  ["캐로", "캐로"],
+  ["토토", "토토"],
+  ["류베", "류베"],
+  ["용병 요새", "용병 요새"],
+  ["뮤즈", "뮤즈"],
+  ["그랜마이어", "뮤즈"],
+  ["솔론 지", "코로넷"],
+  ["쿠스쿠스", "쿠스쿠스"],
+  ["투 리버", "투 리버"],
+  ["레이크웨스트", "레이크웨스트"],
+  ["라다트", "라다트"],
+  ["그린힐", "그린힐"],
+  ["가도 마을", "가도 마을"],
+  ["트란공화국", "그레그민스터"],
+  ["배너 마을", "바나 마을"],
+  ["바나 마을", "바나 마을"],
+  ["코볼트 마을", "코볼트 마을"],
+  ["사우스 윈도우", "사우스 윈도우"],
+  ["노스 윈도우", "노스 윈도우"],
+  ["틴토", "틴토"],
+  ["크롬", "크롬"],
+  ["숲의 마을", "숲의 마을"],
+  ["뉴 리프 학원", "그린힐"],
+  ["그렉민스터", "그레그민스터"],
+  ["틴토 광산", "틴토 광산"],
+  ["코로넷", "코로넷"],
+  ["본거지", "본거지 성"],
+] as const;
+
+const SUIKODEN_II_APPEARANCE_OVERRIDES = {
+  "boris-wizen": "틴토",
+  "kiba-windamier": "라다트",
+  tomo: "차이의 집",
+  sigfried: "코볼트마을 숲",
+  "sierra-mikain": "틴토",
+  hauser: "뮤즈",
+  jess: "뮤즈",
+  "georg-prime": "호랑이 입 산길",
+  pesmerga: "바람의 동굴",
+  "hai-yo": "본거지 성",
+  shilo: "레이크웨스트",
+  viki: "마틸다 숲길",
+  miklotov: "록액스",
+  camus: "록액스",
+  "klaus-windamier": "라다트",
+  sheena: "그레그민스터",
+  gordon: "그레그민스터",
+  lorelai: "그레그민스터",
+  sasuke: "롯카쿠 마을",
+  mondo: "롯카쿠 마을",
+  badeaux: "마틸다 숲길",
+  "kahn-marley": "틴토",
+  gijimu: "틴토",
+  "lo-wen": "틴토",
+  koyu: "틴토",
+  marlowe: "틴토",
+} as const;
+
+const resolveAppearanceLocation = (
+  recruitment: string,
+  matches: readonly (readonly [string, string])[],
+) => {
+  const location = matches.find(([keyword]) => recruitment.includes(keyword))?.[1] ??
+    CHARACTER_COPY.unavailableDetail;
+
+  return normalizeAppearanceLocation(location);
+};
+
+const resolveOptionalGameRole = (localized: object) => {
+  if (!("gameRole" in localized)) {
+    return undefined;
+  }
+
+  return typeof localized.gameRole === "string" ? localized.gameRole : undefined;
+};
+
+const localizeSuikodenIICharacter = (
+  character: (typeof SUIKODEN_II_CHARACTERS)[number],
+) => {
+  const localized = SUIKODEN_II_CHARACTER_LOCALIZATION[character.id];
+  const starOrder = SUIKODEN_II_CHARACTER_STAR_ORDERS[character.id];
+  const characterType =
+    SUIKODEN_II_CHARACTER_TYPE_LABELS[
+      character.characterType as keyof typeof SUIKODEN_II_CHARACTER_TYPE_LABELS
+    ] ?? character.characterType;
+  const rune =
+    SUIKODEN_II_RUNE_LABELS[
+      character.rune as keyof typeof SUIKODEN_II_RUNE_LABELS
+    ] ?? character.rune;
+
+  return {
+    ...character,
+    order: starOrder,
+    name: localized.name,
+    star: buildStarLabel(starOrder),
+    characterType,
+    appearanceLocation: normalizeAppearanceLocation(
+      SUIKODEN_II_APPEARANCE_OVERRIDES[
+        character.id as keyof typeof SUIKODEN_II_APPEARANCE_OVERRIDES
+      ] ??
+        resolveAppearanceLocation(
+          localized.recruitment,
+          SUIKODEN_II_APPEARANCE_MATCHES,
+        ),
+    ),
+    recruitment: localized.recruitment,
+    gameRole: resolveOptionalGameRole(localized),
+    rune,
+  };
+};
+
+type SuikodenICharacterId = keyof typeof SUIKODEN_I_CHARACTER_LOCALIZATION;
+
+const localizeSuikodenICharacter = (
+  character: (typeof suikodenIManifest)[number],
+  index: number,
+) => {
+  const characterId = character.id as SuikodenICharacterId;
+  const localized = SUIKODEN_I_CHARACTER_LOCALIZATION[characterId];
+
+  return {
+    id: character.id,
+    game: "suikoden-i",
+    order: index + 1,
+    name: localized.name,
+    star: buildStarLabel(index + 1),
+    characterType: localized.characterType,
+    appearanceLocation: normalizeAppearanceLocation(
+      SUIKODEN_I_APPEARANCE_OVERRIDES[
+        characterId as keyof typeof SUIKODEN_I_APPEARANCE_OVERRIDES
+      ] ??
+        resolveAppearanceLocation(
+          localized.recruitment,
+          SUIKODEN_I_APPEARANCE_MATCHES,
+        ),
+    ),
+    recruitment: localized.recruitment,
+    gameRole: resolveOptionalGameRole(localized),
+    rune: "rune" in localized ? localized.rune : SUIKODEN_I_RUNE_LABEL,
+    runeSlots: "-",
+    image: character.file,
+  };
+};
+
+export const CHARACTER_SERIES = [
+  {
+    id: "suikoden-i",
+    title: "Suikoden I",
+    eyebrow: "Gate Rune War",
+    body: "Toran Liberation Army에 합류하는 108성의 기본 인덱스입니다. 인물별 상세 기록은 별도 문서에서 다룹니다.",
+  },
+  {
+    id: "suikoden-ii",
+    title: SUIKODEN_II_CHARACTER_COPY.title,
+    eyebrow: "Dunan Unification War",
+    body: SUIKODEN_II_CHARACTER_COPY.body,
+  },
+] as const;
+
+export const SUIKODEN_I_CHARACTERS = suikodenIManifest.map(
+  localizeSuikodenICharacter,
+);
+
+export const CHARACTER_DATA_BY_GAME = {
+  "suikoden-i": SUIKODEN_I_CHARACTERS,
+  "suikoden-ii": SUIKODEN_II_CHARACTERS.map(localizeSuikodenIICharacter).sort(
+    (a, b) => a.order - b.order,
+  ),
+} as const;
+
+export const CHARACTER_DETAIL_AVAILABLE_GAMES = [
+  "suikoden-i",
+  "suikoden-ii",
+] as const;
+
+const CHARACTER_DETAIL_AVAILABLE_GAME_IDS = new Set<string>(
+  CHARACTER_DETAIL_AVAILABLE_GAMES,
+);
+
+export type CharacterGameId = keyof typeof CHARACTER_DATA_BY_GAME;
+export type CharacterEntry =
+  (typeof CHARACTER_DATA_BY_GAME)[CharacterGameId][number];
+
+export const isCharacterGameId = (gameId: string): gameId is CharacterGameId => {
+  return gameId in CHARACTER_DATA_BY_GAME;
+};
+
+export const isCharacterDetailAvailable = (
+  gameId: string,
+): gameId is CharacterGameId => {
+  return isCharacterGameId(gameId) &&
+    CHARACTER_DETAIL_AVAILABLE_GAME_IDS.has(gameId);
+};
+
+export const getCharacterSeries = (gameId: CharacterGameId) => {
+  return CHARACTER_SERIES.find((series) => series.id === gameId) ??
+    CHARACTER_SERIES[0];
+};
+
+export const buildCharacterProfileRows = (
+  character: CharacterEntry,
+  seriesTitle: string,
+) => {
+  const paddedOrder = formatCharacterOrder(character.order);
+
+  return [
+    {
+      label: CHARACTER_COPY.detailLabels.entryNo,
+      value: paddedOrder,
+    },
+    {
+      label: CHARACTER_COPY.detailLabels.series,
+      value: seriesTitle,
+    },
+    {
+      label: CHARACTER_COPY.detailLabels.star,
+      value: character.star,
+    },
+    {
+      label: CHARACTER_COPY.detailLabels.role,
+      value: character.characterType,
+    },
+    {
+      label: CHARACTER_COPY.detailLabels.location,
+      value: character.appearanceLocation,
+    },
+  ];
+};
+
+const getCharacterDetailLines = (
+  character: CharacterEntry,
+  key: CharacterDetailLineKey,
+  fallback: readonly string[],
+) => {
+  const gameOverrides = CHARACTER_DETAIL_LINE_OVERRIDES[
+    character.game as keyof typeof CHARACTER_DETAIL_LINE_OVERRIDES
+  ];
+  const characterOverrides = gameOverrides?.[
+    character.id as keyof typeof gameOverrides
+  ];
+  const lines = characterOverrides?.[key];
+
+  return lines ?? fallback;
+};
+
+export const getCharacterDetailRecord = (
+  character: CharacterEntry,
+): CharacterDetailRecord | null => {
+  const gameRecords = CHARACTER_DETAIL_RECORDS[
+    character.game as keyof typeof CHARACTER_DETAIL_RECORDS
+  ] as Record<string, CharacterDetailRecord> | undefined;
+
+  return gameRecords?.[character.id] ?? null;
+};
+
+export const buildCharacterDetailNavigationItems = ({
+  character,
+  combatDataPanels,
+}: {
+  character: CharacterEntry;
+  combatDataPanels: readonly CharacterCombatDataPanel[];
+}): CharacterDetailNavigationItem[] => {
+  const baseItems = [
+    {
+      id: CHARACTER_DETAIL_SECTION_IDS.profileLedger,
+      label: CHARACTER_COPY.detailLabels.profileLedger,
+      href: `#${CHARACTER_DETAIL_SECTION_IDS.profileLedger}`,
+    },
+    {
+      id: CHARACTER_DETAIL_SECTION_IDS.gameRole,
+      label: CHARACTER_COPY.detailLabels.gameRole,
+      href: `#${CHARACTER_DETAIL_SECTION_IDS.gameRole}`,
+    },
+  ];
+
+  if (character.characterType !== CHARACTER_TYPE_VALUE.combat) {
+    return baseItems;
+  }
+
+  return [
+    ...baseItems,
+    ...(combatDataPanels.length > 0 ? [
+      {
+        id: CHARACTER_DETAIL_SECTION_IDS.combatData,
+        label: CHARACTER_COPY.detailLabels.combatData,
+        href: `#${CHARACTER_DETAIL_SECTION_IDS.combatData}`,
+      },
+      ...combatDataPanels.map((panel) => ({
+        id: panel.id,
+        label: panel.title,
+        href: `#${panel.id}`,
+      })),
+    ] : []),
+  ];
+};
+
+const buildCharacterCombatRole = (character: CharacterEntry) => {
+  if (character.gameRole) {
+    return character.gameRole;
+  }
+
+  return character.characterType;
+};
+
+const buildCharacterRuneRole = (
+  character: CharacterEntry,
+  record: CharacterDetailRecord | null,
+) => {
+  const primaryRunes = resolveCharacterPrimaryRunes(character, record);
+  const runeText = primaryRunes.join(" / ");
+  const hasRune = primaryRunes.length > 0;
+  const hasRuneSlots = character.runeSlots !== CHARACTER_COPY.unavailableDetail;
+
+  if (hasRune && hasRuneSlots) {
+    return `${runeText} 기록과 문장 슬롯 ${character.runeSlots}개를 기준으로 전투 편성을 확인합니다.`;
+  }
+
+  if (hasRune) {
+    return `${runeText} 기록을 기준으로 문장 운용을 확인합니다.`;
+  }
+
+  if (hasRuneSlots) {
+    return `문장 슬롯 ${character.runeSlots}개를 기준으로 전투 편성을 확인합니다.`;
+  }
+
+  return CHARACTER_COPY.unavailableDetail;
+};
+
+export const buildCharacterGameRoleRows = (
+  character: CharacterEntry,
+  record: CharacterDetailRecord | null,
+) => {
+  return [
+    {
+      label: CHARACTER_COPY.detailLabels.recruitmentFlow,
+      value: character.recruitment,
+    },
+    {
+      label: CHARACTER_COPY.detailLabels.combatRole,
+      value: buildCharacterCombatRole(character),
+    },
+    {
+      label: CHARACTER_COPY.detailLabels.runeRole,
+      value: buildCharacterRuneRole(character, record),
+    },
+  ];
+};
+
+const normalizeDetailValue = (value: string) => {
+  if (value.trim().toLowerCase() === "[none]") {
+    return CHARACTER_COPY.unavailableDetail;
+  }
+
+  return translateItemName(value);
+};
+
+const buildStringRows = (values: Record<string, string>) => {
+  return Object.entries(values)
+    .filter(([, value]) => value)
+    .map(([label, value]) => ({
+      label,
+      value: normalizeDetailValue(value),
+    }));
+};
+
+const translateWeaponType = (value: string) => {
+  return WEAPON_TYPE_LABELS[value as keyof typeof WEAPON_TYPE_LABELS] ?? value;
+};
+
+const translateWeaponRange = (value: string) => {
+  return WEAPON_RANGE_LABELS[value as keyof typeof WEAPON_RANGE_LABELS] ?? value;
+};
+
+const translateEquipmentSlot = (value: string) => {
+  return EQUIPMENT_SLOT_LABELS[value as keyof typeof EQUIPMENT_SLOT_LABELS] ??
+    value;
+};
+
+const buildEquipmentLabel = (
+  group: keyof typeof EQUIPMENT_GROUP_LABELS,
+  slot: string,
+) => `${EQUIPMENT_GROUP_LABELS[group]} ${translateEquipmentSlot(slot)}`;
+
+const hasFinalConsonant = (value: string) => {
+  const lastCharacter = value.trim().at(-1);
+
+  if (!lastCharacter) {
+    return false;
+  }
+
+  const code = lastCharacter.charCodeAt(0);
+
+  if (code < 0xac00 || code > 0xd7a3) {
+    return false;
+  }
+
+  return (code - 0xac00) % 28 > 0;
+};
+
+const topicMarker = (value: string) => hasFinalConsonant(value) ? "은" : "는";
+
+const buildCharacterOverallFallbackLines = (
+  character: CharacterEntry,
+  role: CharacterDetailRecord["role"] | undefined,
+) => {
+  const topic = topicMarker(character.name);
+  const weaponType = role?.weapon.type ? translateWeaponType(role.weapon.type) : "";
+  const weaponRange = role?.weapon.range ?
+    translateWeaponRange(role.weapon.range) :
+    "";
+  const weaponSummary = [weaponRange, weaponType].filter(Boolean).join(" ");
+  const primaryRunes = resolveCharacterPrimaryRunes(
+    character,
+    role ? { role } : null,
+  );
+  const runeSummary = primaryRunes.length > 0 ?
+    `${primaryRunes.join(" / ")} 운용` :
+    "기본 전투 역할";
+
+  return [
+    weaponSummary ?
+      `${character.name}${topic} ${weaponSummary} 무기를 사용하는 ${character.characterType} 인물입니다. ${runeSummary}과 최대 레벨 능력치를 함께 보며 편성 위치를 판단합니다.` :
+      `${character.name}${topic} ${character.characterType} 구분의 인물입니다. 영입 흐름과 전투 기록을 함께 보며 작품 내 역할을 확인합니다.`,
+  ];
+};
+
+const extractLocalizedRuneNames = (lines: readonly string[]) => {
+  const names = new Set<string>();
+
+  lines.forEach((line) => {
+    [...line.matchAll(RUNE_NAME_PATTERN)].forEach(([rawName]) => {
+      const normalizedName = rawName
+        .replace(/^No rune$/i, "")
+        .replace(/^No Rune$/i, "")
+        .trim();
+      const rune = resolveRuneReference(normalizedName);
+
+      if (rune) {
+        names.add(rune.name);
+      }
+    });
+
+    const soulEater = resolveRuneReference("Soul Eater");
+
+    if (/Soul Eater/i.test(line) && soulEater) {
+      names.add(soulEater.name);
+    }
+  });
+
+  return [...names];
+};
+
+const extractDisplayRuneNames = (line: string) => {
+  return [...line.matchAll(RUNE_NAME_PATTERN)]
+    .map(([rawName]) => rawName.replace(/^No rune$/i, "").trim())
+    .filter(Boolean)
+    .map((name) => resolveRuneReference(name)?.name ?? name);
+};
+
+const CHARACTER_UNAVAILABLE_RUNE_LABELS = new Set([
+  CHARACTER_COPY.unavailableDetail,
+  "없음",
+  "None",
+  "None.",
+]);
+
+const normalizeRuneEntryText = (value: string) =>
+  value
+    .replace(/^#+/, "")
+    .replace(/^['"*\s]+/, "")
+    .replace(/['"*\s]+$/, "")
+    .trim();
+
+const isUnavailableRuneText = (value: string) =>
+  CHARACTER_UNAVAILABLE_RUNE_LABELS.has(normalizeRuneEntryText(value));
+
+const splitCharacterRuneLabel = (value: string) => {
+  if (isUnavailableRuneText(value)) {
+    return [];
+  }
+
+  return value
+    .split(/\s*\/\s*|\s*,\s*|\s+and\s+/i)
+    .map((rune) => rune.trim())
+    .filter((rune) => rune && !isUnavailableRuneText(rune));
+};
+
+const hasSentenceLikeRuneDescription = (value: string) =>
+  /\b(after|attached|become|best|can|can't|cannot|come|comes|equipped|found|good|has|have|is|recommended|upgrade|use|using|with)\b/i.test(
+    value,
+  );
+
+const extractDirectAttachedRuneNames = (line: string) => {
+  const normalizedLine = normalizeRuneEntryText(line);
+  const slotMatch = normalizedLine.match(
+    /^(?:Head|R\. Hand|L\. Hand|Right Hand|Left Hand)\s*-\s*(.+)$/i,
+  );
+  const runeText = (slotMatch?.[1]?.trim() ?? normalizedLine)
+    .replace(/\([^)]*\)/g, "")
+    .trim();
+
+  if (isUnavailableRuneText(runeText) || hasSentenceLikeRuneDescription(runeText)) {
+    return [];
+  }
+
+  return extractDisplayRuneNames(runeText);
+};
+
+const extractProseAttachedRuneNames = (line: string) => {
+  const normalizedLine = normalizeRuneEntryText(line);
+  const proseMatches = [
+    normalizedLine.match(/\bpersonal rune,\s*(?:the\s+)?(.+?Rune)\b/i),
+    normalizedLine.match(/\bcomes? equipped with\s+(?:the\s+)?(.+?Rune)\b/i),
+    normalizedLine.match(/\bcomes? with\s+(?:the\s+)?(.+?Rune)\b/i),
+    normalizedLine.match(/\bhas\s+(?:a\s+|the\s+)?(.+?Rune)\s+permanently attached\b/i),
+    normalizedLine.match(/\b(.+?Rune)\s+permanently attached\b/i),
+  ];
+
+  return proseMatches.flatMap((match) =>
+    match?.[1] ? extractDisplayRuneNames(match[1]) : [],
+  );
+};
+
+const extractAttachedRuneNames = (lines: readonly string[]) => {
+  const directRuneNames = lines.flatMap(extractDirectAttachedRuneNames);
+
+  if (directRuneNames.length > 0) {
+    return directRuneNames;
+  }
+
+  return lines.flatMap(extractProseAttachedRuneNames);
+};
+
+const uniqueRuneNames = (names: readonly string[]) => [...new Set(names)];
+
+export const resolveCharacterPrimaryRunes = (
+  character: CharacterEntry,
+  record: CharacterDetailRecord | null,
+) => {
+  const role = record?.role;
+  const attachedRunes = role ? extractAttachedRuneNames(role.rune.attached) : [];
+
+  if (attachedRunes.length > 0) {
+    return uniqueRuneNames(attachedRunes);
+  }
+
+  return uniqueRuneNames(splitCharacterRuneLabel(character.rune));
+};
+
+const translateUniteCharacterName = (name: string) => {
+  return UNITE_CHARACTER_LABELS.get(name.trim()) ?? name.trim();
+};
+
+const translateUniteCharacterList = (value: string) => {
+  return value
+    .replace(/^either\s+/i, "")
+    .split(/\s+and\s+|,\s*/)
+    .map((name) => name.trim())
+    .filter(Boolean)
+    .map(translateUniteCharacterName)
+    .join(", ");
+};
+
+const translateUniteAttackName = (value: string) => {
+  const normalizedValue = value
+    .replace(/^the\s+/i, "")
+    .replace(/\.$/, "")
+    .trim();
+
+  return UNITE_ATTACK_LABELS[
+    normalizedValue as keyof typeof UNITE_ATTACK_LABELS
+  ] ?? normalizedValue;
+};
+
+const translateUniteAttackList = (value: string) => {
+  const normalizedValue = value
+    .replace(/\.$/, "")
+    .replace(/\s+which is really the Fancy Lad Attack/i, "")
+    .replace(/,\s*with\s+/i, " with ")
+    .trim();
+
+  if (normalizedValue in UNITE_ATTACK_LABELS) {
+    return translateUniteAttackName(normalizedValue);
+  }
+
+  return normalizedValue
+    .split(/,\s+and\s+|,\s*|\s+and\s+/)
+    .map((attack) => attack.trim())
+    .filter(Boolean)
+    .map(translateUniteAttackName)
+    .join(", ");
+};
+
+const formatUniteAttackUsage = (
+  _characterName: string,
+  attackText: string,
+  partnerText?: string,
+) => {
+  const attacks = translateUniteAttackList(attackText);
+  const partners = partnerText ? translateUniteCharacterList(partnerText) : "";
+
+  return partners ?
+      `${attacks}을 ${partners}와 함께 사용할 수 있습니다.` :
+      `${attacks}에 참여할 수 있습니다.`;
+};
+
+const translateUniteAttackLine = (line: string) => {
+  const normalizedLine = line.replace(/^\*/, "").trim();
+
+  if (/^(None\.?|.+ has no (known )?unite attacks?\.?|.+ does not have any unite attacks with other characters\.?)$/i.test(normalizedLine)) {
+    return CHARACTER_COPY.unavailableDetail;
+  }
+
+  if (normalizedLine === "Head Up!! and Double Kraken Attack") {
+    return "헤드 업!! / 더블 크라켄 공격";
+  }
+
+  if (normalizedLine.startsWith("Head Up!! teleports")) {
+    return "헤드 업!!는 아비즈보어 또는 루로디아를 적 1체에게 보내 2배 피해를 주며, 사용 후 균형을 잃습니다.";
+  }
+
+  if (normalizedLine === "Riou can perform the following Unite Attacks:") {
+    return "다음 협력 공격을 사용할 수 있습니다.";
+  }
+
+  const specialTranslations: Record<string, string> = {
+    "Gadget can participate in the Trick Attack, which could be powered up if Meg is equipped with the Lubricating Oil.":
+      "트릭 공격에 참여할 수 있습니다. 메그가 윤활유를 장비하면 위력이 강화됩니다.",
+    "Camus can participate in the Knight Attack and the Pretty Boy Attack which is really the Fancy Lad Attack.":
+      "기사 공격과 미남 공격에 참여할 수 있습니다.",
+    "Gengen can participate in the Kobold Attack (with a small chance for alternative version as 100 Kobold Attack) and the Bow Wow Attack.":
+      "코볼트 공격과 멍멍 공격에 참여할 수 있습니다. 코볼트 공격은 낮은 확률로 100 코볼트 공격으로 변화합니다.",
+    "Maas can participate in the Blacksmith Attack. The unite attack is very powerful, so the best way to use him is to take advantage of this unite attack.":
+      "대장장이 공격에 참여할 수 있습니다. 위력이 높은 협력 공격이므로 이를 중심으로 운용하기 좋습니다.",
+    "Miklotov can participate in the Knight Attack and the Pretty Boy Attack, which is really the Fancy Lad Attack.":
+      "기사 공격과 미남 공격에 참여할 수 있습니다.",
+    "Rikimaru can participate in the Manly Attack. With a Cup of Promise equipped to either him or Amada, the unite attack has a chance to inflict Knockdown on targets.":
+      "남자 공격에 참여할 수 있습니다. 리키마루 또는 아마다가 약속의 술잔을 장비하면 대상에게 넘어짐을 부여할 수 있습니다.",
+    "Sasuke can participate in the Pretty Boy Attack, translated as the \"Cutie Boy Attack\".":
+      "미남 공격에 참여할 수 있습니다.",
+  };
+
+  if (normalizedLine in specialTranslations) {
+    return specialTranslations[normalizedLine];
+  }
+
+  const withHisMasterMatch = normalizedLine.match(
+    /^(.+) has a (.+) with his master, (.+)\.$/,
+  );
+  if (withHisMasterMatch) {
+    return formatUniteAttackUsage(
+      withHisMasterMatch[1],
+      withHisMasterMatch[2],
+      withHisMasterMatch[3],
+    );
+  }
+
+  const canUniteMatch = normalizedLine.match(
+    /^(.+) can unite with (.+) and either (.+) or (.+) to perform the (.+)\.$/,
+  );
+  if (canUniteMatch) {
+    return `${translateUniteAttackName(canUniteMatch[5])}을 ${[
+      canUniteMatch[2],
+      canUniteMatch[3],
+      canUniteMatch[4],
+    ].map(translateUniteCharacterName).join(", ")}와 함께 사용할 수 있습니다.`;
+  }
+
+  const performWithMatch = normalizedLine.match(/^(.+) can perform the (.+) with (.+)\.$/);
+  if (performWithMatch) {
+    return formatUniteAttackUsage(
+      performWithMatch[1],
+      performWithMatch[2],
+      performWithMatch[3],
+    );
+  }
+
+  const bulletWithMatch = normalizedLine.match(/^(.+ Attack) with (.+)$/);
+  if (bulletWithMatch) {
+    return `${translateUniteAttackName(bulletWithMatch[1])}을 ${translateUniteCharacterList(bulletWithMatch[2])}와 함께 사용할 수 있습니다.`;
+  }
+
+  const participateWithMatch = normalizedLine.match(
+    /^(.+) can participate in (?:both )?(?:the )?(.+?) with (.+)\.$/,
+  );
+  if (participateWithMatch) {
+    return formatUniteAttackUsage(
+      participateWithMatch[1],
+      participateWithMatch[2],
+      participateWithMatch[3],
+    );
+  }
+
+  const participateMatch = normalizedLine.match(
+    /^(.+) can participate in (?:both )?(?:the )?(.+)\.$/,
+  );
+  if (participateMatch) {
+    return formatUniteAttackUsage(participateMatch[1], participateMatch[2]);
+  }
+
+  return normalizedLine;
+};
+
+const translateUniteAttackLines = (lines: readonly string[]) => {
+  return lines.map(translateUniteAttackLine);
+};
+
+const buildMaxLevelStatusRows = (values: Record<string, string>) => {
+  return MAX_LEVEL_STATUS_GROUPS
+    .map((group) => ({
+      title: group.title,
+      rows: group.keys
+        .map((label) => ({
+          label: MAX_LEVEL_STATUS_LABELS[label],
+          value: values[label],
+        }))
+        .filter((row) => row.value),
+    }))
+    .filter((group) => group.rows.length > 0);
+};
+
+const buildEquipmentRows = (record: CharacterDetailRecord | null) => {
+  if (!record) {
+    return [];
+  }
+
+  const defaultRows = buildStringRows(record.role.equipment.default).map((row) => ({
+    ...row,
+    label: buildEquipmentLabel("default", row.label),
+  }));
+  const recommendedRows = buildStringRows(record.role.equipment.recommended).map(
+    (row) => ({
+      ...row,
+      label: buildEquipmentLabel("recommended", row.label),
+    }),
+  );
+
+  return [...defaultRows, ...recommendedRows];
+};
+
+const hasCombatDataPanelContent = (panel: CharacterCombatDataPanel) => {
+  return panel.lines.length > 0 ||
+    panel.rows.length > 0 ||
+    Boolean(panel.rowGroups?.some((group) => group.rows.length > 0));
+};
+
+export const buildCharacterCombatDataPanels = (
+  character: CharacterEntry,
+  record: CharacterDetailRecord | null,
+): CharacterCombatDataPanel[] => {
+  if (character.characterType !== CHARACTER_TYPE_VALUE.combat) {
+    return [];
+  }
+
+  const role = record?.role;
+  const weaponRows = role?.weapon ? [
+    { label: "Type", value: translateWeaponType(role.weapon.type) },
+    { label: "Range", value: translateWeaponRange(role.weapon.range) },
+    { label: "Starting Level", value: role.weapon.startingLevel },
+  ].filter((row) => row.value) : [];
+  const runeLines = role ?
+    extractLocalizedRuneNames([
+      ...role.rune.attached,
+      ...role.rune.recommended,
+    ]) :
+    [];
+
+  return [
+    {
+      id: `${COMBAT_DATA_ANCHOR_PREFIX}-overall`,
+      title: "Overall",
+      lines: getCharacterDetailLines(
+        character,
+        "overall",
+        buildCharacterOverallFallbackLines(character, role),
+      ),
+      rows: [],
+    },
+    {
+      id: `${COMBAT_DATA_ANCHOR_PREFIX}-weapon-growth`,
+      title: "Weapon Growth",
+      lines: [],
+      rows: weaponRows,
+    },
+    {
+      id: `${COMBAT_DATA_ANCHOR_PREFIX}-runes`,
+      title: "Runes",
+      lines: runeLines,
+      rows: [],
+    },
+    {
+      id: `${COMBAT_DATA_ANCHOR_PREFIX}-max-lv-status`,
+      title: "Max Lv. Status",
+      lines: [],
+      rowGroups: role?.maxLevelStatus ?
+        buildMaxLevelStatusRows(role.maxLevelStatus) :
+        [],
+      rows: [],
+    },
+    {
+      id: `${COMBAT_DATA_ANCHOR_PREFIX}-equipment`,
+      title: "Equipment",
+      lines: [],
+      rows: buildEquipmentRows(record),
+    },
+    {
+      id: `${COMBAT_DATA_ANCHOR_PREFIX}-unite-attacks`,
+      title: "협력 공격",
+      lines: role?.uniteAttacks.length ?
+        translateUniteAttackLines(role.uniteAttacks) :
+        [],
+      rows: [],
+    },
+  ].filter(hasCombatDataPanelContent);
+};

@@ -2,778 +2,556 @@
   {
     "id": "hero",
     "name": "Hero",
-    "file": "/suikoden/characters/suikoden-ii/001-hero.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085962/3c18827d89b97249622a03ad8e6e59ec.png/show"
+    "file": "/suikoden/characters/suikoden-ii/001-hero.png"
   },
   {
     "id": "nanami",
     "name": "Nanami",
-    "file": "/suikoden/characters/suikoden-ii/002-nanami.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085959/9aba150df7900841d36d97d0b6c38832.png/show"
+    "file": "/suikoden/characters/suikoden-ii/002-nanami.png"
   },
   {
     "id": "tsai",
     "name": "Tsai",
-    "file": "/suikoden/characters/suikoden-ii/003-tsai.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4126020/d2116848d1373d07e35be2568a8c845d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/003-tsai.png"
   },
   {
     "id": "hanna",
     "name": "Hanna",
-    "file": "/suikoden/characters/suikoden-ii/004-hanna.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4126019/5e65699f5b190cdc321c05cd86dcc2e3.png/show"
+    "file": "/suikoden/characters/suikoden-ii/004-hanna.png"
   },
   {
     "id": "anita",
     "name": "Anita",
-    "file": "/suikoden/characters/suikoden-ii/005-anita.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4126021/fc16e7f69c12815562d0eb6bb9d3ec79.png/show"
+    "file": "/suikoden/characters/suikoden-ii/005-anita.png"
   },
   {
     "id": "viktor",
     "name": "Viktor",
-    "file": "/suikoden/characters/suikoden-ii/006-viktor.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127039/ac6528a5e0e6c9a5a01bd11382f64a6d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/006-viktor.png"
   },
   {
     "id": "flik",
     "name": "Flik",
-    "file": "/suikoden/characters/suikoden-ii/007-flik.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127043/442812deda0b2da4a50b3f7e072b9236.png/show"
+    "file": "/suikoden/characters/suikoden-ii/007-flik.png"
   },
   {
     "id": "freed-yamamoto",
     "name": "Freed Yamamoto",
-    "file": "/suikoden/characters/suikoden-ii/008-freed-yamamoto.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085950/d75e4219aa66f78a2d7de129dee97b15.png/show"
+    "file": "/suikoden/characters/suikoden-ii/008-freed-yamamoto.png"
   },
   {
     "id": "shu",
     "name": "Shu",
-    "file": "/suikoden/characters/suikoden-ii/009-shu.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132501/cb872afa6a63e49bfd21422786a4587e.png/show"
+    "file": "/suikoden/characters/suikoden-ii/009-shu.png"
   },
   {
     "id": "luc",
     "name": "Luc",
-    "file": "/suikoden/characters/suikoden-ii/010-luc.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127047/30cd5d4fbcf7772f0b783f54656652bc.png/show"
+    "file": "/suikoden/characters/suikoden-ii/010-luc.png"
   },
   {
     "id": "tai-ho",
     "name": "Tai Ho",
-    "file": "/suikoden/characters/suikoden-ii/011-tai-ho.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127048/b850f7b711be9ee3c35d7061b51a4462.png/show"
+    "file": "/suikoden/characters/suikoden-ii/011-tai-ho.png"
   },
   {
     "id": "yam-koo",
     "name": "Yam Koo",
-    "file": "/suikoden/characters/suikoden-ii/012-yam-koo.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132505/dcbb1d791c2b113025415cda052541f9.png/show"
+    "file": "/suikoden/characters/suikoden-ii/012-yam-koo.png"
   },
   {
     "id": "ridley-wizen",
     "name": "Ridley Wizen",
-    "file": "/suikoden/characters/suikoden-ii/013-ridley-wizen.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086259/fc1b96a7c30c97f3e793172379a21d68.png/show"
+    "file": "/suikoden/characters/suikoden-ii/013-ridley-wizen.png"
   },
   {
     "id": "boris-wizen",
     "name": "Boris Wizen",
-    "file": "/suikoden/characters/suikoden-ii/014-boris-wizen.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136012/a248be96244d819558c5c450c46cf7d5.png/show"
+    "file": "/suikoden/characters/suikoden-ii/014-boris-wizen.png"
   },
   {
     "id": "fitcher",
     "name": "Fitcher",
-    "file": "/suikoden/characters/suikoden-ii/015-fitcher.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085945/049476a2526eeabde7c53389e4e471cc.png/show"
+    "file": "/suikoden/characters/suikoden-ii/015-fitcher.png"
   },
   {
     "id": "chaco",
     "name": "Chaco",
-    "file": "/suikoden/characters/suikoden-ii/016-chaco.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086267/37ebd4a962169f669aacf99a987582ec.png/show"
+    "file": "/suikoden/characters/suikoden-ii/016-chaco.png"
   },
   {
     "id": "hix",
     "name": "Hix",
-    "file": "/suikoden/characters/suikoden-ii/017-hix.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127045/2ade7b300838a66b8fcce21d47efa35d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/017-hix.png"
   },
   {
     "id": "tengaar",
     "name": "Tengaar",
-    "file": "/suikoden/characters/suikoden-ii/018-tengaar.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086188/b01bf42eb08398c168f1bca67e6c2d1f.png/show"
+    "file": "/suikoden/characters/suikoden-ii/018-tengaar.png"
   },
   {
     "id": "yoshino-yamamoto",
     "name": "Yoshino Yamamoto",
-    "file": "/suikoden/characters/suikoden-ii/019-yoshino-yamamoto.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4088635/c7f3b0fc2bb0a9ef08254f316c470f17.png/show"
+    "file": "/suikoden/characters/suikoden-ii/019-yoshino-yamamoto.png"
   },
   {
     "id": "stallion",
     "name": "Stallion",
-    "file": "/suikoden/characters/suikoden-ii/020-stallion.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4134184/da02298da0a8144e2f178d9684531aa1.png/show"
+    "file": "/suikoden/characters/suikoden-ii/020-stallion.png"
   },
   {
     "id": "clive",
     "name": "Clive",
-    "file": "/suikoden/characters/suikoden-ii/021-clive.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127658/e7a1bada44417e7b30e48cb0b96f4f0d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/021-clive.png"
   },
   {
     "id": "teresa-wisemail",
     "name": "Teresa Wisemail",
-    "file": "/suikoden/characters/suikoden-ii/022-teresa-wisemail.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085956/08e8574bce8e74d76e791e53053ddc4b.png/show"
+    "file": "/suikoden/characters/suikoden-ii/022-teresa-wisemail.png"
   },
   {
     "id": "nina",
     "name": "Nina",
-    "file": "/suikoden/characters/suikoden-ii/023-nina.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132499/3a7e9a6ed6eb263e8f9e556f69c12a0c.png/show"
+    "file": "/suikoden/characters/suikoden-ii/023-nina.png"
   },
   {
     "id": "humphrey-mintz",
     "name": "Humphrey Mintz",
-    "file": "/suikoden/characters/suikoden-ii/024-humphrey-mintz.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4094277/fa600d202d8146f0b5a1ebbea06f078f.png/show"
+    "file": "/suikoden/characters/suikoden-ii/024-humphrey-mintz.png"
   },
   {
     "id": "kiba-windamier",
     "name": "Kiba Windamier",
-    "file": "/suikoden/characters/suikoden-ii/025-kiba-windamier.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127361/b55a9725d84bb7bcbf444281e2726dd5.png/show"
+    "file": "/suikoden/characters/suikoden-ii/025-kiba-windamier.png"
   },
   {
     "id": "valeria",
     "name": "Valeria",
-    "file": "/suikoden/characters/suikoden-ii/026-valeria.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136003/a4f414bad0f5aa7296da6136b72241a0.png/show"
+    "file": "/suikoden/characters/suikoden-ii/026-valeria.png"
   },
   {
     "id": "tomo",
     "name": "Tomo",
-    "file": "/suikoden/characters/suikoden-ii/027-tomo.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086266/a4f67b11a5b5d76dd76b3f1deb45971c.png/show"
+    "file": "/suikoden/characters/suikoden-ii/027-tomo.png"
   },
   {
     "id": "feather",
     "name": "Feather",
-    "file": "/suikoden/characters/suikoden-ii/028-feather.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086257/47fea3b3be13fe402af185a86eff8147.png/show"
+    "file": "/suikoden/characters/suikoden-ii/028-feather.png"
   },
   {
     "id": "sigfried",
     "name": "Sigfried",
-    "file": "/suikoden/characters/suikoden-ii/029-sigfried.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136002/954767c74632675ef9fbc931ac901a48.png/show"
+    "file": "/suikoden/characters/suikoden-ii/029-sigfried.png"
   },
   {
     "id": "sierra-mikain",
     "name": "Sierra Mikain",
-    "file": "/suikoden/characters/suikoden-ii/030-sierra-mikain.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086261/61b1a6c683a81f0c12883e7ab7e65f7a.png/show"
+    "file": "/suikoden/characters/suikoden-ii/030-sierra-mikain.png"
   },
   {
     "id": "hauser",
     "name": "Hauser",
-    "file": "/suikoden/characters/suikoden-ii/031-hauser.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4133880/756a4ccba11968b9772bee01bc55c703.png/show"
+    "file": "/suikoden/characters/suikoden-ii/031-hauser.png"
   },
   {
     "id": "jess",
     "name": "Jess",
-    "file": "/suikoden/characters/suikoden-ii/032-jess.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086262/22eda28e34a9663d67ebd17b16ea9817.png/show"
+    "file": "/suikoden/characters/suikoden-ii/032-jess.png"
   },
   {
     "id": "georg-prime",
     "name": "Georg Prime",
-    "file": "/suikoden/characters/suikoden-ii/033-georg-prime.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085942/9d6d1ad3dee94dfe5a518294b939b221.png/show"
+    "file": "/suikoden/characters/suikoden-ii/033-georg-prime.png"
   },
   {
     "id": "killey",
     "name": "Killey",
-    "file": "/suikoden/characters/suikoden-ii/034-killey.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127657/8bab3fff0026d2d4896b538df409f22e.png/show"
+    "file": "/suikoden/characters/suikoden-ii/034-killey.png"
   },
   {
     "id": "pesmerga",
     "name": "Pesmerga",
-    "file": "/suikoden/characters/suikoden-ii/035-pesmerga.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4094275/5e9d25cc9a9e207479047c88dd64f627.png/show"
+    "file": "/suikoden/characters/suikoden-ii/035-pesmerga.png"
   },
   {
     "id": "abizboah",
     "name": "Abizboah",
-    "file": "/suikoden/characters/suikoden-ii/036-abizboah.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4135287/3de3a3cf9031bf24e915cf000f0a4a8f.png/show"
+    "file": "/suikoden/characters/suikoden-ii/036-abizboah.png"
   },
   {
     "id": "mukumuku",
     "name": "Mukumuku",
-    "file": "/suikoden/characters/suikoden-ii/037-mukumuku.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085957/4fd2a66affd4644756a9422f65844537.png/show"
+    "file": "/suikoden/characters/suikoden-ii/037-mukumuku.png"
   },
   {
     "id": "rikimaru",
     "name": "Rikimaru",
-    "file": "/suikoden/characters/suikoden-ii/038-rikimaru.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4126022/a41918732159c6bdc8e46bf7755b08bb.png/show"
+    "file": "/suikoden/characters/suikoden-ii/038-rikimaru.png"
   },
   {
     "id": "millie",
     "name": "Millie",
-    "file": "/suikoden/characters/suikoden-ii/039-millie.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085960/5c27b93c916d3ff46eb5a7d25229d5eb.png/show"
+    "file": "/suikoden/characters/suikoden-ii/039-millie.png"
   },
   {
     "id": "kinnison",
     "name": "Kinnison",
-    "file": "/suikoden/characters/suikoden-ii/040-kinnison.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086190/53b5fc6f006449136fbba682b8968132.png/show"
+    "file": "/suikoden/characters/suikoden-ii/040-kinnison.png"
   },
   {
     "id": "shiro",
     "name": "Shiro",
-    "file": "/suikoden/characters/suikoden-ii/041-shiro.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086191/915c7ed11d44c8381f547e5a6d897f49.png/show"
+    "file": "/suikoden/characters/suikoden-ii/041-shiro.png"
   },
   {
     "id": "zamza",
     "name": "Zamza",
-    "file": "/suikoden/characters/suikoden-ii/042-zamza.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085954/04c6c04a8feabaed7d18b8cf0bdc251b.png/show"
+    "file": "/suikoden/characters/suikoden-ii/042-zamza.png"
   },
   {
     "id": "apple",
     "name": "Apple",
-    "file": "/suikoden/characters/suikoden-ii/043-apple.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4090218/8a3bce57dcc486b8224fdf8181df9a1e.png/show"
+    "file": "/suikoden/characters/suikoden-ii/043-apple.png"
   },
   {
     "id": "tuta",
     "name": "Tuta",
-    "file": "/suikoden/characters/suikoden-ii/044-tuta.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127042/08e167575b897c45e63ce6a98165a890.png/show"
+    "file": "/suikoden/characters/suikoden-ii/044-tuta.png"
   },
   {
     "id": "gilbert",
     "name": "Gilbert",
-    "file": "/suikoden/characters/suikoden-ii/045-gilbert.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132503/41ef4ce3329a74e79ccb596ba96929c6.png/show"
+    "file": "/suikoden/characters/suikoden-ii/045-gilbert.png"
   },
   {
     "id": "eilie",
     "name": "Eilie",
-    "file": "/suikoden/characters/suikoden-ii/046-eilie.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4124986/1952c15ed810382bd64e2558900b7cb1.png/show"
+    "file": "/suikoden/characters/suikoden-ii/046-eilie.png"
   },
   {
     "id": "rina",
     "name": "Rina",
-    "file": "/suikoden/characters/suikoden-ii/047-rina.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4124987/7873deded2d832778c1ac3add97f8229.png/show"
+    "file": "/suikoden/characters/suikoden-ii/047-rina.png"
   },
   {
     "id": "bolgan",
     "name": "Bolgan",
-    "file": "/suikoden/characters/suikoden-ii/048-bolgan.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4124985/c7feccd858fdfca50144798dc72d51a1.png/show"
+    "file": "/suikoden/characters/suikoden-ii/048-bolgan.png"
   },
   {
     "id": "leona",
     "name": "Leona",
-    "file": "/suikoden/characters/suikoden-ii/049-leona.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086264/c850ea37b81d2f6d64170f7809c67ae8.png/show"
+    "file": "/suikoden/characters/suikoden-ii/049-leona.png"
   },
   {
     "id": "gengen",
     "name": "Gengen",
-    "file": "/suikoden/characters/suikoden-ii/050-gengen.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085946/746a96190fda7de661d4c26bcbe76e96.png/show"
+    "file": "/suikoden/characters/suikoden-ii/050-gengen.png"
   },
   {
     "id": "barbara",
     "name": "Barbara",
-    "file": "/suikoden/characters/suikoden-ii/051-barbara.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4134183/c96d51cdf60606b31f1adfe16d863de2.png/show"
+    "file": "/suikoden/characters/suikoden-ii/051-barbara.png"
   },
   {
     "id": "huan",
     "name": "Huan",
-    "file": "/suikoden/characters/suikoden-ii/052-huan.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4134182/6b01877a1d6fca25375b1e1ce1fcc133.png/show"
+    "file": "/suikoden/characters/suikoden-ii/052-huan.png"
   },
   {
     "id": "oulan",
     "name": "Oulan",
-    "file": "/suikoden/characters/suikoden-ii/053-oulan.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127044/dc311ae3ab44978d999ba7ed86832956.png/show"
+    "file": "/suikoden/characters/suikoden-ii/053-oulan.png"
   },
   {
     "id": "taki",
     "name": "Taki",
-    "file": "/suikoden/characters/suikoden-ii/054-taki.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132504/99a953854093e587dd33d5414480459d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/054-taki.png"
   },
   {
     "id": "hans",
     "name": "Hans",
-    "file": "/suikoden/characters/suikoden-ii/055-hans.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132498/7a2ba21eed9b6d16065d9b8fc1d66d5e.png/show"
+    "file": "/suikoden/characters/suikoden-ii/055-hans.png"
   },
   {
     "id": "tetsu",
     "name": "Tetsu",
-    "file": "/suikoden/characters/suikoden-ii/056-tetsu.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132507/476670f002b8d922021735ae36c63b2d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/056-tetsu.png"
   },
   {
     "id": "hai-yo",
     "name": "Hai Yo",
-    "file": "/suikoden/characters/suikoden-ii/057-hai-yo.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086589/7032cd619a42d88ce27394f2c94409a5.png/show"
+    "file": "/suikoden/characters/suikoden-ii/057-hai-yo.png"
   },
   {
     "id": "richmond",
     "name": "Richmond",
-    "file": "/suikoden/characters/suikoden-ii/058-richmond.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085955/8c6b86a2651c181ab4d79b1be3a72441.png/show"
+    "file": "/suikoden/characters/suikoden-ii/058-richmond.png"
   },
   {
     "id": "amada",
     "name": "Amada",
-    "file": "/suikoden/characters/suikoden-ii/059-amada.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127041/c06489123a1aec49ec37636340e9e08e.png/show"
+    "file": "/suikoden/characters/suikoden-ii/059-amada.png"
   },
   {
     "id": "alex",
     "name": "Alex",
-    "file": "/suikoden/characters/suikoden-ii/060-alex.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132502/04192c35e48c300d1c342579513e31ab.png/show"
+    "file": "/suikoden/characters/suikoden-ii/060-alex.png"
   },
   {
     "id": "hilda",
     "name": "Hilda",
-    "file": "/suikoden/characters/suikoden-ii/061-hilda.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132506/25c17a1ccbfe4be6a8f585727a26bd48.png/show"
+    "file": "/suikoden/characters/suikoden-ii/061-hilda.png"
   },
   {
     "id": "adlai",
     "name": "Adlai",
-    "file": "/suikoden/characters/suikoden-ii/062-adlai.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4134181/91f14e78d0ee4b512bd112a62919450d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/062-adlai.png"
   },
   {
     "id": "emilia",
     "name": "Emilia",
-    "file": "/suikoden/characters/suikoden-ii/063-emilia.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132500/def579fc3588ae1d7724f36947839f0b.png/show"
+    "file": "/suikoden/characters/suikoden-ii/063-emilia.png"
   },
   {
     "id": "gabocha",
     "name": "Gabocha",
-    "file": "/suikoden/characters/suikoden-ii/064-gabocha.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085958/db916f55fd04038d9f13aeee41821cf3.png/show"
+    "file": "/suikoden/characters/suikoden-ii/064-gabocha.png"
   },
   {
     "id": "sid",
     "name": "Sid",
-    "file": "/suikoden/characters/suikoden-ii/065-sid.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127040/90eaa28a59ce085001edbd359b53f09c.png/show"
+    "file": "/suikoden/characters/suikoden-ii/065-sid.png"
   },
   {
     "id": "jeane",
     "name": "Jeane",
-    "file": "/suikoden/characters/suikoden-ii/066-jeane.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136011/642e68250c8285d72c5da1ed5a2c8806.png/show"
+    "file": "/suikoden/characters/suikoden-ii/066-jeane.png"
   },
   {
     "id": "shilo",
     "name": "Shilo",
-    "file": "/suikoden/characters/suikoden-ii/067-shilo.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127132/b8bf601f01c0877ddc0455f5c424d7d2.png/show"
+    "file": "/suikoden/characters/suikoden-ii/067-shilo.png"
   },
   {
     "id": "yuzu",
     "name": "Yuzu",
-    "file": "/suikoden/characters/suikoden-ii/068-yuzu.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136013/d55f23ad63b6f86e2eb342613814ac4c.png/show"
+    "file": "/suikoden/characters/suikoden-ii/068-yuzu.png"
   },
   {
     "id": "shin",
     "name": "Shin",
-    "file": "/suikoden/characters/suikoden-ii/069-shin.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4085953/696436ddd0150e0701c1472e8bc67a9e.png/show"
+    "file": "/suikoden/characters/suikoden-ii/069-shin.png"
   },
   {
     "id": "meg",
     "name": "Meg",
-    "file": "/suikoden/characters/suikoden-ii/070-meg.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127136/207313a460e320f77be1051d2c2cb486.png/show"
+    "file": "/suikoden/characters/suikoden-ii/070-meg.png"
   },
   {
     "id": "gadget",
     "name": "Gadget",
-    "file": "/suikoden/characters/suikoden-ii/071-gadget.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127138/62e95a56da5efb8e0c276b2d63146acd.png/show"
+    "file": "/suikoden/characters/suikoden-ii/071-gadget.png"
   },
   {
     "id": "wakaba",
     "name": "Wakaba",
-    "file": "/suikoden/characters/suikoden-ii/072-wakaba.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127139/f7ffe50d5407b7726dcd96aa936effe2.png/show"
+    "file": "/suikoden/characters/suikoden-ii/072-wakaba.png"
   },
   {
     "id": "tony",
     "name": "Tony",
-    "file": "/suikoden/characters/suikoden-ii/073-tony.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127137/6e89e39869d0c1ff46be569a87ea3da9.png/show"
+    "file": "/suikoden/characters/suikoden-ii/073-tony.png"
   },
   {
     "id": "viki",
     "name": "Viki",
-    "file": "/suikoden/characters/suikoden-ii/074-viki.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127133/30f4d64c7c11944f84841c54f27b260a.png/show"
+    "file": "/suikoden/characters/suikoden-ii/074-viki.png"
   },
   {
     "id": "futch",
     "name": "Futch",
-    "file": "/suikoden/characters/suikoden-ii/075-futch.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4094276/d17744c7bd56c06396780cd8ad44f4bf.png/show"
+    "file": "/suikoden/characters/suikoden-ii/075-futch.png"
   },
   {
     "id": "miklotov",
     "name": "Miklotov",
-    "file": "/suikoden/characters/suikoden-ii/076-miklotov.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127135/2d813a857eb5ff0d5eec37d34f936ad0.png/show"
+    "file": "/suikoden/characters/suikoden-ii/076-miklotov.png"
   },
   {
     "id": "camus",
     "name": "Camus",
-    "file": "/suikoden/characters/suikoden-ii/077-camus.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127356/343bb867477f673fd616d495c1d3522c.png/show"
+    "file": "/suikoden/characters/suikoden-ii/077-camus.png"
   },
   {
     "id": "klaus-windamier",
     "name": "Klaus Windamier",
-    "file": "/suikoden/characters/suikoden-ii/078-klaus-windamier.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127359/76f1c0d52d485fbfb33532125a49c2d9.png/show"
+    "file": "/suikoden/characters/suikoden-ii/078-klaus-windamier.png"
   },
   {
     "id": "kasumi",
     "name": "Kasumi",
-    "file": "/suikoden/characters/suikoden-ii/079-kasumi.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127655/7702f0fa4f1130488f5541a01969c40d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/079-kasumi.png"
   },
   {
     "id": "sheena",
     "name": "Sheena",
-    "file": "/suikoden/characters/suikoden-ii/080-sheena.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127360/a2ffba9b376f11a387e0bbc8c445172a.png/show"
+    "file": "/suikoden/characters/suikoden-ii/080-sheena.png"
   },
   {
     "id": "gordon",
     "name": "Gordon",
-    "file": "/suikoden/characters/suikoden-ii/081-gordon.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136004/59d4cc90fab3d3ad54a9108c8783e7b2.png/show"
+    "file": "/suikoden/characters/suikoden-ii/081-gordon.png"
   },
   {
     "id": "lorelai",
     "name": "Lorelai",
-    "file": "/suikoden/characters/suikoden-ii/082-lorelai.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136005/f3fbad2a46600bb1698e3b150c8936b3.png/show"
+    "file": "/suikoden/characters/suikoden-ii/082-lorelai.png"
   },
   {
     "id": "sasuke",
     "name": "Sasuke",
-    "file": "/suikoden/characters/suikoden-ii/083-sasuke.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127652/49a1f4a569306d623c51909677c14274.png/show"
+    "file": "/suikoden/characters/suikoden-ii/083-sasuke.png"
   },
   {
     "id": "mondo",
     "name": "Mondo",
-    "file": "/suikoden/characters/suikoden-ii/084-mondo.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127659/103edea2335cddbe42331d3523900fe6.png/show"
+    "file": "/suikoden/characters/suikoden-ii/084-mondo.png"
   },
   {
     "id": "templeton",
     "name": "Templeton",
-    "file": "/suikoden/characters/suikoden-ii/085-templeton.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4133879/782beacee47c55cc4f8d2ccbab1686ef.png/show"
+    "file": "/suikoden/characters/suikoden-ii/085-templeton.png"
   },
   {
     "id": "badeaux",
     "name": "Badeaux",
-    "file": "/suikoden/characters/suikoden-ii/086-badeaux.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127134/5887e4232393bfa9d86bd2ba94fc4c06.png/show"
+    "file": "/suikoden/characters/suikoden-ii/086-badeaux.png"
   },
   {
     "id": "ayda",
     "name": "Ayda",
-    "file": "/suikoden/characters/suikoden-ii/087-ayda.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4088634/671643b5791bb5042094f427c7851774.png/show"
+    "file": "/suikoden/characters/suikoden-ii/087-ayda.png"
   },
   {
     "id": "connell",
     "name": "Connell",
-    "file": "/suikoden/characters/suikoden-ii/088-connell.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086193/38b6e8bf2ed304281e9ec6c90bb6130b.png/show"
+    "file": "/suikoden/characters/suikoden-ii/088-connell.png"
   },
   {
     "id": "karen",
     "name": "Karen",
-    "file": "/suikoden/characters/suikoden-ii/089-karen.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127653/b9f9bdbcc8d0360ea6195ce7cedcb08e.png/show"
+    "file": "/suikoden/characters/suikoden-ii/089-karen.png"
   },
   {
     "id": "maximillian",
     "name": "Maximillian",
-    "file": "/suikoden/characters/suikoden-ii/090-maximillian.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127656/d9b0ea6c3e7b1f24c64aa076b97490b9.png/show"
+    "file": "/suikoden/characters/suikoden-ii/090-maximillian.png"
   },
   {
     "id": "raura",
     "name": "Raura",
-    "file": "/suikoden/characters/suikoden-ii/091-raura.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127678/760c9bdf43839338b31d1333f50f0455.png/show"
+    "file": "/suikoden/characters/suikoden-ii/091-raura.png"
   },
   {
     "id": "kahn-marley",
     "name": "Kahn Marley",
-    "file": "/suikoden/characters/suikoden-ii/092-kahn-marley.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086260/15108e7f964b810dc578a230ea5d7d1b.png/show"
+    "file": "/suikoden/characters/suikoden-ii/092-kahn-marley.png"
   },
   {
     "id": "tenkou",
     "name": "Tenkou",
-    "file": "/suikoden/characters/suikoden-ii/093-tenkou.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127674/da7a5e84f1ce4d506dcb54d52f4f77d0.png/show"
+    "file": "/suikoden/characters/suikoden-ii/093-tenkou.png"
   },
   {
     "id": "long-chan-chan",
     "name": "Long Chan-Chan",
-    "file": "/suikoden/characters/suikoden-ii/094-long-chan-chan.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127675/1b8330f4ec8e747f31341fa7ae444b67.png/show"
+    "file": "/suikoden/characters/suikoden-ii/094-long-chan-chan.png"
   },
   {
     "id": "gijimu",
     "name": "Gijimu",
-    "file": "/suikoden/characters/suikoden-ii/095-gijimu.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127677/087cdbd0b502166bec56603364880d21.png/show"
+    "file": "/suikoden/characters/suikoden-ii/095-gijimu.png"
   },
   {
     "id": "lo-wen",
     "name": "Lo Wen",
-    "file": "/suikoden/characters/suikoden-ii/096-lo-wen.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136010/9c55d232eca90626f7fef3c65726a783.png/show"
+    "file": "/suikoden/characters/suikoden-ii/096-lo-wen.png"
   },
   {
     "id": "koyu",
     "name": "Koyu",
-    "file": "/suikoden/characters/suikoden-ii/097-koyu.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127676/1ad39640193ad30e33be83cc3e0de65d.png/show"
+    "file": "/suikoden/characters/suikoden-ii/097-koyu.png"
   },
   {
     "id": "marlowe",
     "name": "Marlowe",
-    "file": "/suikoden/characters/suikoden-ii/098-marlowe.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4132508/a8a52ac6466d653ebee725ca0d164708.png/show"
+    "file": "/suikoden/characters/suikoden-ii/098-marlowe.png"
   },
   {
     "id": "lebrante",
     "name": "Lebrante",
-    "file": "/suikoden/characters/suikoden-ii/099-lebrante.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4135655/db683f6c998a5b5ac0ffd9998da0d80c.png/show"
+    "file": "/suikoden/characters/suikoden-ii/099-lebrante.png"
   },
   {
     "id": "simone-verdricci",
     "name": "Simone Verdricci",
-    "file": "/suikoden/characters/suikoden-ii/100-simone-verdricci.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136009/e64722619491e5a4be52db7c682fb0be.png/show"
+    "file": "/suikoden/characters/suikoden-ii/100-simone-verdricci.png"
   },
   {
     "id": "hoi",
     "name": "Hoi",
-    "file": "/suikoden/characters/suikoden-ii/101-hoi.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127654/bcf17f1adf42030ca826b063858a47cf.png/show"
+    "file": "/suikoden/characters/suikoden-ii/101-hoi.png"
   },
   {
     "id": "gantetsu",
     "name": "Gantetsu",
-    "file": "/suikoden/characters/suikoden-ii/102-gantetsu.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127358/1e9526ae2249785bf8c97f7bfeb769c3.png/show"
+    "file": "/suikoden/characters/suikoden-ii/102-gantetsu.png"
   },
   {
     "id": "annallee",
     "name": "Annallee",
-    "file": "/suikoden/characters/suikoden-ii/103-annallee.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4086258/74e135dca76d066b9f99695b55f45795.png/show"
+    "file": "/suikoden/characters/suikoden-ii/103-annallee.png"
   },
   {
     "id": "bob",
     "name": "Bob",
-    "file": "/suikoden/characters/suikoden-ii/104-bob.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4135285/d6ccaa48d470931483eb5756a0a80901.png/show"
+    "file": "/suikoden/characters/suikoden-ii/104-bob.png"
   },
   {
     "id": "jude",
     "name": "Jude",
-    "file": "/suikoden/characters/suikoden-ii/105-jude.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136007/03b04318233c459be6503489e32b9689.png/show"
+    "file": "/suikoden/characters/suikoden-ii/105-jude.png"
   },
   {
     "id": "pico",
     "name": "Pico",
-    "file": "/suikoden/characters/suikoden-ii/106-pico.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136001/a264d05958d922267a7de0f75ee1b6ee.png/show"
+    "file": "/suikoden/characters/suikoden-ii/106-pico.png"
   },
   {
     "id": "alberto",
     "name": "Alberto",
-    "file": "/suikoden/characters/suikoden-ii/107-alberto.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4131905/cb41152b290d9113ba87ad8d306e66da.png/show"
+    "file": "/suikoden/characters/suikoden-ii/107-alberto.png"
   },
   {
     "id": "tessai",
     "name": "Tessai",
-    "file": "/suikoden/characters/suikoden-ii/108-tessai.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136006/bd16d0f6b818c348eae2d31cfb568847.png/show"
+    "file": "/suikoden/characters/suikoden-ii/108-tessai.png"
   },
   {
     "id": "genshu",
     "name": "Genshu",
-    "file": "/suikoden/characters/suikoden-ii/109-genshu.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4127651/1b094a9a7378e9fb205f62d855df94f3.png/show"
+    "file": "/suikoden/characters/suikoden-ii/109-genshu.png"
   },
   {
     "id": "vincent",
     "name": "Vincent",
-    "file": "/suikoden/characters/suikoden-ii/110-vincent.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136014/ef0aad38f33cfdc609a33227e788c821.png/show"
+    "file": "/suikoden/characters/suikoden-ii/110-vincent.png"
   },
   {
     "id": "mazus",
     "name": "Mazus",
-    "file": "/suikoden/characters/suikoden-ii/111-mazus.png",
-    "sourcePage": "https://game8.co/games/Suikoden-2/archives/504340",
-    "sourceUrl": "https://img.game8.co/4136008/209fbc49d5889d9ea94e164844dae002.png/show"
+    "file": "/suikoden/characters/suikoden-ii/111-mazus.png"
   }
 ]

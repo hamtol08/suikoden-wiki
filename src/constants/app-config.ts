@@ -7,9 +7,27 @@ export const ROUTE_ANCHORS = {
 
 export const APP_ROUTES = {
   home: "/",
+  characters: "/characters",
+  items: "/items",
+  runes: "/runes",
   regionAtlas: "/region-atlas",
   worldMap: "/world-map",
 } as const;
+
+export const buildCharacterGamePath = (gameId: string) =>
+  `${APP_ROUTES.characters}/${gameId}`;
+
+export const buildCharacterDetailPath = (gameId: string, characterId: string) =>
+  `${buildCharacterGamePath(gameId)}/${characterId}`;
+
+export const buildItemDetailPath = (itemId: string) =>
+  `${APP_ROUTES.items}/${itemId}`;
+
+export const buildRuneDetailPath = (runeId: string) =>
+  `${APP_ROUTES.runes}/${runeId}`;
+
+export const buildRuneCategoryPath = (categoryId: string) =>
+  `${APP_ROUTES.runes}/${categoryId}`;
 
 export const buildRegionAtlasGamePath = (gameId: string) =>
   `${APP_ROUTES.regionAtlas}/${gameId}`;

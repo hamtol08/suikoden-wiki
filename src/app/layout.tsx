@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import ArchiveFooter from "@/components/archive/ArchiveFooter";
 import { APP_LANGUAGE, THEME_MODES, THEME_STORAGE_KEY } from "@/constants/app-config";
 import { ARCHIVE_COPY } from "@/constants/archive-content";
 import { APP_SHELL_STYLES } from "@/constants/ui-styles";
@@ -63,7 +64,10 @@ const RootLayout = ({
           dangerouslySetInnerHTML={{ __html: themeModeScript }}
         />
       </head>
-      <body className={APP_SHELL_STYLES.body}>{children}</body>
+      <body className={APP_SHELL_STYLES.body}>
+        {children}
+        <ArchiveFooter />
+      </body>
     </html>
   );
 };

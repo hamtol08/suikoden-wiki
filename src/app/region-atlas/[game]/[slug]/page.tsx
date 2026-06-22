@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import RegionDetailRecords from "@/components/archive/RegionDetailRecords";
 import RegionPreview from "@/components/archive/RegionPreview";
 import { APP_ROUTES } from "@/constants/app-config";
 import {
@@ -41,7 +42,6 @@ const RegionAtlasDetail = async ({ params }: RegionAtlasDetailProps) => {
       <div className={RESPONSIVE_SHELL.atlasGrid}>
         <section className={ATLAS_STYLES.shell}>
           <article className={ATLAS_STYLES.intro}>
-            <p className={ATLAS_STYLES.detailsMeta}>{tab.title}</p>
             <RegionPreview region={location} />
 
             <ul className={ATLAS_STYLES.traitList}>
@@ -52,6 +52,8 @@ const RegionAtlasDetail = async ({ params }: RegionAtlasDetailProps) => {
               ))}
             </ul>
           </article>
+
+          <RegionDetailRecords region={location} />
         </section>
       </div>
     </main>

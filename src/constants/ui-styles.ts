@@ -19,6 +19,15 @@ export const APP_SHELL_STYLES = {
   page: `min-h-screen ${THEME_CLASSES.page}`,
 } as const;
 
+export const FOOTER_STYLES = {
+  shell:
+    "mt-auto border-t border-[#d8c9a5] bg-[#f8f4ec] text-[#101827] dark:border-[#604403] dark:bg-[#09111d] dark:text-[#f4f1ea]",
+  inner: "mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8",
+  title: "font-serif text-2xl font-semibold tracking-wide",
+  body: "mt-2 max-w-2xl text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  notice: "mt-4 text-xs font-semibold text-[#7a5900] dark:text-[#e9c176]",
+} as const;
+
 export const CONTAINER_STYLES = {
   header: `sticky top-0 z-50 border-b backdrop-blur ${THEME_CLASSES.header}`,
   hero: "relative overflow-hidden rounded-lg border border-[#c9b77f] bg-[#131b2e] dark:border-[#604403]",
@@ -29,13 +38,14 @@ export const CONTAINER_STYLES = {
 } as const;
 
 export const HEADER_STYLES = {
-  logoLink: "flex min-w-0 shrink-0 items-center gap-3",
+  logoLink: "col-start-1 flex min-w-0 shrink-0 items-center gap-3",
   logoMark: "size-11 rounded-md border border-[#d8c9a5] shadow-sm dark:border-[#604403]",
   logoTextGroup: "flex min-w-0 flex-col leading-none",
   logoTitle: "truncate font-serif text-lg font-bold tracking-wide text-[#101827] dark:text-[#f4f1ea]",
   logoKicker: "mt-1 hidden text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176] sm:block",
-  actions: "flex items-center gap-3",
-  nav: "hidden min-w-0 items-center justify-center gap-1 text-sm font-semibold 2xl:flex",
+  actions: "col-start-3 flex items-center justify-self-end gap-3",
+  mobileSearch: "col-span-full 2xl:hidden",
+  nav: "col-start-2 hidden min-w-0 items-center justify-center gap-1 text-sm font-semibold 2xl:flex",
   navGroupButton:
     "flex items-center gap-1.5 whitespace-nowrap rounded px-3 py-2 text-[#233144] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#f4f1ea] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176]",
   navGroupButtonActive:
@@ -53,7 +63,7 @@ export const HEADER_STYLES = {
   menuButton:
     "flex h-10 w-10 shrink-0 items-center justify-center rounded border border-[#d8c9a5] bg-white/70 text-[#7a5900] shadow-sm transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#604403] dark:bg-[#172337]/80 dark:text-[#e9c176] dark:hover:bg-[#14243a] 2xl:hidden",
   drawerOverlay:
-    "fixed inset-0 z-[80] flex justify-end bg-[#050b14]/55 backdrop-blur-sm 2xl:hidden",
+    "fixed inset-0 z-[80] flex justify-end bg-[#050b14]/55 2xl:hidden",
   drawerPanel:
     "h-dvh w-[min(24rem,calc(100vw-2rem))] overflow-y-auto border-l border-[#d8c9a5] bg-[#f8f4ec] p-5 shadow-2xl dark:border-[#604403] dark:bg-[#111c2c]",
   drawerHeader: "flex items-center justify-between gap-4",
@@ -61,8 +71,7 @@ export const HEADER_STYLES = {
   drawerClose:
     "flex size-10 items-center justify-center rounded border border-[#d8c9a5] text-[#7a5900] transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:text-[#e9c176] dark:hover:bg-[#14243a]",
   drawerSection: "mt-6 border-t border-[#d8c9a5] pt-5 dark:border-[#38475f]",
-  drawerSectionTitle: "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
-  drawerNav: "mt-3 grid gap-3",
+  drawerNav: "grid gap-3",
   drawerGroup: "rounded-lg border border-[#d8c9a5] bg-white/55 p-3 dark:border-[#38475f] dark:bg-[#172337]/70",
   drawerGroupButton:
     "flex w-full items-center justify-between gap-3 rounded px-2 py-2 text-left text-sm font-bold text-[#101827] transition hover:bg-[#fff8e2] dark:text-[#f4f1ea] dark:hover:bg-[#14243a]",
@@ -83,7 +92,7 @@ export const HERO_STYLES = {
   content:
     "absolute inset-x-0 bottom-0 flex items-end p-5 sm:p-8 xl:p-10",
   title:
-    "rounded border border-white/18 bg-[#050b14]/26 px-4 py-2 font-serif text-4xl font-semibold text-white shadow-[0_10px_32px_rgba(5,11,20,0.45)] drop-shadow-[0_4px_10px_rgba(5,11,20,0.95)] backdrop-blur-[2px] sm:text-5xl xl:text-6xl",
+    "rounded border border-[#d4af37]/30 bg-gradient-to-r from-[#050b14]/78 via-[#101827]/62 to-[#24070d]/40 bg-clip-text px-4 py-2 font-serif text-4xl font-semibold text-transparent shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_14px_34px_rgba(5,11,20,0.48)] drop-shadow-[0_4px_10px_rgba(5,11,20,0.95)] backdrop-blur-[3px] [-webkit-text-stroke:0.35px_rgba(255,255,255,0.28)] [background-image:linear-gradient(100deg,#ffffff_0%,#fff3c4_34%,#d4af37_64%,#f6efe2_100%)] sm:text-5xl xl:text-6xl",
 } as const;
 
 export const BUTTON_STYLES = {
@@ -164,19 +173,205 @@ export const ICON_STYLES = {
 } as const;
 
 export const SEARCH_STYLES = {
-  form: `hidden items-center 2xl:flex ${BUTTON_STYLES.search}`,
-  drawerForm: `mt-5 flex w-full items-center ${BUTTON_STYLES.search}`,
+  form: `relative hidden items-center 2xl:flex ${BUTTON_STYLES.search}`,
+  headerForm: `relative flex w-full items-center ${BUTTON_STYLES.search}`,
   input:
     "h-full w-56 min-w-0 bg-transparent text-sm outline-none placeholder:text-[#687387] dark:placeholder:text-[#c5c6cd]",
-  drawerInput:
+  headerInput:
     "h-full min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[#687387] dark:placeholder:text-[#c5c6cd]",
-  submitLabel: "flex h-full items-center text-sm font-semibold text-[#7a5900] dark:text-[#e9c176]",
+  clearButton:
+    "flex size-6 shrink-0 items-center justify-center rounded text-[#4b5565] transition hover:bg-[#edf3ff] hover:text-[#101827] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#f4f1ea]",
+  submitButton:
+    "flex h-full shrink-0 items-center text-sm font-semibold text-[#7a5900] transition hover:text-[#101827] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#e9c176] dark:hover:text-[#f4f1ea]",
+  suggestions:
+    "absolute left-0 right-0 top-[calc(100%+0.5rem)] z-[120] overflow-hidden rounded-lg border border-[#d8c9a5] bg-white shadow-xl dark:border-[#604403] dark:bg-[#111c2c]",
+  suggestionButton:
+    "grid w-full grid-cols-[3.25rem_minmax(0,1fr)] items-center gap-3 border-b border-[#eee4cd] px-3 py-3 text-left transition last:border-b-0 hover:bg-[#fff8e2] focus-visible:bg-[#fff8e2] focus-visible:outline-none dark:border-[#38475f] dark:hover:bg-[#14243a] dark:focus-visible:bg-[#14243a]",
+  suggestionButtonActive:
+    "grid w-full grid-cols-[3.25rem_minmax(0,1fr)] items-center gap-3 border-b border-[#eee4cd] bg-[#fff8e2] px-3 py-3 text-left outline-none last:border-b-0 dark:border-[#38475f] dark:bg-[#14243a]",
+  suggestionOrder:
+    "flex h-8 items-center justify-center rounded border border-[#d4af37]/50 bg-[#fffaf0] font-mono text-xs font-bold tracking-wide text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
+  suggestionText: "min-w-0",
+  suggestionName:
+    "block truncate text-sm font-bold text-[#101827] dark:text-[#f4f1ea]",
+  suggestionMeta:
+    "mt-1 block truncate text-xs text-[#5d6676] dark:text-[#c5c6cd]",
+  empty:
+    "absolute left-0 right-0 top-[calc(100%+0.5rem)] z-[120] rounded-lg border border-[#d8c9a5] bg-white px-4 py-3 text-sm text-[#5d6676] shadow-xl dark:border-[#604403] dark:bg-[#111c2c] dark:text-[#c5c6cd]",
 } as const;
 
 export const IMAGE_SIZE_HINTS = {
   hero: "(max-width: 767px) 100vw, (max-width: 1279px) 70vw, 760px",
   feature: "(max-width: 767px) 100vw, (max-width: 1279px) 30vw, 320px",
+  characterIcon: "72px",
+  characterPortrait: "(max-width: 767px) 45vw, 220px",
   worldMap: "(max-width: 1023px) 100vw, 960px",
+} as const;
+
+export const CHARACTER_STYLES = {
+  shell: "min-w-0 px-4 py-6 sm:px-6 md:px-8 lg:px-8 xl:px-10",
+  intro:
+    "rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
+  introEyebrow:
+    "mb-3 text-base font-bold uppercase tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  introTitle: "mt-2 font-serif text-4xl font-semibold md:text-5xl",
+  introBody: "mt-4 max-w-3xl text-base leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  tabs:
+    "mt-6 flex flex-wrap gap-2 rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c]",
+  tab:
+    "flex-1 rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] sm:flex-none sm:text-left",
+  tabActive:
+    "flex-1 rounded bg-[#101827] px-4 py-3 text-center text-sm font-bold text-white shadow-[inset_0_-2px_0_#d4af37] dark:bg-[#d4af37] dark:text-[#261900] sm:flex-none sm:text-left",
+  panel:
+    "mt-6 overflow-hidden rounded-lg border border-[#d8c9a5] bg-white dark:border-[#604403] dark:bg-[#111c2c]",
+  panelHeader:
+    "border-b border-[#d8c9a5] bg-[#fffaf0] px-5 py-4 dark:border-[#38475f] dark:bg-[#101827]",
+  panelTitle: "text-sm font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  mobileList: "grid gap-3 p-3 lg:hidden",
+  mobileCard:
+    "block rounded-lg border border-[#d8c9a5] bg-[#fffdf7] p-4 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#38475f] dark:bg-[#172337] dark:hover:border-[#d4af37] dark:hover:bg-[#14243a]",
+  mobileCardStatic:
+    "rounded-lg border border-[#d8c9a5] bg-[#fffdf7] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  mobileCardTop: "grid min-w-0 grid-cols-[3.25rem_3.5rem_minmax(0,1fr)] items-center gap-3",
+  mobileOrder:
+    "flex h-9 items-center justify-center rounded border border-[#d4af37]/50 bg-[#fff8e2] text-xs font-bold text-[#7a5900] dark:bg-[#14243a] dark:text-[#e9c176]",
+  mobileNameWrap: "grid min-w-0 gap-1",
+  mobileCardBody: "mt-4 grid gap-3",
+  mobileMetaGrid: "grid grid-cols-1 gap-2 sm:grid-cols-2",
+  mobileMetaBox:
+    "grid min-w-0 gap-1 rounded border border-[#c7d3e9] bg-[#edf3ff] p-3 dark:border-[#38475f] dark:bg-[#14243a]",
+  mobileMetaLabel:
+    "block text-[0.68rem] font-bold text-[#7a5900] dark:text-[#e9c176]",
+  mobileMetaValue:
+    "block break-keep text-sm font-semibold leading-5 text-[#101827] dark:text-[#f4f1ea]",
+  tableWrap: "hidden overflow-x-auto lg:block",
+  table: "w-full min-w-[50rem] table-fixed border-collapse text-center",
+  tableColNo: "w-[9%]",
+  tableColPortrait: "w-[13%]",
+  tableColCharacter: "w-[23%]",
+  tableColStar: "w-[18%]",
+  tableColType: "w-[14%]",
+  tableColLocation: "w-[23%]",
+  tableHead:
+    "border-b border-[#d8c9a5] bg-[#101827] text-xs font-bold uppercase tracking-wide text-[#e9c176] dark:border-[#38475f]",
+  tableHeadCell: "px-4 py-4 text-center",
+  tableRow:
+    "border-b border-[#eee4cd] transition hover:bg-[#fff8e2] dark:border-[#38475f] dark:hover:bg-[#14243a]",
+  tableCell: "p-0 text-center align-middle text-sm text-[#4b5565] dark:text-[#c5c6cd]",
+  tableCellContent:
+    "flex min-h-[5.5rem] items-center justify-center px-4 py-4",
+  tableCellLink:
+    "flex min-h-[5.5rem] items-center justify-center px-4 py-4 transition focus-visible:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-[#d4af37] dark:focus-visible:bg-[#14243a]",
+  avatar:
+    "relative size-14 shrink-0 overflow-hidden rounded border border-[#c7d3e9] bg-[#edf3ff] dark:border-[#38475f] dark:bg-[#050b14]",
+  avatarImage: "object-cover",
+  name:
+    "block break-keep font-sans text-[1.05rem] font-bold text-[#101827] dark:text-[#f4f1ea]",
+  subName:
+    "block text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  orderText:
+    "font-mono text-xs font-bold tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  starText: "font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  locationText: "font-semibold text-[#4b5565] dark:text-[#c5c6cd]",
+  chip:
+    "inline-flex rounded border border-[#c7d3e9] bg-[#edf3ff] px-2 py-1 text-xs font-bold text-[#4b5565] dark:border-[#38475f] dark:bg-[#14243a] dark:text-[#c5c6cd]",
+  detailHero:
+    "grid items-end gap-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#38475f] dark:bg-[#111c2c] md:grid-cols-[20rem_minmax(0,1fr)] sm:p-6",
+  detailPortraitPanel: "grid gap-4 text-center md:text-left",
+  portrait:
+    "relative mx-auto aspect-square w-44 overflow-hidden rounded-lg border-2 border-[#d4af37] bg-[#edf3ff] shadow-sm dark:bg-[#050b14] md:w-full",
+  portraitImage: "object-cover",
+  detailIdentityText: "grid min-h-[4.5rem] content-start",
+  detailPortraitMeta:
+    "text-xs font-bold uppercase tracking-[0.24em] text-[#7a5900] dark:text-[#e9c176]",
+  detailHeroContent: "grid min-h-[4.5rem] content-start gap-4 self-end",
+  detailKicker: "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  detailTitle:
+    "mt-2 break-keep font-serif text-3xl font-semibold leading-tight sm:whitespace-nowrap md:text-4xl",
+  detailChipRow: "flex flex-wrap gap-2",
+  detailChipPrimary:
+    "rounded-full bg-[#101827] px-4 py-1.5 text-xs font-bold text-white dark:bg-[#d4af37] dark:text-[#261900]",
+  detailChipSecondary:
+    "rounded-full border border-[#d4af37]/40 bg-[#fff8e2] px-4 py-1.5 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
+  detailChipTertiary:
+    "rounded-full border border-[#c7d3e9] bg-[#edf3ff] px-4 py-1.5 text-xs font-bold text-[#38475f] dark:border-[#38475f] dark:bg-[#14243a] dark:text-[#c5c6cd]",
+  recordNavigation:
+    "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-4 dark:border-[#38475f] dark:bg-[#111c2c]",
+  recordNavigationTitle:
+    "text-sm font-bold uppercase tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  recordNavigationList:
+    "mt-3 flex flex-wrap gap-2 border-b border-[#d8c9a5] pb-2 dark:border-[#38475f]",
+  recordNavigationLink:
+    "rounded-t border border-[#d8c9a5] border-b-0 bg-[#fffaf0] px-4 py-2 text-sm font-bold text-[#4b5565] transition hover:bg-[#fff8e2] hover:text-[#7a5900] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#14243a] dark:text-[#c5c6cd] dark:hover:text-[#e9c176]",
+  detailLayout: "mt-6 grid gap-6",
+  detailSection:
+    "scroll-mt-32 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#38475f] dark:bg-[#111c2c] sm:p-6",
+  detailSectionHeader: "mb-4 flex items-center gap-3",
+  detailSectionAccent: "h-8 w-1 rounded-full bg-[#d4af37]",
+  detailSectionTitle: "font-serif text-2xl font-semibold",
+  detailLedger:
+    "overflow-hidden rounded border border-[#d8c9a5] dark:border-[#38475f]",
+  detailLedgerRow:
+    "grid grid-cols-1 border-b border-[#eee4cd] last:border-b-0 dark:border-[#38475f] sm:grid-cols-[12rem_minmax(0,1fr)]",
+  detailLedgerTerm:
+    "flex min-h-12 items-center bg-[#edf3ff] px-4 py-3 text-xs font-bold uppercase text-[#7a5900] dark:bg-[#14243a] dark:text-[#e9c176]",
+  detailLedgerValue:
+    "flex min-h-12 items-center px-4 py-3 text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+  combatDataGrid: "grid gap-4",
+  combatDataPanel:
+    "scroll-mt-32 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
+  combatDataTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  combatDataLines:
+    "mt-3 grid gap-2 text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  combatDataGroups: "mt-4 grid gap-4",
+  combatDataGroup:
+    "rounded-md border border-[#c7d3e9] bg-white/35 p-3 dark:border-[#38475f] dark:bg-[#111c2c]/45",
+  combatDataGroupTitle:
+    "text-xs font-bold uppercase tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  combatDataRows:
+    "mt-3 grid gap-px overflow-hidden rounded border border-[#c7d3e9] bg-[#c7d3e9] dark:border-[#38475f] dark:bg-[#38475f] sm:grid-cols-2",
+  combatDataRowsSingle:
+    "mt-3 grid gap-px overflow-hidden rounded border border-[#c7d3e9] bg-[#c7d3e9] dark:border-[#38475f] dark:bg-[#38475f]",
+  combatDataRow:
+    "grid gap-1 bg-white/70 p-3 dark:bg-[#111c2c]/80",
+  combatDataTerm:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  combatDataValue:
+    "break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+} as const;
+
+export const RUNE_STYLES = {
+  shell: "min-w-0 px-4 py-6 sm:px-6 md:px-8 lg:px-8 xl:px-10",
+  intro:
+    "rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
+  introEyebrow:
+    "text-base font-bold uppercase tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  introTitle: "mt-2 font-serif text-4xl font-semibold md:text-5xl",
+  introBody: "mt-4 max-w-3xl text-base leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  tabs:
+    "mt-6 flex flex-wrap gap-2 rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c]",
+  tab:
+    "flex-1 rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] sm:flex-none sm:text-left",
+  tabActive:
+    "flex-1 rounded bg-[#101827] px-4 py-3 text-center text-sm font-bold text-white shadow-[inset_0_-2px_0_#d4af37] dark:bg-[#d4af37] dark:text-[#261900] sm:flex-none sm:text-left",
+  grid: "mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3",
+  card:
+    "block rounded-lg border border-[#d8c9a5] bg-white p-5 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:bg-[#172337] dark:hover:bg-[#14243a]",
+  cardMeta: "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  cardTitle: "mt-2 font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  cardBody: "mt-3 text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  detailPanel:
+    "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
+  detailTitle: "font-serif text-3xl font-semibold",
+  ledger:
+    "mt-5 overflow-hidden rounded border border-[#d8c9a5] dark:border-[#38475f]",
+  ledgerRow:
+    "grid grid-cols-1 border-b border-[#eee4cd] last:border-b-0 dark:border-[#38475f] sm:grid-cols-[12rem_minmax(0,1fr)]",
+  ledgerTerm:
+    "flex min-h-12 items-center bg-[#edf3ff] px-4 py-3 text-xs font-bold uppercase text-[#7a5900] dark:bg-[#14243a] dark:text-[#e9c176]",
+  ledgerValue:
+    "flex min-h-12 items-center px-4 py-3 text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
 } as const;
 
 export const ATLAS_STYLES = {
@@ -213,15 +408,17 @@ export const ATLAS_STYLES = {
     "border-t border-[#38475f] bg-[#101827]/95 p-5 text-[#f4f1ea] md:absolute md:bottom-6 md:right-6 md:w-[25rem] md:rounded-lg md:border md:shadow-2xl",
   detailsMeta: "text-xs font-bold uppercase text-[#e9c176]",
   detailsTitle: "mt-1 font-serif text-2xl font-semibold",
-  detailsBody: "mt-4 text-sm leading-6 text-[#c5c6cd]",
+  detailsKoreanName:
+    "mt-1 text-sm font-semibold text-[#7d8795] dark:text-[#c5c6cd]",
+  detailsBody: "mt-4 text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
   detailGrid: "mt-4 grid gap-3 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-3",
   detailBox:
-    "rounded border border-[#38475f] bg-[#050b14]/80 p-3",
-  detailLabel: "text-[0.68rem] font-bold uppercase text-[#e9c176]/80",
-  detailValue: "mt-1 text-sm font-semibold",
-  locationList: "mt-4 flex flex-wrap gap-2",
+    "relative overflow-hidden rounded-md border border-[#d8c9a5] bg-[#fffaf0] bg-[linear-gradient(135deg,#fffaf0_0%,#f7efd9_44%,#edf3ff_100%)] p-4 shadow-[inset_4px_0_0_#d4af37,0_1px_0_rgba(16,24,39,0.04)] dark:border-[#38475f] dark:bg-[#050b14]/80 dark:bg-none dark:shadow-none",
+  detailLabel: "text-[0.68rem] font-extrabold uppercase tracking-wide text-[#8a6400] dark:text-[#e9c176]/80",
+  detailValue: "mt-2 text-sm font-bold text-[#101827] dark:text-[#f4f1ea]",
+  locationList: "mb-5 mt-5 flex flex-wrap gap-2.5",
   locationTag:
-    "rounded border border-[#27548a] bg-[#14243a] px-2 py-1 text-xs font-bold text-[#b7c7e4]",
+    "rounded-full border border-[#11a3a3]/45 bg-[#dff7f1] bg-[linear-gradient(135deg,#dff7f1_0%,#fff4c7_100%)] px-3.5 py-1.5 text-xs font-extrabold text-[#075f68] shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_2px_8px_rgba(17,163,163,0.16)] ring-1 ring-[#d4af37]/25 dark:border-[#27548a] dark:bg-[#14243a] dark:bg-none dark:text-[#b7c7e4] dark:shadow-none dark:ring-0",
   logSection:
     "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#111c2c] sm:p-6",
   logHeader: "mb-4 flex items-center gap-3 border-b border-[#d8c9a5] pb-3 dark:border-[#38475f]",
@@ -252,9 +449,11 @@ export const ATLAS_STYLES = {
     "rounded border border-current/30 px-2 py-0.5 text-xs",
   regionGrid: "mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3",
   regionCard:
-    "grid h-full min-h-[30rem] grid-rows-[5rem_6.5rem_9.25rem_auto] gap-4 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337]",
+    "grid h-full min-h-[31rem] grid-rows-[6rem_6.5rem_9.25rem_auto] gap-4 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337]",
   regionCardHeader: "overflow-hidden",
   regionCardTitle: "font-serif text-2xl font-semibold",
+  regionCardKoreanName:
+    "mt-1 text-sm font-semibold text-[#7d8795] dark:text-[#c5c6cd]",
   regionCardMeta: "mt-1 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   regionCardBody:
     "overflow-hidden text-sm leading-7 text-[#7d8795] dark:text-[#c5c6cd]",
@@ -262,6 +461,40 @@ export const ATLAS_STYLES = {
   traitItem: "flex items-center rounded border border-[#c7d3e9] bg-[#edf3ff] px-3 py-2 text-sm text-[#4b5565] dark:border-[#38475f] dark:bg-[#14243a] dark:text-[#c5c6cd]",
   regionCardLink:
     "inline-flex w-fit self-end rounded bg-[#101827] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#233144] dark:bg-[#d4af37] dark:text-[#261900] dark:hover:bg-[#e9c176]",
+  regionRecordSection: "mt-6 grid gap-5",
+  regionRecordHeader: "flex items-center gap-3",
+  regionRecordAccent: "h-8 w-1 rounded-full bg-[#d4af37]",
+  regionRecordTitle: "font-serif text-3xl font-semibold",
+  regionRecordPanel:
+    "rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
+  regionRecordPanelTitle:
+    "font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  regionRecordGrid: "mt-4 grid gap-4 lg:grid-cols-2",
+  regionRecordCard:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
+  regionRecordCardTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  regionRecordCardMeta:
+    "mt-1 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  regionDataList:
+    "mt-3 divide-y divide-[#c7d3e9] overflow-hidden rounded border border-[#c7d3e9] bg-white/55 dark:divide-[#38475f] dark:border-[#38475f] dark:bg-[#111c2c]/55",
+  regionDataRow:
+    "grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-3 py-3 text-sm",
+  regionDataName:
+    "block break-keep font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  regionDataMeta:
+    "mt-1 mr-2 inline-flex rounded border border-[#d4af37]/35 px-2 py-0.5 text-[0.68rem] font-bold text-[#7a5900] dark:text-[#e9c176]",
+  regionDataValue:
+    "whitespace-nowrap text-sm font-bold text-[#7a5900] dark:text-[#e9c176]",
+  regionCharacterGrid: "mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3",
+  regionCharacterCard:
+    "grid gap-1 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#38475f] dark:bg-[#14243a] dark:hover:bg-[#172337]",
+  regionCharacterOrder:
+    "font-mono text-xs font-bold tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  regionCharacterName:
+    "font-sans text-base font-bold text-[#101827] dark:text-[#f4f1ea]",
+  regionCharacterMeta:
+    "text-xs font-semibold text-[#5d6676] dark:text-[#c5c6cd]",
 } as const;
 
 export const STAGE_MARKER_TONE_STYLES = {
