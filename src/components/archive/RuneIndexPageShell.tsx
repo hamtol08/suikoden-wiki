@@ -1,10 +1,8 @@
-import Link from "next/link";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import RuneIndexBrowser from "@/components/archive/RuneIndexBrowser";
 import {
   getRuneIndexPage,
   getRuneReferencesByPageId,
-  RUNE_CATEGORY_LABELS,
-  RUNE_ARCHIVE_COPY,
   RUNE_INDEX_PAGES,
   type RuneIndexPageId,
 } from "@/constants/rune-content";
@@ -34,36 +32,11 @@ const RuneIndexPageShell = ({ pageId }: RuneIndexPageShellProps) => {
             <p className={RUNE_STYLES.introBody}>{activePage.body}</p>
           </header>
 
-          <nav
-            aria-label={RUNE_ARCHIVE_COPY.ariaLabels.categoryTabs}
-            className={RUNE_STYLES.tabs}
-          >
-            {RUNE_INDEX_PAGES.map((page) => (
-              <Link
-                className={
-                  page.id === pageId ? RUNE_STYLES.tabActive : RUNE_STYLES.tab
-                }
-                href={page.href}
-                key={page.id}
-              >
-                {page.title}
-              </Link>
-            ))}
-          </nav>
-
-          <div className={RUNE_STYLES.grid}>
-            {runes.map((rune) => (
-              <Link className={RUNE_STYLES.card} href={rune.href} key={rune.id}>
-                <p className={RUNE_STYLES.cardMeta}>
-                  {RUNE_CATEGORY_LABELS[rune.category]}
-                </p>
-                <h2 className={RUNE_STYLES.cardTitle}>{rune.name}</h2>
-                <p className={RUNE_STYLES.cardBody}>
-                  {rune.aliases.join(" / ")}
-                </p>
-              </Link>
-            ))}
-          </div>
+          <RuneIndexBrowser
+            pageId={pageId}
+            pages={RUNE_INDEX_PAGES}
+            runes={runes}
+          />
         </section>
       </div>
     </main>

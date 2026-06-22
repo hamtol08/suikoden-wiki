@@ -351,19 +351,40 @@ export const RUNE_STYLES = {
   introBody: "mt-4 max-w-3xl text-base leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
   tabs:
     "mt-6 flex flex-wrap gap-2 rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c]",
+  browser: "mt-6",
+  searchPanel:
+    "rounded-lg border border-[#d8c9a5] bg-white/70 p-3 dark:border-[#604403] dark:bg-[#111c2c]",
+  searchForm:
+    "flex min-h-12 items-center gap-3 rounded-md border border-[#d8c9a5] bg-white px-4 dark:border-[#38475f] dark:bg-[#172337]",
+  searchInput:
+    "min-w-0 flex-1 bg-transparent text-sm font-semibold text-[#101827] outline-none placeholder:text-[#7d8795] dark:text-[#f4f1ea] dark:placeholder:text-[#7d8795]",
+  searchMeta:
+    "mt-2 px-1 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   tab:
     "flex-1 rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] sm:flex-none sm:text-left",
   tabActive:
     "flex-1 rounded bg-[#101827] px-4 py-3 text-center text-sm font-bold text-white shadow-[inset_0_-2px_0_#d4af37] dark:bg-[#d4af37] dark:text-[#261900] sm:flex-none sm:text-left",
-  grid: "mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3",
+  grid: "mt-6 grid gap-3",
   card:
-    "block rounded-lg border border-[#d8c9a5] bg-white p-5 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:bg-[#172337] dark:hover:bg-[#14243a]",
+    "grid gap-3 rounded-lg border border-[#d8c9a5] bg-white p-4 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:bg-[#172337] dark:hover:bg-[#14243a] sm:grid-cols-[7rem_minmax(0,1fr)]",
+  cardImageWrap:
+    "flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-[#eee4cd] bg-[#f7efd9] dark:border-[#38475f] dark:bg-[#101827]",
+  cardImage: "h-full w-full object-contain p-2",
+  cardImageFallback:
+    "flex size-12 items-center justify-center rounded-full border border-[#d4af37] bg-[#101827] font-serif text-xl font-semibold text-[#e9c176] dark:bg-[#d4af37] dark:text-[#261900]",
+  cardContent: "min-w-0",
   cardMeta: "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   cardTitle: "mt-2 font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
-  cardBody: "mt-3 text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  cardBody: "mt-2 text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  cardGames: "mt-2 text-xs font-semibold text-[#7d8795] dark:text-[#c5c6cd]",
+  empty:
+    "mt-6 rounded-lg border border-[#d8c9a5] bg-white/70 p-6 text-center text-sm font-semibold text-[#4b5565] dark:border-[#604403] dark:bg-[#111c2c] dark:text-[#c5c6cd]",
   detailPanel:
     "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
   detailTitle: "font-serif text-3xl font-semibold",
+  detailImageWrap:
+    "mt-5 flex aspect-[4/3] max-w-sm items-center justify-center overflow-hidden rounded-md border border-[#eee4cd] bg-[#f7efd9] dark:border-[#38475f] dark:bg-[#101827]",
+  detailImage: "h-full w-full object-contain p-4",
   ledger:
     "mt-5 overflow-hidden rounded border border-[#d8c9a5] dark:border-[#38475f]",
   ledgerRow:

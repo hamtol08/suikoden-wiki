@@ -138,6 +138,7 @@ export const SUIKODEN_II_RUNE_LABELS = {
   "Lightning Rune": "번개의 문장",
   "Exertion Rune": "분발의 문장",
   "Shining Wind Rune": "빛나는 바람의 문장",
+  "Blessed White Lady Rune": "축복받은 백부인의 문장",
   "White Saint Rune": "백성의 문장",
   "Thunder Rune": "천둥의 문장",
   "Blue Drop Rune": "푸른 물방울의 문장",
@@ -146,6 +147,7 @@ export const SUIKODEN_II_RUNE_LABELS = {
   "Medicine Rune": "약의 문장",
   "Fire Breath Rune": "화염 숨결의 문장",
   "Angry Dragon Rune": "분노한 용의 문장",
+  "Waking Rune": "각성의 문장",
   "Spider Slay Rune": "거미베기의 문장",
   "Gadget Rune": "가젯의 문장",
   "White Tiger Rune": "백호의 문장",
@@ -154,6 +156,10 @@ export const SUIKODEN_II_RUNE_LABELS = {
   "Rage Rune": "분노의 문장",
   "Shrike Rune": "때까치의 문장",
   "Mayfly Rune": "하루살이의 문장",
+  "Twin Ring Rune": "쌍륜의 문장",
+  "Gale Rune": "질풍의 문장",
+  "Warrior Rune": "전사의 문장",
+  "Barrier Rune": "방벽의 문장",
   "Howling Rune": "포효의 문장",
   "Technique Rune": "기술의 문장",
   "Rabid Fang Rune": "광아의 문장",
@@ -311,7 +317,7 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
   },
   rikimaru: {
     name: "리키마루",
-    recruitment: "류베에서 식사값을 대신 내주겠다고 하면 합류합니다. 류베에서 놓쳤다면 파괴 후 코로넷에서 다시 만날 수 있습니다.",
+    recruitment: "류베에서 식사값을 대신 내주겠다고 하면 합류합니다. 류베에서 놓쳤다면 파괴 후 코로네에서 다시 만날 수 있습니다.",
   },
   millie: {
     name: "미리",
@@ -343,15 +349,15 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
   },
   eilie: {
     name: "아이리",
-    recruitment: "코로넷에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
+    recruitment: "코로네에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
   },
   rina: {
     name: "리나",
-    recruitment: "코로넷에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
+    recruitment: "코로네에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
   },
   bolgan: {
     name: "볼간",
-    recruitment: "코로넷에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
+    recruitment: "코로네에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
   },
   leona: {
     name: "레오나",
@@ -595,7 +601,7 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
   },
   genshu: {
     name: "겐슈우",
-    recruitment: "성 레벨 4 이후 레벨 14 무기를 장비한 파티원이 있는 상태로 쿠스쿠스에서 코로넷으로 배를 타고 이동해 말을 걸면 합류합니다.",
+    recruitment: "성 레벨 4 이후 레벨 14 무기를 장비한 파티원이 있는 상태로 쿠스쿠스에서 코로네로 배를 타고 이동해 말을 걸면 합류합니다.",
   },
   vincent: {
     name: "벵쌍 드 블루",

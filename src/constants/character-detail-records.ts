@@ -5176,7 +5176,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "163",
           "mag": "158",
           "spd": "197",
-          "eva": "",
           "luc": "215"
         },
         "equipment": {
@@ -5244,7 +5243,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "165",
           "mag": "134",
           "spd": "225",
-          "eva": "",
           "luc": "160"
         },
         "equipment": {
@@ -5275,12 +5273,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Tsai joins automatically when you ask him to repair the fire spears."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Spear",
-          "Weapon Range: M",
-          "Weapon Starting Level: 6"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Spear",
           "range": "M",
@@ -5357,7 +5350,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "125",
           "mag": "114",
           "spd": "134",
-          "eva": "",
           "luc": "157"
         },
         "equipment": {
@@ -5387,8 +5379,8 @@ export const CHARACTER_DETAIL_RECORDS = {
       "role": {
         "recruitment": [
           "There are two ways to recruit Anita.",
-          "#Speak with her at the tavern in Muse or the inn at Bana Village and complete her requests. Travel in/out of town in order to get more requests from her until she can be recruited. Her level is only 16.",
-          "#Speak with Anita at the Bana Village Inn with Valeria in the party. Her level this time is 40. (Sometimes 99 due to a glitch.)"
+          "#Speak with her at the tavern in Muse or the inn at Banner Village and complete her requests. Travel in/out of town in order to get more requests from her until she can be recruited. Her level is only 16.",
+          "#Speak with Anita at the Banner Village Inn with Valeria in the party. Her level this time is 40. (Sometimes 99 due to a glitch.)"
         ],
         "overall": [
           "Anita is a decent unit but she is outclassed by her rival Valeria. Although have the same amount of rune slots, Valeria generally has superior stats."
@@ -5423,7 +5415,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "163",
           "mag": "138",
           "spd": "185",
-          "eva": "",
           "luc": "180"
         },
         "equipment": {
@@ -5452,140 +5443,189 @@ export const CHARACTER_DETAIL_RECORDS = {
     "viktor": {
       "role": {
         "recruitment": [
-          "Viktor joins Tir automatically after leaving Gregminster."
+          "Viktor automatically joins in South Window."
         ],
         "overall": [
-          "Viktor will be a required member in the party often in the main storyline. Fortunately he's one of the most powerful physical attackers in the game with strong physical stats to back it up. He also has decent enough defensive attributes and HP as he levels up."
+          "As with Suikoden, Viktor is one of the better physical attack characters in Suikoden II, and has a good HP, high strength growth and decent enough survivability. He makes an extremely solid front line character once he joins the party. Viktor wields his 2 handed sword until he once again reunites with the Celestial Sword."
         ],
         "weapon": {
           "type": "Sword",
           "range": "S",
-          "startingLevel": "3"
+          "startingLevel": "6"
         },
         "rune": {
           "attached": [
-            "None"
+            "*Head - No Slot",
+            "*R. Hand - None",
+            "*L. Hand - None"
           ],
           "recommended": [
-            "Viktor can equip the Clone Rune found on Mt. Tigerwolf. This is the only place the rune is available, and any character who wields a heavy sword can use it, but with the frequency that Viktor is in the battle party and how early on it is available, it tends to be a good idea to put it on Viktor and leave it there. The Killer Rune is also a nice alternative in the later stages, due to Viktor's critical hits being capable of outdamaging the Clone Rune ability when his levels get high enough. It is also suggested to embed a Fire Rune Piece or Lightning Rune Piece to his sword. Just like any other non-magic character, Viktor benefits most from equipping him with a Fury Rune and Double Beat Rune, turning him into a powerhouse."
+            "Viktor does well with the Titan Rune, which replaces the Clone Rune from the first Suikoden. He only gains 2 rune slots, but it is a huge upgrade from one in Suikoden 1. His weak magic abilities make combat enhancing runes, like the Warrior Rune, a recommended choice. That said, he is one of the very few physical warriors that gain 2 Rune slots. With that, he can take full advantage of the exceptionally powerful physical rune set of Double Beat Rune and Double Strike Rune or the Fury Rune or Violence Rune. A rune attached to his weapon like a Friendship Rune is recommended or the Exertion Rune which will make Viktor in prolonged battles even more effective. With the right setup of his runes, Viktor possibly has the potential to be one of the most powerful, if not the most powerful, physical attackers in the game."
           ]
         },
         "maxLevelStatus": {
-          "hp": "842",
-          "lvl 1": "7",
-          "lvl 2": "5",
-          "lvl 3": "3",
+          "hp": "869",
+          "lvl 1": "6",
+          "lvl 2": "3",
+          "lvl 3": "1",
           "lvl 4": "0",
-          "atk": "242",
-          "def": "184",
-          "str": "204",
-          "pdf": "209",
-          "skl": "108",
-          "mdf": "",
-          "mag": "125",
-          "spd": "160",
-          "eva": "155",
-          "luc": "151"
+          "atk": "199",
+          "def": "219",
+          "str": "210",
+          "pdf": "203",
+          "skl": "149",
+          "mdf": "154",
+          "mag": "90",
+          "spd": "152",
+          "eva": "168",
+          "luc": "159"
         },
         "equipment": {
           "default": {
-            "helmet": "-",
-            "armor": "Leather Coat",
+            "helmet": "Half Helmet",
+            "armor": "Chain Mail",
             "shield": "-",
-            "other1": "Boots",
-            "other2": "-"
+            "other1": "Gloves",
+            "other2": "Boots",
+            "other3": "-"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Master Garb",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
-            "other1": "Power Gloves",
-            "other2": "Speed Ring"
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Viktor has no Unite Attacks."
+          "Viktor can use the Cross Attack with Flik."
         ]
       }
     },
     "flik": {
       "role": {
         "recruitment": [
-          "He joins automatically in Kaku when Viktor and Tir speak to him after the events in Pannu Yakuta occur."
+          "Flik joins automatically in South Window."
         ],
         "overall": [
-          "Flik is a regularly-required party member. He has good physical abilities and is fair with his Lightning Rune. Upon upgraded to Thunder Rune, Flik is powerful lightning wielder, that can deal heavy damage."
+          "Flik is still an effective and reliable front line fighter and competent magic rune user, much like in the first game. His affinity with the lightning element remains, so he works well with the Lightning Rune and later the Thunder Rune. He has solid physical stats and good survivability and the ability to carry shields as part of his gear further augments it. Flik is also a powerful lightning magic user once his rune was upgraded to Thunder Rune and is capable of dealing magic heavy damage to his enemy using its final spell, Thunder Storm."
         ],
         "weapon": {
           "type": "Sword",
           "range": "S",
-          "startingLevel": "9"
+          "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "Lightning Rune"
+            "*Head -",
+            "*R. Hand - Lightning Rune",
+            "*L. Hand -"
           ],
           "recommended": [
-            "Flik comes with a Lightning Rune attached, but which can be removed. Upgrading to the Thunder Rune is recommended. Once he is at a higher character level, his sword attack becomes more useful than his magic, and equipping him with either a Fury Rune or a Double Beat Rune can turn him into an extremely powerful front line character."
+            "Thunder Rune, Fury Rune, Double Beat Rune, and/or Double Strike Rune"
           ]
         },
         "maxLevelStatus": {
-          "hp": "877",
-          "lvl 1": "8",
-          "lvl 2": "6",
+          "hp": "825",
+          "lvl 1": "9",
+          "lvl 2": "7",
           "lvl 3": "4",
           "lvl 4": "2",
-          "atk": "190",
-          "def": "152",
-          "str": "188",
-          "pdf": "150",
-          "skl": "192",
-          "mdf": "",
-          "mag": "161",
-          "spd": "194",
-          "eva": "",
-          "luc": "149"
+          "atk": "195",
+          "def": "162",
+          "str": "184",
+          "pdf": "165",
+          "skl": "178",
+          "mdf": "145",
+          "mag": "187",
+          "spd": "168",
+          "eva": "108",
+          "luc": "101"
         },
         "equipment": {
           "default": {
-            "helmet": "Bandana",
-            "armor": "Brass Armor",
-            "shield": "Wooden Shield",
-            "other1": "Cape",
-            "other2": "-"
+            "helmet": "Circlet",
+            "armor": "Leather Armor",
+            "shield": "Steel Shield",
+            "other1": "Leather Cape",
+            "other2": "Boots",
+            "other3": "Mega Medicine (x3)"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Master Garb",
-            "shield": "Earth Shield",
-            "other1": "Power Gloves",
-            "other2": "Crimson Cape"
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Flik can participate in the Pretty Boy Attack with Alen and Grenseal."
+          "*Cross Attack with Viktor does 1.5x damage to one enemy with 30% chance of knockdown.",
+          "*Groupie Attack with Nina does 2.5x damage to one enemy, Nina unbalances.",
+          "*Fancy Lad Attack, mistranslated as Pretty Boy Attack, with Camus and Miklotov does 1.5x damage to one enemy with a 25% chance of instant death."
         ]
       }
     },
     "freed-yamamoto": {
       "role": {
-        "recruitment": [],
+        "recruitment": [
+          "Joins automatically after meeting with Granmeyer in South Window."
+        ],
         "overall": [],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Sword",
+          "range": "S",
+          "startingLevel": "5"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "*Head - None",
+            "*R. Hand - None",
+            "*L. Hand - None"
+          ],
+          "recommended": [
+            "Fire Rune, Earth Rune or Wind Rune."
+          ]
         },
-        "maxLevelStatus": {},
+        "maxLevelStatus": {
+          "hp": "748",
+          "lvl 1": "8",
+          "lvl 2": "5",
+          "lvl 3": "2",
+          "lvl 4": "1",
+          "atk": "146",
+          "def": "145",
+          "str": "296",
+          "pdf": "230",
+          "skl": "150",
+          "mdf": "150",
+          "mag": "131",
+          "spd": "171",
+          "luc": "218"
+        },
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "Circlet",
+            "armor": "Brass Armor",
+            "shield": "Wooden Shield",
+            "other1": "Water Amulet",
+            "other2": "Medicine (x6)",
+            "other3": "Boots"
+          },
+          "recommended": {
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Freed can participate in the Husband and Wife Attack."
+        ]
       }
     },
     "shu": {
@@ -5593,7 +5633,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Shu joins automatically after the events in Radat."
         ],
-        "overall": [],
+        "overall": [
+          "Shu is the Military Strategist."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -5614,176 +5656,142 @@ export const CHARACTER_DETAIL_RECORDS = {
     "luc": {
       "role": {
         "recruitment": [
-          "Luc joins Tir automatically at Toran Castle."
+          "He automatically joins in North Window Castle."
         ],
         "overall": [
-          "Luc is a strong mage, but his weapon makes him a liability, as in the front row he can't take much damage due to his low HP, but in the back row he can't attack, either. This makes him reliant on his magic to do anything. He has a Guard Robe and Speed Ring permanently equipped, which limits his defensive options. Despite these shortcomings, Luc is one of the best mages in the game, only beaten out by Crowley."
+          "Luc becomes a very useful character early on with his magic power and Pixie Rune. The Pixie Rune allows him to attack from the back row, making him a well balanced mage. Luc has all three Rune slots available and is one of the best characters to utilize the Blue Gate Rune. Due to his high magic, available Rune slots, and spell charges; equipping Luc with two Runes that can perform a Unite Magic spell will allow him to do it by himself, though it will cost two Lv. 4 spell charges to do so."
         ],
         "weapon": {
           "type": "Rod",
           "range": "S",
-          "startingLevel": "3"
+          "startingLevel": "4"
         },
         "rune": {
           "attached": [
-            "Wind Rune"
+            "*Head -",
+            "*R. Hand - Wind Rune",
+            "*L. Hand - Pixie Rune"
           ],
           "recommended": [
-            "Upgrade Luc to a Cyclone Rune or Thunder Rune to take better advantage of his magic power."
+            "Upgrade the Wind Rune to a Cyclone Rune, and a Blue Gate Rune on his forehead for a good attack/support mage. The Pixie Rune is useful in the beginning when he has limited magic charges, but later on it's better to drop it for another magic rune like a Flowing Rune or even a magic enhancing Rune like a Wizard Rune or Alertness Rune. The Darkness Rune is great on him, as he can do the highest possible damage from it compared to everyone else. He has very high affinities for every Rune."
           ]
         },
         "maxLevelStatus": {
-          "hp": "506",
+          "hp": "700",
           "lvl 1": "9",
           "lvl 2": "9",
-          "lvl 3": "9",
-          "lvl 4": "9",
-          "atk": "54",
-          "def": "71",
-          "str": "58",
-          "pdf": "79",
-          "skl": "162",
-          "mdf": "",
-          "mag": "266",
-          "spd": "190",
-          "eva": "",
-          "luc": "78"
+          "lvl 3": "7",
+          "lvl 4": "4",
+          "atk": "72",
+          "def": "77",
+          "str": "69",
+          "pdf": "71",
+          "skl": "166",
+          "mdf": "212",
+          "mag": "249",
+          "spd": "202",
+          "luc": "72"
         },
         "equipment": {
           "default": {
-            "helmet": "-",
-            "armor": "Guard Robe*",
+            "helmet": "Circlet",
+            "armor": "Guard Robe",
             "shield": "-",
             "other1": "Speed Ring*",
-            "other2": "-"
+            "other2": "Mega Medicine (x3)",
+            "other3": "Bolt of Wrath (x1)"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Guard Robe*",
+            "helmet": "Wind Hat",
+            "armor": "Dream Robe",
             "shield": "-",
             "other1": "Speed Ring*",
-            "other2": "Earth Boots"
+            "other2": "Magic Ring",
+            "other3": "Magic Ring"
           }
         },
         "uniteAttacks": [
-          "Luc has no Unite Attacks."
+          "Luc can participate in Pretty Boy Attack, mistranslated as the Cutie Boy Attack, with Futch and Sasuke."
         ]
       }
     },
     "tai-ho": {
       "role": {
         "recruitment": [
-          "Tai Ho joins Tir in Kaku after beating him at Chinchirorin before going to explore Toran Castle."
+          "Tai Ho appears in Suikoden II as one of the 108 Stars of Destiny. He can be recruited in Kuskus as one of the boatmen needed to get to Two River, however you need to win 5000 potch from him in Chinchirorin. Saving before taking him on is recommended."
         ],
-        "overall": [],
+        "overall": [
+          "Tai Ho is an average combat character."
+        ],
         "weapon": {
           "type": "Spear",
           "range": "M",
-          "startingLevel": "3"
+          "startingLevel": "7"
         },
         "rune": {
-          "attached": [
-            "None."
-          ],
+          "attached": [],
           "recommended": [
-            "Due to his weak magic abilities, an effect rune would be recommended to specialize Tai Ho for physical attacks, like the Hazy Rune or the Killer Rune."
+            "Tai Ho can use the Unicorn Rune for his spear, which makes him useful against enemy columns."
           ]
         },
-        "maxLevelStatus": {
-          "hp": "",
-          "lvl 1": "",
-          "lvl 2": "",
-          "lvl 3": "",
-          "lvl 4": "",
-          "atk": "",
-          "def": "",
-          "str": "",
-          "pdf": "",
-          "skl": "",
-          "mdf": "",
-          "mag": "",
-          "spd": "",
-          "eva": "",
-          "luc": ""
-        },
+        "maxLevelStatus": {},
         "equipment": {
           "default": {
-            "helmet": "Headband",
-            "armor": "Tunic",
+            "helmet": "-",
+            "armor": "Guard Robe",
             "shield": "-",
-            "other1": "-",
-            "other2": "-"
+            "other1": "Grilled Fish (x5)",
+            "other2": "Belt of Strength",
+            "other3": "-"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Taikyoku Wear",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
             "other1": "-",
-            "other2": "-"
+            "other2": "-",
+            "other3": "-"
           }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Tai Ho has no Unite Attacks."
+        ]
       }
     },
     "yam-koo": {
       "role": {
         "recruitment": [
-          "Yam Koo joins the Tir automatically after clearing monsters out of Toran Castle."
+          "Yam Koo joins when you recruit Tai Ho."
         ],
-        "overall": [],
+        "overall": [
+          "He is no longer a battle character like he was in the first game and he allows you to play the Fishing Minigame, which allows you to make some money off of the fish you catch, as well as supply ingredients for the Cook-off Minigame. You pay Yam Koo 100 potch for bait, then may choose to sell your catch to him, often for a profit."
+        ],
         "weapon": {
-          "type": "Spear",
-          "range": "M",
-          "startingLevel": "3"
+          "type": "",
+          "range": "",
+          "startingLevel": ""
         },
         "rune": {
-          "attached": [
-            "None."
-          ],
-          "recommended": [
-            "A Turtle Rune to negate Unbalanced status after using unite attack with Tai Ho."
-          ]
+          "attached": [],
+          "recommended": []
         },
-        "maxLevelStatus": {
-          "hp": "809",
-          "lvl 1": "6",
-          "lvl 2": "4",
-          "lvl 3": "2",
-          "lvl 4": "0",
-          "atk": "171",
-          "def": "130",
-          "str": "321",
-          "pdf": "247",
-          "skl": "200",
-          "mdf": "",
-          "mag": "108",
-          "spd": "200",
-          "eva": "",
-          "luc": "137"
-        },
+        "maxLevelStatus": {},
         "equipment": {
-          "default": {
-            "helmet": "-",
-            "armor": "Tunic",
-            "shield": "-",
-            "other1": "-",
-            "other2": "-"
-          },
-          "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Taikyoku Wear",
-            "shield": "-",
-            "other1": "-",
-            "other2": "-"
-          }
+          "default": {},
+          "recommended": {}
         },
         "uniteAttacks": []
       }
     },
     "ridley-wizen": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Ridley is recruited automatically after the events in Two River."
+        ],
+        "overall": [
+          "Ridley is an Infantry Unit with 10 ATK and 7 DEF.",
+          "Like Georg, Shu and Jowy, Ridley has a Critical skill at his disposal to dispatch his enemies. However, this ability is nullified when either Seed, Culgan or other Highland soldiers attack."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -5803,8 +5811,12 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "boris-wizen": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Boris shows up in Dunan in his father's stead if Ridley is killed in the Dunan Unification War. This occurs if you choose to run away with Nanami when she asks you in Tinto."
+        ],
+        "overall": [
+          "Boris is a leader unit with 9 ATK and 8 DEF."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -5883,7 +5895,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "190",
           "mag": "133",
           "spd": "210",
-          "eva": "",
           "luc": "190"
         },
         "equipment": {
@@ -5912,55 +5923,54 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hix": {
       "role": {
         "recruitment": [
-          "He joins automatically along with Tengaar after defeating Neclord."
+          "Speak to Hix and Tengaar in the inn in Lakewest after the events in Two River. Follow them to the Kobold Village and help them complete the Test of the Unicorn."
         ],
         "overall": [
-          "Hix is an average fighter with low magic usability. A Killer Rune or a Prosperity Rune can give him more use in battle. The Fury Rune could also be used."
+          "Statistically, Hix is the same as the first game, with below-average stats and attributes. However, his permanently attached Exertion Rune (one of the strongest embedded runes) to his weapon makes him far more usable in this game compared to the first. This gives him a heavy boost in his attack power and makes him deadly in prolonged battles like boss encounters but will require Strength increasing gear for that to be most effective."
         ],
         "weapon": {
           "type": "Sword",
           "range": "S",
-          "startingLevel": "10"
+          "startingLevel": "5"
         },
         "rune": {
-          "attached": [
-            "None."
-          ],
+          "attached": [],
           "recommended": [
-            "Killer Rune, to deal more damage. To balance his relatively average/poor stats at the point when he joins, as he must go with you through Neclord's Castle before he can be removed from your party."
+            "To take full advantage of the Exertion Rune, a powerful physical rune like the Double Beat Rune or the Violence Rune is recommended."
           ]
         },
         "maxLevelStatus": {
           "hp": "820",
-          "lvl 1": "6",
-          "lvl 2": "4",
-          "lvl 3": "3",
-          "lvl 4": "0",
-          "atk": "206",
-          "def": "152",
-          "str": "356",
-          "pdf": "",
+          "lvl 1": "8",
+          "lvl 2": "5",
+          "lvl 3": "2",
+          "lvl 4": "1",
+          "atk": "155",
+          "def": "155",
+          "str": "278",
+          "pdf": "259",
           "skl": "172",
-          "mdf": "",
-          "mag": "122",
-          "spd": "163",
-          "eva": "",
-          "luc": "215"
+          "mdf": "150",
+          "mag": "128",
+          "spd": "194",
+          "luc": "183"
         },
         "equipment": {
           "default": {
             "helmet": "Half Helmet",
             "armor": "Leather Armor",
             "shield": "Wooden Shield",
-            "other1": "Boots",
-            "other2": "-"
+            "other1": "Medicine (x6)",
+            "other2": "Gauntlet",
+            "other3": "Boots"
           },
           "recommended": {
-            "helmet": "Horned Helmet",
-            "armor": "Master Garb",
-            "shield": "Earth Shield",
-            "other1": "Speed Ring",
-            "other2": "Power Gloves"
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
@@ -5971,58 +5981,62 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tengaar": {
       "role": {
         "recruitment": [
-          "Automatically joins after rescuing her from Neclord's Castle."
+          "Joins with Hix after completing the Test of the Unicorn sidequest in Kobold Village."
         ],
         "overall": [
-          "Tengaar is a very underrated character. She has above-average magic ability and a long ranged weapon which makes her ideal for a backline magician. Equipping her with an elemental rune and sharpening her weapon can make her a very valuable member on your team."
+          "Tengaar can be a very valuable asset to your team, especially against Luca Blight. With 2 available rune slots, she can be an amazing support mage. With a Mother Earth Rune and a Flowing Rune, she can spam heals, buffs, and dish out some damage with Earthquake.",
+          "Unlike most Mages, her weapon is L-ranged, which makes her being a backrow magician just a bit better."
         ],
         "weapon": {
           "type": "Throwing Knife",
           "range": "L",
-          "startingLevel": "7"
+          "startingLevel": "8"
         },
         "rune": {
           "attached": [
-            "None."
+            "Earth Rune"
           ],
           "recommended": [
-            "Elemental runes work best for Tengaar, especially the Earth Rune."
+            "Mother Earth Rune, Flowing Rune"
           ]
         },
         "maxLevelStatus": {
-          "hp": "710",
+          "hp": "744",
           "lvl 1": "9",
-          "lvl 2": "9",
-          "lvl 3": "8",
-          "lvl 4": "6",
+          "lvl 2": "7",
+          "lvl 3": "4",
+          "lvl 4": "2",
           "atk": "131",
-          "def": "186",
-          "str": "261",
-          "pdf": "233",
-          "skl": "185",
-          "mdf": "",
-          "mag": "217",
-          "spd": "174",
-          "eva": "",
-          "luc": "109"
+          "def": "129",
+          "str": "267",
+          "pdf": "196",
+          "skl": "147",
+          "mdf": "170",
+          "mag": "190",
+          "spd": "169",
+          "luc": "166"
         },
         "equipment": {
           "default": {
-            "helmet": "-",
+            "helmet": "Circlet",
             "armor": "Guard Robe",
             "shield": "-",
-            "other1": "Guard Ring",
-            "other2": "-"
+            "other1": "Wind Amulet",
+            "other2": "Pudding (x6)",
+            "other3": "Blue Ribbon"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Master Robe",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
-            "other1": "Wing Boots",
-            "other2": ""
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
           }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Tengaar can participate in both the Warrior Attack and the Pretty Girl Attack."
+        ]
       }
     },
     "yoshino-yamamoto": {
@@ -6075,115 +6089,106 @@ export const CHARACTER_DETAIL_RECORDS = {
     "stallion": {
       "role": {
         "recruitment": [
-          "Stallion joins Tir automatically after events at Pannu Yakuta."
+          "Run Away (or Let Go) from battles over 50 times, then speak to Stallion in Radat town to race him after progressing the storyline in Two River. If you've run away enough, you win and he joins.",
+          "Entourage Ability =",
+          "Stallion grants doubled walking speed while on the field."
         ],
         "overall": [
-          "Stallion is an archer who, with his great speed, usually attacks first."
+          "Stallion remains a speedy archer, usually able to attack first."
         ],
         "weapon": {
           "type": "Bow",
           "range": "L",
-          "startingLevel": "6"
+          "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "True Holy Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "True Holy Rune"
           ],
           "recommended": [
-            "Stallion come with a True Holy Rune permanently attached."
+            "Great Hawk Rune"
           ]
         },
-        "maxLevelStatus": {
-          "hp": "696",
-          "lvl 1": "8",
-          "lvl 2": "5",
-          "lvl 3": "4",
-          "lvl 4": "1",
-          "atk": "131",
-          "def": "166",
-          "str": "286",
-          "pdf": "275",
-          "skl": "185",
-          "mdf": "",
-          "mag": "142",
-          "spd": "255",
-          "eva": "",
-          "luc": "144"
-        },
+        "maxLevelStatus": {},
         "equipment": {
           "default": {
-            "helmet": "-",
-            "armor": "Brass Armor",
+            "helmet": "Half Helmet",
+            "armor": "Karate Uniform",
             "shield": "-",
-            "other1": "Wing Boots*",
-            "other2": "-"
+            "other1": "Winged Boots",
+            "other2": "Sunomono (x7)",
+            "other3": "Leather Cape"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Master Garb",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
-            "other1": "Wing Boots*",
-            "other2": "Crimson Cape"
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Stallion can participate in both the Elf Attack and the Wild Arrow Attack."
+          "Stallion can participate in the Bow Attack."
         ]
       }
     },
     "clive": {
       "role": {
         "recruitment": [
-          "He joins when spoken to when he appears at the Inn in Rikon. He appears there at random starting after events in Lorimar."
+          "Talk to Clive in South Window once passage to Lakewest has been secured and he will join."
         ],
         "overall": [
-          "Clive is a strong rear line fighter, his gun Storm can do as much damage as some of the front line S type fighters, and his speed stat is exceptional. He is physical and magic defense are not great, so keep him in the back row. With a careful set-up, Clive can be a very versatile main fighter/support unit in combat."
+          "Clive is still a great rear line fighter, and he's still capable of being a good support unit. His speed stat and attack power are both excellent."
         ],
         "weapon": {
           "type": "Gun",
           "range": "L",
-          "startingLevel": "13"
+          "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "None"
+            "*Head - N/A",
+            "*Right Hand - None",
+            "*Left Hand - N/A",
+            "*Weapon - No rune attached."
           ],
           "recommended": [
-            "Rear line physical runes are helpful. Due to his high speed stat and good backrow combat skills, Clive makes good use of the Spark Rune. A Killer Rune is also handy. Though magic isn't his forte, he can be competent as a back-up support spell caster with a Earth Rune or Water Rune."
+            "Clive is well suited to a Kite Rune. You can also still use a Spark Rune or Medicine Rune for support. Clive works best with a Double-Beat Rune, a Killer Rune due to his high TEC stat and an embedded Exertion Rune."
           ]
         },
         "maxLevelStatus": {
-          "hp": "875",
+          "hp": "744",
           "lvl 1": "7",
           "lvl 2": "4",
           "lvl 3": "2",
           "lvl 4": "1",
-          "atk": "195",
-          "def": "150",
-          "str": "345",
-          "pdf": "290",
-          "skl": "255",
-          "mdf": "",
-          "mag": "130",
-          "spd": "190",
-          "eva": "",
-          "luc": "168"
+          "atk": "156",
+          "def": "129",
+          "str": "295",
+          "pdf": "206",
+          "skl": "230",
+          "mdf": "150",
+          "mag": "109",
+          "spd": "208",
+          "luc": "106"
         },
         "equipment": {
           "default": {
             "helmet": "-",
-            "armor": "Magic Robe",
+            "armor": "Guard Robe",
             "shield": "-",
-            "other1": "Cape",
-            "other2": "-"
+            "other1": "Leather Cape",
+            "other2": "Boots",
+            "other3": "Sacrificial Jizo"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Master Garb",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
-            "other1": "Crimson Cape",
-            "other2": "Earth Boots"
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
@@ -6196,7 +6201,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Teresa is recruited automatically after the events in Greenhill."
         ],
-        "overall": [],
+        "overall": [
+          "Teresa is an Archery Unit with 5 ATK and 6 DEF.",
+          "Teresa is a second bow cavalry sprite after Flik and she is able to bombard the enemy frontlines. She can also be considered as an equivalent to Culgan in bombarding the enemy. When being put in other characters in both offense and defense, she can overpower bow sprites or soldiers and being evenly matched with Culgan when bombarding each other with bow and arrows.",
+          "Her skill in the war tactics is Bombard which she can bombard the enemy in a single attack to damage their opponent. However her skill will be ineffective when attacking, Seed, Culgan, Yuber, Lucia and Jowy."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -6264,66 +6273,71 @@ export const CHARACTER_DETAIL_RECORDS = {
     "humphrey-mintz": {
       "role": {
         "recruitment": [
-          "Joins automatically after the original remaining members from the Liberation Army meet up at the new Headquarters."
+          "Speak to Humphrey in the Inn at the Highway Village a few times. Complete the quest with him and Futch."
         ],
         "overall": [
-          "Humphrey is a great front row fighter/tank. Although he has good strength and excellent defense, his downfall is his low speed and accuracy, but equipping him with the Windspun Armor and Speed Rings can offset this problem."
+          "Just like his appearance in the first game, Humphrey boasts superior defense and good strength. With his ability to equip heavy armor and the possibility of carrying the Winspun Armor from the save transfer, Humphrey is one of the best front line tank in the game. unfortunately, he still suffers from low speed and technique making him almost always attack last and very rarely hitting more than once, and he is very vulnerable to magic."
         ],
         "weapon": {
           "type": "Sword",
           "range": "S",
-          "startingLevel": "7"
+          "startingLevel": "9"
         },
         "rune": {
           "attached": [
-            "None."
+            "None"
           ],
           "recommended": [
-            "Humphrey is one of the few characters who can equip the Clone Rune. The Killer Rune is great too as he really has no business carrying any sort of magic rune."
+            "The Warrior Rune is great for him since his defense can be very high."
           ]
         },
         "maxLevelStatus": {
-          "hp": "881",
-          "lvl 1": "5",
-          "lvl 2": "2",
+          "hp": "942",
+          "lvl 1": "6",
+          "lvl 2": "3",
           "lvl 3": "1",
           "lvl 4": "0",
-          "atk": "245",
-          "def": "221",
-          "str": "400",
-          "pdf": "350",
-          "skl": "130",
-          "mdf": "",
-          "mag": "79",
-          "spd": "125",
-          "eva": "",
-          "luc": "120"
+          "atk": "227",
+          "def": "238",
+          "str": "387",
+          "pdf": "349",
+          "skl": "150",
+          "mdf": "139",
+          "mag": "89",
+          "spd": "106",
+          "luc": "111"
         },
         "equipment": {
           "default": {
-            "helmet": "-",
-            "armor": "Brass Armor",
+            "helmet": "Half Helmet",
+            "armor": "Knight Armor /*Imported Data*",
             "shield": "-",
-            "other1": "Cape",
-            "other2": "-"
+            "other1": "Mega Medicine (x3)",
+            "other2": "Gauntlet",
+            "other3": "Boots"
           },
           "recommended": {
-            "helmet": "Horned Helmet",
-            "armor": "Windspun Armor",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
-            "other1": "Power Gloves",
-            "other2": "Speed Ring"
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Humphrey can participate in the Bumpy Attack."
+          "None"
         ]
       }
     },
     "kiba-windamier": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Kiba is recruited automatically after defeating his company in battle, regardless if you choose to have him beheaded."
+        ],
+        "overall": [
+          "Before he sides with Riou's group, he is sided with his son Klaus and his stats are- Attack 7 and Defense 16. When he is sided with Riou's group his stats are bigger than the other characters even to put each of characters in both attack and defense stat. His ability in the war tactics was Heavy Armor that makes his opponent to damage him up to three hits instead of two. He is the second character to have a cavalry in Riou's group after Flik."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -6344,60 +6358,66 @@ export const CHARACTER_DETAIL_RECORDS = {
     "valeria": {
       "role": {
         "recruitment": [
-          "Valeria joins automatically after the events in Pannu Yakuta."
+          "Valeria is one of two choices offered by Lepant, along with Kasumi, as a recruitment option in Gregminster when forging an alliance with Toran.",
+          "Choosing her will grant you the following:",
+          "#Innate Cavalry ability for map battles",
+          "#Better defense for greater staying power",
+          "#Can equip Shields (Mangosh for Counter ability or a good shield with higher defense, such as a Silver Shield)"
         ],
         "overall": [
-          "Valeria is a strong front line fighter, with her Falcon Rune being good for consistent damage."
+          "Valeria is a skilled front line fighter. Valeria is famous for being one of a few characters that are able to break the damage limit put into the game by the designers."
         ],
         "weapon": {
           "type": "Sword",
           "range": "S",
-          "startingLevel": "7"
+          "startingLevel": "6"
         },
         "rune": {
           "attached": [
-            "Falcon Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "*Head - No Slot",
+            "*R. Hand - Falcon Rune (permanently attached.)",
+            "*L. Hand - None"
           ],
           "recommended": [
-            "Valeria has a Falcon Rune permanently attached."
+            "Valeria can equip the Viper Rune with her weapon type. A Double Strike Rune is also great on her."
           ]
         },
         "maxLevelStatus": {
-          "hp": "876",
-          "lvl 1": "7",
+          "hp": "815",
+          "lvl 1": "9",
           "lvl 2": "5",
-          "lvl 3": "4",
+          "lvl 3": "3",
           "lvl 4": "1",
-          "atk": "228",
-          "def": "181",
-          "str": "380",
-          "pdf": "344",
-          "skl": "151",
-          "mdf": "",
-          "mag": "131",
-          "spd": "147",
-          "eva": "",
-          "luc": "136"
+          "atk": "192",
+          "def": "152",
+          "str": "342",
+          "pdf": "270",
+          "skl": "195",
+          "mdf": "155",
+          "mag": "145",
+          "spd": "184",
+          "luc": "180"
         },
         "equipment": {
           "default": {
-            "helmet": "-",
-            "armor": "Brass Armor",
-            "shield": "Wooden Shield",
-            "other1": "-",
-            "other2": "-"
+            "helmet": "Head Gear",
+            "armor": "Scale Mail",
+            "shield": "Kite Shield",
+            "other1": "Mega Medicine (x3)",
+            "other2": "Silverlet",
+            "other3": "Leather Cape"
           },
           "recommended": {
-            "helmet": "Horned Helmet",
-            "armor": "Master Garb",
-            "shield": "Earth Shield",
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
             "other1": "-",
-            "other2": "-"
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Valeria can participate in the Beauty Attack."
+          "Rival Attack with Anita, which deals 3x damage to one enemy, unbalancing Valeria."
         ]
       }
     },
@@ -6406,12 +6426,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Take Tsai back to his house in Ryube Forest after recruiting either Valeria or Kasumi. After a scene, Tomo will join you."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Spear",
-          "Weapon Range: M",
-          "Weapon Starting Level: 9"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Spear",
           "range": "M",
@@ -6456,20 +6471,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Defeat the griffins enemies in Forest Village when your castle is at level 3. If the player wins this battle, use one of Badeaux's Listening Crystals. If the player loses this battle, Feather can't be recruited, but Ayda can still be recruited (this proves that Feather is no longer mandatory in the 108 Stars of Destiny and can choose 2 of 3 available beasts between Feather, Abizboah, and Sigfried)."
         ],
-        "overall": [
-          "Runes =",
-          "Attached =",
-          "*Head - None",
-          "*R. Hand - Shining Wind Rune",
-          "*L. Hand - None",
-          "Recommended =",
-          "Double Strike Rune, Fury Rune or Balance Rune",
-          "}}"
-        ],
+        "overall": [],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "N/A",
+          "range": "N/A",
+          "startingLevel": "N/A"
         },
         "rune": {
           "attached": [
@@ -6495,11 +6501,12 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "131",
           "mag": "128",
           "spd": "170",
-          "eva": "",
           "luc": "151"
         },
         "equipment": {
-          "default": {},
+          "default": {
+            "equipment": "N/A"
+          },
           "recommended": {}
         },
         "uniteAttacks": [
@@ -6517,20 +6524,11 @@ export const CHARACTER_DETAIL_RECORDS = {
           "* Karen",
           "* Kasumi"
         ],
-        "overall": [
-          "Runes =",
-          "Attached =",
-          "*Head - None",
-          "*R. Hand - Blessed White Lady Rune",
-          "*L. Hand - None",
-          "Recommended =",
-          "Lightning Rune, and Resurrection Rune",
-          "}}"
-        ],
+        "overall": [],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "N/A",
+          "range": "N/A",
+          "startingLevel": "N/A"
         },
         "rune": {
           "attached": [
@@ -6556,11 +6554,12 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "190",
           "mag": "175",
           "spd": "126",
-          "eva": "",
           "luc": "106"
         },
         "equipment": {
-          "default": {},
+          "default": {
+            "equipment": "N/A"
+          },
           "recommended": {}
         },
         "uniteAttacks": [
@@ -6570,23 +6569,48 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "sierra-mikain": {
       "role": {
-        "recruitment": [],
+        "recruitment": [
+          "Sierra joins automatically after defeating Neclord."
+        ],
         "overall": [],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Claws",
+          "range": "S",
+          "startingLevel": "10"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "*Head - Darkness Rune",
+            "*R. Hand - None",
+            "*L. Hand - None"
+          ],
+          "recommended": [
+            "Darkness Rune and Lightning Rune",
+            "Or Double Strike Rune and Fury Rune for the Servant Attack"
+          ]
         },
         "maxLevelStatus": {},
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "Circlet",
+            "armor": "Magic Robe",
+            "shield": "-",
+            "other1": "Tomato Juice (x6)",
+            "other2": "Magic Ring",
+            "other3": "-"
+          },
+          "recommended": {
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Sierra can participate in the Servant Attack."
+        ]
       }
     },
     "hauser": {
@@ -6594,12 +6618,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Hauser joins automatically after defeating Neclord in Tinto."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Sword",
-          "Weapon Range: S",
-          "Weapon Starting Level: 11"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Sword",
           "range": "S",
@@ -6645,7 +6664,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           "After defeating Neclord, accept his apology.",
           "Note: Do not reject his apology, or you will not be able to recruit him again."
         ],
-        "overall": [],
+        "overall": [
+          "Jess is a military support character. ATK+2 DEF+0.",
+          "Jess is a military support character and like both Klaus and Boris, he has an evade skill which he tries to defend from strong enemies with high offense.",
+          "When using his evade skill he says:",
+          "Original:",
+          "Remastered:",
+          "\"I see their plan, and we'll avert their offense!\""
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -6665,23 +6691,47 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "georg-prime": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "After defeating Neclord in Tinto, return to the Tinto Pass and take the lower path. You'll find a clearing with an unused campfire and Georg Prime staring off in the distance. Speak with him and either choose \"Yeah\" or \"I can't pay you with money\" and Georg Prime will join your team."
+        ],
+        "overall": [
+          "Georg Prime is a powerhouse of a fighter. He has high attack power and is incredibly fast. He will usually join the group around level 60 and his Killer Rune also helps him do higher damage."
+        ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Sword",
+          "range": "S",
+          "startingLevel": "12"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "Georg Prime comes equipped with a Killer Rune attached to his right hand."
+          ],
+          "recommended": [
+            "Attach a Rage Rune or Thunder Rune onto his weapon to increase his damage significantly."
+          ]
         },
         "maxLevelStatus": {},
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "Full Helmet",
+            "armor": "Silver Armor",
+            "shield": "[none]",
+            "other1": "Cheesecake (x6)",
+            "other2": "Silverlet",
+            "other3": "-"
+          },
+          "recommended": {
+            "helmet": "-",
+            "armor": "-",
+            "shield": "[none]",
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Georg Prime has no known Unite Attacks."
+        ]
       }
     },
     "killey": {
@@ -6690,17 +6740,16 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Before defeating Luca Blight, you can find him outside the trade shop in South Window. Tell him about Alex and then return to headquarters. You find him in the item shop at your castle arguing with Alex. After those events find him again in South Window and ask him to join. You can find him even earlier in South Window after the scene with Jowy Atreides and Sasarai, but you must have your castle at level 3.",
           "*Killey can be brought to Gregminster to help recruit Lorelai. A scene plays out between them reminiscing Lorelai's \"tip\" that landed him in prison on the Queendom of Falena."
         ],
-        "overall": [],
+        "overall": [
+          "Early on, Killey is one of such characters who is the jack of all trades, master of none. His stat growth is pretty balanced, but nothing outstanding, with slightly lesser stats in attack than his defenses. His Hit Points are quite mediocre however, making staying at the back row a better choice. Despite his average attributes, Killey is one of the very few characters that can equip all 3 rune slots, which is where Killey really comes into his own. Therefore, he can be geared as a spellcaster or even better, a pure physical attacker, giving Killey extreme potential for damage and versatility in the late game. The best choice for Killey would be to equip a Fury Rune, a Double-Beat Rune and a Double-Strike Rune and see the amount of damage he can dish on the enemies."
+        ],
         "weapon": {
           "type": "Dual Swords",
           "range": "M",
           "startingLevel": "9"
         },
         "rune": {
-          "attached": [
-            "Recommended =",
-            "Given Killey is one of the very few characters in the game who has access to all three available rune slots, he has the potential to be one of the most potent and hardest hitting fighters in the game when equipped with the Double-Beat Rune, Double-Strike Rune, and Fury Rune. As a result, he can potentially deal even significantly more damage than the likes of Viktor and Riou. With a full physical rune setup, a weapon embedded rune that grants physical damage bonus like the Friendship Rune and the Exertion Rune is also greatly recommended."
-          ],
+          "attached": [],
           "recommended": [
             "Given Killey is one of the very few characters in the game who has access to all three available rune slots, he has the potential to be one of the most potent and hardest hitting fighters in the game when equipped with the Double-Beat Rune, Double-Strike Rune, and Fury Rune. As a result, he can potentially deal even significantly more damage than the likes of Viktor and Riou. With a full physical rune setup, a weapon embedded rune that grants physical damage bonus like the Friendship Rune and the Exertion Rune is also greatly recommended."
           ]
@@ -6732,57 +6781,61 @@ export const CHARACTER_DETAIL_RECORDS = {
     "pesmerga": {
       "role": {
         "recruitment": [
-          "In order to recruit Pesmerga, speak with him on the top floor of Neclord's Castle.",
-          "Note: The castle must be Lv. 4 in order to recruit Pesmerga."
+          "Talk to him in Cave of the Wind after defeating the Bone Dragon. The player must have recruited over 100 Stars of Destiny."
         ],
-        "overall": [],
+        "overall": [
+          "Once again, Pesmerga returns as a powerful ally with high stats in Strength, HP, and Defense. His one open Rune slot and one open equipment slot means he has extremely limited customization options, but his high stats and good equipment still keeps him as one of the top fighters. He still needs a speedy ally with a Spark Rune to overcome his lackluster speed stat. His permanently embedded Rage Rune gives his weapon a fire elemental property, but also increases his high attack power even more. His magic stat has also been given a modest boost that makes him more flexible, but the player may still want to concentrate on his melee skills over magic."
+        ],
         "weapon": {
           "type": "Sword",
           "range": "S",
-          "startingLevel": "7"
+          "startingLevel": "14"
         },
         "rune": {
           "attached": [
-            "None."
+            "Pesmerga comes with a Counter Rune attached and a Rage Rune permanently embedded into his weapon."
           ],
           "recommended": [
-            "Pesmerga is able to use the Clone Rune. A Killer Rune also works well."
+            "Fury Rune, Killer Rune, Double Beat Rune, Double Strike Rune, or Titan Rune"
           ]
         },
         "maxLevelStatus": {
-          "hp": "1033",
-          "lvl 1": "5",
-          "lvl 2": "2",
-          "lvl 3": "1",
-          "lvl 4": "0",
-          "atk": "244",
-          "def": "255",
-          "str": "404",
-          "pdf": "411",
-          "skl": "100",
-          "mdf": "",
-          "mag": "77",
-          "spd": "58",
-          "eva": "",
-          "luc": "114"
+          "hp": "820",
+          "lvl 1": "8",
+          "lvl 2": "5",
+          "lvl 3": "2",
+          "lvl 4": "1",
+          "atk": "230",
+          "def": "168",
+          "str": "390",
+          "pdf": "331",
+          "skl": "172",
+          "mdf": "170",
+          "mag": "133",
+          "spd": "80",
+          "luc": "135"
         },
         "equipment": {
           "default": {
-            "helmet": "Half Helmet",
-            "armor": "Dragon Armor*",
-            "shield": "Steel Shield",
-            "other1": "-",
-            "other2": "-"
+            "helmet": "Horned Helmet*",
+            "armor": "Knight Armor*",
+            "shield": "Chaos Shield*",
+            "other1": "Guard Ring*",
+            "other2": "Iron Boots*",
+            "other3": "Bolt of Wrath (x3)"
           },
           "recommended": {
-            "helmet": "Horned Helmet",
-            "armor": "Dragon Armor*",
-            "shield": "Chaos Shield",
-            "other1": "-",
-            "other2": "-"
+            "helmet": "Horned Helmet*",
+            "armor": "Knight Armor*",
+            "shield": "Chaos Shield*",
+            "other1": "Guard Ring*",
+            "other2": "Iron Boots*",
+            "other3": "-"
           }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Pesmerga has no Unite Attacks."
+        ]
       }
     },
     "abizboah": {
@@ -6790,19 +6843,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Obtain the Listening Crystals fron Badeaux. Go to Tinto Mines and speak to him at the lake."
         ],
-        "overall": [
-          "Runes =",
-          "Attached =",
-          "*Head - Blue Drop Rune (Permanently attached)",
-          "*R. Hand - N/A",
-          "*L. Hand - N/A",
-          "Recommended =",
-          "}}"
-        ],
+        "overall": [],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "N/A",
+          "range": "N/A",
+          "startingLevel": "N/A"
         },
         "rune": {
           "attached": [
@@ -6826,11 +6871,12 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "85",
           "mag": "89",
           "spd": "130",
-          "eva": "",
           "luc": "171"
         },
         "equipment": {
-          "default": {},
+          "default": {
+            "equipment": "N/A"
+          },
           "recommended": {}
         },
         "uniteAttacks": [
@@ -6849,9 +6895,9 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Despite his appearance, Mukumuku has very solid stats, as all monster-type characters. Mukumuku excels at strength, defense and speed, which compensates the fact he cannot equip any type of gear. Also, he is a long-range character, which can keep him safe in the back row, as his HP is lower than most monster characters."
         ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "N/A",
+          "range": "N/A",
+          "startingLevel": "N/A"
         },
         "rune": {
           "attached": [
@@ -6863,9 +6909,27 @@ export const CHARACTER_DETAIL_RECORDS = {
             "Double Beat Rune"
           ]
         },
-        "maxLevelStatus": {},
+        "maxLevelStatus": {
+          "hp": "628",
+          "lvl 1": "7",
+          "lvl 2": "4",
+          "lvl 3": "2",
+          "lvl 4": "1",
+          "atk": "299",
+          "def": "237",
+          "str": "299",
+          "pdf": "126",
+          "skl": "129",
+          "mdf": "132",
+          "mag": "",
+          "spd": "160",
+          "eva": "",
+          "luc": ""
+        },
         "equipment": {
-          "default": {},
+          "default": {
+            "equipment": "N/A"
+          },
           "recommended": {}
         },
         "uniteAttacks": [
@@ -6925,12 +6989,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to her in Ryube and help her retrieve Bonaparte. Go to the right in the forest, chase Bonaparte and fight him. Once defeated, she will join."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Boomerang",
-          "Weapon Range: L",
-          "Weapon Starting Level: 1"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Boomerang",
           "range": "L",
@@ -6956,12 +7015,8 @@ export const CHARACTER_DETAIL_RECORDS = {
           "atk": "108",
           "def": "123",
           "str": "139",
-          "pdf": "",
-          "skl": "",
-          "mdf": "",
           "mag": "143",
           "spd": "162",
-          "eva": "",
           "luc": "211"
         },
         "equipment": {
@@ -6993,12 +7048,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Find the bird's nest in Ryube Forest and place it back in the tree. Leave the forest and return to the same spot after several minutes. Choose the first option, and he and Shiro will join.",
           "Note: Do not choose the second option, \"I can't say...\", when given the two options. If you do, they will leave and you will not be able to recruit them again."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Bow",
-          "Weapon Range: L",
-          "Weapon Starting Level: 2"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Bow",
           "range": "L",
@@ -7047,9 +7097,9 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Being a monster/animal type, Shiro has very solid stats, excelling in strength, defense and speed, which compensates for the fact he cannot equip any type of gear. Shiro ends up being one of the fastest characters in the game, with speed ratings that put him on par with Riou, Nanami, Kasumi, and similar agility specialists."
         ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "N/A",
+          "range": "N/A",
+          "startingLevel": "N/A"
         },
         "rune": {
           "attached": [
@@ -7063,7 +7113,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "maxLevelStatus": {},
         "equipment": {
-          "default": {},
+          "default": {
+            "equipment": "N/A"
+          },
           "recommended": {}
         },
         "uniteAttacks": [
@@ -7123,9 +7175,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "apple": {
       "role": {
         "recruitment": [
-          "Speak to her in Seika and she'll join to find out Mathiu's reason for joining."
+          "Apple joins automatically during the events at the Mercenary Fortress."
         ],
-        "overall": [],
+        "overall": [
+          "Speaking to Apple allows Riou to set arrangement for Army battle units."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7150,20 +7204,55 @@ export const CHARACTER_DETAIL_RECORDS = {
         ],
         "overall": [],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Stones",
+          "range": "L",
+          "startingLevel": "2"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "Medicine Rune"
+          ],
+          "recommended": [
+            "Medicine Rune and Water Rune"
+          ]
         },
-        "maxLevelStatus": {},
+        "maxLevelStatus": {
+          "hp": "504",
+          "lvl 1": "7",
+          "lvl 2": "4",
+          "lvl 3": "2",
+          "lvl 4": "1",
+          "atk": "113",
+          "def": "128",
+          "str": "253",
+          "pdf": "159",
+          "skl": "128",
+          "mdf": "119",
+          "mag": "92",
+          "spd": "167",
+          "luc": "176"
+        },
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "Leather Hat",
+            "armor": "Guard Robe",
+            "shield": "-",
+            "other1": "Medicine (x6)",
+            "other2": "Medicine (x6)",
+            "other3": "Medicine (x6)"
+          },
+          "recommended": {
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Tuta has no Unite Attacks."
+        ]
       }
     },
     "gilbert": {
@@ -7171,7 +7260,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "In order to recruit Gilbert, you must damage his unit during the third major battle. Gilbert must also survive this battle."
         ],
-        "overall": [],
+        "overall": [
+          "Gilbert is a leader unit with +7 ATK and +8 DEF."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7194,12 +7285,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Joins automatically in Coronet after securing the passage to South Window."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Throwing Knifes",
-          "Weapon Range: L",
-          "Weapon Starting Level: 3"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Throwing Knifes",
           "range": "L",
@@ -7229,7 +7315,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "168",
           "mag": "156",
           "spd": "165",
-          "eva": "",
           "luc": "180"
         },
         "equipment": {
@@ -7293,7 +7378,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "200",
           "mag": "202",
           "spd": "167",
-          "eva": "",
           "luc": "147"
         },
         "equipment": {
@@ -7348,7 +7432,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "lvl 1": "6",
           "lvl 2": "3",
           "lvl 3": "1",
-          "lvl 4": "",
           "atk": "219",
           "def": "108",
           "str": "261",
@@ -7357,7 +7440,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "126",
           "mag": "87",
           "spd": "109",
-          "eva": "",
           "luc": "189"
         },
         "equipment": {
@@ -7388,7 +7470,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Leona joins automatically after gaining your headquarters."
         ],
-        "overall": [],
+        "overall": [
+          "Talking to Leona allows you to change your party."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7443,7 +7527,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "105",
           "mag": "119",
           "spd": "188",
-          "eva": "",
           "luc": "160"
         },
         "equipment": {
@@ -7474,7 +7557,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Barbara helps out from the beginning but rejoins for good after defeating Solon Jhee."
         ],
-        "overall": [],
+        "overall": [
+          "Barbara runs the storehouse in the HQ."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7497,7 +7582,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Huan joins automatically after defeating Solon Jhee."
         ],
-        "overall": [],
+        "overall": [
+          "Huan is the doctor in the HQ."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7521,12 +7608,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Speak with the woman near the entrance of Kuskus to learn about the bandits attacking women. Exit and return with an all-female party and walk across the bridge. After a brief scene Oulan will save you and then can be asked to join your group.",
           "*You can get Oulan prior to obtaining your headquarters, as soon as you're able to form an all female party."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Fists",
-          "Weapon Range: S",
-          "Weapon Starting Level: 7"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Fists",
           "range": "S",
@@ -7556,7 +7638,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "209",
           "mag": "89",
           "spd": "91",
-          "eva": "",
           "luc": "149"
         },
         "equipment": {
@@ -7587,7 +7668,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to Taki three times after reaching Lakewest and she will join you. Taki can be recruited a bit earlier through the Matilda Glitch, As soon as Highland have taken over Muse. Player should travel through the path between Greenhill-Matilda then Two-River (You can also recruit Hans in the 2nd floor of Inn in the Human's District with this method) to finally reach Lakewest. Tetsu is also possible to recruit."
         ],
-        "overall": [],
+        "overall": [
+          "Taki is a gossiper and talking to her will give you a hint about how to make the story progress and how to recruit certain characters."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7611,7 +7694,9 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Hans can be found in the Inn in Two River. If you ask him to give you money, it will take him a while to get it and you'll have to return to the Inn to get him.",
           "Hans can be recruited a bit earlier through the Matilda Glitch, As soon as the Highland Army have taken over Muse. Player should travel through the path between Greenhill-Matilda to Two River and recruit him on the 2nd floor of the Inn, He should already open his shop as soon as the player defeated the boss in the North Window Castle."
         ],
-        "overall": [],
+        "overall": [
+          "Hans opens an Armor Shop in the HQ."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7635,7 +7720,9 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Speak with Tetsu at his house in Lakewest while under the toasty status effect. You can get this from eating Fried Tacos purchased in the Kobold section in Two River City.",
           "Tetsu can be recruited a bit earlier through the Matilda Glitch. As soon as the Highland Army has taken over Muse, the player should travel through the path between Greenhill-Matilda then Two-River (You can also recruit Hans in the 2nd floor of Inn in the Human's District with this method) to finally reach Lakewest."
         ],
-        "overall": [],
+        "overall": [
+          "Tetsu will open a bath in your castle."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7690,7 +7777,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "124",
           "mag": "122",
           "spd": "180",
-          "eva": "",
           "luc": "151"
         },
         "equipment": {
@@ -7721,7 +7807,16 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "After obtaining and defending the headquarters, Richmond can be recruited in Radat. Accept his challenge and lose the coin flip, then speak to the customer in the tavern that is closest to the door, and he will give a coin to have Richmond use. Bring Richmond the coin and he will join."
         ],
-        "overall": [],
+        "overall": [
+          "Richmond is the Investigator in Suikoden II. After recruiting him, he can perform investigations on characters for a fee to obtain more information about the character. Richmond takes approximately 10 minutes on each investigation.",
+          "Investigations =",
+          "'''Richmond's Investigations",
+          "Secret #1 =",
+          "Name:Richmond",
+          "Age: 35",
+          "From:South Window",
+          "Position:Special Forces"
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7777,7 +7872,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "128",
           "mag": "112",
           "spd": "147",
-          "eva": "",
           "luc": "145"
         },
         "equipment": {
@@ -7808,7 +7902,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to Alex and Hilda in the Inn at South Window after obtaining your castle."
         ],
-        "overall": [],
+        "overall": [
+          "Alex opens an item shop in your castle."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7831,7 +7927,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to Hilda and Alex in the Inn at South Window after getting your castle."
         ],
-        "overall": [],
+        "overall": [
+          "Hilda runs the Inn at the HQ."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7854,7 +7952,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "After you obtain your headquarters, you can find Adlai in South Window. You must get him a Sacrificial Jizo, a Wooden Shield, and a Wind Crystal in that order. All except the Sacrificial Jizo can be found in South Window. When you give him the Wind Crystal, you must throw it at him instead of handing it to him. Adlai will praise you for standing up to him and join your army."
         ],
-        "overall": [],
+        "overall": [
+          "Adlai sets up an elevator at Dunan Castle."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7877,7 +7977,16 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Once you first enter Greenhill after it is captured, confide to Emilia your true reason for being there. If you do, then she will join you after you escape Greenhill. If you do not, you'll have to wait until you liberate Greenhill to recruit her."
         ],
-        "overall": [],
+        "overall": [
+          "Emilia is the castle Librarian. She will stay at the library and she will receive the books that Riou will brought to her.",
+          "====Old Book Locations====",
+          "*Old Book Vol. 1 - Genkaku's room when you visit Kyaro.",
+          "*Old Book Vol. 2 - Chest inside Sindar Ruins.",
+          "*Old Book Vol. 3 - Rare find at item shop in South Window.",
+          "*Old Book Vol. 4 - Bookshelf in Muse Meeting Hall where Jess gives you the Highland Uniforms. (missable)",
+          "*Old Book Vol. 5 - In the 2nd room on the left on the first floor in Greenhill Academy.",
+          "*Old Book Vol. 6 - Speak to a person in Forest Village trading post."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -7932,7 +8041,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "128",
           "mag": "126",
           "spd": "190",
-          "eva": "",
           "luc": "192"
         },
         "equipment": {
@@ -8007,7 +8115,9 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "jeane": {
       "role": {
-        "recruitment": [],
+        "recruitment": [
+          "After the quest in Greenhill City, make sure your Castle Level is 2 and speak with Jeane at the Rune Shop at Two River City."
+        ],
         "overall": [],
         "weapon": {
           "type": "",
@@ -8031,12 +8141,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to Shilo in the Inn in Lakewest after the events in Two River. Win 5000 potch from him in Chinchirorin."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Darts",
-          "Weapon Range: L",
-          "Weapon Starting Level: 7"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Darts",
           "range": "L",
@@ -8081,7 +8186,16 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Yuzu can be found in Kobold Village after recruiting Hix and Tengaar and after the events in Greenhill. Help Yuzu find her three missing sheep and she'll gladly help you out. The sheep are at the end of the Kobold Forest, where Sigfried was. Once all of them are retrieved, she will join you."
         ],
-        "overall": [],
+        "overall": [
+          "Yuzu manage the Ranch at the HQ, and take care of the animals there. Any animal you find, bring it to her, and they will be added to the farm. These animals provide meat to be used at Hai Yo's Restaurant.",
+          "Animal Location=",
+          "Calf",
+          "*Bought from a boy by the road in Highway Village.",
+          "*Bought from a guy with a hat near the entrance to Drakemouth Village.",
+          "*Bought from a boy by the Inn in Highway Village, after Rockaxe has been liberated.",
+          "Lamb",
+          "*Yuzu will have this one by default."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -8149,55 +8263,45 @@ export const CHARACTER_DETAIL_RECORDS = {
     "meg": {
       "role": {
         "recruitment": [
-          "In order to recruit Meg in Suikoden, speak to her outside the inn at Kaku with Juppo in the party."
+          "In order to recruit Meg, speak to her at the Muse-Greenhill Border when the HQ is at least at Level 2."
         ],
         "overall": [
-          "Meg mirrors Juppo in being a good back row physical fighter. She has a Guard Robe permanently equipped. Compared to her uncle, she's much stronger and her high luck stat ensures she lands critical hits more often. Her lower HP and defense stats means she can't survive much punishment for long, at least until she acquires more powerful gear."
+          "Meg is still a solid back row fighter, with decent physical and magic power. Meg usually reaches her fourth rune level (100+ magic skill) at level 60. Equipped with a Lightning Rune/Thunder Rune or a Wind Rune/Cyclone Rune, she can cause quite a bit of damage because of her affinity with both runes. Meg has the highest Luck stat in the game, and can easily top 250 at level 60 if built correctly. This luck stat makes her one of the better characters to have a Hunter Rune equipped, as a normal tactic is to cast Wind of Sleep, whose success is based partially on luck. Meg can equip robes and lighter equipment, but cannot equip the heavier kinds like chain and armors. She does not wear a shield, just as before. She has a Luck Ring equipped, which cannot be taken off. While she can make a nice healer with a Water Rune or a Flowing Rune in Suikoden, she loses this ability in Suikoden II because of her poor speed."
         ],
         "weapon": {
           "type": "Throwing Knife",
           "range": "L",
-          "startingLevel": "6"
+          "startingLevel": "5"
         },
         "rune": {
           "attached": [
-            "None."
+            "*Head - No Slot",
+            "*R. Hand - Trick Rune",
+            "*L. Hand - Water Rune"
           ],
           "recommended": [
-            "Meg is the only character other than Juppo who can equip a Trick Rune. Another option is to give her a Killer Rune, which when combined with her naturally high luck parameter, allows her to inflict many critical hits in one fight alone."
+            "Meg's equipped runes make her a pretty balanced character, and can make her a decent healer right after recruitment. However, later in the game, it is advisable to equip her with a Lightning or Wind Rune, because of her high skill with those runes. Do not equip Earth, Fire or Resurrection Runes on Meg in Suikoden II, as she has a 20% chance of backfiring with them.",
+            "Meg affinities are:",
+            "Darkness : C Earth : E Fire : E Lightning: A Resurrection: E Water : C Wind : A"
           ]
         },
-        "maxLevelStatus": {
-          "hp": "",
-          "lvl 1": "",
-          "lvl 2": "",
-          "lvl 3": "",
-          "lvl 4": "",
-          "atk": "",
-          "def": "",
-          "str": "",
-          "pdf": "",
-          "skl": "",
-          "mdf": "",
-          "mag": "",
-          "spd": "",
-          "eva": "",
-          "luc": ""
-        },
+        "maxLevelStatus": {},
         "equipment": {
           "default": {
             "helmet": "-",
-            "armor": "Guard Robe*",
+            "armor": "Guard Robe",
             "shield": "-",
-            "other1": "-",
-            "other2": "-"
+            "other1": "Lucky Ring",
+            "other2": "Anchovy Pizza (x5)",
+            "other3": "French Toast (x4)"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Guard Robe*",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
             "other1": "-",
-            "other2": "-"
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
@@ -8214,9 +8318,9 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Gadgets is a great character for the the mid-game. Most of his stats are above average to great in order to make up for the fact that he cannot equip any gear. His defense is superior to the likes of even Humphrey making him a great damage sponge for the front line. His attacks are descent but he gets outshined in the offense department once other characters get better sharpened weapons and get to hit multiple times. His unite attack with Meg has no drawback like unbalance making it for a good aoe skill. His main drawback comes from the fact that he cannot equip any item, removing any utility or variety to him, making him a one trick... barrel."
         ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "N/A",
+          "range": "N/A",
+          "startingLevel": "N/A"
         },
         "rune": {
           "attached": [
@@ -8240,11 +8344,12 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "141",
           "mag": "74",
           "spd": "154",
-          "eva": "",
           "luc": "133"
         },
         "equipment": {
-          "default": {},
+          "default": {
+            "equipment": "N/A"
+          },
           "recommended": {}
         },
         "uniteAttacks": [
@@ -8304,7 +8409,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to Tony in Forest Village after forming an alliance with Two River City."
         ],
-        "overall": [],
+        "overall": [
+          "Tony open a farm and grows crops that are used for cooking at the castle Headquarters."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -8325,7 +8432,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "viki": {
       "role": {
         "recruitment": [
-          "Viki speaks to Tir when she teleports herself to the forest path, where he can offer to recruit her."
+          "Viki appears in the Path to Matilda, where she can again be recruited just by speaking to her."
         ],
         "overall": [
           "Viki is a powerful magic rune user and a good addition to the battle party, if you are very lucky. It is rather risky to use spells with her, because she has a 20% chance of backfiring with every spell cast. This can damage your group badly, because of Viki's high magic skill. She's a bit more limited with rune customization over some of the other mages due to her Blinking Rune being permanently attached to a slot."
@@ -8337,11 +8444,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Viki has her permanently attached Blinking Rune.",
-            "Growth =",
-            "*Head - Gained at Level 30.",
-            "*R. Hand - Blinking Rune",
-            "*L. Hand - None"
+            "Viki has her permanently attached Blinking Rune."
           ],
           "recommended": [
             "With her magic power, any magic rune is recommended, as well as a Blue Gate Rune on her forehead.",
@@ -8376,62 +8479,60 @@ export const CHARACTER_DETAIL_RECORDS = {
     "futch": {
       "role": {
         "recruitment": [
-          "Joins automatically after returning from Seek Valley."
+          "Speak to Humphrey at the Inn in Highway Village. Spend the night. Leave the Inn, see a scene, and agree to help him on Mt. Rakutei.",
+          "Note: This can be done early in the game using the Matilda trick."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Spear",
-          "Weapon Range: M",
-          "Weapon Starting Level: 9"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Spear",
           "range": "M",
-          "startingLevel": "9"
+          "startingLevel": "7"
         },
         "rune": {
           "attached": [
             "None"
           ],
           "recommended": [
-            "Wind Rune"
+            "Unicorn Rune and Wind Rune"
           ]
         },
         "maxLevelStatus": {
-          "hp": "810",
-          "lvl 1": "6",
-          "lvl 2": "4",
+          "hp": "754",
+          "lvl 1": "9",
+          "lvl 2": "5",
           "lvl 3": "2",
-          "lvl 4": "0",
-          "atk": "215",
-          "def": "164",
-          "str": "265",
-          "pdf": "319",
-          "skl": "157",
-          "mdf": "",
-          "mag": "101",
-          "spd": "186",
-          "eva": "",
-          "luc": "184"
+          "lvl 4": "1",
+          "atk": "145",
+          "def": "130",
+          "str": "285",
+          "pdf": "227",
+          "skl": "161",
+          "mdf": "130",
+          "mag": "138",
+          "spd": "190",
+          "eva": "0",
+          "luc": "185"
         },
         "equipment": {
           "default": {
-            "helmet": "Half Helmet",
+            "helmet": "Circlet",
             "armor": "Leather Armor",
-            "shield": "-",
-            "other1": "-",
-            "other2": "-"
+            "shield": "Steel Shield",
+            "other1": "Medicine (x6)",
+            "other2": "Gauntlet",
+            "other3": "Boots"
           },
           "recommended": {
-            "helmet": "Horned Helmet",
-            "armor": "Master Garb",
-            "shield": "Earth Shield",
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
             "other1": "-",
-            "other2": "-"
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Futch can participate in the Dragon Knight Attack."
+          "Futch can participate in the Pretty Boy Attack, translated as Cutie Boy Attack"
         ]
       }
     },
@@ -8440,12 +8541,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Joins automatically after the mission in Rockaxe."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Sword",
-          "Weapon Range: S",
-          "Weapon Starting Level: 9"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Sword",
           "range": "S",
@@ -8475,7 +8571,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "140",
           "mag": "123",
           "spd": "152",
-          "eva": "",
           "luc": "152"
         },
         "equipment": {
@@ -8539,7 +8634,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "145",
           "mag": "171",
           "spd": "155",
-          "eva": "",
           "luc": "141"
         },
         "equipment": {
@@ -8567,8 +8661,17 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "klaus-windamier": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Klaus is recruited automatically along with his father Kiba after you defeat them in battle."
+        ],
+        "overall": [
+          "He is sided with his father Kiba Windamier in the Highland group to make their stat into Attack 7 and Defense 16. When he is sided with Riou's group, he has an evade skill similar to Jess and Boris Wizen, and also has a Cavalry skill to equip either in Riou and the other groups to have a cavalry sprite.",
+          "When he uses his evade skill he will say:",
+          "Original:",
+          "\"Be calm. Move with the enemy.\"",
+          "Remastered:",
+          "\"Be calm and deflect their blows.\""
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -8589,123 +8692,113 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kasumi": {
       "role": {
         "recruitment": [
-          "Joins automatically before the first battle with Teo McDohl's army."
+          "Kasumi is one of two choices offered by Lepant, along with Valeria, as a recruitment option in Gregminster when forging an alliance with the Toran Republic."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Dart",
-          "Weapon Range: L",
-          "Weapon Starting Level: 6"
+          "She's got average to good stats all around, with superior speed, and access to good unite attacks. Kasumi's downfall is her relative low defense for a front line fighter making her quite susceptible to physical attacks. Keep her healed up and you'll have a very speedy hitter."
         ],
         "weapon": {
-          "type": "Dart",
-          "range": "L",
-          "startingLevel": "6"
+          "type": "Claws",
+          "range": "S",
+          "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "Shrike Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "*Head - No Slot",
+            "*R. Hand - Shrike Rune",
+            "*L. Hand - None"
           ],
-          "recommended": []
+          "recommended": [
+            "Spark Rune"
+          ]
         },
         "maxLevelStatus": {
-          "hp": "812",
-          "lvl 1": "8",
-          "lvl 2": "6",
-          "lvl 3": "5",
-          "lvl 4": "2",
-          "atk": "175",
-          "def": "153",
-          "str": "325",
-          "pdf": "254",
-          "skl": "199",
-          "mdf": "",
-          "mag": "153",
-          "spd": "255",
-          "eva": "",
-          "luc": "140"
+          "hp": "761",
+          "lvl 1": "9",
+          "lvl 2": "5",
+          "lvl 3": "2",
+          "lvl 4": "1",
+          "atk": "155",
+          "def": "160",
+          "str": "300",
+          "pdf": "215",
+          "skl": "195",
+          "mdf": "151",
+          "mag": "142",
+          "spd": "225",
+          "luc": "178"
         },
         "equipment": {
           "default": {
-            "helmet": "Headband",
-            "armor": "Karate Uniform",
+            "helmet": "Circlet",
+            "armor": "Ninja Suit",
             "shield": "-",
-            "other1": "-",
-            "other2": "-"
+            "other1": "Bolt of Wrath (x2)",
+            "other2": "Speed Ring",
+            "other3": "Winged Boots"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Taikyoku Wear",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
             "other1": "-",
-            "other2": "-"
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Kasumi can participate in both the Pretty Girl Attack and the Ninja Attack."
+          "Kasumi can participate in Ninja Attack and Beauty Attack."
         ]
       }
     },
     "sheena": {
       "role": {
         "recruitment": [
-          "Sheena joins Tir when spoken to with Lepant in the party at the Inn in Seika."
+          "Sheena also appears in Suikoden II as a Star of Destiny. He joins automatically when President Lepant sends him along as part of the agreement with the Toran Republic."
         ],
-        "overall": [],
+        "overall": [
+          "Sheena remains a competent swordsman as well as adept at rune use. His stats are also well rounded, equally capable physically or magically. He is another example of a character being the jack of all trades and master of none. Sheena is also unique in that he is one of the very few characters in the game to have three open Rune slots and an open weapon rune slot, meaning that he has deep customization potential. With the right set up, Sheena can be become one of the strongest characters in the game. It is recommended to equip him with a Fury Rune, Double-Beat Rune and Double-Strike Rune."
+        ],
         "weapon": {
           "type": "Sword",
           "range": "S",
-          "startingLevel": "6"
+          "startingLevel": "8"
         },
         "rune": {
-          "attached": [
-            "Lightning Rune*",
-            "''*Fixed Rune, can't be detached.''"
-          ],
+          "attached": [],
           "recommended": [
-            "Sheena joins with a Lightning Rune permanently equipped."
+            "Gaining access to all 3 rune slots as he levels opens up his extreme versatility. With that, Sheena has a huge potential to be one of the juggernauts in the game, especially when equipped with a Double Beat Rune, a Double Strike Rune, and/or a Fury Rune, along with an Exertion Rune embedded to his weapon."
           ]
         },
-        "maxLevelStatus": {
-          "hp": "",
-          "lvl 1": "",
-          "lvl 2": "",
-          "lvl 3": "",
-          "lvl 4": "",
-          "atk": "",
-          "def": "",
-          "str": "",
-          "pdf": "",
-          "skl": "",
-          "mdf": "",
-          "mag": "",
-          "spd": "",
-          "eva": "",
-          "luc": ""
-        },
+        "maxLevelStatus": {},
         "equipment": {
           "default": {
-            "helmet": "-",
-            "armor": "Tunic",
-            "shield": "-",
-            "other1": "-",
-            "other2": "-"
+            "helmet": "Silver Hat",
+            "armor": "Magic Robe",
+            "shield": "Steel Shield",
+            "other1": "Star Earrings",
+            "other2": "Green Salad (x5)",
+            "other3": "Boots"
           },
           "recommended": {
-            "helmet": "Silver Hat",
-            "armor": "Master Garb",
+            "helmet": "-",
+            "armor": "-",
             "shield": "-",
             "other1": "-",
-            "other2": "-"
+            "other2": "-",
+            "other3": "-"
           }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Sheena has no known Unite Attacks."
+        ]
       }
     },
     "gordon": {
       "role": {
-        "recruitment": [],
+        "recruitment": [
+          "At Castle Level 3, speak to Gordon in Gregminster to accept his quest and make a total of 50,000 potch from trading. Speaking to him again will allow you to recruit him."
+        ],
         "overall": [],
         "weapon": {
           "type": "",
@@ -8727,59 +8820,61 @@ export const CHARACTER_DETAIL_RECORDS = {
     "lorelai": {
       "role": {
         "recruitment": [
-          "After having set the HQ, Lorelai joins Tir in Kouan if he's over level 25 when he talks to her."
+          "Lorelai appears in Suikoden II as one of the 108 Stars of Destiny. She can be recruited in Greminster by speaking to her. The easiest way to is by having Killey in your party."
         ],
         "overall": [
-          "Lorelai is an effective back row attacker with her bow, though this is offset by her mediocre magic parameter."
+          "Lorelai is a balanced physical attacker and magic user, and with her spear can operate from the front or rear rows."
         ],
         "weapon": {
-          "type": "Bow",
-          "range": "L",
-          "startingLevel": "5"
+          "type": "Scythe",
+          "range": "M",
+          "startingLevel": "6"
         },
         "rune": {
           "attached": [
-            "None."
+            "Lorelai comes with a Drain Rune attached to her right hand."
           ],
           "recommended": [
-            "Since her magic parameter never climbs to a sufficient number to make good use of spells, it is recommended to give her a Hazy Rune to help her avoid certain enemies' long distance attacks."
+            "A Killer Rune is useful if you want to take advantage of her Drain Rune. She's a competent mage or fighter so she is rather flexible with most runes."
           ]
         },
         "maxLevelStatus": {
-          "hp": "814",
-          "lvl 1": "6",
-          "lvl 2": "3",
-          "lvl 3": "2",
-          "lvl 4": "0",
-          "atk": "172",
-          "def": "149",
-          "str": "327",
-          "pdf": "326",
-          "skl": "222",
-          "mdf": "",
-          "mag": "99",
-          "spd": "114",
-          "eva": "",
-          "luc": "110"
+          "hp": "741",
+          "lvl 1": "9",
+          "lvl 2": "6",
+          "lvl 3": "3",
+          "lvl 4": "2",
+          "atk": "150",
+          "def": "150",
+          "str": "325",
+          "pdf": "220",
+          "skl": "185",
+          "mdf": "190",
+          "mag": "161",
+          "spd": "152",
+          "luc": "165"
         },
         "equipment": {
           "default": {
-            "helmet": "Headband",
-            "armor": "Tunic",
+            "helmet": "Circlet",
+            "armor": "Chain Mail",
             "shield": "-",
-            "other1": "-",
-            "other2": "-"
+            "other1": "Thunder Amulet",
+            "other2": "Mega Medicine (x4)",
+            "other3": "Fur Cape"
           },
           "recommended": {
-            "helmet": "Horned Helmet",
-            "armor": "Master Garb",
-            "shield": "Earth Shield",
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
             "other1": "-",
-            "other2": "-"
+            "other2": "-",
+            "other3": "-"
           }
         },
         "uniteAttacks": [
-          "Lorelai has no Unite Attacks."
+          "She has a Unite with Rina, Karen, or Kasumi (any combination of the 3) called the Beauty Attack which does 0.25% damage to all enemies and has a chance at putting the enemies to sleep.",
+          "Also participant of True Beauty Attack with Rina, Karen and Kasumi."
         ]
       }
     },
@@ -8835,12 +8930,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "You must either have Kasumi recruited, or have Valeria recruited and recruited 100 stars of Destiny or more. In either case, you must find the secret village of Rokkaku on the path to Gregminster. When you enter the village, Sasuke will catch you and immediately bring you to Hanzo. He will then order Sasuke and Mondo to your disposal."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Claws",
-          "Weapon Range: S",
-          "Weapon Starting Level: 8"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Claws",
           "range": "S",
@@ -8883,9 +8973,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "templeton": {
       "role": {
         "recruitment": [
-          "Templeton joins Tir when spoken to at the Burnt village of the Elves."
+          "Templeton can be found first at Viktor's ruined fort, then followed to Toto. Speaking to him there can get him to join."
         ],
-        "overall": [],
+        "overall": [
+          "Templeton once again entrusts the Suiko Map to Riou, allowing the player to see a minimap on the screen. You can also talk to Templeton to get a short description of the locations in the game."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -8941,7 +9033,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "152",
           "mag": "127",
           "spd": "142",
-          "eva": "",
           "luc": "125"
         },
         "equipment": {
@@ -9007,7 +9098,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "145",
           "mag": "131",
           "spd": "209",
-          "eva": "",
           "luc": "189"
         },
         "equipment": {
@@ -9038,7 +9128,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "After the Dunan Castle reaches Level 3, show Connell any of the Sound Sets in Forest Village."
         ],
-        "overall": [],
+        "overall": [
+          "Connell can change your sound effects of your actions. The Sound Sets are needed to change the sound effect."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9061,12 +9153,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Find her in the Inn in Kuskus after defeating Luca Blight. Dance successfully with her and she'll join you."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Claws",
-          "Weapon Range: M",
-          "Weapon Starting Level: 6"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Claws",
           "range": "M",
@@ -9096,7 +9183,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "151",
           "mag": "168",
           "spd": "173",
-          "eva": "",
           "luc": "177"
         },
         "equipment": {
@@ -9125,9 +9211,12 @@ export const CHARACTER_DETAIL_RECORDS = {
     "maximillian": {
       "role": {
         "recruitment": [
-          "Joins upon request at the Northern Checkpoint after rescuing Warren and Viktor."
+          "Enter South Window any time after beating Luca Blight and choose the first option to have Max join you.",
+          "Note: Do not choose the second option, \"Don't waste your breath, old man.\", upon being given the two options. If you do, Max will run off for good and you will not be able to recruit him again."
         ],
-        "overall": [],
+        "overall": [
+          "Maximillian is an Infantry Unit with 6 ATK and 7 DEF."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9150,7 +9239,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to her at Tinto after you have recruited Jeane and let her know that she is at your headquarters."
         ],
-        "overall": [],
+        "overall": [
+          "Raura opens and manages a Scroll Shop at the HQ."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9205,7 +9296,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "171",
           "mag": "169",
           "spd": "150",
-          "eva": "",
           "luc": "129"
         },
         "equipment": {
@@ -9236,7 +9326,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Once in Crom, show Tenkou any Window Sets you have and he will join you."
         ],
-        "overall": [],
+        "overall": [
+          "Tenkou is the Window Maker and can change your windows."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9260,12 +9352,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           "With Wakaba in the party, go to the Inn at Crom Village. After the scene, speak to L.C.Chan behind the Item Shop and he will join.",
           "There is an exploit that allows the recruitment of L.C.Chan before Crom. When Teresa accompanies Riou to sign the peace treaty with Jowy in Muse City, before entering Muse, head north to the Muse-Matilda Border, and push the door far enough to get through. With Wakaba in the party, proceed to Rockaxe Town and head to the inn. A cutscene will follow, and L.C.Chan will run out of the inn. Exit to find him hiding behind the inn. Talk to him and he will join."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Fists",
-          "Weapon Range: S",
-          "Weapon Starting Level: 9"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Fists",
           "range": "S",
@@ -9342,7 +9429,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "130",
           "mag": "105",
           "spd": "144",
-          "eva": "",
           "luc": "142"
         },
         "equipment": {
@@ -9373,12 +9459,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Lo Wen joins automatically after completely destroying Neclord in Tinto."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Darts",
-          "Weapon Range: L",
-          "Weapon Starting Level: 6"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Darts",
           "range": "L",
@@ -9423,12 +9504,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Koyu joins automatically after completely destroying Neclord in Tinto."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Axe",
-          "Weapon Range: M",
-          "Weapon Starting Level: 5"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Axe",
           "range": "M",
@@ -9470,8 +9546,12 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "marlowe": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Marlowe joins automatically after the events in Tinto."
+        ],
+        "overall": [
+          "Marlowe's function is unclear at this time."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9494,7 +9574,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Once your castle has reached level 3, speak to Lebrante in Radat with a Celadon Urn in your inventory."
         ],
-        "overall": [],
+        "overall": [
+          "Lebrante will open an Appraisal Shop at the HQ."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9515,16 +9597,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "simone-verdricci": {
       "role": {
         "recruitment": [
-          "Purchase a Rose Brooch from the Rare Finds section of the item shop in Bana Village. Show it to Simone near the docks in Radat and ask him to join your group.",
-          "Note 1: Since Rare Finds refresh every 30 minutes and the items available are checked when selecting the option, it is recommended to save at Bana Village inn and check the rare Finds. If Rose Brooch isn't there, quit and reload.",
+          "Purchase a Rose Brooch from the Rare Finds section of the item shop in Banner Village. Show it to Simone near the docks in Radat and ask him to join your group.",
+          "Note 1: Since Rare Finds refresh every 30 minutes and the items available are checked when selecting the option, it is recommended to save at Banner Village inn and check the rare Finds. If Rose Brooch isn't there, quit and reload.",
           "Note 2: If you choose \"Run around and bark like a dog.\" or \"I want gold\", he will do it but you will never be able to recruit him anymore."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Throwing Roses",
-          "Weapon Range: L",
-          "Weapon Starting Level: 11"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Throwing Roses",
           "range": "L",
@@ -9569,12 +9646,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Find Hoi in the bar in Radat after defeating Luca Blight."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Twin Fang",
-          "Weapon Range: M",
-          "Weapon Starting Level: 6"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Twin Fang",
           "range": "M",
@@ -9619,12 +9691,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "After defeating Neclord in Tinto, speak to Gantetsu in South Window with a full party."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Staff",
-          "Weapon Range: S",
-          "Weapon Starting Level: 7"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Staff",
           "range": "S",
@@ -9654,7 +9721,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "170",
           "mag": "147",
           "spd": "147",
-          "eva": "",
           "luc": "142"
         },
         "equipment": {
@@ -9685,7 +9751,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Find Annallee in the Inn in South Window (only when your castle is at level 3) after the scene the first scene Sasarai appears in, or you can recruit her after defeating Luca Blight."
         ],
-        "overall": [],
+        "overall": [
+          "Annallee plays music in the HQ along with Alberto and Pico."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9741,7 +9809,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "183",
           "mag": "135",
           "spd": "185",
-          "eva": "",
           "luc": "120"
         },
         "equipment": {
@@ -9772,7 +9839,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to Jude in the Greenhill Academy after the liberation. He will tell you he needs clay. Speak to a man walking in the woods in Forest Village and he will give you clay. Return to Jude and he will join you."
         ],
-        "overall": [],
+        "overall": [
+          "Jude can sculpt a Guardian Deity for your castle."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9795,7 +9864,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "After the liberation of Greenhill, speak to him in the Greenhill Inn. You must have recruited Annallee."
         ],
-        "overall": [],
+        "overall": [
+          "Pico plays music in the HQ along with Alberto and Annallee."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9818,7 +9889,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "After you have recruited both Annallee and Pico, you can find Alberto in the armorer in Tinto. Tell him where they can be found and he'll join you."
         ],
-        "overall": [],
+        "overall": [
+          "Alberto plays music in the HQ along with Annallee and Pico."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9841,7 +9914,9 @@ export const CHARACTER_DETAIL_RECORDS = {
         "recruitment": [
           "Speak to Tessai in Kuskus with Viktor in your party after you have liberated Greenhill. You must have gained 101 Stars of Destiny beforehand."
         ],
-        "overall": [],
+        "overall": [
+          "Tessai is the blacksmith in your castle."
+        ],
         "weapon": {
           "type": "",
           "range": "",
@@ -9865,12 +9940,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Speak to Genshu at the Coronet docks with anyone's weapon sharped to level 14 or above. Must also have at least 101 stars.",
           "Note: If Tessai does not have the Silver Hammer, recruit and bring Pesmerga in your party, as his sword is level 14 automatically. Genshu is one of the last Stars of Destiny required to get all 108 Stars."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Katana",
-          "Weapon Range: S",
-          "Weapon Starting Level: 11"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Katana",
           "range": "S",
@@ -9900,7 +9970,6 @@ export const CHARACTER_DETAIL_RECORDS = {
           "mdf": "125",
           "mag": "128",
           "spd": "176",
-          "eva": "",
           "luc": "167"
         },
         "equipment": {
@@ -9928,23 +9997,43 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "vincent": {
       "role": {
-        "recruitment": [],
+        "recruitment": [
+          "Speak to Vincent in Radat with Simone in the party, after Greenhill has been liberated."
+        ],
         "overall": [],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Sword",
+          "range": "S",
+          "startingLevel": "10"
         },
         "rune": {
           "attached": [],
-          "recommended": []
+          "recommended": [
+            "Hazy Rune"
+          ]
         },
         "maxLevelStatus": {},
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "Feathered Hat",
+            "armor": "Scale Mail",
+            "shield": "Mangosh",
+            "other1": "Rose Brooch",
+            "other2": "Potato Pudding (x6)",
+            "other3": "Blue Ribbon"
+          },
+          "recommended": {
+            "helmet": "-",
+            "armor": "-",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-",
+            "other3": "-"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Vincent can participate in the Narcissus Attack."
+        ]
       }
     },
     "mazus": {
@@ -9953,12 +10042,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Speak to Mazus in the Tinto Mines after liberating Greenhill. You have to have at least 100 recruits, since he is a very proud man.",
           "Note: Mazus is one of the few characters that can be Lv. 99 upon recruiting due to a glitch."
         ],
-        "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Rod",
-          "Weapon Range: S",
-          "Weapon Starting Level: 6"
-        ],
+        "overall": [],
         "weapon": {
           "type": "Rod",
           "range": "S",

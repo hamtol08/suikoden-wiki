@@ -18,7 +18,7 @@ import {
   type CharacterDetailRecord,
 } from "@/constants/character-detail-records";
 import { translateItemName } from "@/constants/item-content";
-import { resolveRuneReference } from "@/constants/rune-content";
+import { RUNE_REFERENCES, resolveRuneReference } from "@/constants/rune-content";
 import { STAR_OF_DESTINY_KOREAN_NAMES } from "@/constants/star-of-destiny";
 
 export const CHARACTER_COPY = {
@@ -62,6 +62,10 @@ export const CHARACTER_COPY = {
     recruitmentFlow: "영입 흐름",
     combatRole: "게임 내 역할",
     runeRole: "문장 운용",
+  },
+  detailMessages: {
+    fixedEquipment: (items: readonly string[]) =>
+      `별표(*)가 붙은 장비는 해제할 수 없는 고정 장비입니다. 대상: ${items.join(", ")}.`,
   },
 } as const;
 
@@ -122,6 +126,7 @@ const MAX_LEVEL_STATUS_GROUPS = [
 ] as const;
 
 const WEAPON_TYPE_LABELS = {
+  "N/A": CHARACTER_COPY.unavailableDetail,
   Axe: "도끼",
   "Bo Staff": "봉",
   Book: "책",
@@ -169,6 +174,7 @@ const WEAPON_TYPE_LABELS = {
 } as const;
 
 const WEAPON_RANGE_LABELS = {
+  "N/A": CHARACTER_COPY.unavailableDetail,
   S: "근거리",
   M: "중거리",
   L: "원거리",
@@ -180,14 +186,13 @@ const EQUIPMENT_GROUP_LABELS = {
 } as const;
 
 const EQUIPMENT_SLOT_LABELS = {
+  equipment: "장비",
   helmet: "머리",
   armor: "몸",
   shield: "방패",
   other1: "장신구 1",
   other2: "장신구 2",
 } as const;
-
-const RUNE_NAME_PATTERN = /[A-Za-z][A-Za-z' -]*(?:Rune|rune)/g;
 
 const UNITE_ATTACK_LABELS = {
   "100 Kobold Attack": "100 코볼트 공격",
@@ -380,7 +385,7 @@ const SUIKODEN_II_APPEARANCE_MATCHES = [
   ["용병 요새", "용병 요새"],
   ["뮤즈", "뮤즈"],
   ["그랜마이어", "뮤즈"],
-  ["솔론 지", "코로넷"],
+  ["솔론 지", "코로네"],
   ["쿠스쿠스", "쿠스쿠스"],
   ["투 리버", "투 리버"],
   ["레이크웨스트", "레이크웨스트"],
@@ -399,7 +404,7 @@ const SUIKODEN_II_APPEARANCE_MATCHES = [
   ["뉴 리프 학원", "그린힐"],
   ["그렉민스터", "그레그민스터"],
   ["틴토 광산", "틴토 광산"],
-  ["코로넷", "코로넷"],
+  ["코로네", "코로네"],
   ["본거지", "본거지 성"],
 ] as const;
 
@@ -723,7 +728,7 @@ export const buildCharacterGameRoleRows = (
 };
 
 const normalizeDetailValue = (value: string) => {
-  if (value.trim().toLowerCase() === "[none]") {
+  if (["[none]", "n/a"].includes(value.trim().toLowerCase())) {
     return CHARACTER_COPY.unavailableDetail;
   }
 
@@ -738,6 +743,16 @@ const buildStringRows = (values: Record<string, string>) => {
       value: normalizeDetailValue(value),
     }));
 };
+
+const EQUIPMENT_FIXED_MARK = "*";
+
+const isFixedEquipment = (value: string) => value.includes(EQUIPMENT_FIXED_MARK);
+
+const removeEquipmentFixedMark = (value: string) =>
+  value.replaceAll(EQUIPMENT_FIXED_MARK, "").trim();
+
+const translateFixedEquipmentName = (value: string) =>
+  removeEquipmentFixedMark(translateItemName(value));
 
 const translateWeaponType = (value: string) => {
   return WEAPON_TYPE_LABELS[value as keyof typeof WEAPON_TYPE_LABELS] ?? value;
@@ -804,33 +819,37 @@ const extractLocalizedRuneNames = (lines: readonly string[]) => {
   const names = new Set<string>();
 
   lines.forEach((line) => {
-    [...line.matchAll(RUNE_NAME_PATTERN)].forEach(([rawName]) => {
-      const normalizedName = rawName
-        .replace(/^No rune$/i, "")
-        .replace(/^No Rune$/i, "")
-        .trim();
-      const rune = resolveRuneReference(normalizedName);
-
-      if (rune) {
-        names.add(rune.name);
-      }
-    });
-
-    const soulEater = resolveRuneReference("Soul Eater");
-
-    if (/Soul Eater/i.test(line) && soulEater) {
-      names.add(soulEater.name);
-    }
+    extractDisplayRuneNames(line).forEach((name) => names.add(name));
   });
 
   return [...names];
 };
 
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const RUNE_NAME_MATCHERS = RUNE_REFERENCES.flatMap((rune) =>
+  [rune.name, ...rune.aliases].map((name) => ({
+    name,
+    runeName: rune.name,
+    pattern: new RegExp(`${escapeRegExp(name)}(?!\\s+Piece)`, "gi"),
+  })),
+);
+
 const extractDisplayRuneNames = (line: string) => {
-  return [...line.matchAll(RUNE_NAME_PATTERN)]
-    .map(([rawName]) => rawName.replace(/^No rune$/i, "").trim())
-    .filter(Boolean)
-    .map((name) => resolveRuneReference(name)?.name ?? name);
+  const matches = RUNE_NAME_MATCHERS.flatMap((matcher) =>
+    [...line.matchAll(matcher.pattern)].map((match) => ({
+      index: match.index ?? 0,
+      length: match[0].length,
+      runeName: matcher.runeName,
+    })),
+  );
+
+  return uniqueRuneNames(
+    matches
+      .sort((a, b) => a.index - b.index || b.length - a.length)
+      .map((match) => match.runeName),
+  );
 };
 
 const CHARACTER_UNAVAILABLE_RUNE_LABELS = new Set([
@@ -855,10 +874,11 @@ const splitCharacterRuneLabel = (value: string) => {
     return [];
   }
 
-  return value
+  return uniqueRuneNames(value
     .split(/\s*\/\s*|\s*,\s*|\s+and\s+/i)
     .map((rune) => rune.trim())
-    .filter((rune) => rune && !isUnavailableRuneText(rune));
+    .filter((rune) => rune && !isUnavailableRuneText(rune))
+    .map((name) => resolveRuneReference(name)?.name ?? name));
 };
 
 const hasSentenceLikeRuneDescription = (value: string) =>
@@ -909,6 +929,12 @@ const extractAttachedRuneNames = (lines: readonly string[]) => {
 
 const uniqueRuneNames = (names: readonly string[]) => [...new Set(names)];
 
+const getRuneSlotLimit = (value: string) => {
+  const parsed = Number.parseInt(value, 10);
+
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
+};
+
 export const resolveCharacterPrimaryRunes = (
   character: CharacterEntry,
   record: CharacterDetailRecord | null,
@@ -920,7 +946,20 @@ export const resolveCharacterPrimaryRunes = (
     return uniqueRuneNames(attachedRunes);
   }
 
-  return uniqueRuneNames(splitCharacterRuneLabel(character.rune));
+  const characterRunes = splitCharacterRuneLabel(character.rune);
+
+  if (characterRunes.length > 0) {
+    return characterRunes;
+  }
+
+  const recommendedRunes = role ?
+    uniqueRuneNames(role.rune.recommended.flatMap(extractDisplayRuneNames)) :
+    [];
+  const runeSlotLimit = getRuneSlotLimit(character.runeSlots);
+
+  return runeSlotLimit ?
+      recommendedRunes.slice(0, runeSlotLimit) :
+      recommendedRunes;
 };
 
 const translateUniteCharacterName = (name: string) => {
@@ -1114,6 +1153,29 @@ const buildEquipmentRows = (record: CharacterDetailRecord | null) => {
   return [...defaultRows, ...recommendedRows];
 };
 
+const buildEquipmentLines = (record: CharacterDetailRecord | null) => {
+  if (!record) {
+    return [];
+  }
+
+  const equipmentValues = [
+    ...Object.values(record.role.equipment.default),
+    ...Object.values(record.role.equipment.recommended),
+  ];
+  const fixedEquipmentNames = [
+    ...new Set(
+      equipmentValues
+        .filter(isFixedEquipment)
+        .map(translateFixedEquipmentName)
+        .filter((name) => name && name !== CHARACTER_COPY.unavailableDetail),
+    ),
+  ];
+
+  return fixedEquipmentNames.length > 0 ?
+      [CHARACTER_COPY.detailMessages.fixedEquipment(fixedEquipmentNames)] :
+      [];
+};
+
 const hasCombatDataPanelContent = (panel: CharacterCombatDataPanel) => {
   return panel.lines.length > 0 ||
     panel.rows.length > 0 ||
@@ -1176,7 +1238,7 @@ export const buildCharacterCombatDataPanels = (
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-equipment`,
       title: "Equipment",
-      lines: [],
+      lines: buildEquipmentLines(record),
       rows: buildEquipmentRows(record),
     },
     {

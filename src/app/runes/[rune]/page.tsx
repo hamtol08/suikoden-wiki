@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import {
+  formatRuneGames,
   getRuneReference,
   getRuneIndexPageByCategory,
   RUNE_ARCHIVE_COPY,
@@ -33,7 +35,7 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
     },
     {
       label: RUNE_ARCHIVE_COPY.gamesLabel,
-      value: rune.games.join(" / "),
+      value: formatRuneGames(rune.games),
     },
     {
       label: RUNE_ARCHIVE_COPY.aliasLabel,
@@ -63,6 +65,18 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
             <h2 className={RUNE_STYLES.detailTitle}>
               {RUNE_ARCHIVE_COPY.profileTitle}
             </h2>
+            {rune.imageSrc ? (
+              <div className={RUNE_STYLES.detailImageWrap}>
+                <Image
+                  alt={rune.name}
+                  className={RUNE_STYLES.detailImage}
+                  height={220}
+                  src={rune.imageSrc}
+                  unoptimized={rune.imageSrc.endsWith(".gif")}
+                  width={320}
+                />
+              </div>
+            ) : null}
             <dl className={RUNE_STYLES.ledger}>
               {rows.map((row) => (
                 <div className={RUNE_STYLES.ledgerRow} key={row.label}>
