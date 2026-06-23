@@ -78,7 +78,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
   viktor: {
     name: "빅토르",
     characterType: "전투",
-    recruitment: "레난캄프에서 제국군 추격을 피해 도망치는 과정에서 자동으로 합류합니다.",
+    recruitment: "그레그민스터를 떠난 뒤 제국군 추격을 피해 도망치는 과정에서 자동으로 합류합니다.",
   },
   valeria: {
     name: "발레리아",

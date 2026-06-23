@@ -19,6 +19,7 @@ import {
   translateMonsterName,
 } from "@/constants/region-detail-content";
 import { resolveRuneReference } from "@/constants/rune-content";
+import { GAME8_ITEM_SOURCE_RECORDS } from "@/constants/game8-item-source-records";
 
 export const ITEM_ARCHIVE_COPY = {
   eyebrow: "Items",
@@ -32,8 +33,11 @@ export const ITEM_ARCHIVE_COPY = {
   labels: {
     category: "분류",
     source: "기록",
-    lowestPrice: "최저가",
+    price: "가격",
     locations: "입수처",
+    shopLocations: "상점",
+    dropLocations: "드롭",
+    otherLocations: "기타 입수처",
     dropRate: "획득 확률",
     originalName: "영문 표기",
     shop: "Shop",
@@ -49,6 +53,19 @@ export const ITEM_CATEGORY_LABELS = {
   consumable: "소비 아이템",
   sealedOrb: "봉인구",
   keyItem: "이벤트 아이템",
+  antique: "감정품",
+  animal: "동물",
+  blacksmithHammer: "망치",
+  book: "책",
+  guardianPlan: "수호신상 설계도",
+  ingredient: "식재료",
+  paint: "물감",
+  recipe: "레시피",
+  runePiece: "문장 조각",
+  soundSet: "음 세트",
+  specialItem: "특수 아이템",
+  tradeItem: "교역품",
+  windowSet: "창 세트",
 } as const;
 
 export type ItemCategoryId = keyof typeof ITEM_CATEGORY_LABELS;
@@ -93,6 +110,12 @@ export const ITEM_INDEX_PAGES = [
 export const ITEM_SOURCE_TYPE_LABELS = {
   shop: "상점",
   drop: "드롭",
+  found: "발견",
+  treasure: "보물상자",
+  trade: "교역소",
+  other: "기타",
+  minigame: "미니게임",
+  gds: "수호신상",
 } as const;
 
 export type ItemSourceType = keyof typeof ITEM_SOURCE_TYPE_LABELS;
@@ -105,8 +128,9 @@ export type ItemIndexRecord = {
   game: ItemIndexGameId;
   href: string;
   sourceTypes: readonly ItemSourceType[];
-  lowestPrice: number | null;
+  prices: readonly number[];
   locations: readonly string[];
+  sourceLocations: Record<ItemSourceType, readonly string[]>;
   dropRates: readonly string[];
 };
 
@@ -117,8 +141,9 @@ type ItemRecordDraft = {
   category: ItemCategoryId;
   game: ItemIndexGameId;
   sourceTypes: Set<ItemSourceType>;
-  lowestPrice: number | null;
+  prices: Set<number>;
   locations: Set<string>;
+  sourceLocations: Record<ItemSourceType, Set<string>>;
   dropRates: Set<string>;
 };
 
@@ -139,7 +164,65 @@ const ITEM_REFERENCE_GAMES = ["suikoden-i", "suikoden-ii"] as const;
 
 const ITEM_EMPTY_VALUES = new Set(["", "-", "[none]", "None", "None.", "N/A"]);
 
-const ITEM_SOURCE_TYPE_ORDER = ["shop", "drop"] as const;
+const ITEM_SOURCE_TYPE_ORDER = [
+  "shop",
+  "found",
+  "treasure",
+  "drop",
+  "trade",
+  "minigame",
+  "gds",
+  "other",
+] as const;
+
+const GAME8_ITEM_CATEGORY_MAP = {
+  Accessory: "accessory",
+  Animals: "animal",
+  Antique: "antique",
+  Antiques: "antique",
+  Armor: "armor",
+  Blacksmith: "blacksmithHammer",
+  "Blacksmith Hammers": "blacksmithHammer",
+  Body: "armor",
+  Book: "book",
+  Consumable: "consumable",
+  "Event Items": "keyItem",
+  Helmet: "helmet",
+  Ingredients: "ingredient",
+  Key: "keyItem",
+  "Key Item": "keyItem",
+  "Old Books": "book",
+  Others: "accessory",
+  Paint: "paint",
+  Paints: "paint",
+  Recipes: "recipe",
+  Restorative: "consumable",
+  Rune: "sealedOrb",
+  "Rune Piece": "runePiece",
+  Scrolls: "consumable",
+  Seasonings: "ingredient",
+  Seeds: "ingredient",
+  Shield: "shield",
+  Sound: "soundSet",
+  "Sound Sets": "soundSet",
+  Special: "specialItem",
+  "Special Equipment": "accessory",
+  "Special Items": "specialItem",
+  Stones: "consumable",
+  "Trade Items": "tradeItem",
+  "Window Sets": "windowSet",
+} as const satisfies Record<string, ItemCategoryId>;
+
+const GAME8_SOURCE_TYPE_MAP = {
+  Drop: "drop",
+  Found: "found",
+  GDS: "gds",
+  Minigame: "minigame",
+  Other: "other",
+  Shop: "shop",
+  "Trading Post": "trade",
+  "Treasure Chest": "treasure",
+} as const satisfies Record<string, ItemSourceType>;
 
 const ITEM_RUNE_NAME_PATTERN = /\bRune$/i;
 
@@ -350,6 +433,16 @@ const ITEM_NAME_TRANSLATIONS = {
 } as const;
 
 const ITEM_NAME_ALIASES = {
+  "Angry Blow Scroll": "Angry Blow",
+  "Bolt of Wrath Scroll": "Bolt of Wrath",
+  "Canopy Defense Scroll": "Canopy Defense",
+  "Clay Guardian Scroll": "Clay Guardian",
+  "Dancing Flames Scroll": "Dancing Flames Scroll",
+  "Fire Wall Scroll": "Fire Wall",
+  "Healing Wind Scroll": "Healing Wind Scroll",
+  "Shredding Wind Scroll": "The Shredding",
+  "Thunder Runner Scroll": "Thunder Runner",
+  "Wind of Sleep": "Wind of Sleep Scroll",
   "가죽 아머": "Leather Armor",
   "바람갑옷": "Windspun Armor",
   "어둠의 망또": "Cape of Darkness",
@@ -364,6 +457,263 @@ const ITEM_NAME_ALIASES = {
   "희생의 불상": "Sacrificial Buddha",
   "희생의 부처": "Sacrificial Buddha",
 } as const;
+
+const ITEM_GENERATED_NAME_TRANSLATIONS = {
+  "Ancient Text": "고대 문서",
+  "Astral Predications": "별의 예언서",
+  Beef: "소고기",
+  Binoculars: "쌍안경",
+  "Black Urn": "검은 항아리",
+  "Blinking Mirror": "깜박임의 거울",
+  Blueprints: "설계도",
+  Book: "책",
+  Cabbage: "양배추",
+  "Cabbage Seeds": "양배추 씨앗",
+  Calf: "송아지",
+  Candle: "양초",
+  "Cheek Guards": "볼 보호대",
+  "Chick (Animal)": "병아리",
+  "Chick (Special)": "병아리 장식",
+  "Chinese Dish": "중국 접시",
+  Clay: "점토",
+  "Copper Hammer": "구리 망치",
+  Coral: "산호",
+  "Crystal Ball": "수정구",
+  "Cup of the Oath": "맹세의 잔",
+  "Deer Antler": "사슴뿔",
+  "Dog Whistle": "개 호루라기",
+  "Dragon Incense": "용의 향",
+  "Drinking Set": "음주 세트",
+  Earring: "귀걸이",
+  Egg: "달걀",
+  Engine: "엔진",
+  "Entry Permit": "입장 허가증",
+  "Fake Orders": "가짜 명령서",
+  "Famous Urn": "유명한 항아리",
+  "Fine China": "고급 자기",
+  "Fire Spear": "화염창",
+  Flute: "피리",
+  Fur: "모피",
+  "Gold Bar": "금괴",
+  Goldlet: "골드릿",
+  "Healing Herb": "치유의 약초",
+  "Heavy Collar": "무거운 목줄",
+  "Highland Soldier Uniform": "하이랜드 병사복",
+  "Holly Berry": "호랑가시나무 열매",
+  "Invincible Smile": "무적의 미소",
+  "Iron Hammer": "철 망치",
+  Kirinji: "기린지",
+  "Knight Statue": "기사상",
+  "Lamb (Animal)": "양",
+  "Lamb (Meat)": "양고기",
+  "Landscape Scroll": "산수화 족자",
+  "Large Urn": "큰 항아리",
+  "Leisure Set": "레저 세트",
+  "Leon's Letter": "레온의 편지",
+  "Letter of Introduction": "소개장",
+  "Listening Orb": "듣기의 구슬",
+  "Lubricating Oil": "윤활유",
+  Mayonnaise: "마요네즈",
+  "Millet Dumplings": "조 덤플링",
+  "Mole Helmet": "두더지 투구",
+  "Mole Shield": "두더지 방패",
+  "Mole Suit": "두더지복",
+  "Moonlight Weed": "월광초",
+  Musk: "사향",
+  "Nanami's Vase": "나나미의 꽃병",
+  "Nature's Beauty": "자연의 미",
+  "Oily Rag": "기름 묻은 천",
+  Opal: "오팔",
+  Pearl: "진주",
+  "Persian Lamp": "페르시아 램프",
+  Piglet: "새끼돼지",
+  Pork: "돼지고기",
+  Potato: "감자",
+  Rag: "헝겊",
+  "Red Pepper": "고추",
+  Rope: "밧줄",
+  "Rose Bouquet": "장미 꽃다발",
+  "Round Plate": "둥근 접시",
+  "Running Water Root": "흐르는 물의 뿌리",
+  Salmon: "연어",
+  Salt: "소금",
+  "Secret Writings": "비전서",
+  "Seed Potato": "씨감자",
+  "Sexy Wink": "섹시 윙크",
+  Shellfish: "조개",
+  Shrimp: "새우",
+  "Silver Collar": "은 목줄",
+  "Silver Dragon Armor": "은룡 갑옷",
+  "Silver Hammer": "은 망치",
+  "Silver Ring": "은 반지",
+  Soap: "비누",
+  "Sound Rune": "소리의 문장",
+  "Soy Sauce": "간장",
+  Spinach: "시금치",
+  "Spinach Seedling": "시금치 모종",
+  "Square Plate": "사각 접시",
+  Sugar: "설탕",
+  Sunglasses: "선글라스",
+  "Tai Chi Garb": "태극복",
+  "Throat Drop": "목캔디",
+  Tomato: "토마토",
+  "Tomato Seedling": "토마토 모종",
+  "Toy Boat": "장난감 배",
+  "Traditional Clothing": "전통 의상",
+  "Triangle Plate": "삼각 접시",
+  "Trio Painting": "삼인 그림",
+  "War Scroll": "전쟁 두루마리",
+  Wheat: "밀",
+  Whitefish: "흰살생선",
+  "Wide Urn": "넓은 항아리",
+  "Wind Feather Ornament": "바람깃 장식",
+  "Window Rune": "창문의 문장",
+  Wine: "와인",
+  "Wing Ornament": "날개 장식",
+  "Wooden Amulet (Event Item)": "나무 부적",
+  "Wooden Amulet (Trade Item)": "나무 부적",
+  "World Map": "세계지도",
+  Yardstick: "자",
+} as const;
+
+const ITEM_COLOR_TRANSLATIONS = {
+  Black: "검은",
+  Blue: "파란",
+  Green: "초록",
+  Pink: "분홍",
+  Red: "빨간",
+  White: "흰",
+  Yellow: "노란",
+} as const;
+
+const ITEM_STAT_TRANSLATIONS = {
+  Defense: "방어",
+  Luck: "행운",
+  Magic: "마법",
+  "Magic Defense": "마법 방어",
+  Power: "힘",
+  Skill: "기술",
+  Speed: "속도",
+} as const;
+
+const ITEM_ELEMENT_TRANSLATIONS = {
+  Defense: "방어",
+  Earth: "대지",
+  Fire: "불",
+  Lightning: "번개",
+  Luck: "행운",
+  Magic: "마법",
+  Power: "힘",
+  Skill: "기술",
+  Speed: "속도",
+  Water: "물",
+  Wind: "바람",
+} as const;
+
+const ITEM_PLAN_TRANSLATIONS = {
+  Dragon: "용",
+  Rabbit: "토끼",
+  Turtle: "거북",
+  Unicorn: "유니콘",
+} as const;
+
+const translateGeneratedItemName = (name: string) => {
+  const direct =
+    ITEM_GENERATED_NAME_TRANSLATIONS[
+      name as keyof typeof ITEM_GENERATED_NAME_TRANSLATIONS
+    ];
+
+  if (direct) {
+    return direct;
+  }
+
+  const scrollMatch = name.match(/^(.+) Scroll$/);
+
+  if (scrollMatch) {
+    const baseName = scrollMatch[1];
+    const knownBase =
+      ITEM_NAME_TRANSLATIONS[baseName as keyof typeof ITEM_NAME_TRANSLATIONS] ??
+      ITEM_GENERATED_NAME_TRANSLATIONS[
+        baseName as keyof typeof ITEM_GENERATED_NAME_TRANSLATIONS
+      ];
+
+    return knownBase ? `${knownBase} 두루마리` : `${baseName} 두루마리`;
+  }
+
+  const oldBookMatch = name.match(/^Old Book Vol\. (\d+)$/);
+
+  if (oldBookMatch) {
+    return `낡은 책 ${oldBookMatch[1]}권`;
+  }
+
+  const recipeMatch = name.match(/^Recipe (\d+)$/);
+
+  if (recipeMatch) {
+    return `레시피 ${recipeMatch[1]}`;
+  }
+
+  const plansMatch = name.match(/^(Dragon|Rabbit|Turtle|Unicorn) Plans (\d+)$/);
+
+  if (plansMatch) {
+    const planName =
+      ITEM_PLAN_TRANSLATIONS[
+        plansMatch[1] as keyof typeof ITEM_PLAN_TRANSLATIONS
+      ];
+
+    return `${planName} 설계도 ${plansMatch[2]}`;
+  }
+
+  const setMatch = name.match(/^(Sound|Window) Set (\d+)$/);
+
+  if (setMatch) {
+    return `${setMatch[1] === "Sound" ? "음" : "창"} 세트 ${setMatch[2]}`;
+  }
+
+  const paintMatch = name.match(/^(Black|Blue|Green|Pink|Red|White|Yellow) Paint$/);
+
+  if (paintMatch) {
+    const color =
+      ITEM_COLOR_TRANSLATIONS[
+        paintMatch[1] as keyof typeof ITEM_COLOR_TRANSLATIONS
+      ];
+
+    return `${color} 물감`;
+  }
+
+  const runePieceMatch = name.match(
+    /^(Defense|Earth|Fire|Lightning|Luck|Magic|Power|Skill|Speed|Water|Wind) Rune Piece$/,
+  );
+
+  if (runePieceMatch) {
+    const element =
+      ITEM_ELEMENT_TRANSLATIONS[
+        runePieceMatch[1] as keyof typeof ITEM_ELEMENT_TRANSLATIONS
+      ];
+
+    return `${element}의 문장 조각`;
+  }
+
+  const stoneMatch = name.match(
+    /^Stone of (Defense|Luck|Magic|Magic Defense|Power|Skill|Speed)$/,
+  );
+
+  if (stoneMatch) {
+    const stat =
+      ITEM_STAT_TRANSLATIONS[
+        stoneMatch[1] as keyof typeof ITEM_STAT_TRANSLATIONS
+      ];
+
+    return `${stat}의 돌`;
+  }
+
+  const karenMatch = name.match(/^Karen (Painting|Statue) ([ABC])$/);
+
+  if (karenMatch) {
+    return `카렌 ${karenMatch[1] === "Painting" ? "그림" : "상"} ${karenMatch[2]}`;
+  }
+
+  return name;
+};
 
 const buildItemId = (name: string) => {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -465,7 +815,7 @@ export const translateItemName = (name: string) => {
   const item = resolveItemReference(name);
 
   if (!item) {
-    return name;
+    return translateGeneratedItemName(name);
   }
 
   return `${item.name}${buildItemValueSuffix(name)}`;
@@ -481,16 +831,345 @@ const buildRegionLabel = (gameId: string, regionId: string) => {
   return koreanName ?? region?.name ?? regionId;
 };
 
+const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
+  "Ask to clean the Mercenary Fortress": "용병 요새 청소 의뢰",
+  Antei: "안테이",
+  "Available from the start": "초기 소지",
+  "Banner Pass": "바나 고개",
+  "Banner Village": "바나 마을",
+  "Bought for Pilika in Muse City": "뮤즈에서 필리카에게 구매",
+  "Catch in Fishing mini-game.": "낚시 미니게임",
+  "Cave of the Past": "과거의 동굴",
+  "Cave of the Past x2": "과거의 동굴 x2",
+  "Cave of the Wind": "바람의 동굴",
+  "Clean the Mercenary Fortress": "용병 요새 청소",
+  "Coronet Town": "코로네",
+  "Crom Village": "크롬",
+  "Dragon Knights' Fortress": "용기사의 요새",
+  "Dragon's Den": "용동",
+  "Drakemouth Village": "드래곤마우스 마을",
+  "Dwarf Trail": "드워프 산길",
+  "Dwarves' Vault": "드워프 금고",
+  "Dwarves' Vault x2": "드워프 금고 x2",
+  "Floating Fortress of Shasarazade": "샤사라자드 요새",
+  "Forest Village": "숲의 마을",
+  "Fortress of Garan": "가란 성새",
+  "Fortress of Kwaba": "쿠와바 성새",
+  "Found in Sindar Ruins": "신다르 유적",
+  "Given by Elza": "엘자에게 받음",
+  "Given by Fitcher": "피처에게 받음",
+  "Given by Hilda": "힐다에게 받음",
+  "Given by Jess": "제스에게 받음",
+  "Given by Leon": "레온에게 받음",
+  "Given by Lepant": "레판트에게 받음",
+  "Great Forest": "대삼림",
+  "Great Forest Village": "대삼림 마을",
+  "Greenhill City": "그린힐",
+  "Greenhill Forest": "그린힐 숲",
+  "Gregminster": "그레그민스터",
+  "Gregminster Castle": "그레그민스터 성",
+  "Highland Garrison": "하이랜드 주둔지",
+  "Highway Village": "호랑이 입 산길 마을",
+  "Kaku": "카쿠",
+  "Kalekka": "카렉카",
+  "Kirov": "키로프",
+  "Kobold Village": "코볼트 마을",
+  "Kobold Village Forest": "코볼트마을 숲",
+  "Kouan": "코안",
+  "Kouan Military Government Office": "코안 군정청",
+  "Kuskus Town": "쿠스쿠스",
+  "Kyaro Town": "캐로",
+  "Lakewest Town": "레이크웨스트",
+  "Lenankamp": "레난캄프",
+  "Lepant's Mansion": "레판토의 저택",
+  "L'Renouille": "르누이유",
+  "Luikan's Hermitage": "리우칸의 암자",
+  "Magician's Island": "마술사의 섬",
+  "Mercenary Fortress": "용병 요새",
+  "Moravia Castle": "모라비아 성",
+  "Mt. Rakutei": "라쿠테이 산",
+  "Mt. Seifu": "세이후 산",
+  "Mt. Seifu x2": "세이후 산 x2",
+  "Mt. Tigerwolf": "타이거울프 산",
+  "Mt. Tigerwolf x2": "타이거울프 산 x2",
+  "Muse City": "뮤즈",
+  "Neclord's Castle": "네크로드 성",
+  "Neclordia": "네크로디아",
+  "Northern Checkpoint": "북쪽 관문",
+  "North Sparrow Pass": "북쪽 참새 고개",
+  "North Window": "노스 윈도우",
+  "Obtained in Sindar Ruins": "신다르 유적",
+  "Obtained while shopping": "심부름 중 획득",
+  "Pannu Yakuta Castle": "판누 야쿠타",
+  "Path to Matilda": "마틸다 방면 길",
+  "Pirate's Fortress": "해적 요새",
+  "Plant Cabbage Seeds": "양배추 씨앗 재배",
+  "Plant Seed Potatoes.": "씨감자 재배",
+  "Plant Spinach Seedlings": "시금치 모종 재배",
+  "Plant Tomato Seedlings.": "토마토 모종 재배",
+  "Produced by Chicks in the Ranch.": "목장에서 병아리 생산",
+  "Produced by Lambs in the Ranch": "목장에서 양 생산",
+  "Produced by Piglets in the Ranch.": "목장에서 새끼돼지 생산",
+  "Purchase in Ryube Village": "류베에서 구매",
+  "Qlon Temple": "클론 사원",
+  "Radat Town": "라다트",
+  "Recruit Hai Yo": "하이 요 합류",
+  "Recruit Hellion": "헬리온 합류",
+  "Recruit Templeton": "템플턴 합류",
+  "Recruit Tuta, then talk to Dr. Huan": "튜타 합류 후 후안에게 대화",
+  "Rikon": "리콘",
+  "Rockaxe": "록액스",
+  "Rockaxe Castle": "록액스 성",
+  "Rockland Military Government Office": "록랜드 군정청",
+  "Rockland": "록랜드",
+  "Rokkaku Hamlet": "롯카쿠 마을",
+  "Ryube Forest": "류베 숲",
+  "Ryube Village": "류베",
+  "Sajah Village": "사자 마을",
+  "Sarady": "사라디",
+  "Scarleticia Castle": "스칼레티시아 성",
+  "Seika": "세이카",
+  "Seek Valley": "시크 계곡",
+  "Secret Factory": "비밀 공장",
+  "Sindar Ruins": "신다르 유적",
+  "Soniere Prison": "소니에르 감옥",
+  "South Window City": "사우스 윈도우",
+  "Stage Dancing Level 1 Prize": "무대 춤 레벨 1 보상",
+  "Stage Dancing Level 2 Prize": "무대 춤 레벨 2 보상",
+  "Stage Dancing Level 3 Prize": "무대 춤 레벨 3 보상",
+  "Stage Dancing Level 4 Prize": "무대 춤 레벨 4 보상",
+  "Stage Dancing Level 5 Prize": "무대 춤 레벨 5 보상",
+  "Teien": "테이엔",
+  "Tigermouth Village": "호랑이 입 산길 마을",
+  "Tinto City": "틴토",
+  "Tinto Mines": "틴토 광산",
+  "Tinto Pass": "틴토 고개",
+  "Toran Lake Castle": "트란 성",
+  "Toto Village": "토토",
+  "Two River City": "투 리버",
+  "Two River Sewers": "투 리버 하수도",
+  "Village of the Dwarves": "드워프 마을",
+  "Village of the Elves": "엘프 마을",
+  "Village of the Hidden Rune": "숨겨진 문장의 마을",
+  "Warriors' Village": "전사의 마을",
+  "White Deer Inn": "백록정",
+  "Whackamole (Beginner or Ultimate)": "두더지잡기(초급 또는 최종)",
+  "Whackamole (Hard or Ultimate)": "두더지잡기(상급 또는 최종)",
+  "Whackamole (Normal or Ultimate)": "두더지잡기(중급 또는 최종)",
+  "Win eighth Cook-Off": "요리 대결 8회 우승",
+  "Win eleventh Cook-Off": "요리 대결 11회 우승",
+  "Win fifth Cook-Off": "요리 대결 5회 우승",
+  "Win first Cook-Off": "요리 대결 1회 우승",
+  "Win fourth Cook-Off": "요리 대결 4회 우승",
+  "Win second Cook-Off": "요리 대결 2회 우승",
+  "Win seventh Cook-Off": "요리 대결 7회 우승",
+  "Win sixth Cook-Off": "요리 대결 6회 우승",
+  "Win tenth Cook-Off": "요리 대결 10회 우승",
+  "Win third Cook-Off": "요리 대결 3회 우승",
+  "Win twelfth Cook-Off": "요리 대결 12회 우승",
+} as const;
+
+const GAME8_MINIGAME_ENTRY_TRANSLATIONS = {
+  "Army League": "군단 리그",
+  "Castle League": "성 리그",
+  "Hero League": "영웅 리그",
+  "1st Place": "1위",
+  "2nd Place": "2위",
+  "3rd Place": "3위",
+  "Army Leage": "군단 리그",
+} as const;
+
+const GAME8_GDS_PART_LABELS = {
+  D: "용",
+  R: "토끼",
+  T: "거북",
+  U: "유니콘",
+} as const;
+
+const translateGame8GdsCode = (entry: string) => {
+  if (!/^[DRTU]{4}$/.test(entry)) {
+    return entry;
+  }
+
+  const [head, body, legs, tail] = entry.split("").map((part) =>
+    GAME8_GDS_PART_LABELS[part as keyof typeof GAME8_GDS_PART_LABELS]
+  );
+
+  return `머리 ${head} / 몸통 ${body} / 다리 ${legs} / 꼬리 ${tail}`;
+};
+
+const translateGame8EventEntry = (entry: string) => {
+  const text = entry.trim();
+
+  if (text.includes("barter event to recruit Sarah in Kirov")) {
+    return "키로프 사라 합류 교환 이벤트";
+  }
+
+  if (text.includes("ninth book")) {
+    return "낡은 책 1-8권을 책장에 꽂은 뒤 숨겨진 입력으로 획득";
+  }
+
+  if (text.includes("Astral Predications")) {
+    return "마술사의 섬에서 레크나트에게 받음";
+  }
+
+  if (text.includes("Blueprints")) {
+    return "레난캄프 해방군 기지에서 오데사에게 받음";
+  }
+
+  if (text.includes("Earring")) {
+    return "2장 이벤트로 획득";
+  }
+
+  if (text.includes("Engine")) {
+    return "테이엔에서 카만돌 이벤트로 획득";
+  }
+
+  if (text.includes("Fake Orders")) {
+    return "4장 이벤트에서 킴벌리와 테슬라에게 받음";
+  }
+
+  if (text.includes("Mathiu's Letter")) {
+    return "마슈가 킴벌리에게 전달하라고 맡긴 편지";
+  }
+
+  if (text.includes("Fire Spear")) {
+    return "비밀 공장 방문 후 5장 이벤트로 획득";
+  }
+
+  if (text.includes("Holly Fairy")) {
+    return "스칼레티시아 지역 호랑가시 요정의 희귀 드롭";
+  }
+
+  if (text.includes("War Scroll")) {
+    return "메인 스토리 중 과거의 동굴에서 획득";
+  }
+
+  if (text.includes("Window Crystal")) {
+    return "메인 스토리 중 과거의 동굴에서 획득";
+  }
+
+  if (text.includes("Running Water Root")) {
+    return "드워프 금고 최심부에서 획득";
+  }
+
+  if (text.includes("Sound Crystal")) {
+    return "카렉카에서 소리의 봉인구를 주워 획득";
+  }
+
+  if (text.includes("item store in Kirov")) {
+    return "키로프 아이템 상점에서 구매";
+  }
+
+  if (text.includes("Kirinji")) {
+    return "레판토의 저택 최심부에서 획득";
+  }
+
+  if (text.includes("Old Book Vol. 3")) {
+    return "클론 사원 책장을 조사해 획득";
+  }
+
+  if (text.includes("item store in Rikon")) {
+    return "리콘 아이템 상점에서 구매";
+  }
+
+  if (text.includes("Moonlight Weed")) {
+    return "시크 계곡 최심부에서 획득";
+  }
+
+  if (text.includes("Nightmare enemies")) {
+    return "소니에르 감옥 나이트메어의 희귀 드롭";
+  }
+
+  if (text.includes("item store in Teien")) {
+    return "테이엔 아이템 상점에서 구매";
+  }
+
+  if (text.includes("item store in Warriors' Village")) {
+    return "전사의 마을 아이템 상점에서 구매";
+  }
+
+  if (text.includes("Binoculars")) {
+    return "이바노프에게 물감을 모두 전달한 뒤 획득";
+  }
+
+  if (text.includes("Blinking Mirror")) {
+    return "헬리온 합류 후 획득";
+  }
+
+  if (text.includes("World Map")) {
+    return "템플턴 합류 후 획득";
+  }
+
+  if (text.includes("Dragon Incense")) {
+    return "드워프 금고 룰렛에서 획득";
+  }
+
+  return text;
+};
+
+const translateGame8SourceEntry = (
+  sourceType: ItemSourceType,
+  entry: string,
+): string => {
+  const valueWithCount = entry.match(/^(.+?)\s+(x\d+)$/);
+
+  if (valueWithCount) {
+    const [, baseValue, count] = valueWithCount;
+    return `${translateGame8SourceEntry(sourceType, baseValue)} ${count}`;
+  }
+
+  const direct =
+    GAME8_SOURCE_ENTRY_TRANSLATIONS[
+      entry as keyof typeof GAME8_SOURCE_ENTRY_TRANSLATIONS
+    ];
+
+  if (direct) {
+    return direct;
+  }
+
+  if (sourceType === "gds") {
+    return translateGame8GdsCode(entry);
+  }
+
+  if (sourceType === "drop") {
+    return translateMonsterName(entry);
+  }
+
+  if (sourceType === "minigame") {
+    return Object.entries(GAME8_MINIGAME_ENTRY_TRANSLATIONS).reduce(
+      (translated, [from, to]) => translated.replace(from, to),
+      entry.replace("Lumberjack Knot", "나무 베기"),
+    );
+  }
+
+  const producedMatch = entry.match(/^Produced by (.+) in the Ranch\\.$/);
+
+  if (producedMatch) {
+    return `목장에서 ${producedMatch[1]} 생산`;
+  }
+
+  const plantMatch = entry.match(/^Plant (.+)$/);
+
+  if (plantMatch) {
+    return `${translateGeneratedItemName(plantMatch[1])} 재배`;
+  }
+
+  return translateGame8EventEntry(entry);
+};
+
 const isItemIndexGameId = (value: string): value is ItemIndexGameId => {
   return ITEM_INDEX_PAGES.some((page) => page.id === value);
 };
 
-const formatItemPrice = (price: number | null) => {
-  if (price === null) {
+const formatItemPrices = (prices: readonly number[]) => {
+  if (prices.length === 0) {
     return ITEM_ARCHIVE_COPY.unavailableDetail;
   }
 
-  return `${price.toLocaleString("ko-KR")} potch`;
+  return `${prices
+    .map((price) => price.toLocaleString("ko-KR"))
+    .join(" / ")} 포치`;
 };
 
 const sortItemRecords = (items: readonly ItemIndexRecord[]) => {
@@ -499,9 +1178,71 @@ const sortItemRecords = (items: readonly ItemIndexRecord[]) => {
   );
 };
 
+const createItemSourceLocationSets = (): Record<ItemSourceType, Set<string>> => ({
+  shop: new Set<string>(),
+  drop: new Set<string>(),
+  found: new Set<string>(),
+  treasure: new Set<string>(),
+  trade: new Set<string>(),
+  minigame: new Set<string>(),
+  gds: new Set<string>(),
+  other: new Set<string>(),
+});
+
+const addItemSourceLocation = (
+  item: ItemRecordDraft,
+  sourceType: ItemSourceType,
+  location: string,
+) => {
+  item.sourceTypes.add(sourceType);
+  item.locations.add(location);
+  item.sourceLocations[sourceType].add(location);
+};
+
+const sortItemSourceLocations = (
+  sourceLocations: Record<ItemSourceType, Set<string>>,
+): Record<ItemSourceType, readonly string[]> => ({
+  shop: [...sourceLocations.shop].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+  drop: [...sourceLocations.drop].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+  found: [...sourceLocations.found].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+  treasure: [...sourceLocations.treasure].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+  trade: [...sourceLocations.trade].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+  minigame: [...sourceLocations.minigame].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+  gds: [...sourceLocations.gds].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+  other: [...sourceLocations.other].sort((left, right) =>
+    left.localeCompare(right, "ko-KR"),
+  ),
+});
+
+const formatGame8SourceLocation = (
+  sourceType: ItemSourceType,
+  location: string,
+) => {
+  if (sourceType === "shop" || sourceType === "drop") {
+    return location;
+  }
+
+  return `${ITEM_SOURCE_TYPE_LABELS[sourceType]} · ${location}`;
+};
+
 const createItemRecordDraft = (
   game: ItemIndexGameId,
   rawName: string,
+  categoryOverride?: ItemCategoryId,
 ): {
   category: ItemCategoryId;
   draft: {
@@ -509,8 +1250,9 @@ const createItemRecordDraft = (
     name: string;
     originalNames: Set<string>;
     sourceTypes: Set<ItemSourceType>;
-    lowestPrice: number | null;
+    prices: Set<number>;
     locations: Set<string>;
+    sourceLocations: Record<ItemSourceType, Set<string>>;
     dropRates: Set<string>;
   };
 } | null => {
@@ -523,8 +1265,11 @@ const createItemRecordDraft = (
   const itemReference = resolveItemReference(originalName);
   const id = itemReference?.id ?? buildItemId(originalName);
   const name =
-    itemReference?.name ?? buildSealedOrbItemName(originalName) ?? originalName;
-  const category = itemReference?.category ?? inferItemCategory(originalName);
+    itemReference?.name ??
+    buildSealedOrbItemName(originalName) ??
+    translateGeneratedItemName(originalName);
+  const category =
+    categoryOverride ?? itemReference?.category ?? inferItemCategory(originalName);
 
   return {
     category,
@@ -533,8 +1278,9 @@ const createItemRecordDraft = (
       name,
       originalNames: new Set([itemReference?.originalName ?? originalName]),
       sourceTypes: new Set<ItemSourceType>(),
-      lowestPrice: null,
+      prices: new Set<number>(),
       locations: new Set<string>(),
+      sourceLocations: createItemSourceLocationSets(),
       dropRates: new Set<string>(),
     },
   };
@@ -544,8 +1290,9 @@ const getOrCreateItemRecordDraft = (
   records: Map<string, ItemRecordDraft>,
   game: ItemIndexGameId,
   rawName: string,
+  categoryOverride?: ItemCategoryId,
 ) => {
-  const created = createItemRecordDraft(game, rawName);
+  const created = createItemRecordDraft(game, rawName, categoryOverride);
 
   if (!created) {
     return null;
@@ -596,12 +1343,69 @@ const addCharacterEquipmentItemRecords = (
   });
 };
 
+const inferGame8ItemCategory = (
+  game8Type: string,
+  itemName: string,
+): ItemCategoryId => {
+  const mappedCategory =
+    GAME8_ITEM_CATEGORY_MAP[game8Type as keyof typeof GAME8_ITEM_CATEGORY_MAP];
+
+  if (mappedCategory) {
+    return mappedCategory;
+  }
+
+  return inferItemCategory(itemName);
+};
+
+const resolveGame8SourceType = (sourceType: string): ItemSourceType => {
+  return (
+    GAME8_SOURCE_TYPE_MAP[sourceType as keyof typeof GAME8_SOURCE_TYPE_MAP] ??
+    "other"
+  );
+};
+
+const addGame8ItemSourceRecords = (records: Map<string, ItemRecordDraft>) => {
+  GAME8_ITEM_SOURCE_RECORDS.forEach((sourceRecord) => {
+    if (!isItemIndexGameId(sourceRecord.game)) {
+      return;
+    }
+
+    const item = getOrCreateItemRecordDraft(
+      records,
+      sourceRecord.game,
+      sourceRecord.name,
+      inferGame8ItemCategory(sourceRecord.game8Type, sourceRecord.name),
+    );
+
+    if (!item) {
+      return;
+    }
+
+    sourceRecord.sources.forEach((sourceGroup) => {
+      const sourceType = resolveGame8SourceType(sourceGroup.type);
+
+      sourceGroup.entries.forEach((entry) => {
+        const translatedEntry = translateGame8SourceEntry(sourceType, entry);
+        addItemSourceLocation(
+          item,
+          sourceType,
+          formatGame8SourceLocation(sourceType, translatedEntry),
+        );
+      });
+    });
+
+    sourceRecord.shopPrices.forEach((price) => item.prices.add(price));
+  });
+};
+
 const buildItemIndexRecords = () => {
   const records = new Map<string, ItemRecordDraft>();
   const regionRecords = REGION_DETAIL_RECORDS as Record<
     string,
     RegionDetailRecord
   >;
+
+  addGame8ItemSourceRecords(records);
 
   Object.entries(regionRecords).forEach(([key, regionRecord]) => {
     const [gameId, regionId] = key.split(":");
@@ -625,12 +1429,8 @@ const buildItemIndexRecords = () => {
           return;
         }
 
-        item.sourceTypes.add("shop");
-        item.locations.add(`${regionLabel} · ${shopLabel}`);
-        item.lowestPrice =
-          item.lowestPrice === null ?
-            shopItem.price :
-            Math.min(item.lowestPrice, shopItem.price);
+        addItemSourceLocation(item, "shop", `${regionLabel} · ${shopLabel}`);
+        item.prices.add(shopItem.price);
       });
     });
 
@@ -652,8 +1452,7 @@ const buildItemIndexRecords = () => {
             drop.chance as keyof typeof REGION_DROP_CHANCE_LABELS
           ];
 
-        item.sourceTypes.add("drop");
-        item.locations.add(enemyLabel);
+        addItemSourceLocation(item, "drop", enemyLabel);
         item.dropRates.add(`${enemyLabel} · ${chanceLabel}`);
       });
     });
@@ -672,10 +1471,11 @@ const buildItemIndexRecords = () => {
       sourceTypes: ITEM_SOURCE_TYPE_ORDER.filter((sourceType) =>
         record.sourceTypes.has(sourceType),
       ),
-      lowestPrice: record.lowestPrice,
+      prices: [...record.prices].sort((left, right) => left - right),
       locations: [...record.locations].sort((left, right) =>
         left.localeCompare(right, "ko-KR"),
       ),
+      sourceLocations: sortItemSourceLocations(record.sourceLocations),
       dropRates: [...record.dropRates].sort((left, right) =>
         left.localeCompare(right, "ko-KR"),
       ),
@@ -703,8 +1503,32 @@ export const formatItemSources = (item: ItemIndexRecord) => {
     .join(" / ");
 };
 
-export const formatItemLowestPrice = (item: ItemIndexRecord) => {
-  return formatItemPrice(item.lowestPrice);
+export const formatItemPrice = (item: ItemIndexRecord) => {
+  return formatItemPrices(item.prices);
+};
+
+const formatItemSourceLocations = (locations: readonly string[]) => {
+  if (locations.length === 0) {
+    return ITEM_ARCHIVE_COPY.unavailableDetail;
+  }
+
+  return locations.join(" / ");
+};
+
+export const formatItemShopLocations = (item: ItemIndexRecord) => {
+  return formatItemSourceLocations(item.sourceLocations.shop);
+};
+
+export const formatItemDropLocations = (item: ItemIndexRecord) => {
+  return formatItemSourceLocations(item.sourceLocations.drop);
+};
+
+export const formatItemOtherLocations = (item: ItemIndexRecord) => {
+  const locations = ITEM_SOURCE_TYPE_ORDER.filter(
+    (sourceType) => sourceType !== "shop" && sourceType !== "drop",
+  ).flatMap((sourceType) => item.sourceLocations[sourceType]);
+
+  return formatItemSourceLocations(locations);
 };
 
 export const formatItemLocations = (item: ItemIndexRecord) => {

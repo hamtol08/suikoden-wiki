@@ -358,6 +358,7 @@ const SUIKODEN_I_APPEARANCE_OVERRIDES = {
   kirkis: "트란 성",
   luc: "본거지",
   pahn: "코안",
+  viktor: "그레그민스터",
   "tai-ho": "카쿠",
   tengaar: "네크로드 성",
   varkas: "트란 성",

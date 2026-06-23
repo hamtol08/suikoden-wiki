@@ -2,8 +2,10 @@ import Link from "next/link";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import {
   formatItemDropRates,
-  formatItemLocations,
-  formatItemLowestPrice,
+  formatItemDropLocations,
+  formatItemOtherLocations,
+  formatItemPrice,
+  formatItemShopLocations,
   formatItemSources,
   getItemIndexPage,
   getItemIndexRecordsByGame,
@@ -100,9 +102,6 @@ const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
                 <article className={ITEM_STYLES.card} key={item.id}>
                   <div className={ITEM_STYLES.cardHeader}>
                     <h3 className={ITEM_STYLES.cardName}>{item.name}</h3>
-                    <p className={ITEM_STYLES.cardOriginal}>
-                      {item.originalNames.join(" / ")}
-                    </p>
                     <div className={ITEM_STYLES.chipRow}>
                       <span className={ITEM_STYLES.chip}>
                         {ITEM_CATEGORY_LABELS[item.category]}
@@ -116,18 +115,34 @@ const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
                   <dl className={ITEM_STYLES.ledger}>
                     <div className={ITEM_STYLES.ledgerRow}>
                       <dt className={ITEM_STYLES.ledgerTerm}>
-                        {ITEM_ARCHIVE_COPY.labels.lowestPrice}
+                        {ITEM_ARCHIVE_COPY.labels.price}
                       </dt>
                       <dd className={ITEM_STYLES.ledgerValue}>
-                        {formatItemLowestPrice(item)}
+                        {formatItemPrice(item)}
                       </dd>
                     </div>
                     <div className={ITEM_STYLES.ledgerRow}>
                       <dt className={ITEM_STYLES.ledgerTerm}>
-                        {ITEM_ARCHIVE_COPY.labels.locations}
+                        {ITEM_ARCHIVE_COPY.labels.shopLocations}
                       </dt>
                       <dd className={ITEM_STYLES.ledgerValue}>
-                        {formatItemLocations(item)}
+                        {formatItemShopLocations(item)}
+                      </dd>
+                    </div>
+                    <div className={ITEM_STYLES.ledgerRow}>
+                      <dt className={ITEM_STYLES.ledgerTerm}>
+                        {ITEM_ARCHIVE_COPY.labels.dropLocations}
+                      </dt>
+                      <dd className={ITEM_STYLES.ledgerValue}>
+                        {formatItemDropLocations(item)}
+                      </dd>
+                    </div>
+                    <div className={ITEM_STYLES.ledgerRow}>
+                      <dt className={ITEM_STYLES.ledgerTerm}>
+                        {ITEM_ARCHIVE_COPY.labels.otherLocations}
+                      </dt>
+                      <dd className={ITEM_STYLES.ledgerValue}>
+                        {formatItemOtherLocations(item)}
                       </dd>
                     </div>
                     <div className={ITEM_STYLES.ledgerRow}>
