@@ -5,6 +5,10 @@ import {
   formatRuneGames,
   getRuneReference,
   getRuneIndexPageByCategory,
+  getRuneDescriptionLines,
+  getRuneDescriptionTitle,
+  getRuneDisplayImageSrc,
+  isRuneFallbackImage,
   RUNE_ARCHIVE_COPY,
   RUNE_CATEGORY_LABELS,
 } from "@/constants/rune-content";
@@ -43,6 +47,9 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
     },
   ];
   const activeRunePage = getRuneIndexPageByCategory(rune.category);
+  const runeImageSrc = getRuneDisplayImageSrc(rune);
+  const isFallbackImage = isRuneFallbackImage(rune);
+  const runeDescription = getRuneDescriptionLines(rune);
 
   return (
     <main className={APP_SHELL_STYLES.page}>
@@ -65,18 +72,32 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
             <h2 className={RUNE_STYLES.detailTitle}>
               {RUNE_ARCHIVE_COPY.profileTitle}
             </h2>
-            {rune.imageSrc ? (
-              <div className={RUNE_STYLES.detailImageWrap}>
-                <Image
-                  alt={rune.name}
-                  className={RUNE_STYLES.detailImage}
-                  height={220}
-                  src={rune.imageSrc}
-                  unoptimized={rune.imageSrc.endsWith(".gif")}
-                  width={320}
-                />
-              </div>
-            ) : null}
+            <div className={RUNE_STYLES.detailImageWrap}>
+              <Image
+                alt={rune.name}
+                className={
+                  isFallbackImage ?
+                    RUNE_STYLES.detailFallbackImage :
+                    RUNE_STYLES.detailImage
+                }
+                height={220}
+                src={runeImageSrc}
+                unoptimized={runeImageSrc.endsWith(".svg")}
+                width={320}
+              />
+            </div>
+            {runeDescription.length > 0 && (
+              <section className={RUNE_STYLES.descriptionBlock}>
+                <h3 className={RUNE_STYLES.descriptionTitle}>
+                  {getRuneDescriptionTitle(rune)}
+                </h3>
+                <div className={RUNE_STYLES.descriptionLines}>
+                  {runeDescription.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                </div>
+              </section>
+            )}
             <dl className={RUNE_STYLES.ledger}>
               {rows.map((row) => (
                 <div className={RUNE_STYLES.ledgerRow} key={row.label}>

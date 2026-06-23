@@ -366,12 +366,11 @@ export const RUNE_STYLES = {
     "flex-1 rounded bg-[#101827] px-4 py-3 text-center text-sm font-bold text-white shadow-[inset_0_-2px_0_#d4af37] dark:bg-[#d4af37] dark:text-[#261900] sm:flex-none sm:text-left",
   grid: "mt-6 grid gap-3",
   card:
-    "grid gap-3 rounded-lg border border-[#d8c9a5] bg-white p-4 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:bg-[#172337] dark:hover:bg-[#14243a] sm:grid-cols-[7rem_minmax(0,1fr)]",
+    "grid gap-3 rounded-lg border border-[#d8c9a5] bg-white p-4 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:bg-[#172337] dark:hover:bg-[#14243a] sm:grid-cols-[5rem_minmax(0,1fr)]",
   cardImageWrap:
-    "flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-[#eee4cd] bg-[#f7efd9] dark:border-[#38475f] dark:bg-[#101827]",
-  cardImage: "h-full w-full object-contain p-2",
-  cardImageFallback:
-    "flex size-12 items-center justify-center rounded-full border border-[#d4af37] bg-[#101827] font-serif text-xl font-semibold text-[#e9c176] dark:bg-[#d4af37] dark:text-[#261900]",
+    "flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#eee4cd] bg-[#101827] dark:border-[#38475f]",
+  cardImage: "size-full object-contain p-2",
+  cardFallbackImage: "size-full object-contain p-2 opacity-95",
   cardContent: "min-w-0",
   cardMeta: "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   cardTitle: "mt-2 font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
@@ -383,8 +382,15 @@ export const RUNE_STYLES = {
     "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
   detailTitle: "font-serif text-3xl font-semibold",
   detailImageWrap:
-    "mt-5 flex aspect-[4/3] max-w-sm items-center justify-center overflow-hidden rounded-md border border-[#eee4cd] bg-[#f7efd9] dark:border-[#38475f] dark:bg-[#101827]",
-  detailImage: "h-full w-full object-contain p-4",
+    "mt-5 flex size-36 items-center justify-center overflow-hidden rounded-full border border-[#eee4cd] bg-[#101827] dark:border-[#38475f]",
+  detailImage: "size-full object-contain p-3",
+  detailFallbackImage: "size-full object-contain p-3 opacity-95",
+  descriptionBlock:
+    "mt-5 rounded-md border border-[#eee4cd] bg-[#fff8e2] p-4 dark:border-[#38475f] dark:bg-[#111c2c]",
+  descriptionTitle:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  descriptionLines:
+    "mt-3 grid gap-2 break-keep text-sm font-semibold leading-7 text-[#3e4654] dark:text-[#c5c6cd]",
   ledger:
     "mt-5 overflow-hidden rounded border border-[#d8c9a5] dark:border-[#38475f]",
   ledgerRow:
@@ -393,6 +399,54 @@ export const RUNE_STYLES = {
     "flex min-h-12 items-center bg-[#edf3ff] px-4 py-3 text-xs font-bold uppercase text-[#7a5900] dark:bg-[#14243a] dark:text-[#e9c176]",
   ledgerValue:
     "flex min-h-12 items-center px-4 py-3 text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+} as const;
+
+export const ITEM_STYLES = {
+  shell: "min-w-0 px-4 py-6 sm:px-6 md:px-8 lg:px-8 xl:px-10",
+  intro:
+    "rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
+  introEyebrow:
+    "text-base font-bold uppercase tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  introTitle: "mt-2 font-serif text-4xl font-semibold md:text-5xl",
+  introBody: "mt-4 max-w-3xl text-base leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  tabs:
+    "mt-6 flex flex-wrap gap-2 rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c]",
+  tab:
+    "flex-1 rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] sm:flex-none sm:text-left",
+  tabActive:
+    "flex-1 rounded bg-[#101827] px-4 py-3 text-center text-sm font-bold text-white shadow-[inset_0_-2px_0_#d4af37] dark:bg-[#d4af37] dark:text-[#261900] sm:flex-none sm:text-left",
+  summaryGrid: "mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4",
+  summaryCard:
+    "rounded-lg border border-[#d8c9a5] bg-white p-4 dark:border-[#604403] dark:bg-[#172337]",
+  summaryLabel:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  summaryValue: "mt-2 font-serif text-3xl font-semibold",
+  panel:
+    "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-4 dark:border-[#604403] dark:bg-[#111c2c] sm:p-5",
+  panelHeader:
+    "flex flex-col gap-2 border-b border-[#d8c9a5] pb-4 dark:border-[#38475f] sm:flex-row sm:items-end sm:justify-between",
+  panelTitle: "font-serif text-3xl font-semibold",
+  panelMeta:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  list: "mt-5 grid gap-3",
+  card:
+    "grid gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337] lg:grid-cols-[minmax(10rem,16rem)_minmax(0,1fr)]",
+  cardHeader: "min-w-0",
+  cardName:
+    "break-keep font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  cardOriginal:
+    "mt-1 text-xs font-bold uppercase text-[#7d8795] dark:text-[#c5c6cd]",
+  chipRow: "mt-3 flex flex-wrap gap-2",
+  chip:
+    "rounded border border-[#d4af37]/35 bg-[#fff8e2] px-2.5 py-1 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
+  ledger:
+    "grid gap-px overflow-hidden rounded border border-[#c7d3e9] bg-[#c7d3e9] dark:border-[#38475f] dark:bg-[#38475f]",
+  ledgerRow:
+    "grid gap-1 bg-white/70 p-3 dark:bg-[#111c2c]/80 sm:grid-cols-[8rem_minmax(0,1fr)]",
+  ledgerTerm:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  ledgerValue:
+    "break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
 } as const;
 
 export const ATLAS_STYLES = {

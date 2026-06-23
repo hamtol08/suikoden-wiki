@@ -196,13 +196,13 @@ const Home = () => {
           <section className={CONTAINER_STYLES.navyPanel}>
             <h2 className={RIGHT_RAIL_STYLES.trendingTitle}>{ARCHIVE_COPY.trending.title}</h2>
             <div className={RIGHT_RAIL_STYLES.trendingList}>
-              {TRENDING_STARS.map((name) => (
+              {TRENDING_STARS.map((star) => (
                 <a
                   className={RIGHT_RAIL_STYLES.trendingLink}
-                  href={ROUTE_ANCHORS.current}
-                  key={name}
+                  href={star.href}
+                  key={star.label}
                 >
-                  {name}
+                  {star.label}
                 </a>
               ))}
             </div>

@@ -1,7 +1,9 @@
 import {
   APP_ROUTES,
   ROUTE_ANCHORS,
+  buildCharacterDetailPath,
   buildCharacterGamePath,
+  buildItemGamePath,
   buildRuneCategoryPath,
   buildRegionAtlasGamePath,
 } from "@/constants/app-config";
@@ -105,6 +107,14 @@ export const NAV_GROUPS = [
     ],
   },
   {
+    label: "Items",
+    href: APP_ROUTES.items,
+    items: [
+      { label: "Suikoden I", href: buildItemGamePath("suikoden-i") },
+      { label: "Suikoden II", href: buildItemGamePath("suikoden-ii") },
+    ],
+  },
+  {
     label: "World Map",
     href: APP_ROUTES.worldMap,
     items: [
@@ -140,10 +150,10 @@ export const FEATURE_CARDS = [
 
 export const ARCHIVE_CATEGORIES = [
   { title: "Characters", icon: "users", href: APP_ROUTES.characters, body: "주요 인물, 108성, 동료 영입 조건" },
-  { title: "Runes", icon: "sparkles", href: APP_ROUTES.runes, body: "27개의 진정한 문장과 일반 문장 계보" },
+  { title: "Runes", icon: "sparkles", href: APP_ROUTES.runes, body: "공개된 진정한 문장과 일반 문장 계보" },
   { title: "Locations", icon: "compass", href: APP_ROUTES.regionAtlas, body: "트란, 듀난, 하이랜드 지역 기록" },
   { title: "Timeline", icon: "history", href: ROUTE_ANCHORS.current, body: "전쟁, 왕조, 국가 변천 연표" },
-  { title: "Items", icon: "archive", href: ROUTE_ANCHORS.current, body: "무기, 방어구, 희귀 수집품" },
+  { title: "Items", icon: "archive", href: APP_ROUTES.items, body: "무기, 방어구, 희귀 수집품" },
   { title: "Gameplay", icon: "swords", href: ROUTE_ANCHORS.current, body: "전투, 일기토, 전쟁 시스템" },
 ] as const;
 
@@ -171,10 +181,31 @@ export const TIMELINE_ITEMS = [
 export const ARCHIVE_STATS = [
   { label: "Referenced Pages", value: "8,355" },
   { label: "Known Files", value: "14,358" },
-  { label: "True Runes", value: "27" },
+  { label: "True Runes", value: "18" },
 ] as const;
 
-export const TRENDING_STARS = ["1편 주인공", "2편 주인공", "루크", "진", "빅토르"] as const;
+export const TRENDING_STARS = [
+  {
+    label: "1편 주인공",
+    href: buildCharacterDetailPath("suikoden-i", "hero"),
+  },
+  {
+    label: "2편 주인공",
+    href: buildCharacterDetailPath("suikoden-ii", "hero"),
+  },
+  {
+    label: "루크",
+    href: buildCharacterDetailPath("suikoden-ii", "luc"),
+  },
+  {
+    label: "진",
+    href: buildCharacterDetailPath("suikoden-ii", "jeane"),
+  },
+  {
+    label: "빅토르",
+    href: buildCharacterDetailPath("suikoden-ii", "viktor"),
+  },
+] as const;
 
 export const REGION_ATLAS_COPY = {
   eyebrow: "Region Atlas",

@@ -8,6 +8,8 @@ import {
   formatRuneGames,
   RUNE_ARCHIVE_COPY,
   RUNE_CATEGORY_LABELS,
+  getRuneDisplayImageSrc,
+  isRuneFallbackImage,
   type RuneIndexPageId,
   type RuneReference,
 } from "@/constants/rune-content";
@@ -95,38 +97,41 @@ const RuneIndexBrowser = ({
 
       {filteredRunes.length > 0 ? (
         <div className={RUNE_STYLES.grid}>
-          {filteredRunes.map((rune) => (
-            <Link className={RUNE_STYLES.card} href={rune.href} key={rune.id}>
-              <div className={RUNE_STYLES.cardImageWrap}>
-                {rune.imageSrc ? (
+          {filteredRunes.map((rune) => {
+            const imageSrc = getRuneDisplayImageSrc(rune);
+            const isFallback = isRuneFallbackImage(rune);
+
+            return (
+              <Link className={RUNE_STYLES.card} href={rune.href} key={rune.id}>
+                <div className={RUNE_STYLES.cardImageWrap}>
                   <Image
                     alt={rune.name}
-                    className={RUNE_STYLES.cardImage}
+                    className={
+                      isFallback ?
+                        RUNE_STYLES.cardFallbackImage :
+                        RUNE_STYLES.cardImage
+                    }
                     height={160}
-                    src={rune.imageSrc}
-                    unoptimized={rune.imageSrc.endsWith(".gif")}
+                    src={imageSrc}
+                    unoptimized={imageSrc.endsWith(".svg")}
                     width={220}
                   />
-                ) : (
-                  <span className={RUNE_STYLES.cardImageFallback}>
-                    {rune.name.slice(0, 1)}
-                  </span>
-                )}
-              </div>
-              <div className={RUNE_STYLES.cardContent}>
-                <p className={RUNE_STYLES.cardMeta}>
-                  {RUNE_CATEGORY_LABELS[rune.category]}
-                </p>
-                <h2 className={RUNE_STYLES.cardTitle}>{rune.name}</h2>
-                <p className={RUNE_STYLES.cardBody}>
-                  {rune.aliases.join(" / ")}
-                </p>
-                <p className={RUNE_STYLES.cardGames}>
-                  {formatRuneGames(rune.games)}
-                </p>
-              </div>
-            </Link>
-          ))}
+                </div>
+                <div className={RUNE_STYLES.cardContent}>
+                  <p className={RUNE_STYLES.cardMeta}>
+                    {RUNE_CATEGORY_LABELS[rune.category]}
+                  </p>
+                  <h2 className={RUNE_STYLES.cardTitle}>{rune.name}</h2>
+                  <p className={RUNE_STYLES.cardBody}>
+                    {rune.aliases.join(" / ")}
+                  </p>
+                  <p className={RUNE_STYLES.cardGames}>
+                    {formatRuneGames(rune.games)}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       ) : (
         <p className={RUNE_STYLES.empty}>{RUNE_ARCHIVE_COPY.noResults}</p>

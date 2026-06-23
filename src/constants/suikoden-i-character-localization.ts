@@ -523,7 +523,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
   zen: {
     name: "젠",
     characterType: "비전투",
-    recruitment: "클론 사원에서 빨강, 파랑, 노랑 꽃씨를 건네면 합류합니다.",
+    recruitment: "클론 사원에서 빨간 꽃의 씨앗, 파란 꽃의 씨앗, 노란 꽃의 씨앗을 건네면 합류합니다.",
   },
   sarah: {
     name: "세일라",

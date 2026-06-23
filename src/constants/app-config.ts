@@ -23,6 +23,9 @@ export const buildCharacterDetailPath = (gameId: string, characterId: string) =>
 export const buildItemDetailPath = (itemId: string) =>
   `${APP_ROUTES.items}/${itemId}`;
 
+export const buildItemGamePath = (gameId: string) =>
+  `${APP_ROUTES.items}/${gameId}`;
+
 export const buildRuneDetailPath = (runeId: string) =>
   `${APP_ROUTES.runes}/${runeId}`;
 
