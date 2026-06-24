@@ -20,9 +20,12 @@ export const RUNE_ARCHIVE_COPY = {
   trueRuneDescriptionTitle: "진정한 문장 개요",
   categoryLabel: "구분",
   gamesLabel: "등장 작품",
-  aliasLabel: "표기",
+  aliasLabel: "영문명",
+  englishNameLabel: "EN",
+  japaneseNameLabel: "JP",
   searchLabel: "Rune search",
   searchPlaceholder: "문장 이름, 영문 표기, 등장 작품 검색",
+  resultCountSuffix: "개 문장",
   resultCount: (count: number) => `${count.toLocaleString("ko-KR")}개 문장`,
   noResults: "검색 조건에 맞는 문장이 없습니다.",
   unavailableDetail: "-",
@@ -77,6 +80,7 @@ export type RuneReference = {
   id: string;
   name: string;
   aliases: readonly string[];
+  japaneseName?: string;
   category: RuneCategoryId;
   games: readonly string[];
   imageSrc?: string;
@@ -122,6 +126,7 @@ export const RUNE_REFERENCES = [
     id: "soul-eater",
     name: "소울이터",
     aliases: ["Soul Eater"],
+    japaneseName: "ソウルイーター",
     category: "trueRune",
     games: ["suikoden-i", "suikoden-ii"],
     imageSrc: "/suikoden/runes/soul-eater.png",
@@ -185,6 +190,7 @@ export const RUNE_REFERENCES = [
     id: "fire-rune",
     name: "불의 문장",
     aliases: ["Fire Rune"],
+    japaneseName: "火の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
     imageSrc: "/suikoden/runes/fire-rune.png",
@@ -193,6 +199,7 @@ export const RUNE_REFERENCES = [
     id: "water-rune",
     name: "물의 문장",
     aliases: ["Water Rune"],
+    japaneseName: "水の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
     imageSrc: "/suikoden/runes/water-rune.png",
@@ -201,6 +208,7 @@ export const RUNE_REFERENCES = [
     id: "wind-rune",
     name: "바람의 문장",
     aliases: ["Wind Rune"],
+    japaneseName: "風の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
     imageSrc: "/suikoden/runes/wind-rune.png",
@@ -209,6 +217,7 @@ export const RUNE_REFERENCES = [
     id: "lightning-rune",
     name: "번개의 문장",
     aliases: ["Lightning Rune"],
+    japaneseName: "雷の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
     imageSrc: "/suikoden/runes/lightning-rune.png",
@@ -241,6 +250,7 @@ export const RUNE_REFERENCES = [
     id: "earth-rune",
     name: "대지의 문장",
     aliases: ["Earth Rune"],
+    japaneseName: "土の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
     imageSrc: "/suikoden/runes/earth-rune.png",
@@ -351,7 +361,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "fury-rune",
-    name: "분노의 문장",
+    name: "광분의 문장",
     aliases: ["Fury Rune"],
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
@@ -628,7 +638,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "alert-rune",
-    name: "경계의 문장",
+    name: "경보의 문장",
     aliases: ["Alert Rune"],
     category: "generalRune",
     games: ["suikoden-v"],
@@ -636,7 +646,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "alertness-rune",
-    name: "경계의 문장",
+    name: "경계심의 문장",
     aliases: ["Alertness Rune"],
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-iv"],
@@ -694,7 +704,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "boundary-rune",
-    name: "경계의 문장",
+    name: "결계의 문장",
     aliases: ["Boundary Rune"],
     category: "generalRune",
     games: ["suikoden-v"],
@@ -981,7 +991,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "hawk-rune",
-    name: "매의 문장",
+    name: "호크의 문장",
     aliases: ["Hawk Rune"],
     category: "generalRune",
     games: ["suikoden-tactics"],
@@ -989,7 +999,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "haziness-rune",
-    name: "양지의 문장",
+    name: "몽롱의 문장",
     aliases: ["Haziness Rune"],
     category: "generalRune",
     games: ["suikoden-i","suikoden-ii","suikoden-iii"],
@@ -1462,7 +1472,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "window-rune",
-    name: "창문의 문장",
+    name: "윈도우의 문장",
     aliases: ["Window Rune"],
     category: "generalRune",
     games: ["suikoden-i"],

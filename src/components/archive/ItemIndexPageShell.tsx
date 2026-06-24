@@ -1,18 +1,26 @@
-import Link from "next/link";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import ArchiveIndexTabs from "@/components/archive/ArchiveIndexTabs";
+import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
+import ItemIndexBrowser, {
+  type ItemIndexBrowserItem,
+} from "@/components/archive/ItemIndexBrowser";
+import { normalizeArchiveSearchText } from "@/constants/archive-utils";
+import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
-  formatItemDropRates,
   formatItemDropLocations,
+  formatItemDropRates,
   formatItemOtherLocations,
   formatItemPrice,
   formatItemShopLocations,
   formatItemSources,
+  getItemJapaneseNames,
   getItemIndexPage,
   getItemIndexRecordsByGame,
   getItemIndexSummary,
   ITEM_ARCHIVE_COPY,
   ITEM_CATEGORY_LABELS,
   ITEM_INDEX_PAGES,
+  type ItemIndexRecord,
   type ItemIndexGameId,
 } from "@/constants/item-content";
 import {
@@ -25,9 +33,9 @@ type ItemIndexPageShellProps = {
   gameId: ItemIndexGameId;
 };
 
-const summaryItems = (
-  summary: ReturnType<typeof getItemIndexSummary>,
-) => [
+type ItemIndexPageSummary = ReturnType<typeof getItemIndexSummary>;
+
+const summaryItems = (summary: ItemIndexPageSummary) => [
   {
     label: ITEM_ARCHIVE_COPY.summaryTitle,
     value: `${summary.itemCount.toLocaleString("ko-KR")}${ITEM_ARCHIVE_COPY.entryCountSuffix}`,
@@ -42,10 +50,90 @@ const summaryItems = (
   },
 ];
 
+const buildItemBrowserItem = (item: ItemIndexRecord): ItemIndexBrowserItem => {
+  const categoryLabel = ITEM_CATEGORY_LABELS[item.category];
+  const sourceLabel = formatItemSources(item);
+  const price = formatItemPrice(item);
+  const shopLocations = formatItemShopLocations(item);
+  const dropLocations = formatItemDropLocations(item);
+  const otherLocations = formatItemOtherLocations(item);
+  const dropRates = formatItemDropRates(item);
+  const japaneseNames = getItemJapaneseNames(item);
+  const displayNames = [
+    {
+      label: ITEM_ARCHIVE_COPY.labels.englishName,
+      value: item.originalNames.join(" / "),
+    },
+    ...(japaneseNames.length > 0 ? japaneseNames : [
+      ITEM_ARCHIVE_COPY.unavailableDetail,
+    ]).map((name) => ({
+      label: ITEM_ARCHIVE_COPY.labels.japaneseName,
+      value: name,
+    })),
+  ];
+
+  return {
+    categoryLabel,
+    displayNames,
+    dropLocations,
+    dropRates,
+    href: item.href,
+    id: item.id,
+    name: item.name,
+    otherLocations,
+    price,
+    searchText: normalizeArchiveSearchText(
+      [
+        item.name,
+        ...item.originalNames,
+        ...japaneseNames,
+        categoryLabel,
+        sourceLabel,
+        price,
+        shopLocations,
+        dropLocations,
+        otherLocations,
+        dropRates,
+      ].join(" "),
+    ),
+    shopLocations,
+    sourceLabel,
+  };
+};
+
 const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
-  const activePage = getItemIndexPage(gameId);
-  const items = getItemIndexRecordsByGame(gameId);
-  const summary = getItemIndexSummary(gameId);
+  const activePage = loadArchiveJsonSafely({
+    fallback: () => ITEM_INDEX_PAGES.find((page) => page.id === gameId) ??
+      ITEM_INDEX_PAGES[0],
+    label: `item-index-page:${gameId}`,
+    load: () => getItemIndexPage(gameId),
+  });
+
+  const items = loadArchiveJsonSafely({
+    fallback: [],
+    label: `item-index-records:${gameId}`,
+    load: () => getItemIndexRecordsByGame(gameId),
+  });
+
+  const browserItems = items.flatMap((item) =>
+    loadArchiveJsonSafely({
+      fallback: [],
+      label: `item-browser-record:${item.id}`,
+      load: () => [buildItemBrowserItem(item)],
+    }),
+  );
+
+  const summary = loadArchiveJsonSafely({
+    fallback: {
+      dropCount: 0,
+      eyebrow: activePage.eyebrow,
+      itemCount: 0,
+      shopCount: 0,
+      title: activePage.title,
+    },
+    label: `item-index-summary:${gameId}`,
+    load: () => getItemIndexSummary(gameId),
+  });
 
   return (
     <main className={APP_SHELL_STYLES.page}>
@@ -53,111 +141,51 @@ const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
 
       <div className={RESPONSIVE_SHELL.atlasGrid}>
         <section className={ITEM_STYLES.shell}>
-          <header className={ITEM_STYLES.intro}>
-            <p className={ITEM_STYLES.introEyebrow}>{ITEM_ARCHIVE_COPY.eyebrow}</p>
-            <h1 className={ITEM_STYLES.introTitle}>{ITEM_ARCHIVE_COPY.title}</h1>
-            <p className={ITEM_STYLES.introBody}>{ITEM_ARCHIVE_COPY.body}</p>
-          </header>
+          <ArchivePageIntro
+            body={ITEM_ARCHIVE_COPY.body}
+            eyebrow={ITEM_ARCHIVE_COPY.eyebrow}
+            styles={ITEM_STYLES}
+            title={ITEM_ARCHIVE_COPY.title}
+          />
 
-          <nav
-            aria-label={ITEM_ARCHIVE_COPY.tabsAriaLabel}
-            className={ITEM_STYLES.tabs}
+          <ItemIndexBrowser
+            copy={{
+              clearSearchLabel: ITEM_ARCHIVE_COPY.clearSearchLabel,
+              entryCountSuffix: ITEM_ARCHIVE_COPY.entryCountSuffix,
+              labels: {
+                drop: ITEM_ARCHIVE_COPY.labels.drop,
+                dropLocations: ITEM_ARCHIVE_COPY.labels.dropLocations,
+                dropRate: ITEM_ARCHIVE_COPY.labels.dropRate,
+                otherLocations: ITEM_ARCHIVE_COPY.labels.otherLocations,
+                price: ITEM_ARCHIVE_COPY.labels.price,
+                shop: ITEM_ARCHIVE_COPY.labels.shop,
+                shopLocations: ITEM_ARCHIVE_COPY.labels.shopLocations,
+              },
+              noResults: ITEM_ARCHIVE_COPY.noResults,
+              resultCountSuffix: ITEM_ARCHIVE_COPY.resultCountSuffix,
+              searchLabel: ITEM_ARCHIVE_COPY.searchLabel,
+              searchPlaceholder: ITEM_ARCHIVE_COPY.searchPlaceholder,
+            }}
+            items={browserItems}
+            panelEyebrow={summary.eyebrow}
+            panelTitle={activePage.title}
           >
-            {ITEM_INDEX_PAGES.map((page) => (
-              <Link
-                className={
-                  page.id === gameId ? ITEM_STYLES.tabActive : ITEM_STYLES.tab
-                }
-                href={page.href}
-                key={page.id}
-              >
-                {page.title}
-              </Link>
-            ))}
-          </nav>
+            <ArchiveIndexTabs
+              activeId={gameId}
+              ariaLabel={ITEM_ARCHIVE_COPY.tabsAriaLabel}
+              pages={ITEM_INDEX_PAGES}
+              styles={ITEM_STYLES}
+            />
 
-          <section className={ITEM_STYLES.summaryGrid}>
-            {summaryItems(summary).map((item) => (
-              <article className={ITEM_STYLES.summaryCard} key={item.label}>
-                <p className={ITEM_STYLES.summaryLabel}>{item.label}</p>
-                <p className={ITEM_STYLES.summaryValue}>{item.value}</p>
-              </article>
-            ))}
-          </section>
-
-          <section className={ITEM_STYLES.panel}>
-            <header className={ITEM_STYLES.panelHeader}>
-              <div>
-                <p className={ITEM_STYLES.panelMeta}>{summary.eyebrow}</p>
-                <h2 className={ITEM_STYLES.panelTitle}>{activePage.title}</h2>
-              </div>
-              <p className={ITEM_STYLES.panelMeta}>
-                {items.length.toLocaleString("ko-KR")}
-                {ITEM_ARCHIVE_COPY.entryCountSuffix}
-              </p>
-            </header>
-
-            <div className={ITEM_STYLES.list}>
-              {items.map((item) => (
-                <article className={ITEM_STYLES.card} key={item.id}>
-                  <div className={ITEM_STYLES.cardHeader}>
-                    <h3 className={ITEM_STYLES.cardName}>{item.name}</h3>
-                    <div className={ITEM_STYLES.chipRow}>
-                      <span className={ITEM_STYLES.chip}>
-                        {ITEM_CATEGORY_LABELS[item.category]}
-                      </span>
-                      <span className={ITEM_STYLES.chip}>
-                        {formatItemSources(item)}
-                      </span>
-                    </div>
-                  </div>
-
-                  <dl className={ITEM_STYLES.ledger}>
-                    <div className={ITEM_STYLES.ledgerRow}>
-                      <dt className={ITEM_STYLES.ledgerTerm}>
-                        {ITEM_ARCHIVE_COPY.labels.price}
-                      </dt>
-                      <dd className={ITEM_STYLES.ledgerValue}>
-                        {formatItemPrice(item)}
-                      </dd>
-                    </div>
-                    <div className={ITEM_STYLES.ledgerRow}>
-                      <dt className={ITEM_STYLES.ledgerTerm}>
-                        {ITEM_ARCHIVE_COPY.labels.shopLocations}
-                      </dt>
-                      <dd className={ITEM_STYLES.ledgerValue}>
-                        {formatItemShopLocations(item)}
-                      </dd>
-                    </div>
-                    <div className={ITEM_STYLES.ledgerRow}>
-                      <dt className={ITEM_STYLES.ledgerTerm}>
-                        {ITEM_ARCHIVE_COPY.labels.dropLocations}
-                      </dt>
-                      <dd className={ITEM_STYLES.ledgerValue}>
-                        {formatItemDropLocations(item)}
-                      </dd>
-                    </div>
-                    <div className={ITEM_STYLES.ledgerRow}>
-                      <dt className={ITEM_STYLES.ledgerTerm}>
-                        {ITEM_ARCHIVE_COPY.labels.otherLocations}
-                      </dt>
-                      <dd className={ITEM_STYLES.ledgerValue}>
-                        {formatItemOtherLocations(item)}
-                      </dd>
-                    </div>
-                    <div className={ITEM_STYLES.ledgerRow}>
-                      <dt className={ITEM_STYLES.ledgerTerm}>
-                        {ITEM_ARCHIVE_COPY.labels.dropRate}
-                      </dt>
-                      <dd className={ITEM_STYLES.ledgerValue}>
-                        {formatItemDropRates(item)}
-                      </dd>
-                    </div>
-                  </dl>
+            <section className={ITEM_STYLES.summaryGrid}>
+              {summaryItems(summary).map((item) => (
+                <article className={ITEM_STYLES.summaryCard} key={item.label}>
+                  <p className={ITEM_STYLES.summaryLabel}>{item.label}</p>
+                  <p className={ITEM_STYLES.summaryValue}>{item.value}</p>
                 </article>
               ))}
-            </div>
-          </section>
+            </section>
+          </ItemIndexBrowser>
         </section>
       </div>
     </main>

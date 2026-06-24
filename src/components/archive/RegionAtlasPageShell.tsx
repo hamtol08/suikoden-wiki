@@ -1,5 +1,6 @@
 import { BookOpen, Compass } from "lucide-react";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
 import RegionAtlasTabs from "@/components/archive/RegionAtlasTabs";
 import { APP_ROUTES } from "@/constants/app-config";
 import {
@@ -33,11 +34,12 @@ const RegionAtlasPageShell = ({ initialTabId }: RegionAtlasPageShellProps) => {
 
       <div className={RESPONSIVE_SHELL.atlasGrid}>
         <section className={ATLAS_STYLES.shell}>
-          <header className={ATLAS_STYLES.intro}>
-            <p className={ATLAS_STYLES.introEyebrow}>{REGION_ATLAS_COPY.eyebrow}</p>
-            <h1 className={ATLAS_STYLES.introTitle}>{REGION_ATLAS_COPY.title}</h1>
-            <p className={ATLAS_STYLES.introBody}>{REGION_ATLAS_COPY.body}</p>
-          </header>
+          <ArchivePageIntro
+            body={REGION_ATLAS_COPY.body}
+            eyebrow={REGION_ATLAS_COPY.eyebrow}
+            styles={ATLAS_STYLES}
+            title={REGION_ATLAS_COPY.title}
+          />
 
           <RegionAtlasTabs initialTabId={initialTabId} />
 
@@ -50,7 +52,7 @@ const RegionAtlasPageShell = ({ initialTabId }: RegionAtlasPageShellProps) => {
             </div>
             <div className={GRID_STYLES.atlasLogs}>
               {REGION_ATLAS_LOGS.map((log) => {
-                const Icon = logIconMap[log.icon];
+                const Icon = logIconMap[log.icon] ?? BookOpen;
 
                 return (
                   <article className={ATLAS_STYLES.logCard} key={log.title}>

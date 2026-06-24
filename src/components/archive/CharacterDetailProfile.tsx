@@ -6,6 +6,7 @@ import {
   CharacterDetailSection,
 } from "@/components/archive/CharacterDetailBlocks";
 import RuneReferenceLink from "@/components/archive/RuneReferenceLink";
+import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
   buildCharacterCombatDataPanels,
   buildCharacterDetailNavigationItems,
@@ -35,14 +36,39 @@ const CharacterDetailProfile = ({
   seriesTitle,
 }: CharacterDetailProfileProps) => {
   const paddedOrder = formatCharacterOrder(character.order);
-  const detailRecord = getCharacterDetailRecord(character);
-  const profileRows = buildCharacterProfileRows(character, seriesTitle);
-  const gameRoleRows = buildCharacterGameRoleRows(character, detailRecord);
-  const primaryRunes = resolveCharacterPrimaryRunes(character, detailRecord);
-  const combatDataPanels = buildCharacterCombatDataPanels(character, detailRecord);
-  const detailNavigationItems = buildCharacterDetailNavigationItems({
-    character,
-    combatDataPanels,
+  const detailRecord = loadArchiveJsonSafely({
+    fallback: null,
+    label: `character-detail-record:${character.id}`,
+    load: () => getCharacterDetailRecord(character),
+  });
+  const profileRows = loadArchiveJsonSafely({
+    fallback: [],
+    label: `character-profile-rows:${character.id}`,
+    load: () => buildCharacterProfileRows(character, seriesTitle),
+  });
+  const gameRoleRows = loadArchiveJsonSafely({
+    fallback: [],
+    label: `character-game-role-rows:${character.id}`,
+    load: () => buildCharacterGameRoleRows(character, detailRecord),
+  });
+  const primaryRunes = loadArchiveJsonSafely({
+    fallback: [],
+    label: `character-primary-runes:${character.id}`,
+    load: () => resolveCharacterPrimaryRunes(character, detailRecord),
+  });
+  const combatDataPanels = loadArchiveJsonSafely({
+    fallback: [],
+    label: `character-combat-data:${character.id}`,
+    load: () => buildCharacterCombatDataPanels(character, detailRecord),
+  });
+  const detailNavigationItems = loadArchiveJsonSafely({
+    fallback: [],
+    label: `character-detail-navigation:${character.id}`,
+    load: () =>
+      buildCharacterDetailNavigationItems({
+        character,
+        combatDataPanels,
+      }),
   });
 
   return (

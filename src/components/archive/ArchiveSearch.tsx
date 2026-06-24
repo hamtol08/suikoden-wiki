@@ -10,22 +10,27 @@ import {
 import { motion } from "framer-motion";
 import { Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { buildCharacterDetailPath } from "@/constants/app-config";
-import { ARCHIVE_COPY } from "@/constants/archive-content";
-import {
-  CHARACTER_DATA_BY_GAME,
-  CHARACTER_SERIES,
-  formatCharacterOrder,
-} from "@/constants/character-content";
+import { ARCHIVE_NAVIGATION_EVENT_NAME } from "@/constants/app-config";
+import { normalizeArchiveSearchText } from "@/constants/archive-utils";
 import { MOTION_PRESETS } from "@/constants/motion-styles";
 import { ICON_STYLES, SEARCH_STYLES } from "@/constants/ui-styles";
 import { useArchiveUiStore } from "@/stores/archive-ui-store";
 
 type ArchiveSearchProps = {
+  copy: ArchiveSearchCopy;
+  searchIndex: readonly CharacterSearchResult[];
   variant?: "desktop" | "header";
 };
 
-type CharacterSearchResult = {
+type ArchiveSearchCopy = {
+  clearSearchLabel: string;
+  searchButton: string;
+  searchEmpty: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+};
+
+export type CharacterSearchResult = {
   href: string;
   id: string;
   meta: string;
@@ -34,47 +39,11 @@ type CharacterSearchResult = {
   searchText: string;
 };
 
-const normalizeSearchText = (value: string) =>
-  value.toLocaleLowerCase("ko-KR").replace(/\s+/g, " ").trim();
-
-const CHARACTER_SEARCH_INDEX: CharacterSearchResult[] = CHARACTER_SERIES.flatMap(
-  (series) =>
-    CHARACTER_DATA_BY_GAME[series.id].map((character) => {
-      const order = formatCharacterOrder(character.order);
-      const meta = [
-        series.title,
-        character.star,
-        character.characterType,
-        character.appearanceLocation,
-      ]
-        .filter(Boolean)
-        .join(" · ");
-
-      return {
-        href: buildCharacterDetailPath(series.id, character.id),
-        id: character.id,
-        meta,
-        name: character.name,
-        order,
-        searchText: normalizeSearchText(
-          [
-            character.id,
-            character.name,
-            character.star,
-            character.characterType,
-            character.appearanceLocation,
-            order,
-            series.title,
-            series.eyebrow,
-          ].join(" "),
-        ),
-      };
-    }),
-);
-
 const MAX_VISIBLE_SUGGESTIONS = 8;
 
 const ArchiveSearch = ({
+  copy,
+  searchIndex,
   variant = "desktop",
 }: ArchiveSearchProps) => {
   const router = useRouter();
@@ -84,17 +53,17 @@ const ArchiveSearch = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
   const isHeader = variant === "header";
-  const normalizedQuery = normalizeSearchText(searchQuery);
+  const normalizedQuery = normalizeArchiveSearchText(searchQuery);
 
   const suggestions = useMemo(() => {
     if (!normalizedQuery) {
       return [];
     }
 
-    return CHARACTER_SEARCH_INDEX.filter((character) =>
+    return searchIndex.filter((character) =>
       character.searchText.includes(normalizedQuery),
     ).slice(0, MAX_VISIBLE_SUGGESTIONS);
-  }, [normalizedQuery]);
+  }, [normalizedQuery, searchIndex]);
 
   const hasSuggestions = suggestions.length > 0;
   const showSuggestions = isFocused && normalizedQuery.length > 0;
@@ -102,6 +71,11 @@ const ArchiveSearch = ({
   const navigateToCharacter = (character: CharacterSearchResult) => {
     setSearchQuery(character.name);
     setIsFocused(false);
+    window.dispatchEvent(
+      new CustomEvent(ARCHIVE_NAVIGATION_EVENT_NAME, {
+        detail: { href: character.href },
+      }),
+    );
     router.push(character.href);
   };
 
@@ -166,12 +140,12 @@ const ArchiveSearch = ({
     >
       <Search aria-hidden="true" className={ICON_STYLES.search} />
       <input
-        aria-label={ARCHIVE_COPY.header.searchLabel}
+        aria-label={copy.searchLabel}
         aria-autocomplete="list"
         aria-controls={listboxId}
         aria-expanded={showSuggestions}
         className={inputClassName}
-        placeholder={ARCHIVE_COPY.header.searchPlaceholder}
+        placeholder={copy.searchPlaceholder}
         role="combobox"
         type="search"
         value={searchQuery}
@@ -180,7 +154,7 @@ const ArchiveSearch = ({
       />
       {searchQuery ? (
         <button
-          aria-label={ARCHIVE_COPY.header.clearSearchLabel}
+          aria-label={copy.clearSearchLabel}
           className={SEARCH_STYLES.clearButton}
           type="button"
           onClick={clearSearch}
@@ -189,7 +163,7 @@ const ArchiveSearch = ({
         </button>
       ) : null}
       <button className={SEARCH_STYLES.submitButton} type="submit">
-        {ARCHIVE_COPY.header.searchButton}
+        {copy.searchButton}
       </button>
 
       {showSuggestions && hasSuggestions ? (
@@ -229,7 +203,7 @@ const ArchiveSearch = ({
 
       {showSuggestions && !hasSuggestions ? (
         <p className={SEARCH_STYLES.empty}>
-          {ARCHIVE_COPY.header.searchEmpty}
+          {copy.searchEmpty}
         </p>
       ) : null}
     </motion.form>

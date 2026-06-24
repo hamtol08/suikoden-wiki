@@ -3,6 +3,7 @@ import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import RegionDetailRecords from "@/components/archive/RegionDetailRecords";
 import RegionPreview from "@/components/archive/RegionPreview";
 import { APP_ROUTES } from "@/constants/app-config";
+import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
   REGION_ATLAS_COPY,
   REGION_ATLAS_LOCATIONS,
@@ -23,10 +24,19 @@ type RegionAtlasDetailProps = {
 
 const RegionAtlasDetail = async ({ params }: RegionAtlasDetailProps) => {
   const { game, slug } = await params;
-  const location = REGION_ATLAS_LOCATIONS.find(
-    (entry) => entry.game === game && entry.id === slug,
-  );
-  const tab = REGION_ATLAS_TABS.find((entry) => entry.id === game);
+  const location = loadArchiveJsonSafely({
+    fallback: null,
+    label: `region-detail-location:${game}:${slug}`,
+    load: () =>
+      REGION_ATLAS_LOCATIONS.find(
+        (entry) => entry.game === game && entry.id === slug,
+      ) ?? null,
+  });
+  const tab = loadArchiveJsonSafely({
+    fallback: null,
+    label: `region-detail-tab:${game}`,
+    load: () => REGION_ATLAS_TABS.find((entry) => entry.id === game) ?? null,
+  });
 
   if (!location || !tab) {
     notFound();

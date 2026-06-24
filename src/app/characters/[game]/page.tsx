@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import CharacterPageShell from "@/components/archive/CharacterPageShell";
-import { CHARACTER_DATA_BY_GAME } from "@/constants/character-content";
+import {
+  CHARACTER_DATA_BY_GAME,
+  type CharacterGameId,
+} from "@/constants/character-content";
+import { loadArchiveJsonSafely } from "@/constants/data-loading";
 
 type CharacterGameProps = {
   params: Promise<{
@@ -16,12 +20,17 @@ const isCharacterGameId = (
 
 const CharacterGame = async ({ params }: CharacterGameProps) => {
   const { game } = await params;
+  const isAvailableGame = loadArchiveJsonSafely({
+    fallback: false,
+    label: `character-game-route:${game}`,
+    load: () => isCharacterGameId(game),
+  });
 
-  if (!isCharacterGameId(game)) {
+  if (!isAvailableGame) {
     notFound();
   }
 
-  return <CharacterPageShell gameId={game} />;
+  return <CharacterPageShell gameId={game as CharacterGameId} />;
 };
 
 export default CharacterGame;

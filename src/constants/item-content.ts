@@ -30,6 +30,18 @@ export const ITEM_ARCHIVE_COPY = {
   tabsAriaLabel: "Item series",
   summaryTitle: "Item Summary",
   tableTitle: "Item Index",
+  detailTitle: "Item Profile",
+  detailBody: "작품별 입수 기록과 기본 효과를 함께 정리합니다.",
+  descriptionTitle: "개요",
+  effectTitle: "효과",
+  gameRecordsTitle: "작품별 기록",
+  referenceTitle: "참고",
+  searchLabel: "Item search",
+  searchPlaceholder: "아이템 이름, 영문 표기, 분류, 입수처 검색",
+  resultCountSuffix: "개 아이템",
+  resultCount: (count: number) => `${count.toLocaleString("ko-KR")}개 아이템`,
+  noResults: "검색 조건에 맞는 아이템이 없습니다.",
+  clearSearchLabel: "검색어 지우기",
   labels: {
     category: "분류",
     source: "기록",
@@ -39,7 +51,11 @@ export const ITEM_ARCHIVE_COPY = {
     dropLocations: "드롭",
     otherLocations: "기타 입수처",
     dropRate: "획득 확률",
+    englishName: "EN",
+    japaneseName: "JP",
     originalName: "영문 표기",
+    games: "등장 작품",
+    references: "참고 링크",
     shop: "Shop",
     drop: "Drop",
   },
@@ -62,7 +78,7 @@ export const ITEM_CATEGORY_LABELS = {
   paint: "물감",
   recipe: "레시피",
   runePiece: "문장 조각",
-  soundSet: "음 세트",
+  soundSet: "소리세트",
   specialItem: "특수 아이템",
   tradeItem: "교역품",
   windowSet: "창 세트",
@@ -86,6 +102,11 @@ export const ITEM_INDEX_PAGE_IDS = {
 
 export type ItemIndexGameId =
   (typeof ITEM_INDEX_PAGE_IDS)[keyof typeof ITEM_INDEX_PAGE_IDS];
+
+const ITEM_REFERENCE_GAMES = [
+  ITEM_INDEX_PAGE_IDS.suikodenI,
+  ITEM_INDEX_PAGE_IDS.suikodenII,
+] as const;
 
 export const ITEM_INDEX_PAGES = [
   {
@@ -134,6 +155,22 @@ export type ItemIndexRecord = {
   dropRates: readonly string[];
 };
 
+export type ItemDetailRecord = {
+  id: string;
+  name: string;
+  category: ItemCategoryId;
+  games: readonly ItemIndexGameId[];
+  originalNames: readonly string[];
+  japaneseNames: readonly string[];
+  descriptionLines: readonly string[];
+  effectLines: readonly string[];
+  references: readonly {
+    href: string;
+    label: string;
+  }[];
+  gameRecords: readonly ItemIndexRecord[];
+};
+
 type ItemRecordDraft = {
   id: string;
   name: string;
@@ -159,8 +196,6 @@ const buildItemReference = (
 const ITEM_VALUE_SUFFIX_PATTERN = /(\s\(x\d+\)|\*)/g;
 
 const ITEM_NORMALIZATION_SUFFIX_PATTERN = /(\s\(x\d+\)|\*|\s\/Imported Data)/g;
-
-const ITEM_REFERENCE_GAMES = ["suikoden-i", "suikoden-ii"] as const;
 
 const ITEM_EMPTY_VALUES = new Set(["", "-", "[none]", "None", "None.", "N/A"]);
 
@@ -401,7 +436,7 @@ const ITEM_NAME_TRANSLATIONS = {
   Silverlet: "실버릿",
   "Skill Ring": "스킬 링",
   "Speed Ring": "스피드 링",
-  "Sound Set 3": "음 세트 3",
+  "Sound Set 3": "소리세트 3",
   "Spicy Pilaf": "매운 필라프",
   "Star Earrings": "별 귀걸이",
   "Steamed Abalone": "전복찜",
@@ -415,7 +450,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Thunder Amulet": "번개의 부적",
   "Thunder God's Garb": "뇌신의 옷",
   "Thunder Runner": "썬더 러너",
-  "Toe Shoes": "토슈즈",
+  "Toe Shoes": "토우슈즈",
   "Tomato Juice": "토마토 주스",
   Tunic: "튜닉",
   "Veggie Sandwich": "채소 샌드위치",
@@ -458,6 +493,22 @@ const ITEM_NAME_ALIASES = {
   "희생의 부처": "Sacrificial Buddha",
 } as const;
 
+const ITEM_JAPANESE_NAME_TRANSLATIONS = {
+  "Blue Dragon Urn": "青竜のつぼ",
+  "Fire Rune Piece": "火の紋章片",
+} as const;
+
+const ITEM_DETAIL_DESCRIPTIONS = {
+  medicine: [
+    "가장 기본적인 회복용 소비 아이템입니다.",
+    "전투 중 또는 이동 중에 사용해 아군 한 명의 HP를 회복하는 초반 핵심 보급품으로 정리합니다.",
+  ],
+} as const satisfies Partial<Record<string, readonly string[]>>;
+
+const ITEM_DETAIL_EFFECTS = {
+  medicine: ["아군 한 명의 HP를 100 회복합니다."],
+} as const satisfies Partial<Record<string, readonly string[]>>;
+
 const ITEM_GENERATED_NAME_TRANSLATIONS = {
   "Ancient Text": "고대 문서",
   "Astral Predications": "별의 예언서",
@@ -466,6 +517,7 @@ const ITEM_GENERATED_NAME_TRANSLATIONS = {
   "Black Urn": "검은 항아리",
   "Blinking Mirror": "깜박임의 거울",
   Blueprints: "설계도",
+  "Blue Dragon Urn": "청룡 항아리",
   Book: "책",
   Cabbage: "양배추",
   "Cabbage Seeds": "양배추 씨앗",
@@ -513,6 +565,7 @@ const ITEM_GENERATED_NAME_TRANSLATIONS = {
   "Letter of Introduction": "소개장",
   "Listening Orb": "듣기의 구슬",
   "Lubricating Oil": "윤활유",
+  "Mathiu's Letter": "맷슈의 편지",
   Mayonnaise: "마요네즈",
   "Millet Dumplings": "조 덤플링",
   "Mole Helmet": "두더지 투구",
@@ -602,10 +655,10 @@ const ITEM_ELEMENT_TRANSLATIONS = {
   Fire: "불",
   Lightning: "번개",
   Luck: "행운",
-  Magic: "마법",
+  Magic: "마",
   Power: "힘",
   Skill: "기술",
-  Speed: "속도",
+  Speed: "속",
   Water: "물",
   Wind: "바람",
 } as const;
@@ -643,7 +696,7 @@ const translateGeneratedItemName = (name: string) => {
   const oldBookMatch = name.match(/^Old Book Vol\. (\d+)$/);
 
   if (oldBookMatch) {
-    return `낡은 책 ${oldBookMatch[1]}권`;
+    return `오래된 책 ${oldBookMatch[1]}권`;
   }
 
   const recipeMatch = name.match(/^Recipe (\d+)$/);
@@ -666,7 +719,7 @@ const translateGeneratedItemName = (name: string) => {
   const setMatch = name.match(/^(Sound|Window) Set (\d+)$/);
 
   if (setMatch) {
-    return `${setMatch[1] === "Sound" ? "음" : "창"} 세트 ${setMatch[2]}`;
+    return `${setMatch[1] === "Sound" ? "소리세트" : "창 세트"} ${setMatch[2]}`;
   }
 
   const paintMatch = name.match(/^(Black|Blue|Green|Pink|Red|White|Yellow) Paint$/);
@@ -861,7 +914,7 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Given by Hilda": "힐다에게 받음",
   "Given by Jess": "제스에게 받음",
   "Given by Leon": "레온에게 받음",
-  "Given by Lepant": "레판트에게 받음",
+  "Given by Lepant": "레판토에게 받음",
   "Great Forest": "대삼림",
   "Great Forest Village": "대삼림 마을",
   "Greenhill City": "그린힐",
@@ -1001,12 +1054,12 @@ const translateGame8GdsCode = (entry: string) => {
 const translateGame8EventEntry = (entry: string) => {
   const text = entry.trim();
 
-  if (text.includes("barter event to recruit Sarah in Kirov")) {
-    return "키로프 사라 합류 교환 이벤트";
+  if (text.includes("barter event to recruit Sheila in Kirov")) {
+    return "키로프 세일라 합류 교환 이벤트";
   }
 
   if (text.includes("ninth book")) {
-    return "낡은 책 1-8권을 책장에 꽂은 뒤 숨겨진 입력으로 획득";
+    return "오래된 책 1-8권을 책장에 꽂은 뒤 숨겨진 입력으로 획득";
   }
 
   if (text.includes("Astral Predications")) {
@@ -1014,7 +1067,7 @@ const translateGame8EventEntry = (entry: string) => {
   }
 
   if (text.includes("Blueprints")) {
-    return "레난캄프 해방군 기지에서 오데사에게 받음";
+    return "레난캄프 해방군 기지에서 오뎃사에게 받음";
   }
 
   if (text.includes("Earring")) {
@@ -1022,7 +1075,7 @@ const translateGame8EventEntry = (entry: string) => {
   }
 
   if (text.includes("Engine")) {
-    return "테이엔에서 카만돌 이벤트로 획득";
+    return "테이엔에서 커맨돌 이벤트로 획득";
   }
 
   if (text.includes("Fake Orders")) {
@@ -1030,7 +1083,7 @@ const translateGame8EventEntry = (entry: string) => {
   }
 
   if (text.includes("Mathiu's Letter")) {
-    return "마슈가 킴벌리에게 전달하라고 맡긴 편지";
+    return "맷슈가 킴벌리에게 전달하라고 맡긴 편지";
   }
 
   if (text.includes("Fire Spear")) {
@@ -1160,6 +1213,44 @@ const translateGame8SourceEntry = (
 
 const isItemIndexGameId = (value: string): value is ItemIndexGameId => {
   return ITEM_INDEX_PAGES.some((page) => page.id === value);
+};
+
+const resolveItemAvailabilityId = (rawName: string) => {
+  const originalName = normalizeItemName(rawName);
+  const itemReference = resolveItemReference(originalName);
+
+  return itemReference?.id ?? buildItemId(originalName);
+};
+
+const buildGame8ItemGameAvailability = () => {
+  const availability = new Map<string, Set<ItemIndexGameId>>();
+
+  GAME8_ITEM_SOURCE_RECORDS.forEach((sourceRecord) => {
+    if (!isItemIndexGameId(sourceRecord.game)) {
+      return;
+    }
+
+    const itemId = resolveItemAvailabilityId(sourceRecord.name);
+    const games = availability.get(itemId) ?? new Set<ItemIndexGameId>();
+
+    games.add(sourceRecord.game);
+    availability.set(itemId, games);
+  });
+
+  return availability;
+};
+
+const GAME8_ITEM_GAME_AVAILABILITY = buildGame8ItemGameAvailability();
+
+const isAvailableAsSupplementalEquipment = (
+  game: ItemIndexGameId,
+  rawName: string,
+) => {
+  const game8Games = GAME8_ITEM_GAME_AVAILABILITY.get(
+    resolveItemAvailabilityId(rawName),
+  );
+
+  return !game8Games || game8Games.has(game);
 };
 
 const formatItemPrices = (prices: readonly number[]) => {
@@ -1337,6 +1428,10 @@ const addCharacterEquipmentItemRecords = (
       ];
 
       equipmentValues.forEach((equipmentName) => {
+        if (!isAvailableAsSupplementalEquipment(gameId, equipmentName)) {
+          return;
+        }
+
         getOrCreateItemRecordDraft(records, gameId, equipmentName);
       });
     });
@@ -1485,12 +1580,111 @@ const buildItemIndexRecords = () => {
 
 export const ITEM_INDEX_RECORDS = buildItemIndexRecords();
 
+export const resolveItemDetailHref = (name: string) => {
+  const normalizedName = normalizeItemName(name).toLowerCase();
+  const itemReference = resolveItemReference(name);
+  const candidateIds = [
+    itemReference?.id,
+    buildItemId(normalizeItemName(name)),
+  ].filter(Boolean);
+
+  const record = ITEM_INDEX_RECORDS.find((item) =>
+    candidateIds.includes(item.id) ||
+    item.name.toLowerCase() === normalizedName ||
+    item.originalNames.some((originalName) =>
+      normalizeItemName(originalName).toLowerCase() === normalizedName,
+    ),
+  );
+
+  return record?.href ?? null;
+};
+
 export const getItemIndexPage = (gameId: ItemIndexGameId) => {
   return ITEM_INDEX_PAGES.find((page) => page.id === gameId) ?? ITEM_INDEX_PAGES[0];
 };
 
 export const getItemIndexRecordsByGame = (gameId: ItemIndexGameId) => {
   return ITEM_INDEX_RECORDS.filter((item) => item.game === gameId);
+};
+
+const getItemSourceReferenceLabel = (gameId: ItemIndexGameId) => {
+  return `${getItemIndexPage(gameId).title} · Game8`;
+};
+
+const getItemSourceReferences = (item: ItemIndexRecord) => {
+  const originalNameSet = new Set(item.originalNames);
+
+  return GAME8_ITEM_SOURCE_RECORDS.filter(
+    (sourceRecord) =>
+      sourceRecord.game === item.game && originalNameSet.has(sourceRecord.name),
+  ).map((sourceRecord) => ({
+    href: sourceRecord.href,
+    label: getItemSourceReferenceLabel(item.game),
+  }));
+};
+
+export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => {
+  const gameRecords = ITEM_INDEX_RECORDS.filter((item) => item.id === itemId);
+  const firstRecord = gameRecords[0];
+
+  if (!firstRecord) {
+    return null;
+  }
+
+  const originalNames = [
+    ...new Set(gameRecords.flatMap((item) => item.originalNames)),
+  ].sort();
+  const references = [
+    ...new Map(
+      gameRecords
+        .flatMap((item) => getItemSourceReferences(item))
+        .map((reference) => [reference.href, reference]),
+    ).values(),
+  ];
+
+  return {
+    id: firstRecord.id,
+    name: firstRecord.name,
+    category: firstRecord.category,
+    games: gameRecords.map((item) => item.game),
+    originalNames,
+    japaneseNames: [
+      ...new Set(gameRecords.flatMap((item) => getItemJapaneseNames(item))),
+    ],
+    descriptionLines: ITEM_DETAIL_DESCRIPTIONS[
+      itemId as keyof typeof ITEM_DETAIL_DESCRIPTIONS
+    ] ?? [
+      `${firstRecord.name}은 ${gameRecords
+        .map((item) => getItemIndexPage(item.game).title)
+        .join(" / ")}에 등장하는 ${ITEM_CATEGORY_LABELS[firstRecord.category]}입니다.`,
+    ],
+    effectLines: ITEM_DETAIL_EFFECTS[
+      itemId as keyof typeof ITEM_DETAIL_EFFECTS
+    ] ?? [],
+    references,
+    gameRecords,
+  };
+};
+
+export const getItemDetailStaticParams = () => {
+  return [...new Set(ITEM_INDEX_RECORDS.map((item) => item.id))].map((itemId) => ({
+    game: itemId,
+  }));
+};
+
+export const getItemJapaneseNames = (item: ItemIndexRecord) => {
+  return [
+    ...new Set(
+      item.originalNames.flatMap((name) => {
+        const japaneseName =
+          ITEM_JAPANESE_NAME_TRANSLATIONS[
+            name as keyof typeof ITEM_JAPANESE_NAME_TRANSLATIONS
+          ];
+
+        return japaneseName ? [japaneseName] : [];
+      }),
+    ),
+  ];
 };
 
 export const formatItemSources = (item: ItemIndexRecord) => {

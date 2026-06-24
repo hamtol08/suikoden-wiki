@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import ArchiveFooter from "@/components/archive/ArchiveFooter";
+import ArchiveNavigationLoading from "@/components/archive/ArchiveNavigationLoading";
 import { APP_LANGUAGE, THEME_MODES, THEME_STORAGE_KEY } from "@/constants/app-config";
 import { ARCHIVE_COPY } from "@/constants/archive-content";
 import { APP_SHELL_STYLES } from "@/constants/ui-styles";
@@ -58,13 +60,13 @@ const RootLayout = ({
       className={`${archiveSans.variable} ${archiveDisplay.variable} ${APP_SHELL_STYLES.html}`}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          type="text/javascript"
+      <body className={APP_SHELL_STYLES.body}>
+        <Script
+          id="archive-theme-mode"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: themeModeScript }}
         />
-      </head>
-      <body className={APP_SHELL_STYLES.body}>
+        <ArchiveNavigationLoading />
         {children}
         <ArchiveFooter />
       </body>

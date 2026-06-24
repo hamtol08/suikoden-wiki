@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { CHARACTER_STYLES } from "@/constants/ui-styles";
 
 type DetailRow = {
+  href?: string;
   label: string;
   value: ReactNode;
 };
@@ -37,6 +39,18 @@ type DetailNavigationProps = {
   ariaLabel: string;
   title: string;
   items: readonly DetailTab[];
+};
+
+const renderDetailRowValue = (row: DetailRow) => {
+  if (!row.href || typeof row.value !== "string") {
+    return row.value;
+  }
+
+  return (
+    <Link className={CHARACTER_STYLES.combatDataValueLink} href={row.href}>
+      {row.value}
+    </Link>
+  );
 };
 
 export const CharacterDetailSection = ({
@@ -115,7 +129,9 @@ export const CharacterCombatDataPanels = ({
               {panel.rows.map((row) => (
                 <div className={CHARACTER_STYLES.combatDataRow} key={row.label}>
                   <dt className={CHARACTER_STYLES.combatDataTerm}>{row.label}</dt>
-                  <dd className={CHARACTER_STYLES.combatDataValue}>{row.value}</dd>
+                  <dd className={CHARACTER_STYLES.combatDataValue}>
+                    {renderDetailRowValue(row)}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -138,7 +154,9 @@ export const CharacterCombatDataPanels = ({
                     {group.rows.map((row) => (
                       <div className={CHARACTER_STYLES.combatDataRow} key={row.label}>
                         <dt className={CHARACTER_STYLES.combatDataTerm}>{row.label}</dt>
-                        <dd className={CHARACTER_STYLES.combatDataValue}>{row.value}</dd>
+                        <dd className={CHARACTER_STYLES.combatDataValue}>
+                          {renderDetailRowValue(row)}
+                        </dd>
                       </div>
                     ))}
                   </dl>

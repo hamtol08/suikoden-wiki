@@ -28,6 +28,50 @@ export const FOOTER_STYLES = {
   notice: "mt-4 text-xs font-semibold text-[#7a5900] dark:text-[#e9c176]",
 } as const;
 
+export const ROUTE_LOADING_STYLES = {
+  shell:
+    "relative grid min-h-screen place-items-center overflow-hidden bg-[#f6f1e8] px-5 py-10 text-[#101827] dark:bg-[#050b14] dark:text-[#f4f1ea]",
+  field:
+    "pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(212,175,55,0.08)_1px,transparent_1px),linear-gradient(0deg,rgba(16,24,39,0.07)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-70 dark:bg-[linear-gradient(90deg,rgba(212,175,55,0.11)_1px,transparent_1px),linear-gradient(0deg,rgba(244,241,234,0.07)_1px,transparent_1px)]",
+  shade:
+    "pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(246,241,232,0.94),rgba(246,241,232,0.72)_45%,rgba(16,24,39,0.16))] dark:bg-[linear-gradient(180deg,rgba(5,11,20,0.98),rgba(10,20,33,0.88)_48%,rgba(212,175,55,0.10))]",
+  stage:
+    "relative z-10 grid w-full max-w-3xl place-items-center text-center",
+  markStage:
+    "relative grid size-40 place-items-center sm:size-48",
+  outerRing:
+    "absolute inset-0 rounded-full border border-[#d4af37]/45",
+  middleRing:
+    "absolute inset-4 animate-spin rounded-full border border-dashed border-[#7a5900]/45 dark:border-[#e9c176]/45",
+  innerRing:
+    "absolute inset-8 animate-pulse rounded-full border border-[#c7d3e9] bg-white/45 shadow-[0_0_48px_rgba(212,175,55,0.22)] dark:border-[#38475f] dark:bg-[#111c2c]/70",
+  mark:
+    "relative z-10 flex size-24 items-center justify-center rounded-full border border-[#d4af37] bg-[#101827] p-4 shadow-2xl dark:bg-[#050b14] sm:size-28",
+  markImage: "size-full",
+  eyebrow:
+    "mt-5 text-sm font-bold uppercase tracking-[0.28em] text-[#7a5900] dark:text-[#e9c176]",
+  title:
+    "mt-3 font-serif text-4xl font-semibold text-[#101827] dark:text-[#f4f1ea] sm:text-6xl",
+  body:
+    "mt-4 max-w-xl break-keep text-base font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  statusRow:
+    "mt-5 flex items-center justify-center gap-3 text-sm font-bold text-[#7a5900] dark:text-[#e9c176]",
+  spinner:
+    "size-5 animate-spin rounded-full border-2 border-[#d8c9a5] border-t-[#7a5900] dark:border-[#38475f] dark:border-t-[#e9c176]",
+  progress:
+    "mt-7 h-1.5 w-full max-w-md overflow-hidden rounded-full border border-[#d8c9a5] bg-white/70 dark:border-[#38475f] dark:bg-[#111c2c]",
+  progressBar:
+    "h-full w-2/3 animate-pulse rounded-full bg-[#d4af37] shadow-[0_0_24px_rgba(212,175,55,0.7)]",
+  signalGrid:
+    "mt-8 grid w-full max-w-xl grid-cols-2 gap-2 sm:grid-cols-4",
+  signal:
+    "rounded border border-[#d8c9a5] bg-white/65 px-3 py-2 text-xs font-bold uppercase text-[#7a5900] dark:border-[#38475f] dark:bg-[#111c2c]/70 dark:text-[#e9c176]",
+} as const;
+
+export const NAVIGATION_LOADING_STYLES = {
+  overlay: "fixed inset-0 z-[90] overflow-y-auto",
+} as const;
+
 export const CONTAINER_STYLES = {
   header: `sticky top-0 z-50 border-b backdrop-blur ${THEME_CLASSES.header}`,
   hero: "relative overflow-hidden rounded-lg border border-[#c9b77f] bg-[#131b2e] dark:border-[#604403]",
@@ -63,9 +107,9 @@ export const HEADER_STYLES = {
   menuButton:
     "flex h-10 w-10 shrink-0 items-center justify-center rounded border border-[#d8c9a5] bg-white/70 text-[#7a5900] shadow-sm transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#604403] dark:bg-[#172337]/80 dark:text-[#e9c176] dark:hover:bg-[#14243a] 2xl:hidden",
   drawerOverlay:
-    "fixed inset-0 z-[80] flex justify-end bg-[#050b14]/55 2xl:hidden",
+    "fixed inset-0 z-[100] bg-[#050b14]/72 2xl:hidden",
   drawerPanel:
-    "h-dvh w-[min(24rem,calc(100vw-2rem))] overflow-y-auto border-l border-[#d8c9a5] bg-[#f8f4ec] p-5 shadow-2xl dark:border-[#604403] dark:bg-[#111c2c]",
+    "absolute inset-y-0 right-0 h-dvh w-[min(24rem,calc(100vw-2rem))] overflow-y-auto border-l border-[#d8c9a5] bg-[#f8f4ec] p-5 shadow-2xl dark:border-[#604403] dark:bg-[#111c2c]",
   drawerHeader: "flex items-center justify-between gap-4",
   drawerTitle: "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   drawerClose:
@@ -339,6 +383,8 @@ export const CHARACTER_STYLES = {
     "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   combatDataValue:
     "break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+  combatDataValueLink:
+    "break-keep text-sm font-semibold leading-6 text-[#101827] underline decoration-[#d4af37]/45 underline-offset-4 transition hover:text-[#7a5900] hover:decoration-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea] dark:hover:text-[#e9c176]",
 } as const;
 
 export const RUNE_STYLES = {
@@ -375,6 +421,11 @@ export const RUNE_STYLES = {
   cardMeta: "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   cardTitle: "mt-2 font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   cardBody: "mt-2 text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  cardSubNames: "mt-2 grid gap-0.5 text-xs leading-5 text-[#4b5565] dark:text-[#c5c6cd]",
+  cardSubName: "grid grid-cols-[max-content_minmax(0,1fr)] gap-3",
+  cardSubNameLabel:
+    "font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  cardSubNameValue: "min-w-0 break-keep font-semibold",
   cardGames: "mt-2 text-xs font-semibold text-[#7d8795] dark:text-[#c5c6cd]",
   empty:
     "mt-6 rounded-lg border border-[#d8c9a5] bg-white/70 p-6 text-center text-sm font-semibold text-[#4b5565] dark:border-[#604403] dark:bg-[#111c2c] dark:text-[#c5c6cd]",
@@ -415,6 +466,17 @@ export const ITEM_STYLES = {
     "flex-1 rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] sm:flex-none sm:text-left",
   tabActive:
     "flex-1 rounded bg-[#101827] px-4 py-3 text-center text-sm font-bold text-white shadow-[inset_0_-2px_0_#d4af37] dark:bg-[#d4af37] dark:text-[#261900] sm:flex-none sm:text-left",
+  browser: "mt-6",
+  searchPanel:
+    "rounded-lg border border-[#d8c9a5] bg-white/70 p-3 dark:border-[#604403] dark:bg-[#111c2c]",
+  searchForm:
+    "flex min-h-12 items-center gap-3 rounded-md border border-[#d8c9a5] bg-white px-4 dark:border-[#38475f] dark:bg-[#172337]",
+  searchInput:
+    "min-w-0 flex-1 bg-transparent text-sm font-semibold text-[#101827] outline-none placeholder:text-[#7d8795] dark:text-[#f4f1ea] dark:placeholder:text-[#7d8795]",
+  searchClearButton:
+    "flex size-8 shrink-0 items-center justify-center rounded text-[#7a5900] transition hover:bg-[#fff8e2] hover:text-[#101827] dark:text-[#e9c176] dark:hover:bg-[#14243a] dark:hover:text-[#f4f1ea]",
+  searchMeta:
+    "mt-2 px-1 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   summaryGrid: "mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4",
   summaryCard:
     "rounded-lg border border-[#d8c9a5] bg-white p-4 dark:border-[#604403] dark:bg-[#172337]",
@@ -434,8 +496,15 @@ export const ITEM_STYLES = {
   cardHeader: "min-w-0",
   cardName:
     "break-keep font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  cardTitleLink:
+    "transition hover:text-[#7a5900] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:hover:text-[#e9c176]",
   cardOriginal:
     "mt-1 text-xs font-bold uppercase text-[#7d8795] dark:text-[#c5c6cd]",
+  cardSubNames: "mt-2 grid gap-0.5 text-xs leading-5 text-[#4b5565] dark:text-[#c5c6cd]",
+  cardSubName: "grid grid-cols-[max-content_minmax(0,1fr)] gap-3",
+  cardSubNameLabel:
+    "font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  cardSubNameValue: "min-w-0 break-keep font-semibold",
   chipRow: "mt-3 flex flex-wrap gap-2",
   chip:
     "rounded border border-[#d4af37]/35 bg-[#fff8e2] px-2.5 py-1 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
@@ -447,6 +516,34 @@ export const ITEM_STYLES = {
     "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   ledgerValue:
     "break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+  empty:
+    "mt-5 rounded-lg border border-[#d8c9a5] bg-white/70 p-6 text-center text-sm font-semibold text-[#4b5565] dark:border-[#604403] dark:bg-[#111c2c] dark:text-[#c5c6cd]",
+  detailPanel:
+    "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
+  detailHeader:
+    "grid gap-5 border-b border-[#d8c9a5] pb-5 dark:border-[#38475f] lg:grid-cols-[minmax(0,1fr)_18rem]",
+  detailTitle: "font-serif text-3xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  detailSubNames:
+    "mt-3 grid gap-1 text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  detailNameRow: "grid grid-cols-[5rem_minmax(0,1fr)] gap-3",
+  detailNameLabel:
+    "font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  detailNameValue: "min-w-0 break-keep font-semibold",
+  detailMetaGrid:
+    "grid gap-px overflow-hidden rounded border border-[#c7d3e9] bg-[#c7d3e9] dark:border-[#38475f] dark:bg-[#38475f]",
+  detailMetaRow:
+    "grid gap-1 bg-[#edf3ff] p-3 dark:bg-[#111c2c]/80 sm:grid-cols-[7rem_minmax(0,1fr)]",
+  detailSection:
+    "mt-5 rounded-md border border-[#eee4cd] bg-[#fff8e2] p-4 dark:border-[#38475f] dark:bg-[#111c2c]",
+  detailSectionTitle:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  detailSectionBody:
+    "mt-3 grid gap-2 break-keep text-sm font-semibold leading-7 text-[#3e4654] dark:text-[#c5c6cd]",
+  detailGameGrid: "mt-5 grid gap-4",
+  detailReferenceList:
+    "mt-3 flex flex-wrap gap-2 text-sm font-bold",
+  detailReferenceLink:
+    "rounded border border-[#d4af37]/45 bg-white px-3 py-2 text-[#7a5900] transition hover:bg-[#fff8e2] dark:bg-[#172337] dark:text-[#e9c176] dark:hover:bg-[#14243a]",
 } as const;
 
 export const ATLAS_STYLES = {
@@ -580,4 +677,62 @@ export const STAGE_MARKER_TONE_STYLES = {
   sage: "border-[#a7c778]/60 bg-[#263315]/76 text-[#dceab7]/90",
   amber: "border-[#d99430]/60 bg-[#38240e]/76 text-[#ffd99a]/90",
   copper: "border-[#c8753d]/60 bg-[#351b12]/76 text-[#ffc2a3]/90",
+} as const;
+
+export const GAMEPLAY_STYLES = {
+  shell: "min-w-0 px-4 py-6 sm:px-6 md:px-8 lg:px-8 xl:px-10",
+  intro:
+    "rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
+  introEyebrow:
+    "text-sm font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  introTitle: "mt-2 font-serif text-4xl font-semibold md:text-5xl",
+  introBody:
+    "mt-4 max-w-3xl text-base leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  section:
+    "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#111c2c] sm:p-6",
+  tabList:
+    "mt-6 flex flex-wrap gap-2 rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c]",
+  tab:
+    "flex-1 rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] sm:flex-none sm:text-left",
+  sectionHeader:
+    "flex flex-col gap-2 border-b border-[#d8c9a5] pb-4 dark:border-[#38475f] sm:flex-row sm:items-end sm:justify-between",
+  sectionEyebrow:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  sectionTitle: "font-serif text-3xl font-semibold",
+  sectionBody: "max-w-2xl text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  systemGrid: "mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3",
+  systemCard:
+    "grid min-h-44 grid-rows-[auto_1fr_auto] gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-5 dark:border-[#38475f] dark:bg-[#172337]",
+  systemTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  systemBody: "break-keep text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  tagList: "flex flex-wrap content-start gap-2 border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
+  tag:
+    "rounded border border-[#d4af37]/35 bg-[#fff8e2] px-2.5 py-1 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
+  guideGrid: "mt-5 grid gap-4 xl:grid-cols-2",
+  gamePanel:
+    "rounded-lg border border-[#d8c9a5] bg-[#fffdf7] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  gameHeader: "flex flex-col gap-1 border-b border-[#eee4cd] pb-3 dark:border-[#38475f]",
+  gameEyebrow:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  gameTitle: "font-serif text-2xl font-semibold",
+  guideGroup: "mt-4 rounded-md border border-[#c7d3e9] bg-white/70 p-4 dark:border-[#38475f] dark:bg-[#111c2c]/65",
+  guideTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  guideBody: "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  linkList: "mt-3 flex flex-wrap gap-2",
+  sourceLink:
+    "rounded border border-[#d4af37]/45 bg-[#fff8e2] px-3 py-2 text-xs font-bold text-[#7a5900] transition hover:bg-white dark:bg-[#322002] dark:text-[#e9c176] dark:hover:bg-[#14243a]",
+  timelineGrid: "mt-5 grid gap-4 lg:grid-cols-2 xl:grid-cols-4",
+  timelineCard:
+    "grid min-h-44 grid-rows-[auto_1fr_auto] gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-5 dark:border-[#38475f] dark:bg-[#172337]",
+  chronologyList: "mt-5 grid gap-3",
+  chronologyItem:
+    "grid gap-3 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337] md:grid-cols-[11rem_minmax(0,1fr)]",
+  chronologyDate:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  chronologyTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  chronologyBody:
+    "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
 } as const;

@@ -2,10 +2,16 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useEffect } from "react";
-import { ARCHIVE_COPY } from "@/constants/archive-content";
 import { THEME_MODES, THEME_STORAGE_KEY } from "@/constants/app-config";
 import { BUTTON_STYLES, ICON_STYLES } from "@/constants/ui-styles";
 import { ThemeMode, useArchiveUiStore } from "@/stores/archive-ui-store";
+
+type ThemeModeToggleProps = {
+  labels: {
+    darkLabel: string;
+    lightLabel: string;
+  };
+};
 
 const THEME_MODE_VALUES = Object.values(THEME_MODES);
 
@@ -34,14 +40,14 @@ const applyThemeMode = (themeMode: ThemeMode) => {
   document.documentElement.setAttribute("data-theme", themeMode);
 };
 
-const ThemeModeToggle = () => {
+const ThemeModeToggle = ({ labels }: ThemeModeToggleProps) => {
   const themeMode = useArchiveUiStore((state) => state.themeMode);
   const setThemeMode = useArchiveUiStore((state) => state.setThemeMode);
   const isDarkMode = themeMode === THEME_MODES.dark;
   const nextThemeMode = isDarkMode ? THEME_MODES.light : THEME_MODES.dark;
   const label = isDarkMode
-    ? ARCHIVE_COPY.header.themeToggle.lightLabel
-    : ARCHIVE_COPY.header.themeToggle.darkLabel;
+    ? labels.lightLabel
+    : labels.darkLabel;
   const Icon = isDarkMode ? Sun : Moon;
 
   useEffect(() => {

@@ -2,9 +2,11 @@ import { notFound } from "next/navigation";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import CharacterDetailProfile from "@/components/archive/CharacterDetailProfile";
 import { APP_ROUTES } from "@/constants/app-config";
+import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
   CHARACTER_COPY,
   CHARACTER_DATA_BY_GAME,
+  type CharacterGameId,
   getCharacterSeries,
   isCharacterDetailAvailable,
 } from "@/constants/character-content";
@@ -23,17 +25,31 @@ type CharacterDetailProps = {
 
 const CharacterDetail = async ({ params }: CharacterDetailProps) => {
   const { game, slug } = await params;
+  const isAvailableDetail = loadArchiveJsonSafely({
+    fallback: false,
+    label: `character-detail-route:${game}:${slug}`,
+    load: () => isCharacterDetailAvailable(game),
+  });
 
-  if (!isCharacterDetailAvailable(game)) {
+  if (!isAvailableDetail) {
     notFound();
   }
 
-  const detailSeries = getCharacterSeries(game);
-  const character = CHARACTER_DATA_BY_GAME[game].find(
-    (entry) => entry.id === slug,
-  );
+  const detailGame = game as CharacterGameId;
+  const detailSeries = loadArchiveJsonSafely({
+    fallback: null,
+    label: `character-detail-series:${game}`,
+    load: () => getCharacterSeries(detailGame),
+  });
+  const character = loadArchiveJsonSafely({
+    fallback: null,
+    label: `character-detail:${game}:${slug}`,
+    load: () =>
+      CHARACTER_DATA_BY_GAME[detailGame].find((entry) => entry.id === slug) ??
+      null,
+  });
 
-  if (!character) {
+  if (!detailSeries || !character) {
     notFound();
   }
 

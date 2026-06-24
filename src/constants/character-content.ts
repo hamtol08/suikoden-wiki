@@ -17,7 +17,10 @@ import {
   CHARACTER_DETAIL_RECORDS,
   type CharacterDetailRecord,
 } from "@/constants/character-detail-records";
-import { translateItemName } from "@/constants/item-content";
+import {
+  resolveItemDetailHref,
+  translateItemName,
+} from "@/constants/item-content";
 import { RUNE_REFERENCES, resolveRuneReference } from "@/constants/rune-content";
 import { STAR_OF_DESTINY_KOREAN_NAMES } from "@/constants/star-of-destiny";
 
@@ -57,11 +60,11 @@ export const CHARACTER_COPY = {
     star: "108성",
     role: "구분",
     location: "등장 마을",
-    rune: "룬",
+    rune: "기본 문장",
     runeSlots: "룬 슬롯",
     recruitmentFlow: "영입 흐름",
     combatRole: "게임 내 역할",
-    runeRole: "문장 운용",
+    runeRole: "기본 문장",
   },
   detailMessages: {
     fixedEquipment: (items: readonly string[]) =>
@@ -287,11 +290,13 @@ export type CharacterCombatDataPanel = {
   rowGroups?: readonly {
     title: string;
     rows: readonly {
+      href?: string;
       label: string;
       value: string;
     }[];
   }[];
   rows: readonly {
+    href?: string;
     label: string;
     value: string;
   }[];
@@ -694,15 +699,15 @@ const buildCharacterRuneRole = (
   const hasRuneSlots = character.runeSlots !== CHARACTER_COPY.unavailableDetail;
 
   if (hasRune && hasRuneSlots) {
-    return `${runeText} 기록과 문장 슬롯 ${character.runeSlots}개를 기준으로 전투 편성을 확인합니다.`;
+    return `합류 당시 기본 장착 문장은 ${runeText}입니다. 문장 슬롯은 ${character.runeSlots}개입니다.`;
   }
 
   if (hasRune) {
-    return `${runeText} 기록을 기준으로 문장 운용을 확인합니다.`;
+    return `합류 당시 기본 장착 문장은 ${runeText}입니다.`;
   }
 
   if (hasRuneSlots) {
-    return `문장 슬롯 ${character.runeSlots}개를 기준으로 전투 편성을 확인합니다.`;
+    return `합류 당시 기본 장착 문장은 확인되지 않습니다. 문장 슬롯은 ${character.runeSlots}개입니다.`;
   }
 
   return CHARACTER_COPY.unavailableDetail;
@@ -734,15 +739,6 @@ const normalizeDetailValue = (value: string) => {
   }
 
   return translateItemName(value);
-};
-
-const buildStringRows = (values: Record<string, string>) => {
-  return Object.entries(values)
-    .filter(([, value]) => value)
-    .map(([label, value]) => ({
-      label,
-      value: normalizeDetailValue(value),
-    }));
 };
 
 const EQUIPMENT_FIXED_MARK = "*";
@@ -806,7 +802,7 @@ const buildCharacterOverallFallbackLines = (
     role ? { role } : null,
   );
   const runeSummary = primaryRunes.length > 0 ?
-    `${primaryRunes.join(" / ")} 운용` :
+    `${primaryRunes.join(" / ")} 기본 장착 문장` :
     "기본 전투 역할";
 
   return [
@@ -814,16 +810,6 @@ const buildCharacterOverallFallbackLines = (
       `${character.name}${topic} ${weaponSummary} 무기를 사용하는 ${character.characterType} 인물입니다. ${runeSummary}과 최대 레벨 능력치를 함께 보며 편성 위치를 판단합니다.` :
       `${character.name}${topic} ${character.characterType} 구분의 인물입니다. 영입 흐름과 전투 기록을 함께 보며 작품 내 역할을 확인합니다.`,
   ];
-};
-
-const extractLocalizedRuneNames = (lines: readonly string[]) => {
-  const names = new Set<string>();
-
-  lines.forEach((line) => {
-    extractDisplayRuneNames(line).forEach((name) => names.add(name));
-  });
-
-  return [...names];
 };
 
 const escapeRegExp = (value: string) =>
@@ -930,12 +916,6 @@ const extractAttachedRuneNames = (lines: readonly string[]) => {
 
 const uniqueRuneNames = (names: readonly string[]) => [...new Set(names)];
 
-const getRuneSlotLimit = (value: string) => {
-  const parsed = Number.parseInt(value, 10);
-
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
-};
-
 export const resolveCharacterPrimaryRunes = (
   character: CharacterEntry,
   record: CharacterDetailRecord | null,
@@ -953,14 +933,7 @@ export const resolveCharacterPrimaryRunes = (
     return characterRunes;
   }
 
-  const recommendedRunes = role ?
-    uniqueRuneNames(role.rune.recommended.flatMap(extractDisplayRuneNames)) :
-    [];
-  const runeSlotLimit = getRuneSlotLimit(character.runeSlots);
-
-  return runeSlotLimit ?
-      recommendedRunes.slice(0, runeSlotLimit) :
-      recommendedRunes;
+  return [];
 };
 
 const translateUniteCharacterName = (name: string) => {
@@ -1140,16 +1113,22 @@ const buildEquipmentRows = (record: CharacterDetailRecord | null) => {
     return [];
   }
 
-  const defaultRows = buildStringRows(record.role.equipment.default).map((row) => ({
-    ...row,
-    label: buildEquipmentLabel("default", row.label),
-  }));
-  const recommendedRows = buildStringRows(record.role.equipment.recommended).map(
-    (row) => ({
-      ...row,
-      label: buildEquipmentLabel("recommended", row.label),
-    }),
-  );
+  const buildEquipmentRow = (
+    group: keyof typeof EQUIPMENT_GROUP_LABELS,
+    label: string,
+    value: string,
+  ) => ({
+    href: resolveItemDetailHref(value) ?? undefined,
+    label: buildEquipmentLabel(group, label),
+    value: normalizeDetailValue(value),
+  });
+
+  const defaultRows = Object.entries(record.role.equipment.default)
+    .filter(([, value]) => value)
+    .map(([label, value]) => buildEquipmentRow("default", label, value));
+  const recommendedRows = Object.entries(record.role.equipment.recommended)
+    .filter(([, value]) => value)
+    .map(([label, value]) => buildEquipmentRow("recommended", label, value));
 
   return [...defaultRows, ...recommendedRows];
 };
@@ -1197,12 +1176,7 @@ export const buildCharacterCombatDataPanels = (
     { label: "Range", value: translateWeaponRange(role.weapon.range) },
     { label: "Starting Level", value: role.weapon.startingLevel },
   ].filter((row) => row.value) : [];
-  const runeLines = role ?
-    extractLocalizedRuneNames([
-      ...role.rune.attached,
-      ...role.rune.recommended,
-    ]) :
-    [];
+  const runeLines = resolveCharacterPrimaryRunes(character, record);
 
   return [
     {
@@ -1223,7 +1197,7 @@ export const buildCharacterCombatDataPanels = (
     },
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-runes`,
-      title: "Runes",
+      title: "기본 문장",
       lines: runeLines,
       rows: [],
     },

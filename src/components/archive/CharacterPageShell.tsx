@@ -1,7 +1,9 @@
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
 import CharacterIndexTable from "@/components/archive/CharacterIndexTable";
 import CharacterSeriesTabs from "@/components/archive/CharacterSeriesTabs";
 import { APP_ROUTES } from "@/constants/app-config";
+import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
   CHARACTER_COPY,
   CHARACTER_DATA_BY_GAME,
@@ -18,9 +20,17 @@ type CharacterPageShellProps = {
 };
 
 const CharacterPageShell = ({ gameId }: CharacterPageShellProps) => {
-  const activeSeries = CHARACTER_SERIES.find((series) => series.id === gameId) ??
-    CHARACTER_SERIES[0];
-  const characters = CHARACTER_DATA_BY_GAME[gameId];
+  const activeSeries = loadArchiveJsonSafely({
+    fallback: CHARACTER_SERIES[0],
+    label: `character-series:${gameId}`,
+    load: () => CHARACTER_SERIES.find((series) => series.id === gameId) ??
+      CHARACTER_SERIES[0],
+  });
+  const characters = loadArchiveJsonSafely({
+    fallback: [],
+    label: `character-index:${gameId}`,
+    load: () => CHARACTER_DATA_BY_GAME[gameId],
+  });
 
   return (
     <main className={APP_SHELL_STYLES.page}>
@@ -28,15 +38,12 @@ const CharacterPageShell = ({ gameId }: CharacterPageShellProps) => {
 
       <div className={RESPONSIVE_SHELL.atlasGrid}>
         <section className={CHARACTER_STYLES.shell}>
-          <header className={CHARACTER_STYLES.intro}>
-            <p className={CHARACTER_STYLES.introEyebrow}>
-              {CHARACTER_COPY.eyebrow}
-            </p>
-            <h1 className={CHARACTER_STYLES.introTitle}>
-              {activeSeries.title}
-            </h1>
-            <p className={CHARACTER_STYLES.introBody}>{activeSeries.body}</p>
-          </header>
+          <ArchivePageIntro
+            body={activeSeries.body}
+            eyebrow={CHARACTER_COPY.eyebrow}
+            styles={CHARACTER_STYLES}
+            title={activeSeries.title}
+          />
 
           <CharacterSeriesTabs activeGameId={gameId} />
           <CharacterIndexTable characters={characters} gameId={gameId} />

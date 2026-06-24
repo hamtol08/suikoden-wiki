@@ -7546,9 +7546,9 @@ export const GAME8_ITEM_SOURCE_RECORDS = [
     "game8Type": "Key Item",
     "sources": [
       {
-        "type": "Barter Event to Recruit Sarah",
+        "type": "Barter Event to Recruit Sheila",
         "entries": [
-          "You can obtain the Salt by trading the Yardstick in the barter event to recruit Sarah in Kirov."
+          "You can obtain the Salt by trading the Yardstick in the barter event to recruit Sheila in Kirov."
         ]
       }
     ],
@@ -7577,9 +7577,9 @@ export const GAME8_ITEM_SOURCE_RECORDS = [
     "game8Type": "Key Item",
     "sources": [
       {
-        "type": "Barter Event to Recruit Sarah",
+        "type": "Barter Event to Recruit Sheila",
         "entries": [
-          "You can obtain Soap by trading the Soy Sauce in the barter event to recruit Sarah in Kirov."
+          "You can obtain Soap by trading the Soy Sauce in the barter event to recruit Sheila in Kirov."
         ]
       }
     ],
@@ -7667,9 +7667,9 @@ export const GAME8_ITEM_SOURCE_RECORDS = [
     "game8Type": "Key Item",
     "sources": [
       {
-        "type": "Barter Event to Recruit Sarah",
+        "type": "Barter Event to Recruit Sheila",
         "entries": [
-          "You can obtain the Soy Sauce by trading the Salt in the barter event to recruit Sarah in Kirov."
+          "You can obtain the Soy Sauce by trading the Salt in the barter event to recruit Sheila in Kirov."
         ]
       }
     ],
@@ -7910,9 +7910,9 @@ export const GAME8_ITEM_SOURCE_RECORDS = [
     "game8Type": "Key Item",
     "sources": [
       {
-        "type": "Barter Event to Recruit Sarah",
+        "type": "Barter Event to Recruit Sheila",
         "entries": [
-          "You can obtain the Yardstick by trading Sugar in the barter event to recruit Sarah in Kirov."
+          "You can obtain the Yardstick by trading Sugar in the barter event to recruit Sheila in Kirov."
         ]
       }
     ],

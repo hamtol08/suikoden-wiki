@@ -10,6 +10,21 @@ export const MOTION_PRESETS = {
     viewport: { once: true, margin: "-48px" },
     transition: { duration: 0.28, ease: "easeOut" },
   },
+  list: {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: { staggerChildren: 0.035, delayChildren: 0.04 },
+    },
+    exit: { opacity: 0 },
+    transition: { duration: 0.16, ease: "easeOut" },
+  },
+  listItem: {
+    initial: { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -6 },
+    transition: { duration: 0.22, ease: "easeOut" },
+  },
   drawerOverlay: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },

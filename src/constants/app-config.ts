@@ -8,9 +8,11 @@ export const ROUTE_ANCHORS = {
 export const APP_ROUTES = {
   home: "/",
   characters: "/characters",
+  gameplay: "/gameplay",
   items: "/items",
   runes: "/runes",
   regionAtlas: "/region-atlas",
+  timeline: "/timeline",
   worldMap: "/world-map",
 } as const;
 
@@ -42,6 +44,14 @@ export const DOM_IDS = {
 export const IMAGE_LOADING = {
   eager: "eager",
   lazy: "lazy",
+} as const;
+
+export const ARCHIVE_NAVIGATION_EVENT_NAME = "genso-archive-navigation";
+
+export const NAVIGATION_LOADING_TIMING = {
+  minimumVisibleMs: 360,
+  maximumVisibleMs: 15000,
+  settleDelayMs: 80,
 } as const;
 
 export const THEME_STORAGE_KEY = "genso-theme-mode";

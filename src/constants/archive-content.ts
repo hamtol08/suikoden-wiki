@@ -1,6 +1,5 @@
 import {
   APP_ROUTES,
-  ROUTE_ANCHORS,
   buildCharacterDetailPath,
   buildCharacterGamePath,
   buildItemGamePath,
@@ -67,6 +66,14 @@ export const ARCHIVE_COPY = {
   },
 } as const;
 
+export const ARCHIVE_LOADING_COPY = {
+  eyebrow: "Loading Archive",
+  title: "Genso Chronicle",
+  body: "다음 기록을 불러오는 중입니다.",
+  status: "잠시만 기다려 주세요.",
+  signalItems: ["Characters", "Runes", "Items", "World Map"],
+} as const;
+
 export const IMAGE_PATHS = {
   logoMark: "/suikoden/genso-mark.svg",
   hdRemaster: "/suikoden/hd-remaster.png",
@@ -87,7 +94,7 @@ export const NAV_GROUPS = [
     href: APP_ROUTES.home,
     items: [
       { label: "Series Overview", href: APP_ROUTES.home },
-      { label: "Historical Timeline", href: ROUTE_ANCHORS.current },
+      { label: "Historical Timeline", href: APP_ROUTES.timeline },
     ],
   },
   {
@@ -122,6 +129,24 @@ export const NAV_GROUPS = [
       { label: "Region Atlas", href: APP_ROUTES.regionAtlas },
     ],
   },
+  {
+    label: "Gameplay",
+    href: APP_ROUTES.gameplay,
+    items: [
+      {
+        label: "System Overview",
+        href: `${APP_ROUTES.gameplay}#system-overview`,
+      },
+      { label: "Battle", href: `${APP_ROUTES.gameplay}#battle` },
+      { label: "Duel", href: `${APP_ROUTES.gameplay}#duel` },
+      { label: "War Battle", href: `${APP_ROUTES.gameplay}#war-battle` },
+      {
+        label: "Headquarters",
+        href: `${APP_ROUTES.gameplay}#headquarters`,
+      },
+      { label: "Guide Index", href: `${APP_ROUTES.gameplay}#guide-index` },
+    ],
+  },
 ] as const;
 
 export const FEATURE_CARDS = [
@@ -152,9 +177,9 @@ export const ARCHIVE_CATEGORIES = [
   { title: "Characters", icon: "users", href: APP_ROUTES.characters, body: "주요 인물, 108성, 동료 영입 조건" },
   { title: "Runes", icon: "sparkles", href: APP_ROUTES.runes, body: "공개된 진정한 문장과 일반 문장 계보" },
   { title: "Locations", icon: "compass", href: APP_ROUTES.regionAtlas, body: "트란, 듀난, 하이랜드 지역 기록" },
-  { title: "Timeline", icon: "history", href: ROUTE_ANCHORS.current, body: "전쟁, 왕조, 국가 변천 연표" },
+  { title: "Timeline", icon: "history", href: APP_ROUTES.timeline, body: "전쟁, 왕조, 국가 변천 연표" },
   { title: "Items", icon: "archive", href: APP_ROUTES.items, body: "무기, 방어구, 희귀 수집품" },
-  { title: "Gameplay", icon: "swords", href: ROUTE_ANCHORS.current, body: "전투, 일기토, 전쟁 시스템" },
+  { title: "Gameplay", icon: "swords", href: APP_ROUTES.gameplay, body: "전투, 일기토, 전쟁 시스템" },
 ] as const;
 
 export const TIMELINE_ITEMS = [
@@ -293,7 +318,7 @@ export const REGION_ATLAS_TABS = [
     id: "suikoden-ii",
     eyebrow: "Dunan Unification War",
     title: "Suikoden II",
-    body: "하이랜드 국경에서 시작해 조우스턴, 트란공화국, 틴토, 황도 루루노이에로 이어지는 2편의 여정 순서대로 정리합니다.",
+    body: "하이랜드 국경에서 시작해 죠스턴, 트란 공화국, 틴토, 황도 루루노이에로 이어지는 2편의 여정 순서대로 정리합니다.",
   },
 ] as const;
 
@@ -529,7 +554,7 @@ export const REGION_ATLAS_LOCATIONS = [
     rune: "시작의 문장",
     description: "주인공과 조이가 유니콘 부대 소속으로 머무는 시작 지점입니다. 조작된 학살과 절벽 탈출로 듀난 전쟁의 첫 장면이 열립니다.",
     locations: ["유니콘 부대 야영지", "텐잔 고개", "탈출 절벽"],
-    traits: ["2편의 프롤로그 무대", "하이랜드와 조우스턴의 국경 긴장이 폭발", "주인공과 조이의 약속이 시작되는 장소"],
+    traits: ["2편의 프롤로그 무대", "하이랜드와 죠스턴의 국경 긴장이 폭발", "주인공과 조이의 약속이 시작되는 장소"],
     detailHref: "/region-atlas/suikoden-ii/tenzan-pass-camp",
   },
   {
@@ -540,7 +565,7 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "빅토르 용병단 거점",
     ruling: "빅토르 용병단",
     rune: "-",
-    description: "주인공이 강에서 구조된 뒤 머무는 첫 조우스턴 측 거점입니다. 빅토르와 프릭의 용병단을 통해 하이랜드 병사였던 주인공의 위치가 바뀝니다.",
+    description: "주인공이 강에서 구조된 뒤 머무는 첫 죠스턴 측 거점입니다. 빅토르와 프릭의 용병단을 통해 하이랜드 병사였던 주인공의 위치가 바뀝니다.",
     locations: ["요새 앞마당", "감옥", "용병단 회관"],
     traits: ["초반 동료 관계가 형성", "하이랜드 추격을 피해 머무는 임시 거점", "뮤즈로 향하는 첫 교두보"],
     detailHref: "/region-atlas/suikoden-ii/mercenary-fortress",
@@ -551,7 +576,7 @@ export const REGION_ATLAS_LOCATIONS = [
     name: "류베 마을",
     category: "Village",
     status: "국경 마을",
-    ruling: "조우스턴 국경권",
+    ruling: "죠스턴 국경권",
     rune: "-",
     description: "초반에 조이가 치료를 받는 마을이자, 이후 루카 브라이트의 잔혹함이 직접 드러나는 지역입니다. 2편 초반 정서의 핵심 마을입니다.",
     locations: ["류베 마을", "숲길", "마을 광장"],
@@ -564,7 +589,7 @@ export const REGION_ATLAS_LOCATIONS = [
     name: "토토 마을",
     category: "Village",
     status: "파괴된 마을",
-    ruling: "조우스턴 국경권",
+    ruling: "죠스턴 국경권",
     rune: "시작의 문장",
     description: "시작의 문장 신전과 연결되는 마을입니다. 파괴된 마을과 봉인된 문장은 주인공과 조이의 운명을 본격적으로 갈라놓습니다.",
     locations: ["토토 마을", "시작의 문장 신전"],
@@ -589,12 +614,12 @@ export const REGION_ATLAS_LOCATIONS = [
     game: "suikoden-ii",
     name: "뮤즈",
     category: "City-State",
-    status: "조우스턴 중심 도시",
+    status: "죠스턴 중심 도시",
     ruling: "뮤즈 도시국가",
     rune: "-",
-    description: "조우스턴 도시동맹의 정치 중심지입니다. 동맹 회의와 하이랜드 침공의 충격이 집중되는 도시입니다.",
-    locations: ["뮤즈 시내", "조우스턴 언덕"],
-    traits: ["조우스턴 의회의 중심", "듀난 전쟁 초중반의 핵심 무대", "도시국가 연합의 취약성이 드러나는 장소"],
+    description: "죠스턴 도시동맹의 정치 중심지입니다. 동맹 회의와 하이랜드 침공의 충격이 집중되는 도시입니다.",
+    locations: ["뮤즈 시내", "죠스턴 언덕"],
+    traits: ["죠스턴 의회의 중심", "듀난 전쟁 초중반의 핵심 무대", "도시국가 연합의 취약성이 드러나는 장소"],
     detailHref: "/region-atlas/suikoden-ii/muse",
   },
   {
@@ -605,7 +630,7 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "듀난 호수 항구",
     ruling: "뮤즈 도시국가",
     rune: "-",
-    description: "뮤즈 함락 이후 듀난 호수를 건너 남쪽으로 향하는 항구 도시입니다. 조우스턴 중심부에서 남부권으로 무대가 바뀌는 통로입니다.",
+    description: "뮤즈 함락 이후 듀난 호수를 건너 남쪽으로 향하는 항구 도시입니다. 죠스턴 중심부에서 남부권으로 무대가 바뀌는 통로입니다.",
     locations: ["코로네 항구", "듀난 호수 연락선"],
     traits: ["뮤즈 탈출 이후의 항구", "사우스 윈도우 방면 이동 관문", "호수 교통의 중요성이 드러남"],
     detailHref: "/region-atlas/suikoden-ii/coronet",
@@ -631,9 +656,9 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "남부 도시국가",
     ruling: "사우스 윈도우 도시국가",
     rune: "-",
-    description: "조우스턴 남부의 주요 도시국가입니다. 노스 윈도우, 라다트, 쿠스쿠스와 함께 남부 동선을 이룹니다.",
+    description: "죠스턴 남부의 주요 도시국가입니다. 노스 윈도우, 라다트, 쿠스쿠스와 함께 남부 동선을 이룹니다.",
     locations: ["사우스 윈도우 시내", "노스 윈도우 방면 길"],
-    traits: ["조우스턴 남부 정치권", "초중반 이동 동선의 중심", "주변 항구와 강길로 연결"],
+    traits: ["죠스턴 남부 정치권", "초중반 이동 동선의 중심", "주변 항구와 강길로 연결"],
     detailHref: "/region-atlas/suikoden-ii/south-window",
   },
   {
@@ -668,7 +693,7 @@ export const REGION_ATLAS_LOCATIONS = [
     name: "레이크웨스트 마을",
     category: "Village",
     status: "듀난 호수 마을",
-    ruling: "조우스턴 국경권",
+    ruling: "죠스턴 국경권",
     rune: "-",
     description: "투 리버로 향하는 길목의 호수 마을입니다. 호수 주변 마을과 도시국가권 사이의 생활 동선을 보여줍니다.",
     locations: ["레이크웨스트 마을", "듀난 호수 길"],
@@ -685,7 +710,7 @@ export const REGION_ATLAS_LOCATIONS = [
     rune: "-",
     description: "인간, 코볼트, 윙거 구역이 나뉜 도시국가입니다. 종족 간 갈등과 하이랜드 방어전이 신동맹군의 외교력을 시험합니다.",
     locations: ["인간 구역", "코볼트 구역", "윙거 구역"],
-    traits: ["다종족 도시 구조", "도시 방어전의 중심", "조우스턴 내부 갈등을 보여주는 장소"],
+    traits: ["다종족 도시 구조", "도시 방어전의 중심", "죠스턴 내부 갈등을 보여주는 장소"],
     detailHref: "/region-atlas/suikoden-ii/two-river",
   },
   {
@@ -696,7 +721,7 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "학원 도시",
     ruling: "그린힐 도시국가",
     rune: "-",
-    description: "학원 도시로 알려진 조우스턴의 주요 도시국가입니다. 점령과 잠입, 학생 사회의 시선이 함께 그려집니다.",
+    description: "학원 도시로 알려진 죠스턴의 주요 도시국가입니다. 점령과 잠입, 학생 사회의 시선이 함께 그려집니다.",
     locations: ["그린힐 학원", "그린힐 숲", "성문"],
     traits: ["학원 도시의 정체성", "하이랜드 점령과 저항의 무대", "잠입 서사가 중심이 되는 지역"],
     detailHref: "/region-atlas/suikoden-ii/greenhill",
@@ -722,7 +747,7 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "기사단 국경 관문",
     ruling: "마틸다 기사단",
     rune: "-",
-    description: "조우스턴과 마틸다 기사단 사이의 국경 관문입니다. 기사단의 폐쇄성과 전쟁 중립 문제가 처음 체감되는 지점입니다.",
+    description: "죠스턴과 마틸다 기사단 사이의 국경 관문입니다. 기사단의 폐쇄성과 전쟁 중립 문제가 처음 체감되는 지점입니다.",
     locations: ["뮤즈-마틸다 국경", "마틸다 방면 길"],
     traits: ["마틸다 진입 관문", "기사단 정치의 거리감이 드러남", "그린힐 이후 북서부 이동과 연결"],
     detailHref: "/region-atlas/suikoden-ii/matilda-border",
@@ -750,7 +775,7 @@ export const REGION_ATLAS_LOCATIONS = [
     rune: "-",
     description: "마틸다 기사단의 중심 성채 도시입니다. 기사단의 질서와 듀난 전쟁의 정치적 선택이 집중됩니다.",
     locations: ["록액스 성", "마틸다 방면 길"],
-    traits: ["마틸다 기사단의 중심", "조우스턴 북서부 방어의 핵심", "전쟁 후반 선택의 무게가 큰 도시"],
+    traits: ["마틸다 기사단의 중심", "죠스턴 북서부 방어의 핵심", "전쟁 후반 선택의 무게가 큰 도시"],
     detailHref: "/region-atlas/suikoden-ii/rockaxe",
   },
   {
@@ -936,7 +961,7 @@ export const REGION_ATLAS_LOGS = [
   },
   {
     title: "Dunan Border Pressure",
-    body: "하이랜드와 조우스턴 사이의 국경 지대는 2편의 전쟁 사건이 집중되는 핵심 축입니다.",
+    body: "하이랜드와 죠스턴 사이의 국경 지대는 2편의 전쟁 사건이 집중되는 핵심 축입니다.",
     icon: "compass",
   },
 ] as const;

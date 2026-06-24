@@ -10,6 +10,7 @@ import {
   REGION_ATLAS_LOCATIONS,
   REGION_KOREAN_NAMES,
 } from "@/constants/archive-content";
+import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
   getRegionCharacterLocationAliases,
   getRegionDetailRecord,
@@ -59,7 +60,11 @@ const buildLocationCandidates = (value: string) => {
 
 const buildRegionLocationSet = (region: Region) => {
   const koreanName = REGION_KOREAN_NAMES[region.id];
-  const aliases = getRegionCharacterLocationAliases(region.game, region.id);
+  const aliases = loadArchiveJsonSafely<readonly string[]>({
+    fallback: [],
+    label: `region-location-aliases:${region.game}:${region.id}`,
+    load: () => getRegionCharacterLocationAliases(region.game, region.id),
+  });
   const values = [
     region.name,
     koreanName,
@@ -98,13 +103,89 @@ const translateDropName = (name: string) => {
 };
 
 const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
-  const detailRecord = getRegionDetailRecord(region.game, region.id);
+  const detailRecord = loadArchiveJsonSafely({
+    fallback: null,
+    label: `region-detail-record:${region.game}:${region.id}`,
+    load: () => getRegionDetailRecord(region.game, region.id),
+  });
   const shops = detailRecord?.shops ?? [];
   const enemies = detailRecord?.enemies ?? [];
-  const recruitableCharacters = buildRegionCharacters(region);
+  const recruitableCharacters = loadArchiveJsonSafely({
+    fallback: [],
+    label: `region-characters:${region.game}:${region.id}`,
+    load: () => buildRegionCharacters(region),
+  });
+  const hasCharacterDetail = loadArchiveJsonSafely({
+    fallback: false,
+    label: `region-character-detail-availability:${region.game}`,
+    load: () => isCharacterDetailAvailable(region.game),
+  });
+  const shopCards = shops.flatMap((shop) =>
+    loadArchiveJsonSafely({
+      fallback: [],
+      label: `region-shop:${region.game}:${region.id}:${shop.name}`,
+      load: () => [
+        {
+          items: shop.items.flatMap((item) =>
+            loadArchiveJsonSafely({
+              fallback: [],
+              label: `region-shop-item:${region.game}:${region.id}:${shop.name}:${item.name}`,
+              load: () => {
+                const itemReference = resolveItemReference(item.name);
+
+                return [
+                  {
+                    availabilityLabel: item.availability
+                      ? AVAILABILITY_LABELS[item.availability]
+                      : null,
+                    categoryLabel: itemReference
+                      ? ITEM_CATEGORY_LABELS[itemReference.category]
+                      : null,
+                    key: item.name,
+                    name: translateDropName(item.name),
+                    price: formatPrice(item.price),
+                  },
+                ];
+              },
+            }),
+          ),
+          key: shop.name,
+          name: REGION_SHOP_NAME_LABELS[
+            shop.name as keyof typeof REGION_SHOP_NAME_LABELS
+          ] ?? shop.name,
+        },
+      ],
+    }),
+  );
+  const enemyCards = enemies.flatMap((enemy) =>
+    loadArchiveJsonSafely({
+      fallback: [],
+      label: `region-enemy:${region.game}:${region.id}:${enemy.name}`,
+      load: () => [
+        {
+          drops: enemy.drops.flatMap((drop) =>
+            loadArchiveJsonSafely({
+              fallback: [],
+              label: `region-enemy-drop:${region.game}:${region.id}:${enemy.name}:${drop.item}`,
+              load: () => [
+                {
+                  chance: REGION_DROP_CHANCE_LABELS[drop.chance],
+                  key: drop.item,
+                  name: translateDropName(drop.item),
+                },
+              ],
+            }),
+          ),
+          key: enemy.name,
+          name: translateMonsterName(enemy.name),
+          phase: enemy.phase,
+        },
+      ],
+    }),
+  );
   const hasRecruitableCharacters = recruitableCharacters.length > 0;
-  const hasShops = shops.length > 0;
-  const hasEnemies = enemies.length > 0;
+  const hasShops = shopCards.length > 0;
+  const hasEnemies = enemyCards.length > 0;
 
   if (!hasRecruitableCharacters && !hasShops && !hasEnemies) {
     return null;
@@ -126,7 +207,6 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
           </h3>
           <div className={ATLAS_STYLES.regionCharacterGrid}>
             {recruitableCharacters.map((character) => {
-              const hasDetail = isCharacterDetailAvailable(region.game);
               const characterCard = (
                 <>
                   <span className={ATLAS_STYLES.regionCharacterOrder}>
@@ -141,7 +221,7 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                 </>
               );
 
-              return hasDetail ? (
+              return hasCharacterDetail ? (
                 <Link
                   className={ATLAS_STYLES.regionCharacterCard}
                   href={buildCharacterDetailPath(region.game, character.id)}
@@ -165,40 +245,34 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
             {REGION_DETAIL_COPY.shopTitle}
           </h3>
           <div className={ATLAS_STYLES.regionRecordGrid}>
-            {shops.map((shop) => (
-              <section className={ATLAS_STYLES.regionRecordCard} key={shop.name}>
+            {shopCards.map((shop) => (
+              <section className={ATLAS_STYLES.regionRecordCard} key={shop.key}>
                 <h4 className={ATLAS_STYLES.regionRecordCardTitle}>
-                  {REGION_SHOP_NAME_LABELS[
-                    shop.name as keyof typeof REGION_SHOP_NAME_LABELS
-                  ] ?? shop.name}
+                  {shop.name}
                 </h4>
                 <ul className={ATLAS_STYLES.regionDataList}>
-                  {shop.items.map((item) => {
-                    const itemReference = resolveItemReference(item.name);
-
-                    return (
-                      <li className={ATLAS_STYLES.regionDataRow} key={item.name}>
-                        <span>
-                          <span className={ATLAS_STYLES.regionDataName}>
-                            {translateDropName(item.name)}
+                  {shop.items.map((item) => (
+                    <li className={ATLAS_STYLES.regionDataRow} key={item.key}>
+                      <span>
+                        <span className={ATLAS_STYLES.regionDataName}>
+                          {item.name}
+                        </span>
+                        {item.availabilityLabel ? (
+                          <span className={ATLAS_STYLES.regionDataMeta}>
+                            {item.availabilityLabel}
                           </span>
-                          {item.availability ? (
-                            <span className={ATLAS_STYLES.regionDataMeta}>
-                              {AVAILABILITY_LABELS[item.availability]}
-                            </span>
-                          ) : null}
-                          {itemReference ? (
-                            <span className={ATLAS_STYLES.regionDataMeta}>
-                              {ITEM_CATEGORY_LABELS[itemReference.category]}
-                            </span>
-                          ) : null}
-                        </span>
-                        <span className={ATLAS_STYLES.regionDataValue}>
-                          {formatPrice(item.price)}
-                        </span>
-                      </li>
-                    );
-                  })}
+                        ) : null}
+                        {item.categoryLabel ? (
+                          <span className={ATLAS_STYLES.regionDataMeta}>
+                            {item.categoryLabel}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className={ATLAS_STYLES.regionDataValue}>
+                        {item.price}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </section>
             ))}
@@ -212,10 +286,10 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
             {REGION_DETAIL_COPY.enemyTitle}
           </h3>
           <div className={ATLAS_STYLES.regionRecordGrid}>
-            {enemies.map((enemy) => (
-              <section className={ATLAS_STYLES.regionRecordCard} key={enemy.name}>
+            {enemyCards.map((enemy) => (
+              <section className={ATLAS_STYLES.regionRecordCard} key={enemy.key}>
                 <h4 className={ATLAS_STYLES.regionRecordCardTitle}>
-                  {translateMonsterName(enemy.name)}
+                  {enemy.name}
                 </h4>
                 {enemy.phase ? (
                   <p className={ATLAS_STYLES.regionRecordCardMeta}>
@@ -224,12 +298,12 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                 ) : null}
                 <ul className={ATLAS_STYLES.regionDataList}>
                   {enemy.drops.map((drop) => (
-                    <li className={ATLAS_STYLES.regionDataRow} key={drop.item}>
+                    <li className={ATLAS_STYLES.regionDataRow} key={drop.key}>
                       <span className={ATLAS_STYLES.regionDataName}>
-                        {translateDropName(drop.item)}
+                        {drop.name}
                       </span>
                       <span className={ATLAS_STYLES.regionDataValue}>
-                        {REGION_DROP_CHANCE_LABELS[drop.chance]}
+                        {drop.chance}
                       </span>
                     </li>
                   ))}

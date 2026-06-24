@@ -2,57 +2,54 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type ChangeEvent, useMemo, useState } from "react";
-import { Search } from "lucide-react";
-import {
-  formatRuneGames,
-  RUNE_ARCHIVE_COPY,
-  RUNE_CATEGORY_LABELS,
-  getRuneDisplayImageSrc,
-  isRuneFallbackImage,
-  type RuneIndexPageId,
-  type RuneReference,
-} from "@/constants/rune-content";
-import { ICON_STYLES, RUNE_STYLES } from "@/constants/ui-styles";
+import { type ChangeEvent, type ReactNode, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import ArchiveIndexSearch from "@/components/archive/ArchiveIndexSearch";
+import LocalizedNameList, {
+  type LocalizedNameEntry,
+} from "@/components/archive/LocalizedNameList";
+import { normalizeArchiveSearchText } from "@/constants/archive-utils";
+import { MOTION_PRESETS } from "@/constants/motion-styles";
+import { RUNE_STYLES } from "@/constants/ui-styles";
 
-type RuneIndexBrowserProps = {
-  pageId: RuneIndexPageId;
-  pages: readonly {
-    href: string;
-    id: RuneIndexPageId;
-    title: string;
-  }[];
-  runes: readonly RuneReference[];
+export type RuneIndexBrowserItem = {
+  categoryLabel: string;
+  displayNames: readonly LocalizedNameEntry[];
+  gameLabel: string;
+  href: string;
+  id: string;
+  imageSrc: string;
+  isFallbackImage: boolean;
+  name: string;
+  searchText: string;
 };
 
-const normalizeSearchText = (value: string) =>
-  value.toLocaleLowerCase("ko-KR").replace(/\s+/g, " ").trim();
+type RuneIndexBrowserCopy = {
+  noResults: string;
+  resultCountSuffix: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+};
 
-const buildRuneSearchText = (rune: RuneReference) =>
-  normalizeSearchText(
-    [
-      rune.name,
-      ...rune.aliases,
-      RUNE_CATEGORY_LABELS[rune.category],
-      formatRuneGames(rune.games),
-    ].join(" "),
-  );
+type RuneIndexBrowserProps = {
+  children: ReactNode;
+  copy: RuneIndexBrowserCopy;
+  runes: readonly RuneIndexBrowserItem[];
+};
 
 const RuneIndexBrowser = ({
-  pageId,
-  pages,
+  children,
+  copy,
   runes,
 }: RuneIndexBrowserProps) => {
   const [query, setQuery] = useState("");
-  const normalizedQuery = normalizeSearchText(query);
+  const normalizedQuery = normalizeArchiveSearchText(query);
   const filteredRunes = useMemo(() => {
     if (!normalizedQuery) {
       return runes;
     }
 
-    return runes.filter((rune) =>
-      buildRuneSearchText(rune).includes(normalizedQuery),
-    );
+    return runes.filter((rune) => rune.searchText.includes(normalizedQuery));
   }, [normalizedQuery, runes]);
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -61,81 +58,81 @@ const RuneIndexBrowser = ({
 
   return (
     <div className={RUNE_STYLES.browser}>
-      <section className={RUNE_STYLES.searchPanel}>
-        <label className={RUNE_STYLES.searchForm}>
-          <Search aria-hidden="true" className={ICON_STYLES.search} />
-          <input
-            aria-label={RUNE_ARCHIVE_COPY.searchLabel}
-            className={RUNE_STYLES.searchInput}
-            placeholder={RUNE_ARCHIVE_COPY.searchPlaceholder}
-            type="search"
-            value={query}
-            onChange={handleSearchChange}
-          />
-        </label>
-        <p className={RUNE_STYLES.searchMeta}>
-          {RUNE_ARCHIVE_COPY.resultCount(filteredRunes.length)}
-        </p>
-      </section>
+      <ArchiveIndexSearch
+        ariaLabel={copy.searchLabel}
+        meta={`${filteredRunes.length.toLocaleString("ko-KR")}${copy.resultCountSuffix}`}
+        placeholder={copy.searchPlaceholder}
+        styles={RUNE_STYLES}
+        value={query}
+        onChange={handleSearchChange}
+      />
 
-      <nav
-        aria-label={RUNE_ARCHIVE_COPY.ariaLabels.categoryTabs}
-        className={RUNE_STYLES.tabs}
-      >
-        {pages.map((page) => (
-          <Link
-            className={
-              page.id === pageId ? RUNE_STYLES.tabActive : RUNE_STYLES.tab
-            }
-            href={page.href}
-            key={page.id}
-          >
-            {page.title}
-          </Link>
-        ))}
-      </nav>
+      {children}
 
-      {filteredRunes.length > 0 ? (
-        <div className={RUNE_STYLES.grid}>
-          {filteredRunes.map((rune) => {
-            const imageSrc = getRuneDisplayImageSrc(rune);
-            const isFallback = isRuneFallbackImage(rune);
-
-            return (
-              <Link className={RUNE_STYLES.card} href={rune.href} key={rune.id}>
+      <AnimatePresence mode="wait">
+        {filteredRunes.length > 0 ? (
+        <motion.div
+          animate={MOTION_PRESETS.list.animate}
+          className={RUNE_STYLES.grid}
+          exit={MOTION_PRESETS.list.exit}
+          initial={MOTION_PRESETS.list.initial}
+          key={normalizedQuery || "all-runes"}
+          transition={MOTION_PRESETS.list.transition}
+        >
+          {filteredRunes.map((rune) => (
+              <motion.div
+                animate={MOTION_PRESETS.listItem.animate}
+                exit={MOTION_PRESETS.listItem.exit}
+                initial={MOTION_PRESETS.listItem.initial}
+                key={rune.id}
+                transition={MOTION_PRESETS.listItem.transition}
+              >
+                <Link className={RUNE_STYLES.card} href={rune.href}>
                 <div className={RUNE_STYLES.cardImageWrap}>
                   <Image
                     alt={rune.name}
                     className={
-                      isFallback ?
+                      rune.isFallbackImage ?
                         RUNE_STYLES.cardFallbackImage :
                         RUNE_STYLES.cardImage
                     }
                     height={160}
-                    src={imageSrc}
-                    unoptimized={imageSrc.endsWith(".svg")}
+                    src={rune.imageSrc}
+                    unoptimized={rune.imageSrc.endsWith(".svg")}
                     width={220}
                   />
                 </div>
                 <div className={RUNE_STYLES.cardContent}>
                   <p className={RUNE_STYLES.cardMeta}>
-                    {RUNE_CATEGORY_LABELS[rune.category]}
+                    {rune.categoryLabel}
                   </p>
                   <h2 className={RUNE_STYLES.cardTitle}>{rune.name}</h2>
-                  <p className={RUNE_STYLES.cardBody}>
-                    {rune.aliases.join(" / ")}
-                  </p>
+                  <LocalizedNameList
+                    entries={rune.displayNames}
+                    itemKey={rune.id}
+                    styles={RUNE_STYLES}
+                  />
                   <p className={RUNE_STYLES.cardGames}>
-                    {formatRuneGames(rune.games)}
+                    {rune.gameLabel}
                   </p>
                 </div>
-              </Link>
-            );
-          })}
-        </div>
-      ) : (
-        <p className={RUNE_STYLES.empty}>{RUNE_ARCHIVE_COPY.noResults}</p>
-      )}
+                </Link>
+              </motion.div>
+          ))}
+        </motion.div>
+        ) : (
+        <motion.p
+          animate={MOTION_PRESETS.listItem.animate}
+          className={RUNE_STYLES.empty}
+          exit={MOTION_PRESETS.listItem.exit}
+          initial={MOTION_PRESETS.listItem.initial}
+          key="empty-runes"
+          transition={MOTION_PRESETS.listItem.transition}
+        >
+          {copy.noResults}
+        </motion.p>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
