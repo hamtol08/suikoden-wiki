@@ -13,6 +13,7 @@ export const APP_ROUTES = {
   runes: "/runes",
   regionAtlas: "/region-atlas",
   timeline: "/timeline",
+  navigationFallbackNotFound: "/archive-navigation-timeout",
   worldMap: "/world-map",
 } as const;
 
@@ -27,6 +28,9 @@ export const buildItemDetailPath = (itemId: string) =>
 
 export const buildItemGamePath = (gameId: string) =>
   `${APP_ROUTES.items}/${gameId}`;
+
+export const buildGameplayDetailPath = (guideId: string) =>
+  `${APP_ROUTES.gameplay}/${guideId}`;
 
 export const buildRuneDetailPath = (runeId: string) =>
   `${APP_ROUTES.runes}/${runeId}`;
@@ -50,7 +54,7 @@ export const ARCHIVE_NAVIGATION_EVENT_NAME = "genso-archive-navigation";
 
 export const NAVIGATION_LOADING_TIMING = {
   minimumVisibleMs: 360,
-  maximumVisibleMs: 15000,
+  fallbackToNotFoundMs: 15000,
   settleDelayMs: 80,
 } as const;
 

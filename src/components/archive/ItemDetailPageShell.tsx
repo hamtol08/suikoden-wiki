@@ -2,12 +2,7 @@ import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
 import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
-  formatItemDropLocations,
-  formatItemDropRates,
-  formatItemOtherLocations,
-  formatItemPrice,
-  formatItemShopLocations,
-  formatItemSources,
+  buildItemRecordDisplay,
   getItemDetailRecord,
   getItemIndexPage,
   ITEM_ARCHIVE_COPY,
@@ -77,20 +72,22 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
     loadArchiveJsonSafely({
       fallback: [],
       label: `item-detail-game-record:${item.id}:${record.game}`,
-      load: () => [
-        {
-          dropLocations: formatItemDropLocations(record),
-          dropRates: formatItemDropRates(record),
-          gameTitle: getItemIndexPage(record.game).title,
-          key: record.game,
-          otherLocations: formatItemOtherLocations(record),
-          price: formatItemPrice(record),
-          shopLocations: formatItemShopLocations(record),
-          source: formatItemSources(record),
-        },
-      ],
+      load: () => {
+        const display = buildItemRecordDisplay(record);
+
+        return [
+          {
+            ...display,
+            gameTitle: getItemIndexPage(record.game).title,
+            key: record.game,
+          },
+        ];
+      },
     }),
   );
+  const primaryRecordDisplay = primaryRecord
+    ? buildItemRecordDisplay(primaryRecord)
+    : null;
 
   return (
     <main className={APP_SHELL_STYLES.page}>
@@ -129,9 +126,8 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                     {ITEM_ARCHIVE_COPY.labels.price}
                   </dt>
                   <dd className={ITEM_STYLES.ledgerValue}>
-                    {primaryRecord
-                      ? formatItemPrice(primaryRecord)
-                      : ITEM_ARCHIVE_COPY.unavailableDetail}
+                    {primaryRecordDisplay?.price ??
+                      ITEM_ARCHIVE_COPY.unavailableDetail}
                   </dd>
                 </div>
                 <div className={ITEM_STYLES.detailMetaRow}>
@@ -139,9 +135,8 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                     {ITEM_ARCHIVE_COPY.labels.source}
                   </dt>
                   <dd className={ITEM_STYLES.ledgerValue}>
-                    {primaryRecord
-                      ? formatItemSources(primaryRecord)
-                      : ITEM_ARCHIVE_COPY.unavailableDetail}
+                    {primaryRecordDisplay?.sourceLabel ??
+                      ITEM_ARCHIVE_COPY.unavailableDetail}
                   </dd>
                 </div>
               </dl>
@@ -184,7 +179,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                       </h4>
                       <div className={ITEM_STYLES.chipRow}>
                         <span className={ITEM_STYLES.chip}>
-                          {record.source}
+                          {record.sourceLabel}
                         </span>
                       </div>
                     </div>
@@ -235,26 +230,6 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
               </div>
             </section>
 
-            {item.references.length > 0 ? (
-              <section className={ITEM_STYLES.detailSection}>
-                <h3 className={ITEM_STYLES.detailSectionTitle}>
-                  {ITEM_ARCHIVE_COPY.referenceTitle}
-                </h3>
-                <div className={ITEM_STYLES.detailReferenceList}>
-                  {item.references.map((reference) => (
-                    <a
-                      className={ITEM_STYLES.detailReferenceLink}
-                      href={reference.href}
-                      key={reference.href}
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {reference.label}
-                    </a>
-                  ))}
-                </div>
-              </section>
-            ) : null}
           </section>
         </section>
       </div>

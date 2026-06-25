@@ -37,39 +37,41 @@ export const ROUTE_LOADING_STYLES = {
     "pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(246,241,232,0.94),rgba(246,241,232,0.72)_45%,rgba(16,24,39,0.16))] dark:bg-[linear-gradient(180deg,rgba(5,11,20,0.98),rgba(10,20,33,0.88)_48%,rgba(212,175,55,0.10))]",
   stage:
     "relative z-10 grid w-full max-w-3xl place-items-center text-center",
-  markStage:
-    "relative grid size-40 place-items-center sm:size-48",
-  outerRing:
-    "absolute inset-0 rounded-full border border-[#d4af37]/45",
-  middleRing:
-    "absolute inset-4 animate-spin rounded-full border border-dashed border-[#7a5900]/45 dark:border-[#e9c176]/45",
-  innerRing:
-    "absolute inset-8 animate-pulse rounded-full border border-[#c7d3e9] bg-white/45 shadow-[0_0_48px_rgba(212,175,55,0.22)] dark:border-[#38475f] dark:bg-[#111c2c]/70",
-  mark:
-    "relative z-10 flex size-24 items-center justify-center rounded-full border border-[#d4af37] bg-[#101827] p-4 shadow-2xl dark:bg-[#050b14] sm:size-28",
-  markImage: "size-full",
   eyebrow:
-    "mt-5 text-sm font-bold uppercase tracking-[0.28em] text-[#7a5900] dark:text-[#e9c176]",
+    "text-sm font-bold uppercase tracking-[0.28em] text-[#7a5900] dark:text-[#e9c176]",
   title:
     "mt-3 font-serif text-4xl font-semibold text-[#101827] dark:text-[#f4f1ea] sm:text-6xl",
   body:
     "mt-4 max-w-xl break-keep text-base font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
-  statusRow:
-    "mt-5 flex items-center justify-center gap-3 text-sm font-bold text-[#7a5900] dark:text-[#e9c176]",
-  spinner:
-    "size-5 animate-spin rounded-full border-2 border-[#d8c9a5] border-t-[#7a5900] dark:border-[#38475f] dark:border-t-[#e9c176]",
+  progressStage: "mt-8 w-full max-w-md",
   progress:
-    "mt-7 h-1.5 w-full max-w-md overflow-hidden rounded-full border border-[#d8c9a5] bg-white/70 dark:border-[#38475f] dark:bg-[#111c2c]",
+    "h-1.5 w-full overflow-hidden rounded-full border border-[#d8c9a5] bg-white/70 dark:border-[#38475f] dark:bg-[#111c2c]",
   progressBar:
-    "h-full w-2/3 animate-pulse rounded-full bg-[#d4af37] shadow-[0_0_24px_rgba(212,175,55,0.7)]",
-  signalGrid:
-    "mt-8 grid w-full max-w-xl grid-cols-2 gap-2 sm:grid-cols-4",
-  signal:
-    "rounded border border-[#d8c9a5] bg-white/65 px-3 py-2 text-xs font-bold uppercase text-[#7a5900] dark:border-[#38475f] dark:bg-[#111c2c]/70 dark:text-[#e9c176]",
+    "h-full w-full origin-left rounded-full bg-[#d4af37] shadow-[0_0_24px_rgba(212,175,55,0.7)] transition-transform duration-150 ease-out",
+  progressBarIndeterminate:
+    "h-full w-2/3 origin-left rounded-full bg-[#d4af37] shadow-[0_0_24px_rgba(212,175,55,0.7)] [animation:archive-progress-indeterminate_1.6s_ease-in-out_infinite]",
 } as const;
 
 export const NAVIGATION_LOADING_STYLES = {
   overlay: "fixed inset-0 z-[90] overflow-y-auto",
+} as const;
+
+export const NOT_FOUND_STYLES = {
+  shell:
+    "grid min-h-screen place-items-center px-4 py-12 sm:px-6 lg:px-8",
+  panel:
+    "w-full max-w-3xl rounded-lg border border-[#d8c9a5] bg-white p-6 text-center shadow-sm dark:border-[#604403] dark:bg-[#111c2c] sm:p-8",
+  eyebrow:
+    "text-sm font-bold uppercase tracking-[0.24em] text-[#7a5900] dark:text-[#e9c176]",
+  title:
+    "mt-3 font-serif text-4xl font-semibold text-[#101827] dark:text-[#f4f1ea] sm:text-6xl",
+  body:
+    "mx-auto mt-4 max-w-xl break-keep text-base font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  actions: "mt-7 flex flex-wrap justify-center gap-3",
+  primaryLink:
+    "rounded bg-[#101827] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#233144] dark:bg-[#d4af37] dark:text-[#261900] dark:hover:bg-[#e9c176]",
+  secondaryLink:
+    "rounded border border-[#d8c9a5] bg-white/70 px-4 py-3 text-sm font-bold text-[#7a5900] transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:bg-[#172337] dark:text-[#e9c176] dark:hover:bg-[#14243a]",
 } as const;
 
 export const CONTAINER_STYLES = {
@@ -521,7 +523,7 @@ export const ITEM_STYLES = {
   detailPanel:
     "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
   detailHeader:
-    "grid gap-5 border-b border-[#d8c9a5] pb-5 dark:border-[#38475f] lg:grid-cols-[minmax(0,1fr)_18rem]",
+    "grid gap-5 border-b border-[#d8c9a5] pb-5 dark:border-[#38475f]",
   detailTitle: "font-serif text-3xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   detailSubNames:
     "mt-3 grid gap-1 text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
@@ -530,9 +532,9 @@ export const ITEM_STYLES = {
     "font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   detailNameValue: "min-w-0 break-keep font-semibold",
   detailMetaGrid:
-    "grid gap-px overflow-hidden rounded border border-[#c7d3e9] bg-[#c7d3e9] dark:border-[#38475f] dark:bg-[#38475f]",
+    "grid gap-px overflow-hidden rounded border border-[#c7d3e9] bg-[#c7d3e9] dark:border-[#38475f] dark:bg-[#38475f] md:grid-cols-2",
   detailMetaRow:
-    "grid gap-1 bg-[#edf3ff] p-3 dark:bg-[#111c2c]/80 sm:grid-cols-[7rem_minmax(0,1fr)]",
+    "grid items-center gap-1 bg-[#edf3ff] p-3 dark:bg-[#111c2c]/80 sm:grid-cols-[7rem_minmax(0,1fr)]",
   detailSection:
     "mt-5 rounded-md border border-[#eee4cd] bg-[#fff8e2] p-4 dark:border-[#38475f] dark:bg-[#111c2c]",
   detailSectionTitle:
@@ -540,10 +542,6 @@ export const ITEM_STYLES = {
   detailSectionBody:
     "mt-3 grid gap-2 break-keep text-sm font-semibold leading-7 text-[#3e4654] dark:text-[#c5c6cd]",
   detailGameGrid: "mt-5 grid gap-4",
-  detailReferenceList:
-    "mt-3 flex flex-wrap gap-2 text-sm font-bold",
-  detailReferenceLink:
-    "rounded border border-[#d4af37]/45 bg-white px-3 py-2 text-[#7a5900] transition hover:bg-[#fff8e2] dark:bg-[#172337] dark:text-[#e9c176] dark:hover:bg-[#14243a]",
 } as const;
 
 export const ATLAS_STYLES = {
@@ -702,7 +700,7 @@ export const GAMEPLAY_STYLES = {
   sectionBody: "max-w-2xl text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
   systemGrid: "mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3",
   systemCard:
-    "grid min-h-44 grid-rows-[auto_1fr_auto] gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-5 dark:border-[#38475f] dark:bg-[#172337]",
+    "grid min-h-44 grid-rows-[auto_1fr_auto] gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-5 text-left transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#172337] dark:hover:bg-[#14243a]",
   systemTitle:
     "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   systemBody: "break-keep text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
@@ -720,9 +718,6 @@ export const GAMEPLAY_STYLES = {
   guideTitle:
     "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   guideBody: "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
-  linkList: "mt-3 flex flex-wrap gap-2",
-  sourceLink:
-    "rounded border border-[#d4af37]/45 bg-[#fff8e2] px-3 py-2 text-xs font-bold text-[#7a5900] transition hover:bg-white dark:bg-[#322002] dark:text-[#e9c176] dark:hover:bg-[#14243a]",
   timelineGrid: "mt-5 grid gap-4 lg:grid-cols-2 xl:grid-cols-4",
   timelineCard:
     "grid min-h-44 grid-rows-[auto_1fr_auto] gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-5 dark:border-[#38475f] dark:bg-[#172337]",
@@ -735,4 +730,48 @@ export const GAMEPLAY_STYLES = {
     "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   chronologyBody:
     "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  detailBackLink:
+    "mb-5 inline-flex rounded border border-[#d8c9a5] bg-white/70 px-4 py-2 text-sm font-bold text-[#7a5900] transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#604403] dark:bg-[#172337] dark:text-[#e9c176] dark:hover:bg-[#14243a]",
+  detailPanelGrid: "mt-6 grid gap-5 lg:grid-cols-[minmax(0,1fr)_22rem]",
+  detailMain: "grid gap-5",
+  detailAside: "grid content-start gap-5",
+  detailSection:
+    "rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#111c2c] sm:p-6",
+  detailSectionTitle:
+    "font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  detailParagraphList:
+    "mt-4 grid gap-3 break-keep text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  detailCardGrid: "mt-4 grid gap-3",
+  detailCard:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  detailCardTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  detailCardBody:
+    "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  detailSeriesGrid: "mt-4 grid gap-4 xl:grid-cols-2",
+  detailPointList:
+    "mt-4 grid gap-2 border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
+  detailPointItem:
+    "break-keep rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 text-sm leading-6 text-[#3e4654] dark:border-[#604403] dark:bg-[#111c2c]/75 dark:text-[#c5c6cd]",
+  detailFacilitySection:
+    "mt-5 border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
+  detailFacilityTitle:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  detailFacilityList: "mt-3 grid gap-3",
+  detailFacilityItem:
+    "rounded-md border border-[#d8c9a5] bg-[#fffdf7] p-3 dark:border-[#604403] dark:bg-[#111c2c]",
+  detailFacilityName:
+    "font-serif text-lg font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  detailFacilityMetaGrid:
+    "mt-3 grid gap-2 text-xs font-semibold text-[#4b5565] dark:text-[#c5c6cd] sm:grid-cols-2",
+  detailFacilityMeta:
+    "rounded border border-[#eee4cd] bg-white px-2.5 py-2 dark:border-[#38475f] dark:bg-[#172337]",
+  detailFacilityMetaLabel:
+    "mr-2 font-bold text-[#7a5900] dark:text-[#e9c176]",
+  detailFacilityBody:
+    "mt-3 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  detailChecklist:
+    "mt-4 grid gap-2",
+  detailChecklistItem:
+    "rounded border border-[#d8c9a5] bg-[#fff8e2] px-3 py-2 text-sm font-semibold text-[#7a5900] dark:border-[#604403] dark:bg-[#322002] dark:text-[#e9c176]",
 } as const;

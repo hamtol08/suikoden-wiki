@@ -1,9 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ArchiveRouteLoading from "@/components/archive/ArchiveRouteLoading";
 import {
+  APP_ROUTES,
   ARCHIVE_NAVIGATION_EVENT_NAME,
   NAVIGATION_LOADING_TIMING,
 } from "@/constants/app-config";
@@ -66,13 +67,25 @@ const getNavigationKey = (href: string) => {
   return `${targetUrl.pathname}${targetUrl.search}`;
 };
 
+const getNavigationProgress = (startedAt: number) => {
+  const elapsedMs = Date.now() - startedAt;
+  const progressRatio = Math.min(
+    1,
+    elapsedMs / NAVIGATION_LOADING_TIMING.fallbackToNotFoundMs,
+  );
+
+  return Math.min(96, 8 + progressRatio * 88);
+};
+
 type ArchiveNavigationEvent = CustomEvent<{
   href?: string;
 }>;
 
 const ArchiveNavigationLoading = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
+  const [progressPercent, setProgressPercent] = useState(0);
   const lastCommittedLocationKeyRef = useRef("");
   const startedLocationKeyRef = useRef("");
   const targetLocationKeyRef = useRef<string | null>(null);
@@ -80,6 +93,7 @@ const ArchiveNavigationLoading = () => {
   const hideTimerRef = useRef<number | null>(null);
   const maximumTimerRef = useRef<number | null>(null);
   const settleTimerRef = useRef<number | null>(null);
+  const progressFrameRef = useRef<number | null>(null);
   const settleFrameRef = useRef<number | null>(null);
 
   const clearTimer = useCallback((timerRef: typeof hideTimerRef) => {
@@ -96,15 +110,35 @@ const ArchiveNavigationLoading = () => {
     }
   }, []);
 
+  const clearProgressFrame = useCallback(() => {
+    if (progressFrameRef.current) {
+      window.cancelAnimationFrame(progressFrameRef.current);
+      progressFrameRef.current = null;
+    }
+  }, []);
+
   const clearPendingHide = useCallback(() => {
     clearTimer(hideTimerRef);
     clearTimer(settleTimerRef);
     clearFrame();
   }, [clearFrame, clearTimer]);
 
+  const startProgress = useCallback(() => {
+    clearProgressFrame();
+
+    const updateProgress = () => {
+      setProgressPercent(getNavigationProgress(startedAtRef.current));
+      progressFrameRef.current = window.requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+  }, [clearProgressFrame]);
+
   const hideLoading = useCallback(() => {
     clearTimer(maximumTimerRef);
     clearPendingHide();
+    clearProgressFrame();
+    setProgressPercent(100);
 
     const elapsedMs = Date.now() - startedAtRef.current;
     const remainingMs = Math.max(
@@ -122,12 +156,34 @@ const ArchiveNavigationLoading = () => {
             lastCommittedLocationKeyRef.current = getLocationKey();
             targetLocationKeyRef.current = null;
             setIsVisible(false);
+            setProgressPercent(0);
             settleTimerRef.current = null;
           }, NAVIGATION_LOADING_TIMING.settleDelayMs);
         });
       });
     }, remainingMs);
-  }, [clearPendingHide, clearTimer]);
+  }, [clearPendingHide, clearProgressFrame, clearTimer]);
+
+  const hasNavigationReachedTarget = useCallback(() => {
+    const currentLocationKey = getLocationKey();
+    const targetLocationKey = targetLocationKeyRef.current;
+
+    return targetLocationKey
+      ? currentLocationKey === targetLocationKey
+      : currentLocationKey !== startedLocationKeyRef.current;
+  }, []);
+
+  const moveToNavigationFallback = useCallback(() => {
+    maximumTimerRef.current = null;
+
+    if (hasNavigationReachedTarget()) {
+      hideLoading();
+      return;
+    }
+
+    targetLocationKeyRef.current = APP_ROUTES.navigationFallbackNotFound;
+    router.replace(APP_ROUTES.navigationFallbackNotFound, { scroll: false });
+  }, [hasNavigationReachedTarget, hideLoading, router]);
 
   const showLoading = useCallback((targetLocationKey?: string | null) => {
     clearPendingHide();
@@ -137,15 +193,15 @@ const ArchiveNavigationLoading = () => {
       lastCommittedLocationKeyRef.current || getLocationKey();
     targetLocationKeyRef.current = targetLocationKey ?? null;
     startedAtRef.current = Date.now();
+    setProgressPercent(8);
     setIsVisible(true);
+    startProgress();
 
-    maximumTimerRef.current = window.setTimeout(() => {
-      lastCommittedLocationKeyRef.current = getLocationKey();
-      targetLocationKeyRef.current = null;
-      setIsVisible(false);
-      maximumTimerRef.current = null;
-    }, NAVIGATION_LOADING_TIMING.maximumVisibleMs);
-  }, [clearPendingHide, clearTimer]);
+    maximumTimerRef.current = window.setTimeout(
+      moveToNavigationFallback,
+      NAVIGATION_LOADING_TIMING.fallbackToNotFoundMs,
+    );
+  }, [clearPendingHide, clearTimer, moveToNavigationFallback, startProgress]);
 
   useEffect(() => {
     const currentLocationKey = getLocationKey();
@@ -155,15 +211,12 @@ const ArchiveNavigationLoading = () => {
       return;
     }
 
-    const targetLocationKey = targetLocationKeyRef.current;
-    const hasReachedTarget = targetLocationKey
-      ? currentLocationKey === targetLocationKey
-      : currentLocationKey !== startedLocationKeyRef.current;
+    if (hasNavigationReachedTarget()) {
+      const hideFrame = window.requestAnimationFrame(hideLoading);
 
-    if (hasReachedTarget) {
-      hideLoading();
+      return () => window.cancelAnimationFrame(hideFrame);
     }
-  }, [hideLoading, isVisible, pathname]);
+  }, [hasNavigationReachedTarget, hideLoading, isVisible, pathname]);
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -210,8 +263,9 @@ const ArchiveNavigationLoading = () => {
       clearTimer(maximumTimerRef);
       clearTimer(settleTimerRef);
       clearFrame();
+      clearProgressFrame();
     };
-  }, [clearFrame, clearTimer, showLoading]);
+  }, [clearFrame, clearProgressFrame, clearTimer, showLoading]);
 
   if (!isVisible) {
     return null;
@@ -219,7 +273,7 @@ const ArchiveNavigationLoading = () => {
 
   return (
     <div className={NAVIGATION_LOADING_STYLES.overlay} role="status">
-      <ArchiveRouteLoading />
+      <ArchiveRouteLoading progressPercent={progressPercent} />
     </div>
   );
 };

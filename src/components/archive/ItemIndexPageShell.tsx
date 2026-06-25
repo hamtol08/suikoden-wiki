@@ -7,12 +7,7 @@ import ItemIndexBrowser, {
 import { normalizeArchiveSearchText } from "@/constants/archive-utils";
 import { loadArchiveJsonSafely } from "@/constants/data-loading";
 import {
-  formatItemDropLocations,
-  formatItemDropRates,
-  formatItemOtherLocations,
-  formatItemPrice,
-  formatItemShopLocations,
-  formatItemSources,
+  buildItemRecordDisplay,
   getItemJapaneseNames,
   getItemIndexPage,
   getItemIndexRecordsByGame,
@@ -52,12 +47,7 @@ const summaryItems = (summary: ItemIndexPageSummary) => [
 
 const buildItemBrowserItem = (item: ItemIndexRecord): ItemIndexBrowserItem => {
   const categoryLabel = ITEM_CATEGORY_LABELS[item.category];
-  const sourceLabel = formatItemSources(item);
-  const price = formatItemPrice(item);
-  const shopLocations = formatItemShopLocations(item);
-  const dropLocations = formatItemDropLocations(item);
-  const otherLocations = formatItemOtherLocations(item);
-  const dropRates = formatItemDropRates(item);
+  const display = buildItemRecordDisplay(item);
   const japaneseNames = getItemJapaneseNames(item);
   const displayNames = [
     {
@@ -75,29 +65,29 @@ const buildItemBrowserItem = (item: ItemIndexRecord): ItemIndexBrowserItem => {
   return {
     categoryLabel,
     displayNames,
-    dropLocations,
-    dropRates,
+    dropLocations: display.dropLocations,
+    dropRates: display.dropRates,
     href: item.href,
     id: item.id,
     name: item.name,
-    otherLocations,
-    price,
+    otherLocations: display.otherLocations,
+    price: display.price,
     searchText: normalizeArchiveSearchText(
       [
         item.name,
         ...item.originalNames,
         ...japaneseNames,
         categoryLabel,
-        sourceLabel,
-        price,
-        shopLocations,
-        dropLocations,
-        otherLocations,
-        dropRates,
+        display.sourceLabel,
+        display.price,
+        display.shopLocations,
+        display.dropLocations,
+        display.otherLocations,
+        display.dropRates,
       ].join(" "),
     ),
-    shopLocations,
-    sourceLabel,
+    shopLocations: display.shopLocations,
+    sourceLabel: display.sourceLabel,
   };
 };
 

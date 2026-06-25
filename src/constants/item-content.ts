@@ -35,7 +35,6 @@ export const ITEM_ARCHIVE_COPY = {
   descriptionTitle: "개요",
   effectTitle: "효과",
   gameRecordsTitle: "작품별 기록",
-  referenceTitle: "참고",
   searchLabel: "Item search",
   searchPlaceholder: "아이템 이름, 영문 표기, 분류, 입수처 검색",
   resultCountSuffix: "개 아이템",
@@ -55,7 +54,6 @@ export const ITEM_ARCHIVE_COPY = {
     japaneseName: "JP",
     originalName: "영문 표기",
     games: "등장 작품",
-    references: "참고 링크",
     shop: "Shop",
     drop: "Drop",
   },
@@ -164,11 +162,16 @@ export type ItemDetailRecord = {
   japaneseNames: readonly string[];
   descriptionLines: readonly string[];
   effectLines: readonly string[];
-  references: readonly {
-    href: string;
-    label: string;
-  }[];
   gameRecords: readonly ItemIndexRecord[];
+};
+
+export type ItemRecordDisplay = {
+  dropLocations: string;
+  dropRates: string;
+  otherLocations: string;
+  price: string;
+  shopLocations: string;
+  sourceLabel: string;
 };
 
 type ItemRecordDraft = {
@@ -1607,22 +1610,6 @@ export const getItemIndexRecordsByGame = (gameId: ItemIndexGameId) => {
   return ITEM_INDEX_RECORDS.filter((item) => item.game === gameId);
 };
 
-const getItemSourceReferenceLabel = (gameId: ItemIndexGameId) => {
-  return `${getItemIndexPage(gameId).title} · Game8`;
-};
-
-const getItemSourceReferences = (item: ItemIndexRecord) => {
-  const originalNameSet = new Set(item.originalNames);
-
-  return GAME8_ITEM_SOURCE_RECORDS.filter(
-    (sourceRecord) =>
-      sourceRecord.game === item.game && originalNameSet.has(sourceRecord.name),
-  ).map((sourceRecord) => ({
-    href: sourceRecord.href,
-    label: getItemSourceReferenceLabel(item.game),
-  }));
-};
-
 export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => {
   const gameRecords = ITEM_INDEX_RECORDS.filter((item) => item.id === itemId);
   const firstRecord = gameRecords[0];
@@ -1634,13 +1621,6 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
   const originalNames = [
     ...new Set(gameRecords.flatMap((item) => item.originalNames)),
   ].sort();
-  const references = [
-    ...new Map(
-      gameRecords
-        .flatMap((item) => getItemSourceReferences(item))
-        .map((reference) => [reference.href, reference]),
-    ).values(),
-  ];
 
   return {
     id: firstRecord.id,
@@ -1654,14 +1634,13 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
     descriptionLines: ITEM_DETAIL_DESCRIPTIONS[
       itemId as keyof typeof ITEM_DETAIL_DESCRIPTIONS
     ] ?? [
-      `${firstRecord.name}은 ${gameRecords
+      `${gameRecords
         .map((item) => getItemIndexPage(item.game).title)
         .join(" / ")}에 등장하는 ${ITEM_CATEGORY_LABELS[firstRecord.category]}입니다.`,
     ],
     effectLines: ITEM_DETAIL_EFFECTS[
       itemId as keyof typeof ITEM_DETAIL_EFFECTS
     ] ?? [],
-    references,
     gameRecords,
   };
 };
@@ -1725,14 +1704,6 @@ export const formatItemOtherLocations = (item: ItemIndexRecord) => {
   return formatItemSourceLocations(locations);
 };
 
-export const formatItemLocations = (item: ItemIndexRecord) => {
-  if (item.locations.length === 0) {
-    return ITEM_ARCHIVE_COPY.unavailableDetail;
-  }
-
-  return item.locations.join(" / ");
-};
-
 export const formatItemDropRates = (item: ItemIndexRecord) => {
   if (item.dropRates.length === 0) {
     return ITEM_ARCHIVE_COPY.unavailableDetail;
@@ -1740,6 +1711,17 @@ export const formatItemDropRates = (item: ItemIndexRecord) => {
 
   return item.dropRates.join(" / ");
 };
+
+export const buildItemRecordDisplay = (
+  item: ItemIndexRecord,
+): ItemRecordDisplay => ({
+  dropLocations: formatItemDropLocations(item),
+  dropRates: formatItemDropRates(item),
+  otherLocations: formatItemOtherLocations(item),
+  price: formatItemPrice(item),
+  shopLocations: formatItemShopLocations(item),
+  sourceLabel: formatItemSources(item),
+});
 
 export const getItemIndexSummary = (gameId: ItemIndexGameId) => {
   const items = getItemIndexRecordsByGame(gameId);

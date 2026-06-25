@@ -98,11 +98,6 @@ export const RUNE_GAME_LABELS = {
   unrevealed: "미공개",
 } as const;
 
-export const RUNE_TRUE_RUNE_IMAGE = {
-  src: "/suikoden/runes/the-27-true-runes.jpg",
-  alt: "진정한 문장 도해",
-} as const;
-
 export const RUNE_FALLBACK_IMAGE = {
   src: "/suikoden/genso-mark.svg",
   alt: "문장 대체 마크",

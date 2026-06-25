@@ -3,7 +3,7 @@ import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
 import {
   GameplayGuidePanels,
   GameplaySection,
-  GameplayTagCard,
+  GameplayTagSection,
   GameplayTabs,
 } from "@/components/archive/GameplayBlocks";
 import { APP_ROUTES } from "@/constants/app-config";
@@ -45,93 +45,43 @@ const Gameplay = () => {
             tabs={GAMEPLAY_TABS}
           />
 
-          <GameplaySection
+          <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
             id="system-overview"
+            items={GAMEPLAY_SYSTEMS}
             title={GAMEPLAY_COPY.overviewTitle}
-          >
-            <div className={GAMEPLAY_STYLES.systemGrid}>
-              {GAMEPLAY_SYSTEMS.map((system) => (
-                <GameplayTagCard
-                  body={system.body}
-                  key={system.title}
-                  tags={system.points}
-                  title={system.title}
-                />
-              ))}
-            </div>
-          </GameplaySection>
+          />
 
-          <GameplaySection
+          <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
             id="battle"
+            items={GAMEPLAY_BATTLE_SECTIONS}
             title={GAMEPLAY_COPY.battleTitle}
-          >
-            <div className={GAMEPLAY_STYLES.systemGrid}>
-              {GAMEPLAY_BATTLE_SECTIONS.map((system) => (
-                <GameplayTagCard
-                  body={system.body}
-                  key={system.title}
-                  tags={system.points}
-                  title={system.title}
-                />
-              ))}
-            </div>
-          </GameplaySection>
+          />
 
-          <GameplaySection
+          <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
             id="duel"
+            items={GAMEPLAY_DUEL_SECTIONS}
             title={GAMEPLAY_COPY.duelTitle}
-          >
-            <div className={GAMEPLAY_STYLES.systemGrid}>
-              {GAMEPLAY_DUEL_SECTIONS.map((system) => (
-                <GameplayTagCard
-                  body={system.body}
-                  key={system.title}
-                  tags={system.points}
-                  title={system.title}
-                />
-              ))}
-            </div>
-          </GameplaySection>
+          />
 
-          <GameplaySection
+          <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
             id="war-battle"
+            items={GAMEPLAY_WAR_BATTLE_SECTIONS}
             title={GAMEPLAY_COPY.warBattleTitle}
-          >
-            <div className={GAMEPLAY_STYLES.systemGrid}>
-              {GAMEPLAY_WAR_BATTLE_SECTIONS.map((system) => (
-                <GameplayTagCard
-                  body={system.body}
-                  key={system.title}
-                  tags={system.points}
-                  title={system.title}
-                />
-              ))}
-            </div>
-          </GameplaySection>
+          />
+
+          <GameplayTagSection
+            eyebrow={GAMEPLAY_COPY.eyebrow}
+            id="headquarters"
+            items={GAMEPLAY_HEADQUARTERS_SECTIONS}
+            title={GAMEPLAY_COPY.headquartersTitle}
+          />
 
           <GameplaySection
             eyebrow={GAMEPLAY_COPY.eyebrow}
-            id="headquarters"
-            title={GAMEPLAY_COPY.headquartersTitle}
-          >
-            <div className={GAMEPLAY_STYLES.systemGrid}>
-              {GAMEPLAY_HEADQUARTERS_SECTIONS.map((system) => (
-                <GameplayTagCard
-                  body={system.body}
-                  key={system.title}
-                  tags={system.points}
-                  title={system.title}
-                />
-              ))}
-            </div>
-          </GameplaySection>
-
-          <GameplaySection
-            eyebrow={GAMEPLAY_COPY.sourceLabel}
             id="guide-index"
             title={GAMEPLAY_COPY.guideTitle}
           >

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { type ReactNode } from "react";
+import { GAMEPLAY_DETAIL_COPY } from "@/constants/gameplay-content";
 import { GAMEPLAY_STYLES } from "@/constants/ui-styles";
 
 type GameplaySectionProps = {
@@ -11,14 +13,26 @@ type GameplaySectionProps = {
 
 type GameplayTagCardProps = {
   body: string;
+  href?: string;
   tags: readonly string[];
   title: string;
   variant?: "system" | "timeline";
 };
 
-type GameplaySourceLink = {
-  href: string;
-  label: string;
+type GameplayTagSectionItem = {
+  body: string;
+  href?: string;
+  points?: readonly string[];
+  tags?: readonly string[];
+  title: string;
+};
+
+type GameplayTagSectionProps = {
+  eyebrow: string;
+  gridVariant?: "system" | "timeline";
+  id?: string;
+  items: readonly GameplayTagSectionItem[];
+  title: string;
 };
 
 type GameplayGuideGame = {
@@ -26,13 +40,8 @@ type GameplayGuideGame = {
   game: string;
   groups: readonly {
     body: string;
-    links: readonly GameplaySourceLink[];
     title: string;
   }[];
-};
-
-type GameplaySourceLinksProps = {
-  links: readonly GameplaySourceLink[];
 };
 
 type GameplayTab = {
@@ -57,6 +66,24 @@ type TimelineChronicleNote = {
 
 type TimelineChronicleListProps = {
   notes: readonly TimelineChronicleNote[];
+};
+
+type GameplayDetailFacility = {
+  body: string;
+  location: string;
+  name: string;
+  unlock: string;
+};
+
+type GameplayDetailSeriesNote = {
+  body: string;
+  facilities?: readonly GameplayDetailFacility[];
+  game: string;
+  points?: readonly string[];
+};
+
+type GameplayDetailSeriesNotesProps = {
+  notes: readonly GameplayDetailSeriesNote[];
 };
 
 export const GameplaySection = ({
@@ -90,43 +117,63 @@ export const GameplayTabs = ({ ariaLabel, tabs }: GameplayTabsProps) => (
 
 export const GameplayTagCard = ({
   body,
+  href,
   tags,
   title,
   variant = "system",
-}: GameplayTagCardProps) => (
-  <article
-    className={
-      variant === "timeline" ?
-        GAMEPLAY_STYLES.timelineCard :
-        GAMEPLAY_STYLES.systemCard
-    }
-  >
-    <h3 className={GAMEPLAY_STYLES.systemTitle}>{title}</h3>
-    <p className={GAMEPLAY_STYLES.systemBody}>{body}</p>
-    <div className={GAMEPLAY_STYLES.tagList}>
-      {tags.map((tag) => (
-        <span className={GAMEPLAY_STYLES.tag} key={tag}>
-          {tag}
-        </span>
+}: GameplayTagCardProps) => {
+  const className =
+    variant === "timeline" ? GAMEPLAY_STYLES.timelineCard : GAMEPLAY_STYLES.systemCard;
+  const content = (
+    <>
+      <h3 className={GAMEPLAY_STYLES.systemTitle}>{title}</h3>
+      <p className={GAMEPLAY_STYLES.systemBody}>{body}</p>
+      <div className={GAMEPLAY_STYLES.tagList}>
+        {tags.map((tag) => (
+          <span className={GAMEPLAY_STYLES.tag} key={tag}>
+            {tag}
+          </span>
+        ))}
+      </div>
+    </>
+  );
+
+  return href ? (
+    <Link aria-label={title} className={className} href={href}>
+      {content}
+    </Link>
+  ) : (
+    <article className={className}>{content}</article>
+  );
+};
+
+export const GameplayTagSection = ({
+  eyebrow,
+  gridVariant = "system",
+  id,
+  items,
+  title,
+}: GameplayTagSectionProps) => (
+  <GameplaySection eyebrow={eyebrow} id={id} title={title}>
+    <div
+      className={
+        gridVariant === "timeline" ?
+          GAMEPLAY_STYLES.timelineGrid :
+          GAMEPLAY_STYLES.systemGrid
+      }
+    >
+      {items.map((item) => (
+        <GameplayTagCard
+          body={item.body}
+          href={item.href}
+          key={item.title}
+          tags={item.points ?? item.tags ?? []}
+          title={item.title}
+          variant={gridVariant === "timeline" ? "timeline" : "system"}
+        />
       ))}
     </div>
-  </article>
-);
-
-export const GameplaySourceLinks = ({ links }: GameplaySourceLinksProps) => (
-  <div className={GAMEPLAY_STYLES.linkList}>
-    {links.map((link, index) => (
-      <a
-        className={GAMEPLAY_STYLES.sourceLink}
-        href={link.href}
-        key={`${link.href}-${link.label}-${index}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        {link.label}
-      </a>
-    ))}
-  </div>
+  </GameplaySection>
 );
 
 export const GameplayGuidePanels = ({ games }: GameplayGuidePanelsProps) => (
@@ -145,9 +192,68 @@ export const GameplayGuidePanels = ({ games }: GameplayGuidePanelsProps) => (
           >
             <h4 className={GAMEPLAY_STYLES.guideTitle}>{group.title}</h4>
             <p className={GAMEPLAY_STYLES.guideBody}>{group.body}</p>
-            <GameplaySourceLinks links={group.links} />
           </section>
         ))}
+      </article>
+    ))}
+  </div>
+);
+
+export const GameplayDetailSeriesNotes = ({
+  notes,
+}: GameplayDetailSeriesNotesProps) => (
+  <div className={GAMEPLAY_STYLES.detailSeriesGrid}>
+    {notes.map((note) => (
+      <article className={GAMEPLAY_STYLES.detailCard} key={note.game}>
+        <h3 className={GAMEPLAY_STYLES.detailCardTitle}>{note.game}</h3>
+        <p className={GAMEPLAY_STYLES.detailCardBody}>{note.body}</p>
+
+        {note.points ? (
+          <ul className={GAMEPLAY_STYLES.detailPointList}>
+            {note.points.map((point) => (
+              <li className={GAMEPLAY_STYLES.detailPointItem} key={point}>
+                {point}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        {note.facilities ? (
+          <section className={GAMEPLAY_STYLES.detailFacilitySection}>
+            <h4 className={GAMEPLAY_STYLES.detailFacilityTitle}>
+              {GAMEPLAY_DETAIL_COPY.facilityLabel}
+            </h4>
+            <div className={GAMEPLAY_STYLES.detailFacilityList}>
+              {note.facilities.map((facility) => (
+                <article
+                  className={GAMEPLAY_STYLES.detailFacilityItem}
+                  key={`${note.game}-${facility.name}`}
+                >
+                  <h5 className={GAMEPLAY_STYLES.detailFacilityName}>
+                    {facility.name}
+                  </h5>
+                  <div className={GAMEPLAY_STYLES.detailFacilityMetaGrid}>
+                    <p className={GAMEPLAY_STYLES.detailFacilityMeta}>
+                      <span className={GAMEPLAY_STYLES.detailFacilityMetaLabel}>
+                        {GAMEPLAY_DETAIL_COPY.facilityLocationLabel}
+                      </span>
+                      {facility.location}
+                    </p>
+                    <p className={GAMEPLAY_STYLES.detailFacilityMeta}>
+                      <span className={GAMEPLAY_STYLES.detailFacilityMetaLabel}>
+                        {GAMEPLAY_DETAIL_COPY.facilityUnlockLabel}
+                      </span>
+                      {facility.unlock}
+                    </p>
+                  </div>
+                  <p className={GAMEPLAY_STYLES.detailFacilityBody}>
+                    {facility.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </article>
     ))}
   </div>

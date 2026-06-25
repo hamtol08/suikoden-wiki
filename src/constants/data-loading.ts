@@ -8,12 +8,6 @@ type ArchiveDataLoadOptions<T> = {
   load: ArchiveDataLoader<T>;
 };
 
-type ArchiveAsyncDataLoadOptions<T> = {
-  fallback: ArchiveDataFallback<T>;
-  label: string;
-  load: () => Promise<T>;
-};
-
 const resolveFallback = <T>(fallback: ArchiveDataFallback<T>) => {
   return typeof fallback === "function"
     ? (fallback as () => T)()
@@ -31,20 +25,6 @@ export const loadArchiveJsonSafely = <T>({
 }: ArchiveDataLoadOptions<T>) => {
   try {
     return load();
-  } catch (error) {
-    reportArchiveDataError(label, error);
-
-    return resolveFallback(fallback);
-  }
-};
-
-export const loadArchiveJsonSafelyAsync = async <T>({
-  fallback,
-  label,
-  load,
-}: ArchiveAsyncDataLoadOptions<T>) => {
-  try {
-    return await load();
   } catch (error) {
     reportArchiveDataError(label, error);
 

@@ -15,7 +15,7 @@ export const ARCHIVE_COPY = {
   header: {
     logoAlt: "Genso Chronicle rune star mark",
     brandName: "Genso Chronicle",
-    brandKicker: "Suikoden Reference Wiki",
+    brandKicker: "Suikoden Archive Wiki",
     searchLabel: "Search Genso Chronicle",
     searchPlaceholder: "Search Characters...",
     searchButton: "Search",
@@ -62,7 +62,7 @@ export const ARCHIVE_COPY = {
   footer: {
     title: "Genso Chronicle",
     body: "Gate Rune War와 Dunan Unification War를 중심으로 인물, 문장, 지역, 전쟁 기록을 연결해 정리합니다.",
-    notice: "Fan-made reference archive. Suikoden is owned by Konami.",
+    notice: "Fan-made archive. Suikoden is owned by Konami.",
   },
 } as const;
 
@@ -70,8 +70,14 @@ export const ARCHIVE_LOADING_COPY = {
   eyebrow: "Loading Archive",
   title: "Genso Chronicle",
   body: "다음 기록을 불러오는 중입니다.",
-  status: "잠시만 기다려 주세요.",
-  signalItems: ["Characters", "Runes", "Items", "World Map"],
+} as const;
+
+export const ARCHIVE_NOT_FOUND_COPY = {
+  eyebrow: "404 Archive Exception",
+  title: "Record Not Found",
+  body: "요청한 기록을 찾을 수 없습니다. 이동이 오래 지연된 경우에도 이 화면으로 안내됩니다.",
+  homeLabel: "Return Home",
+  archiveLabel: "Browse Characters",
 } as const;
 
 export const IMAGE_PATHS = {
@@ -204,7 +210,7 @@ export const TIMELINE_ITEMS = [
 ] as const;
 
 export const ARCHIVE_STATS = [
-  { label: "Referenced Pages", value: "8,355" },
+  { label: "Archive Pages", value: "8,355" },
   { label: "Known Files", value: "14,358" },
   { label: "True Runes", value: "18" },
 ] as const;

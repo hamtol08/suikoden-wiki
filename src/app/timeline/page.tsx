@@ -2,15 +2,13 @@ import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
 import {
   GameplaySection,
-  GameplaySourceLinks,
-  GameplayTagCard,
+  GameplayTagSection,
   TimelineChronicleList,
 } from "@/components/archive/GameplayBlocks";
 import { APP_ROUTES } from "@/constants/app-config";
 import {
   TIMELINE_CHRONICLE_NOTES,
   TIMELINE_COPY,
-  TIMELINE_SOURCE_LINKS,
   TIMELINE_WORLD_SECTIONS,
 } from "@/constants/gameplay-content";
 import {
@@ -36,35 +34,18 @@ const Timeline = () => {
             title={TIMELINE_COPY.title}
           />
 
-          <GameplaySection
+          <GameplayTagSection
             eyebrow={TIMELINE_COPY.eyebrow}
+            gridVariant="timeline"
+            items={TIMELINE_WORLD_SECTIONS}
             title={TIMELINE_COPY.worldTitle}
-          >
-            <div className={GAMEPLAY_STYLES.timelineGrid}>
-              {TIMELINE_WORLD_SECTIONS.map((section) => (
-                <GameplayTagCard
-                  body={section.body}
-                  key={section.title}
-                  tags={section.tags}
-                  title={section.title}
-                  variant="timeline"
-                />
-              ))}
-            </div>
-          </GameplaySection>
+          />
 
           <GameplaySection
             eyebrow={TIMELINE_COPY.eyebrow}
             title={TIMELINE_COPY.chronologyTitle}
           >
             <TimelineChronicleList notes={TIMELINE_CHRONICLE_NOTES} />
-          </GameplaySection>
-
-          <GameplaySection
-            eyebrow={TIMELINE_COPY.eyebrow}
-            title={TIMELINE_COPY.sourceTitle}
-          >
-            <GameplaySourceLinks links={TIMELINE_SOURCE_LINKS} />
           </GameplaySection>
         </section>
       </div>

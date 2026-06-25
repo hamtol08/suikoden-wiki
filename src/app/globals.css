@@ -60,3 +60,17 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--archive-scrollbar-thumb-hover);
 }
+
+@keyframes archive-progress-indeterminate {
+  0% {
+    transform: translateX(-80%) scaleX(0.32);
+  }
+
+  50% {
+    transform: translateX(35%) scaleX(0.72);
+  }
+
+  100% {
+    transform: translateX(150%) scaleX(0.32);
+  }
+}

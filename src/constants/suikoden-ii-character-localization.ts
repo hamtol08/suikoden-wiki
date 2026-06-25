@@ -1,5 +1,4 @@
 import type { SUIKODEN_II_CHARACTERS } from "@/constants/suikoden-ii-characters";
-import { STAR_OF_DESTINY_KOREAN_NAMES } from "@/constants/star-of-destiny";
 
 type SuikodenIICharacterId = (typeof SUIKODEN_II_CHARACTERS)[number]["id"];
 
@@ -8,8 +7,6 @@ type CharacterLocalization = {
   recruitment: string;
   gameRole?: string;
 };
-
-export const SUIKODEN_II_STAR_NAMES = STAR_OF_DESTINY_KOREAN_NAMES;
 
 export const SUIKODEN_II_CHARACTER_STAR_ORDERS = {
   hero: 1,
