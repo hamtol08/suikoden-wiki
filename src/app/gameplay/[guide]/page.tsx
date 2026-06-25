@@ -1,20 +1,24 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
-import { GameplayDetailSeriesNotes } from "@/components/archive/GameplayBlocks";
-import { APP_ROUTES } from "@/constants/app-config";
+import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import {
+  GameplayDetailSeriesNotes,
+  GameplayDuelRecords,
+  GameplayWarBattleGuide,
+} from "@/components/gameplay/GameplayBlocks";
+import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   GAMEPLAY_COPY,
   GAMEPLAY_DETAIL_COPY,
   getGameplayDetailRecord,
   getGameplayDetailStaticParams,
-} from "@/constants/gameplay-content";
+} from "@/constants/gameplay/gameplay-content";
 import {
   APP_SHELL_STYLES,
   GAMEPLAY_STYLES,
   RESPONSIVE_SHELL,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 type GameplayDetailPageProps = {
   params: Promise<{
@@ -89,6 +93,30 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                 </h2>
                 <GameplayDetailSeriesNotes notes={record.seriesNotes} />
               </section>
+
+              {record.duelRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.duelDialogLabel}
+                  </h2>
+                  <GameplayDuelRecords records={record.duelRecords} />
+                </section>
+              ) : null}
+
+              {record.warBattleRecords &&
+              record.warCommandGroups &&
+              record.warRoleRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.warRecordLabel}
+                  </h2>
+                  <GameplayWarBattleGuide
+                    battles={record.warBattleRecords}
+                    commandGroups={record.warCommandGroups}
+                    roles={record.warRoleRecords}
+                  />
+                </section>
+              ) : null}
             </div>
 
             <aside className={GAMEPLAY_STYLES.detailAside}>

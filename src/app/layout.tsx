@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
-import ArchiveFooter from "@/components/archive/ArchiveFooter";
-import ArchiveNavigationLoading from "@/components/archive/ArchiveNavigationLoading";
-import { APP_LANGUAGE, THEME_MODES, THEME_STORAGE_KEY } from "@/constants/app-config";
-import { ARCHIVE_COPY } from "@/constants/archive-content";
-import { APP_SHELL_STYLES } from "@/constants/ui-styles";
+import ArchiveFooter from "@/components/layout/ArchiveFooter";
+import ArchiveNavigationLoading from "@/components/layout/ArchiveNavigationLoading";
+import { APP_LANGUAGE, THEME_MODES, THEME_STORAGE_KEY } from "@/constants/app/app-config";
+import { ARCHIVE_COPY } from "@/constants/archive/archive-content";
+import { APP_SHELL_STYLES } from "@/constants/styles/ui-styles";
 import "./globals.css";
 
 const archiveSans = localFont({

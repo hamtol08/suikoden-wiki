@@ -1,5 +1,5 @@
-import ItemIndexPageShell from "@/components/archive/ItemIndexPageShell";
-import { ITEM_INDEX_PAGE_IDS } from "@/constants/item-content";
+import ItemIndexPageShell from "@/components/items/ItemIndexPageShell";
+import { ITEM_INDEX_PAGE_IDS } from "@/constants/items/item-content";
 
 const Items = () => {
   return <ItemIndexPageShell gameId={ITEM_INDEX_PAGE_IDS.suikodenI} />;

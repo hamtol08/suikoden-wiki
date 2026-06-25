@@ -1,0 +1,557 @@
+[
+  {
+    "id": "hero",
+    "name": "Hero",
+    "file": "/characters/suikoden-ii/001-hero.png"
+  },
+  {
+    "id": "nanami",
+    "name": "Nanami",
+    "file": "/characters/suikoden-ii/002-nanami.png"
+  },
+  {
+    "id": "tsai",
+    "name": "Tsai",
+    "file": "/characters/suikoden-ii/003-tsai.png"
+  },
+  {
+    "id": "hanna",
+    "name": "Hanna",
+    "file": "/characters/suikoden-ii/004-hanna.png"
+  },
+  {
+    "id": "anita",
+    "name": "Anita",
+    "file": "/characters/suikoden-ii/005-anita.png"
+  },
+  {
+    "id": "viktor",
+    "name": "Viktor",
+    "file": "/characters/suikoden-ii/006-viktor.png"
+  },
+  {
+    "id": "flik",
+    "name": "Flik",
+    "file": "/characters/suikoden-ii/007-flik.png"
+  },
+  {
+    "id": "freed-yamamoto",
+    "name": "Freed Yamamoto",
+    "file": "/characters/suikoden-ii/008-freed-yamamoto.png"
+  },
+  {
+    "id": "shu",
+    "name": "Shu",
+    "file": "/characters/suikoden-ii/009-shu.png"
+  },
+  {
+    "id": "luc",
+    "name": "Luc",
+    "file": "/characters/suikoden-ii/010-luc.png"
+  },
+  {
+    "id": "tai-ho",
+    "name": "Tai Ho",
+    "file": "/characters/suikoden-ii/011-tai-ho.png"
+  },
+  {
+    "id": "yam-koo",
+    "name": "Yam Koo",
+    "file": "/characters/suikoden-ii/012-yam-koo.png"
+  },
+  {
+    "id": "ridley-wizen",
+    "name": "Ridley Wizen",
+    "file": "/characters/suikoden-ii/013-ridley-wizen.png"
+  },
+  {
+    "id": "boris-wizen",
+    "name": "Boris Wizen",
+    "file": "/characters/suikoden-ii/014-boris-wizen.png"
+  },
+  {
+    "id": "fitcher",
+    "name": "Fitcher",
+    "file": "/characters/suikoden-ii/015-fitcher.png"
+  },
+  {
+    "id": "chaco",
+    "name": "Chaco",
+    "file": "/characters/suikoden-ii/016-chaco.png"
+  },
+  {
+    "id": "hix",
+    "name": "Hix",
+    "file": "/characters/suikoden-ii/017-hix.png"
+  },
+  {
+    "id": "tengaar",
+    "name": "Tengaar",
+    "file": "/characters/suikoden-ii/018-tengaar.png"
+  },
+  {
+    "id": "yoshino-yamamoto",
+    "name": "Yoshino Yamamoto",
+    "file": "/characters/suikoden-ii/019-yoshino-yamamoto.png"
+  },
+  {
+    "id": "stallion",
+    "name": "Stallion",
+    "file": "/characters/suikoden-ii/020-stallion.png"
+  },
+  {
+    "id": "clive",
+    "name": "Clive",
+    "file": "/characters/suikoden-ii/021-clive.png"
+  },
+  {
+    "id": "teresa-wisemail",
+    "name": "Teresa Wisemail",
+    "file": "/characters/suikoden-ii/022-teresa-wisemail.png"
+  },
+  {
+    "id": "nina",
+    "name": "Nina",
+    "file": "/characters/suikoden-ii/023-nina.png"
+  },
+  {
+    "id": "humphrey-mintz",
+    "name": "Humphrey Mintz",
+    "file": "/characters/suikoden-ii/024-humphrey-mintz.png"
+  },
+  {
+    "id": "kiba-windamier",
+    "name": "Kiba Windamier",
+    "file": "/characters/suikoden-ii/025-kiba-windamier.png"
+  },
+  {
+    "id": "valeria",
+    "name": "Valeria",
+    "file": "/characters/suikoden-ii/026-valeria.png"
+  },
+  {
+    "id": "tomo",
+    "name": "Tomo",
+    "file": "/characters/suikoden-ii/027-tomo.png"
+  },
+  {
+    "id": "feather",
+    "name": "Feather",
+    "file": "/characters/suikoden-ii/028-feather.png"
+  },
+  {
+    "id": "sigfried",
+    "name": "Sigfried",
+    "file": "/characters/suikoden-ii/029-sigfried.png"
+  },
+  {
+    "id": "sierra-mikain",
+    "name": "Sierra Mikain",
+    "file": "/characters/suikoden-ii/030-sierra-mikain.png"
+  },
+  {
+    "id": "hauser",
+    "name": "Hauser",
+    "file": "/characters/suikoden-ii/031-hauser.png"
+  },
+  {
+    "id": "jess",
+    "name": "Jess",
+    "file": "/characters/suikoden-ii/032-jess.png"
+  },
+  {
+    "id": "georg-prime",
+    "name": "Georg Prime",
+    "file": "/characters/suikoden-ii/033-georg-prime.png"
+  },
+  {
+    "id": "killey",
+    "name": "Killey",
+    "file": "/characters/suikoden-ii/034-killey.png"
+  },
+  {
+    "id": "pesmerga",
+    "name": "Pesmerga",
+    "file": "/characters/suikoden-ii/035-pesmerga.png"
+  },
+  {
+    "id": "abizboah",
+    "name": "Abizboah",
+    "file": "/characters/suikoden-ii/036-abizboah.png"
+  },
+  {
+    "id": "mukumuku",
+    "name": "Mukumuku",
+    "file": "/characters/suikoden-ii/037-mukumuku.png"
+  },
+  {
+    "id": "rikimaru",
+    "name": "Rikimaru",
+    "file": "/characters/suikoden-ii/038-rikimaru.png"
+  },
+  {
+    "id": "millie",
+    "name": "Millie",
+    "file": "/characters/suikoden-ii/039-millie.png"
+  },
+  {
+    "id": "kinnison",
+    "name": "Kinnison",
+    "file": "/characters/suikoden-ii/040-kinnison.png"
+  },
+  {
+    "id": "shiro",
+    "name": "Shiro",
+    "file": "/characters/suikoden-ii/041-shiro.png"
+  },
+  {
+    "id": "zamza",
+    "name": "Zamza",
+    "file": "/characters/suikoden-ii/042-zamza.png"
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "file": "/characters/suikoden-ii/043-apple.png"
+  },
+  {
+    "id": "tuta",
+    "name": "Tuta",
+    "file": "/characters/suikoden-ii/044-tuta.png"
+  },
+  {
+    "id": "gilbert",
+    "name": "Gilbert",
+    "file": "/characters/suikoden-ii/045-gilbert.png"
+  },
+  {
+    "id": "eilie",
+    "name": "Eilie",
+    "file": "/characters/suikoden-ii/046-eilie.png"
+  },
+  {
+    "id": "rina",
+    "name": "Rina",
+    "file": "/characters/suikoden-ii/047-rina.png"
+  },
+  {
+    "id": "bolgan",
+    "name": "Bolgan",
+    "file": "/characters/suikoden-ii/048-bolgan.png"
+  },
+  {
+    "id": "leona",
+    "name": "Leona",
+    "file": "/characters/suikoden-ii/049-leona.png"
+  },
+  {
+    "id": "gengen",
+    "name": "Gengen",
+    "file": "/characters/suikoden-ii/050-gengen.png"
+  },
+  {
+    "id": "barbara",
+    "name": "Barbara",
+    "file": "/characters/suikoden-ii/051-barbara.png"
+  },
+  {
+    "id": "huan",
+    "name": "Huan",
+    "file": "/characters/suikoden-ii/052-huan.png"
+  },
+  {
+    "id": "oulan",
+    "name": "Oulan",
+    "file": "/characters/suikoden-ii/053-oulan.png"
+  },
+  {
+    "id": "taki",
+    "name": "Taki",
+    "file": "/characters/suikoden-ii/054-taki.png"
+  },
+  {
+    "id": "hans",
+    "name": "Hans",
+    "file": "/characters/suikoden-ii/055-hans.png"
+  },
+  {
+    "id": "tetsu",
+    "name": "Tetsu",
+    "file": "/characters/suikoden-ii/056-tetsu.png"
+  },
+  {
+    "id": "hai-yo",
+    "name": "Hai Yo",
+    "file": "/characters/suikoden-ii/057-hai-yo.png"
+  },
+  {
+    "id": "richmond",
+    "name": "Richmond",
+    "file": "/characters/suikoden-ii/058-richmond.png"
+  },
+  {
+    "id": "amada",
+    "name": "Amada",
+    "file": "/characters/suikoden-ii/059-amada.png"
+  },
+  {
+    "id": "alex",
+    "name": "Alex",
+    "file": "/characters/suikoden-ii/060-alex.png"
+  },
+  {
+    "id": "hilda",
+    "name": "Hilda",
+    "file": "/characters/suikoden-ii/061-hilda.png"
+  },
+  {
+    "id": "adlai",
+    "name": "Adlai",
+    "file": "/characters/suikoden-ii/062-adlai.png"
+  },
+  {
+    "id": "emilia",
+    "name": "Emilia",
+    "file": "/characters/suikoden-ii/063-emilia.png"
+  },
+  {
+    "id": "gabocha",
+    "name": "Gabocha",
+    "file": "/characters/suikoden-ii/064-gabocha.png"
+  },
+  {
+    "id": "sid",
+    "name": "Sid",
+    "file": "/characters/suikoden-ii/065-sid.png"
+  },
+  {
+    "id": "jeane",
+    "name": "Jeane",
+    "file": "/characters/suikoden-ii/066-jeane.png"
+  },
+  {
+    "id": "shilo",
+    "name": "Shilo",
+    "file": "/characters/suikoden-ii/067-shilo.png"
+  },
+  {
+    "id": "yuzu",
+    "name": "Yuzu",
+    "file": "/characters/suikoden-ii/068-yuzu.png"
+  },
+  {
+    "id": "shin",
+    "name": "Shin",
+    "file": "/characters/suikoden-ii/069-shin.png"
+  },
+  {
+    "id": "meg",
+    "name": "Meg",
+    "file": "/characters/suikoden-ii/070-meg.png"
+  },
+  {
+    "id": "gadget",
+    "name": "Gadget",
+    "file": "/characters/suikoden-ii/071-gadget.png"
+  },
+  {
+    "id": "wakaba",
+    "name": "Wakaba",
+    "file": "/characters/suikoden-ii/072-wakaba.png"
+  },
+  {
+    "id": "tony",
+    "name": "Tony",
+    "file": "/characters/suikoden-ii/073-tony.png"
+  },
+  {
+    "id": "viki",
+    "name": "Viki",
+    "file": "/characters/suikoden-ii/074-viki.png"
+  },
+  {
+    "id": "futch",
+    "name": "Futch",
+    "file": "/characters/suikoden-ii/075-futch.png"
+  },
+  {
+    "id": "miklotov",
+    "name": "Miklotov",
+    "file": "/characters/suikoden-ii/076-miklotov.png"
+  },
+  {
+    "id": "camus",
+    "name": "Camus",
+    "file": "/characters/suikoden-ii/077-camus.png"
+  },
+  {
+    "id": "klaus-windamier",
+    "name": "Klaus Windamier",
+    "file": "/characters/suikoden-ii/078-klaus-windamier.png"
+  },
+  {
+    "id": "kasumi",
+    "name": "Kasumi",
+    "file": "/characters/suikoden-ii/079-kasumi.png"
+  },
+  {
+    "id": "sheena",
+    "name": "Sheena",
+    "file": "/characters/suikoden-ii/080-sheena.png"
+  },
+  {
+    "id": "gordon",
+    "name": "Gordon",
+    "file": "/characters/suikoden-ii/081-gordon.png"
+  },
+  {
+    "id": "lorelai",
+    "name": "Lorelai",
+    "file": "/characters/suikoden-ii/082-lorelai.png"
+  },
+  {
+    "id": "sasuke",
+    "name": "Sasuke",
+    "file": "/characters/suikoden-ii/083-sasuke.png"
+  },
+  {
+    "id": "mondo",
+    "name": "Mondo",
+    "file": "/characters/suikoden-ii/084-mondo.png"
+  },
+  {
+    "id": "templeton",
+    "name": "Templeton",
+    "file": "/characters/suikoden-ii/085-templeton.png"
+  },
+  {
+    "id": "badeaux",
+    "name": "Badeaux",
+    "file": "/characters/suikoden-ii/086-badeaux.png"
+  },
+  {
+    "id": "ayda",
+    "name": "Ayda",
+    "file": "/characters/suikoden-ii/087-ayda.png"
+  },
+  {
+    "id": "connell",
+    "name": "Connell",
+    "file": "/characters/suikoden-ii/088-connell.png"
+  },
+  {
+    "id": "karen",
+    "name": "Karen",
+    "file": "/characters/suikoden-ii/089-karen.png"
+  },
+  {
+    "id": "maximillian",
+    "name": "Maximillian",
+    "file": "/characters/suikoden-ii/090-maximillian.png"
+  },
+  {
+    "id": "raura",
+    "name": "Raura",
+    "file": "/characters/suikoden-ii/091-raura.png"
+  },
+  {
+    "id": "kahn-marley",
+    "name": "Kahn Marley",
+    "file": "/characters/suikoden-ii/092-kahn-marley.png"
+  },
+  {
+    "id": "tenkou",
+    "name": "Tenkou",
+    "file": "/characters/suikoden-ii/093-tenkou.png"
+  },
+  {
+    "id": "long-chan-chan",
+    "name": "Long Chan-Chan",
+    "file": "/characters/suikoden-ii/094-long-chan-chan.png"
+  },
+  {
+    "id": "gijimu",
+    "name": "Gijimu",
+    "file": "/characters/suikoden-ii/095-gijimu.png"
+  },
+  {
+    "id": "lo-wen",
+    "name": "Lo Wen",
+    "file": "/characters/suikoden-ii/096-lo-wen.png"
+  },
+  {
+    "id": "koyu",
+    "name": "Koyu",
+    "file": "/characters/suikoden-ii/097-koyu.png"
+  },
+  {
+    "id": "marlowe",
+    "name": "Marlowe",
+    "file": "/characters/suikoden-ii/098-marlowe.png"
+  },
+  {
+    "id": "lebrante",
+    "name": "Lebrante",
+    "file": "/characters/suikoden-ii/099-lebrante.png"
+  },
+  {
+    "id": "simone-verdricci",
+    "name": "Simone Verdricci",
+    "file": "/characters/suikoden-ii/100-simone-verdricci.png"
+  },
+  {
+    "id": "hoi",
+    "name": "Hoi",
+    "file": "/characters/suikoden-ii/101-hoi.png"
+  },
+  {
+    "id": "gantetsu",
+    "name": "Gantetsu",
+    "file": "/characters/suikoden-ii/102-gantetsu.png"
+  },
+  {
+    "id": "annallee",
+    "name": "Annallee",
+    "file": "/characters/suikoden-ii/103-annallee.png"
+  },
+  {
+    "id": "bob",
+    "name": "Bob",
+    "file": "/characters/suikoden-ii/104-bob.png"
+  },
+  {
+    "id": "jude",
+    "name": "Jude",
+    "file": "/characters/suikoden-ii/105-jude.png"
+  },
+  {
+    "id": "pico",
+    "name": "Pico",
+    "file": "/characters/suikoden-ii/106-pico.png"
+  },
+  {
+    "id": "alberto",
+    "name": "Alberto",
+    "file": "/characters/suikoden-ii/107-alberto.png"
+  },
+  {
+    "id": "tessai",
+    "name": "Tessai",
+    "file": "/characters/suikoden-ii/108-tessai.png"
+  },
+  {
+    "id": "genshu",
+    "name": "Genshu",
+    "file": "/characters/suikoden-ii/109-genshu.png"
+  },
+  {
+    "id": "vincent",
+    "name": "Vincent",
+    "file": "/characters/suikoden-ii/110-vincent.png"
+  },
+  {
+    "id": "mazus",
+    "name": "Mazus",
+    "file": "/characters/suikoden-ii/111-mazus.png"
+  }
+]

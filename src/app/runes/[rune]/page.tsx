@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import { loadArchiveJsonSafely } from "@/constants/data-loading";
+import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import RuneFunctionRecords from "@/components/runes/RuneFunctionRecords";
+import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   formatRuneGames,
   getRuneReference,
@@ -9,17 +10,21 @@ import {
   getRuneDescriptionLines,
   getRuneDescriptionTitle,
   getRuneDisplayImageSrc,
+  getRuneFunctionRecords,
+  getRuneFunctionTypeDescription,
+  getRuneFunctionTypeLabel,
   isRuneFallbackImage,
   RUNE_ARCHIVE_COPY,
   RUNE_CATEGORY_LABELS,
   RUNE_FALLBACK_IMAGE,
   RUNE_INDEX_PAGES,
-} from "@/constants/rune-content";
+  type RuneFunctionRecord,
+} from "@/constants/runes/rune-content";
 import {
   APP_SHELL_STYLES,
   RESPONSIVE_SHELL,
   RUNE_STYLES,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 type RuneDetailProps = {
   params: Promise<{
@@ -42,28 +47,36 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
   const rows = loadArchiveJsonSafely({
     fallback: [],
     label: `rune-detail-rows:${rune.id}`,
-    load: () => [
-      {
-        label: RUNE_ARCHIVE_COPY.categoryLabel,
-        value: RUNE_CATEGORY_LABELS[rune.category],
-      },
-      {
-        label: RUNE_ARCHIVE_COPY.gamesLabel,
-        value: formatRuneGames(rune.games),
-      },
-      {
-        label: RUNE_ARCHIVE_COPY.aliasLabel,
-        value: rune.aliases.join(" / "),
-      },
-      ...(rune.japaneseName ?
-        [
-          {
-            label: RUNE_ARCHIVE_COPY.japaneseNameLabel,
-            value: rune.japaneseName,
-          },
-        ] :
-        []),
-    ],
+    load: () => {
+      const functionTypeLabel = getRuneFunctionTypeLabel(rune);
+
+      return [
+        {
+          label: RUNE_ARCHIVE_COPY.categoryLabel,
+          value: RUNE_CATEGORY_LABELS[rune.category],
+        },
+        {
+          label: RUNE_ARCHIVE_COPY.functionTypeLabel,
+          value: functionTypeLabel,
+        },
+        {
+          label: RUNE_ARCHIVE_COPY.gamesLabel,
+          value: formatRuneGames(rune.games),
+        },
+        {
+          label: RUNE_ARCHIVE_COPY.aliasLabel,
+          value: rune.aliases.join(" / "),
+        },
+        ...(rune.japaneseName ?
+          [
+            {
+              label: RUNE_ARCHIVE_COPY.japaneseNameLabel,
+              value: rune.japaneseName,
+            },
+          ] :
+          []),
+      ];
+    },
   });
   const activeRunePage = loadArchiveJsonSafely({
     fallback: RUNE_INDEX_PAGES[0],
@@ -89,6 +102,16 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
     fallback: RUNE_ARCHIVE_COPY.runeDescriptionTitle,
     label: `rune-detail-description-title:${rune.id}`,
     load: () => getRuneDescriptionTitle(rune),
+  });
+  const runeFunctionRecords = loadArchiveJsonSafely<readonly RuneFunctionRecord[]>({
+    fallback: [],
+    label: `rune-detail-functions:${rune.id}`,
+    load: () => getRuneFunctionRecords(rune),
+  });
+  const runeFunctionTypeDescription = loadArchiveJsonSafely({
+    fallback: "",
+    label: `rune-detail-function-type-description:${rune.id}`,
+    load: () => getRuneFunctionTypeDescription(rune),
   });
 
   return (
@@ -138,6 +161,9 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
                 </div>
               </section>
             )}
+            <p className={RUNE_STYLES.functionTypeNote}>
+              {runeFunctionTypeDescription}
+            </p>
             <dl className={RUNE_STYLES.ledger}>
               {rows.map((row) => (
                 <div className={RUNE_STYLES.ledgerRow} key={row.label}>
@@ -147,6 +173,8 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
               ))}
             </dl>
           </section>
+
+          <RuneFunctionRecords records={runeFunctionRecords} />
         </section>
       </div>
     </main>

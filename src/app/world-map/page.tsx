@@ -1,18 +1,18 @@
 import Image from "next/image";
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import WorldStageMarker from "@/components/archive/WorldStageMarker";
-import { APP_ROUTES } from "@/constants/app-config";
+import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import WorldStageMarker from "@/components/world-map/WorldStageMarker";
+import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   IMAGE_PATHS,
   WORLD_STAGE_MARKERS,
   WORLD_MAP_COPY,
-} from "@/constants/archive-content";
+} from "@/constants/archive/archive-content";
 import {
   APP_SHELL_STYLES,
   ATLAS_STYLES,
   IMAGE_SIZE_HINTS,
   RESPONSIVE_SHELL,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 const WorldMap = () => {
   return (

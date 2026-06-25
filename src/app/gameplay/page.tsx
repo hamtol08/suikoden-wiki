@@ -1,12 +1,12 @@
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import ArchivePageIntro from "@/components/archive/ArchivePageIntro";
+import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import {
   GameplayGuidePanels,
   GameplaySection,
   GameplayTagSection,
   GameplayTabs,
-} from "@/components/archive/GameplayBlocks";
-import { APP_ROUTES } from "@/constants/app-config";
+} from "@/components/gameplay/GameplayBlocks";
+import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   GAMEPLAY_COPY,
   GAMEPLAY_BATTLE_SECTIONS,
@@ -16,12 +16,12 @@ import {
   GAMEPLAY_SYSTEMS,
   GAMEPLAY_TABS,
   GAMEPLAY_WAR_BATTLE_SECTIONS,
-} from "@/constants/gameplay-content";
+} from "@/constants/gameplay/gameplay-content";
 import {
   APP_SHELL_STYLES,
   GAMEPLAY_STYLES,
   RESPONSIVE_SHELL,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 const Gameplay = () => {
   return (

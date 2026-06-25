@@ -1,4 +1,4 @@
-import ArchiveRouteLoading from "@/components/archive/ArchiveRouteLoading";
+import ArchiveRouteLoading from "@/components/layout/ArchiveRouteLoading";
 
 const Loading = () => {
   return <ArchiveRouteLoading />;

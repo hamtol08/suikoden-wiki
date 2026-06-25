@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { APP_ROUTES } from "@/constants/app-config";
-import { ARCHIVE_NOT_FOUND_COPY } from "@/constants/archive-content";
+import { APP_ROUTES } from "@/constants/app/app-config";
+import { ARCHIVE_NOT_FOUND_COPY } from "@/constants/archive/archive-content";
 import {
   APP_SHELL_STYLES,
   NOT_FOUND_STYLES,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 const NotFound = () => {
   return (

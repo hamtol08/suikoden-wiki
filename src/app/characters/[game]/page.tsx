@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import CharacterPageShell from "@/components/archive/CharacterPageShell";
+import CharacterPageShell from "@/components/characters/CharacterPageShell";
 import {
   CHARACTER_DATA_BY_GAME,
   type CharacterGameId,
-} from "@/constants/character-content";
-import { loadArchiveJsonSafely } from "@/constants/data-loading";
+} from "@/constants/characters/character-content";
+import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 
 type CharacterGameProps = {
   params: Promise<{

@@ -7,13 +7,13 @@ import {
   Swords,
   Users,
 } from "lucide-react";
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import MotionSurface from "@/components/archive/MotionSurface";
+import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import MotionSurface from "@/components/shared/MotionSurface";
 import {
   DOM_IDS,
   IMAGE_LOADING,
   ROUTE_ANCHORS,
-} from "@/constants/app-config";
+} from "@/constants/app/app-config";
 import {
   ARCHIVE_CATEGORIES,
   ARCHIVE_COPY,
@@ -23,8 +23,8 @@ import {
   IMAGE_SIZES,
   TIMELINE_ITEMS,
   TRENDING_STARS,
-} from "@/constants/archive-content";
-import { THEME_CLASSES } from "@/constants/theme";
+} from "@/constants/archive/archive-content";
+import { THEME_CLASSES } from "@/constants/app/theme";
 import {
   APP_SHELL_STYLES,
   CARD_STYLES,
@@ -38,7 +38,7 @@ import {
   RESPONSIVE_SHELL,
   SECTION_STYLES,
   TEXT_STYLES,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 const categoryIconMap = {
   archive: Archive,

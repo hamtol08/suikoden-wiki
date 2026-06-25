@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
-import ItemDetailPageShell from "@/components/archive/ItemDetailPageShell";
-import ItemIndexPageShell from "@/components/archive/ItemIndexPageShell";
-import { loadArchiveJsonSafely } from "@/constants/data-loading";
+import ItemDetailPageShell from "@/components/items/ItemDetailPageShell";
+import ItemIndexPageShell from "@/components/items/ItemIndexPageShell";
+import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   getItemDetailRecord,
   getItemDetailStaticParams,
   ITEM_INDEX_PAGES,
-} from "@/constants/item-content";
+} from "@/constants/items/item-content";
 
 type ItemIndexGameProps = {
   params: Promise<{

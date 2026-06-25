@@ -1,20 +1,20 @@
 import { notFound } from "next/navigation";
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import CharacterDetailProfile from "@/components/archive/CharacterDetailProfile";
-import { APP_ROUTES } from "@/constants/app-config";
-import { loadArchiveJsonSafely } from "@/constants/data-loading";
+import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import CharacterDetailProfile from "@/components/characters/CharacterDetailProfile";
+import { APP_ROUTES } from "@/constants/app/app-config";
+import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   CHARACTER_COPY,
   CHARACTER_DATA_BY_GAME,
   type CharacterGameId,
   getCharacterSeries,
   isCharacterDetailAvailable,
-} from "@/constants/character-content";
+} from "@/constants/characters/character-content";
 import {
   APP_SHELL_STYLES,
   CHARACTER_STYLES,
   RESPONSIVE_SHELL,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 type CharacterDetailProps = {
   params: Promise<{

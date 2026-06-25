@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { THEME_MODES } from "@/constants/app-config";
+import { THEME_MODES } from "@/constants/app/app-config";
 
 export type ThemeMode = (typeof THEME_MODES)[keyof typeof THEME_MODES];
 

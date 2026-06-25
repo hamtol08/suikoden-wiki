@@ -1,19 +1,19 @@
 import { notFound } from "next/navigation";
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import RegionDetailRecords from "@/components/archive/RegionDetailRecords";
-import RegionPreview from "@/components/archive/RegionPreview";
-import { APP_ROUTES } from "@/constants/app-config";
-import { loadArchiveJsonSafely } from "@/constants/data-loading";
+import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import RegionDetailRecords from "@/components/regions/RegionDetailRecords";
+import RegionPreview from "@/components/regions/RegionPreview";
+import { APP_ROUTES } from "@/constants/app/app-config";
+import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   REGION_ATLAS_COPY,
   REGION_ATLAS_LOCATIONS,
   REGION_ATLAS_TABS,
-} from "@/constants/archive-content";
+} from "@/constants/archive/archive-content";
 import {
   APP_SHELL_STYLES,
   ATLAS_STYLES,
   RESPONSIVE_SHELL,
-} from "@/constants/ui-styles";
+} from "@/constants/styles/ui-styles";
 
 type RegionAtlasDetailProps = {
   params: Promise<{
