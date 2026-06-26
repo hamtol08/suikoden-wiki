@@ -1,3 +1,4 @@
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import {
   RUNE_ARCHIVE_COPY,
   type RuneFunctionRecord,
@@ -24,7 +25,9 @@ const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
           <article className={RUNE_STYLES.functionCard} key={record.game}>
             <h3 className={RUNE_STYLES.functionGame}>{record.game}</h3>
             {record.note ? (
-              <p className={RUNE_STYLES.functionNote}>{record.note}</p>
+              <p className={RUNE_STYLES.functionNote}>
+                <CharacterNameLinkText text={record.note} />
+              </p>
             ) : null}
 
             {record.spells ? (
@@ -43,7 +46,7 @@ const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
                       </p>
                       <p className={RUNE_STYLES.spellName}>{spell.name}</p>
                       <p className={RUNE_STYLES.spellEffect}>
-                        {spell.effect}
+                        <CharacterNameLinkText text={spell.effect} />
                       </p>
                     </div>
                   ))}
@@ -62,7 +65,7 @@ const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
                       className={RUNE_STYLES.functionEffectItem}
                       key={`${record.game}-${effect}`}
                     >
-                      {effect}
+                      <CharacterNameLinkText text={effect} />
                     </li>
                   ))}
                 </ul>
@@ -75,7 +78,7 @@ const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
                   {RUNE_ARCHIVE_COPY.runeWeaponEffectLabel}
                 </h4>
                 <p className={RUNE_STYLES.functionSingleEffect}>
-                  {record.weaponEffect}
+                  <CharacterNameLinkText text={record.weaponEffect} />
                 </p>
               </>
             ) : null}

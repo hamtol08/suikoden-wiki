@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import ItemDetailPageShell from "@/components/items/ItemDetailPageShell";
-import ItemIndexPageShell from "@/components/items/ItemIndexPageShell";
+import ItemDetailPageShell from "@/components/items/detail/ItemDetailPageShell";
+import ItemIndexPageShell from "@/components/items/list/ItemIndexPageShell";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   getItemDetailRecord,

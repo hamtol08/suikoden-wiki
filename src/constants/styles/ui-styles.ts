@@ -175,13 +175,6 @@ export const SECTION_STYLES = {
 } as const;
 
 export const RIGHT_RAIL_STYLES = {
-  statHeader: "flex items-center gap-3",
-  statMark: "rounded border border-[#d8c9a5] dark:border-[#604403]",
-  statTitle: "font-serif text-xl font-semibold",
-  statFounded: "text-xs font-bold text-[#7a5900] dark:text-[#e9c176]",
-  statList: "mt-5 divide-y divide-[#eee4cd] dark:divide-[#38475f]",
-  statRow: "flex items-center justify-between py-3",
-  statValue: "font-serif text-lg font-semibold",
   quote: "rounded-lg border-l-4 border-[#d4af37] bg-[#e8effd] p-5 dark:bg-[#14243a]",
   quoteBody: "font-serif text-lg italic leading-8",
   quoteFooter: "mt-3 text-sm font-bold text-[#7a5900] dark:text-[#e9c176]",
@@ -204,6 +197,8 @@ export const TEXT_STYLES = {
   featureEyebrow: "text-xs font-bold text-[#7a5900] dark:text-[#e9c176]",
   cardTitle: "mt-2 font-serif text-xl font-semibold",
   categoryTitle: "mt-4 font-serif text-lg font-semibold",
+  characterNameLink:
+    "font-semibold text-[#7a5900] underline decoration-[#d4af37]/45 underline-offset-4 transition hover:text-[#101827] hover:decoration-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#e9c176] dark:hover:text-[#f4f1ea]",
 } as const;
 
 export const IMAGE_STYLES = {
@@ -391,6 +386,9 @@ export const CHARACTER_STYLES = {
     "break-keep text-sm font-semibold leading-6 text-[#101827] underline decoration-[#d4af37]/45 underline-offset-4 transition hover:text-[#7a5900] hover:decoration-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea] dark:hover:text-[#e9c176]",
   combatDataValueSeparator:
     "text-sm font-semibold leading-6 text-[#7d8795] dark:text-[#c5c6cd]",
+  detailBackAction: "mt-5 flex justify-end border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
+  detailBackLink:
+    "inline-flex min-h-11 items-center gap-2 rounded border border-[#d4af37] bg-[#fff8e2] px-4 py-2 text-sm font-bold text-[#7a5900] transition hover:bg-[#f2e1a6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:bg-[#322002] dark:text-[#e9c176] dark:hover:bg-[#4a3003]",
 } as const;
 
 export const RUNE_STYLES = {
@@ -754,7 +752,8 @@ export const GAMEPLAY_STYLES = {
   gameEyebrow:
     "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   gameTitle: "font-serif text-2xl font-semibold",
-  guideGroup: "mt-4 rounded-md border border-[#c7d3e9] bg-white/70 p-4 dark:border-[#38475f] dark:bg-[#111c2c]/65",
+  guideGroup:
+    "mt-4 block rounded-md border border-[#c7d3e9] bg-white/70 p-4 text-left transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#111c2c]/65 dark:hover:bg-[#14243a]",
   guideTitle:
     "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   guideBody: "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
@@ -793,7 +792,17 @@ export const GAMEPLAY_STYLES = {
     "mt-4 grid gap-2 border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
   detailPointItem:
     "break-keep rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 text-sm leading-6 text-[#3e4654] dark:border-[#604403] dark:bg-[#111c2c]/75 dark:text-[#c5c6cd]",
-  duelRecordGrid: "mt-4 grid gap-4",
+  duelRecordStack: "mt-4 grid gap-6",
+  duelTabList:
+    "flex flex-wrap gap-2 rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c]",
+  duelTab:
+    "min-h-11 rounded px-4 py-2 text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176]",
+  duelTabActive:
+    "min-h-11 rounded bg-[#101827] px-4 py-2 text-sm font-bold text-white shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:bg-[#e9c176] dark:text-[#101827]",
+  duelGameGroup: "grid gap-4",
+  duelGameTitle:
+    "border-b border-[#d8c9a5] pb-2 font-serif text-2xl font-semibold text-[#101827] dark:border-[#604403] dark:text-[#f4f1ea]",
+  duelRecordGrid: "grid gap-4",
   duelRecordCard:
     "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",
   duelRecordHeader:
@@ -870,6 +879,17 @@ export const GAMEPLAY_STYLES = {
     "mt-5 border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
   detailFacilityTitle:
     "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  detailFloorList: "mt-3 grid gap-3",
+  detailFloorItem:
+    "rounded-md border border-[#c7d3e9] bg-[#edf3ff] p-3 dark:border-[#38475f] dark:bg-[#172337]",
+  detailFloorTitle:
+    "font-serif text-lg font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  detailFloorBody:
+    "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  detailFloorTagList:
+    "mt-3 flex flex-wrap gap-2 border-t border-[#c7d3e9] pt-3 dark:border-[#38475f]",
+  detailFloorNote:
+    "mt-3 break-keep rounded border border-[#d8c9a5] bg-[#fff8e2] px-3 py-2 text-xs font-semibold leading-5 text-[#7a5900] dark:border-[#604403] dark:bg-[#322002] dark:text-[#e9c176]",
   detailFacilityList: "mt-3 grid gap-3",
   detailFacilityItem:
     "rounded-md border border-[#d8c9a5] bg-[#fffdf7] p-3 dark:border-[#604403] dark:bg-[#111c2c]",

@@ -1,11 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import {
   CharacterCombatDataPanels,
   CharacterDetailNavigation,
   CharacterDetailLedger,
   CharacterDetailSection,
-} from "@/components/characters/CharacterDetailBlocks";
-import RuneReferenceLink from "@/components/runes/RuneReferenceLink";
+} from "@/components/characters/detail/CharacterDetailBlocks";
+import RuneReferenceLink from "@/components/runes/shared/RuneReferenceLink";
+import { buildCharacterGamePath } from "@/constants/app/app-config";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   buildCharacterCombatDataPanels,
@@ -13,6 +16,7 @@ import {
   buildCharacterGameRoleRows,
   buildCharacterProfileRows,
   CharacterEntry,
+  type CharacterGameId,
   CHARACTER_COPY,
   CHARACTER_DETAIL_SECTION_IDS,
   formatCharacterOrder,
@@ -36,6 +40,8 @@ const CharacterDetailProfile = ({
   seriesTitle,
 }: CharacterDetailProfileProps) => {
   const paddedOrder = formatCharacterOrder(character.order);
+  const characterGame = character.game as CharacterGameId;
+  const characterListHref = buildCharacterGamePath(character.game);
   const detailRecord = loadArchiveJsonSafely({
     fallback: null,
     label: `character-detail-record:${character.id}`,
@@ -131,14 +137,20 @@ const CharacterDetailProfile = ({
           id={CHARACTER_DETAIL_SECTION_IDS.profileLedger}
           title={CHARACTER_COPY.detailLabels.profileLedger}
         >
-          <CharacterDetailLedger rows={profileRows} />
+          <CharacterDetailLedger
+            preferredGame={characterGame}
+            rows={profileRows}
+          />
         </CharacterDetailSection>
 
         <CharacterDetailSection
           id={CHARACTER_DETAIL_SECTION_IDS.gameRole}
           title={CHARACTER_COPY.detailLabels.gameRole}
         >
-          <CharacterDetailLedger rows={gameRoleRows} />
+          <CharacterDetailLedger
+            preferredGame={characterGame}
+            rows={gameRoleRows}
+          />
         </CharacterDetailSection>
 
         {combatDataPanels.length > 0 && (
@@ -146,9 +158,22 @@ const CharacterDetailProfile = ({
             id={CHARACTER_DETAIL_SECTION_IDS.combatData}
             title={CHARACTER_COPY.detailLabels.combatData}
           >
-            <CharacterCombatDataPanels panels={combatDataPanels} />
+            <CharacterCombatDataPanels
+              panels={combatDataPanels}
+              preferredGame={characterGame}
+            />
           </CharacterDetailSection>
         )}
+      </div>
+
+      <div className={CHARACTER_STYLES.detailBackAction}>
+        <Link
+          className={CHARACTER_STYLES.detailBackLink}
+          href={characterListHref}
+        >
+          <ArrowLeft aria-hidden="true" className="size-4" />
+          {CHARACTER_COPY.detailLabels.backToList}
+        </Link>
       </div>
     </>
   );

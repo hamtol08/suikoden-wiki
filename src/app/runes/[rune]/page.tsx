@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
-import RuneFunctionRecords from "@/components/runes/RuneFunctionRecords";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import RuneFunctionRecords from "@/components/runes/detail/RuneFunctionRecords";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   formatRuneGames,
@@ -128,7 +129,9 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
               {RUNE_ARCHIVE_COPY.profileTitle}
             </p>
             <h1 className={RUNE_STYLES.introTitle}>{rune.name}</h1>
-            <p className={RUNE_STYLES.introBody}>{RUNE_ARCHIVE_COPY.body}</p>
+            <p className={RUNE_STYLES.introBody}>
+              <CharacterNameLinkText text={RUNE_ARCHIVE_COPY.body} />
+            </p>
           </header>
 
           <section className={RUNE_STYLES.detailPanel}>
@@ -156,13 +159,15 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
                 </h3>
                 <div className={RUNE_STYLES.descriptionLines}>
                   {runeDescription.map((line) => (
-                    <p key={line}>{line}</p>
+                    <p key={line}>
+                      <CharacterNameLinkText text={line} />
+                    </p>
                   ))}
                 </div>
               </section>
             )}
             <p className={RUNE_STYLES.functionTypeNote}>
-              {runeFunctionTypeDescription}
+              <CharacterNameLinkText text={runeFunctionTypeDescription} />
             </p>
             <dl className={RUNE_STYLES.ledger}>
               {rows.map((row) => (

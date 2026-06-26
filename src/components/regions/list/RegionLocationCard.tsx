@@ -1,10 +1,12 @@
 import Link from "next/link";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import {
   REGION_ATLAS_LOCATIONS,
   REGION_CATEGORY_LABELS,
   REGION_KOREAN_NAMES,
   WORLD_MAP_COPY,
 } from "@/constants/archive/archive-content";
+import { type CharacterGameId } from "@/constants/characters/character-content";
 import { ATLAS_STYLES } from "@/constants/styles/ui-styles";
 
 type RegionLocation = (typeof REGION_ATLAS_LOCATIONS)[number];
@@ -33,12 +35,20 @@ const RegionLocationCard = ({ location }: RegionLocationCardProps) => {
         ) : null}
       </div>
 
-      <p className={ATLAS_STYLES.regionCardBody}>{location.description}</p>
+      <p className={ATLAS_STYLES.regionCardBody}>
+        <CharacterNameLinkText
+          preferredGame={location.game as CharacterGameId}
+          text={location.description}
+        />
+      </p>
 
       <ul className={ATLAS_STYLES.traitList}>
         {location.traits.map((trait) => (
           <li className={ATLAS_STYLES.traitItem} key={trait}>
-            {trait}
+            <CharacterNameLinkText
+              preferredGame={location.game as CharacterGameId}
+              text={trait}
+            />
           </li>
         ))}
       </ul>

@@ -1,7 +1,7 @@
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
-import CharacterIndexTable from "@/components/characters/CharacterIndexTable";
-import CharacterSeriesTabs from "@/components/characters/CharacterSeriesTabs";
+import CharacterIndexTable from "@/components/characters/list/CharacterIndexTable";
+import CharacterSeriesTabs from "@/components/characters/list/CharacterSeriesTabs";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {

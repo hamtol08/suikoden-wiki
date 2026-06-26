@@ -1,3 +1,5 @@
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+
 type ArchivePageIntroStyles = {
   intro: string;
   introBody: string;
@@ -21,7 +23,9 @@ const ArchivePageIntro = ({
   <header className={styles.intro}>
     <p className={styles.introEyebrow}>{eyebrow}</p>
     <h1 className={styles.introTitle}>{title}</h1>
-    <p className={styles.introBody}>{body}</p>
+    <p className={styles.introBody}>
+      <CharacterNameLinkText text={body} />
+    </p>
   </header>
 );
 

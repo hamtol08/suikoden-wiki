@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
-import CharacterDetailProfile from "@/components/characters/CharacterDetailProfile";
+import CharacterDetailProfile from "@/components/characters/detail/CharacterDetailProfile";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {

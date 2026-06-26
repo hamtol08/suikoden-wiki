@@ -1,5 +1,6 @@
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   buildItemRecordDisplay,
@@ -148,7 +149,9 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
               </h3>
               <div className={ITEM_STYLES.detailSectionBody}>
                 {item.descriptionLines.map((line) => (
-                  <p key={line}>{line}</p>
+                  <p key={line}>
+                    <CharacterNameLinkText text={line} />
+                  </p>
                 ))}
               </div>
             </section>
@@ -160,7 +163,9 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                 </h3>
                 <div className={ITEM_STYLES.detailSectionBody}>
                   {item.effectLines.map((line) => (
-                    <p key={line}>{line}</p>
+                    <p key={line}>
+                      <CharacterNameLinkText text={line} />
+                    </p>
                   ))}
                 </div>
               </section>
@@ -197,7 +202,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                           {ITEM_ARCHIVE_COPY.labels.shopLocations}
                         </dt>
                         <dd className={ITEM_STYLES.ledgerValue}>
-                          {record.shopLocations}
+                          <CharacterNameLinkText text={record.shopLocations} />
                         </dd>
                       </div>
                       <div className={ITEM_STYLES.ledgerRow}>
@@ -205,7 +210,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                           {ITEM_ARCHIVE_COPY.labels.dropLocations}
                         </dt>
                         <dd className={ITEM_STYLES.ledgerValue}>
-                          {record.dropLocations}
+                          <CharacterNameLinkText text={record.dropLocations} />
                         </dd>
                       </div>
                       <div className={ITEM_STYLES.ledgerRow}>
@@ -213,7 +218,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                           {ITEM_ARCHIVE_COPY.labels.otherLocations}
                         </dt>
                         <dd className={ITEM_STYLES.ledgerValue}>
-                          {record.otherLocations}
+                          <CharacterNameLinkText text={record.otherLocations} />
                         </dd>
                       </div>
                       <div className={ITEM_STYLES.ledgerRow}>
@@ -221,7 +226,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                           {ITEM_ARCHIVE_COPY.labels.dropRate}
                         </dt>
                         <dd className={ITEM_STYLES.ledgerValue}>
-                          {record.dropRates}
+                          <CharacterNameLinkText text={record.dropRates} />
                         </dd>
                       </div>
                     </dl>

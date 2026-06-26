@@ -3,7 +3,7 @@ import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import RuneIndexBrowser, {
   type RuneIndexBrowserItem,
-} from "@/components/runes/RuneIndexBrowser";
+} from "@/components/runes/list/RuneIndexBrowser";
 import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {

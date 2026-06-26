@@ -1,4 +1,4 @@
-import RegionAtlasPageShell from "@/components/regions/RegionAtlasPageShell";
+import RegionAtlasPageShell from "@/components/regions/list/RegionAtlasPageShell";
 
 const RegionAtlas = () => {
   return <RegionAtlasPageShell />;

@@ -3,7 +3,7 @@ import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import ItemIndexBrowser, {
   type ItemIndexBrowserItem,
-} from "@/components/items/ItemIndexBrowser";
+} from "@/components/items/list/ItemIndexBrowser";
 import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {

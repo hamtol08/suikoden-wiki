@@ -1,7 +1,7 @@
 export const SUIKODEN_II_CHARACTER_COPY = {
   eyebrow: "Characters",
   title: "Suikoden II",
-  body: "Dunan Unification War에 합류하는 108성 및 주요 인물을 이름, 별의 자리, 구분, 주요 등장 지역 순으로 정리합니다.",
+  body: "듀난 통일전쟁에 합류하는 108성 및 주요 인물을 이름, 별의 자리, 구분, 주요 등장 지역 순으로 정리합니다.",
   tableTitle: "108 Stars & Character Index",
   detailCta: "View Character Entry",
   backToList: "Back to Suikoden II Characters",

@@ -1,7 +1,8 @@
 import { BookOpen, Compass } from "lucide-react";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
-import RegionAtlasTabs from "@/components/regions/RegionAtlasTabs";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import RegionAtlasTabs from "@/components/regions/list/RegionAtlasTabs";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   REGION_ATLAS_COPY,
@@ -61,7 +62,9 @@ const RegionAtlasPageShell = ({ initialTabId }: RegionAtlasPageShellProps) => {
                     </span>
                     <div>
                       <h3 className={ATLAS_STYLES.logCardTitle}>{log.title}</h3>
-                      <p className={ATLAS_STYLES.logCardBody}>{log.body}</p>
+                      <p className={ATLAS_STYLES.logCardBody}>
+                        <CharacterNameLinkText text={log.body} />
+                      </p>
                     </div>
                   </article>
                 );

@@ -206,7 +206,7 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
   },
   "tai-ho": {
     name: "타이호",
-    recruitment: "피쳐를 투 리버로 데려가기로 한 뒤, 친치로린에서 5000 포치를 따면 합류합니다.",
+    recruitment: "피쳐를 투 리버로 데려가기로 한 뒤, 주사위 도박에서 5000 포치를 따면 합류합니다.",
   },
   "yam-koo": {
     name: "야무크",
@@ -346,15 +346,15 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
   },
   eilie: {
     name: "아이리",
-    recruitment: "코로네에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
+    recruitment: "코로네에서 주사위 도박으로 타이호를 이긴 뒤 파티에 합류합니다.",
   },
   rina: {
     name: "리나",
-    recruitment: "코로네에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
+    recruitment: "코로네에서 주사위 도박으로 타이호를 이긴 뒤 파티에 합류합니다.",
   },
   bolgan: {
     name: "볼간",
-    recruitment: "코로네에서 친치로린으로 타이호를 이긴 뒤 파티에 합류합니다.",
+    recruitment: "코로네에서 주사위 도박으로 타이호를 이긴 뒤 파티에 합류합니다.",
   },
   leona: {
     name: "레오나",
@@ -389,11 +389,11 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
     recruitment: "코볼트 마을의 프라이드 타코를 파티원에게 사용한 뒤 레이크웨스트에서 말을 걸면 합류합니다.",
   },
   "hai-yo": {
-    name: "하이요",
+    name: "하이 요",
     recruitment: "성 레벨 2 이후 본거지 주방에서 말을 걸면 합류합니다.",
   },
   richmond: {
-    name: "리치몬드",
+    name: "리치먼드",
     recruitment: "라다트에서 동전 던지기 승부를 받아들여 진 뒤, 식당 입구 근처 손님에게 얻은 동전을 사용해 다시 말을 걸면 합류합니다.",
   },
   amada: {
@@ -430,7 +430,7 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
   },
   shilo: {
     name: "시로우",
-    recruitment: "성 레벨 2 이후 친치로린에서 5000 포치를 따면 합류합니다.",
+    recruitment: "성 레벨 2 이후 주사위 도박에서 5000 포치를 따면 합류합니다.",
   },
   yuzu: {
     name: "유즈",
@@ -557,8 +557,8 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
     recruitment: "네크로드를 격파하면 합류합니다.",
   },
   lebrante: {
-    name: "레브란트",
-    recruitment: "성 레벨 3 이후 청자 항아리를 가지고 라다트의 르브란테에게 말을 걸면 합류합니다.",
+    name: "레브란테",
+    recruitment: "성 레벨 3 이후 청자 항아리를 가지고 라다트의 레브란테에게 말을 걸면 합류합니다.",
   },
   "simone-verdricci": {
     name: "시몬 베르드리치",

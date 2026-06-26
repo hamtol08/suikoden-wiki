@@ -2,15 +2,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import {
   GameplayDetailSeriesNotes,
   GameplayDuelRecords,
   GameplayWarBattleGuide,
-} from "@/components/gameplay/GameplayBlocks";
+} from "@/components/gameplay/detail/GameplayBlocks";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   GAMEPLAY_COPY,
   GAMEPLAY_DETAIL_COPY,
+  GAMEPLAY_DETAIL_IDS,
   getGameplayDetailRecord,
   getGameplayDetailStaticParams,
 } from "@/constants/gameplay/gameplay-content";
@@ -64,7 +66,9 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                 </h2>
                 <div className={GAMEPLAY_STYLES.detailParagraphList}>
                   {record.overview.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                    <p key={paragraph}>
+                      <CharacterNameLinkText text={paragraph} />
+                    </p>
                   ))}
                 </div>
               </section>
@@ -77,10 +81,10 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                   {record.keyPoints.map((point) => (
                     <article className={GAMEPLAY_STYLES.detailCard} key={point.title}>
                       <h3 className={GAMEPLAY_STYLES.detailCardTitle}>
-                        {point.title}
+                        <CharacterNameLinkText text={point.title} />
                       </h3>
                       <p className={GAMEPLAY_STYLES.detailCardBody}>
-                        {point.body}
+                        <CharacterNameLinkText text={point.body} />
                       </p>
                     </article>
                   ))}
@@ -91,7 +95,10 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                 <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
                   {GAMEPLAY_DETAIL_COPY.seriesLabel}
                 </h2>
-                <GameplayDetailSeriesNotes notes={record.seriesNotes} />
+                <GameplayDetailSeriesNotes
+                  notes={record.seriesNotes}
+                  tabbed={record.id === GAMEPLAY_DETAIL_IDS.headquarters}
+                />
               </section>
 
               {record.duelRecords ? (
@@ -125,9 +132,12 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                   {GAMEPLAY_DETAIL_COPY.checklistLabel}
                 </h2>
                 <ul className={GAMEPLAY_STYLES.detailChecklist}>
-                  {record.checklist.map((item) => (
-                    <li className={GAMEPLAY_STYLES.detailChecklistItem} key={item}>
-                      {item}
+                  {record.checklist.map((item, itemIndex) => (
+                    <li
+                      className={GAMEPLAY_STYLES.detailChecklistItem}
+                      key={`${record.id}-checklist-${itemIndex}`}
+                    >
+                      <CharacterNameLinkText text={item} />
                     </li>
                   ))}
                 </ul>

@@ -1,4 +1,4 @@
-import CharacterPageShell from "@/components/characters/CharacterPageShell";
+import CharacterPageShell from "@/components/characters/list/CharacterPageShell";
 import { CHARACTER_SERIES } from "@/constants/characters/character-content";
 
 const Characters = () => {

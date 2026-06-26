@@ -1,11 +1,13 @@
 import Link from "next/link";
-import RegionLocationCard from "@/components/regions/RegionLocationCard";
+import RegionLocationCard from "@/components/regions/list/RegionLocationCard";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import { buildRegionAtlasGamePath } from "@/constants/app/app-config";
 import {
   REGION_ATLAS_COPY,
   REGION_ATLAS_LOCATIONS,
   REGION_ATLAS_TABS,
 } from "@/constants/archive/archive-content";
+import { type CharacterGameId } from "@/constants/characters/character-content";
 import { ATLAS_STYLES } from "@/constants/styles/ui-styles";
 
 const defaultTabId = REGION_ATLAS_TABS[0].id;
@@ -66,7 +68,12 @@ const RegionAtlasTabs = ({ initialTabId = defaultTabId }: RegionAtlasTabsProps) 
             </p>
             <h2 className={ATLAS_STYLES.atlasSectionTitle}>{activeTab.title}</h2>
           </div>
-          <p className={ATLAS_STYLES.atlasSectionBody}>{activeTab.body}</p>
+          <p className={ATLAS_STYLES.atlasSectionBody}>
+            <CharacterNameLinkText
+              preferredGame={activeTab.id as CharacterGameId}
+              text={activeTab.body}
+            />
+          </p>
         </div>
 
         <div className={ATLAS_STYLES.regionGrid}>

@@ -18,18 +18,25 @@ export const GAMEPLAY_DETAIL_COPY = {
   overviewLabel: "Overview",
   keyPointLabel: "Key Points",
   seriesLabel: "Series Notes",
+  seriesTabsAriaLabel: "Series tabs",
   duelDialogLabel: "Duel Dialogue",
   duelPlayerLabel: "조작",
   duelLocationLabel: "장소",
   duelEnemyMoveLabel: "상대 행동",
   duelResponseLabel: "권장 대응",
   duelCueLabel: "대사",
+  duelSeriesTabsAriaLabel: "Duel series",
   warCommandLabel: "War Commands",
   warRecordLabel: "War Battle Records",
+  warRecordListLabel: "전쟁 전투 일람",
+  warSeriesTabsAriaLabel: "War battle series",
   warRoleLabel: "Army Roles",
+  warStrongAgainstLabel: "강점",
+  warWeakAgainstLabel: "약점",
   warObjectiveLabel: "목표",
   warLocationLabel: "전장",
   facilityLabel: "Facilities",
+  floorFacilityLabel: "층별 시설",
   facilityLocationLabel: "위치",
   facilityUnlockLabel: "개방",
   checklistLabel: "Archive Checklist",
@@ -38,7 +45,27 @@ export const GAMEPLAY_DETAIL_COPY = {
 export const GAMEPLAY_DUEL_ACTION_LABELS = {
   attack: "공격",
   defend: "방어",
-  special: "필살",
+  special: "필사의 공격",
+} as const;
+
+export const GAMEPLAY_DETAIL_IDS = {
+  battleBasics: "battle-basics",
+  duel: "duel",
+  headquarters: "headquarters",
+  repeatablePlay: "repeatable-play",
+  runeSystem: "rune-system",
+  suikodenIDuels: "suikoden-i-duels",
+  suikodenIGameplayMechanics: "suikoden-i-gameplay-mechanics",
+  suikodenITips: "suikoden-i-tips",
+  suikodenIIDuels: "suikoden-ii-duels",
+  suikodenIIFacilitiesMinigames: "suikoden-ii-facilities-minigames",
+  suikodenIIGameplayMechanics: "suikoden-ii-gameplay-mechanics",
+  suikodenIITips: "suikoden-ii-tips",
+  warBattle: "war-battle",
+} as const;
+
+const GAMEPLAY_LEGACY_DETAIL_IDS = {
+  armyBattle: "army-battle",
 } as const;
 
 export const GAMEPLAY_TABS = [
@@ -70,50 +97,52 @@ export const GAMEPLAY_TABS = [
 
 export const GAMEPLAY_SYSTEMS = [
   {
-    id: "battle-basics",
-    href: buildGameplayDetailPath("battle-basics"),
+    id: GAMEPLAY_DETAIL_IDS.battleBasics,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.battleBasics),
     title: "일반 전투",
     body: "6인 파티 편성, 전열·후열, 무기 사거리, 방어와 보호 행동을 함께 관리하는 기본 전투입니다.",
     points: ["파티 편성", "무기 사거리", "상태 이상", "장비 교체"],
   },
   {
-    id: "rune-system",
-    href: buildGameplayDetailPath("rune-system"),
+    id: GAMEPLAY_DETAIL_IDS.runeSystem,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.runeSystem),
     title: "문장 운용",
     body: "문장 장착, 봉인구, 레벨별 마법 사용 횟수와 속성 상성을 함께 보는 성장 축입니다.",
     points: ["문장 장착", "마법 레벨", "속성 문장", "고유 문장"],
   },
   {
-    id: "duel",
-    href: buildGameplayDetailPath("duel"),
+    id: GAMEPLAY_DETAIL_IDS.duel,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.duel),
     title: "일기토",
-    body: "대사의 뉘앙스를 읽고 공격·방어·필살을 고르는 1:1 전투입니다. 두 작품 모두 전용 가이드와 대사 패턴이 따로 정리되어 있습니다.",
-    points: ["공격", "방어", "필살", "대사 판독"],
+    body: "대사의 뉘앙스를 읽고 공격·방어·필사의 공격을 고르는 1:1 전투입니다. 두 작품 모두 전용 가이드와 대사 패턴이 따로 정리되어 있습니다.",
+    points: ["공격", "방어", "필사의 공격", "대사 판독"],
   },
   {
-    id: "war-battle",
-    href: buildGameplayDetailPath("war-battle"),
+    id: GAMEPLAY_DETAIL_IDS.warBattle,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.warBattle),
     title: "전쟁 전투",
     body: "부대 단위로 전황을 읽는 대규모 전투입니다. 1편은 명령과 병과 역할, 2편은 부대 편성과 진형 관리가 중요합니다.",
     points: ["부대 역할", "전황 판독", "진형", "전쟁 이벤트"],
   },
   {
-    id: "headquarters",
-    href: buildGameplayDetailPath("headquarters"),
+    id: GAMEPLAY_DETAIL_IDS.headquarters,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.headquarters),
     title: "본거지 시설",
     body: "상점, 창고, 대장간, 감정소, 목욕탕, 도서관 등 동료 영입에 따라 열리는 시설 기록입니다.",
     points: ["시설 개방", "상점", "창고", "대장간"],
   },
   {
-    id: "repeatable-play",
-    href: buildGameplayDetailPath("repeatable-play"),
+    id: GAMEPLAY_DETAIL_IDS.repeatablePlay,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.repeatablePlay),
     title: "미니게임과 반복 수급",
-    body: "돈·경험치 수급, 교역, 낚시, 친치로린, 요리 등 반복 플레이에서 확인할 항목을 모읍니다.",
+    body: "돈·경험치 수급, 교역, 낚시, 주사위 도박, 요리 등 반복 플레이에서 확인할 항목을 모읍니다.",
     points: ["돈 벌기", "경험치", "교역", "미니게임"],
   },
 ] as const;
 
 export type GameplaySystemId = (typeof GAMEPLAY_SYSTEMS)[number]["id"];
+export type GameplayDetailId =
+  (typeof GAMEPLAY_DETAIL_IDS)[keyof typeof GAMEPLAY_DETAIL_IDS];
 
 export type GameplayDuelActionId = keyof typeof GAMEPLAY_DUEL_ACTION_LABELS;
 
@@ -130,6 +159,11 @@ export type GameplayDuelRecord = {
   opponent: string;
   patterns: readonly GameplayDuelPattern[];
   player: string;
+};
+
+export type GameplayDuelRecordGroup = {
+  game: string;
+  records: GameplayDuelRecord[];
 };
 
 export type GameplayWarCommandGroup = {
@@ -152,6 +186,11 @@ export type GameplayWarBattleRecord = {
   title: string;
 };
 
+export type GameplayWarBattleRecordGroup = {
+  game: string;
+  records: GameplayWarBattleRecord[];
+};
+
 export type GameplayWarRoleRecord = {
   body: string;
   game: string;
@@ -159,8 +198,30 @@ export type GameplayWarRoleRecord = {
   title: string;
 };
 
+export type GameplayFacilityRecord = {
+  body: string;
+  location: string;
+  name: string;
+  unlock: string;
+};
+
+export type GameplayFloorFacilityRecord = {
+  facilities: readonly string[];
+  floor: string;
+  note?: string;
+  summary: string;
+};
+
+export type GameplaySeriesNoteRecord = {
+  game: string;
+  body: string;
+  points?: readonly string[];
+  facilities?: readonly GameplayFacilityRecord[];
+  floorFacilities?: readonly GameplayFloorFacilityRecord[];
+};
+
 export type GameplayDetailRecord = {
-  id: GameplaySystemId;
+  id: GameplayDetailId;
   href: string;
   eyebrow: string;
   title: string;
@@ -175,17 +236,7 @@ export type GameplayDetailRecord = {
   warBattleRecords?: readonly GameplayWarBattleRecord[];
   warCommandGroups?: readonly GameplayWarCommandGroup[];
   warRoleRecords?: readonly GameplayWarRoleRecord[];
-  seriesNotes: readonly {
-    game: string;
-    body: string;
-    points?: readonly string[];
-    facilities?: readonly {
-      name: string;
-      location: string;
-      unlock: string;
-      body: string;
-    }[];
-  }[];
+  seriesNotes: readonly GameplaySeriesNoteRecord[];
   checklist: readonly string[];
 };
 
@@ -199,67 +250,97 @@ const duelPattern = (
   lines,
 });
 
+export const groupGameplayDuelRecordsByGame = (
+  records: readonly GameplayDuelRecord[],
+): GameplayDuelRecordGroup[] => {
+  return records.reduce<GameplayDuelRecordGroup[]>((groups, record) => {
+    const group = groups.find((item) => item.game === record.game);
+
+    if (group) {
+      group.records.push(record);
+      return groups;
+    }
+
+    return [...groups, { game: record.game, records: [record] }];
+  }, []);
+};
+
+export const groupGameplayWarBattleRecordsByGame = (
+  records: readonly GameplayWarBattleRecord[],
+): GameplayWarBattleRecordGroup[] => {
+  return records.reduce<GameplayWarBattleRecordGroup[]>((groups, record) => {
+    const group = groups.find((item) => item.game === record.game);
+
+    if (group) {
+      group.records.push(record);
+      return groups;
+    }
+
+    return [...groups, { game: record.game, records: [record] }];
+  }, []);
+};
+
 export const GAMEPLAY_DUEL_RECORDS = [
   {
     game: "Suikoden I",
     opponent: "크완다 로스만",
     player: "주인공",
     location: "판누 야쿠타",
-    note: "첫 본격 일기토입니다. 상대 대사는 공격, 방어, 필살 중 다음 행동을 암시합니다.",
+    note: "첫 본격 일기토입니다. 상대 대사는 공격, 방어, 필사의 공격 중 다음 행동을 암시합니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "You're good. Can you withstand this?",
-        "You got me! Perhaps I have underestimated you.",
-        "You don't stand a chance! But I shall show no mercy!",
-        "Hahaha! Puny attacks like that won't work on me!",
-        "Grrr! You are good, son of Teo! Now it's my turn!",
-        "You shall taste the sharpness of my blade!",
-        "At a loss, are you? But I'll show you no mercy!",
-        "Damn! I underestimated you.",
-        "Ha ha! You'll have to do better than that!",
-        "Heh, now it's my turn.",
-        "Taste the sharpness of my blade!",
-        "That's nothing!",
-        "What's the matter? If you won't attack, then I will!",
-        "Well done. But can you take this?",
-        "Whoa! Pretty good, Teo's little boy. Now it's my turn!",
-        "You're better than I thought. But how about this?",
+        "제법이군. 이걸 받아낼 수 있겠나?",
+        "당했군! 내가 너를 얕본 모양이다.",
+        "네게 승산은 없다! 하지만 자비는 베풀지 않겠다!",
+        "하하하! 그런 약한 공격은 내게 통하지 않는다!",
+        "크윽! 제법이구나, 테오의 아들! 이제 내 차례다!",
+        "내 칼날의 예리함을 맛보아라!",
+        "어쩔 줄 모르겠나? 그래도 자비는 없다!",
+        "제길! 내가 너를 얕봤군.",
+        "하하! 그 정도로는 부족하다!",
+        "흥, 이제 내 차례다.",
+        "내 칼날의 예리함을 맛보아라!",
+        "그 정도는 아무것도 아니다!",
+        "왜 그러지? 네가 공격하지 않겠다면 내가 간다!",
+        "잘했다. 하지만 이것도 받아낼 수 있겠나?",
+        "오호! 제법이군, 테오의 아들. 이제 내 차례다!",
+        "생각보다 강하군. 그럼 이건 어떠냐?",
       ]),
       duelPattern("defend", "attack", [
-        "It's no use! I see through your attack!",
-        "Come on, your turn! Come at me with everything you've got!",
-        "How cautious you are...As befits a leader.",
-        "Think you can break through my impenetrable defenses, do you?",
-        "You got me! But not this time!",
-        "Come on, you're boring me. Show me what you've got!",
-        "Arghhh! I underestimated you.",
-        "Carefully...",
-        "Cautious, aren't you. Just like a leader.",
-        "Damn! My turn!",
-        "Don't bore me. Show me what you can do.",
-        "Forget it. You're methods are obvious.",
-        "Now it's your turn. Come on!",
-        "Pretty good. How about another one?",
-        "What now?",
-        "Can you break my invulnerable defenses?",
+        "소용없다! 네 공격은 이미 읽었다!",
+        "자, 네 차례다! 가진 힘을 다해 덤벼라!",
+        "신중하군... 과연 지도자답다.",
+        "내 철벽 같은 방어를 뚫을 수 있을 것 같나?",
+        "당했군! 하지만 이번에는 아니다!",
+        "어서 와라, 지루하군. 네 실력을 보여봐라!",
+        "크윽! 내가 너를 얕봤다.",
+        "신중하게...",
+        "조심스럽군. 지도자답다.",
+        "제길! 내 차례다!",
+        "지루하게 굴지 마라. 네 힘을 보여라.",
+        "소용없다. 네 수법은 뻔하다.",
+        "이제 네 차례다. 와라!",
+        "제법이군. 한 번 더 해보겠나?",
+        "이제 어쩔 셈이지?",
+        "내 무적의 방어를 깰 수 있겠나?",
       ]),
       duelPattern("special", "defend", [
-        "Take this!",
-        "Haha, come on! Once more!",
-        "Very well...If that's how you want it!",
-        "This is going nowhere. Very well...Prepare yourself!",
-        "Victory is decided in an instant! I shall put my all into this strike!",
-        "Impossible! How are you able to dodge my attacks?!",
-        "Here we go again!",
-        "I'll get you!",
-        "I'll show you how it's done.",
-        "Impossible! You can't avoid my blows!",
-        "Interesting. How about another round?",
-        "Take that!",
-        "The next one won't be so easy!",
-        "Victory is near! I strike with all my might!",
-        "We're getting nowhere. Here I come!",
-        "Well done. You're a worthy opponent. Now it's my turn!",
+        "받아라!",
+        "하하, 와라! 한 번 더다!",
+        "좋다... 네가 원한다면!",
+        "이래서는 끝이 없군. 좋아... 각오해라!",
+        "승부는 한순간에 결정된다! 이 일격에 모든 것을 걸겠다!",
+        "말도 안 돼! 어떻게 내 공격을 피한 거냐?!",
+        "다시 간다!",
+        "잡아주마!",
+        "어떻게 하는지 보여주마.",
+        "불가능하다! 내 공격을 피할 수는 없다!",
+        "재미있군. 한 판 더 어떠냐?",
+        "받아라!",
+        "다음은 쉽지 않을 것이다!",
+        "승리가 눈앞이다! 전력을 다해 치겠다!",
+        "끝이 없군. 내가 간다!",
+        "잘했다. 상대할 가치가 있군. 이제 내 차례다!",
       ]),
     ],
   },
@@ -271,40 +352,40 @@ export const GAMEPLAY_DUEL_RECORDS = [
     note: "판 생존과 연결되는 핵심 일기토입니다. 전투 전 무기 강화와 장비 정비가 중요합니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "This is getting nowhere... Here I come!",
-        "Saw through my attack, did you?",
-        "Is that all you've got? Now it's my turn!",
-        "Pathetic, Pahn. Let me show you how it's done!",
-        "My sword is still sharp as ever!",
-        "You got me with that one, Pahn... Now it's my turn!",
-        "Do you see how we're mismatched?",
-        "Pretty good, Pahn.",
-        "The numbness in my hands, it's real.",
-        "All you can do is defend, Pahn? No mercy!",
+        "이래서는 끝이 없군... 내가 간다!",
+        "내 공격을 읽었나?",
+        "네 힘은 그게 전부냐? 이제 내 차례다!",
+        "한심하구나, 판. 어떻게 하는지 보여주마!",
+        "내 검은 아직도 예리하다!",
+        "그 일격은 제법이었다, 판... 이제 내 차례다!",
+        "우리의 격차가 보이느냐?",
+        "제법이구나, 판.",
+        "손이 저릴 정도군. 확실히 느껴진다.",
+        "방어만 할 셈이냐, 판? 자비는 없다!",
       ]),
       duelPattern("defend", "attack", [
-        "Come at me, Pahn!",
-        "It seems I lost my cool. I must be more careful...",
-        "This next one will not get past me!",
-        "Impressive, Pahn, seeing through my attack like that. I must be more cautious.",
-        "All right, do it again!",
-        "Come on, Pahn. See if you can kill me.",
-        "Do you give up?",
-        "What's the matter, Pahn? How about another round?",
-        "You're a smart one, Pahn.",
-        "You're better than I thought.",
+        "덤벼라, 판!",
+        "내가 평정심을 잃은 모양이다. 더 신중해야겠군...",
+        "다음 공격은 통하지 않을 것이다!",
+        "대단하구나, 판. 내 공격을 읽다니. 나도 더 조심해야겠다.",
+        "좋다, 다시 해봐라!",
+        "와라, 판. 나를 죽일 수 있는지 보자.",
+        "포기하겠느냐?",
+        "왜 그러느냐, 판? 한 번 더 해보겠나?",
+        "영리하구나, 판.",
+        "생각보다 훨씬 낫구나.",
       ]),
       duelPattern("special", "defend", [
-        "You have shown me your techniques... Now, I shall show you mine!",
-        "If you will not come at me... then I shall come to you!",
-        "My most powerful technique...",
-        "Can you dodge my blade, Pahn?",
-        "Excellent, Pahn. You're a real fighter. Here's another!",
-        "Finish me with a single blow!",
-        "Hmmm. Here I come again!",
-        "Impossible! Take that!",
-        "That's... no good.",
-        "The next one will be more painful.",
+        "네 기술은 잘 보았다... 이제 내 기술을 보여주마!",
+        "네가 오지 않겠다면... 내가 가겠다!",
+        "나의 최강 기술...",
+        "내 칼날을 피할 수 있겠느냐, 판?",
+        "훌륭하다, 판. 진정한 전사로구나. 한 번 더 간다!",
+        "일격으로 나를 끝내봐라!",
+        "흠. 다시 간다!",
+        "불가능하다! 받아라!",
+        "그건... 안 된다.",
+        "다음 것은 더 아플 것이다.",
       ]),
     ],
   },
@@ -316,41 +397,41 @@ export const GAMEPLAY_DUEL_RECORDS = [
     note: "주인공이 직접 맞서는 테오와의 일기토입니다. 판과의 전투와 비슷하지만 일부 대사가 다릅니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "Do you understand now just how great the difference in our strength is?",
-        "This is going nowhere... Here I come!",
-        "Always on the defensive... That will not bring you victory!",
-        "Did you see that coming?",
-        "That was nothing. Now it's my turn.",
-        "That was pretty good. Now it's my turn.",
-        "The numbness in my hands, it's real!",
-        "Well done!",
-        "You're soft...soft! This is how you attack!",
-        "Here I come, my son.",
+        "이제 우리의 힘 차이가 얼마나 큰지 알겠느냐?",
+        "이래서는 끝이 없군... 내가 간다!",
+        "계속 방어만 해서는 승리할 수 없다!",
+        "방금 것은 보였느냐?",
+        "그 정도는 아무것도 아니다. 이제 내 차례다.",
+        "제법이었다. 이제 내 차례다.",
+        "손이 저릴 정도군. 확실히 느껴진다!",
+        "잘했다!",
+        "무르구나... 너무 무르다! 공격이란 이렇게 하는 것이다!",
+        "간다, 내 아들아.",
       ]),
       duelPattern("defend", "attack", [
-        "Impressive, seeing through my attack like that... I must be more cautious myself.",
-        "Show me how strong you have become!",
-        "The leader of the Liberation Army... No wonder you are cautious.",
-        "Hmm? Finished already?",
-        "Good, try it again!",
-        "I mustn't underestimate you.",
-        "I underestimated you! What's wrong? Another round?",
-        "I'll see you coming next time!",
-        "I'm losing my cool. I must be more cautious!",
-        "Show me what you've learned.",
+        "대단하구나, 내 공격을 읽다니... 나도 더 신중해야겠군.",
+        "얼마나 강해졌는지 보여다오!",
+        "해방군의 지도자라... 조심스러운 것도 당연하군.",
+        "흠? 벌써 끝이냐?",
+        "좋다, 다시 해봐라!",
+        "너를 얕봐서는 안 되겠군.",
+        "내가 너를 얕봤다! 왜 그러느냐? 한 번 더 해보겠나?",
+        "다음에는 네 움직임을 읽겠다!",
+        "내가 평정심을 잃고 있군. 더 신중해야 한다!",
+        "네가 배운 것을 보여다오.",
       ]),
       duelPattern("special", "defend", [
-        "My most powerful technique...",
-        "My sword is the sword of His Majesty the Emperor. I shall not hold back!",
-        "This one will hit its mark!",
-        "If you will not come at me... then I shall come to you!",
-        "Think you can surpass me, do you?",
-        "I'm delighted, my son. You're quite a warrior. But here's another!",
-        "My deadly sword...",
-        "Now that I've seen what you've got, I'll show you what I can do.",
-        "That's... no good.",
-        "The next one will be more painful.",
-        "Hmmm. Here I come again!",
+        "나의 최강 기술...",
+        "내 검은 황제 폐하의 검이다. 봐주지 않겠다!",
+        "이번 일격은 반드시 맞는다!",
+        "네가 오지 않겠다면... 내가 가겠다!",
+        "나를 뛰어넘을 수 있다고 생각하느냐?",
+        "기쁘구나, 내 아들아. 훌륭한 전사가 되었구나. 하지만 한 번 더 간다!",
+        "나의 필사의 공격...",
+        "네 실력은 보았다. 이제 내가 할 수 있는 것을 보여주마.",
+        "그건... 안 된다.",
+        "다음 것은 더 아플 것이다.",
+        "흠. 다시 간다!",
       ]),
     ],
   },
@@ -362,40 +443,40 @@ export const GAMEPLAY_DUEL_RECORDS = [
     note: "튜토리얼 성격의 일기토입니다. 대사와 행동 상성을 익히기 좋습니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "That's how to attack. Got it?",
-        "Okay, let's see what you've got.",
-        "Whoa, nice stroke. That's the way.",
-        "Nice try. I'll go next.",
-        "Whoa. Better be careful. Someone's gonna get hurt.",
-        "This is just a waste of time.",
-        "That's the spirit!",
-        "Hey, be careful how you swing that thing!",
-        "That's how to attack. Got it?",
-        "Oops, I might have put too much into that one.",
+        "공격은 그렇게 하는 거야. 알겠어?",
+        "좋아, 실력을 한번 보자.",
+        "오, 좋은 일격이야. 바로 그거지.",
+        "좋은 시도였어. 다음은 내 차례다.",
+        "오. 조심하는 게 좋겠어. 누군가는 다칠 테니까.",
+        "이건 시간 낭비일 뿐이군.",
+        "그 기세야!",
+        "야, 그거 휘두를 때 조심해!",
+        "공격은 그렇게 하는 거야. 알겠어?",
+        "이런, 힘이 좀 많이 들어갔나.",
       ]),
       duelPattern("defend", "attack", [
-        "C'mon take a swing at me.",
-        "Want to try that again?",
-        "One more time. Don't mess up.",
-        "Better be more careful. You'll get yourself hurt.",
-        "That's how to attack. Try it yourself.",
-        "In combat, caution is the best weapon.",
-        "Okay, it's your turn. Let's see what you've got.",
-        "Don't get too confident or you'll get yourself killed.",
-        "Hey, wanna try that again?",
-        "Hey, that was a surprise.",
+        "자, 나를 한번 공격해봐.",
+        "다시 해볼래?",
+        "한 번 더. 이번엔 실수하지 마.",
+        "좀 더 조심해. 그러다 다친다.",
+        "공격은 그렇게 하는 거야. 네가 직접 해봐.",
+        "전투에서는 신중함이 최고의 무기야.",
+        "좋아, 네 차례다. 실력을 보자.",
+        "너무 자신만만하면 목숨을 잃을 수도 있어.",
+        "야, 다시 해볼래?",
+        "오, 그건 좀 놀랐는데.",
       ]),
       duelPattern("special", "defend", [
-        "Here goes! Hope you can handle this!!!",
-        "Now it's my turn. Don't faint on me.",
-        "Here it comes. Better get out of the way.",
-        "I'm going again. Don't mess up this time.",
-        "The next one's going to hurt.",
-        "One of us is going to have to finish this.",
-        "You dodged my sword, the kid gloves are coming off...",
-        "Okay, maybe I should show you what I've really got.",
-        "This is how you deliver a deadly attack.....",
-        "Ha ha ha! You're something else. Wanna try that again?",
+        "간다! 이걸 받아낼 수 있으면 좋겠군!!!",
+        "이제 내 차례다. 기절하지 마.",
+        "온다. 피하는 게 좋을 거야.",
+        "다시 간다. 이번엔 실수하지 마.",
+        "다음 건 아플 거야.",
+        "우리 둘 중 하나는 이걸 끝내야겠지.",
+        "내 검을 피했군. 이제 봐주기는 끝이다...",
+        "좋아, 내 진짜 실력을 보여줘야겠군.",
+        "치명적인 공격은 이렇게 하는 거다.....",
+        "하하하! 너 제법인데. 다시 해볼래?",
       ]),
     ],
   },
@@ -407,39 +488,39 @@ export const GAMEPLAY_DUEL_RECORDS = [
     note: "영입 과정에서 두 차례 마주칠 수 있으며, 재전도 같은 대사 패턴을 사용합니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "Okay, first a little test...",
-        "Thinking the same thing, eh. C'mon let's go.",
-        "Hey, you're not gonna win that way y'know.",
-        "Ha ha ha ha! Too bad, boy!!! Now it's my turn!!!",
-        "YOWCH!!!!! Nice one! My hand's all numb!",
-        "ARGH!!! Nice shot... But it ain't over yet!",
-        "Ouch! That musta hurt! Sorry about that.",
-        "Ouch!!! Pretty good!",
-        "Ouch! I definitely felt that one!",
+        "좋아, 먼저 가볍게 시험해볼까...",
+        "같은 생각이었나 보군. 자, 가자.",
+        "이봐, 그런 식으로는 이길 수 없어.",
+        "하하하하! 아쉽구나, 꼬마!!! 이제 내 차례다!!!",
+        "아야!!!!! 제법인데! 손이 다 저리군!",
+        "으악!!! 좋은 일격이야... 하지만 아직 끝이 아니지!",
+        "아야! 꽤 아팠겠군! 미안하네.",
+        "아야!!! 제법이야!",
+        "아야! 이건 확실히 느껴졌어!",
       ]),
       duelPattern("defend", "attack", [
-        "Damn! Dammit!!! Gotta think!!!",
-        "He he, doesn't work so well the second time, eh.",
-        "C'mon. It's your turn now.",
-        "Woah!!! That was scary!!!!!",
-        "Dammit!!! I might lose this one!!!",
-        "Ha ha! Wanna try that again?",
-        "C'mon. It's your turn now.",
-        "He he, I guess I'd better hold back a little.",
-        "He he, first show me what you've got, boy.",
-        "I won't fall for that one again!",
+        "제길! 젠장!!! 생각해야 해!!!",
+        "헤헤, 두 번째는 그렇게 잘 안 통하지?",
+        "자, 이제 네 차례다.",
+        "으악!!! 그건 무서웠다!!!!!",
+        "젠장!!! 이러다 질지도 모르겠군!!!",
+        "하하! 다시 해볼래?",
+        "자, 이제 네 차례다.",
+        "헤헤, 조금 봐주는 게 좋겠군.",
+        "헤헤, 먼저 네 실력을 보여봐라, 꼬마.",
+        "그 수에는 두 번 다시 당하지 않아!",
       ]),
       duelPattern("special", "defend", [
-        "Argh! I'll get you next time!!!",
-        "That was fun!!! Let's go again!!!!",
-        "Way to go, kid! But I won't lose that easy!",
-        "That won't get us anywhere! Try this one on fer size!!!!!",
-        "Okay, boy, here I go!",
-        "If you liked that, I'll give you some more.",
-        "He he, I'll show you how to attack!",
-        "Better get ready. Here I go again.",
-        "I'm just about ready to take the kid gloves off.",
-        "Okay, it's my turn next!",
+        "으악! 다음엔 반드시 잡아주마!!!",
+        "재미있군!!! 다시 가자!!!!",
+        "잘한다, 꼬마! 하지만 난 쉽게 지지 않아!",
+        "이래서는 끝이 안 나지! 이거나 한번 받아봐라!!!!!",
+        "좋아, 꼬마야, 간다!",
+        "그게 마음에 들었다면 더 보여주지.",
+        "헤헤, 공격이 뭔지 보여주마!",
+        "준비하는 게 좋을 거다. 다시 간다.",
+        "이제 슬슬 봐주지 않을 때가 됐군.",
+        "좋아, 다음은 내 차례다!",
       ]),
     ],
   },
@@ -448,43 +529,43 @@ export const GAMEPLAY_DUEL_RECORDS = [
     opponent: "루카 브라이트",
     player: "주인공",
     location: "듀난 성 숲",
-    note: "직전 보스전 이후 이어지는 일기토입니다. 루카는 필살 대사가 많아 방어 판독이 특히 중요합니다.",
+    note: "직전 보스전 이후 이어지는 일기토입니다. 루카는 필사의 공격 대사가 많아 방어 판독이 특히 중요합니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "Idiot!!!! Is that the best you can do!!!!",
-        "You little punk!!!",
-        "Hah...... A draw..........",
-        "That's nothing!",
-        "Hah hah hah hah!!! Die! Die!!! Die!!!!",
-        "Hahaha!!! Yes! I'll disgrace your head under the sun!!!",
-        "I'll get you!! You insect!!!!!!",
-        "That's right!!!!! Battle!!!! I just love a good fight!!!!!!!!!",
-        "Pretty tricky!!!! You punk!!!!!",
-        "You impertinent little pig!!!!!",
+        "멍청한 놈!!!! 그게 네 전부냐!!!!",
+        "이 건방진 꼬마가!!!",
+        "하...... 무승부인가..........",
+        "그 정도는 아무것도 아니다!",
+        "하하하하!!! 죽어라! 죽어!!! 죽어!!!!",
+        "하하하!!! 그래! 네 머리를 태양 아래 욕보여주마!!!",
+        "잡아주마!! 벌레 같은 놈!!!!!!",
+        "그래!!!!! 싸움이다!!!! 나는 싸움이 너무 좋다!!!!!!!!!",
+        "제법 잔재주를 부리는군!!!! 건방진 놈!!!!!",
+        "불손한 돼지 새끼!!!!!",
       ]),
       duelPattern("defend", "attack", [
-        "Fool!!!! That can't stop me!!!!!!",
-        "Hahahahahahah!!!!",
-        "Hah...hah hah hah... Fighting is my life.....",
-        "I won't let an insect like you get in my way!!!",
-        "Kill!!! I'll kill you!!!!!!",
-        "Pathetic!!!! That's what you call power!!!!",
-        "Ridiculous!!! You think a punk like you can stop me!!!!!",
-        "You fool!!!!!!",
-        "You little punk.....",
-        "You're nothing!!! Nothing! Nothing!! Nothing!!!!!",
+        "어리석은 놈!!!! 그런 걸로는 날 막을 수 없다!!!!!!",
+        "하하하하하하!!!!",
+        "하...하하하... 싸움이야말로 내 삶이다.....",
+        "너 같은 벌레가 내 길을 막게 두지 않겠다!!!",
+        "죽인다!!! 내가 널 죽여주마!!!!!!",
+        "한심하군!!!! 그게 힘이라고 부르는 거냐!!!!",
+        "가소롭다!!! 너 같은 애송이가 날 막을 수 있다고 생각하나!!!!!",
+        "멍청한 놈!!!!!!",
+        "이 건방진 꼬마가.....",
+        "넌 아무것도 아니다!!! 아무것도! 아무것도!! 아무것도 아니야!!!!!",
       ]),
       duelPattern("special", "defend", [
-        "Feel my strength!!! Feel my sword!!!!!!!",
-        "Hah hah hah hah hah!!!!!!!!!!",
-        "Hah........ Are we still doing this....",
-        "I love it! I love it! [Hero's Name]!!!!! Hah hah hah hah !!!!!",
-        "I won't be defeated by a mere blade!!!!!!",
-        "Insect!!!! You really thought you could defeat me!!!!!!",
-        "Pig!! Pig!!! Pig!!!! Pig!!!!! Piiiiiiiiiiig!!!!!!!!",
-        "Pig!!!! Die!!!!!!!!!",
-        "Pig!!!!! You dare wound me!!!!!",
-        "You can't take it forever!!! A pathetic insect like you!!!",
+        "내 힘을 느껴라!!! 내 검을 느껴라!!!!!!!",
+        "하하하하하!!!!!!!!!!",
+        "하........ 아직도 계속할 셈이냐....",
+        "좋다! 정말 좋다! [주인공 이름]!!!!! 하하하하!!!!!",
+        "고작 칼날 따위에 내가 질 것 같으냐!!!!!!",
+        "벌레 놈!!!! 네가 정말 나를 이길 수 있다고 생각했느냐!!!!!!",
+        "돼지!! 돼지!!! 돼지!!!! 돼지!!!!! 돼지이이이이!!!!!!!!",
+        "돼지!!!! 죽어라!!!!!!!!!",
+        "돼지!!!!! 감히 내게 상처를 입히다니!!!!!",
+        "언제까지고 버틸 수는 없다!!! 너 같은 한심한 벌레는!!!",
       ]),
     ],
   },
@@ -493,74 +574,74 @@ export const GAMEPLAY_DUEL_RECORDS = [
     opponent: "한 커닝엄",
     player: "주인공",
     location: "르누이유",
-    note: "겐카쿠의 과거와 이어지는 후반 일기토입니다. 필살 대사를 놓치지 않는 것이 안정적입니다.",
+    note: "겐카쿠의 과거와 이어지는 후반 일기토입니다. 필사의 공격 대사를 놓치지 않는 것이 안정적입니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "And now it's my turn.",
-        "Foolish boy!!!",
-        "Ho ho ho.... You taught him well, Genkaku my friend....",
-        "I can't let you past here, son.",
-        "I may be old, but I haven't lost my sword arm.",
-        "Unf..... Your father would have been proud to see you today...",
-        "Very good, boy.",
-        "You can't defend yourself forever.",
-        "You can't win like that, boy.",
-        "You're a tough one....",
+        "이제 내 차례다.",
+        "어리석은 소년이여!!!",
+        "허허허.... 겐카쿠, 자네가 잘 가르쳤군....",
+        "여기서 널 지나가게 둘 수는 없다, 소년.",
+        "나는 늙었지만 검 솜씨는 아직 죽지 않았다.",
+        "으윽..... 네 아버지가 오늘의 너를 보았다면 자랑스러워했겠지...",
+        "아주 좋구나, 소년.",
+        "영원히 방어만 할 수는 없다.",
+        "그런 식으로는 이길 수 없다, 소년.",
+        "꽤 끈질기구나....",
       ]),
       duelPattern("defend", "attack", [
-        "Genkaku............. You raised a good son....",
-        "I should have avoided that cheap little shot...",
-        "Let me see your power, Genkaku's son!!!",
-        "The leader of the [Army Name] Army is cautious I see....",
-        "Try that again, boy.",
-        "Unf...you like to take risks, eh.",
-        "Well struck.... It seems I should be more careful....",
-        "What will you do now, boy?",
-        "What's wrong? Want to try again?",
-        "You think you can beat me, boy?",
+        "겐카쿠............. 좋은 아들을 길렀군....",
+        "그 얕은 공격은 피했어야 했는데...",
+        "네 힘을 보여다오, 겐카쿠의 아들아!!!",
+        "[군 이름]군의 지도자는 신중하군....",
+        "다시 해봐라, 소년.",
+        "으윽... 위험을 감수하는 걸 좋아하는군.",
+        "훌륭한 일격이다.... 나도 더 조심해야겠군....",
+        "이제 어떻게 할 셈이냐, 소년?",
+        "왜 그러느냐? 다시 해보겠느냐?",
+        "나를 이길 수 있다고 생각하느냐, 소년?",
       ]),
       duelPattern("special", "defend", [
-        "Can you take this?",
-        "Let's bury our past here, boy!!",
-        "Let's see if you can withstand another of my blows!",
-        "Now feel my deadly sword.",
-        "Watch and learn, boy. Here's how to wield a sword!!!",
-        "Watch closely, boy!!",
-        "Yes, but can you defend against my sword!!!",
-        "You think my sword has lost its bite!!!",
-        "You'll have to do better than that.",
-        "You've got spirit...",
+        "이걸 받아낼 수 있겠느냐?",
+        "우리의 과거는 여기서 묻자, 소년!!",
+        "내 또 다른 일격을 견딜 수 있는지 보자!",
+        "이제 내 필사의 공격을 느껴라.",
+        "보고 배워라, 소년. 검은 이렇게 쓰는 것이다!!!",
+        "똑똑히 보아라, 소년!!",
+        "좋다, 하지만 내 검을 막아낼 수 있겠느냐!!!",
+        "내 검이 무뎌졌다고 생각하느냐!!!",
+        "그 정도로는 부족하다.",
+        "기백이 있구나...",
       ]),
     ],
   },
   {
     game: "Suikoden II",
-    opponent: "조이 아트레이드",
+    opponent: "죠우이 아트레이드",
     player: "주인공",
     location: "천산 고개",
     note: "엔딩 분기와 연결되는 마지막 일기토입니다. 특정 결말을 노릴 때는 공격보다 방어 유지가 중요합니다.",
     patterns: [
       duelPattern("attack", "special", [
-        "Bad move...... [Hero's Name].... That'll get you hurt....",
-        "Here goes.... [Hero's Name]........",
-        "Just like the old days....",
-        "Let's finish this long, long battle....",
-        "Next it's my turn. [Hero's Name].........",
-        "That's right. That's the way.....",
-        "Why won't you fight, [Hero's Name]!!!",
-        "That's right.....",
+        "좋지 않은 선택이야...... [주인공 이름].... 그러다 다칠 거야....",
+        "간다.... [주인공 이름]........",
+        "옛날 그대로네....",
+        "이 길고 긴 싸움을 끝내자....",
+        "다음은 내 차례야. [주인공 이름].........",
+        "그래. 그렇게 하는 거야.....",
+        "왜 싸우지 않는 거야, [주인공 이름]!!!",
+        "그래.....",
       ]),
       duelPattern("defend", "attack", [
-        "[Hero's Name]...... You......",
-        "[Hero's Name]..........",
-        "Let's test your strength.... [Hero's Name].......",
-        "That's right...... [Hero's Name].........",
-        "This reminds me of the old days....",
-        "Try again! [Hero's Name].......",
-        "You're the leader of the [Army Name] Army, [Hero's Name]........",
+        "[주인공 이름]...... 너는......",
+        "[주인공 이름]..........",
+        "네 힘을 시험해보자.... [주인공 이름].......",
+        "그래...... [주인공 이름].........",
+        "옛날 생각이 나는군....",
+        "다시 해봐! [주인공 이름].......",
+        "너는 [군 이름]군의 지도자잖아, [주인공 이름]........",
         "...........",
       ]),
-      duelPattern("special", "defend", ["None"]),
+      duelPattern("special", "defend", ["-"]),
     ],
   },
 ] as const satisfies readonly GameplayDuelRecord[];
@@ -574,19 +655,19 @@ export const GAMEPLAY_WAR_COMMAND_GROUPS = [
         name: "Charge",
         strongAgainst: "Bow",
         weakAgainst: "Magic",
-        body: "기병·보병 중심의 돌격입니다. Bow에는 강하지만 Magic을 만나면 큰 손실을 입습니다.",
+        body: "기병·보병 중심의 돌격입니다. 궁병에는 강하지만 마법을 만나면 큰 손실을 입습니다.",
       },
       {
         name: "Bow",
         strongAgainst: "Magic",
         weakAgainst: "Charge",
-        body: "어느 상황에서도 일정 피해를 주지만 Charge에는 손해를 보기 쉽습니다. 적 병력이 얼마 남지 않았을 때 마무리용으로 안정적입니다.",
+        body: "어느 상황에서도 일정 피해를 주지만 돌격에는 손해를 보기 쉽습니다. 적 병력이 얼마 남지 않았을 때 마무리용으로 안정적입니다.",
       },
       {
         name: "Magic",
         strongAgainst: "Charge",
         weakAgainst: "Bow",
-        body: "Charge를 완전히 받아칠 수 있지만 Bow에는 취약합니다. 적이 돌격을 고를 때 가장 강하게 작동합니다.",
+        body: "돌격을 완전히 받아칠 수 있지만 궁병에는 취약합니다. 적이 돌격을 고를 때 가장 강하게 작동합니다.",
       },
       {
         name: "Other",
@@ -632,7 +713,7 @@ export const GAMEPLAY_WAR_BATTLE_RECORDS = [
     title: "가란 성새 공략전",
     location: "가란 성새",
     objective: "제국 방어선 돌파",
-    note: "이전 전투와 같은 상성 운영입니다. 적 행동을 읽지 못하면 전략가 강화 후 Charge를 쓰는 선택지도 있습니다.",
+    note: "이전 전투와 같은 상성 운영입니다. 적 행동을 읽지 못하면 전략가 강화 후 돌격을 쓰는 선택지도 있습니다.",
     tags: ["성새", "전략가", "돌파"],
   },
   {
@@ -648,8 +729,8 @@ export const GAMEPLAY_WAR_BATTLE_RECORDS = [
     title: "스칼레티시아 성 2차전",
     location: "스칼레티시아 성",
     objective: "밀리히군 격파",
-    note: "밀리히는 Magic 계열을 섞어 쓰므로 정찰 실패 시 Bow가 비교적 안전한 선택입니다.",
-    tags: ["재전", "Magic 대응", "Bow"],
+    note: "밀리히는 마법 계열을 섞어 쓰므로 정찰 실패 시 궁병이 비교적 안전한 선택입니다.",
+    tags: ["재전", "마법 대응", "궁병"],
   },
   {
     game: "Suikoden I",
@@ -664,8 +745,8 @@ export const GAMEPLAY_WAR_BATTLE_RECORDS = [
     title: "테오 맥돌 최종전",
     location: "테오군 전선",
     objective: "기갑기병대 격파",
-    note: "화염창 장착 Charge가 승부를 가릅니다. 이전 전투와 달리 정면 돌파가 가능한 시점입니다.",
-    tags: ["화염창", "Charge", "테오"],
+    note: "화염창을 장착한 돌격이 승부를 가릅니다. 이전 전투와 달리 정면 돌파가 가능한 시점입니다.",
+    tags: ["화염창", "돌격", "테오"],
   },
   {
     game: "Suikoden I",
@@ -680,7 +761,7 @@ export const GAMEPLAY_WAR_BATTLE_RECORDS = [
     title: "샤사라자드 부유요새전",
     location: "샤사라자드",
     objective: "소니아 슈렌군 격파",
-    note: "소니아는 Charge와 Magic을 섞어 씁니다. 닌자 정찰을 적극 활용하면 안정적으로 진행됩니다.",
+    note: "소니아는 돌격과 마법을 섞어 씁니다. 닌자 정찰을 적극 활용하면 안정적으로 진행됩니다.",
     tags: ["소니아", "부유요새", "정찰"],
   },
   {
@@ -814,14 +895,14 @@ export const GAMEPLAY_WAR_ROLE_RECORDS = [
   },
   {
     game: "Suikoden I",
-    title: "전략가와 Charge",
-    body: "전략가는 Charge 위력을 끌어올립니다. 적 행동을 확인한 뒤 강화 Charge를 맞추면 큰 손실 없이 병력을 깎을 수 있습니다.",
-    points: ["맷슈", "레온", "애플", "Charge 강화"],
+    title: "전략가와 돌격",
+    body: "전략가는 돌격 위력을 끌어올립니다. 적 행동을 확인한 뒤 강화된 돌격을 맞추면 큰 손실 없이 병력을 깎을 수 있습니다.",
+    points: ["맷슈", "레온", "애플", "돌격 강화"],
   },
   {
     game: "Suikoden I",
     title: "상인과 용기사",
-    body: "상인은 적 병력을 빼앗는 보조 수단이고, 용기사는 Bow를 제외한 상황에서 강한 특수 공격을 맡습니다.",
+    body: "상인은 적 병력을 빼앗는 보조 수단이고, 용기사는 궁병을 제외한 상황에서 강한 특수 공격을 맡습니다.",
     points: ["상인", "용기사", "병력 보정", "특수 공격"],
   },
   {
@@ -852,8 +933,8 @@ export const GAMEPLAY_WAR_ROLE_RECORDS = [
 
 export const GAMEPLAY_DETAIL_RECORDS = [
   {
-    id: "battle-basics",
-    href: buildGameplayDetailPath("battle-basics"),
+    id: GAMEPLAY_DETAIL_IDS.battleBasics,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.battleBasics),
     eyebrow: "Battle",
     title: "일반 전투",
     summary:
@@ -862,12 +943,12 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     overview: [
       "두 작품 모두 전투는 턴 시작 전에 행동을 지정하고, 속도와 상태에 따라 순차적으로 처리되는 방식입니다.",
       "전열은 근거리 무기와 방어 역할을 맡기 쉽고, 후열은 중·장거리 무기와 마법 운용 캐릭터가 안정적으로 자리 잡습니다.",
-      "HD Remaster에서는 전투 속도와 자동 전투 편의 기능이 보강되어 반복 전투의 부담이 줄어듭니다.",
+      "리마스터에서는 전투 속도와 자동 전투 편의 기능이 보강되어 반복 전투의 부담이 줄어듭니다.",
     ],
     keyPoints: [
       {
         title: "사거리 기준으로 배치",
-        body: "S 사거리 캐릭터는 전열 중심으로, M·L 사거리 캐릭터는 후열에서도 공격 가능한지 먼저 확인합니다.",
+        body: "짧은 사거리 캐릭터는 전열 중심으로, 중간·긴 사거리 캐릭터는 후열에서도 공격 가능한지 먼저 확인합니다.",
       },
       {
         title: "행동 경제 관리",
@@ -884,7 +965,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         body: "개인 인벤토리와 제한된 장비 교체 흐름 때문에 전투 전 준비가 중요합니다. 무기 강화와 방어구 교체가 체감 난도를 크게 낮춥니다.",
         points: [
           "일반 전투는 최대 6인 파티 기준으로 진행됩니다.",
-          "전열·후열과 무기 사거리의 영향이 커서 S 사거리 캐릭터는 배치 제약을 받습니다.",
+          "전열·후열과 무기 사거리의 영향이 커서 짧은 사거리 캐릭터는 배치 제약을 받습니다.",
           "개인 소지품 중심이라 회복 아이템을 누구에게 들려줄지 미리 정해야 합니다.",
         ],
       },
@@ -893,20 +974,20 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         body: "파티 운용 폭이 넓어지고 협력 공격과 문장 슬롯 활용도가 커집니다. 후반에는 역할별 전문 파티를 구성하기 좋습니다.",
         points: [
           "6인 파티 구조는 유지되지만 문장 슬롯과 협력 공격 활용 폭이 넓어집니다.",
-          "전투 속도, 자동 전투, 대시 등 HD Remaster 편의 기능과 함께 반복 전투 부담이 줄어듭니다.",
+          "전투 속도, 자동 전투, 대시 등 리마스터 편의 기능과 함께 반복 전투 부담이 줄어듭니다.",
           "후반 캐릭터 풀이 넓어져 물리 화력, 회복, 마법, 협력 공격 중심 파티를 따로 구성하기 쉽습니다.",
         ],
       },
     ],
     checklist: [
-      "전열에 S 사거리 캐릭터를 과하게 몰아넣지 않았는지 확인",
+      "전열에 짧은 사거리 캐릭터를 과하게 몰아넣지 않았는지 확인",
       "보스전 전 개인 소지품에 회복·상태 회복 아이템 배분",
       "무기 레벨과 방어구가 현재 지역 난도에 맞는지 점검",
     ],
   },
   {
-    id: "rune-system",
-    href: buildGameplayDetailPath("rune-system"),
+    id: GAMEPLAY_DETAIL_IDS.runeSystem,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.runeSystem),
     eyebrow: "Runes",
     title: "문장 운용",
     summary:
@@ -924,7 +1005,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
       },
       {
         title: "사용 횟수 관리",
-        body: "마법은 MP가 아니라 레벨별 사용 횟수로 관리됩니다. 던전 중반까지는 저레벨 주문과 일반 공격을 섞는 편이 안정적입니다.",
+        body: "마법은 마력 수치가 아니라 레벨별 사용 횟수로 관리됩니다. 던전 중반까지는 저레벨 주문과 일반 공격을 섞는 편이 안정적입니다.",
       },
       {
         title: "봉인구와 문장의 구분",
@@ -938,7 +1019,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         points: [
           "문장은 문장사에게 장착하며, 봉인구 상태의 아이템이 장착 후 문장으로 작동합니다.",
           "대부분 캐릭터의 장착 폭이 좁아 공격·회복·보조 역할을 분명히 나누는 편이 좋습니다.",
-          "문장 상점과 본거지 문장사는 Jeane 영입 이후 정비 동선의 핵심이 됩니다.",
+          "문장 상점과 본거지 문장사는 진 영입 이후 정비 동선의 핵심이 됩니다.",
         ],
       },
       {
@@ -946,7 +1027,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         body: "캐릭터별 문장 슬롯이 확장되며 물리 강화와 속성 마법을 조합하는 폭이 넓어집니다.",
         points: [
           "문장 슬롯이 늘어난 캐릭터는 물리 강화 문장과 속성 문장을 병행할 수 있습니다.",
-          "문장 장착은 마을 문장사와 본거지 Rune Master를 통해 관리합니다.",
+          "문장 장착은 마을 문장사와 본거지 문장사를 통해 관리합니다.",
           "제거한 문장은 봉인구로 돌아가므로 후반 조합을 바꿔가며 운용하기 좋습니다.",
         ],
       },
@@ -958,22 +1039,22 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     ],
   },
   {
-    id: "duel",
-    href: buildGameplayDetailPath("duel"),
+    id: GAMEPLAY_DETAIL_IDS.duel,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.duel),
     eyebrow: "Duel",
     title: "일기토",
     summary:
-      "일기토는 상대 대사를 읽고 공격·방어·필살의 상성을 맞추는 1:1 전투입니다.",
-    tags: ["대사 판독", "공격", "방어", "필살"],
+      "일기토는 상대 대사를 읽고 공격·방어·필사의 공격의 상성을 맞추는 1:1 전투입니다.",
+    tags: ["대사 판독", "공격", "방어", "필사의 공격"],
     overview: [
       "일기토는 일반 전투와 달리 선택지가 제한되어 있으며, 상대의 대사가 다음 행동을 암시합니다.",
-      "기본 상성은 공격이 방어에 강하고, 방어는 필살을 받아내며, 필살은 공격을 이기는 구조로 정리됩니다.",
+      "기본 상성은 공격이 방어에 강하고, 방어는 필사의 공격을 받아내며, 필사의 공격은 공격을 이기는 구조로 정리됩니다.",
       "일부 일기토는 패배 시 게임오버 또는 캐릭터 생존과 연결되므로 전투 전 장비와 레벨을 점검해야 합니다.",
     ],
     keyPoints: [
       {
         title: "대사 톤 읽기",
-        body: "상대가 강하게 몰아붙이는 말투면 필살 가능성을, 자세를 낮추거나 기다리는 말투면 방어 가능성을 우선 의심합니다.",
+        body: "상대가 강하게 몰아붙이는 말투면 필사의 공격 가능성을, 자세를 낮추거나 기다리는 말투면 방어 가능성을 우선 의심합니다.",
       },
       {
         title: "위험한 턴은 방어",
@@ -981,7 +1062,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
       },
       {
         title: "고정 이벤트 준비",
-        body: "테오, 콴다, 플릭, 루카, 한, 조이처럼 주요 일기토 전에는 장비와 무기 강화를 미리 마칩니다.",
+        body: "테오, 콴다, 플릭, 루카, 한, 죠우이처럼 주요 일기토 전에는 장비와 무기 강화를 미리 마칩니다.",
       },
     ],
     duelRecords: GAMEPLAY_DUEL_RECORDS,
@@ -992,14 +1073,14 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         points: [
           "대표 일기토는 콴다 로스먼, 테오 맥돌 관련 전투입니다.",
           "패배가 게임오버나 캐릭터 생존에 영향을 줄 수 있어 전투 전 장비 점검이 중요합니다.",
-          "대사 암시를 읽어 공격·방어·필살의 상성을 맞추는 구조입니다.",
+          "대사 암시를 읽어 공격·방어·필사의 공격의 상성을 맞추는 구조입니다.",
         ],
       },
       {
         game: "Suikoden II",
-        body: "플릭, 아마다, 루카 브라이트, 한 커닝엄, 조이 아트레이드 등 일기토 수가 늘고 대사 패턴의 비중도 커집니다.",
+        body: "플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드 등 일기토 수가 늘고 대사 패턴의 비중도 커집니다.",
         points: [
-          "플릭, 아마다, 루카 브라이트, 한 커닝엄, 조이 아트레이드가 주요 일기토 축입니다.",
+          "플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드가 주요 일기토 축입니다.",
           "대사 패턴이 다음 행동을 암시하므로 반복되는 표현을 기억하면 안정적으로 대응할 수 있습니다.",
           "루카 브라이트처럼 스토리 긴장도가 높은 전투는 체력 관리와 방어 선택이 특히 중요합니다.",
         ],
@@ -1008,12 +1089,12 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     checklist: [
       "일기토 직전 무기 레벨과 방어구 확인",
       "첫 대사는 연출일 수 있으므로 실제 암시 대사를 구분",
-      "필살 의심 대사는 무리하게 공격하지 않기",
+      "필사의 공격 의심 대사는 무리하게 공격하지 않기",
     ],
   },
   {
-    id: "war-battle",
-    href: buildGameplayDetailPath("war-battle"),
+    id: GAMEPLAY_DETAIL_IDS.warBattle,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.warBattle),
     eyebrow: "War Battle",
     title: "전쟁 전투",
     summary:
@@ -1021,7 +1102,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     tags: ["부대 편성", "장거리 공격", "특수 능력", "승패 조건"],
     overview: [
       "전쟁 전투는 스토리 진행 중 발생하는 대규모 전투이며, 작품마다 규칙과 조작감이 크게 다릅니다.",
-      "1편은 명령 상성 중심의 심리전이고, 2편은 격자 지도에서 유닛을 움직이는 전략 RPG에 가깝습니다.",
+      "1편은 명령 상성 중심의 심리전이고, 2편은 격자 지도에서 부대를 움직이는 전략 전투에 가깝습니다.",
       "동료 영입 수와 역할은 전쟁 전투 선택지와 부대 성능에 직접 연결됩니다.",
     ],
     keyPoints: [
@@ -1044,20 +1125,20 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     seriesNotes: [
       {
         game: "Suikoden I",
-        body: "Charge, Bow, Magic의 상성과 도적·닌자·전략가 같은 보조 명령이 핵심입니다. 불리한 선택은 동료 사망 위험으로 이어질 수 있습니다.",
+        body: "돌격, 궁병, 마법의 상성과 도적·닌자·전략가 같은 보조 명령이 핵심입니다. 불리한 선택은 동료 사망 위험으로 이어질 수 있습니다.",
         points: [
-          "전투는 Charge, Bow, Magic의 상성 판단을 중심으로 진행됩니다.",
+          "전투는 돌격, 궁병, 마법의 상성 판단을 중심으로 진행됩니다.",
           "도적·닌자·전략가·상인·용기사 같은 보조 명령은 턴 선택 전에 전황을 유리하게 만듭니다.",
           "불리한 명령 선택은 병력 손실뿐 아니라 일부 동료 사망 위험으로 이어질 수 있습니다.",
         ],
       },
       {
         game: "Suikoden II",
-        body: "보병, 기병, 궁병, 마법 부대가 격자 위에서 움직입니다. Apple에게 맡기는 자동 지휘도 가능하지만, 장거리 부대와 회복 부대 편성이 중요합니다.",
+        body: "보병, 기병, 궁병, 마법 부대가 격자 위에서 움직입니다. 애플에게 맡기는 자동 지휘도 가능하지만, 장거리 부대와 회복 부대 편성이 중요합니다.",
         points: [
-          "격자 지도에서 부대를 이동시키고 Attack, Rune, Wait 같은 명령을 선택합니다.",
+          "격자 지도에서 부대를 이동시키고 공격, 문장, 대기 같은 명령을 선택합니다.",
           "궁병과 마법 부대는 장거리 견제에 강하고, 기병은 이동 범위가 넓습니다.",
-          "Apple에게 지휘를 맡길 수 있지만, 중요한 전투는 부대 배치와 장거리 공격을 직접 관리하는 편이 안전합니다.",
+          "애플에게 지휘를 맡길 수 있지만, 중요한 전투는 부대 배치와 장거리 공격을 직접 관리하는 편이 안전합니다.",
         ],
       },
     ],
@@ -1068,8 +1149,8 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     ],
   },
   {
-    id: "headquarters",
-    href: buildGameplayDetailPath("headquarters"),
+    id: GAMEPLAY_DETAIL_IDS.headquarters,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.headquarters),
     eyebrow: "Headquarters",
     title: "본거지 시설",
     summary:
@@ -1103,88 +1184,159 @@ export const GAMEPLAY_DETAIL_RECORDS = [
           "동료 수에 따라 지하, 1층 좌우 날개, 3층, 4층 일부, 옥상과 깃발 등 구조가 확장됩니다.",
           "배로 본거지를 나갔다가 다시 들어오면 외관 변화와 레벨 상승을 확인할 수 있습니다.",
         ],
+        floorFacilities: [
+          {
+            floor: "지하 / 선착장",
+            summary: "토란 호수와 연결되는 이동층입니다. 본거지 출입과 수상 이동 동선을 담당합니다.",
+            facilities: ["선착장", "배 이동", "승강기"],
+            note: "세르게이를 영입하면 성 안 이동이 훨씬 짧아집니다.",
+          },
+          {
+            floor: "1층 / 중앙 홀",
+            summary: "본거지에 돌아올 때 가장 자주 들르는 기본 정비층입니다.",
+            facilities: ["술집", "파티 편성", "석판", "창고", "여관", "도구점"],
+          },
+          {
+            floor: "1층 좌우 날개 / 상점 구역",
+            summary: "성 확장 뒤 좌우 날개가 열리며 장비와 문장 정비 기능이 늘어납니다.",
+            facilities: ["방어구점", "문장사", "감정사", "대장간", "주사위 도박"],
+          },
+          {
+            floor: "2층 / 생활 구역",
+            summary: "동료 방과 생활 시설을 확인하는 층입니다.",
+            facilities: ["동료 대기실", "생활 방", "세이브 동선"],
+          },
+          {
+            floor: "3층 / 기록·수집 구역",
+            summary: "책, 목욕탕, 창 세트와 소리세트처럼 수집 기록을 확인하는 층입니다.",
+            facilities: ["도서관", "목욕탕", "창 세트 변경", "소리세트 변경", "그림 전시"],
+          },
+          {
+            floor: "4층 / 작전 구역",
+            summary: "해방군 회의와 전쟁 전투 준비가 모이는 지휘층입니다.",
+            facilities: ["작전실", "전쟁 회의", "주요 이벤트"],
+          },
+          {
+            floor: "옥상",
+            summary: "성 레벨이 오르면 외관과 깃발 변화가 드러나는 최상층입니다.",
+            facilities: ["옥상", "해방군 깃발", "외관 변화 확인"],
+          },
+        ],
         facilities: [
           {
             name: "술집 / 파티 편성",
             location: "초기 본거지 주요 홀",
-            unlock: "Mathiu, Sanchez",
+            unlock: "맷슈, 산체스",
             body: "파티 편성과 전쟁 준비의 중심 기능입니다.",
           },
           {
             name: "석판",
             location: "본거지 내부",
-            unlock: "Luc",
+            unlock: "루크",
             body: "영입한 108성 현황을 확인합니다.",
           },
           {
             name: "창고",
             location: "초기 본거지 기능 구역",
-            unlock: "Roc",
+            unlock: "로크",
             body: "아이템을 보관하고 꺼냅니다.",
           },
           {
             name: "여관",
             location: "초기 본거지 생활 구역",
-            unlock: "Marie",
+            unlock: "마리",
             body: "숙박과 세이브를 처리합니다.",
           },
           {
             name: "도구점",
             location: "상점 구역",
-            unlock: "Chandler",
+            unlock: "챈들러",
             body: "일반 아이템을 구입합니다.",
           },
           {
             name: "방어구점",
             location: "성 확장 후 상점 구역",
-            unlock: "Chapman",
+            unlock: "채프먼",
             body: "방어구를 구입합니다.",
           },
           {
             name: "대장간",
             location: "성 내부 공방 구역",
-            unlock: "Maas / Meese / Mose / Moose / Mace",
+            unlock: "마스 / 미스 / 모스 / 무스 / 메스",
             body: "영입 단계에 따라 무기 강화 한계가 올라갑니다.",
           },
           {
             name: "문장사",
             location: "성 확장 후 상점 구역",
-            unlock: "Jeane",
+            unlock: "진",
             body: "문장을 장착하고 해제합니다.",
           },
           {
             name: "감정사",
             location: "성 확장 후 상점 구역",
-            unlock: "Jabba",
+            unlock: "자바",
             body: "감정품을 확인합니다.",
           },
           {
             name: "목욕탕",
             location: "생활 시설 구역",
-            unlock: "Sansuke",
+            unlock: "산스케",
             body: "동료와 목욕 이벤트를 확인합니다.",
           },
           {
             name: "도서관",
             location: "성 확장 후 서고",
-            unlock: "Hugo",
+            unlock: "휴고",
             body: "오래된 책 기록을 읽습니다.",
           },
           {
             name: "창 / 소리 변경",
             location: "성 확장 후 기능 구역",
-            unlock: "Window / Melodye",
+            unlock: "윈도우 / 멜로디",
             body: "창 세트와 소리세트를 변경합니다.",
           },
         ],
       },
       {
         game: "Suikoden II",
-        body: "노스윈도우 성이 신동맹군 본거지가 되며, 층별 지도와 시설 배치가 확장됩니다. Apple과 회의실은 전쟁 전투 준비에도 연결됩니다.",
+        body: "노스윈도우 성이 신동맹군 본거지가 되며, 층별 지도와 시설 배치가 확장됩니다. 애플과 회의실은 전쟁 전투 준비에도 연결됩니다.",
         points: [
           "노스윈도우 성을 신동맹군 본거지로 사용합니다.",
           "성 레벨은 동료 수와 스토리 진행에 따라 1~4단계로 확장됩니다.",
           "1층과 2층 중심으로 시설이 배치되고, 레벨 상승 후 농장·목장·식당·교역소·감정소 등이 추가됩니다.",
+        ],
+        floorFacilities: [
+          {
+            floor: "지하 / 외곽 동선",
+            summary: "성 밖 이동, 선착장, 지하 기능으로 이어지는 보조 동선입니다.",
+            facilities: ["선착장", "감옥", "묘지", "목욕탕", "낚시"],
+            note: "성 레벨과 동료 영입에 따라 외곽 기능이 순차적으로 늘어납니다.",
+          },
+          {
+            floor: "1층 / 중앙 홀",
+            summary: "파티 정비와 기본 상점 기능이 모이는 본거지의 중심층입니다.",
+            facilities: ["술집", "파티 편성", "석판", "창고", "여관", "도구점", "방어구점", "탐정 사무소"],
+          },
+          {
+            floor: "2층 / 회의·기록 구역",
+            summary: "전쟁 준비와 기록 확인, 일부 생활 시설이 함께 배치되는 층입니다.",
+            facilities: ["회의실", "애플의 전쟁 준비", "도서관", "식당", "요리 대결", "지도 제작"],
+          },
+          {
+            floor: "3층 / 상업·공방 구역",
+            summary: "성 확장 뒤 문장, 무기, 교역, 감정 기능이 집중되는 정비층입니다.",
+            facilities: ["문장사", "대장간", "교역소", "감정소", "창 세트 변경", "소리세트 변경"],
+          },
+          {
+            floor: "4층 / 개인실·동료 구역",
+            summary: "주요 인물의 방과 후반 이벤트 동선이 모이는 상층부입니다.",
+            facilities: ["주인공 방", "동료 방", "이벤트 방", "휴식 동선"],
+          },
+          {
+            floor: "옥상 / 외부 시설",
+            summary: "전망과 외부 시설을 함께 확인하는 최상층·외곽 구역입니다.",
+            facilities: ["옥상", "농장", "목장", "텔레포트", "성 외관 변화"],
+          },
         ],
         facilities: [
           {
@@ -1208,67 +1360,67 @@ export const GAMEPLAY_DETAIL_RECORDS = [
           {
             name: "여관",
             location: "본거지 1층",
-            unlock: "Hilda",
+            unlock: "힐다",
             body: "숙박과 세이브를 처리합니다.",
           },
           {
             name: "도구점 / 방어구점",
             location: "본거지 1층 상점 구역",
-            unlock: "Alex / Hans",
+            unlock: "알렉스 / 한스",
             body: "아이템과 방어구를 구입합니다.",
           },
           {
             name: "문장사",
             location: "성 레벨 2 이후 상점 구역",
-            unlock: "Jeane",
+            unlock: "진",
             body: "문장 장착과 봉인구 관리를 맡습니다.",
           },
           {
             name: "농장 / 목장",
             location: "본거지 외곽",
-            unlock: "Tony / Yuzu",
+            unlock: "토니 / 유즈",
             body: "식재료와 동물 수집을 관리합니다.",
           },
           {
             name: "식당",
             location: "성 레벨 2 이후 주방",
-            unlock: "Hai Yo",
+            unlock: "하이 요",
             body: "요리와 요리 대결을 진행합니다.",
           },
           {
             name: "교역소",
             location: "성 레벨 3 이후 상업 구역",
-            unlock: "Gordon",
+            unlock: "고든",
             body: "교역품 거래를 처리합니다.",
           },
           {
             name: "감정소",
             location: "성 레벨 3 이후 상업 구역",
-            unlock: "Lebrante",
+            unlock: "레브란테",
             body: "감정품을 확인합니다.",
           },
           {
             name: "대장간",
             location: "성 레벨 3 이후 공방 구역",
-            unlock: "Tessai",
+            unlock: "텟사이",
             body: "무기 강화를 담당합니다.",
           },
           {
             name: "도서관",
             location: "성 레벨 2 이후 도서관",
-            unlock: "Emilia",
+            unlock: "에밀리아",
             body: "오래된 책 기록을 읽습니다.",
           },
           {
             name: "탐정 사무소",
             location: "본거지 1층 기능 구역",
-            unlock: "Richmond",
+            unlock: "리치먼드",
             body: "영입 단서와 조사를 제공합니다.",
           },
           {
             name: "창 / 소리 변경",
             location: "성 레벨 3 이후 3층·테라스 구역",
-            unlock: "Tenkou / Connell",
+            unlock: "텐코우 / 코넬",
             body: "창 세트와 소리세트를 변경합니다.",
           },
         ],
@@ -1281,8 +1433,8 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     ],
   },
   {
-    id: "repeatable-play",
-    href: buildGameplayDetailPath("repeatable-play"),
+    id: GAMEPLAY_DETAIL_IDS.repeatablePlay,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.repeatablePlay),
     eyebrow: "Repeatable Play",
     title: "미니게임과 반복 수급",
     summary:
@@ -1310,10 +1462,10 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     seriesNotes: [
       {
         game: "Suikoden I",
-        body: "친치로린과 반복 전투 수급, 본거지 상점·대장간 정비가 중심입니다. 돈을 충분히 확보하면 무기 강화 부담이 줄어듭니다.",
+        body: "주사위 도박과 반복 전투 수급, 본거지 상점·대장간 정비가 중심입니다. 돈을 충분히 확보하면 무기 강화 부담이 줄어듭니다.",
         points: [
-          "Gaspar 영입 후 본거지에서 친치로린을 이용할 수 있습니다.",
-          "Marco의 동전 맞히기, Georges의 기억력 미니게임처럼 개별 동료 시설이 반복 플레이 요소를 제공합니다.",
+          "가스파 영입 후 본거지에서 주사위 도박을 이용할 수 있습니다.",
+          "마르코의 동전 맞히기, 조르쥬의 기억력 미니게임처럼 개별 동료 시설이 반복 플레이 요소를 제공합니다.",
           "반복 수급은 대장간 강화 비용과 주요 장비 구입 비용을 보완합니다.",
         ],
       },
@@ -1333,10 +1485,320 @@ export const GAMEPLAY_DETAIL_RECORDS = [
       "미니게임 보상과 수집 기록은 본거지 확장 후 재확인",
     ],
   },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenITips,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenITips),
+    eyebrow: "Gate Rune War",
+    title: "Suikoden I Tips & Tricks",
+    summary:
+      "환상수호전 I 진행 중 놓치기 쉬운 동료, 초반 정비, 엔딩 조건과 반복 준비 항목을 정리합니다.",
+    tags: ["초반 진행", "108성", "엔딩", "정비"],
+    overview: [
+      "1편은 스토리 진행 속도가 빠르고 일부 동료는 특정 시점에만 영입할 수 있어 지역 이동 전 확인이 중요합니다.",
+      "개인 소지품과 제한된 장비 슬롯 때문에 보스전 전 회복 아이템과 방어구를 미리 분산해야 합니다.",
+      "108성 전원 영입은 결말과 직접 연결되므로, 본거지 석판과 지역별 영입 조건을 꾸준히 확인합니다.",
+    ],
+    keyPoints: [
+      {
+        title: "본거지 확보 후 재방문",
+        body: "토란 호수의 성을 얻은 뒤에는 이전 마을을 다시 돌며 새로 영입 가능한 동료와 상점 재고를 확인합니다.",
+      },
+      {
+        title: "강제 일기토 준비",
+        body: "판과 테오의 일기토처럼 특정 캐릭터의 육성이 필요한 구간은 무기 강화와 방어구 정비를 늦추지 않는 것이 안전합니다.",
+      },
+      {
+        title: "엔딩 조건 관리",
+        body: "최종 결전 전 108성 영입 현황을 확인하고, 사망 위험이 있는 전쟁 전투에서는 저장을 분리합니다.",
+      },
+    ],
+    seriesNotes: [
+      {
+        game: "Suikoden I",
+        body: "짧은 진행 안에 영입, 본거지 확장, 전쟁 전투가 빠르게 이어집니다. 놓친 동료가 없는지 마을 단위로 체크하는 편이 안정적입니다.",
+        points: [
+          "새 지역 진입 전 개인 소지품 여유를 확보합니다.",
+          "본거지 석판으로 108성 현황을 자주 확인합니다.",
+          "대규모 전투 전에는 저장 파일을 분리합니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "본거지 확보 후 이전 마을 재방문",
+      "판 일기토 전 무기와 방어구 점검",
+      "최종전 전 108성 현황 확인",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIGameplayMechanics,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIGameplayMechanics),
+    eyebrow: "Gate Rune War",
+    title: "Suikoden I Gameplay Mechanics",
+    summary:
+      "환상수호전 I의 전투, 문장, 진형, 합동 마법, 보호 행동과 상태 이상을 시스템 단위로 정리합니다.",
+    tags: ["전투", "문장", "진형", "상태 이상"],
+    overview: [
+      "전투는 6인 파티와 전열·후열 배치, 무기 사거리의 영향을 크게 받습니다.",
+      "문장 장착 폭이 좁아 캐릭터별 역할이 분명하며, 회복과 공격 문장을 누구에게 맡길지 미리 정하는 것이 좋습니다.",
+      "합동 마법과 협력 공격은 특정 조합에서만 사용할 수 있으므로 주요 보스전 전 파티 구성을 확인합니다.",
+    ],
+    keyPoints: [
+      {
+        title: "무기 사거리",
+        body: "짧은 사거리 캐릭터는 후열에서 공격할 수 없으므로 전열을 과하게 채우지 않도록 조정합니다.",
+      },
+      {
+        title: "문장 사용 횟수",
+        body: "문장 마법은 레벨별 사용 횟수로 관리되므로 던전 중반까지 고레벨 주문을 아껴둡니다.",
+      },
+      {
+        title: "상태 이상 대비",
+        body: "독, 침묵, 목감기처럼 행동을 막는 상태는 회복 아이템을 여러 캐릭터에게 분산해 대응합니다.",
+      },
+    ],
+    seriesNotes: [
+      {
+        game: "Suikoden I",
+        body: "1편은 개인 인벤토리와 제한된 문장 슬롯 때문에 전투 전 준비의 비중이 높습니다.",
+        points: [
+          "전열·후열 배치는 무기 사거리 기준으로 정합니다.",
+          "회복 담당과 공격 문장 담당을 분리합니다.",
+          "합동 마법은 특정 속성 문장 조합을 맞춰야 사용할 수 있습니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "짧은 사거리 캐릭터 전열 배치 확인",
+      "회복 문장과 물약류 분산",
+      "보스전 전 합동 마법 가능 조합 확인",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIDuels,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIDuels),
+    eyebrow: "Gate Rune War",
+    title: "Suikoden I Duels",
+    summary:
+      "환상수호전 I의 콴다 로스만, 테오 맥돌 관련 일기토 대사와 대응 흐름을 정리합니다.",
+    tags: ["콴다", "테오", "판", "대사 판독"],
+    overview: [
+      "1편 일기토는 상대 대사를 읽고 공격, 방어, 필사의 공격을 고르는 구조입니다.",
+      "콴다 로스만전은 대사 판독을 익히는 첫 본격 일기토입니다.",
+      "테오 맥돌 관련 전투는 판의 생존과 연결되므로 사전 장비 준비가 중요합니다.",
+    ],
+    keyPoints: [
+      {
+        title: "강한 위협은 방어",
+        body: "상대가 전력을 다하겠다고 말하거나 강한 일격을 예고하면 방어를 우선합니다.",
+      },
+      {
+        title: "기다리는 대사는 공격",
+        body: "상대가 오라고 하거나 방어를 굳히는 말투라면 공격으로 흐름을 가져갑니다.",
+      },
+      {
+        title: "공격 예고에는 필사의 공격",
+        body: "상대가 자신의 차례라고 선언하거나 직접 공격을 예고하면 필사의 공격으로 받아칩니다.",
+      },
+    ],
+    duelRecords: GAMEPLAY_DUEL_RECORDS.filter((record) => record.game === "Suikoden I"),
+    seriesNotes: [
+      {
+        game: "Suikoden I",
+        body: "콴다 로스만, 테오 맥돌과의 일기토가 핵심입니다. 판이 참가하는 전투는 미리 육성해 두는 것이 좋습니다.",
+        points: [
+          "콴다 로스만전은 판독 튜토리얼에 가깝습니다.",
+          "판과 테오의 전투는 판의 생존과 연결됩니다.",
+          "주인공과 테오의 전투는 후반부 핵심 장면입니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "판 무기 강화",
+      "일기토 전 체력 확인",
+      "위협 대사는 방어 우선",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIITips,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIITips),
+    eyebrow: "Dunan Unification War",
+    title: "Suikoden II Tips & Tricks",
+    summary:
+      "환상수호전 II의 엔딩 조건, 놓치기 쉬운 요소, 세이브 데이터 계승과 주요 분기를 정리합니다.",
+    tags: ["엔딩", "분기", "세이브 계승", "수집"],
+    overview: [
+      "2편은 지역과 이벤트가 넓어져 놓치기 쉬운 영입 조건과 수집 요소를 따로 관리하는 편이 좋습니다.",
+      "1편 세이브 데이터 계승은 일부 이벤트와 인물 관련 요소에 영향을 줍니다.",
+      "카스미·발레리아 분기처럼 한 번 선택하면 동시에 얻기 어려운 항목은 진행 전 저장을 분리합니다.",
+    ],
+    keyPoints: [
+      {
+        title: "분기 전 저장",
+        body: "캐릭터 선택이나 이벤트 분기가 있는 구간은 별도 저장을 남겨 두면 수집 확인이 쉽습니다.",
+      },
+      {
+        title: "본거지 기능 활용",
+        body: "탐정 사무소, 지도 제작자, 도서관은 영입과 탐색 체크를 보조합니다.",
+      },
+      {
+        title: "엔딩 조건 점검",
+        body: "후반 돌입 전 108성 영입 현황과 중요한 캐릭터 생존 조건을 확인합니다.",
+      },
+    ],
+    seriesNotes: [
+      {
+        game: "Suikoden II",
+        body: "2편은 스토리 분기와 본거지 확장, 미니게임이 넓게 얽혀 있어 체크리스트 기반 진행이 안정적입니다.",
+        points: [
+          "분기 이벤트 전 저장 파일을 분리합니다.",
+          "수호신상 조합과 목장·요리·낚시 같은 수집형 콘텐츠를 후반에 재확인합니다.",
+          "1편 데이터 계승 여부를 초반부터 확인합니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "분기 이벤트 전 저장",
+      "본거지 탐정 사무소 조사 활용",
+      "후반 돌입 전 108성 확인",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIIGameplayMechanics,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIGameplayMechanics),
+    eyebrow: "Dunan Unification War",
+    title: "Suikoden II Gameplay Mechanics",
+    summary:
+      "환상수호전 II의 봉인구 장착, 문장 레벨, 전쟁 전투, 무기 사거리, 상태 이상과 이동 편의를 정리합니다.",
+    tags: ["봉인구", "전쟁 전투", "무기 사거리", "빠른 이동"],
+    overview: [
+      "2편은 문장 슬롯과 협력 공격 폭이 넓어져 캐릭터별 역할 조합이 훨씬 다양해집니다.",
+      "전쟁 전투는 격자 지도와 부대 편성을 사용하므로 일반 전투와 별도의 준비가 필요합니다.",
+      "빠른 이동, 본거지 파티 변경, 창고와 문장사 활용이 반복 플레이 부담을 줄입니다.",
+    ],
+    keyPoints: [
+      {
+        title: "문장 슬롯 조합",
+        body: "물리 캐릭터는 연타·반격·분노 계열, 마법 캐릭터는 속성·회복 문장을 조합해 역할을 분명히 합니다.",
+      },
+      {
+        title: "전쟁 부대 편성",
+        body: "궁병, 마법, 회복, 기병처럼 역할이 다른 부대를 함께 배치해 장거리 견제와 생존을 확보합니다.",
+      },
+      {
+        title: "이동과 정비",
+        body: "본거지 시설과 빠른 이동 기능을 이용해 장비, 문장, 아이템 정리를 한 번에 처리합니다.",
+      },
+    ],
+    seriesNotes: [
+      {
+        game: "Suikoden II",
+        body: "전투 시스템은 1편의 구조를 유지하면서 문장 슬롯, 협력 공격, 전쟁 전투와 편의 기능이 확장됩니다.",
+        points: [
+          "문장 장착 폭이 넓어져 역할 조합이 다양합니다.",
+          "전쟁 전투는 부대별 역할과 지형을 함께 봅니다.",
+          "본거지 시설이 늘어나 정비 동선이 중요해집니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "문장 슬롯별 역할 확인",
+      "전쟁 전투 전 장거리·회복 부대 확인",
+      "던전 전 창고와 문장사 정비",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIIFacilitiesMinigames,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIFacilitiesMinigames),
+    eyebrow: "Dunan Unification War",
+    title: "Suikoden II Facilities & Minigames",
+    summary:
+      "환상수호전 II의 본거지 시설, 교역소, 목장, 지도 제작자, 음악가, 탐정 사무소와 주요 미니게임을 정리합니다.",
+    tags: ["본거지", "교역", "요리", "미니게임"],
+    overview: [
+      "노스윈도우 본거지는 성 레벨과 동료 영입에 따라 시설이 단계적으로 늘어납니다.",
+      "교역소, 목장, 요리, 낚시, 주사위 도박은 수집과 포치 수급을 보조합니다.",
+      "지도 제작자, 음악가, 탐정 사무소는 탐색 편의와 기록 수집에 연결됩니다.",
+    ],
+    keyPoints: [
+      {
+        title: "성 레벨 재확인",
+        body: "동료 수가 늘어난 뒤에는 새 방과 시설이 열렸는지 본거지를 다시 둘러봅니다.",
+      },
+      {
+        title: "수집형 시설",
+        body: "목장, 요리, 낚시, 수호신상은 진행 중 놓치기 쉬우므로 후반에 한 번 더 정리합니다.",
+      },
+      {
+        title: "조사와 편의",
+        body: "탐정 사무소와 지도 제작자는 영입 단서, 탐색 범위, 지역 확인에 도움을 줍니다.",
+      },
+    ],
+    seriesNotes: [
+      {
+        game: "Suikoden II",
+        body: "본거지 시설과 미니게임은 전투 필수 요소는 아니지만 수집, 정비, 반복 수급의 중심입니다.",
+        points: [
+          "교역소는 지역 시세 차이로 포치를 확보합니다.",
+          "요리 대결과 낚시는 수집형 콘텐츠와 연결됩니다.",
+          "탐정 사무소는 영입과 인물 정보 확인에 유용합니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "성 레벨 상승 후 시설 재확인",
+      "교역품 시세 확인",
+      "요리·낚시·목장 수집 상태 확인",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIIDuels,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIDuels),
+    eyebrow: "Dunan Unification War",
+    title: "Suikoden II Duels",
+    summary:
+      "환상수호전 II의 플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드 일기토 대사와 대응을 정리합니다.",
+    tags: ["플릭", "아마다", "루카", "죠우이"],
+    overview: [
+      "2편 일기토는 튜토리얼 성격의 플릭전부터 후반 핵심 전투까지 여러 번 등장합니다.",
+      "루카 브라이트전과 한 커닝엄전은 대사 판독과 체력 관리가 특히 중요합니다.",
+      "죠우이 아트레이드전은 엔딩 분기와 연결되므로 목표 결말에 맞춰 행동을 조절합니다.",
+    ],
+    keyPoints: [
+      {
+        title: "대사 반복 기억",
+        body: "상대별 표현이 반복되므로 공격, 방어, 필사의 공격으로 이어지는 대표 문장을 외워두면 안정적입니다.",
+      },
+      {
+        title: "루카전 방어",
+        body: "강한 위협과 광기 어린 대사는 필사의 공격 가능성이 높으므로 방어를 우선합니다.",
+      },
+      {
+        title: "죠우이전 목표 확인",
+        body: "특정 엔딩을 노릴 때는 무리한 공격보다 방어와 대기 흐름을 유지하는 것이 중요합니다.",
+      },
+    ],
+    duelRecords: GAMEPLAY_DUEL_RECORDS.filter((record) => record.game === "Suikoden II"),
+    seriesNotes: [
+      {
+        game: "Suikoden II",
+        body: "플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드전이 핵심 일기토입니다.",
+        points: [
+          "플릭전은 일기토 튜토리얼 성격이 강합니다.",
+          "아마다전은 영입 과정과 연결됩니다.",
+          "루카, 한, 죠우이전은 후반 스토리의 핵심 전투입니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "상대별 대사 패턴 확인",
+      "루카전 전 체력 유지",
+      "죠우이전 전 목표 엔딩 확인",
+    ],
+  },
 ] as const satisfies readonly GameplayDetailRecord[];
 
 const GAMEPLAY_DETAIL_ALIASES = {
-  "army-battle": "war-battle",
+  [GAMEPLAY_LEGACY_DETAIL_IDS.armyBattle]: GAMEPLAY_DETAIL_IDS.warBattle,
 } as const;
 
 const resolveGameplayDetailId = (guideId: string) => {
@@ -1388,24 +1850,28 @@ export const GAMEPLAY_BATTLE_SECTIONS = [
 
 export const GAMEPLAY_DUEL_SECTIONS = [
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.duel),
     title: "대사 판독",
-    body: "일기토는 상대 대사의 뉘앙스를 보고 공격, 방어, 필살을 고르는 방식입니다. 강한 위협은 방어, 빈틈을 보이는 대사는 공격 기회로 봅니다.",
-    points: ["공격", "방어", "필살", "대사 패턴"],
+    body: "일기토는 상대 대사의 뉘앙스를 보고 공격, 방어, 필사의 공격을 고르는 방식입니다. 강한 위협은 방어, 빈틈을 보이는 대사는 공격 기회로 봅니다.",
+    points: ["공격", "방어", "필사의 공격", "대사 패턴"],
   },
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.duel),
     title: "주요 일기토",
-    body: "1편은 콴다 로스먼과 테오 맥돌, 2편은 플릭, 아마다, 루카 브라이트, 한 커닝엄, 조이 아트레이드가 핵심 일기토입니다.",
-    points: ["콴다", "테오", "루카", "조이"],
+    body: "1편은 콴다 로스먼과 테오 맥돌, 2편은 플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드가 핵심 일기토입니다.",
+    points: ["콴다", "테오", "루카", "죠우이"],
   },
 ] as const;
 
 export const GAMEPLAY_WAR_BATTLE_SECTIONS = [
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.warBattle),
     title: "1편 전쟁 전투",
     body: "트란 해방전쟁의 전쟁 전투는 명령 선택, 병과 상성, 군사 역할을 중심으로 전황을 읽습니다.",
     points: ["명령", "병과", "군사", "전황"],
   },
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.warBattle),
     title: "2편 전쟁 전투",
     body: "듀난 통일전쟁의 전쟁 전투는 부대 편성, 진형, 지형, 이벤트 조건을 함께 관리하는 전략 전투입니다.",
     points: ["부대 편성", "진형", "지형", "이벤트"],
@@ -1414,14 +1880,16 @@ export const GAMEPLAY_WAR_BATTLE_SECTIONS = [
 
 export const GAMEPLAY_HEADQUARTERS_SECTIONS = [
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.headquarters),
     title: "시설 개방",
     body: "동료 영입에 따라 상점, 창고, 대장간, 감정소, 목욕탕, 도서관 등 본거지 기능이 단계적으로 열립니다.",
     points: ["상점", "창고", "대장간", "도서관"],
   },
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.headquarters),
     title: "반복 플레이",
-    body: "교역, 낚시, 요리, 친치로린, 탐정 사무소와 같은 시설은 수집과 반복 수급을 보조합니다.",
-    points: ["교역", "낚시", "요리", "친치로린"],
+    body: "교역, 낚시, 요리, 주사위 도박, 탐정 사무소와 같은 시설은 수집과 반복 수급을 보조합니다.",
+    points: ["교역", "낚시", "요리", "주사위 도박"],
   },
 ] as const;
 
@@ -1431,14 +1899,17 @@ export const GAMEPLAY_GUIDE_GROUPS = [
     eyebrow: "Gate Rune War",
     groups: [
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenITips),
         title: "Tips & Tricks",
         body: "초반 진행, 파티 구성, 베스트 문장, 하드 모드, 엔딩과 놓치기 쉬운 지점을 함께 확인합니다.",
       },
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIGameplayMechanics),
         title: "Gameplay Mechanics",
         body: "문장 장착과 성장, 전투 이탈, 파티·진형 변경, 합동 마법, 보호 행동, 상태 이상을 묶어 봅니다.",
       },
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIDuels),
         title: "Duels",
         body: "콴다 로스먼, 테오 맥돌 1차전과 2차전이 대표 일기토로 분리되어 있습니다.",
       },
@@ -1449,20 +1920,24 @@ export const GAMEPLAY_GUIDE_GROUPS = [
     eyebrow: "Dunan Unification War",
     groups: [
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIITips),
         title: "Tips & Tricks",
         body: "엔딩, 놓치기 쉬운 요소, 수호신상 조합, 세이브 데이터 계승, 카스미·발레리아 분기 등을 함께 관리합니다.",
       },
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIGameplayMechanics),
         title: "Gameplay Mechanics",
         body: "봉인구 장착, 문장 레벨, 전쟁 전투, 무기 사거리, 상태 이상, 빠른 이동과 파티 변경을 정리합니다.",
       },
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIFacilitiesMinigames),
         title: "Facilities & Minigames",
-        body: "교역소, 목장, 지도 제작자, 음악가, 탐정 사무소, 요리·낚시·친치로린 같은 시설과 미니게임 항목입니다.",
+        body: "교역소, 목장, 지도 제작자, 음악가, 탐정 사무소, 요리·낚시·주사위 도박 같은 시설과 미니게임 항목입니다.",
       },
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIDuels),
         title: "Duels",
-        body: "플릭, 아마다, 루카 브라이트, 한 커닝엄, 조이 아트레이드 일기토가 별도 항목으로 분리되어 있습니다.",
+        body: "플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드 일기토가 별도 항목으로 분리되어 있습니다.",
       },
     ],
   },
@@ -1494,14 +1969,14 @@ export const TIMELINE_WORLD_SECTIONS = [
   },
   {
     title: "시작의 문장과 듀난 전쟁",
-    body: "겐카쿠와 한 커닝엄의 과거, 리오우와 조이에게 나뉜 시작의 문장, 루카 브라이트의 전쟁 도발이 듀난 통일전쟁의 핵심 축입니다.",
+    body: "겐카쿠와 한 커닝엄의 과거, 리오우와 죠우이에게 나뉜 시작의 문장, 루카 브라이트의 전쟁 도발이 듀난 통일전쟁의 핵심 축입니다.",
     tags: ["Rune of Beginning", "New State Army", "Dunan Republic"],
   },
 ] as const;
 
 export const TIMELINE_CHRONICLE_NOTES = [
   {
-    date: "태양력 c.70",
+    date: "태양력 약 70년",
     title: "문장의 일족 학살과 문장의 문장 분리",
     body: "하르모니아가 문장의 일족을 공격하고, 레크나트와 윈디가 문장의 문장을 나누어 가지고 도주합니다. 훗날 문장 계보와 윈디의 집착을 설명하는 출발점입니다.",
   },
@@ -1516,7 +1991,7 @@ export const TIMELINE_CHRONICLE_NOTES = [
     body: "사우스 윈도우를 수도로 듀난 왕국이 세워지고, 베르난드가 초대 왕이 됩니다. 훗날 도시동맹과 하이랜드로 갈라지는 듀난 지역사의 원형입니다.",
   },
   {
-    date: "태양력 c.150",
+    date: "태양력 약 150년",
     title: "숨겨진 문장의 마을 습격",
     body: "윈디가 소울이터를 노리고 숨겨진 문장의 마을을 습격합니다. 테드는 할아버지에게서 생과 사의 문장, 곧 소울이터를 넘겨받고 긴 도피를 시작합니다.",
   },
@@ -1598,7 +2073,7 @@ export const TIMELINE_CHRONICLE_NOTES = [
   {
     date: "태양력 460",
     title: "듀난 통일전쟁 발발",
-    body: "루카 브라이트가 유니콘 소년병 부대를 학살하고 이를 죠스턴의 공격으로 위장하면서 전쟁이 재개됩니다. 리오우와 조이는 시작의 문장의 두 조각을 지니게 됩니다.",
+    body: "루카 브라이트가 유니콘 소년병 부대를 학살하고 이를 죠스턴의 공격으로 위장하면서 전쟁이 재개됩니다. 리오우와 죠우이는 시작의 문장의 두 조각을 지니게 됩니다.",
   },
   {
     date: "태양력 460",

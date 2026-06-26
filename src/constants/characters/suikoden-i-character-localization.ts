@@ -153,7 +153,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
   "tai-ho": {
     name: "타이호",
     characterType: "전투",
-    recruitment: "친치로린에서 1,000 포치를 따면 합류합니다.",
+    recruitment: "주사위 도박에서 1,000 포치를 따면 합류합니다.",
   },
   kanak: {
     name: "카낙",
@@ -226,7 +226,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
     recruitment: "모라비아 성 제압 후 북쪽 관문에서 말을 걸고 합류를 허락하면 합류합니다.",
   },
   sancho: {
-    name: "산쵸",
+    name: "산체스",
     characterType: "비전투",
     recruitment: "모라비아 성 제압 후 북쪽 관문에서 맥시밀리언을 영입하면 함께 합류합니다.",
   },
@@ -286,7 +286,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
     recruitment: "키로프에서 소리의 봉인을 건네면 합류합니다.",
   },
   chapman: {
-    name: "챔프먼",
+    name: "채프먼",
     characterType: "비전투",
     recruitment: "안테이 방어구점에서 말을 걸면 합류를 요청합니다.",
   },
@@ -336,7 +336,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
     recruitment: "마스를 영입한 뒤 드워프 마을 대장간에서 말을 걸면 합류합니다.",
   },
   sergei: {
-    name: "쎄르게이",
+    name: "세르게이",
     characterType: "전투",
     recruitment: "트란 성 확보 후 카쿠 주점에서 말을 걸면 합류합니다.",
   },
@@ -366,7 +366,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
     recruitment: "테이엔에서 류칸의 은거지로 건너가는 일을 도와주기로 하며 커맨돌과 함께 합류합니다.",
   },
   hugo: {
-    name: "유고",
+    name: "휴고",
     characterType: "비전투",
     recruitment: "과거의 동굴에서 얻은 전쟁 두루마리를 건네면 합류합니다.",
   },
@@ -506,9 +506,9 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
     recruitment: "비밀 공장 사건을 마치고 화염창을 확보하면 자동으로 합류합니다.",
   },
   gaspar: {
-    name: "가스퍼",
+    name: "가스파",
     characterType: "비전투",
-    recruitment: "카쿠 주점 지하에서 친치로린에 승리하면 합류합니다.",
+    recruitment: "카쿠 주점 지하에서 주사위 도박에 승리하면 합류합니다.",
   },
   window: {
     name: "윈도우",
@@ -551,8 +551,8 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
     recruitment: "코안에서 레판토를 돕는 과정 이후 레판토와 함께 합류합니다.",
   },
   chandler: {
-    name: "찬드라",
+    name: "챈들러",
     characterType: "비전투",
-    recruitment: "트란 성 확보 후 쿠와바 성새 바깥의 찬드라에게 말을 걸면 합류합니다.",
+    recruitment: "트란 성 확보 후 쿠와바 성새 바깥의 챈들러에게 말을 걸면 합류합니다.",
   },
 } as const satisfies Record<SuikodenICharacterId, SuikodenICharacterLocalization>;

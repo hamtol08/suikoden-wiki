@@ -47,13 +47,8 @@ export const ARCHIVE_COPY = {
   news: {
     title: "Wiki News & Announcements",
   },
-  stats: {
-    title: "Wiki Stats",
-    founded: "Founded Dec 5, 2005",
-    markAlt: "Genso Chronicle rune star mark",
-  },
   quote: {
-    body: "My father is his own man, and so am I.",
+    body: "아버지는 아버지 자신이고, 나도 나 자신이다.",
     author: "티르 맥돌",
   },
   trending: {
@@ -61,8 +56,8 @@ export const ARCHIVE_COPY = {
   },
   footer: {
     title: "Genso Chronicle",
-    body: "Gate Rune War와 Dunan Unification War를 중심으로 인물, 문장, 지역, 전쟁 기록을 연결해 정리합니다.",
-    notice: "Fan-made archive. Suikoden is owned by Konami.",
+    body: "문장 전쟁과 듀난 통일전쟁을 중심으로 인물, 문장, 지역, 전쟁 기록을 연결해 정리합니다.",
+    notice: "비공식 팬 아카이브입니다. 환상수호전의 권리는 코나미에 있습니다.",
   },
 } as const;
 
@@ -91,7 +86,6 @@ export const IMAGE_PATHS = {
 
 export const IMAGE_SIZES = {
   logoMark: { width: 44, height: 44 },
-  statMark: { width: 44, height: 44 },
 } as const;
 
 export const NAV_GROUPS = [
@@ -192,27 +186,21 @@ export const TIMELINE_ITEMS = [
   {
     date: "Mar 06, 2025",
     title: "HD Remaster Released",
-    body: "Suikoden I & II HD Remaster가 출시되며 시리즈 입문 동선이 다시 열렸습니다.",
+    body: "환상수호전 I·II 리마스터가 출시되며 시리즈 입문 동선이 다시 열렸습니다.",
     tag: "Release",
   },
   {
     date: "Dec 17, 1998",
     title: "Suikoden II Released",
-    body: "Dunan Unification War를 중심으로 1편의 세계관을 확장한 두 번째 본편 기록입니다.",
+    body: "듀난 통일전쟁을 중심으로 1편의 세계관을 확장한 두 번째 본편 기록입니다.",
     tag: "Game II",
   },
   {
     date: "Dec 15, 1995",
     title: "Suikoden I Released",
-    body: "Gate Rune War와 108성의 기본 구조가 시작된 첫 번째 본편입니다.",
+    body: "문장 전쟁과 108성의 기본 구조가 시작된 첫 번째 본편입니다.",
     tag: "Game I",
   },
-] as const;
-
-export const ARCHIVE_STATS = [
-  { label: "Archive Pages", value: "8,355" },
-  { label: "Known Files", value: "14,358" },
-  { label: "True Runes", value: "18" },
 ] as const;
 
 export const TRENDING_STARS = [
@@ -558,9 +546,9 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "하이랜드 국경 야영지",
     ruling: "하이랜드 왕국",
     rune: "시작의 문장",
-    description: "주인공과 조이가 유니콘 부대 소속으로 머무는 시작 지점입니다. 조작된 학살과 절벽 탈출로 듀난 전쟁의 첫 장면이 열립니다.",
+    description: "주인공과 죠우이가 유니콘 부대 소속으로 머무는 시작 지점입니다. 조작된 학살과 절벽 탈출로 듀난 전쟁의 첫 장면이 열립니다.",
     locations: ["유니콘 부대 야영지", "텐잔 고개", "탈출 절벽"],
-    traits: ["2편의 프롤로그 무대", "하이랜드와 죠스턴의 국경 긴장이 폭발", "주인공과 조이의 약속이 시작되는 장소"],
+    traits: ["2편의 프롤로그 무대", "하이랜드와 죠스턴의 국경 긴장이 폭발", "주인공과 죠우이의 약속이 시작되는 장소"],
     detailHref: "/region-atlas/suikoden-ii/tenzan-pass-camp",
   },
   {
@@ -584,7 +572,7 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "국경 마을",
     ruling: "죠스턴 국경권",
     rune: "-",
-    description: "초반에 조이가 치료를 받는 마을이자, 이후 루카 브라이트의 잔혹함이 직접 드러나는 지역입니다. 2편 초반 정서의 핵심 마을입니다.",
+    description: "초반에 죠우이가 치료를 받는 마을이자, 이후 루카 브라이트의 잔혹함이 직접 드러나는 지역입니다. 2편 초반 정서의 핵심 마을입니다.",
     locations: ["류베 마을", "숲길", "마을 광장"],
     traits: ["초반 여정의 중요한 마을", "하이랜드 침공의 참상이 드러나는 장소", "토토 마을과 캐로 마을 동선 사이를 잇는 지역"],
     detailHref: "/region-atlas/suikoden-ii/ryube",
@@ -597,7 +585,7 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "파괴된 마을",
     ruling: "죠스턴 국경권",
     rune: "시작의 문장",
-    description: "시작의 문장 신전과 연결되는 마을입니다. 파괴된 마을과 봉인된 문장은 주인공과 조이의 운명을 본격적으로 갈라놓습니다.",
+    description: "시작의 문장 신전과 연결되는 마을입니다. 파괴된 마을과 봉인된 문장은 주인공과 죠우이의 운명을 본격적으로 갈라놓습니다.",
     locations: ["토토 마을", "시작의 문장 신전"],
     traits: ["빛나는 방패의 문장과 검은 검의 문장의 분기점", "초반 비극의 중심", "전쟁이 개인의 운명으로 전환되는 장소"],
     detailHref: "/region-atlas/suikoden-ii/toto",
@@ -610,7 +598,7 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "하이랜드 마을",
     ruling: "하이랜드 왕국",
     rune: "-",
-    description: "주인공, 조이, 나나미의 고향입니다. 하이랜드 내부에서 진실이 은폐되는 과정을 보여주며 세 사람이 다시 도망칠 수밖에 없는 이유를 만듭니다.",
+    description: "주인공, 죠우이, 나나미의 고향입니다. 하이랜드 내부에서 진실이 은폐되는 과정을 보여주며 세 사람이 다시 도망칠 수밖에 없는 이유를 만듭니다.",
     locations: ["겐카쿠 도장", "나나미의 집", "캐로 마을"],
     traits: ["주인공 일행의 고향", "하이랜드 체제의 압박이 드러남", "나나미 합류와 연결"],
     detailHref: "/region-atlas/suikoden-ii/kyaro",

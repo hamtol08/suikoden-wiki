@@ -125,7 +125,7 @@ export const RUNE_GAME_LABELS = {
   "suikoden-iv": "환상수호전 IV",
   "suikoden-v": "환상수호전 V",
   "suikoden-tactics": "환상수호전 택틱스",
-  "suikoden-star-leap": "환상수호전 STAR LEAP",
+  "suikoden-star-leap": "환상수호전 스타 리프",
   unrevealed: "미공개",
 } as const;
 
@@ -1765,7 +1765,7 @@ export const RUNE_GENERAL_RUNE_DESCRIPTIONS = {
     "직접 공격을 받은 뒤 반격할 가능성을 높이는 물리 보조 문장입니다.",
   ],
   "hazy-rune": [
-    "회피와 관련된 효과를 지닌 보조 문장으로, Haziness Rune 계열 표기로도 정리됩니다.",
+    "회피와 관련된 효과를 지닌 보조 문장으로, 흐릿함 계열 표기로도 정리됩니다.",
   ],
   "holy-rune": [
     "다리 힘과 이동 속도를 높인다고 전해지는 이동 보조 문장입니다.",
@@ -1852,13 +1852,13 @@ export const RUNE_GENERAL_RUNE_DESCRIPTIONS = {
     "공격한 적에게 풍선 상태를 부여할 가능성이 있는 특수 상태 이상 문장입니다.",
   ],
   "banshee-rune": [
-    "대상 아군에게서 HP를 흡수하는 효과를 지닌 환상수호전 II의 문장입니다.",
+    "대상 아군에게서 체력을 흡수하는 효과를 지닌 환상수호전 II의 문장입니다.",
   ],
   "beast-rune-suikoden-v": [
     "에른스트의 고유 문장으로, 그가 표범 모습에 갇히게 된 원인입니다. 전투에서는 인간 모습으로 변신하거나 포효와 발톱 공격을 사용하는 힘과 연결됩니다.",
   ],
   "boost-rune": [
-    "일정 턴 동안 물리 피해를 두 배로 늘리지만, 이후 사용자의 HP가 1로 줄어듭니다.",
+    "일정 턴 동안 물리 피해를 두 배로 늘리지만, 이후 사용자의 체력이 1로 줄어듭니다.",
   ],
   "boronda-hawk-rune": [
     "자크의 고유 문장으로, 모든 적에게 낮은 배율의 피해를 주며 전투마다 한 번 사용할 수 있습니다.",
@@ -1894,7 +1894,7 @@ export const RUNE_GENERAL_RUNE_DESCRIPTIONS = {
     "팔레나의 세 문장 중 하나로, 태양의 문장과 함께 왕가의 문장 체계에 속합니다.",
   ],
   "deer-rune": [
-    "환상수호전 STAR LEAP에 등장하는 문장으로, 유연한 지팡이를 이용한 고통스러운 타격 기술과 연결됩니다.",
+    "환상수호전 스타 리프에 등장하는 문장으로, 유연한 지팡이를 이용한 고통스러운 타격 기술과 연결됩니다.",
   ],
   "devil-s-doll-rune": [
     "멜의 고유 문장으로, 적 하나에게 강한 화염 기반 물리 피해를 줍니다.",
@@ -1912,7 +1912,7 @@ export const RUNE_GENERAL_RUNE_DESCRIPTIONS = {
     "무기에 붙여 직접 공격 시 일정 확률로 적에게 다운 상태를 부여하는 문장입니다.",
   ],
   "drain-rune": [
-    "치명타를 낼 때 사용자의 HP를 회복시키는 흡수 계열 문장입니다.",
+    "치명타를 낼 때 사용자의 체력을 회복시키는 흡수 계열 문장입니다.",
   ],
   "dryad-rune": [
     "상위 마법 사용 횟수를 낮은 단계 마법 사용 횟수로 바꾸는 마력 운용 문장입니다.",
@@ -1972,7 +1972,7 @@ export const RUNE_GENERAL_RUNE_DESCRIPTIONS = {
     "에이케이의 고유 문장으로, 새턴판에서 특수한 두 방식의 기술로 사용됩니다.",
   ],
   "magic-absorb-rune": [
-    "마력 배출의 문장으로도 알려져 있으며, 공격 시 낮은 단계부터 MP를 회복합니다.",
+    "마력 배출의 문장으로도 알려져 있으며, 공격 시 낮은 단계부터 마법 사용 횟수를 회복합니다.",
   ],
   "magic-drain-rune": [
     "무기에 붙이면 명중률이 낮아지는 대신 공격 성공 시 1레벨 마법 사용 횟수를 회복합니다.",
@@ -2023,7 +2023,7 @@ export const RUNE_GENERAL_RUNE_DESCRIPTIONS = {
     "퀸의 고유 문장으로, 힘을 모은 뒤 공격하는 충전형 기술에 쓰입니다.",
   ],
   "shield-rune": [
-    "필드 효과와 HP 회복에 특화된 방어 및 지원 문장입니다.",
+    "필드 효과와 체력 회복에 특화된 방어 및 지원 문장입니다.",
   ],
   "shining-wing-rune": [
     "루비의 고유 문장으로, 가느다란 직선 범위의 적에게 피해를 줍니다.",
@@ -2083,7 +2083,7 @@ export const RUNE_GENERAL_RUNE_DESCRIPTIONS = {
     "창 장인 윈도우의 고유 문장으로, 비밀 공격 기술과 연결됩니다.",
   ],
   "zexen-rune": [
-    "환상수호전 III에서 대화로만 언급되는 수수께끼의 문장입니다. 실제 모습은 등장하지 않으며, 젝센 문장이라는 번역이 젝센 문장(crest)을 잘못 옮긴 것일 가능성도 거론됩니다.",
+    "환상수호전 III에서 대화로만 언급되는 수수께끼의 문장입니다. 실제 모습은 등장하지 않으며, 젝센 문장이라는 번역이 문장 표기를 잘못 옮긴 것일 가능성도 거론됩니다.",
   ],
 } as const satisfies Partial<Record<string, readonly string[]>>;
 
@@ -2145,7 +2145,7 @@ const SUIKODEN_II_FIRE_SPELLS = [
 const SUIKODEN_I_WATER_SPELLS = [
   {
     name: "상냥함의 물방울",
-    effect: "아군 1명의 HP를 완전히 회복합니다.",
+    effect: "아군 1명의 체력을 완전히 회복합니다.",
   },
   {
     name: "기만의 안개",
@@ -2153,22 +2153,22 @@ const SUIKODEN_I_WATER_SPELLS = [
   },
   {
     name: "상냥함의 물",
-    effect: "아군 전체의 HP를 약 300 회복합니다.",
+    effect: "아군 전체의 체력을 약 300 회복합니다.",
   },
   {
     name: "상냥함의 비",
-    effect: "아군 전체의 HP를 완전히 회복합니다.",
+    effect: "아군 전체의 체력을 완전히 회복합니다.",
   },
   {
     name: "어머니 바다",
-    effect: "전투 불능을 포함해 아군의 HP와 상태를 크게 회복합니다.",
+    effect: "전투 불능을 포함해 아군의 체력과 상태를 크게 회복합니다.",
   },
 ] as const;
 
 const SUIKODEN_II_WATER_SPELLS = [
   {
     name: "상냥함의 물방울",
-    effect: "아군 1명의 HP를 완전히 회복합니다.",
+    effect: "아군 1명의 체력을 완전히 회복합니다.",
   },
   {
     name: "수호의 안개",
@@ -2176,7 +2176,7 @@ const SUIKODEN_II_WATER_SPELLS = [
   },
   {
     name: "상냥함의 비",
-    effect: "아군 전체의 HP를 약 300 회복합니다.",
+    effect: "아군 전체의 체력을 약 300 회복합니다.",
   },
   {
     name: "침묵의 호수",
@@ -2184,7 +2184,7 @@ const SUIKODEN_II_WATER_SPELLS = [
   },
   {
     name: "어머니 바다",
-    effect: "아군 1명의 HP를 완전히 회복하고 전투 불능을 포함한 상태 이상을 치료합니다.",
+    effect: "아군 1명의 체력을 완전히 회복하고 전투 불능을 포함한 상태 이상을 치료합니다.",
   },
 ] as const;
 
@@ -2199,7 +2199,7 @@ const SUIKODEN_I_WIND_SPELLS = [
   },
   {
     name: "치유의 바람",
-    effect: "아군 1명의 HP를 완전히 회복하고 상태 이상을 치료합니다.",
+    effect: "아군 1명의 체력을 완전히 회복하고 상태 이상을 치료합니다.",
   },
   {
     name: "폭풍",
@@ -2218,7 +2218,7 @@ const SUIKODEN_II_WIND_SPELLS = [
   },
   {
     name: "치유의 바람",
-    effect: "아군 1명의 HP를 완전히 회복합니다.",
+    effect: "아군 1명의 체력을 완전히 회복합니다.",
   },
   {
     name: "절단의 바람",
@@ -2237,7 +2237,7 @@ const SUIKODEN_II_WIND_SPELLS = [
 const SUIKODEN_I_EARTH_SPELLS = [
   {
     name: "진흙 수호자",
-    effect: "아군 1명의 방어력을 올립니다. PS판에서는 효과가 정상 적용되지 않는 것으로 알려져 있습니다.",
+    effect: "아군 1명의 방어력을 올립니다. 플레이스테이션판에서는 효과가 정상 적용되지 않는 것으로 알려져 있습니다.",
   },
   {
     name: "대지의 목소리",
@@ -2245,7 +2245,7 @@ const SUIKODEN_I_EARTH_SPELLS = [
   },
   {
     name: "구리 피부",
-    effect: "3턴 동안 아군 1명의 현재 HP를 고정해 피해와 회복을 모두 막습니다.",
+    effect: "3턴 동안 아군 1명의 현재 체력을 고정해 피해와 회복을 모두 막습니다.",
   },
   {
     name: "지진",
@@ -2253,7 +2253,7 @@ const SUIKODEN_I_EARTH_SPELLS = [
   },
   {
     name: "수호하는 대지",
-    effect: "아군 전체의 방어력을 올립니다. PS판에서는 효과가 정상 적용되지 않는 것으로 알려져 있습니다.",
+    effect: "아군 전체의 방어력을 올립니다. 플레이스테이션판에서는 효과가 정상 적용되지 않는 것으로 알려져 있습니다.",
   },
 ] as const;
 
@@ -2357,7 +2357,7 @@ export const RUNE_FUNCTION_RECORDS = {
     {
       game: RUNE_GAME_LABELS["suikoden-ii"],
       spells: buildSpellRecords(SUIKODEN_II_WATER_SPELLS),
-      weaponEffect: "전투 중 매 턴 HP를 5 회복합니다.",
+      weaponEffect: "전투 중 매 턴 체력을 5 회복합니다.",
     },
   ],
   "flowing-rune": [
@@ -2368,7 +2368,7 @@ export const RUNE_FUNCTION_RECORDS = {
     {
       game: RUNE_GAME_LABELS["suikoden-ii"],
       spells: buildSpellRecords(SUIKODEN_II_WATER_SPELLS, 1),
-      weaponEffect: "전투 중 매 턴 HP를 15 회복합니다.",
+      weaponEffect: "전투 중 매 턴 체력을 15 회복합니다.",
     },
   ],
   "wind-rune": [
@@ -2401,7 +2401,7 @@ export const RUNE_FUNCTION_RECORDS = {
     {
       game: RUNE_GAME_LABELS["suikoden-ii"],
       spells: buildSpellRecords(SUIKODEN_II_EARTH_SPELLS),
-      weaponEffect: "방어가 5 오르고 전투 중 매 턴 HP를 3 회복합니다.",
+      weaponEffect: "방어가 5 오르고 전투 중 매 턴 체력을 3 회복합니다.",
     },
   ],
   "mother-earth-rune": [
@@ -2412,7 +2412,7 @@ export const RUNE_FUNCTION_RECORDS = {
     {
       game: RUNE_GAME_LABELS["suikoden-ii"],
       spells: buildSpellRecords(SUIKODEN_II_EARTH_SPELLS, 1),
-      weaponEffect: "방어가 15 오르고 전투 중 매 턴 HP를 5 회복합니다.",
+      weaponEffect: "방어가 15 오르고 전투 중 매 턴 체력을 5 회복합니다.",
     },
   ],
   "lightning-rune": [
@@ -2454,7 +2454,7 @@ export const RUNE_FUNCTION_RECORDS = {
         {
           level: 3,
           name: "절규",
-          effect: "아군 전체의 HP를 약 400 회복합니다.",
+          effect: "아군 전체의 체력을 약 400 회복합니다.",
         },
         {
           level: 4,
@@ -2484,7 +2484,7 @@ export const RUNE_FUNCTION_RECORDS = {
         {
           level: 4,
           name: "절규",
-          effect: "아군 전체의 HP를 약 300 회복합니다.",
+          effect: "아군 전체의 체력을 약 300 회복합니다.",
         },
       ],
     },
@@ -2575,7 +2575,7 @@ export const RUNE_FUNCTION_RECORDS = {
         {
           level: 2,
           name: "영혼 강탈",
-          effect: "적 1명에게 약 300의 피해를 주고 같은 양의 HP를 회복합니다.",
+          effect: "적 1명에게 약 300의 피해를 주고 같은 양의 체력을 회복합니다.",
         },
         {
           level: 3,
@@ -2652,7 +2652,7 @@ export const RUNE_FUNCTION_RECORDS = {
         {
           level: 1,
           name: "위대한 축복",
-          effect: "아군 전체의 HP를 약 70 회복하고 상태 이상을 치료합니다.",
+          effect: "아군 전체의 체력을 약 70 회복하고 상태 이상을 치료합니다.",
         },
         {
           level: 2,
@@ -2662,7 +2662,7 @@ export const RUNE_FUNCTION_RECORDS = {
         {
           level: 3,
           name: "전투의 맹세",
-          effect: "아군 전체의 HP를 약 300 회복하고 일정 확률로 분노 상태를 부여합니다.",
+          effect: "아군 전체의 체력을 약 300 회복하고 일정 확률로 분노 상태를 부여합니다.",
         },
         {
           level: 4,

@@ -106,6 +106,11 @@ const ITEM_REFERENCE_GAMES = [
   ITEM_INDEX_PAGE_IDS.suikodenII,
 ] as const;
 
+const ITEM_GAME_DESCRIPTION_LABELS = {
+  [ITEM_INDEX_PAGE_IDS.suikodenI]: "환상수호전 I",
+  [ITEM_INDEX_PAGE_IDS.suikodenII]: "환상수호전 II",
+} as const satisfies Record<ItemIndexGameId, string>;
+
 export const ITEM_INDEX_PAGES = [
   {
     id: ITEM_INDEX_PAGE_IDS.suikodenI,
@@ -504,12 +509,12 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
 const ITEM_DETAIL_DESCRIPTIONS = {
   medicine: [
     "가장 기본적인 회복용 소비 아이템입니다.",
-    "전투 중 또는 이동 중에 사용해 아군 한 명의 HP를 회복하는 초반 핵심 보급품으로 정리합니다.",
+    "전투 중 또는 이동 중에 사용해 아군 한 명의 체력을 회복하는 초반 핵심 보급품으로 정리합니다.",
   ],
 } as const satisfies Partial<Record<string, readonly string[]>>;
 
 const ITEM_DETAIL_EFFECTS = {
-  medicine: ["아군 한 명의 HP를 100 회복합니다."],
+  medicine: ["아군 한 명의 체력을 100 회복합니다."],
 } as const satisfies Partial<Record<string, readonly string[]>>;
 
 const ITEM_GENERATED_NAME_TRANSLATIONS = {
@@ -922,7 +927,7 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Bought for Pilika in Muse City": "뮤즈에서 필리카에게 구매",
   "Catch in Fishing mini-game.": "낚시 미니게임",
   "Cave of the Past": "과거의 동굴",
-  "Cave of the Past x2": "과거의 동굴 x2",
+  "Cave of the Past x2": "과거의 동굴 2회",
   "Cave of the Wind": "바람의 동굴",
   "Clean the Mercenary Fortress": "용병 요새 청소",
   "Coronet Town": "코로네",
@@ -932,7 +937,7 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Drakemouth Village": "드래곤마우스 마을",
   "Dwarf Trail": "드워프 산길",
   "Dwarves' Vault": "드워프 금고",
-  "Dwarves' Vault x2": "드워프 금고 x2",
+  "Dwarves' Vault x2": "드워프 금고 2회",
   "Floating Fortress of Shasarazade": "샤사라자드 요새",
   "Forest Village": "숲의 마을",
   "Fortress of Garan": "가란 성새",
@@ -971,9 +976,9 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Moravia Castle": "모라비아 성",
   "Mt. Rakutei": "라쿠테이 산",
   "Mt. Seifu": "세이후 산",
-  "Mt. Seifu x2": "세이후 산 x2",
+  "Mt. Seifu x2": "세이후 산 2회",
   "Mt. Tigerwolf": "타이거울프 산",
-  "Mt. Tigerwolf x2": "타이거울프 산 x2",
+  "Mt. Tigerwolf x2": "타이거울프 산 2회",
   "Muse City": "뮤즈",
   "Neclord's Castle": "네크로드 성",
   "Neclordia": "네크로디아",
@@ -1664,7 +1669,7 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
       itemId as keyof typeof ITEM_DETAIL_DESCRIPTIONS
     ] ?? [
       `${gameRecords
-        .map((item) => getItemIndexPage(item.game).title)
+        .map((item) => ITEM_GAME_DESCRIPTION_LABELS[item.game])
         .join(" / ")}에 등장하는 ${ITEM_CATEGORY_LABELS[firstRecord.category]}입니다.`,
     ],
     effectLines: ITEM_DETAIL_EFFECTS[

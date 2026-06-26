@@ -1,4 +1,4 @@
-import RuneIndexPageShell from "@/components/runes/RuneIndexPageShell";
+import RuneIndexPageShell from "@/components/runes/list/RuneIndexPageShell";
 import { RUNE_INDEX_PAGE_IDS } from "@/constants/runes/rune-content";
 
 const Runes = () => {

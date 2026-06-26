@@ -5,7 +5,7 @@ import {
   GameplaySection,
   GameplayTagSection,
   GameplayTabs,
-} from "@/components/gameplay/GameplayBlocks";
+} from "@/components/gameplay/detail/GameplayBlocks";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   GAMEPLAY_COPY,

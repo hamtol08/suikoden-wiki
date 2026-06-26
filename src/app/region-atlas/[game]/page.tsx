@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import RegionAtlasPageShell from "@/components/regions/RegionAtlasPageShell";
+import RegionAtlasPageShell from "@/components/regions/list/RegionAtlasPageShell";
 import { REGION_ATLAS_TABS } from "@/constants/archive/archive-content";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 

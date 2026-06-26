@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import CharacterPageShell from "@/components/characters/CharacterPageShell";
+import CharacterPageShell from "@/components/characters/list/CharacterPageShell";
 import {
   CHARACTER_DATA_BY_GAME,
   type CharacterGameId,

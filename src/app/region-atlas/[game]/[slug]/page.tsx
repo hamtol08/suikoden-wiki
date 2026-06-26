@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
-import RegionDetailRecords from "@/components/regions/RegionDetailRecords";
-import RegionPreview from "@/components/regions/RegionPreview";
+import RegionDetailRecords from "@/components/regions/detail/RegionDetailRecords";
+import RegionPreview from "@/components/regions/detail/RegionPreview";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {

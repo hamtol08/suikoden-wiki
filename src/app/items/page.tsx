@@ -1,4 +1,4 @@
-import ItemIndexPageShell from "@/components/items/ItemIndexPageShell";
+import ItemIndexPageShell from "@/components/items/list/ItemIndexPageShell";
 import { ITEM_INDEX_PAGE_IDS } from "@/constants/items/item-content";
 
 const Items = () => {

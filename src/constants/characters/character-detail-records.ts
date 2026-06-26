@@ -225,23 +225,61 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "humphrey": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Humphrey joins automatically after the original remaining members from the Liberation Army meet up at the new headquarters."
+        ],
+        "overall": [
+          "Humphrey is a strong front line fighter and tank. He has high strength and excellent defense, but low speed and accuracy, so equipment that improves his speed or attack reliability helps him stay useful."
+        ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Sword",
+          "range": "S",
+          "startingLevel": "7"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "None."
+          ],
+          "recommended": [
+            "Clone Rune or Killer Rune"
+          ]
         },
-        "maxLevelStatus": {},
+        "maxLevelStatus": {
+          "hp": "881",
+          "lvl 1": "5",
+          "lvl 2": "2",
+          "lvl 3": "1",
+          "lvl 4": "0",
+          "atk": "245",
+          "def": "221",
+          "str": "400",
+          "pdf": "350",
+          "skl": "130",
+          "mdf": "",
+          "mag": "79",
+          "spd": "125",
+          "eva": "",
+          "luc": "120"
+        },
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "-",
+            "armor": "Brass Armor",
+            "shield": "-",
+            "other1": "Cape",
+            "other2": "-"
+          },
+          "recommended": {
+            "helmet": "Horned Helmet",
+            "armor": "Windspun Armor",
+            "shield": "-",
+            "other1": "Power Gloves",
+            "other2": "Speed Ring"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Humphrey can participate in the Bumpy Attack with Krin."
+        ]
       }
     },
     "kasim-hazil": {
@@ -1287,23 +1325,61 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "milich": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "After defeating Milich at Scarleticia Castle, forgive him for the events caused under the Black Rune's control and ask him to join."
+        ],
+        "overall": [
+          "Milich is a well-rounded swordsman and magic user. His balanced stats let him serve as a front line fighter while still making good use of elemental runes."
+        ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Sword",
+          "range": "S",
+          "startingLevel": "6"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "None."
+          ],
+          "recommended": [
+            "Elemental runes work well with Milich because of his magic skill."
+          ]
         },
-        "maxLevelStatus": {},
+        "maxLevelStatus": {
+          "hp": "822",
+          "lvl 1": "9",
+          "lvl 2": "9",
+          "lvl 3": "7",
+          "lvl 4": "6",
+          "atk": "176",
+          "def": "171",
+          "str": "326",
+          "pdf": "332",
+          "skl": "160",
+          "mdf": "",
+          "mag": "207",
+          "spd": "149",
+          "eva": "",
+          "luc": "85"
+        },
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "Pointed Hat",
+            "armor": "Guard Robe",
+            "shield": "-",
+            "other1": "Rose Brooch*",
+            "other2": "-"
+          },
+          "recommended": {
+            "helmet": "Silver Hat",
+            "armor": "Master Garb",
+            "shield": "Earth Shield",
+            "other1": "Rose Brooch*",
+            "other2": "Power Gloves"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Milich has no Unite Attacks."
+        ]
       }
     },
     "pahn": {
@@ -2201,23 +2277,62 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "glenshiel": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Grenseal joins automatically with Alen after defeating General Teo."
+        ],
+        "overall": [
+          "Grenseal is a good swordsman and magic user. His permanently attached Thunder Rune and strong magic growth make him useful against groups of enemies as an attacking mage."
+        ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Sword",
+          "range": "S",
+          "startingLevel": "7"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "Thunder Rune*",
+            "''*Fixed Rune, can't be detached.''"
+          ],
+          "recommended": [
+            "Grenseal has the Thunder Rune permanently attached."
+          ]
         },
-        "maxLevelStatus": {},
+        "maxLevelStatus": {
+          "hp": "812",
+          "lvl 1": "9",
+          "lvl 2": "8",
+          "lvl 3": "7",
+          "lvl 4": "5",
+          "atk": "171",
+          "def": "168",
+          "str": "321",
+          "pdf": "345",
+          "skl": "156",
+          "mdf": "",
+          "mag": "195",
+          "spd": "165",
+          "eva": "",
+          "luc": "129"
+        },
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "-",
+            "armor": "Leather Armor",
+            "shield": "Steel Shield",
+            "other1": "-",
+            "other2": "-"
+          },
+          "recommended": {
+            "helmet": "Horned Helmet",
+            "armor": "Master Garb",
+            "shield": "Earth Shield",
+            "other1": "Power Gloves",
+            "other2": "Crimson Cape"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Grenseal can participate in the Pretty Boy Attack with Flik and Alen."
+        ]
       }
     },
     "alen": {
@@ -4930,23 +5045,61 @@ export const CHARACTER_DETAIL_RECORDS = {
     },
     "sarah": {
       "role": {
-        "recruitment": [],
-        "overall": [],
+        "recruitment": [
+          "Sarah joins in Kirov after Tir completes the trade sequence and gives her Soap."
+        ],
+        "overall": [
+          "Sarah is a balanced long range fighter and a capable magic rune user. She can attack safely from the back row and works especially well with support or healing runes."
+        ],
         "weapon": {
-          "type": "",
-          "range": "",
-          "startingLevel": ""
+          "type": "Throwing Knife",
+          "range": "L",
+          "startingLevel": "2"
         },
         "rune": {
-          "attached": [],
-          "recommended": []
+          "attached": [
+            "None."
+          ],
+          "recommended": [
+            "Water Rune or Flowing Rune"
+          ]
         },
-        "maxLevelStatus": {},
+        "maxLevelStatus": {
+          "hp": "817",
+          "lvl 1": "8",
+          "lvl 2": "5",
+          "lvl 3": "4",
+          "lvl 4": "1",
+          "atk": "165",
+          "def": "173",
+          "str": "315",
+          "pdf": "290",
+          "skl": "130",
+          "mdf": "",
+          "mag": "144",
+          "spd": "135",
+          "eva": "",
+          "luc": "104"
+        },
         "equipment": {
-          "default": {},
-          "recommended": {}
+          "default": {
+            "helmet": "-",
+            "armor": "Tunic",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-"
+          },
+          "recommended": {
+            "helmet": "Silver Hat",
+            "armor": "Taikyoku Wear",
+            "shield": "-",
+            "other1": "-",
+            "other2": "-"
+          }
         },
-        "uniteAttacks": []
+        "uniteAttacks": [
+          "Sarah has no Unite Attacks."
+        ]
       }
     },
     "sansuke": {

@@ -8,6 +8,7 @@ import {
   Users,
 } from "lucide-react";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import {
   DOM_IDS,
@@ -17,14 +18,11 @@ import {
 import {
   ARCHIVE_CATEGORIES,
   ARCHIVE_COPY,
-  ARCHIVE_STATS,
   FEATURE_CARDS,
   IMAGE_PATHS,
-  IMAGE_SIZES,
   TIMELINE_ITEMS,
   TRENDING_STARS,
 } from "@/constants/archive/archive-content";
-import { THEME_CLASSES } from "@/constants/app/theme";
 import {
   APP_SHELL_STYLES,
   CARD_STYLES,
@@ -108,7 +106,9 @@ const Home = () => {
                       {card.eyebrow}
                     </p>
                     <h3 className={TEXT_STYLES.cardTitle}>{card.title}</h3>
-                    <p className={TEXT_STYLES.cardBody}>{card.body}</p>
+                    <p className={TEXT_STYLES.cardBody}>
+                      <CharacterNameLinkText text={card.body} />
+                    </p>
                   </div>
                 </MotionSurface>
               ))}
@@ -127,7 +127,9 @@ const Home = () => {
                       <Icon aria-hidden="true" className={ICON_STYLES.category} />
                     </span>
                     <p className={TEXT_STYLES.categoryTitle}>{category.title}</p>
-                    <p className={TEXT_STYLES.cardBody}>{category.body}</p>
+                    <p className={TEXT_STYLES.cardBody}>
+                      {category.body}
+                    </p>
                   </a>
                 );
               })}
@@ -152,7 +154,9 @@ const Home = () => {
                     </span>
                   </div>
                   <h3 className={SECTION_STYLES.timelineTitle}>{item.title}</h3>
-                  <p className={TEXT_STYLES.cardBody}>{item.body}</p>
+                  <p className={TEXT_STYLES.cardBody}>
+                    <CharacterNameLinkText text={item.body} />
+                  </p>
                 </article>
               ))}
             </div>
@@ -160,36 +164,12 @@ const Home = () => {
         </section>
 
         <aside className={RESPONSIVE_SHELL.rightRailPad}>
-          <section className={CONTAINER_STYLES.panel}>
-            <div className={RIGHT_RAIL_STYLES.statHeader}>
-              <Image
-                src={IMAGE_PATHS.logoMark}
-                alt={ARCHIVE_COPY.stats.markAlt}
-                width={IMAGE_SIZES.statMark.width}
-                height={IMAGE_SIZES.statMark.height}
-                className={RIGHT_RAIL_STYLES.statMark}
-              />
-              <div>
-                <h2 className={RIGHT_RAIL_STYLES.statTitle}>{ARCHIVE_COPY.stats.title}</h2>
-                <p className={RIGHT_RAIL_STYLES.statFounded}>
-                  {ARCHIVE_COPY.stats.founded}
-                </p>
-              </div>
-            </div>
-            <dl className={RIGHT_RAIL_STYLES.statList}>
-              {ARCHIVE_STATS.map((stat) => (
-                <div className={RIGHT_RAIL_STYLES.statRow} key={stat.label}>
-                  <dt className={THEME_CLASSES.mutedText}>{stat.label}</dt>
-                  <dd className={RIGHT_RAIL_STYLES.statValue}>{stat.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-
           <blockquote className={RIGHT_RAIL_STYLES.quote}>
-            <p className={RIGHT_RAIL_STYLES.quoteBody}>{ARCHIVE_COPY.quote.body}</p>
+            <p className={RIGHT_RAIL_STYLES.quoteBody}>
+              <CharacterNameLinkText text={ARCHIVE_COPY.quote.body} />
+            </p>
             <footer className={RIGHT_RAIL_STYLES.quoteFooter}>
-              {ARCHIVE_COPY.quote.author}
+              <CharacterNameLinkText text={ARCHIVE_COPY.quote.author} />
             </footer>
           </blockquote>
 

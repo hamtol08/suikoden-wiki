@@ -4,7 +4,7 @@ import {
   GameplaySection,
   GameplayTagSection,
   TimelineChronicleList,
-} from "@/components/gameplay/GameplayBlocks";
+} from "@/components/gameplay/detail/GameplayBlocks";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   TIMELINE_CHRONICLE_NOTES,

@@ -1,5 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import { type CharacterGameId } from "@/constants/characters/character-content";
 import { CHARACTER_STYLES } from "@/constants/styles/ui-styles";
 
 type DetailRow = {
@@ -36,6 +38,7 @@ type DetailSectionProps = {
 };
 
 type DetailRowsProps = {
+  preferredGame?: CharacterGameId;
   rows: readonly DetailRow[];
 };
 
@@ -45,7 +48,10 @@ type DetailNavigationProps = {
   items: readonly DetailTab[];
 };
 
-const renderDetailRowValue = (row: DetailRow) => {
+const renderDetailRowValue = (
+  row: DetailRow,
+  preferredGame?: CharacterGameId,
+) => {
   if (row.links && row.links.length > 0) {
     return (
       <span className={CHARACTER_STYLES.combatDataValueLinkList}>
@@ -72,8 +78,14 @@ const renderDetailRowValue = (row: DetailRow) => {
     );
   }
 
-  if (!row.href || typeof row.value !== "string") {
+  if (typeof row.value !== "string") {
     return row.value;
+  }
+
+  if (!row.href) {
+    return (
+      <CharacterNameLinkText preferredGame={preferredGame} text={row.value} />
+    );
   }
 
   return (
@@ -99,13 +111,18 @@ export const CharacterDetailSection = ({
   );
 };
 
-export const CharacterDetailLedger = ({ rows }: DetailRowsProps) => {
+export const CharacterDetailLedger = ({
+  preferredGame,
+  rows,
+}: DetailRowsProps) => {
   return (
     <dl className={CHARACTER_STYLES.detailLedger}>
       {rows.map((row) => (
         <div className={CHARACTER_STYLES.detailLedgerRow} key={row.label}>
           <dt className={CHARACTER_STYLES.detailLedgerTerm}>{row.label}</dt>
-          <dd className={CHARACTER_STYLES.detailLedgerValue}>{row.value}</dd>
+          <dd className={CHARACTER_STYLES.detailLedgerValue}>
+            {renderDetailRowValue(row, preferredGame)}
+          </dd>
         </div>
       ))}
     </dl>
@@ -137,8 +154,10 @@ export const CharacterDetailNavigation = ({
 
 export const CharacterCombatDataPanels = ({
   panels,
+  preferredGame,
 }: {
   panels: readonly DetailPanel[];
+  preferredGame?: CharacterGameId;
 }) => {
   return (
     <div className={CHARACTER_STYLES.combatDataGrid}>
@@ -149,7 +168,12 @@ export const CharacterCombatDataPanels = ({
           {panel.lines.length > 0 && (
             <div className={CHARACTER_STYLES.combatDataLines}>
               {panel.lines.map((line) => (
-                <p key={line}>{line}</p>
+                <p key={line}>
+                  <CharacterNameLinkText
+                    preferredGame={preferredGame}
+                    text={line}
+                  />
+                </p>
               ))}
             </div>
           )}
@@ -160,7 +184,7 @@ export const CharacterCombatDataPanels = ({
                 <div className={CHARACTER_STYLES.combatDataRow} key={row.label}>
                   <dt className={CHARACTER_STYLES.combatDataTerm}>{row.label}</dt>
                   <dd className={CHARACTER_STYLES.combatDataValue}>
-                    {renderDetailRowValue(row)}
+                    {renderDetailRowValue(row, preferredGame)}
                   </dd>
                 </div>
               ))}
@@ -185,7 +209,7 @@ export const CharacterCombatDataPanels = ({
                       <div className={CHARACTER_STYLES.combatDataRow} key={row.label}>
                         <dt className={CHARACTER_STYLES.combatDataTerm}>{row.label}</dt>
                         <dd className={CHARACTER_STYLES.combatDataValue}>
-                          {renderDetailRowValue(row)}
+                          {renderDetailRowValue(row, preferredGame)}
                         </dd>
                       </div>
                     ))}
