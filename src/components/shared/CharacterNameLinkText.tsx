@@ -5,6 +5,13 @@ import {
   CHARACTER_DATA_BY_GAME,
   type CharacterGameId,
 } from "@/constants/characters/character-content";
+import {
+  CHARACTER_LINK_NOWRAP_FOLLOWERS,
+  CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
+  CHARACTER_LINK_PROTECTED_PHRASES,
+  CHARACTER_LINK_TOKEN_PATTERN,
+  CHARACTER_NAME_ALIASES,
+} from "@/constants/characters/character-linking";
 import { TEXT_STYLES } from "@/constants/styles/ui-styles";
 
 type CharacterNameLinkTextProps = {
@@ -18,93 +25,11 @@ type CharacterNameLinkReference = {
   name: string;
 };
 
-const CHARACTER_NAME_ALIASES = [
-  {
-    game: "suikoden-i",
-    id: "hero",
-    names: ["티르 맥돌"],
-  },
-  {
-    game: "suikoden-i",
-    id: "mathiu",
-    names: ["맷슈"],
-  },
-  {
-    game: "suikoden-i",
-    id: "leon",
-    names: ["레온"],
-  },
-  {
-    game: "suikoden-i",
-    id: "humphrey",
-    names: ["험프리"],
-  },
-  {
-    game: "suikoden-i",
-    id: "milich",
-    names: ["미르이히"],
-  },
-  {
-    game: "suikoden-i",
-    id: "sancho",
-    names: ["산쵸"],
-  },
-  {
-    game: "suikoden-i",
-    id: "hugo",
-    names: ["유고"],
-  },
-  {
-    game: "suikoden-ii",
-    id: "hero",
-    names: ["리오우"],
-  },
-  {
-    game: "suikoden-ii",
-    id: "humphrey",
-    names: ["험프리"],
-  },
-  {
-    game: "suikoden-ii",
-    id: "hai-yo",
-    names: ["하이요"],
-  },
-  {
-    game: "suikoden-ii",
-    id: "richmond",
-    names: ["리치몬드"],
-  },
-  {
-    game: "suikoden-ii",
-    id: "lebrante",
-    names: ["레브란트", "르브란테"],
-  },
-] as const satisfies readonly {
-  game: CharacterGameId;
-  id: string;
-  names: readonly string[];
-}[];
-
 const escapeRegExp = (value: string) =>
   value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-const CHARACTER_LINK_PROTECTED_PHRASES = [
-  "노스 윈도우",
-  "노스윈도우",
-  "사우스 윈도우",
-  "사우스윈도우",
-  "윈도우 세트",
-  "창 세트",
-  "신 동맹군",
-  "신동맹군",
-] as const;
-
-const TOKEN_CHARACTER_PATTERN = /[\p{L}\p{N}]/u;
-const KOREAN_POSTPOSITION_PATTERN =
-  /^(은|는|이|가|을|를|와|과|의|에게|에서|으로|로|처럼|까지|부터|도|만|보다|랑|하고|께서)/;
-
 const isTokenCharacter = (value?: string) => {
-  return value ? TOKEN_CHARACTER_PATTERN.test(value) : false;
+  return value ? CHARACTER_LINK_TOKEN_PATTERN.test(value) : false;
 };
 
 const isInsideProtectedPhrase = (text: string, offset: number, match: string) => {
@@ -143,7 +68,9 @@ const isDelimitedCharacterName = (
     return true;
   }
 
-  return KOREAN_POSTPOSITION_PATTERN.test(text.slice(offset + match.length));
+  return CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN.test(
+    text.slice(offset + match.length),
+  );
 };
 
 const CHARACTER_NAME_REFERENCES: readonly CharacterNameLinkReference[] = [
@@ -213,16 +140,26 @@ const renderLinkedText = (
       nodes.push(text.slice(lastIndex, offset));
     }
 
+    const follower =
+      CHARACTER_LINK_NOWRAP_FOLLOWERS.find((value) =>
+        text.startsWith(value, offset + match.length)
+      ) ?? "";
+
     nodes.push(
-      <Link
-        className={TEXT_STYLES.characterNameLink}
-        href={reference.href}
-        key={`${reference.href}-${offset}`}
-      >
-        {match}
-      </Link>,
+      follower ? (
+        <span className={TEXT_STYLES.characterNameLinkPhrase}>
+          <Link className={TEXT_STYLES.characterNameLink} href={reference.href}>
+            {match}
+          </Link>
+          {follower}
+        </span>
+      ) : (
+        <Link className={TEXT_STYLES.characterNameLink} href={reference.href}>
+          {match}
+        </Link>
+      ),
     );
-    lastIndex = offset + match.length;
+    lastIndex = offset + match.length + follower.length;
 
     return match;
   });

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   Archive,
   Compass,
@@ -7,22 +8,24 @@ import {
   Swords,
   Users,
 } from "lucide-react";
+import ArticleCardGrid from "@/components/articles/list/ArticleCardGrid";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
+import NewsArticleList from "@/components/news/list/NewsArticleList";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import {
+  APP_ROUTES,
   DOM_IDS,
   IMAGE_LOADING,
-  ROUTE_ANCHORS,
 } from "@/constants/app/app-config";
+import { IMAGE_PATHS } from "@/constants/app/app-assets";
 import {
   ARCHIVE_CATEGORIES,
   ARCHIVE_COPY,
-  FEATURE_CARDS,
-  IMAGE_PATHS,
-  TIMELINE_ITEMS,
   TRENDING_STARS,
 } from "@/constants/archive/archive-content";
+import { FEATURE_CARDS } from "@/constants/articles/article-content";
+import { SUIKODEN_NEWS_ITEMS } from "@/constants/news/news-content";
 import {
   APP_SHELL_STYLES,
   CARD_STYLES,
@@ -31,7 +34,6 @@ import {
   HERO_STYLES,
   ICON_STYLES,
   IMAGE_SIZE_HINTS,
-  IMAGE_STYLES,
   RIGHT_RAIL_STYLES,
   RESPONSIVE_SHELL,
   SECTION_STYLES,
@@ -54,7 +56,7 @@ const Home = () => {
 
       <div className={RESPONSIVE_SHELL.bodyGrid}>
         <section className={RESPONSIVE_SHELL.contentPad}>
-          <div className={CONTAINER_STYLES.hero}>
+          <MotionSurface as="div" className={CONTAINER_STYLES.hero}>
             <div className={CONTAINER_STYLES.heroMedia}>
               <Image
                 src={IMAGE_PATHS.hdRemaster}
@@ -72,50 +74,22 @@ const Home = () => {
                 </h1>
               </div>
             </div>
-          </div>
+          </MotionSurface>
 
-          <section className={SECTION_STYLES.block} id={DOM_IDS.featured}>
+          <MotionSurface as="section" className={SECTION_STYLES.block} id={DOM_IDS.featured}>
             <div className={SECTION_STYLES.headerRow}>
               <div>
                 <p className={TEXT_STYLES.labelGold}>{ARCHIVE_COPY.featured.eyebrow}</p>
                 <h2 className={TEXT_STYLES.sectionTitle}>{ARCHIVE_COPY.featured.title}</h2>
               </div>
-              <a className={SECTION_STYLES.viewAllLink} href={ROUTE_ANCHORS.current}>
+              <Link className={SECTION_STYLES.viewAllLink} href={APP_ROUTES.articles}>
                 {ARCHIVE_COPY.featured.viewAll}
-              </a>
+              </Link>
             </div>
-            <div className={GRID_STYLES.feature}>
-              {FEATURE_CARDS.map((card, index) => (
-                <MotionSurface className={CARD_STYLES.feature} key={card.title}>
-                  <div className={CARD_STYLES.featureImage}>
-                    <Image
-                      src={card.image}
-                      alt={card.alt}
-                      fill
-                      loading={
-                        index === 0
-                          ? IMAGE_LOADING.eager
-                          : IMAGE_LOADING.lazy
-                      }
-                      className={IMAGE_STYLES.objectCover}
-                      sizes={IMAGE_SIZE_HINTS.feature}
-                    />
-                  </div>
-                  <div className={SECTION_STYLES.cardBody}>
-                    <p className={TEXT_STYLES.featureEyebrow}>
-                      {card.eyebrow}
-                    </p>
-                    <h3 className={TEXT_STYLES.cardTitle}>{card.title}</h3>
-                    <p className={TEXT_STYLES.cardBody}>
-                      <CharacterNameLinkText text={card.body} />
-                    </p>
-                  </div>
-                </MotionSurface>
-              ))}
-            </div>
-          </section>
+            <ArticleCardGrid cards={FEATURE_CARDS} />
+          </MotionSurface>
 
-          <section className={SECTION_STYLES.block}>
+          <MotionSurface as="section" className={SECTION_STYLES.block}>
             <h2 className={TEXT_STYLES.sectionTitle}>{ARCHIVE_COPY.explore.title}</h2>
             <div className={GRID_STYLES.categories}>
               {ARCHIVE_CATEGORIES.map((category) => {
@@ -134,46 +108,37 @@ const Home = () => {
                 );
               })}
             </div>
-          </section>
+          </MotionSurface>
 
-          <section className={CONTAINER_STYLES.newsPanel}>
+          <MotionSurface as="section" className={CONTAINER_STYLES.newsPanel}>
             <div className={SECTION_STYLES.newsHeader}>
-              <h2 className={SECTION_STYLES.newsTitle}>
-                {ARCHIVE_COPY.news.title}
-              </h2>
+              <div className={SECTION_STYLES.headerRow}>
+                <h2 className={SECTION_STYLES.newsTitle}>
+                  {ARCHIVE_COPY.news.title}
+                </h2>
+                <Link className={SECTION_STYLES.viewAllLink} href={APP_ROUTES.news}>
+                  {ARCHIVE_COPY.news.viewAll}
+                </Link>
+              </div>
             </div>
-            <div className={SECTION_STYLES.newsList}>
-              {TIMELINE_ITEMS.map((item) => (
-                <article className={CARD_STYLES.timelineItem} key={item.title}>
-                  <div className={SECTION_STYLES.timelineMetaRow}>
-                    <p className={SECTION_STYLES.timelineDate}>
-                      {item.date}
-                    </p>
-                    <span className={SECTION_STYLES.timelineTag}>
-                      {item.tag}
-                    </span>
-                  </div>
-                  <h3 className={SECTION_STYLES.timelineTitle}>{item.title}</h3>
-                  <p className={TEXT_STYLES.cardBody}>
-                    <CharacterNameLinkText text={item.body} />
-                  </p>
-                </article>
-              ))}
-            </div>
-          </section>
+            <NewsArticleList items={SUIKODEN_NEWS_ITEMS.slice(0, 3)} />
+          </MotionSurface>
         </section>
 
         <aside className={RESPONSIVE_SHELL.rightRailPad}>
-          <blockquote className={RIGHT_RAIL_STYLES.quote}>
+          <MotionSurface as="blockquote" className={RIGHT_RAIL_STYLES.quote}>
+            <p className={RIGHT_RAIL_STYLES.quoteOriginal}>
+              {ARCHIVE_COPY.quote.original}
+            </p>
             <p className={RIGHT_RAIL_STYLES.quoteBody}>
               <CharacterNameLinkText text={ARCHIVE_COPY.quote.body} />
             </p>
             <footer className={RIGHT_RAIL_STYLES.quoteFooter}>
               <CharacterNameLinkText text={ARCHIVE_COPY.quote.author} />
             </footer>
-          </blockquote>
+          </MotionSurface>
 
-          <section className={CONTAINER_STYLES.navyPanel}>
+          <MotionSurface as="section" className={CONTAINER_STYLES.navyPanel}>
             <h2 className={RIGHT_RAIL_STYLES.trendingTitle}>{ARCHIVE_COPY.trending.title}</h2>
             <div className={RIGHT_RAIL_STYLES.trendingList}>
               {TRENDING_STARS.map((star) => (
@@ -186,7 +151,7 @@ const Home = () => {
                 </a>
               ))}
             </div>
-          </section>
+          </MotionSurface>
         </aside>
       </div>
 

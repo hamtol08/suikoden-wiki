@@ -6,10 +6,12 @@ export const ROUTE_ANCHORS = {
 } as const;
 
 export const APP_ROUTES = {
+  articles: "/articles",
   home: "/",
   characters: "/characters",
   gameplay: "/gameplay",
   items: "/items",
+  news: "/news",
   runes: "/runes",
   regionAtlas: "/region-atlas",
   timeline: "/timeline",
@@ -40,6 +42,9 @@ export const buildRuneCategoryPath = (categoryId: string) =>
 
 export const buildRegionAtlasGamePath = (gameId: string) =>
   `${APP_ROUTES.regionAtlas}/${gameId}`;
+
+export const buildRegionAtlasDetailPath = (gameId: string, regionId: string) =>
+  `${buildRegionAtlasGamePath(gameId)}/${regionId}`;
 
 export const DOM_IDS = {
   featured: "featured",

@@ -1,6 +1,8 @@
+import Link from "next/link";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   buildItemRecordDisplay,
@@ -80,6 +82,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
           {
             ...display,
             gameTitle: getItemIndexPage(record.game).title,
+            initialOwners: record.initialOwners,
             key: record.game,
           },
         ];
@@ -103,7 +106,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
             title={item.name}
           />
 
-          <section className={ITEM_STYLES.detailPanel}>
+          <MotionSurface as="section" className={ITEM_STYLES.detailPanel}>
             <header className={ITEM_STYLES.detailHeader}>
               <div>
                 <h2 className={ITEM_STYLES.detailTitle}>{item.name}</h2>
@@ -171,6 +174,30 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
               </section>
             ) : null}
 
+            {item.relatedLinks.length > 0 ? (
+              <section className={ITEM_STYLES.detailSection}>
+                <h3 className={ITEM_STYLES.detailSectionTitle}>
+                  {ITEM_ARCHIVE_COPY.relatedRecordsTitle}
+                </h3>
+                <div className={ITEM_STYLES.relatedLinkGrid}>
+                  {item.relatedLinks.map((link) => (
+                    <Link
+                      className={ITEM_STYLES.relatedLink}
+                      href={link.href}
+                      key={link.href}
+                    >
+                      <h4 className={ITEM_STYLES.relatedLinkTitle}>
+                        {link.title}
+                      </h4>
+                      <p className={ITEM_STYLES.relatedLinkBody}>
+                        <CharacterNameLinkText text={link.body} />
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             <section className={ITEM_STYLES.detailSection}>
               <h3 className={ITEM_STYLES.detailSectionTitle}>
                 {ITEM_ARCHIVE_COPY.gameRecordsTitle}
@@ -229,13 +256,37 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                           <CharacterNameLinkText text={record.dropRates} />
                         </dd>
                       </div>
+                      <div className={ITEM_STYLES.ledgerRow}>
+                        <dt className={ITEM_STYLES.ledgerTerm}>
+                          {ITEM_ARCHIVE_COPY.labels.initialOwners}
+                        </dt>
+                        <dd className={ITEM_STYLES.ledgerValue}>
+                          {record.initialOwners.length > 0 ? (
+                            <span className={ITEM_STYLES.initialOwnerList}>
+                              {record.initialOwners.map((owner, index) => (
+                                <span key={owner.href}>
+                                  {index > 0 ? " / " : null}
+                                  <Link
+                                    className={ITEM_STYLES.initialOwnerLink}
+                                    href={owner.href}
+                                  >
+                                    {owner.name}
+                                  </Link>
+                                </span>
+                              ))}
+                            </span>
+                          ) : (
+                            ITEM_ARCHIVE_COPY.unavailableDetail
+                          )}
+                        </dd>
+                      </div>
                     </dl>
                   </article>
                 ))}
               </div>
             </section>
 
-          </section>
+          </MotionSurface>
         </section>
       </div>
     </main>

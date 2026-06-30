@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 import { type CharacterGameId } from "@/constants/characters/character-content";
 import { CHARACTER_STYLES } from "@/constants/styles/ui-styles";
 
@@ -101,13 +102,13 @@ export const CharacterDetailSection = ({
   title,
 }: DetailSectionProps) => {
   return (
-    <section className={CHARACTER_STYLES.detailSection} id={id}>
+    <MotionSurface as="section" className={CHARACTER_STYLES.detailSection} id={id}>
       <header className={CHARACTER_STYLES.detailSectionHeader}>
         <span className={CHARACTER_STYLES.detailSectionAccent} />
         <h2 className={CHARACTER_STYLES.detailSectionTitle}>{title}</h2>
       </header>
       {children}
-    </section>
+    </MotionSurface>
   );
 };
 
@@ -121,7 +122,9 @@ export const CharacterDetailLedger = ({
         <div className={CHARACTER_STYLES.detailLedgerRow} key={row.label}>
           <dt className={CHARACTER_STYLES.detailLedgerTerm}>{row.label}</dt>
           <dd className={CHARACTER_STYLES.detailLedgerValue}>
-            {renderDetailRowValue(row, preferredGame)}
+            <span className={CHARACTER_STYLES.detailLedgerValueText}>
+              {renderDetailRowValue(row, preferredGame)}
+            </span>
           </dd>
         </div>
       ))}

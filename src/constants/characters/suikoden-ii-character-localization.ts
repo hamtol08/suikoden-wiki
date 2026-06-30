@@ -150,7 +150,7 @@ export const SUIKODEN_II_RUNE_LABELS = {
   "White Tiger Rune": "백호의 문장",
   "Blinking Rune": "순간이동의 문장",
   "Knight Rune": "기사의 문장",
-  "Rage Rune": "분노의 문장",
+  "Rage Rune": "열화의 문장",
   "Shrike Rune": "때까치의 문장",
   "Mayfly Rune": "하루살이의 문장",
   "Twin Ring Rune": "쌍륜의 문장",
@@ -389,7 +389,7 @@ export const SUIKODEN_II_CHARACTER_LOCALIZATION = {
     recruitment: "코볼트 마을의 프라이드 타코를 파티원에게 사용한 뒤 레이크웨스트에서 말을 걸면 합류합니다.",
   },
   "hai-yo": {
-    name: "하이 요",
+    name: "하이요",
     recruitment: "성 레벨 2 이후 본거지 주방에서 말을 걸면 합류합니다.",
   },
   richmond: {

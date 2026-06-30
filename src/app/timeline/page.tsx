@@ -9,6 +9,8 @@ import { APP_ROUTES } from "@/constants/app/app-config";
 import {
   TIMELINE_CHRONICLE_NOTES,
   TIMELINE_COPY,
+  TIMELINE_LORE_SECTIONS,
+  TIMELINE_WAR_SECTIONS,
   TIMELINE_WORLD_SECTIONS,
 } from "@/constants/gameplay/gameplay-content";
 import {
@@ -39,6 +41,20 @@ const Timeline = () => {
             gridVariant="timeline"
             items={TIMELINE_WORLD_SECTIONS}
             title={TIMELINE_COPY.worldTitle}
+          />
+
+          <GameplayTagSection
+            eyebrow={TIMELINE_COPY.eyebrow}
+            gridVariant="timeline"
+            items={TIMELINE_WAR_SECTIONS}
+            title={TIMELINE_COPY.warTitle}
+          />
+
+          <GameplayTagSection
+            eyebrow={TIMELINE_COPY.eyebrow}
+            gridVariant="timeline"
+            items={TIMELINE_LORE_SECTIONS}
+            title={TIMELINE_COPY.loreTitle}
           />
 
           <GameplaySection

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 import {
   REGION_ATLAS_LOCATIONS,
   REGION_CATEGORY_LABELS,
@@ -24,7 +25,7 @@ const RegionLocationCard = ({ location }: RegionLocationCardProps) => {
     ] ?? location.category;
 
   return (
-    <article className={ATLAS_STYLES.regionCard} id={location.id}>
+    <MotionSurface className={ATLAS_STYLES.regionCard} id={location.id}>
       <div className={ATLAS_STYLES.regionCardHeader}>
         <p className={ATLAS_STYLES.regionCardMeta}>{categoryLabel}</p>
         <h3 className={ATLAS_STYLES.regionCardTitle}>
@@ -56,7 +57,7 @@ const RegionLocationCard = ({ location }: RegionLocationCardProps) => {
       <Link className={ATLAS_STYLES.regionCardLink} href={location.detailHref}>
         {WORLD_MAP_COPY.detailCta}
       </Link>
-    </article>
+    </MotionSurface>
   );
 };
 

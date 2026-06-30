@@ -217,7 +217,7 @@ const ArchiveSearch = ({
           type="button"
           onClick={clearSearch}
         >
-          <X aria-hidden="true" className="size-4" />
+          <X aria-hidden="true" className={ICON_STYLES.small} />
         </button>
       ) : null}
       <button className={SEARCH_STYLES.submitButton} type="submit">

@@ -7,13 +7,9 @@ import {
   ROUTE_ANCHORS,
   buildCharacterDetailPath,
 } from "@/constants/app/app-config";
+import { IMAGE_PATHS, IMAGE_SIZES } from "@/constants/app/app-assets";
 import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
-import {
-  ARCHIVE_COPY,
-  IMAGE_PATHS,
-  IMAGE_SIZES,
-  NAV_GROUPS,
-} from "@/constants/archive/archive-content";
+import { ARCHIVE_COPY, NAV_GROUPS } from "@/constants/archive/archive-content";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   CHARACTER_DATA_BY_GAME,

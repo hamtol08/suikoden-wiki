@@ -12,6 +12,7 @@ import {
   getRuneIndexPage,
   getRuneReferencesByPageId,
   getRuneFunctionTypeLabel,
+  getRuneLineageNote,
   isRuneFallbackImage,
   RUNE_ARCHIVE_COPY,
   RUNE_CATEGORY_LABELS,
@@ -33,6 +34,7 @@ const buildRuneBrowserItem = (rune: RuneReference): RuneIndexBrowserItem => {
   const categoryLabel = RUNE_CATEGORY_LABELS[rune.category];
   const gameLabel = formatRuneGames(rune.games);
   const functionTypeLabel = getRuneFunctionTypeLabel(rune);
+  const lineageNote = getRuneLineageNote(rune);
   const japaneseName = rune.japaneseName ?? RUNE_ARCHIVE_COPY.unavailableDetail;
   const displayNames = [
     {
@@ -62,6 +64,7 @@ const buildRuneBrowserItem = (rune: RuneReference): RuneIndexBrowserItem => {
         japaneseName,
         categoryLabel,
         functionTypeLabel,
+        lineageNote ?? "",
         gameLabel,
       ].join(" "),
     ),

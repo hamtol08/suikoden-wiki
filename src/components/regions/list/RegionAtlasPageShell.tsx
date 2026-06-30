@@ -2,6 +2,7 @@ import { BookOpen, Compass } from "lucide-react";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 import RegionAtlasTabs from "@/components/regions/list/RegionAtlasTabs";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import {
@@ -44,7 +45,7 @@ const RegionAtlasPageShell = ({ initialTabId }: RegionAtlasPageShellProps) => {
 
           <RegionAtlasTabs initialTabId={initialTabId} />
 
-          <section className={ATLAS_STYLES.logSection}>
+          <MotionSurface as="section" className={ATLAS_STYLES.logSection}>
             <div className={ATLAS_STYLES.logHeader}>
               <span className={ATLAS_STYLES.logIcon}>
                 <BookOpen aria-hidden="true" className={ICON_STYLES.category} />
@@ -56,7 +57,7 @@ const RegionAtlasPageShell = ({ initialTabId }: RegionAtlasPageShellProps) => {
                 const Icon = logIconMap[log.icon] ?? BookOpen;
 
                 return (
-                  <article className={ATLAS_STYLES.logCard} key={log.title}>
+                  <MotionSurface className={ATLAS_STYLES.logCard} key={log.title}>
                     <span className={ATLAS_STYLES.logCardIcon}>
                       <Icon aria-hidden="true" className={ICON_STYLES.category} />
                     </span>
@@ -66,11 +67,11 @@ const RegionAtlasPageShell = ({ initialTabId }: RegionAtlasPageShellProps) => {
                         <CharacterNameLinkText text={log.body} />
                       </p>
                     </div>
-                  </article>
+                  </MotionSurface>
                 );
               })}
             </div>
-          </section>
+          </MotionSurface>
         </section>
       </div>
     </main>

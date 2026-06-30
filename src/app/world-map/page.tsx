@@ -2,8 +2,8 @@ import Image from "next/image";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import WorldStageMarker from "@/components/world-map/WorldStageMarker";
 import { APP_ROUTES } from "@/constants/app/app-config";
+import { IMAGE_PATHS } from "@/constants/app/app-assets";
 import {
-  IMAGE_PATHS,
   WORLD_STAGE_MARKERS,
   WORLD_MAP_COPY,
 } from "@/constants/archive/archive-content";

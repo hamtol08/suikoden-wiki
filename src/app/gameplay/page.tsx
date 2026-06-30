@@ -13,6 +13,7 @@ import {
   GAMEPLAY_DUEL_SECTIONS,
   GAMEPLAY_GUIDE_GROUPS,
   GAMEPLAY_HEADQUARTERS_SECTIONS,
+  GAMEPLAY_SECTION_IDS,
   GAMEPLAY_SYSTEMS,
   GAMEPLAY_TABS,
   GAMEPLAY_WAR_BATTLE_SECTIONS,
@@ -47,42 +48,42 @@ const Gameplay = () => {
 
           <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
-            id="system-overview"
+            id={GAMEPLAY_SECTION_IDS.systemOverview}
             items={GAMEPLAY_SYSTEMS}
             title={GAMEPLAY_COPY.overviewTitle}
           />
 
           <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
-            id="battle"
+            id={GAMEPLAY_SECTION_IDS.battle}
             items={GAMEPLAY_BATTLE_SECTIONS}
             title={GAMEPLAY_COPY.battleTitle}
           />
 
           <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
-            id="duel"
+            id={GAMEPLAY_SECTION_IDS.duel}
             items={GAMEPLAY_DUEL_SECTIONS}
             title={GAMEPLAY_COPY.duelTitle}
           />
 
           <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
-            id="war-battle"
+            id={GAMEPLAY_SECTION_IDS.warBattle}
             items={GAMEPLAY_WAR_BATTLE_SECTIONS}
             title={GAMEPLAY_COPY.warBattleTitle}
           />
 
           <GameplayTagSection
             eyebrow={GAMEPLAY_COPY.eyebrow}
-            id="headquarters"
+            id={GAMEPLAY_SECTION_IDS.headquarters}
             items={GAMEPLAY_HEADQUARTERS_SECTIONS}
             title={GAMEPLAY_COPY.headquartersTitle}
           />
 
           <GameplaySection
             eyebrow={GAMEPLAY_COPY.eyebrow}
-            id="guide-index"
+            id={GAMEPLAY_SECTION_IDS.guideIndex}
             title={GAMEPLAY_COPY.guideTitle}
           >
             <GameplayGuidePanels games={GAMEPLAY_GUIDE_GROUPS} />

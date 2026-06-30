@@ -383,7 +383,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
   milia: {
     name: "미리어",
     characterType: "전투",
-    recruitment: "드래곤 치료를 위해 월광초를 찾으러 떠날 때 자동으로 합류합니다.",
+    recruitment: "드래곤 치료를 위해 월하초를 찾으러 떠날 때 자동으로 합류합니다.",
   },
   kamandol: {
     name: "커맨돌",
@@ -513,7 +513,7 @@ export const SUIKODEN_I_CHARACTER_LOCALIZATION = {
   window: {
     name: "윈도우",
     characterType: "비전투",
-    recruitment: "과거의 동굴에서 얻은 창문의 봉인을 전사의 마을의 윈도우에게 건네면 합류합니다.",
+    recruitment: "과거의 동굴에서 얻은 창의 봉인구를 전사의 마을의 윈도우에게 건네면 합류합니다.",
   },
   marie: {
     name: "마리",

@@ -4,8 +4,11 @@ import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import {
+  GameplayCookingContestRecords,
   GameplayDetailSeriesNotes,
   GameplayDuelRecords,
+  GameplayRecipeRecords,
+  GameplayRestaurantTips,
   GameplayWarBattleGuide,
 } from "@/components/gameplay/detail/GameplayBlocks";
 import { APP_ROUTES } from "@/constants/app/app-config";
@@ -107,6 +110,35 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                     {GAMEPLAY_DETAIL_COPY.duelDialogLabel}
                   </h2>
                   <GameplayDuelRecords records={record.duelRecords} />
+                </section>
+              ) : null}
+
+              {record.cookingContestRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.cookingContestLabel}
+                  </h2>
+                  <GameplayCookingContestRecords
+                    records={record.cookingContestRecords}
+                  />
+                </section>
+              ) : null}
+
+              {record.restaurantTips ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.restaurantTipsLabel}
+                  </h2>
+                  <GameplayRestaurantTips tips={record.restaurantTips} />
+                </section>
+              ) : null}
+
+              {record.recipeRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.recipeListLabel}
+                  </h2>
+                  <GameplayRecipeRecords records={record.recipeRecords} />
                 </section>
               ) : null}
 

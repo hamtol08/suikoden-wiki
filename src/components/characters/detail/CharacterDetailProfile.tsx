@@ -25,6 +25,7 @@ import {
 } from "@/constants/characters/character-content";
 import {
   CHARACTER_STYLES,
+  ICON_STYLES,
   IMAGE_SIZE_HINTS,
 } from "@/constants/styles/ui-styles";
 
@@ -171,7 +172,7 @@ const CharacterDetailProfile = ({
           className={CHARACTER_STYLES.detailBackLink}
           href={characterListHref}
         >
-          <ArrowLeft aria-hidden="true" className="size-4" />
+          <ArrowLeft aria-hidden="true" className={ICON_STYLES.small} />
           {CHARACTER_COPY.detailLabels.backToList}
         </Link>
       </div>

@@ -1,4 +1,5 @@
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 import {
   RUNE_ARCHIVE_COPY,
   type RuneFunctionRecord,
@@ -15,7 +16,7 @@ const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
   }
 
   return (
-    <section className={RUNE_STYLES.functionPanel}>
+    <MotionSurface as="section" className={RUNE_STYLES.functionPanel}>
       <h2 className={RUNE_STYLES.functionTitle}>
         {RUNE_ARCHIVE_COPY.runeFunctionTitle}
       </h2>
@@ -85,7 +86,7 @@ const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
           </article>
         ))}
       </div>
-    </section>
+    </MotionSurface>
   );
 };
 

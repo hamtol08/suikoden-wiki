@@ -2,10 +2,15 @@ import {
   CHARACTER_DETAIL_RECORDS,
   type CharacterDetailRecord,
 } from "@/constants/characters/character-detail-records";
+import { SUIKODEN_I_CHARACTER_LOCALIZATION } from "@/constants/characters/suikoden-i-character-localization";
+import { SUIKODEN_II_CHARACTER_LOCALIZATION } from "@/constants/characters/suikoden-ii-character-localization";
 import {
+  buildCharacterDetailPath,
+  buildGameplayDetailPath,
   buildItemDetailPath,
   buildItemGamePath,
 } from "@/constants/app/app-config";
+import { GAMEPLAY_DETAIL_IDS } from "@/constants/gameplay/gameplay-content";
 import {
   REGION_ATLAS_LOCATIONS,
   REGION_ATLAS_TABS,
@@ -18,7 +23,11 @@ import {
   type RegionDetailRecord,
   translateMonsterName,
 } from "@/constants/regions/region-detail-content";
-import { resolveRuneReference } from "@/constants/runes/rune-content";
+import {
+  getRuneFunctionRecords,
+  resolveRuneReference,
+  type RuneSpellRecord,
+} from "@/constants/runes/rune-content";
 import { GAME8_ITEM_SOURCE_RECORDS } from "@/constants/items/game8-item-source-records";
 
 export const ITEM_ARCHIVE_COPY = {
@@ -35,6 +44,7 @@ export const ITEM_ARCHIVE_COPY = {
   descriptionTitle: "개요",
   effectTitle: "효과",
   gameRecordsTitle: "작품별 기록",
+  relatedRecordsTitle: "관련 기록",
   searchLabel: "Item search",
   searchPlaceholder: "아이템 이름, 영문 표기, 분류, 입수처 검색",
   resultCountSuffix: "개 아이템",
@@ -50,6 +60,8 @@ export const ITEM_ARCHIVE_COPY = {
     dropLocations: "드롭",
     otherLocations: "기타 입수처",
     dropRate: "획득 확률",
+    initialEquipment: "초기 장비",
+    initialOwners: "초기 소유자",
     englishName: "EN",
     japaneseName: "JP",
     originalName: "영문 표기",
@@ -144,6 +156,13 @@ export const ITEM_SOURCE_TYPE_LABELS = {
 
 export type ItemSourceType = keyof typeof ITEM_SOURCE_TYPE_LABELS;
 
+export type ItemInitialOwner = {
+  game: ItemIndexGameId;
+  href: string;
+  id: string;
+  name: string;
+};
+
 export type ItemIndexRecord = {
   id: string;
   name: string;
@@ -156,6 +175,7 @@ export type ItemIndexRecord = {
   locations: readonly string[];
   sourceLocations: Record<ItemSourceType, readonly string[]>;
   dropRates: readonly string[];
+  initialOwners: readonly ItemInitialOwner[];
 };
 
 export type ItemDetailRecord = {
@@ -165,9 +185,16 @@ export type ItemDetailRecord = {
   games: readonly ItemIndexGameId[];
   originalNames: readonly string[];
   japaneseNames: readonly string[];
+  relatedLinks: readonly ItemRelatedLink[];
   descriptionLines: readonly string[];
   effectLines: readonly string[];
   gameRecords: readonly ItemIndexRecord[];
+};
+
+export type ItemRelatedLink = {
+  body: string;
+  href: string;
+  title: string;
 };
 
 export type ItemRecordDisplay = {
@@ -206,6 +233,11 @@ const ITEM_VALUE_SUFFIX_PATTERN = /(\s\(x\d+\)|\*)/g;
 const ITEM_NORMALIZATION_SUFFIX_PATTERN = /(\s\(x\d+\)|\*|\s\/Imported Data)/g;
 
 const ITEM_EMPTY_VALUES = new Set(["", "-", "[none]", "None", "None.", "N/A"]);
+
+const ITEM_INITIAL_OWNER_EMPTY_VALUES = new Set([
+  ...ITEM_EMPTY_VALUES,
+  "equipment",
+]);
 
 const ITEM_SOURCE_TYPE_ORDER = [
   "shop",
@@ -351,7 +383,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Dragon Armor": "용 갑옷",
   "Dream Robe": "꿈의 로브",
   "Earth Boots": "대지의 부츠",
-  "Earth Rune Piece": "대지의 문장 조각",
+  "Earth Rune Piece": "흙의 문장 조각",
   "Earth Shield": "대지의 방패",
   Emblem: "엠블럼",
   "Escape Talisman": "탈출 부적",
@@ -502,8 +534,165 @@ const ITEM_NAME_ALIASES = {
 } as const;
 
 const ITEM_JAPANESE_NAME_TRANSLATIONS = {
+  "Anchovy Pizza": "アンチョビピザ",
+  "Angry Blow": "怒りの一撃",
+  Antitoxin: "毒消し",
+  Bandana: "バンダナ",
+  "BBQ Meat Bun": "バーベキューまん",
+  "Belt of Strength": "力のベルト",
+  "Beauties of Nature": "自然の美",
+  "Blue Flower Seeds": "青い花の種",
+  "Blue Paint": "青い絵の具",
   "Blue Dragon Urn": "青竜のつぼ",
+  "Blue Ribbon": "ブルーリボン",
+  "Bolt of Wrath": "怒りの雷",
+  "Bonsai Tree": "盆栽",
+  Boots: "ブーツ",
+  "Brass Armor": "真鍮の鎧",
+  "Broiled Eel": "うなぎの蒲焼き",
+  "Canopy Defense": "天蓋の守り",
+  Cape: "マント",
+  "Cape of Darkness": "闇のマント",
+  "Celadon Urn": "青磁のつぼ",
+  "Chain Mail": "チェインメイル",
+  "Chaos Shield": "混沌の盾",
+  Cheesecake: "チーズケーキ",
+  "Chest Plate": "胸当て",
+  "Chirashi-Zushi": "ちらし寿司",
+  Circlet: "サークレット",
+  "Clay Guardian": "土の守護神",
+  Collar: "首輪",
+  "Crab Cakes": "カニケーキ",
+  "Crimson Cape": "真紅のマント",
+  Croquettes: "コロッケ",
+  "Dancing Flames Scroll": "踊る火炎の巻物",
+  "Defective Urn": "ひび割れたつぼ",
+  "Dragon Armor": "竜鎧",
+  "Dream Robe": "夢のローブ",
+  "Earth Boots": "土のブーツ",
+  "Earth Rune Piece": "土の紋章片",
+  "Earth Shield": "土の盾",
+  Emblem: "エンブレム",
+  "Escape Talisman": "脱出のお札",
+  Feather: "羽",
+  "Feathered Hat": "羽飾りの帽子",
+  "Fire Emblem": "火のエンブレム",
   "Fire Rune Piece": "火の紋章片",
+  "Fire Wall": "火の壁",
+  "Fish Badge": "魚のバッジ",
+  "Flower Painting": "花の絵",
+  "Flower Vase": "花びん",
+  "Fried Fish Balls": "魚団子揚げ",
+  "Full Armor": "フルアーマー",
+  "Full Helmet": "フルヘルム",
+  "Fur Cape": "毛皮のマント",
+  "Fur Robe": "毛皮のローブ",
+  Gauntlet: "ガントレット",
+  Gloves: "グローブ",
+  "Gold Collar": "金の首輪",
+  "Gold Emblem": "金のエンブレム",
+  "Gold Necklace": "金の首飾り",
+  "Goddess Statue": "女神像",
+  Graffiti: "落書き",
+  "Green Salad": "グリーンサラダ",
+  Greaves: "グリーブ",
+  "Grilled Beef": "牛肉の網焼き",
+  "Grilled Fish": "焼き魚",
+  "Guard Ring": "ガードリング",
+  "Guard Robe": "ガードローブ",
+  "Half Armor": "ハーフアーマー",
+  "Half Helmet": "ハーフヘルム",
+  "Half Plate": "ハーフプレート",
+  "Head Gear": "ヘッドギア",
+  Headband: "鉢巻き",
+  Headgear: "ヘッドギア",
+  "Healing Wind": "癒しの風",
+  "Healing Wind Scroll": "癒しの風の巻物",
+  "Horned Helmet": "角の兜",
+  "Hex Doll": "呪い人形",
+  "Ice Cream": "アイスクリーム",
+  "Iron Boots": "鉄のブーツ",
+  "Iron Shield": "鉄の盾",
+  "Japanese Dish": "和皿",
+  "Karate Uniform": "空手着",
+  "Kindness Drops": "やさしさの雫",
+  "Kite Shield": "カイトシールド",
+  "Knight Armor": "騎士の鎧",
+  "Leather Armor": "革の鎧",
+  "Leather Cape": "革のマント",
+  "Leather Coat": "革のコート",
+  "Leather Hat": "革の帽子",
+  Leggings: "レギンス",
+  "Lovers' Garden": "恋人たちの庭",
+  "Lucky Ring": "幸運の指輪",
+  "Magic Ring": "魔法の指輪",
+  "Magic Robe": "魔法のローブ",
+  "Main-Gauche": "マンゴーシュ",
+  Mangosh: "マンゴーシュ",
+  "Martial Arts Robe": "武道着",
+  "Master Garb": "達人の服",
+  "Master Robe": "達人のローブ",
+  "Master's Garb": "達人の服",
+  "Master's Robe": "達人のローブ",
+  "Mayo Rice Omelet": "マヨオムライス",
+  "Meat Pie": "ミートパイ",
+  Medicine: "薬",
+  "Mega Medicine": "特効薬",
+  "Nameless Urn": "名もなきつぼ",
+  Needle: "針",
+  "Ninja Garb": "忍者服",
+  "Ninja Suit": "忍者服",
+  Obento: "お弁当",
+  "Octopus Pot": "たこつぼ",
+  "Peeing Boy": "小便小僧",
+  "Pointed Hat": "とんがり帽子",
+  "Pointy Hat": "とんがり帽子",
+  "Potato Pudding": "ポテトプリン",
+  "Power Gloves": "パワーグローブ",
+  "Power Ring": "パワーリング",
+  Pudding: "プリン",
+  "Red Flower Seeds": "赤い花の種",
+  Robe: "ローブ",
+  "Robe of Mist": "霧のローブ",
+  "Rose Brooch": "バラのブローチ",
+  "Sacrificial Buddha": "身代わり地蔵",
+  "Sacrificial Jizo": "身代わり地蔵",
+  "Scale Mail": "スケイルメイル",
+  "Shoulder Pads": "肩当て",
+  "Silver Armor": "銀の鎧",
+  "Silver Hat": "銀の帽子",
+  Silverlet: "シルバーレット",
+  "Skill Ring": "技の指輪",
+  "Speed Ring": "速の指輪",
+  "Sound Set 3": "音セット3",
+  "Spicy Pilaf": "スパイシーピラフ",
+  "Star Earrings": "星のイヤリング",
+  "Steamed Abalone": "アワビの蒸し物",
+  "Steamed Gyoza": "蒸し餃子",
+  "Steel Shield": "鋼の盾",
+  "Sun Badge": "太陽のバッジ",
+  Sunomono: "酢の物",
+  "Taikyoku Wear": "太極服",
+  Tempura: "天ぷら",
+  "The Shredding": "切り裂き",
+  "Thunder Amulet": "雷のお守り",
+  "Thunder God's Garb": "雷神の服",
+  "Thunder Runner": "雷走り",
+  "Toe Shoes": "トゥシューズ",
+  "Tomato Juice": "トマトジュース",
+  Tunic: "チュニック",
+  "Veggie Sandwich": "野菜サンド",
+  "Water Amulet": "水のお守り",
+  "Wind Amulet": "風のお守り",
+  "Wind Hat": "風の帽子",
+  "Wind of Sleep Scroll": "眠りの風の巻物",
+  "Windspun Armor": "風の鎧",
+  "Wing Boots": "ウィングブーツ",
+  "Winged Boots": "ウィングブーツ",
+  "Wooden Shield": "木の盾",
+  "Wooden Shoes": "木靴",
+  "Yellow Flower Seeds": "黄色い花の種",
+  "Yellow Paint": "黄色い絵の具",
 } as const;
 
 const ITEM_DETAIL_DESCRIPTIONS = {
@@ -516,6 +705,62 @@ const ITEM_DETAIL_DESCRIPTIONS = {
 const ITEM_DETAIL_EFFECTS = {
   medicine: ["아군 한 명의 체력을 100 회복합니다."],
 } as const satisfies Partial<Record<string, readonly string[]>>;
+
+const buildRuneSpellSummary = (spells?: readonly RuneSpellRecord[]) => {
+  return spells
+    ?.map((spell) => `Lv.${spell.level} ${spell.name}`)
+    .join(", ");
+};
+
+const buildSealedOrbEffectLines = (originalNames: readonly string[]) => {
+  const rune = originalNames
+    .map((name) => resolveRuneReference(normalizeItemName(name)))
+    .find((record) => Boolean(record));
+
+  if (!rune) {
+    return [];
+  }
+
+  const functionRecords = getRuneFunctionRecords(rune);
+
+  if (functionRecords.length === 0) {
+    return [`문장으로 장착하면 ${rune.name}으로 작동합니다.`];
+  }
+
+  return functionRecords.flatMap((record) => {
+    const spellSummary = buildRuneSpellSummary(record.spells);
+    const spellLines = spellSummary ?
+      [
+        `${record.game}에서 문장으로 장착하면 ${spellSummary}를 사용할 수 있습니다.`,
+      ] :
+      [];
+    const effectLines = record.effects?.map(
+      (effect) => `${record.game}: ${effect}`,
+    ) ?? [];
+    const weaponEffectLines = record.weaponEffect ?
+      [`${record.game}에서 무기에 부착하면 ${record.weaponEffect}`] :
+      [];
+    const noteLines =
+      record.note && spellLines.length + effectLines.length + weaponEffectLines.length === 0 ?
+        [`${record.game}: ${record.note}`] :
+        [];
+
+    return [
+      ...spellLines,
+      ...effectLines,
+      ...weaponEffectLines,
+      ...noteLines,
+    ];
+  });
+};
+
+const ITEM_RECIPE_RELATED_LINKS = [
+  {
+    body: "하이요 영입 뒤 본거지 식당에서 이어지는 요리 대결과 레시피 보상 흐름을 확인합니다.",
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
+    title: "하이요 이벤트",
+  },
+] as const satisfies readonly ItemRelatedLink[];
 
 const ITEM_GENERATED_NAME_TRANSLATIONS = {
   "Ancient Text": "고대 문서",
@@ -579,7 +824,7 @@ const ITEM_GENERATED_NAME_TRANSLATIONS = {
   "Mole Helmet": "두더지 투구",
   "Mole Shield": "두더지 방패",
   "Mole Suit": "두더지복",
-  "Moonlight Weed": "월광초",
+  "Moonlight Weed": "월하초",
   Musk: "사향",
   "Nanami's Vase": "나나미의 꽃병",
   "Nature's Beauty": "자연의 미",
@@ -628,7 +873,7 @@ const ITEM_GENERATED_NAME_TRANSLATIONS = {
   Whitefish: "흰살생선",
   "Wide Urn": "넓은 항아리",
   "Wind Feather Ornament": "바람깃 장식",
-  "Window Rune": "창문의 문장",
+  "Window Rune": "창의 봉인구",
   Wine: "와인",
   "Wing Ornament": "날개 장식",
   "Wooden Amulet (Event Item)": "나무 부적",
@@ -669,6 +914,47 @@ const ITEM_ELEMENT_TRANSLATIONS = {
   Speed: "속",
   Water: "물",
   Wind: "바람",
+} as const;
+
+const ITEM_JAPANESE_COLOR_TRANSLATIONS = {
+  Black: "黒",
+  Blue: "青",
+  Green: "緑",
+  Pink: "ピンク",
+  Red: "赤",
+  White: "白",
+  Yellow: "黄",
+} as const;
+
+const ITEM_JAPANESE_ELEMENT_TRANSLATIONS = {
+  Defense: "守",
+  Earth: "土",
+  Fire: "火",
+  Lightning: "雷",
+  Luck: "運",
+  Magic: "魔",
+  Power: "力",
+  Skill: "技",
+  Speed: "速",
+  Water: "水",
+  Wind: "風",
+} as const;
+
+const ITEM_JAPANESE_STAT_TRANSLATIONS = {
+  Defense: "守",
+  Luck: "運",
+  Magic: "魔",
+  "Magic Defense": "魔防",
+  Power: "力",
+  Skill: "技",
+  Speed: "速",
+} as const;
+
+const ITEM_JAPANESE_PLAN_TRANSLATIONS = {
+  Dragon: "竜",
+  Rabbit: "兎",
+  Turtle: "亀",
+  Unicorn: "一角獣",
 } as const;
 
 const ITEM_PLAN_TRANSLATIONS = {
@@ -774,6 +1060,126 @@ const translateGeneratedItemName = (name: string) => {
   }
 
   return name;
+};
+
+const translateGeneratedItemJapaneseName = (name: string) => {
+  const direct =
+    ITEM_JAPANESE_NAME_TRANSLATIONS[
+      name as keyof typeof ITEM_JAPANESE_NAME_TRANSLATIONS
+    ];
+
+  if (direct) {
+    return direct;
+  }
+
+  const sealedOrbName = resolveSealedOrbItemName(name);
+
+  if (sealedOrbName && ITEM_RUNE_NAME_PATTERN.test(normalizeItemName(name))) {
+    const rune = resolveRuneReference(name);
+
+    if (rune?.japaneseName) {
+      return rune.japaneseName.replace(/の紋章$/, "の封印球");
+    }
+  }
+
+  const scrollMatch = name.match(/^(.+) Scroll$/);
+
+  if (scrollMatch) {
+    const baseName = scrollMatch[1];
+    const knownBase =
+      ITEM_JAPANESE_NAME_TRANSLATIONS[
+        baseName as keyof typeof ITEM_JAPANESE_NAME_TRANSLATIONS
+      ];
+
+    return knownBase ? `${knownBase}の巻物` : `${baseName}の巻物`;
+  }
+
+  const oldBookMatch = name.match(/^Old Book Vol\. (\d+)$/);
+
+  if (oldBookMatch) {
+    return `古い本${oldBookMatch[1]}巻`;
+  }
+
+  const recipeMatch = name.match(/^Recipe (\d+)$/);
+
+  if (recipeMatch) {
+    return `レシピ${recipeMatch[1]}`;
+  }
+
+  const plansMatch = name.match(/^(Dragon|Rabbit|Turtle|Unicorn) Plans (\d+)$/);
+
+  if (plansMatch) {
+    const planName =
+      ITEM_JAPANESE_PLAN_TRANSLATIONS[
+        plansMatch[1] as keyof typeof ITEM_JAPANESE_PLAN_TRANSLATIONS
+      ];
+
+    return `${planName}設計図${plansMatch[2]}`;
+  }
+
+  const setMatch = name.match(/^(Sound|Window) Set (\d+)$/);
+
+  if (setMatch) {
+    return `${setMatch[1] === "Sound" ? "音セット" : "窓セット"}${setMatch[2]}`;
+  }
+
+  const paintMatch = name.match(/^(Black|Blue|Green|Pink|Red|White|Yellow) Paint$/);
+
+  if (paintMatch) {
+    const color =
+      ITEM_JAPANESE_COLOR_TRANSLATIONS[
+        paintMatch[1] as keyof typeof ITEM_JAPANESE_COLOR_TRANSLATIONS
+      ];
+
+    return `${color}い絵の具`;
+  }
+
+  const flowerSeedsMatch = name.match(
+    /^(Blue|Red|Yellow) Flower Seeds$/,
+  );
+
+  if (flowerSeedsMatch) {
+    const color =
+      ITEM_JAPANESE_COLOR_TRANSLATIONS[
+        flowerSeedsMatch[1] as keyof typeof ITEM_JAPANESE_COLOR_TRANSLATIONS
+      ];
+
+    return `${color}い花の種`;
+  }
+
+  const runePieceMatch = name.match(
+    /^(Defense|Earth|Fire|Lightning|Luck|Magic|Power|Skill|Speed|Water|Wind) Rune Piece$/,
+  );
+
+  if (runePieceMatch) {
+    const element =
+      ITEM_JAPANESE_ELEMENT_TRANSLATIONS[
+        runePieceMatch[1] as keyof typeof ITEM_JAPANESE_ELEMENT_TRANSLATIONS
+      ];
+
+    return `${element}の紋章片`;
+  }
+
+  const stoneMatch = name.match(
+    /^Stone of (Defense|Luck|Magic|Magic Defense|Power|Skill|Speed)$/,
+  );
+
+  if (stoneMatch) {
+    const stat =
+      ITEM_JAPANESE_STAT_TRANSLATIONS[
+        stoneMatch[1] as keyof typeof ITEM_JAPANESE_STAT_TRANSLATIONS
+      ];
+
+    return `${stat}の石`;
+  }
+
+  const karenMatch = name.match(/^Karen (Painting|Statue) ([ABC])$/);
+
+  if (karenMatch) {
+    return `カレン${karenMatch[1] === "Painting" ? "の絵" : "の像"}${karenMatch[2]}`;
+  }
+
+  return null;
 };
 
 const buildItemId = (name: string) => {
@@ -931,10 +1337,10 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Cave of the Wind": "바람의 동굴",
   "Clean the Mercenary Fortress": "용병 요새 청소",
   "Coronet Town": "코로네",
-  "Crom Village": "크롬",
+  "Crom Village": "크롬 마을",
   "Dragon Knights' Fortress": "용기사의 요새",
   "Dragon's Den": "용동",
-  "Drakemouth Village": "드래곤마우스 마을",
+  "Drakemouth Village": "용구마을",
   "Dwarf Trail": "드워프 산길",
   "Dwarves' Vault": "드워프 금고",
   "Dwarves' Vault x2": "드워프 금고 2회",
@@ -965,8 +1371,8 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Kouan": "코안",
   "Kouan Military Government Office": "코안 군정청",
   "Kuskus Town": "쿠스쿠스",
-  "Kyaro Town": "캐로",
-  "Lakewest Town": "레이크웨스트",
+  "Kyaro Town": "캐로 마을",
+  "Lakewest Town": "레이크웨스트 마을",
   "Lenankamp": "레난캄프",
   "Lepant's Mansion": "레판토의 저택",
   "L'Renouille": "르누이유",
@@ -997,13 +1403,13 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Produced by Chicks in the Ranch.": "목장에서 병아리 생산",
   "Produced by Lambs in the Ranch": "목장에서 양 생산",
   "Produced by Piglets in the Ranch.": "목장에서 새끼돼지 생산",
-  "Purchase in Ryube Village": "류베에서 구매",
+  "Purchase in Ryube Village": "류베 마을에서 구매",
   "Qlon Temple": "클론 사원",
   "Radat Town": "라다트",
-  "Recruit Hai Yo": "하이 요 합류",
+  "Recruit Hai Yo": "하이요 합류",
   "Recruit Hellion": "헬리온 합류",
   "Recruit Templeton": "템플턴 합류",
-  "Recruit Tuta, then talk to Dr. Huan": "튜타 합류 후 후안에게 대화",
+  "Recruit Tuta, then talk to Dr. Huan": "토우타 합류 후 호우안에게 대화",
   "Rikon": "리콘",
   "Rockaxe": "록액스",
   "Rockaxe Castle": "록액스 성",
@@ -1011,7 +1417,7 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Rockland": "록랜드",
   "Rokkaku Hamlet": "롯카쿠 마을",
   "Ryube Forest": "류베 숲",
-  "Ryube Village": "류베",
+  "Ryube Village": "류베 마을",
   "Sajah Village": "사자 마을",
   "Sarady": "사라디",
   "Scarleticia Castle": "스칼레티시아 성",
@@ -1032,7 +1438,7 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Tinto Mines": "틴토 광산",
   "Tinto Pass": "틴토 고개",
   "Toran Lake Castle": "트란 성",
-  "Toto Village": "토토",
+  "Toto Village": "토토 마을",
   "Two River City": "투 리버",
   "Two River Sewers": "투 리버 하수도",
   "Village of the Dwarves": "드워프 마을",
@@ -1364,6 +1770,17 @@ const formatGame8SourceLocation = (
   return `${ITEM_SOURCE_TYPE_LABELS[sourceType]} · ${location}`;
 };
 
+const formatGame8RecipeSourceLocation = (
+  sourceType: ItemSourceType,
+  location: string,
+) => {
+  if (sourceType === "shop") {
+    return `${location} 아이템 상점 레어 아이템`;
+  }
+
+  return formatGame8SourceLocation(sourceType, location);
+};
+
 const createItemRecordDraft = (
   game: ItemIndexGameId,
   rawName: string,
@@ -1469,10 +1886,101 @@ const addCharacterEquipmentItemRecords = (
           return;
         }
 
+        if (
+          !records.has(
+            `${gameId}:${resolveItemAvailabilityId(equipmentName)}`,
+          )
+        ) {
+          return;
+        }
+
         getOrCreateItemRecordDraft(records, gameId, equipmentName);
       });
     });
   });
+};
+
+const resolveCharacterInitialOwnerName = (
+  gameId: ItemIndexGameId,
+  characterId: string,
+) => {
+  if (gameId === ITEM_INDEX_PAGE_IDS.suikodenI) {
+    return (
+      SUIKODEN_I_CHARACTER_LOCALIZATION[
+        characterId as keyof typeof SUIKODEN_I_CHARACTER_LOCALIZATION
+      ]?.name ?? characterId
+    );
+  }
+
+  return (
+    SUIKODEN_II_CHARACTER_LOCALIZATION[
+      characterId as keyof typeof SUIKODEN_II_CHARACTER_LOCALIZATION
+    ]?.name ?? characterId
+  );
+};
+
+const addItemInitialOwner = (
+  owners: Map<string, ItemInitialOwner[]>,
+  gameId: ItemIndexGameId,
+  itemId: string,
+  characterId: string,
+) => {
+  const key = `${gameId}:${itemId}`;
+  const owner = {
+    game: gameId,
+    href: buildCharacterDetailPath(gameId, characterId),
+    id: characterId,
+    name: resolveCharacterInitialOwnerName(gameId, characterId),
+  };
+  const currentOwners = owners.get(key) ?? [];
+
+  if (currentOwners.some((currentOwner) => currentOwner.href === owner.href)) {
+    return;
+  }
+
+  owners.set(key, [...currentOwners, owner]);
+};
+
+const buildItemInitialOwnerIndex = () => {
+  const owners = new Map<string, ItemInitialOwner[]>();
+  const characterRecords = CHARACTER_DETAIL_RECORDS as Record<
+    string,
+    Record<string, CharacterDetailRecord>
+  >;
+
+  Object.entries(characterRecords).forEach(([gameId, recordsByCharacter]) => {
+    if (!isItemIndexGameId(gameId)) {
+      return;
+    }
+
+    Object.entries(recordsByCharacter).forEach(([characterId, record]) => {
+      Object.values(record.role.equipment.default).forEach((equipmentName) => {
+        const normalizedEquipmentName = normalizeItemName(equipmentName);
+
+        if (ITEM_INITIAL_OWNER_EMPTY_VALUES.has(normalizedEquipmentName)) {
+          return;
+        }
+
+        addItemInitialOwner(
+          owners,
+          gameId,
+          resolveItemAvailabilityId(equipmentName),
+          characterId,
+        );
+      });
+    });
+  });
+
+  owners.forEach((currentOwners, key) => {
+    owners.set(
+      key,
+      [...currentOwners].sort((left, right) =>
+        left.name.localeCompare(right.name, "ko-KR"),
+      ),
+    );
+  });
+
+  return owners;
 };
 
 const inferGame8ItemCategory = (
@@ -1518,10 +2026,15 @@ const addGame8ItemSourceRecords = (records: Map<string, ItemRecordDraft>) => {
 
       sourceGroup.entries.forEach((entry) => {
         const translatedEntry = translateGame8SourceEntry(sourceType, entry);
+        const formattedLocation =
+          sourceRecord.game8Type === "Recipes" ?
+            formatGame8RecipeSourceLocation(sourceType, translatedEntry) :
+            formatGame8SourceLocation(sourceType, translatedEntry);
+
         addItemSourceLocation(
           item,
           sourceType,
-          formatGame8SourceLocation(sourceType, translatedEntry),
+          formattedLocation,
         );
       });
     });
@@ -1532,6 +2045,7 @@ const addGame8ItemSourceRecords = (records: Map<string, ItemRecordDraft>) => {
 
 const buildItemIndexRecords = () => {
   const records = new Map<string, ItemRecordDraft>();
+  const initialOwnerIndex = buildItemInitialOwnerIndex();
   const regionRecords = REGION_DETAIL_RECORDS as Record<
     string,
     RegionDetailRecord
@@ -1611,6 +2125,7 @@ const buildItemIndexRecords = () => {
       dropRates: [...record.dropRates].sort((left, right) =>
         left.localeCompare(right, "ko-KR"),
       ),
+      initialOwners: initialOwnerIndex.get(`${record.game}:${record.id}`) ?? [],
     })),
   );
 };
@@ -1665,6 +2180,9 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
     japaneseNames: [
       ...new Set(gameRecords.flatMap((item) => getItemJapaneseNames(item))),
     ],
+    relatedLinks: firstRecord.category === "recipe" ?
+      ITEM_RECIPE_RELATED_LINKS :
+      [],
     descriptionLines: ITEM_DETAIL_DESCRIPTIONS[
       itemId as keyof typeof ITEM_DETAIL_DESCRIPTIONS
     ] ?? [
@@ -1674,7 +2192,11 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
     ],
     effectLines: ITEM_DETAIL_EFFECTS[
       itemId as keyof typeof ITEM_DETAIL_EFFECTS
-    ] ?? [],
+    ] ?? (
+      firstRecord.category === "sealedOrb" ?
+        buildSealedOrbEffectLines(originalNames) :
+        []
+    ),
     gameRecords,
   };
 };
@@ -1692,7 +2214,7 @@ export const getItemJapaneseNames = (item: ItemIndexRecord) => {
         const japaneseName =
           ITEM_JAPANESE_NAME_TRANSLATIONS[
             name as keyof typeof ITEM_JAPANESE_NAME_TRANSLATIONS
-          ];
+          ] ?? translateGeneratedItemJapaneseName(name);
 
         return japaneseName ? [japaneseName] : [];
       }),

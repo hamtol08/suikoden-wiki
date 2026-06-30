@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import MotionSurface from "@/components/shared/MotionSurface";
 import { buildCharacterDetailPath } from "@/constants/app/app-config";
 import {
   CHARACTER_COPY,
@@ -21,7 +22,7 @@ const CharacterIndexTable = ({ characters, gameId }: CharacterIndexTableProps) =
   const hasDetail = isCharacterDetailAvailable(gameId);
 
   return (
-    <section className={CHARACTER_STYLES.panel}>
+    <MotionSurface as="section" className={CHARACTER_STYLES.panel}>
       <header className={CHARACTER_STYLES.panelHeader}>
         <h2 className={CHARACTER_STYLES.panelTitle}>
           {CHARACTER_COPY.eyebrow}
@@ -216,7 +217,7 @@ const CharacterIndexTable = ({ characters, gameId }: CharacterIndexTableProps) =
           </tbody>
         </table>
       </div>
-    </section>
+    </MotionSurface>
   );
 };
 

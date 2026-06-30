@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MotionSurface from "@/components/shared/MotionSurface";
 import { buildCharacterDetailPath } from "@/constants/app/app-config";
 import {
   CHARACTER_DATA_BY_GAME,
@@ -16,9 +17,9 @@ import {
   getRegionDetailRecord,
   REGION_DROP_CHANCE_LABELS,
   REGION_DETAIL_COPY,
+  REGION_SHOP_AVAILABILITY_LABELS,
   REGION_SHOP_NAME_LABELS,
   translateMonsterName,
-  type RegionShopItemAvailability,
 } from "@/constants/regions/region-detail-content";
 import {
   ITEM_CATEGORY_LABELS,
@@ -32,12 +33,6 @@ type Region = (typeof REGION_ATLAS_LOCATIONS)[number];
 
 type RegionDetailRecordsProps = {
   region: Region;
-};
-
-const AVAILABILITY_LABELS: Record<RegionShopItemAvailability, string> = {
-  always: REGION_DETAIL_COPY.alwaysAvailable,
-  early: REGION_DETAIL_COPY.earlyGame,
-  late: REGION_DETAIL_COPY.lateGame,
 };
 
 const normalizeLocationName = (value: string) =>
@@ -136,7 +131,7 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                 return [
                   {
                     availabilityLabel: item.availability
-                      ? AVAILABILITY_LABELS[item.availability]
+                      ? REGION_SHOP_AVAILABILITY_LABELS[item.availability]
                       : null,
                     categoryLabel: itemReference
                       ? ITEM_CATEGORY_LABELS[itemReference.category]
@@ -192,7 +187,7 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
   }
 
   return (
-    <section className={ATLAS_STYLES.regionRecordSection}>
+    <MotionSurface as="section" className={ATLAS_STYLES.regionRecordSection}>
       <div className={ATLAS_STYLES.regionRecordHeader}>
         <span className={ATLAS_STYLES.regionRecordAccent} />
         <h2 className={ATLAS_STYLES.regionRecordTitle}>
@@ -313,7 +308,7 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
           </div>
         </article>
       ) : null}
-    </section>
+    </MotionSurface>
   );
 };
 

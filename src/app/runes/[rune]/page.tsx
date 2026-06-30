@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 import RuneFunctionRecords from "@/components/runes/detail/RuneFunctionRecords";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
@@ -15,6 +16,7 @@ import {
   getRuneFunctionTypeDescription,
   getRuneFunctionTypeLabel,
   isRuneFallbackImage,
+  getRuneLineageNote,
   RUNE_ARCHIVE_COPY,
   RUNE_CATEGORY_LABELS,
   RUNE_FALLBACK_IMAGE,
@@ -50,6 +52,7 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
     label: `rune-detail-rows:${rune.id}`,
     load: () => {
       const functionTypeLabel = getRuneFunctionTypeLabel(rune);
+      const lineageNote = getRuneLineageNote(rune);
 
       return [
         {
@@ -60,6 +63,14 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
           label: RUNE_ARCHIVE_COPY.functionTypeLabel,
           value: functionTypeLabel,
         },
+        ...(lineageNote ?
+          [
+            {
+              label: RUNE_ARCHIVE_COPY.lineageLabel,
+              value: lineageNote,
+            },
+          ] :
+          []),
         {
           label: RUNE_ARCHIVE_COPY.gamesLabel,
           value: formatRuneGames(rune.games),
@@ -134,7 +145,7 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
             </p>
           </header>
 
-          <section className={RUNE_STYLES.detailPanel}>
+          <MotionSurface as="section" className={RUNE_STYLES.detailPanel}>
             <h2 className={RUNE_STYLES.detailTitle}>
               {RUNE_ARCHIVE_COPY.profileTitle}
             </h2>
@@ -177,7 +188,7 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
                 </div>
               ))}
             </dl>
-          </section>
+          </MotionSurface>
 
           <RuneFunctionRecords records={runeFunctionRecords} />
         </section>

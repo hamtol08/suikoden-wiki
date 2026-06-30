@@ -1,4 +1,5 @@
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 
 type ArchivePageIntroStyles = {
   intro: string;
@@ -20,13 +21,13 @@ const ArchivePageIntro = ({
   styles,
   title,
 }: ArchivePageIntroProps) => (
-  <header className={styles.intro}>
+  <MotionSurface as="header" className={styles.intro}>
     <p className={styles.introEyebrow}>{eyebrow}</p>
     <h1 className={styles.introTitle}>{title}</h1>
     <p className={styles.introBody}>
       <CharacterNameLinkText text={body} />
     </p>
-  </header>
+  </MotionSurface>
 );
 
 export default ArchivePageIntro;

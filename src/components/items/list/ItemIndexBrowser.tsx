@@ -16,6 +16,7 @@ export type ItemIndexBrowserItem = {
   displayNames: readonly LocalizedNameEntry[];
   dropLocations: string;
   dropRates: string;
+  hasInitialOwners: boolean;
   href: string;
   id: string;
   name: string;
@@ -33,6 +34,7 @@ type ItemIndexBrowserCopy = {
     drop: string;
     dropLocations: string;
     dropRate: string;
+    initialEquipment: string;
     otherLocations: string;
     price: string;
     shop: string;
@@ -143,6 +145,11 @@ const ItemIndexBrowser = ({
                     <span className={ITEM_STYLES.chip}>
                       {item.sourceLabel}
                     </span>
+                    {item.hasInitialOwners ? (
+                      <span className={ITEM_STYLES.chip}>
+                        {copy.labels.initialEquipment}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
 

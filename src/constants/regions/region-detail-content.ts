@@ -2,7 +2,7 @@ export const REGION_DETAIL_COPY = {
   sectionTitle: "지역 기록",
   recruitableTitle: "합류 인물",
   shopTitle: "상점 기록",
-  enemyTitle: "출연 몬스터",
+  enemyTitle: "필드 출연 몬스터",
   villageSuffix: "마을",
   priceLabel: "가격",
   priceCurrency: "포치",
@@ -26,6 +26,15 @@ export const REGION_DROP_CHANCE_LABELS = {
 } as const;
 
 export type RegionShopItemAvailability = "early" | "late" | "always";
+
+export const REGION_SHOP_AVAILABILITY_LABELS: Record<
+  RegionShopItemAvailability,
+  string
+> = {
+  always: REGION_DETAIL_COPY.alwaysAvailable,
+  early: REGION_DETAIL_COPY.earlyGame,
+  late: REGION_DETAIL_COPY.lateGame,
+} as const;
 
 export type RegionShopItem = {
   name: string;

@@ -21,7 +21,11 @@ import {
   resolveItemDetailHref,
   translateItemName,
 } from "@/constants/items/item-content";
-import { buildCharacterDetailPath } from "@/constants/app/app-config";
+import {
+  buildCharacterDetailPath,
+  buildGameplayDetailPath,
+} from "@/constants/app/app-config";
+import { GAMEPLAY_DETAIL_IDS } from "@/constants/gameplay/gameplay-content";
 import { RUNE_REFERENCES, resolveRuneReference } from "@/constants/runes/rune-content";
 import { STAR_OF_DESTINY_KOREAN_NAMES } from "@/constants/characters/star-of-destiny";
 
@@ -66,7 +70,9 @@ export const CHARACTER_COPY = {
     recruitmentFlow: "영입 흐름",
     combatRole: "게임 내 역할",
     runeRole: "기본 문장",
+    relatedRecord: "관련 기록",
     unitePartners: "함께하는 인물",
+    uniteEffect: "효과",
     uniteNote: "비고",
     backToList: "목록으로 돌아가기",
   },
@@ -253,8 +259,8 @@ const UNITE_ATTACK_LABELS = {
   "Twin Fighter Attack": "쌍투사 공격",
   "Warrior Attack": "전사 공격",
   "Wild Arrow Attack": "와일드 애로우 공격",
-  "Winger Attack": "윙거 공격",
-  "Winger Attacks": "윙거 공격",
+  "Winger Attack": "윙 호드 공격",
+  "Winger Attacks": "윙 호드 공격",
 } as const;
 
 const UNITE_CHARACTER_LABELS = new Map<string, string>([
@@ -745,6 +751,15 @@ export const buildCharacterGameRoleRows = (
       label: CHARACTER_COPY.detailLabels.runeRole,
       value: buildCharacterRuneRole(character, record),
     },
+    ...(character.game === "suikoden-ii" && character.id === "hai-yo" ?
+      [
+        {
+          href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
+          label: CHARACTER_COPY.detailLabels.relatedRecord,
+          value: "하이요 이벤트",
+        },
+      ] :
+      []),
   ];
 };
 
@@ -1013,16 +1028,90 @@ const translateUniteAttackList = (value: string) => {
 
 type ParsedUniteAttackRecord = {
   attack: string;
+  effects: readonly string[];
   notes: readonly string[];
   partners: readonly string[];
 };
 
+const translateUniteDamageTarget = (target: string) => {
+  const normalizedTarget = target.toLowerCase();
+
+  if (normalizedTarget.includes("all enemies")) {
+    return "적 전체";
+  }
+
+  if (normalizedTarget.includes("one enemy")) {
+    return "적 1체";
+  }
+
+  if (normalizedTarget.includes("targets")) {
+    return "대상";
+  }
+
+  return "적";
+};
+
+const translateUniteStatusEffect = (status: string) => {
+  const normalizedStatus = status.toLowerCase();
+
+  if (normalizedStatus.includes("knockdown")) {
+    return "넘어짐";
+  }
+
+  if (normalizedStatus.includes("instant death")) {
+    return "즉사";
+  }
+
+  if (normalizedStatus.includes("sleep")) {
+    return "수면";
+  }
+
+  return status;
+};
+
+const normalizeUniteDamageMultiplier = (value: string) =>
+  value.replace(/%$/, "x").replace(/x$/i, "배");
+
+const extractUniteAttackEffects = (line: string) => {
+  const effects: string[] = [];
+  const damageMatch = line.match(
+    /\b(?:does|deals)\s+([\d.]+%?|[\d.]+x)\s+damage\s+to\s+(one enemy|all enemies|targets?)/i,
+  );
+  const chanceMatch = line.match(
+    /(?:with\s+(?:a\s+)?)?(\d+)%\s+chance\s+(?:of|to inflict|at putting.+to)\s+([a-z ]+)/i,
+  );
+
+  if (damageMatch) {
+    effects.push(
+      `${translateUniteDamageTarget(damageMatch[2])}에게 ${normalizeUniteDamageMultiplier(damageMatch[1])} 피해를 줍니다.`,
+    );
+  }
+
+  if (/has a chance at putting the enemies to sleep/i.test(line)) {
+    effects.push("적 전체에게 수면을 부여할 수 있습니다.");
+  } else if (chanceMatch) {
+    effects.push(
+      `${chanceMatch[1]}% 확률로 ${translateUniteStatusEffect(chanceMatch[2])}을 부여할 수 있습니다.`,
+    );
+  } else if (/chance to inflict Knockdown on targets/i.test(line)) {
+    effects.push("대상에게 넘어짐을 부여할 수 있습니다.");
+  }
+
+  if (/unbalanc/i.test(line)) {
+    effects.push("사용 후 참여자가 균형을 잃을 수 있습니다.");
+  }
+
+  return effects;
+};
+
 const buildParsedUniteAttackRecords = ({
   attackText,
+  effects = [],
   notes = [],
   partnerText,
 }: {
   attackText: string;
+  effects?: readonly string[];
   notes?: readonly string[];
   partnerText?: string;
 }): ParsedUniteAttackRecord[] => {
@@ -1031,6 +1120,7 @@ const buildParsedUniteAttackRecords = ({
 
   return attacks.map((attack) => ({
     attack,
+    effects,
     notes,
     partners,
   }));
@@ -1162,7 +1252,7 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
   if (normalizedLine.startsWith("Head Up!! teleports")) {
     return buildParsedUniteAttackRecords({
       attackText: "Head Up!!",
-      notes: [
+      effects: [
         "아비즈보어 또는 루로디아를 적 1체에게 보내 2배 피해를 주며, 사용 후 균형을 잃습니다.",
       ],
     });
@@ -1201,7 +1291,7 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
     "Rikimaru can participate in the Manly Attack. With a Cup of Promise equipped to either him or Amada, the unite attack has a chance to inflict Knockdown on targets.":
       buildParsedUniteAttackRecords({
         attackText: "Manly Attack",
-        notes: [
+        effects: [
           "리키마루 또는 아마다가 약속의 술잔을 장비하면 대상에게 넘어짐을 부여할 수 있습니다.",
         ],
         partnerText: "Amada",
@@ -1222,7 +1312,7 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
   if (beautyCalledMatch) {
     return buildParsedUniteAttackRecords({
       attackText: beautyCalledMatch[2],
-      notes: ["적 전체에게 피해를 주고 수면을 부여할 수 있습니다."],
+      effects: extractUniteAttackEffects(normalizedLine),
       partnerText: beautyCalledMatch[1],
     });
   }
@@ -1257,12 +1347,23 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
     });
   }
 
+  const participateWithMatch = normalizedLine.match(
+    /^(.+) can participate in (?:both )?(?:the )?(.+?) with (.+)\.?$/,
+  );
+  if (participateWithMatch) {
+    return buildParsedUniteAttackRecords({
+      attackText: participateWithMatch[2],
+      partnerText: participateWithMatch[3],
+    });
+  }
+
   const bulletWithCommaEffectMatch = normalizedLine.match(
     /^(.+ Attack), .+?, with (.+?) does .+$/,
   );
   if (bulletWithCommaEffectMatch) {
     return buildParsedUniteAttackRecords({
       attackText: bulletWithCommaEffectMatch[1],
+      effects: extractUniteAttackEffects(normalizedLine),
       partnerText: bulletWithCommaEffectMatch[2],
     });
   }
@@ -1273,6 +1374,7 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
   if (bulletWithDoesEffectMatch) {
     return buildParsedUniteAttackRecords({
       attackText: bulletWithDoesEffectMatch[1],
+      effects: extractUniteAttackEffects(normalizedLine),
       partnerText: bulletWithDoesEffectMatch[2],
     });
   }
@@ -1283,6 +1385,7 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
   if (bulletWithWhichEffectMatch) {
     return buildParsedUniteAttackRecords({
       attackText: bulletWithWhichEffectMatch[1],
+      effects: extractUniteAttackEffects(normalizedLine),
       partnerText: bulletWithWhichEffectMatch[2],
     });
   }
@@ -1292,16 +1395,6 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
     return buildParsedUniteAttackRecords({
       attackText: bulletWithMatch[1],
       partnerText: bulletWithMatch[2],
-    });
-  }
-
-  const participateWithMatch = normalizedLine.match(
-    /^(.+) can participate in (?:both )?(?:the )?(.+?) with (.+)\.?$/,
-  );
-  if (participateWithMatch) {
-    return buildParsedUniteAttackRecords({
-      attackText: participateWithMatch[2],
-      partnerText: participateWithMatch[3],
     });
   }
 
@@ -1352,6 +1445,21 @@ const UNITE_ATTACK_PARTICIPANT_OVERRIDES = new Map<string, readonly string[]>([
   ],
   [buildUniteAttackKey("suikoden-ii", "100 코볼트 공격"), ["겐겐", "카보챠"]],
   [buildUniteAttackKey("suikoden-ii", "팬클럽 공격"), ["프릭", "니나"]],
+]);
+
+const UNITE_ATTACK_EFFECT_OVERRIDES = new Map<string, readonly string[]>([
+  [
+    buildUniteAttackKey("suikoden-i", "사제 공격"),
+    ["적 다수를 공격합니다."],
+  ],
+  [
+    buildUniteAttackKey("suikoden-i", "부적 공격 / 수호 공격"),
+    ["적 1체에게 2배 피해를 주며, 사용 후 균형을 잃지 않습니다."],
+  ],
+  [
+    buildUniteAttackKey("suikoden-ii", "트릭 공격"),
+    ["적 전체를 공격합니다."],
+  ],
 ]);
 
 const buildUniteAttackParticipantRegistry = () => {
@@ -1460,6 +1568,7 @@ const buildUniteAttackRowGroups = (
   const groups = new Map<
     string,
     {
+      effects: Set<string>;
       notes: Set<string>;
       partners: Set<string>;
     }
@@ -1468,6 +1577,7 @@ const buildUniteAttackRowGroups = (
   lines.forEach((line) => {
     parseUniteAttackLine(line).forEach((uniteAttack) => {
       const group = groups.get(uniteAttack.attack) ?? {
+        effects: new Set<string>(),
         notes: new Set<string>(),
         partners: new Set<string>(),
       };
@@ -1475,6 +1585,7 @@ const buildUniteAttackRowGroups = (
       const overridePartners = UNITE_ATTACK_PARTICIPANT_OVERRIDES.get(attackKey);
       const registryPartners =
         overridePartners ?? UNITE_ATTACK_PARTICIPANTS.get(attackKey);
+      const overrideEffects = UNITE_ATTACK_EFFECT_OVERRIDES.get(attackKey);
 
       registryPartners?.forEach((partner) => {
         if (partner !== character.name) {
@@ -1486,6 +1597,8 @@ const buildUniteAttackRowGroups = (
           group.partners.add(partner);
         }
       });
+      overrideEffects?.forEach((effect) => group.effects.add(effect));
+      uniteAttack.effects.forEach((effect) => group.effects.add(effect));
       uniteAttack.notes.forEach((note) => group.notes.add(note));
       groups.set(uniteAttack.attack, group);
     });
@@ -1499,6 +1612,12 @@ const buildUniteAttackRowGroups = (
         links: buildUnitePartnerLinks(character.game, [...group.partners]),
         value: [...group.partners].join(", ") || CHARACTER_COPY.unavailableDetail,
       },
+      ...([...group.effects].length > 0 ? [
+        {
+          label: CHARACTER_COPY.detailLabels.uniteEffect,
+          value: [...group.effects].join(" "),
+        },
+      ] : []),
       ...([...group.notes].length > 0 ? [
         {
           label: CHARACTER_COPY.detailLabels.uniteNote,

@@ -69,6 +69,7 @@ const buildItemBrowserItem = (item: ItemIndexRecord): ItemIndexBrowserItem => {
     dropRates: display.dropRates,
     href: item.href,
     id: item.id,
+    hasInitialOwners: item.initialOwners.length > 0,
     name: item.name,
     otherLocations: display.otherLocations,
     price: display.price,
@@ -84,6 +85,10 @@ const buildItemBrowserItem = (item: ItemIndexRecord): ItemIndexBrowserItem => {
         display.dropLocations,
         display.otherLocations,
         display.dropRates,
+        ...item.initialOwners.map((owner) => owner.name),
+        item.initialOwners.length > 0 ?
+          ITEM_ARCHIVE_COPY.labels.initialEquipment :
+          "",
       ].join(" "),
     ),
     shopLocations: display.shopLocations,
@@ -146,6 +151,7 @@ const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
                 drop: ITEM_ARCHIVE_COPY.labels.drop,
                 dropLocations: ITEM_ARCHIVE_COPY.labels.dropLocations,
                 dropRate: ITEM_ARCHIVE_COPY.labels.dropRate,
+                initialEquipment: ITEM_ARCHIVE_COPY.labels.initialEquipment,
                 otherLocations: ITEM_ARCHIVE_COPY.labels.otherLocations,
                 price: ITEM_ARCHIVE_COPY.labels.price,
                 shop: ITEM_ARCHIVE_COPY.labels.shop,

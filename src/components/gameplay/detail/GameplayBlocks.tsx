@@ -1,15 +1,19 @@
 import Link from "next/link";
-import { type ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import GameplayDuelTabs from "@/components/gameplay/detail/GameplayDuelTabs";
 import GameplaySeriesNoteTabs from "@/components/gameplay/detail/GameplaySeriesNoteTabs";
 import GameplayWarBattleTabs from "@/components/gameplay/detail/GameplayWarBattleTabs";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import MotionSurface from "@/components/shared/MotionSurface";
 import {
   GAMEPLAY_DETAIL_COPY,
   GAMEPLAY_DUEL_ACTION_LABELS,
   groupGameplayDuelRecordsByGame,
   groupGameplayWarBattleRecordsByGame,
+  type GameplayCookingContestRecord,
   type GameplayDuelRecord,
+  type GameplayRecipeRecord,
+  type GameplayRestaurantTipRecord,
   type GameplaySeriesNoteRecord,
   type GameplayWarBattleRecord,
   type GameplayWarCommandGroup,
@@ -99,6 +103,18 @@ type GameplayWarBattleGuideProps = {
   roles: readonly GameplayWarRoleRecord[];
 };
 
+type GameplayCookingContestRecordsProps = {
+  records: readonly GameplayCookingContestRecord[];
+};
+
+type GameplayRecipeRecordsProps = {
+  records: readonly GameplayRecipeRecord[];
+};
+
+type GameplayRestaurantTipsProps = {
+  tips: readonly GameplayRestaurantTipRecord[];
+};
+
 const getPreferredCharacterGame = (game?: string): CharacterGameId | undefined => {
   if (game === "Suikoden I") {
     return "suikoden-i";
@@ -118,7 +134,7 @@ export const GameplaySection = ({
   id,
   title,
 }: GameplaySectionProps) => (
-  <section className={GAMEPLAY_STYLES.section} id={id}>
+  <MotionSurface as="section" className={GAMEPLAY_STYLES.section} id={id}>
     <header className={GAMEPLAY_STYLES.sectionHeader}>
       <div>
         <p className={GAMEPLAY_STYLES.sectionEyebrow}>{eyebrow}</p>
@@ -131,7 +147,7 @@ export const GameplaySection = ({
       ) : null}
     </header>
     {children}
-  </section>
+  </MotionSurface>
 );
 
 export const GameplayTabs = ({ ariaLabel, tabs }: GameplayTabsProps) => (
@@ -416,6 +432,141 @@ export const GameplayDuelRecords = ({ records }: GameplayDuelRecordsProps) => {
       }}
       groups={groupedRecords}
     />
+  );
+};
+
+export const GameplayCookingContestRecords = ({
+  records,
+}: GameplayCookingContestRecordsProps) => {
+  if (records.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={GAMEPLAY_STYLES.cookingRecordGrid}>
+      {records.map((record) => (
+        <article className={GAMEPLAY_STYLES.cookingRecordCard} key={record.round}>
+          <header className={GAMEPLAY_STYLES.cookingRecordHeader}>
+            <p className={GAMEPLAY_STYLES.cookingRecordRound}>
+              {record.round}
+              {GAMEPLAY_DETAIL_COPY.cookingContestRoundLabel}
+            </p>
+            <h3 className={GAMEPLAY_STYLES.cookingRecordTitle}>
+              <CharacterNameLinkText
+                preferredGame="suikoden-ii"
+                text={record.opponent}
+              />
+            </h3>
+          </header>
+          <dl className={GAMEPLAY_STYLES.cookingRecordMetaGrid}>
+            <div className={GAMEPLAY_STYLES.cookingRecordMeta}>
+              <dt className={GAMEPLAY_STYLES.cookingRecordMetaLabel}>
+                {GAMEPLAY_DETAIL_COPY.cookingContestRewardLabel}
+              </dt>
+              <dd>
+                <CharacterNameLinkText text={record.reward} />
+              </dd>
+            </div>
+          </dl>
+          <p className={GAMEPLAY_STYLES.cookingRecordNote}>
+            <span className={GAMEPLAY_STYLES.cookingRecordMetaLabel}>
+              {GAMEPLAY_DETAIL_COPY.cookingContestNoteLabel}
+            </span>
+            <CharacterNameLinkText text={record.note} />
+          </p>
+        </article>
+      ))}
+    </div>
+  );
+};
+
+export const GameplayRecipeRecords = ({ records }: GameplayRecipeRecordsProps) => {
+  if (records.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={GAMEPLAY_STYLES.recipeGrid}>
+      {records.map((record) => (
+        <article
+          className={GAMEPLAY_STYLES.recipeCard}
+          key={record.number}
+        >
+          <header className={GAMEPLAY_STYLES.recipeHeader}>
+            <span className={GAMEPLAY_STYLES.recipeIcon} aria-hidden="true">
+              {record.icon}
+            </span>
+            <div>
+              <p className={GAMEPLAY_STYLES.recipeNumber}>
+                {GAMEPLAY_DETAIL_COPY.recipeNumberLabel} {record.number}
+              </p>
+              <h3 className={GAMEPLAY_STYLES.recipeTitle}>
+                <Link href={record.href}>{record.title}</Link>
+              </h3>
+              <p className={GAMEPLAY_STYLES.recipeDish}>{record.dishName}</p>
+            </div>
+          </header>
+          <dl className={GAMEPLAY_STYLES.recipeSourceList}>
+            {record.sources.map((source, sourceIndex) => (
+              <div
+                className={GAMEPLAY_STYLES.recipeSourceItem}
+                key={`${record.number}-${source.label}-${sourceIndex}`}
+              >
+                <dt className={GAMEPLAY_STYLES.recipeSourceLabel}>
+                  {source.label}
+                </dt>
+                <dd className={GAMEPLAY_STYLES.recipeSourceDetail}>
+                  {source.entries.map((entry, entryIndex) => (
+                    <Fragment key={`${record.number}-${source.label}-${entry.label}`}>
+                      {entryIndex > 0 ? " / " : null}
+                      {entry.href ? (
+                        <Link className={GAMEPLAY_STYLES.inlineLink} href={entry.href}>
+                          {entry.label}
+                        </Link>
+                      ) : (
+                        <CharacterNameLinkText
+                          preferredGame="suikoden-ii"
+                          text={entry.label}
+                        />
+                      )}
+                    </Fragment>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </article>
+      ))}
+    </div>
+  );
+};
+
+export const GameplayRestaurantTips = ({ tips }: GameplayRestaurantTipsProps) => {
+  if (tips.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={GAMEPLAY_STYLES.restaurantTipGrid}>
+      {tips.map((tip) => (
+        <article className={GAMEPLAY_STYLES.restaurantTipCard} key={tip.title}>
+          <h3 className={GAMEPLAY_STYLES.restaurantTipTitle}>{tip.title}</h3>
+          <p className={GAMEPLAY_STYLES.restaurantTipBody}>
+            <CharacterNameLinkText preferredGame="suikoden-ii" text={tip.body} />
+          </p>
+          <div className={GAMEPLAY_STYLES.restaurantTipTagList}>
+            {tip.points.map((point, pointIndex) => (
+              <span
+                className={GAMEPLAY_STYLES.tag}
+                key={`${tip.title}-${pointIndex}`}
+              >
+                <CharacterNameLinkText preferredGame="suikoden-ii" text={point} />
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
   );
 };
 

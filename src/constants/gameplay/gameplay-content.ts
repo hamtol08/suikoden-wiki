@@ -1,4 +1,9 @@
-import { buildGameplayDetailPath } from "@/constants/app/app-config";
+import {
+  buildGameplayDetailPath,
+  buildItemDetailPath,
+  buildRegionAtlasDetailPath,
+} from "@/constants/app/app-config";
+import { GAME8_ITEM_SOURCE_RECORDS } from "@/constants/items/game8-item-source-records";
 
 export const GAMEPLAY_COPY = {
   eyebrow: "Gameplay",
@@ -29,6 +34,14 @@ export const GAMEPLAY_DETAIL_COPY = {
   warCommandLabel: "War Commands",
   warRecordLabel: "War Battle Records",
   warRecordListLabel: "전쟁 전투 일람",
+  cookingContestLabel: "요리 대결 상대별 기록",
+  cookingContestRoundLabel: "회차",
+  cookingContestRewardLabel: "보상",
+  cookingContestNoteLabel: "비고",
+  recipeListLabel: "환상수호전 II 요리 레시피",
+  recipeNumberLabel: "번호",
+  recipeSourceLabel: "입수",
+  restaurantTipsLabel: "식당 운영 팁",
   warSeriesTabsAriaLabel: "War battle series",
   warRoleLabel: "Army Roles",
   warStrongAgainstLabel: "강점",
@@ -51,6 +64,7 @@ export const GAMEPLAY_DUEL_ACTION_LABELS = {
 export const GAMEPLAY_DETAIL_IDS = {
   battleBasics: "battle-basics",
   duel: "duel",
+  haiYoCookOff: "hai-yo-cook-off",
   headquarters: "headquarters",
   repeatablePlay: "repeatable-play",
   runeSystem: "rune-system",
@@ -64,34 +78,43 @@ export const GAMEPLAY_DETAIL_IDS = {
   warBattle: "war-battle",
 } as const;
 
+export const GAMEPLAY_SECTION_IDS = {
+  battle: "battle",
+  duel: "duel",
+  guideIndex: "guide-index",
+  headquarters: "headquarters",
+  systemOverview: "system-overview",
+  warBattle: "war-battle",
+} as const;
+
 const GAMEPLAY_LEGACY_DETAIL_IDS = {
   armyBattle: "army-battle",
 } as const;
 
 export const GAMEPLAY_TABS = [
   {
-    href: "#system-overview",
-    label: "System Overview",
+    href: `#${GAMEPLAY_SECTION_IDS.systemOverview}`,
+    label: GAMEPLAY_COPY.overviewTitle,
   },
   {
-    href: "#battle",
-    label: "Battle",
+    href: `#${GAMEPLAY_SECTION_IDS.battle}`,
+    label: GAMEPLAY_COPY.battleTitle,
   },
   {
-    href: "#duel",
-    label: "Duel",
+    href: `#${GAMEPLAY_SECTION_IDS.duel}`,
+    label: GAMEPLAY_COPY.duelTitle,
   },
   {
-    href: "#war-battle",
-    label: "War Battle",
+    href: `#${GAMEPLAY_SECTION_IDS.warBattle}`,
+    label: GAMEPLAY_COPY.warBattleTitle,
   },
   {
-    href: "#headquarters",
-    label: "Headquarters",
+    href: `#${GAMEPLAY_SECTION_IDS.headquarters}`,
+    label: GAMEPLAY_COPY.headquartersTitle,
   },
   {
-    href: "#guide-index",
-    label: "Guide Index",
+    href: `#${GAMEPLAY_SECTION_IDS.guideIndex}`,
+    label: GAMEPLAY_COPY.guideTitle,
   },
 ] as const;
 
@@ -137,6 +160,13 @@ export const GAMEPLAY_SYSTEMS = [
     title: "미니게임과 반복 수급",
     body: "돈·경험치 수급, 교역, 낚시, 주사위 도박, 요리 등 반복 플레이에서 확인할 항목을 모읍니다.",
     points: ["돈 벌기", "경험치", "교역", "미니게임"],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.haiYoCookOff,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
+    title: "하이요 이벤트",
+    body: "하이요 영입 뒤 본거지 식당에서 이어지는 요리 대결 연속 이벤트입니다.",
+    points: ["식당", "요리 대결", "레시피", "보상"],
   },
 ] as const;
 
@@ -198,6 +228,38 @@ export type GameplayWarRoleRecord = {
   title: string;
 };
 
+export type GameplayCookingContestRecord = {
+  note: string;
+  opponent: string;
+  reward: string;
+  round: number;
+};
+
+export type GameplayRecipeSource = {
+  entries: readonly GameplayRecipeSourceEntry[];
+  label: string;
+};
+
+export type GameplayRecipeSourceEntry = {
+  href?: string;
+  label: string;
+};
+
+export type GameplayRecipeRecord = {
+  dishName: string;
+  href: string;
+  icon: string;
+  number: number;
+  sources: readonly GameplayRecipeSource[];
+  title: string;
+};
+
+export type GameplayRestaurantTipRecord = {
+  body: string;
+  points: readonly string[];
+  title: string;
+};
+
 export type GameplayFacilityRecord = {
   body: string;
   location: string;
@@ -236,6 +298,9 @@ export type GameplayDetailRecord = {
   warBattleRecords?: readonly GameplayWarBattleRecord[];
   warCommandGroups?: readonly GameplayWarCommandGroup[];
   warRoleRecords?: readonly GameplayWarRoleRecord[];
+  cookingContestRecords?: readonly GameplayCookingContestRecord[];
+  recipeRecords?: readonly GameplayRecipeRecord[];
+  restaurantTips?: readonly GameplayRestaurantTipRecord[];
   seriesNotes: readonly GameplaySeriesNoteRecord[];
   checklist: readonly string[];
 };
@@ -920,7 +985,7 @@ export const GAMEPLAY_WAR_ROLE_RECORDS = [
   {
     game: "Suikoden II",
     title: "회복과 생존",
-    body: "회복 능력과 높은 방어는 장기전의 안전장치입니다. 주인공의 빛나는 방패 계열 지원과 후안 계열 회복을 전선 근처에 둡니다.",
+    body: "회복 능력과 높은 방어는 장기전의 안전장치입니다. 주인공의 빛나는 방패 계열 지원과 호우안 계열 회복을 전선 근처에 둡니다.",
     points: ["회복", "방어", "전선 유지", "전멸 방지"],
   },
   {
@@ -930,6 +995,315 @@ export const GAMEPLAY_WAR_ROLE_RECORDS = [
     points: ["화염창", "룬 명령", "범위", "횟수 관리"],
   },
 ] as const satisfies readonly GameplayWarRoleRecord[];
+
+export const GAMEPLAY_HAIYO_COOKING_CONTEST_RECORDS = [
+  {
+    round: 1,
+    opponent: "유쿰",
+    reward: "레시피 2",
+    note: "하이요 영입 뒤 시작되는 첫 요리 대결입니다.",
+  },
+  {
+    round: 2,
+    opponent: "고에츠",
+    reward: "레시피 8",
+    note: "식당 이벤트가 이어지며 승리 보상으로 레시피를 얻습니다.",
+  },
+  {
+    round: 3,
+    opponent: "시키",
+    reward: "레시피 17",
+    note: "초반 요리 대결 보상 흐름의 마지막 축입니다.",
+  },
+  {
+    round: 4,
+    opponent: "류키",
+    reward: "레시피 19",
+    note: "중반 이후 식당을 다시 확인하면 이어지는 대결입니다.",
+  },
+  {
+    round: 5,
+    opponent: "바쇼크",
+    reward: "레시피 24",
+    note: "요리 대결 5회 우승 보상으로 기록됩니다.",
+  },
+  {
+    round: 6,
+    opponent: "류코",
+    reward: "레시피 22",
+    note: "레시피 번호와 대결 순서가 일치하지 않으므로 따로 확인합니다.",
+  },
+  {
+    round: 7,
+    opponent: "안토니오",
+    reward: "레시피 30",
+    note: "후반 레시피 수집 구간으로 이어지는 대결입니다.",
+  },
+  {
+    round: 8,
+    opponent: "교쿠란",
+    reward: "레시피 27",
+    note: "요리 대결 8회 우승 보상으로 기록됩니다.",
+  },
+  {
+    round: 9,
+    opponent: "레츠오",
+    reward: "-",
+    note: "현재 레시피 보상 기록은 별도로 확인되지 않습니다.",
+  },
+  {
+    round: 10,
+    opponent: "레스터",
+    reward: "레시피 33",
+    note: "요리 대결 10회 우승 보상으로 기록됩니다.",
+  },
+  {
+    round: 11,
+    opponent: "레츠오",
+    reward: "레시피 38",
+    note: "마지막 구간 직전의 레시피 보상 대결입니다.",
+  },
+  {
+    round: 12,
+    opponent: "진카이",
+    reward: "레시피 40",
+    note: "요리 대결 최종 보상으로 레시피 40을 얻습니다.",
+  },
+] as const satisfies readonly GameplayCookingContestRecord[];
+
+const GAMEPLAY_SUIKODEN_II_RECIPE_DISH_NAMES: Record<number, string> = {
+  1: "오믈렛",
+  2: "토마토 수프",
+  3: "오히타시",
+  4: "샐러드",
+  5: "교자",
+  6: "차우더",
+  7: "바비큐 고기만두",
+  8: "버터 조개",
+  9: "생선 튀김",
+  10: "아이스크림",
+  11: "키슈",
+  12: "샌드위치",
+  13: "미트 파이",
+  14: "생선 조림",
+  15: "프라이드 치킨",
+  16: "초무침",
+  17: "케이크",
+  18: "고로케",
+  19: "파스타",
+  20: "튀김",
+  21: "생선구이",
+  22: "그라탱",
+  23: "오므라이스",
+  24: "볶음밥",
+  25: "피자",
+  26: "데리야키",
+  27: "돈가스",
+  28: "카레라이스",
+  29: "소고기구이",
+  30: "라멘",
+  31: "햄버거",
+  32: "도시락",
+  33: "초밥",
+  34: "일본식 전골",
+  35: "풀 코스",
+  36: "징기스칸",
+  37: "스테이크",
+  38: "모둠회",
+  39: "그레미오 특제 스튜",
+  40: "징키스칸",
+};
+
+const GAMEPLAY_SUIKODEN_II_RECIPE_ICONS: Record<number, string> = {
+  1: "🍳",
+  2: "🍅",
+  3: "🥬",
+  4: "🥗",
+  5: "🥟",
+  6: "🥣",
+  7: "🥙",
+  8: "🧈",
+  9: "🐟",
+  10: "🍨",
+  11: "🥧",
+  12: "🥪",
+  13: "🥧",
+  14: "🍲",
+  15: "🍗",
+  16: "🥒",
+  17: "🍰",
+  18: "🥔",
+  19: "🍝",
+  20: "🍤",
+  21: "🐟",
+  22: "🧀",
+  23: "🍛",
+  24: "🍚",
+  25: "🍕",
+  26: "🍢",
+  27: "🍖",
+  28: "🍛",
+  29: "🥩",
+  30: "🍜",
+  31: "🍔",
+  32: "🍱",
+  33: "🍣",
+  34: "🍲",
+  35: "🍽️",
+  36: "🥘",
+  37: "🥩",
+  38: "🍣",
+  39: "🥘",
+  40: "🥡",
+};
+
+const GAMEPLAY_RECIPE_SOURCE_TYPE_LABELS: Record<string, string> = {
+  Drop: "드롭",
+  Found: "발견",
+  Other: "기타",
+  Shop: "아이템 상점 레어 아이템",
+};
+
+const GAMEPLAY_RECIPE_SOURCE_ENTRY_LABELS: Record<string, string> = {
+  "Coronet Town": "코로네",
+  "DoReMi Elf (Aqua)": "도레미 엘프(아쿠아)",
+  "DoReMi Elf (Blue)": "도레미 엘프(파랑)",
+  "DoReMi Elf (Green)": "도레미 엘프(초록)",
+  "DoReMi Elf (Pink)": "도레미 엘프(분홍)",
+  "DoReMi Elf (Red)": "도레미 엘프(빨강)",
+  "DoReMi Elf (Yellow)": "도레미 엘프(노랑)",
+  "Eagle Man": "이글맨",
+  Gregminster: "그레그민스터",
+  "Greenhill City": "그린힐",
+  "Highlands (Bow)": "하이랜드 병사(활)",
+  "Highlands (Sword)": "하이랜드 병사(검)",
+  "Highway Village": "가도 마을",
+  "Kobold Village": "코볼트 마을",
+  "Kuskus Town": "쿠스쿠스",
+  "Lakewest Town": "레이크웨스트 마을",
+  LandShark: "랜드샤크",
+  "Muse City": "뮤즈",
+  "Radat Town": "라다트",
+  "Recruit Hai Yo": "하이요 영입",
+  "Recruit Tuta, then talk to Dr. Huan": "토우타 영입 후 호우안에게 대화",
+  "Rockaxe Castle": "록액스 성",
+  "Two River City": "투 리버",
+  ZombieSlug: "좀비 슬러그",
+};
+
+const GAMEPLAY_RECIPE_SOURCE_REGION_IDS: Record<string, string> = {
+  "Coronet Town": "coronet",
+  Gregminster: "gregminster",
+  "Greenhill City": "greenhill",
+  "Highway Village": "highway-village",
+  "Kuskus Town": "kuskus",
+  "Lakewest Town": "lakewest",
+  "Muse City": "muse",
+  "Radat Town": "radat",
+  "Rockaxe Castle": "rockaxe",
+  "Two River City": "two-river",
+};
+
+const GAMEPLAY_COOK_OFF_ENTRY_NUMBERS: Record<string, number> = {
+  eighth: 8,
+  eleventh: 11,
+  fifth: 5,
+  first: 1,
+  fourth: 4,
+  second: 2,
+  seventh: 7,
+  sixth: 6,
+  tenth: 10,
+  third: 3,
+  twelfth: 12,
+};
+
+const getGameplayRecipeNumber = (name: string) =>
+  Number(name.match(/^Recipe (\d+)$/)?.[1] ?? 0);
+
+const getGameplayRecipeItemId = (recipeNumber: number) => `recipe-${recipeNumber}`;
+
+const localizeGameplayRecipeSourceEntry = (entry: string) => {
+  const cookOffMatch = entry.match(/^Win ([a-z]+) Cook-Off$/);
+
+  if (cookOffMatch) {
+    const round = GAMEPLAY_COOK_OFF_ENTRY_NUMBERS[cookOffMatch[1]];
+
+    return round ? `요리 대결 ${round}회 우승` : entry;
+  }
+
+  return GAMEPLAY_RECIPE_SOURCE_ENTRY_LABELS[entry] ?? entry;
+};
+
+const buildGameplayRecipeSourceEntry = (
+  entry: string,
+): GameplayRecipeSourceEntry => {
+  const regionId = GAMEPLAY_RECIPE_SOURCE_REGION_IDS[entry];
+
+  return {
+    href: regionId ?
+      buildRegionAtlasDetailPath("suikoden-ii", regionId) :
+      undefined,
+    label: localizeGameplayRecipeSourceEntry(entry),
+  };
+};
+
+export const GAMEPLAY_SUIKODEN_II_RECIPE_RECORDS =
+  GAME8_ITEM_SOURCE_RECORDS
+    .filter(
+      (record) =>
+        record.game === "suikoden-ii" &&
+        record.game8Type === "Recipes" &&
+        getGameplayRecipeNumber(record.name) > 0,
+    )
+    .map((record): GameplayRecipeRecord => {
+      const recipeNumber = getGameplayRecipeNumber(record.name);
+
+      return {
+        dishName:
+          GAMEPLAY_SUIKODEN_II_RECIPE_DISH_NAMES[recipeNumber] ??
+          `레시피 ${recipeNumber}`,
+        href: buildItemDetailPath(getGameplayRecipeItemId(recipeNumber)),
+        icon: GAMEPLAY_SUIKODEN_II_RECIPE_ICONS[recipeNumber] ?? "🍽️",
+        number: recipeNumber,
+        sources: record.sources.map((source) => ({
+          entries: source.entries.map((entry) =>
+            buildGameplayRecipeSourceEntry(entry)
+          ),
+          label: GAMEPLAY_RECIPE_SOURCE_TYPE_LABELS[source.type] ?? source.type,
+        })),
+        title: `레시피 ${recipeNumber}`,
+      };
+    })
+    .sort((firstRecipe, secondRecipe) => firstRecipe.number - secondRecipe.number);
+
+export const GAMEPLAY_HAIYO_RESTAURANT_TIPS = [
+  {
+    title: "개방 직후 기본 레시피 확보",
+    body: "하이요를 영입하면 식당과 함께 여러 기본 레시피가 열립니다. 영입 직후 레시피 목록을 먼저 확인해 이후 요리 대결 보상과 구분해 둡니다.",
+    points: ["하이요 영입", "식당 개방", "기본 레시피"],
+  },
+  {
+    title: "요리 대결 보상은 순서가 섞입니다",
+    body: "요리 대결 회차와 레시피 번호가 항상 일치하지 않습니다. 예를 들어 6회 보상이 레시피 22, 7회 보상이 레시피 30처럼 건너뛰어 이어집니다.",
+    points: ["회차 확인", "보상 확인", "누락 점검"],
+  },
+  {
+    title: "상점·드롭 레시피를 함께 모읍니다",
+    body: "모든 레시피가 식당 이벤트 보상으로만 들어오지는 않습니다. 마을 아이템 상점의 레어 아이템, 보물상자, 몬스터 드롭으로 얻는 레시피도 있으므로 지역 이동 때 함께 확인합니다.",
+    points: ["레어 아이템", "발견", "드롭"],
+  },
+  {
+    title: "식재료 시설과 같이 관리합니다",
+    body: "요리는 본거지의 농장, 목장, 낚시 같은 수급 시설과 함께 볼 때 관리가 편합니다. 시설이 늘어날 때마다 식당에서 만들 수 있는 요리를 다시 확인합니다.",
+    points: ["농장", "목장", "낚시"],
+  },
+  {
+    title: "후반 진입 전 레시피 공백 확인",
+    body: "후반 지역으로 넘어가기 전에는 레시피 번호가 비어 있는지 먼저 점검합니다. 특히 아이템 상점 레어 아이템과 특정 몬스터 드롭은 나중에 찾으면 동선이 길어질 수 있습니다.",
+    points: ["번호 공백", "후반 점검", "수집 동선"],
+  },
+] as const satisfies readonly GameplayRestaurantTipRecord[];
 
 export const GAMEPLAY_DETAIL_RECORDS = [
   {
@@ -1033,7 +1407,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
       },
     ],
     checklist: [
-      "회복 담당에게 물·흐르는 문장 계열 확보",
+      "회복 담당에게 물·류수 문장 계열 확보",
       "보스전 전 공격 문장 사용 횟수 보존",
       "고정 문장이 있는 캐릭터는 남은 슬롯 기준으로 역할 보완",
     ],
@@ -1384,7 +1758,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
           {
             name: "식당",
             location: "성 레벨 2 이후 주방",
-            unlock: "하이 요",
+            unlock: "하이요",
             body: "요리와 요리 대결을 진행합니다.",
           },
           {
@@ -1729,6 +2103,10 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         body: "목장, 요리, 낚시, 수호신상은 진행 중 놓치기 쉬우므로 후반에 한 번 더 정리합니다.",
       },
       {
+        title: "수호신상 조합법",
+        body: "수호신상 설계도 조합은 머리·몸통·다리·꼬리 순서로 봅니다. D는 용, R은 토끼, T는 거북, U는 유니콘을 뜻하므로 UTTT라면 머리 유니콘, 몸통 거북, 다리 거북, 꼬리 거북 조합입니다.",
+      },
+      {
         title: "조사와 편의",
         body: "탐정 사무소와 지도 제작자는 영입 단서, 탐색 범위, 지역 확인에 도움을 줍니다.",
       },
@@ -1740,6 +2118,7 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         points: [
           "교역소는 지역 시세 차이로 포치를 확보합니다.",
           "요리 대결과 낚시는 수집형 콘텐츠와 연결됩니다.",
+          "수호신상 설계도는 용·토끼·거북·유니콘 부위를 머리·몸통·다리·꼬리 순서로 조합합니다.",
           "탐정 사무소는 영입과 인물 정보 확인에 유용합니다.",
         ],
       },
@@ -1747,7 +2126,56 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     checklist: [
       "성 레벨 상승 후 시설 재확인",
       "교역품 시세 확인",
+      "수호신상 설계도 부위와 조합 코드 확인",
       "요리·낚시·목장 수집 상태 확인",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.haiYoCookOff,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
+    eyebrow: "Dunan Unification War",
+    title: "하이요 이벤트",
+    summary:
+      "하이요 영입 뒤 본거지 식당에서 이어지는 요리 대결 연속 이벤트와 레시피 보상 흐름을 정리합니다.",
+    tags: ["하이요", "식당", "요리 대결", "레시피"],
+    overview: [
+      "하이요 이벤트는 환상수호전 II의 본거지 식당을 중심으로 진행되는 외전격 연속 이벤트입니다.",
+      "하이요를 영입하면 식당이 열리고, 이후 도전 요리사들이 찾아오며 요리 대결이 진행됩니다.",
+      "대결 보상은 레시피와 수집 기록으로 이어지므로, 본거지 시설과 아이템 목록을 함께 확인하는 편이 좋습니다.",
+    ],
+    keyPoints: [
+      {
+        title: "식당 개방",
+        body: "성 레벨 2 이후 본거지 주방에서 하이요에게 말을 걸면 동료가 되고, 식당 기능이 열립니다.",
+      },
+      {
+        title: "요리 대결 진행",
+        body: "도전 요리사가 찾아오면 정해진 요리 대결을 진행합니다. 승리 횟수에 따라 레시피 보상이 이어집니다.",
+      },
+      {
+        title: "레시피 수집",
+        body: "레시피 아이템은 요리 대결 보상과 지역 획득처가 섞여 있으므로, 아이템 상세의 입수처를 함께 확인합니다.",
+      },
+    ],
+    cookingContestRecords: GAMEPLAY_HAIYO_COOKING_CONTEST_RECORDS,
+    recipeRecords: GAMEPLAY_SUIKODEN_II_RECIPE_RECORDS,
+    restaurantTips: GAMEPLAY_HAIYO_RESTAURANT_TIPS,
+    seriesNotes: [
+      {
+        game: "Suikoden II",
+        body: "하이요 이벤트는 전투 진행 필수 요소는 아니지만, 본거지 생활감과 레시피 수집을 대표하는 연속 이벤트입니다.",
+        points: [
+          "하이요 영입 후 식당과 요리 대결을 이용할 수 있습니다.",
+          "요리 대결 보상은 여러 레시피 아이템의 기타 입수처로 기록됩니다.",
+          "농장, 목장, 낚시처럼 식재료 수급 시설과 함께 관리하면 수집 흐름이 자연스럽습니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "성 레벨 2 이후 하이요 영입",
+      "본거지 식당 개방 확인",
+      "요리 대결 승리 보상 레시피 확인",
+      "레시피 아이템 상세에서 입수처 재확인",
     ],
   },
   {
@@ -1891,6 +2319,12 @@ export const GAMEPLAY_HEADQUARTERS_SECTIONS = [
     body: "교역, 낚시, 요리, 주사위 도박, 탐정 사무소와 같은 시설은 수집과 반복 수급을 보조합니다.",
     points: ["교역", "낚시", "요리", "주사위 도박"],
   },
+  {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
+    title: "하이요 이벤트",
+    body: "하이요 합류 뒤 식당에서 진행되는 요리 대결 연속 이벤트입니다. 레시피, 상대 요리사, 보상 흐름을 따로 확인합니다.",
+    points: ["하이요", "요리 대결", "레시피", "식당"],
+  },
 ] as const;
 
 export const GAMEPLAY_GUIDE_GROUPS = [
@@ -1935,6 +2369,11 @@ export const GAMEPLAY_GUIDE_GROUPS = [
         body: "교역소, 목장, 지도 제작자, 음악가, 탐정 사무소, 요리·낚시·주사위 도박 같은 시설과 미니게임 항목입니다.",
       },
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
+        title: "Hai Yo Cook-Off",
+        body: "하이요 영입 뒤 본거지 식당에서 이어지는 요리 대결, 레시피 보상, 수집 흐름을 따로 정리합니다.",
+      },
+      {
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIDuels),
         title: "Duels",
         body: "플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드 일기토가 별도 항목으로 분리되어 있습니다.",
@@ -1948,13 +2387,15 @@ export const TIMELINE_COPY = {
   title: "Historical Timeline",
   body: "환상수호전 I 이전의 국가 형성기부터 듀난 공화국 탄생까지, 태양력 기준으로 세계관의 흐름을 정리합니다.",
   worldTitle: "World Setting",
+  warTitle: "Major Wars",
+  loreTitle: "World Lore",
   chronologyTitle: "Chronicle Notes",
 } as const;
 
 export const TIMELINE_WORLD_SECTIONS = [
   {
     title: "하르모니아와 문장의 분열",
-    body: "북방 대륙의 정치 질서는 하르모니아의 영향권에서 출발합니다. 문장의 일족, 문장의 문장, 소울이터의 행방은 이후 트란과 듀난 전쟁의 배경으로 이어집니다.",
+    body: "북방 대륙의 정치 질서는 하르모니아의 영향권에서 출발합니다. 문장의 일족, 문의 문장, 소울이터의 행방은 이후 트란과 듀난 전쟁의 배경으로 이어집니다.",
     tags: ["Harmonia", "Gate Rune", "Soul Eater"],
   },
   {
@@ -1963,8 +2404,8 @@ export const TIMELINE_WORLD_SECTIONS = [
     tags: ["Scarlet Moon Empire", "Sovereign Rune", "Toran"],
   },
   {
-    title: "듀난 왕국의 해체와 도시동맹",
-    body: "듀난 지역은 남창을 중심으로 한 왕국에서 출발했지만, 하이랜드의 성장과 도시들의 독립으로 쪼개집니다. 뮤즈, 사우스 윈도우, 투 리버, 마틸다 기사단은 이후 죠스턴 도시동맹을 이룹니다.",
+    title: "듀난 군주국의 해체와 도시동맹",
+    body: "듀난 지역은 남창을 중심으로 한 군주국에서 출발했지만, 하이랜드의 성장과 도시들의 독립으로 쪼개집니다. 뮤즈, 사우스 윈도우, 투 리버, 마틸다 기사단은 이후 죠스턴 도시동맹을 이룹니다.",
     tags: ["Dunan Monarchy", "Jowston", "Highland Kingdom"],
   },
   {
@@ -1974,11 +2415,77 @@ export const TIMELINE_WORLD_SECTIONS = [
   },
 ] as const;
 
+export const TIMELINE_WAR_SECTIONS = [
+  {
+    title: "하르모니아 내전",
+    body: "하르모니아의 내부 혼란은 적월제국 독립의 배경이 됩니다. 크라나흐 루그너가 옛 수도 그렉민스터를 중심으로 세력을 세우면서 트란 지역의 새 질서가 시작됩니다.",
+    tags: ["Harmonia", "Scarlet Moon Empire", "Gregminster"],
+  },
+  {
+    title: "듀난 군주국 내전",
+    body: "듀난 군주국의 반란과 하이랜드의 개입은 사우스 윈도우 독립으로 이어집니다. 이 내전 이후 듀난 지역은 군주국 중심 질서에서 도시국가 연합의 시대로 이동합니다.",
+    tags: ["Dunan Monarchy", "South Window", "Highland Kingdom"],
+  },
+  {
+    title: "하이랜드-죠스턴 전쟁",
+    body: "하이랜드와 죠스턴 도시동맹의 충돌은 겐카쿠와 한 커닝엄의 전장 기록으로 이어집니다. 시작의 문장이 두 사람에게 나뉜 과거도 이 전쟁사의 핵심입니다.",
+    tags: ["Highland Kingdom", "Jowston", "Rune of Beginning"],
+  },
+  {
+    title: "적월제국 계승 전쟁",
+    body: "루그너 황가 내부의 권력 다툼은 바르바로사 즉위와 제국 장군 체제의 재편으로 이어집니다. 훗날 트란 해방전쟁에서 맞붙는 제국 권력의 전사를 이해하는 배경입니다.",
+    tags: ["Scarlet Moon Empire", "Barbarossa", "Six Great Generals"],
+  },
+  {
+    title: "문의 문장 전쟁",
+    body: "오뎃사 실버버그의 트란 해방군 결성과 주인공의 소울이터 계승으로 본격화되는 환상수호전 I의 중심 전쟁입니다. 적월제국 붕괴와 트란 공화국 성립으로 마무리됩니다.",
+    tags: ["Gate Rune War", "Liberation Army", "Toran Republic"],
+  },
+  {
+    title: "듀난 통일전쟁",
+    body: "루카 브라이트의 전쟁 도발과 유니콘 소년병 부대 학살로 시작되는 환상수호전 II의 중심 전쟁입니다. 하이랜드 왕국과 죠스턴 도시동맹의 붕괴 뒤 듀난 공화국이 탄생합니다.",
+    tags: ["Dunan Unification War", "New State Army", "Dunan Republic"],
+  },
+] as const;
+
+export const TIMELINE_LORE_SECTIONS = [
+  {
+    title: "종족과 공동체",
+    body: "인간 국가 바깥에는 엘프, 드워프, 코볼트, 윙 호드처럼 독자적인 생활권과 문화를 가진 종족 공동체가 함께 존재합니다. 투 리버처럼 여러 종족이 한 도시 안에서 공존하는 지역도 있습니다.",
+    tags: ["엘프", "드워프", "코볼트", "윙 호드"],
+  },
+  {
+    title: "문장학과 마법 체계",
+    body: "문장은 마법, 무기 속성, 국가 권력, 개인의 운명을 함께 설명하는 핵심 체계입니다. 진정한 문장과 일반 문장, 봉인구와 문장 조각은 전쟁과 일상 양쪽에 영향을 줍니다.",
+    tags: ["진정한 문장", "봉인구", "문장 조각", "문장술"],
+  },
+  {
+    title: "학문과 기록",
+    body: "군학, 의학, 지도 제작, 탐정술, 문헌 기록처럼 지식과 기록을 다루는 분야가 본거지 운영과 전쟁 지휘를 뒷받침합니다. 맷슈의 군략과 본거지 도서관은 이런 학문적 기반을 보여줍니다.",
+    tags: ["군학", "의학", "지도 제작", "도서관"],
+  },
+  {
+    title: "기술과 장인 문화",
+    body: "대장간, 기계 장치, 엘리베이터, 배와 수송 기술은 국가의 군사력과 생활 편의를 함께 끌어올립니다. 무기 강화와 장비 제작은 동료 성장의 중요한 축이 됩니다.",
+    tags: ["대장간", "기계 장치", "무기 강화", "수송"],
+  },
+  {
+    title: "종교와 의례",
+    body: "신전, 사제, 수호신상, 108성의 운명론은 각 지역의 신앙과 의례를 보여줍니다. 문장은 신앙, 전설, 권력의 상징으로도 다뤄집니다.",
+    tags: ["신전", "사제", "수호신상", "108성"],
+  },
+  {
+    title: "경제와 생활권",
+    body: "상점, 교역소, 광산, 농장, 목장, 식당과 낚시는 전쟁 뒤편의 생활 기반입니다. 본거지는 이런 시설을 흡수하면서 단순한 군사 거점에서 작은 도시로 확장됩니다.",
+    tags: ["상점", "교역소", "광산", "식당"],
+  },
+] as const;
+
 export const TIMELINE_CHRONICLE_NOTES = [
   {
     date: "태양력 약 70년",
-    title: "문장의 일족 학살과 문장의 문장 분리",
-    body: "하르모니아가 문장의 일족을 공격하고, 레크나트와 윈디가 문장의 문장을 나누어 가지고 도주합니다. 훗날 문장 계보와 윈디의 집착을 설명하는 출발점입니다.",
+    title: "문장의 일족 학살과 문의 문장 분리",
+    body: "하르모니아가 문장의 일족을 공격하고, 레크나트와 윈디가 문의 문장을 나누어 가지고 도주합니다. 훗날 문장 계보와 윈디의 집착을 설명하는 출발점입니다.",
   },
   {
     date: "태양력 78",
@@ -1987,8 +2494,8 @@ export const TIMELINE_CHRONICLE_NOTES = [
   },
   {
     date: "태양력 110",
-    title: "듀난 왕국 성립",
-    body: "사우스 윈도우를 수도로 듀난 왕국이 세워지고, 베르난드가 초대 왕이 됩니다. 훗날 도시동맹과 하이랜드로 갈라지는 듀난 지역사의 원형입니다.",
+    title: "듀난 군주국 성립",
+    body: "사우스 윈도우를 수도로 듀난 군주국이 세워지고, 베르난드가 초대 군주가 됩니다. 훗날 도시동맹과 하이랜드로 갈라지는 듀난 지역사의 원형입니다.",
   },
   {
     date: "태양력 약 150년",
@@ -2012,8 +2519,8 @@ export const TIMELINE_CHRONICLE_NOTES = [
   },
   {
     date: "태양력 252",
-    title: "듀난 왕국 내전과 사우스 윈도우 독립",
-    body: "듀난 왕국에서 반란이 일어나고 하이랜드가 동부 사우스 윈도우를 침공합니다. 반란 세력이 승리하면서 사우스 윈도우는 시장제를 갖춘 도시국가로 재편됩니다.",
+    title: "듀난 군주국 내전과 사우스 윈도우 독립",
+    body: "듀난 군주국에서 반란이 일어나고 하이랜드가 동부 사우스 윈도우를 침공합니다. 반란 세력이 승리하면서 사우스 윈도우는 시장제를 갖춘 도시국가로 재편됩니다.",
   },
   {
     date: "태양력 280",
@@ -2048,7 +2555,7 @@ export const TIMELINE_CHRONICLE_NOTES = [
   {
     date: "태양력 453",
     title: "트란 해방군 결성",
-    body: "오뎃사 실버버그가 트란 해방군을 조직하며 문장의 문장 전쟁이 시작됩니다. 훗날 주인공은 소울이터의 계승자가 됩니다.",
+    body: "오뎃사 실버버그가 트란 해방군을 조직하며 문의 문장 전쟁이 시작됩니다. 훗날 주인공은 소울이터의 계승자가 됩니다.",
   },
   {
     date: "태양력 455",

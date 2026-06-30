@@ -22,7 +22,7 @@ export const APP_SHELL_STYLES = {
 export const FOOTER_STYLES = {
   shell:
     "mt-auto border-t border-[#d8c9a5] bg-[#f8f4ec] text-[#101827] dark:border-[#604403] dark:bg-[#09111d] dark:text-[#f4f1ea]",
-  inner: "mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8",
+  inner: "mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8",
   title: "font-serif text-2xl font-semibold tracking-wide",
   body: "mt-2 max-w-2xl text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
   notice: "mt-4 text-xs font-semibold text-[#7a5900] dark:text-[#e9c176]",
@@ -138,7 +138,7 @@ export const HERO_STYLES = {
   content:
     "absolute inset-x-0 bottom-0 flex items-end p-5 sm:p-8 xl:p-10",
   title:
-    "rounded border border-[#d4af37]/30 bg-gradient-to-r from-[#050b14]/78 via-[#101827]/62 to-[#24070d]/40 bg-clip-text px-4 py-2 font-serif text-4xl font-semibold text-transparent shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_14px_34px_rgba(5,11,20,0.48)] drop-shadow-[0_4px_10px_rgba(5,11,20,0.95)] backdrop-blur-[3px] [-webkit-text-stroke:0.35px_rgba(255,255,255,0.28)] [background-image:linear-gradient(100deg,#ffffff_0%,#fff3c4_34%,#d4af37_64%,#f6efe2_100%)] sm:text-5xl xl:text-6xl",
+    "archive-hero-title-flow rounded border border-[#d4af37]/30 bg-gradient-to-r from-[#050b14]/78 via-[#101827]/62 to-[#24070d]/40 bg-clip-text px-4 py-2 font-serif text-4xl font-semibold text-transparent shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_14px_34px_rgba(5,11,20,0.48)] drop-shadow-[0_4px_10px_rgba(5,11,20,0.95)] backdrop-blur-[3px] [-webkit-text-stroke:0.35px_rgba(255,255,255,0.28)] [animation:archive-hero-title-flow_4.8s_linear_infinite] [background-image:linear-gradient(100deg,#ffffff_0%,#fff3c4_20%,#d4af37_38%,#f6efe2_52%,#fff3c4_68%,#d4af37_84%,#ffffff_100%)] [background-size:220%_100%] sm:text-5xl xl:text-6xl",
 } as const;
 
 export const BUTTON_STYLES = {
@@ -151,10 +151,15 @@ export const BUTTON_STYLES = {
 export const CARD_STYLES = {
   feature:
     "h-full overflow-hidden rounded-lg border border-[#d8c9a5] bg-white shadow-sm dark:border-[#604403] dark:bg-[#172337]",
+  featureLink:
+    "block h-full text-[#101827] transition hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea] dark:hover:bg-[#14243a]",
   featureImage: "relative aspect-[4/3] bg-[#dfe8ff] dark:bg-[#14243a]",
   category:
     "rounded-lg border border-[#c7d3e9] bg-[#e8effd] p-5 transition hover:-translate-y-0.5 hover:border-[#d4af37] hover:bg-white dark:border-[#38475f] dark:bg-[#14243a] dark:hover:bg-[#172337]",
   timelineItem: "p-5",
+  newsArticle: "p-0",
+  newsArticleLink:
+    "block p-5 text-[#101827] transition hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea] dark:hover:bg-[#14243a]",
 } as const;
 
 export const SECTION_STYLES = {
@@ -162,6 +167,8 @@ export const SECTION_STYLES = {
   headerRow: "flex items-end justify-between gap-4",
   viewAllLink: "hidden text-sm font-semibold text-[#7a5900] dark:text-[#e9c176] sm:block",
   cardBody: "p-4",
+  cardAction:
+    "mt-4 text-sm font-bold text-[#7a5900] dark:text-[#e9c176]",
   categoryIcon:
     "flex size-10 items-center justify-center rounded bg-[#dfe8ff] text-[#233144] dark:bg-[#050b14] dark:text-[#e9c176]",
   newsHeader: "bg-[#131b2e] px-5 py-4",
@@ -172,11 +179,15 @@ export const SECTION_STYLES = {
   timelineTag:
     "rounded bg-[#edf3ff] px-2 py-1 text-xs font-bold text-[#233144] dark:bg-[#14243a] dark:text-[#f4f1ea]",
   timelineTitle: "mt-3 font-serif text-lg font-semibold",
+  newsArticleFooter:
+    "mt-4 flex flex-wrap items-center justify-between gap-3 text-xs font-bold text-[#7a5900] dark:text-[#e9c176]",
 } as const;
 
 export const RIGHT_RAIL_STYLES = {
   quote: "rounded-lg border-l-4 border-[#d4af37] bg-[#e8effd] p-5 dark:bg-[#14243a]",
-  quoteBody: "font-serif text-lg italic leading-8",
+  quoteOriginal:
+    "font-serif text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  quoteBody: "mt-2 font-serif text-lg italic leading-8",
   quoteFooter: "mt-3 text-sm font-bold text-[#7a5900] dark:text-[#e9c176]",
   trendingTitle: "font-serif text-xl font-semibold",
   trendingList: "mt-4 flex flex-wrap gap-2",
@@ -199,6 +210,7 @@ export const TEXT_STYLES = {
   categoryTitle: "mt-4 font-serif text-lg font-semibold",
   characterNameLink:
     "font-semibold text-[#7a5900] underline decoration-[#d4af37]/45 underline-offset-4 transition hover:text-[#101827] hover:decoration-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#e9c176] dark:hover:text-[#f4f1ea]",
+  characterNameLinkPhrase: "whitespace-nowrap",
 } as const;
 
 export const IMAGE_STYLES = {
@@ -358,6 +370,7 @@ export const CHARACTER_STYLES = {
     "flex min-h-12 items-center bg-[#edf3ff] px-4 py-3 text-xs font-bold uppercase text-[#7a5900] dark:bg-[#14243a] dark:text-[#e9c176]",
   detailLedgerValue:
     "flex min-h-12 items-center px-4 py-3 text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+  detailLedgerValueText: "min-w-0 break-keep",
   combatDataGrid: "grid gap-4",
   combatDataPanel:
     "scroll-mt-32 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
@@ -556,6 +569,9 @@ export const ITEM_STYLES = {
     "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   ledgerValue:
     "break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+  initialOwnerList: "inline-flex flex-wrap gap-x-1 gap-y-1",
+  initialOwnerLink:
+    "underline decoration-[#d4af37]/60 underline-offset-4 transition hover:text-[#7a5900] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:hover:text-[#e9c176]",
   empty:
     "mt-5 rounded-lg border border-[#d8c9a5] bg-white/70 p-6 text-center text-sm font-semibold text-[#4b5565] dark:border-[#604403] dark:bg-[#111c2c] dark:text-[#c5c6cd]",
   detailPanel:
@@ -580,6 +596,13 @@ export const ITEM_STYLES = {
   detailSectionBody:
     "mt-3 grid gap-2 break-keep text-sm font-semibold leading-7 text-[#3e4654] dark:text-[#c5c6cd]",
   detailGameGrid: "mt-5 grid gap-4",
+  relatedLinkGrid: "mt-4 grid gap-3 sm:grid-cols-2",
+  relatedLink:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 transition hover:border-[#d4af37] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#172337] dark:hover:bg-[#14243a]",
+  relatedLinkTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  relatedLinkBody:
+    "mt-2 break-keep text-sm font-semibold leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
 } as const;
 
 export const ATLAS_STYLES = {
@@ -832,6 +855,52 @@ export const GAMEPLAY_STYLES = {
     "mt-2 grid gap-2",
   duelLineItem:
     "break-keep rounded border border-[#c7d3e9] bg-[#edf3ff] px-3 py-2 text-sm leading-6 text-[#3e4654] dark:border-[#38475f] dark:bg-[#14243a] dark:text-[#c5c6cd]",
+  cookingRecordGrid: "mt-4 grid gap-3 md:grid-cols-2",
+  cookingRecordCard:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  cookingRecordHeader:
+    "border-b border-[#c7d3e9] pb-3 dark:border-[#38475f]",
+  cookingRecordRound:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  cookingRecordTitle:
+    "mt-1 font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  cookingRecordMetaGrid: "mt-3 grid gap-2 sm:grid-cols-2",
+  cookingRecordMeta:
+    "rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 text-sm font-semibold text-[#3e4654] dark:border-[#604403] dark:bg-[#111c2c]/75 dark:text-[#c5c6cd]",
+  cookingRecordMetaLabel:
+    "mr-2 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  cookingRecordNote:
+    "mt-3 break-keep text-sm font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  recipeGrid: "mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3",
+  recipeCard:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  recipeHeader:
+    "flex items-start gap-3 border-b border-[#c7d3e9] pb-3 dark:border-[#38475f]",
+  recipeIcon:
+    "grid size-11 shrink-0 place-items-center rounded-full border border-[#d8c9a5] bg-[#fff8e2] text-xl shadow-sm dark:border-[#604403] dark:bg-[#111c2c]",
+  recipeNumber:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  recipeTitle:
+    "mt-1 font-serif text-xl font-semibold text-[#101827] underline-offset-4 hover:underline dark:text-[#f4f1ea]",
+  recipeDish:
+    "mt-2 break-keep text-sm font-semibold leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  recipeSourceList: "mt-3 grid gap-2",
+  recipeSourceItem:
+    "rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 text-sm font-semibold text-[#3e4654] dark:border-[#604403] dark:bg-[#111c2c]/75 dark:text-[#c5c6cd]",
+  recipeSourceLabel:
+    "mr-2 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  recipeSourceDetail: "mt-1 break-keep leading-6",
+  inlineLink:
+    "font-bold text-[#7a5900] underline underline-offset-4 hover:text-[#101827] dark:text-[#e9c176] dark:hover:text-[#f4f1ea]",
+  restaurantTipGrid: "mt-4 grid gap-3 md:grid-cols-2",
+  restaurantTipCard:
+    "rounded-lg border border-[#d8c9a5] bg-[#fff8e2] p-4 dark:border-[#604403] dark:bg-[#322002]",
+  restaurantTipTitle:
+    "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  restaurantTipBody:
+    "mt-3 break-keep text-sm font-semibold leading-7 text-[#4b5565] dark:text-[#e9c176]",
+  restaurantTipTagList:
+    "mt-4 flex flex-wrap gap-2 border-t border-[#d8c9a5] pt-3 dark:border-[#604403]",
   warGuideStack: "mt-4 grid gap-6",
   warSectionTitle:
     "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",

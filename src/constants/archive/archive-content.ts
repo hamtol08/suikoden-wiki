@@ -4,8 +4,10 @@ import {
   buildCharacterGamePath,
   buildItemGamePath,
   buildRuneCategoryPath,
+  buildRegionAtlasDetailPath,
   buildRegionAtlasGamePath,
 } from "@/constants/app/app-config";
+import { GAMEPLAY_TABS } from "@/constants/gameplay/gameplay-content";
 
 export const ARCHIVE_COPY = {
   metadata: {
@@ -41,14 +43,25 @@ export const ARCHIVE_COPY = {
     title: "Featured Articles",
     viewAll: "View All Articles",
   },
+  articles: {
+    eyebrow: "Archive Articles",
+    title: "Articles",
+    body: "시리즈, 인물, 문장, 지역, 전투 기록으로 이어지는 주요 아카이브 글을 한곳에서 탐색합니다.",
+    openArticle: "Open Article",
+  },
   explore: {
     title: "Explore the Wiki",
   },
   news: {
-    title: "Wiki News & Announcements",
+    eyebrow: "Suikoden News",
+    title: "Suikoden News",
+    body: "환상수호전 본편, 리마스터, 애니메이션, Star Leap 관련 최신 소식을 외부 기사와 함께 정리합니다.",
+    viewAll: "View All News",
+    readArticle: "Read Article",
   },
   quote: {
-    body: "아버지는 아버지 자신이고, 나도 나 자신이다.",
+    original: "父さんは父さん、僕は僕だ。",
+    body: "아버지는 아버지고, 나는 나야.",
     author: "티르 맥돌",
   },
   trending: {
@@ -75,19 +88,6 @@ export const ARCHIVE_NOT_FOUND_COPY = {
   archiveLabel: "Browse Characters",
 } as const;
 
-export const IMAGE_PATHS = {
-  logoMark: "/genso-mark.svg",
-  hdRemaster: "/hd-remaster.png",
-  suikodenI: "/suikoden-i.webp",
-  suikodenII: "/suikoden-ii.webp",
-  suikodenRemaster: "/suikoden-i-ii-remaster.webp",
-  worldMap: "/genso-world-guide-map-korean.jpg",
-} as const;
-
-export const IMAGE_SIZES = {
-  logoMark: { width: 44, height: 44 },
-} as const;
-
 export const NAV_GROUPS = [
   {
     label: "Series",
@@ -95,6 +95,8 @@ export const NAV_GROUPS = [
     items: [
       { label: "Series Overview", href: APP_ROUTES.home },
       { label: "Historical Timeline", href: APP_ROUTES.timeline },
+      { label: "Articles", href: APP_ROUTES.articles },
+      { label: "Suikoden News", href: APP_ROUTES.news },
     ],
   },
   {
@@ -132,44 +134,10 @@ export const NAV_GROUPS = [
   {
     label: "Gameplay",
     href: APP_ROUTES.gameplay,
-    items: [
-      {
-        label: "System Overview",
-        href: `${APP_ROUTES.gameplay}#system-overview`,
-      },
-      { label: "Battle", href: `${APP_ROUTES.gameplay}#battle` },
-      { label: "Duel", href: `${APP_ROUTES.gameplay}#duel` },
-      { label: "War Battle", href: `${APP_ROUTES.gameplay}#war-battle` },
-      {
-        label: "Headquarters",
-        href: `${APP_ROUTES.gameplay}#headquarters`,
-      },
-      { label: "Guide Index", href: `${APP_ROUTES.gameplay}#guide-index` },
-    ],
-  },
-] as const;
-
-export const FEATURE_CARDS = [
-  {
-    title: "Suikoden I",
-    eyebrow: "Gate Rune War",
-    image: IMAGE_PATHS.suikodenI,
-    alt: "Suikoden I key visual crop",
-    body: "트란 해방군, 적월제국, 소울이터와 108성의 흐름을 정리합니다.",
-  },
-  {
-    title: "Suikoden II",
-    eyebrow: "Dunan Unification War",
-    image: IMAGE_PATHS.suikodenII,
-    alt: "Suikoden II key visual crop",
-    body: "신동맹군과 하이랜드 왕국의 전쟁, 빛나는 방패의 문장, 주요 동료 기록을 모읍니다.",
-  },
-  {
-    title: "Suikoden I & II HD Remaster",
-    eyebrow: "Core Collection",
-    image: IMAGE_PATHS.suikodenRemaster,
-    alt: "Suikoden I and II HD Remaster key art",
-    body: "두 작품의 리마스터 기준으로 인물, 문장, 지역, 전투 시스템을 연결해 탐색합니다.",
+    items: GAMEPLAY_TABS.map((tab) => ({
+      label: tab.label,
+      href: `${APP_ROUTES.gameplay}${tab.href}`,
+    })),
   },
 ] as const;
 
@@ -180,27 +148,8 @@ export const ARCHIVE_CATEGORIES = [
   { title: "Timeline", icon: "history", href: APP_ROUTES.timeline, body: "전쟁, 왕조, 국가 변천 연표" },
   { title: "Items", icon: "archive", href: APP_ROUTES.items, body: "무기, 방어구, 희귀 수집품" },
   { title: "Gameplay", icon: "swords", href: APP_ROUTES.gameplay, body: "전투, 일기토, 전쟁 시스템" },
-] as const;
-
-export const TIMELINE_ITEMS = [
-  {
-    date: "Mar 06, 2025",
-    title: "HD Remaster Released",
-    body: "환상수호전 I·II 리마스터가 출시되며 시리즈 입문 동선이 다시 열렸습니다.",
-    tag: "Release",
-  },
-  {
-    date: "Dec 17, 1998",
-    title: "Suikoden II Released",
-    body: "듀난 통일전쟁을 중심으로 1편의 세계관을 확장한 두 번째 본편 기록입니다.",
-    tag: "Game II",
-  },
-  {
-    date: "Dec 15, 1995",
-    title: "Suikoden I Released",
-    body: "문장 전쟁과 108성의 기본 구조가 시작된 첫 번째 본편입니다.",
-    tag: "Game I",
-  },
+  { title: "Articles", icon: "archive", href: APP_ROUTES.articles, body: "주요 아카이브 글 모음" },
+  { title: "News", icon: "sparkles", href: APP_ROUTES.news, body: "시리즈 최신 기사 색인" },
 ] as const;
 
 export const TRENDING_STARS = [
@@ -316,7 +265,17 @@ export const REGION_ATLAS_TABS = [
   },
 ] as const;
 
-export const REGION_ATLAS_LOCATIONS = [
+const attachRegionAtlasDetailHrefs = <
+  T extends { readonly game: string; readonly id: string },
+>(
+  locations: readonly T[],
+) =>
+  locations.map((location) => ({
+    ...location,
+    detailHref: buildRegionAtlasDetailPath(location.game, location.id),
+  }));
+
+export const REGION_ATLAS_LOCATIONS = attachRegionAtlasDetailHrefs([
   {
     id: "toran-republic",
     game: "suikoden-i",
@@ -328,7 +287,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "적월제국의 붕괴 이후 성립하는 1편의 핵심 정치권입니다. 호수와 성채를 중심으로 해방군의 전선이 확장됩니다.",
     locations: ["그레그민스터", "트란 성", "카쿠", "판누 야쿠타"],
     traits: ["문장의 전쟁 전체 무대", "제국 수도와 해방군 본거지가 함께 위치", "1편의 주요 이동 동선을 포괄"],
-    detailHref: "/region-atlas/suikoden-i/toran-republic",
   },
   {
     id: "gregminster",
@@ -341,7 +299,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "적월제국의 수도이자 주인공의 여정이 시작되는 중심 도시입니다. 제국 권력과 해방군의 최종 목표가 교차합니다.",
     locations: ["맥돌 저택", "제국 궁전", "그레그민스터 성문"],
     traits: ["초반 제국 임무의 출발점", "바르바로사와 윈디의 권력 중심", "문장의 전쟁 종착지"],
-    detailHref: "/region-atlas/suikoden-i/gregminster",
   },
   {
     id: "lenankamp",
@@ -354,7 +311,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "초반 여정에서 제국의 통치 구조와 민심을 확인하게 되는 도시입니다. 해방군과 제국의 긴장이 본격적으로 드러납니다.",
     locations: ["레난캄프 여관", "마을 광장"],
     traits: ["초반 동료와 사건이 모이는 거점", "제국 감시망의 압박이 드러나는 도시", "트란 남부 이동 동선의 관문"],
-    detailHref: "/region-atlas/suikoden-i/lenankamp",
   },
   {
     id: "rockland",
@@ -367,7 +323,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "제국 지방 통치의 부패와 압박을 보여주는 초반 지역입니다. 주인공 일행이 민심의 균열을 직접 확인하는 구역입니다.",
     locations: ["록랜드 시내", "청풍산 방면 길"],
     traits: ["초반 임무와 산적 사건의 중심", "지방 행정의 부패가 부각", "청풍산으로 이어지는 이동 거점"],
-    detailHref: "/region-atlas/suikoden-i/rockland",
   },
   {
     id: "sarady",
@@ -380,7 +335,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "제국 북부 산악 지대의 작은 마을입니다. 초반 임무에서 외곽 지역의 폐쇄성과 제국의 영향권을 함께 보여줍니다.",
     locations: ["사라디 마을", "북부 산길"],
     traits: ["초반 북부 이동의 끝점", "외곽 마을 특유의 고립감", "제국 영토의 넓이를 체감시키는 장소"],
-    detailHref: "/region-atlas/suikoden-i/sarady",
   },
   {
     id: "kaku",
@@ -393,7 +347,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "트란 호수를 통한 이동과 해방군 본거지 확보로 이어지는 항구 도시입니다. 1편의 수상 교통 동선이 시작되는 곳입니다.",
     locations: ["카쿠 항구", "트란 호수 연락선"],
     traits: ["수상 이동의 출발점", "트란 성 접근의 관문", "도박장과 항구 문화가 공존"],
-    detailHref: "/region-atlas/suikoden-i/kaku",
   },
   {
     id: "kouan",
@@ -406,7 +359,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "레판토의 저택과 연결되는 도시입니다. 지방 유력자의 정치적 태도와 해방군 합류의 흐름을 보여줍니다.",
     locations: ["레판토 저택", "코안 시내"],
     traits: ["레판토 관련 사건의 중심", "지방 명사와 해방군의 연결점", "초중반 전력 확장의 계기"],
-    detailHref: "/region-atlas/suikoden-i/kouan",
   },
   {
     id: "seika",
@@ -419,7 +371,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "맷슈 실버버그와 연결되는 전략적 전환점입니다. 해방군이 단순 저항 세력에서 조직화된 군대로 바뀌는 계기가 됩니다.",
     locations: ["맷슈의 학당", "세이카 시내"],
     traits: ["해방군 전략 체계의 출발점", "맷슈 영입과 연결", "전쟁 규모가 확장되는 분기점"],
-    detailHref: "/region-atlas/suikoden-i/seika",
   },
   {
     id: "great-forest",
@@ -432,7 +383,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "엘프, 드워프, 코볼트 거주지가 얽힌 광대한 숲 지역입니다. 제국 전쟁이 비인간 종족권까지 확장되는 구역입니다.",
     locations: ["엘프 마을", "드워프 마을", "코볼트 마을"],
     traits: ["여러 종족권이 공존", "불타는 거울 사건과 연결", "중반 전쟁의 주요 비극이 발생"],
-    detailHref: "/region-atlas/suikoden-i/great-forest",
   },
   {
     id: "dwarf-village",
@@ -445,7 +395,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "대삼림 안쪽의 드워프 거점입니다. 장인 문화와 군사 기술, 종족 간 갈등의 흐름이 함께 드러납니다.",
     locations: ["드워프 금고", "드워프 산길"],
     traits: ["대삼림 사건의 핵심 거점", "제국의 병기 위협과 연결", "종족권 정치가 드러나는 마을"],
-    detailHref: "/region-atlas/suikoden-i/dwarf-village",
   },
   {
     id: "antei",
@@ -458,7 +407,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "트란 호수 주변 이동망에 속한 도시입니다. 해방군이 남부와 호수권을 오가며 세력을 넓히는 과정에 놓입니다.",
     locations: ["안테이 시내", "호수길"],
     traits: ["호수권 이동 동선의 일부", "중반 탐색 루트와 연결", "주변 도시와 함께 생활권을 형성"],
-    detailHref: "/region-atlas/suikoden-i/antei",
   },
   {
     id: "teien",
@@ -471,7 +419,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "트란 호수 남부권의 도시입니다. 리콘, 안테이와 함께 1편의 호수 남부 생활권을 구성합니다.",
     locations: ["테이엔 시내", "트란 호수 남부"],
     traits: ["호수 남부 탐색의 중간 지점", "인접 도시와 연결된 생활권", "전쟁 중반 이동 루트"],
-    detailHref: "/region-atlas/suikoden-i/teien",
   },
   {
     id: "rikon",
@@ -484,7 +431,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "트란 호수 남단에 위치한 도시입니다. 류칸 관련 동선과 연결되며 해방군의 치료와 정보 흐름에 관여합니다.",
     locations: ["리콘 시내", "류칸 은거지 방면 길"],
     traits: ["류칸 관련 동선과 연결", "호수권 남부의 끝점", "중반 전력 회복의 단서"],
-    detailHref: "/region-atlas/suikoden-i/rikon",
   },
   {
     id: "toran-castle",
@@ -497,7 +443,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "해방군의 본거지입니다. 108성의 합류와 군사 조직 확장이 모두 이 성을 중심으로 진행됩니다.",
     locations: ["성내 홀", "트란 호수"],
     traits: ["해방군 본부", "동료 영입에 따라 확장", "전쟁 지휘와 생활 기능이 결합"],
-    detailHref: "/region-atlas/suikoden-i/toran-castle",
   },
   {
     id: "pannu-yakuta",
@@ -510,7 +455,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "제국군의 핵심 요새 중 하나입니다. 해방군과 제국군의 정면 충돌이 본격화되는 전략 거점입니다.",
     locations: ["판누 야쿠타 요새"],
     traits: ["제국 방어선의 주요 축", "대규모 충돌이 벌어지는 요새", "문장의 전쟁 후반부로 이어지는 관문"],
-    detailHref: "/region-atlas/suikoden-i/pannu-yakuta",
   },
   {
     id: "shasarazade",
@@ -523,7 +467,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "제국의 수상 방어 거점입니다. 그레그민스터로 향하는 최종 전선에서 해방군의 진격을 가로막습니다.",
     locations: ["샤사라자드 요새", "호수 통로"],
     traits: ["최종전 직전의 수상 요새", "제국 수도 접근로 통제", "해방군 진격의 마지막 관문 중 하나"],
-    detailHref: "/region-atlas/suikoden-i/shasarazade",
   },
   {
     id: "moravia-castle",
@@ -536,7 +479,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "제국 북방권의 성채입니다. 인물 구출과 후반부 전선 확장에 연결되는 전략 지점입니다.",
     locations: ["모라비아 성", "북부 방면 길"],
     traits: ["후반부 침투 동선", "제국 북방 방어망의 일부", "중요 인물 구출과 연결"],
-    detailHref: "/region-atlas/suikoden-i/moravia-castle",
   },
   {
     id: "tenzan-pass-camp",
@@ -549,7 +491,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "주인공과 죠우이가 유니콘 부대 소속으로 머무는 시작 지점입니다. 조작된 학살과 절벽 탈출로 듀난 전쟁의 첫 장면이 열립니다.",
     locations: ["유니콘 부대 야영지", "텐잔 고개", "탈출 절벽"],
     traits: ["2편의 프롤로그 무대", "하이랜드와 죠스턴의 국경 긴장이 폭발", "주인공과 죠우이의 약속이 시작되는 장소"],
-    detailHref: "/region-atlas/suikoden-ii/tenzan-pass-camp",
   },
   {
     id: "mercenary-fortress",
@@ -562,7 +503,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "주인공이 강에서 구조된 뒤 머무는 첫 죠스턴 측 거점입니다. 빅토르와 프릭의 용병단을 통해 하이랜드 병사였던 주인공의 위치가 바뀝니다.",
     locations: ["요새 앞마당", "감옥", "용병단 회관"],
     traits: ["초반 동료 관계가 형성", "하이랜드 추격을 피해 머무는 임시 거점", "뮤즈로 향하는 첫 교두보"],
-    detailHref: "/region-atlas/suikoden-ii/mercenary-fortress",
   },
   {
     id: "ryube",
@@ -575,7 +515,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "초반에 죠우이가 치료를 받는 마을이자, 이후 루카 브라이트의 잔혹함이 직접 드러나는 지역입니다. 2편 초반 정서의 핵심 마을입니다.",
     locations: ["류베 마을", "숲길", "마을 광장"],
     traits: ["초반 여정의 중요한 마을", "하이랜드 침공의 참상이 드러나는 장소", "토토 마을과 캐로 마을 동선 사이를 잇는 지역"],
-    detailHref: "/region-atlas/suikoden-ii/ryube",
   },
   {
     id: "toto",
@@ -588,7 +527,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "시작의 문장 신전과 연결되는 마을입니다. 파괴된 마을과 봉인된 문장은 주인공과 죠우이의 운명을 본격적으로 갈라놓습니다.",
     locations: ["토토 마을", "시작의 문장 신전"],
     traits: ["빛나는 방패의 문장과 검은 검의 문장의 분기점", "초반 비극의 중심", "전쟁이 개인의 운명으로 전환되는 장소"],
-    detailHref: "/region-atlas/suikoden-ii/toto",
   },
   {
     id: "kyaro",
@@ -601,7 +539,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "주인공, 죠우이, 나나미의 고향입니다. 하이랜드 내부에서 진실이 은폐되는 과정을 보여주며 세 사람이 다시 도망칠 수밖에 없는 이유를 만듭니다.",
     locations: ["겐카쿠 도장", "나나미의 집", "캐로 마을"],
     traits: ["주인공 일행의 고향", "하이랜드 체제의 압박이 드러남", "나나미 합류와 연결"],
-    detailHref: "/region-atlas/suikoden-ii/kyaro",
   },
   {
     id: "muse",
@@ -614,7 +551,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "죠스턴 도시동맹의 정치 중심지입니다. 동맹 회의와 하이랜드 침공의 충격이 집중되는 도시입니다.",
     locations: ["뮤즈 시내", "죠스턴 언덕"],
     traits: ["죠스턴 의회의 중심", "듀난 전쟁 초중반의 핵심 무대", "도시국가 연합의 취약성이 드러나는 장소"],
-    detailHref: "/region-atlas/suikoden-ii/muse",
   },
   {
     id: "coronet",
@@ -627,7 +563,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "뮤즈 함락 이후 듀난 호수를 건너 남쪽으로 향하는 항구 도시입니다. 죠스턴 중심부에서 남부권으로 무대가 바뀌는 통로입니다.",
     locations: ["코로네 항구", "듀난 호수 연락선"],
     traits: ["뮤즈 탈출 이후의 항구", "사우스 윈도우 방면 이동 관문", "호수 교통의 중요성이 드러남"],
-    detailHref: "/region-atlas/suikoden-ii/coronet",
   },
   {
     id: "kuskus",
@@ -640,7 +575,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "사우스 윈도우 권역의 항구 마을입니다. 코로네에서 이어지는 호수 이동 후 남부 도시국가권에 들어서는 지점입니다.",
     locations: ["쿠스쿠스 항구", "듀난 호수 남부"],
     traits: ["사우스 윈도우 권역의 수상 관문", "호수 남부 생활권과 연결", "초중반 이동 루트의 완충 지점"],
-    detailHref: "/region-atlas/suikoden-ii/kuskus",
   },
   {
     id: "south-window",
@@ -653,7 +587,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "죠스턴 남부의 주요 도시국가입니다. 노스 윈도우, 라다트, 쿠스쿠스와 함께 남부 동선을 이룹니다.",
     locations: ["사우스 윈도우 시내", "노스 윈도우 방면 길"],
     traits: ["죠스턴 남부 정치권", "초중반 이동 동선의 중심", "주변 항구와 강길로 연결"],
-    detailHref: "/region-atlas/suikoden-ii/south-window",
   },
   {
     id: "north-window",
@@ -666,7 +599,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "빅토르의 고향이자 네크로드 사건 이후 신동맹군의 본거지가 되는 폐허 도시입니다. 108성 수집과 전쟁 지휘의 중심으로 확장됩니다.",
     locations: ["노스 윈도우 폐허", "본거지", "바람의 동굴"],
     traits: ["신동맹군 본거지", "네크로드 사건과 연결", "동료 영입에 따라 기능이 확장"],
-    detailHref: "/region-atlas/suikoden-ii/north-window",
   },
   {
     id: "radat",
@@ -679,7 +611,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "강과 수문을 중심으로 움직이는 교역 도시입니다. 슈우 영입과 군자금, 정보전이 맞물리며 신동맹군이 조직력을 갖추는 계기가 됩니다.",
     locations: ["라다트 시내", "수문", "슈우의 집"],
     traits: ["슈우 영입의 핵심 지역", "강길과 교역망의 중심", "신동맹군 전략 체계가 시작"],
-    detailHref: "/region-atlas/suikoden-ii/radat",
   },
   {
     id: "lakewest",
@@ -692,7 +623,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "투 리버로 향하는 길목의 호수 마을입니다. 호수 주변 마을과 도시국가권 사이의 생활 동선을 보여줍니다.",
     locations: ["레이크웨스트 마을", "듀난 호수 길"],
     traits: ["투 리버 진입 전 거점", "호수권 생활권의 일부", "초중반 탐색 동선과 연결"],
-    detailHref: "/region-atlas/suikoden-ii/lakewest",
   },
   {
     id: "two-river",
@@ -702,10 +632,9 @@ export const REGION_ATLAS_LOCATIONS = [
     status: "다구역 도시",
     ruling: "투 리버 도시국가",
     rune: "-",
-    description: "인간, 코볼트, 윙거 구역이 나뉜 도시국가입니다. 종족 간 갈등과 하이랜드 방어전이 신동맹군의 외교력을 시험합니다.",
-    locations: ["인간 구역", "코볼트 구역", "윙거 구역"],
+    description: "인간, 코볼트, 윙 호드 구역이 나뉜 도시국가입니다. 종족 간 갈등과 하이랜드 방어전이 신동맹군의 외교력을 시험합니다.",
+    locations: ["인간 구역", "코볼트 구역", "윙 호드 구역"],
     traits: ["다종족 도시 구조", "도시 방어전의 중심", "죠스턴 내부 갈등을 보여주는 장소"],
-    detailHref: "/region-atlas/suikoden-ii/two-river",
   },
   {
     id: "greenhill",
@@ -718,7 +647,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "학원 도시로 알려진 죠스턴의 주요 도시국가입니다. 점령과 잠입, 학생 사회의 시선이 함께 그려집니다.",
     locations: ["그린힐 학원", "그린힐 숲", "성문"],
     traits: ["학원 도시의 정체성", "하이랜드 점령과 저항의 무대", "잠입 서사가 중심이 되는 지역"],
-    detailHref: "/region-atlas/suikoden-ii/greenhill",
   },
   {
     id: "forest-village",
@@ -731,7 +659,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "그린힐 주변 숲 지역의 마을입니다. 학원 도시와 마틸다 방면을 오가는 외곽 동선에 놓인 생활권입니다.",
     locations: ["숲의 마을", "그린힐 숲"],
     traits: ["그린힐 외곽 거점", "숲길 이동 동선과 연결", "점령지 주변의 생활권을 보여줌"],
-    detailHref: "/region-atlas/suikoden-ii/forest-village",
   },
   {
     id: "matilda-border",
@@ -744,7 +671,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "죠스턴과 마틸다 기사단 사이의 국경 관문입니다. 기사단의 폐쇄성과 전쟁 중립 문제가 처음 체감되는 지점입니다.",
     locations: ["뮤즈-마틸다 국경", "마틸다 방면 길"],
     traits: ["마틸다 진입 관문", "기사단 정치의 거리감이 드러남", "그린힐 이후 북서부 이동과 연결"],
-    detailHref: "/region-atlas/suikoden-ii/matilda-border",
   },
   {
     id: "highway-village",
@@ -757,7 +683,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "록액스로 향하는 도로상의 마을입니다. 마틸다 권역의 생활권과 기사단 성채 도시 사이를 잇는 중간 거점입니다.",
     locations: ["가도 마을", "마틸다 가도"],
     traits: ["마틸다 내부 이동의 중간 지점", "록액스 접근로와 연결", "기사단 권역의 일상적 풍경"],
-    detailHref: "/region-atlas/suikoden-ii/highway-village",
   },
   {
     id: "rockaxe",
@@ -770,7 +695,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "마틸다 기사단의 중심 성채 도시입니다. 기사단의 질서와 듀난 전쟁의 정치적 선택이 집중됩니다.",
     locations: ["록액스 성", "마틸다 방면 길"],
     traits: ["마틸다 기사단의 중심", "죠스턴 북서부 방어의 핵심", "전쟁 후반 선택의 무게가 큰 도시"],
-    detailHref: "/region-atlas/suikoden-ii/rockaxe",
   },
   {
     id: "banner-village",
@@ -783,7 +707,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "트란공화국으로 향하는 길목의 마을입니다. 1편의 무대와 2편의 전쟁이 연결되는 통로 역할을 합니다.",
     locations: ["바나 마을", "트란 가도"],
     traits: ["트란공화국 방문의 출발점", "그레그민스터 동선과 연결", "1편 인물과 세계관을 잇는 지역"],
-    detailHref: "/region-atlas/suikoden-ii/banner-village",
   },
   {
     id: "gregminster",
@@ -796,7 +719,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "1편의 수도였던 도시가 2편에서는 트란공화국의 중심지로 다시 등장합니다. 신동맹군이 트란과 연결되는 상징적인 방문지입니다.",
     locations: ["그레그민스터 궁전", "맥돌 저택", "트란공화국 수도"],
     traits: ["1편과 2편을 직접 연결", "트란공화국 협력 동선", "맥돌 관련 방문지"],
-    detailHref: "/region-atlas/suikoden-ii/gregminster",
   },
   {
     id: "tinto",
@@ -809,7 +731,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "산악 광산 도시국가입니다. 네크로드 사건과 함께 후반부 동맹 확장의 큰 축이 되며, 전쟁이 듀난 북서부 산악권까지 넓어집니다.",
     locations: ["틴토 시내", "광산", "시장 저택"],
     traits: ["후반부 주요 도시국가", "네크로드 사건의 중심", "산악권 동맹 확보와 연결"],
-    detailHref: "/region-atlas/suikoden-ii/tinto",
   },
   {
     id: "crom",
@@ -822,7 +743,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "틴토 산악권의 마을입니다. 광산 도시와 주변 산길을 잇는 생활 거점으로 후반부 이동 동선에 포함됩니다.",
     locations: ["크롬 마을", "산길"],
     traits: ["틴토 주변 산악 마을", "후반부 탐색 동선", "광산권 생활권을 보여주는 장소"],
-    detailHref: "/region-atlas/suikoden-ii/crom",
   },
   {
     id: "tigermouth-village",
@@ -835,7 +755,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "틴토 방면 산길에 위치한 마을입니다. 후반부 산악 지역 이동과 주변 사건을 보조하는 거점입니다.",
     locations: ["코코마을", "틴토 산길"],
     traits: ["틴토 산악 동선의 일부", "후반부 지역 확장과 연결", "외곽 마을 생활권을 보여줌"],
-    detailHref: "/region-atlas/suikoden-ii/tigermouth-village",
   },
   {
     id: "drakemouth-village",
@@ -848,7 +767,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "하이랜드 국경권의 마을입니다. 후반부 하이랜드 본토로 접근하는 과정에서 북방 왕국의 생활권을 보여줍니다.",
     locations: ["용구마을", "하이랜드 가도"],
     traits: ["하이랜드 본토 접근 동선", "후반부 국경 이동과 연결", "황도 루루노이에 진입 전 생활권"],
-    detailHref: "/region-atlas/suikoden-ii/drakemouth-village",
   },
   {
     id: "sajah",
@@ -861,7 +779,6 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "하이랜드 왕국 내부의 마을입니다. 최종 국면에서 수도권 주변의 분위기와 하이랜드 체제의 잔향을 보여주는 지역입니다.",
     locations: ["사자 마을", "하이랜드 수도 방면 길"],
     traits: ["하이랜드 후반부 이동 지역", "수도 접근 전의 마을", "전쟁 막바지의 북방 생활권"],
-    detailHref: "/region-atlas/suikoden-ii/sajah",
   },
   {
     id: "lrnouille",
@@ -874,9 +791,8 @@ export const REGION_ATLAS_LOCATIONS = [
     description: "하이랜드 왕국의 수도입니다. 듀난 통일 전쟁의 최종 국면이 향하는 왕권의 중심지입니다.",
     locations: ["왕궁", "하이랜드 수도"],
     traits: ["하이랜드 왕권의 중심", "전쟁 후반부의 최종 목표", "검은 검의 문장의 정치적 상징과 연결"],
-    detailHref: "/region-atlas/suikoden-ii/lrnouille",
   },
-] as const;
+] as const);
 
 export const REGION_KOREAN_NAMES = {
   "toran-republic": "트란공화국",
