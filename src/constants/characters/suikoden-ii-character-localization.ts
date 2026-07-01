@@ -1,3 +1,7 @@
+/**
+ * 환상수호전 II 캐릭터의 한국어, 영문, 일본어 이름 매핑을 정의합니다.
+ */
+
 import type { SUIKODEN_II_CHARACTERS } from "@/constants/characters/suikoden-ii-characters";
 
 type SuikodenIICharacterId = (typeof SUIKODEN_II_CHARACTERS)[number]["id"];

@@ -1,4 +1,8 @@
-import type { Metadata } from "next";
+/**
+ * 전역 폰트, 테마 초기화, viewport, 공통 헤더/푸터 기반 레이아웃을 정의합니다.
+ */
+
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import ArchiveFooter from "@/components/layout/ArchiveFooter";
@@ -46,6 +50,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f4ec" },
+    { media: "(prefers-color-scheme: dark)", color: "#09111d" },
+  ],
+  viewportFit: "cover",
+};
+
 const themeModeScript = `(() => { try { const storedThemeMode = localStorage.getItem("${THEME_STORAGE_KEY}"); const preferredThemeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "${THEME_MODES.dark}" : "${THEME_MODES.light}"; const themeMode = storedThemeMode === "${THEME_MODES.dark}" || storedThemeMode === "${THEME_MODES.light}" ? storedThemeMode : preferredThemeMode; document.documentElement.classList.toggle("${THEME_MODES.dark}", themeMode === "${THEME_MODES.dark}"); document.documentElement.setAttribute("data-theme", themeMode); } catch (error) {} })();`;
 
 const RootLayout = ({
@@ -61,6 +73,8 @@ const RootLayout = ({
       suppressHydrationWarning
     >
       <body className={APP_SHELL_STYLES.body}>
+        <div aria-hidden="true" className={APP_SHELL_STYLES.safeAreaTop} />
+        <div aria-hidden="true" className={APP_SHELL_STYLES.safeAreaBottom} />
         <Script
           id="archive-theme-mode"
           strategy="beforeInteractive"

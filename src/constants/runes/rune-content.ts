@@ -1,3 +1,7 @@
+/**
+ * 일반 문장과 진정한 문장의 이름, 이미지, 기능, 주문 데이터를 정의합니다.
+ */
+
 import {
   buildRuneCategoryPath,
   buildRuneDetailPath,

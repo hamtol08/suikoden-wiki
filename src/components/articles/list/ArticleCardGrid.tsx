@@ -1,3 +1,7 @@
+/**
+ * 아티클 카드 목록을 이미지와 요약 정보가 있는 그리드로 렌더링합니다.
+ */
+
 import Image from "next/image";
 import Link from "next/link";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";

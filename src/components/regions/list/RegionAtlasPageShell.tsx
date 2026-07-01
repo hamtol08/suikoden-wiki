@@ -1,3 +1,7 @@
+/**
+ * 지역 아틀라스 목록의 작품 탭과 지역 카드 레이아웃을 조합합니다.
+ */
+
 import { BookOpen, Compass } from "lucide-react";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";

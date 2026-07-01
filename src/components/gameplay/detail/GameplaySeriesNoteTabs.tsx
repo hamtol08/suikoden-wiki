@@ -1,5 +1,10 @@
 "use client";
 
+/**
+ * 게임플레이 상세의 작품별 보충 기록을 탭으로 렌더링합니다.
+ */
+
+
 import { useMemo, useState } from "react";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import { type CharacterGameId } from "@/constants/characters/character-content";

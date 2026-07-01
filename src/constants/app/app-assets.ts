@@ -1,6 +1,10 @@
+/**
+ * 이미지 경로, 이미지 크기, 로딩 관련 에셋 상수를 정의합니다.
+ */
+
 export const IMAGE_PATHS = {
-  articleCharacters: "/articles/cards/characters.webp",
-  articleRunes: "/articles/cards/runes-orbit.webp",
+  articleCharacters: "/articles/cards/characters-centered.webp",
+  articleRunes: "/articles/cards/runes-centered.webp",
   hdRemaster: "/hd-remaster.png",
   logoMark: "/genso-mark.svg",
   suikodenI: "/suikoden-i.webp",

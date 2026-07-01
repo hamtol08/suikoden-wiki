@@ -1,3 +1,7 @@
+/**
+ * 문장 색인 페이지의 검색, 탭, 목록 카드 레이아웃을 조합합니다.
+ */
+
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";

@@ -1,3 +1,7 @@
+/**
+ * 전역 헤더, 로고, 검색 색인, 내비게이션 컨트롤을 조합합니다.
+ */
+
 import Image from "next/image";
 import ArchiveHeaderControls from "@/components/layout/ArchiveHeaderControls";
 import { type CharacterSearchResult } from "@/components/layout/ArchiveSearch";

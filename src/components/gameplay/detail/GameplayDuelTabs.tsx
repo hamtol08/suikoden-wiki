@@ -1,5 +1,10 @@
 "use client";
 
+/**
+ * 작품별 일기토 기록과 대응 대사를 탭으로 전환해 보여줍니다.
+ */
+
+
 import { useMemo, useState } from "react";
 import {
   type GameplayDuelActionId,

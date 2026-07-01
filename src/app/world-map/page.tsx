@@ -1,7 +1,11 @@
+/**
+ * world-map 라우트의 서버 페이지를 렌더링하고 필요한 데이터와 공통 레이아웃을 연결합니다.
+ */
+
 import Image from "next/image";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import WorldStageMarker from "@/components/world-map/WorldStageMarker";
-import { APP_ROUTES } from "@/constants/app/app-config";
+import { APP_ROUTES, IMAGE_LOADING } from "@/constants/app/app-config";
 import { IMAGE_PATHS } from "@/constants/app/app-assets";
 import {
   WORLD_STAGE_MARKERS,
@@ -33,7 +37,7 @@ const WorldMap = () => {
                 src={IMAGE_PATHS.worldMap}
                 alt={WORLD_MAP_COPY.mapAlt}
                 fill
-                priority
+                loading={IMAGE_LOADING.eager}
                 className={ATLAS_STYLES.mapImage}
                 sizes={IMAGE_SIZE_HINTS.worldMap}
               />

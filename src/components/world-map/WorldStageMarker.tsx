@@ -1,3 +1,7 @@
+/**
+ * 월드맵 위 주요 지역 마커와 라벨을 렌더링합니다.
+ */
+
 import Link from "next/link";
 import { WORLD_STAGE_MARKERS } from "@/constants/archive/archive-content";
 import {

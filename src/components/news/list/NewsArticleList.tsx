@@ -1,3 +1,7 @@
+/**
+ * 뉴스 항목 목록을 날짜, 태그, 외부 기사 링크와 함께 렌더링합니다.
+ */
+
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import { ARCHIVE_COPY } from "@/constants/archive/archive-content";

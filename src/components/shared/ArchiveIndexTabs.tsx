@@ -1,3 +1,7 @@
+/**
+ * 색인 페이지에서 재사용하는 탭 내비게이션 UI를 제공합니다.
+ */
+
 import Link from "next/link";
 
 type ArchiveIndexTab = {

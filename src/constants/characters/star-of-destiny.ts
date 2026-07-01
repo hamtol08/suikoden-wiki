@@ -1,3 +1,7 @@
+/**
+ * 108성 표기와 운명의 별 관련 상수를 정의합니다.
+ */
+
 export const STAR_OF_DESTINY_KOREAN_NAMES = [
   "천괴성",
   "천강성",

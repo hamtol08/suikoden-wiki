@@ -1,3 +1,7 @@
+/**
+ * Suikoden 관련 뉴스 목록과 뉴스 페이지 문구 데이터를 정의합니다.
+ */
+
 export const SUIKODEN_NEWS_ITEMS = [
   {
     date: "Jun 25, 2026",

@@ -1,9 +1,13 @@
+/**
+ * 전역 레이아웃, 카드, 표, 버튼, 페이지별 Tailwind 스타일 상수를 정의합니다.
+ */
+
 import { THEME_CLASSES } from "@/constants/app/theme";
 
 export const RESPONSIVE_SHELL = {
   pageMax: "mx-auto max-w-7xl",
   headerInner:
-    "mx-auto grid min-h-16 max-w-[96rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 px-4 py-2 sm:px-6 lg:px-8",
+    "mx-auto grid min-h-16 max-w-[96rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 px-4 pb-2 pt-[calc(0.5rem+env(safe-area-inset-top))] sm:px-6 lg:px-8",
   bodyGrid:
     "mx-auto grid max-w-7xl grid-cols-1 xl:grid-cols-[minmax(0,1fr)_320px]",
   atlasGrid:
@@ -17,12 +21,17 @@ export const APP_SHELL_STYLES = {
   html: "h-full antialiased",
   body: "min-h-full flex flex-col",
   page: `min-h-screen ${THEME_CLASSES.page}`,
+  safeAreaTop:
+    "pointer-events-none fixed inset-x-0 top-0 z-[80] h-[env(safe-area-inset-top)] bg-[#f8f4ec] dark:bg-[#111c2c]",
+  safeAreaBottom:
+    "pointer-events-none fixed inset-x-0 bottom-0 z-[80] h-[env(safe-area-inset-bottom)] bg-[#f8f4ec] dark:bg-[#09111d]",
 } as const;
 
 export const FOOTER_STYLES = {
   shell:
     "mt-auto border-t border-[#d8c9a5] bg-[#f8f4ec] text-[#101827] dark:border-[#604403] dark:bg-[#09111d] dark:text-[#f4f1ea]",
-  inner: "mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8",
+  inner:
+    "mx-auto max-w-7xl px-4 pb-[calc(4rem+env(safe-area-inset-bottom))] pt-8 sm:px-6 lg:px-8",
   title: "font-serif text-2xl font-semibold tracking-wide",
   body: "mt-2 max-w-2xl text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
   notice: "mt-4 text-xs font-semibold text-[#7a5900] dark:text-[#e9c176]",

@@ -1,3 +1,7 @@
+/**
+ * 라이트/다크 테마에서 재사용하는 Tailwind 클래스 묶음을 정의합니다.
+ */
+
 export const THEME_CLASSES = {
   page: "bg-[#f6f1e8] text-[#101827] dark:bg-[#0a1421] dark:text-[#f4f1ea]",
   header:

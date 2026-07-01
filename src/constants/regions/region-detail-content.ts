@@ -1,3 +1,7 @@
+/**
+ * 지역 상세 페이지의 마을, 던전, 시설, 몬스터 데이터를 정의합니다.
+ */
+
 export const REGION_DETAIL_COPY = {
   sectionTitle: "지역 기록",
   recruitableTitle: "합류 인물",

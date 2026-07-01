@@ -1,3 +1,7 @@
+/**
+ * 캐릭터 상세 페이지에 쓰이는 상세 기록, 장비, 협력 공격 데이터를 정의합니다.
+ */
+
 export type CharacterDetailRecord = {
   role: {
     recruitment: readonly string[];

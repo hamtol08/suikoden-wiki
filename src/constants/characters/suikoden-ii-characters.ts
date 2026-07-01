@@ -1,3 +1,7 @@
+/**
+ * 환상수호전 II 캐릭터 원천 목록과 기본 속성 데이터를 정의합니다.
+ */
+
 export const SUIKODEN_II_CHARACTER_COPY = {
   eyebrow: "Characters",
   title: "Suikoden II",

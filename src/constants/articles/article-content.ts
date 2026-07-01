@@ -1,3 +1,7 @@
+/**
+ * 아티클 색인 카드와 소개 문구 데이터를 정의합니다.
+ */
+
 import {
   APP_ROUTES,
   buildCharacterGamePath,

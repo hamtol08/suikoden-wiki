@@ -1,3 +1,7 @@
+/**
+ * 지역 상세 페이지의 시설, 몬스터, 상점, 출연 기록을 렌더링합니다.
+ */
+
 import Link from "next/link";
 import MotionSurface from "@/components/shared/MotionSurface";
 import { buildCharacterDetailPath } from "@/constants/app/app-config";

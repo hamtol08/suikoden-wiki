@@ -1,3 +1,7 @@
+/**
+ * 아카이브 전역 푸터 문구와 하단 영역을 렌더링합니다.
+ */
+
 import { ARCHIVE_COPY } from "@/constants/archive/archive-content";
 import { FOOTER_STYLES } from "@/constants/styles/ui-styles";
 

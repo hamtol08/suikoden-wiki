@@ -1,3 +1,7 @@
+/**
+ * 아이템 상세 화면의 요약, 입수 기록, 초기 소유자 정보를 렌더링합니다.
+ */
+
 import Link from "next/link";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";

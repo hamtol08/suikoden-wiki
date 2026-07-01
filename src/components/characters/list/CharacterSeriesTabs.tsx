@@ -1,3 +1,7 @@
+/**
+ * 캐릭터 목록에서 작품별 전환 탭을 렌더링합니다.
+ */
+
 import Link from "next/link";
 import { buildCharacterGamePath } from "@/constants/app/app-config";
 import { CHARACTER_COPY, CHARACTER_SERIES } from "@/constants/characters/character-content";

@@ -1,3 +1,7 @@
+/**
+ * 지역 아틀라스에서 작품별 지역 목록을 전환하는 탭을 렌더링합니다.
+ */
+
 import Link from "next/link";
 import RegionLocationCard from "@/components/regions/list/RegionLocationCard";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";

@@ -1,3 +1,7 @@
+/**
+ * Game8 기반 아이템 입수처와 드롭, 상점 기록 원천 데이터를 정리합니다.
+ */
+
 export const GAME8_ITEM_SOURCE_RECORDS = [
   {
     "game": "suikoden-ii",

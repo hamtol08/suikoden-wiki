@@ -1,3 +1,7 @@
+/**
+ * 아카이브 페이지 상단 소개 영역을 공통 형태로 렌더링합니다.
+ */
+
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 

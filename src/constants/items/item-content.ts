@@ -1,3 +1,7 @@
+/**
+ * 아이템 색인, 상세 표시, 봉인구 효과, 초기 소유자 계산 데이터를 정의합니다.
+ */
+
 import {
   CHARACTER_DETAIL_RECORDS,
   type CharacterDetailRecord,

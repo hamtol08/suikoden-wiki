@@ -1,3 +1,7 @@
+/**
+ * 게임플레이 상세 페이지에서 공략 카드, 기록, 링크 블록을 렌더링합니다.
+ */
+
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 import GameplayDuelTabs from "@/components/gameplay/detail/GameplayDuelTabs";

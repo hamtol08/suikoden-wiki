@@ -1,3 +1,7 @@
+/**
+ * 환상수호전 I 캐릭터의 한국어, 영문, 일본어 이름 매핑을 정의합니다.
+ */
+
 import type suikodenIManifest from "../../../public/characters/suikoden-i/manifest.json";
 
 type SuikodenICharacterId = (typeof suikodenIManifest)[number]["id"];

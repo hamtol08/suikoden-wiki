@@ -1,3 +1,7 @@
+/**
+ * 캐릭터 이름을 상세 페이지 경로와 연결하는 링크 매핑을 정의합니다.
+ */
+
 import { type CharacterGameId } from "@/constants/characters/character-content";
 
 export const CHARACTER_NAME_ALIASES = [

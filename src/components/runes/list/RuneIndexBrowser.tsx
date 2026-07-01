@@ -1,5 +1,10 @@
 "use client";
 
+/**
+ * 문장 목록의 검색어와 자동완성 상태를 관리합니다.
+ */
+
+
 import Image from "next/image";
 import Link from "next/link";
 import { type ChangeEvent, type ReactNode, useMemo, useState } from "react";

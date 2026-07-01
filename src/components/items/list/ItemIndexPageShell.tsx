@@ -1,3 +1,7 @@
+/**
+ * 아이템 색인 페이지의 요약 카드, 검색, 목록 레이아웃을 조합합니다.
+ */
+
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";

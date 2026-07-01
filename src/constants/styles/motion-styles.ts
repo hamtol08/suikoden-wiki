@@ -1,3 +1,7 @@
+/**
+ * 등장 애니메이션과 모션 전환에 쓰는 공통 설정을 정의합니다.
+ */
+
 export const MOTION_PRESETS = {
   search: {
     initial: { opacity: 0, y: -4 },

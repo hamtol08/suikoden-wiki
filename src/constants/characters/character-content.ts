@@ -1,3 +1,7 @@
+/**
+ * 작품별 캐릭터 기본 목록, 표시 순서, 프로필 요약 데이터를 정의합니다.
+ */
+
 import suikodenIManifest from "../../../public/characters/suikoden-i/manifest.json";
 import {
   SUIKODEN_I_CHARACTER_LOCALIZATION,

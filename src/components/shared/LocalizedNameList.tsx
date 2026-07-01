@@ -1,3 +1,7 @@
+/**
+ * 한국어 이름 아래 영문명과 일본어 원문명을 정돈해 보여줍니다.
+ */
+
 export type LocalizedNameEntry = {
   label: string;
   value: string;

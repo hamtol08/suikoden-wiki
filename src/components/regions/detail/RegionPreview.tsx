@@ -1,3 +1,7 @@
+/**
+ * 지역 카드와 상세 링크 미리보기 정보를 렌더링합니다.
+ */
+
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import {
   REGION_ATLAS_LOCATIONS,

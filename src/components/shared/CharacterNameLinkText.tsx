@@ -1,3 +1,7 @@
+/**
+ * 본문 속 108성 캐릭터 이름을 상세 링크로 치환해 렌더링합니다.
+ */
+
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import { buildCharacterDetailPath } from "@/constants/app/app-config";

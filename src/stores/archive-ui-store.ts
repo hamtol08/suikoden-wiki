@@ -1,3 +1,7 @@
+/**
+ * 전역 UI 상태를 관리하는 Zustand 스토어를 정의합니다.
+ */
+
 import { create } from "zustand";
 import { THEME_MODES } from "@/constants/app/app-config";
 

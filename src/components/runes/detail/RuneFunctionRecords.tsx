@@ -1,3 +1,7 @@
+/**
+ * 문장 상세의 주문, 패시브, 장착 효과 기록을 렌더링합니다.
+ */
+
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import {

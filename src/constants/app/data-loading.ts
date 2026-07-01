@@ -1,3 +1,7 @@
+/**
+ * 정적 데이터 로딩 실패에 대비한 안전한 JSON 로딩 헬퍼를 제공합니다.
+ */
+
 type ArchiveDataLoader<T> = () => T;
 
 type ArchiveDataFallback<T> = T | (() => T);

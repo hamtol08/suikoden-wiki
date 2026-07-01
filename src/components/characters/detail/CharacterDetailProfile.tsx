@@ -1,3 +1,7 @@
+/**
+ * 캐릭터 상세 상단 프로필 카드와 핵심 태그를 렌더링합니다.
+ */
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";

@@ -1,3 +1,7 @@
+/**
+ * 캐릭터 목록을 표 형태로 렌더링하고 상세 링크를 연결합니다.
+ */
+
 import Image from "next/image";
 import Link from "next/link";
 import MotionSurface from "@/components/shared/MotionSurface";

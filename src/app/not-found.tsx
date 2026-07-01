@@ -1,3 +1,7 @@
+/**
+ * 존재하지 않는 경로에서 보여줄 404 전용 화면을 렌더링합니다.
+ */
+
 import Link from "next/link";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import { ARCHIVE_NOT_FOUND_COPY } from "@/constants/archive/archive-content";

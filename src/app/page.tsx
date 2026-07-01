@@ -1,3 +1,7 @@
+/**
+ * 홈 화면의 히어로, 주요 아티클, 뉴스 섹션을 렌더링하는 엔트리 페이지입니다.
+ */
+
 import Image from "next/image";
 import Link from "next/link";
 import {

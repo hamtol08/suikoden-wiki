@@ -1,3 +1,7 @@
+/**
+ * 지역 위치 카드의 요약, 태그, 대표 기록을 렌더링합니다.
+ */
+
 import Link from "next/link";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";

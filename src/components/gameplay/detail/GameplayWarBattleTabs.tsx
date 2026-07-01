@@ -1,5 +1,10 @@
 "use client";
 
+/**
+ * 작품별 전쟁 전투 기록을 탭으로 전환해 보여줍니다.
+ */
+
+
 import { useMemo, useState } from "react";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import { type CharacterGameId } from "@/constants/characters/character-content";

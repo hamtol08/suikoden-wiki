@@ -1,3 +1,7 @@
+/**
+ * 게임플레이, 일기토, 전쟁 전투, 본거지, 요리 이벤트 데이터를 정의합니다.
+ */
+
 import {
   buildGameplayDetailPath,
   buildItemDetailPath,

@@ -1,3 +1,7 @@
+/**
+ * 앱 라우트, DOM ID, 로딩 타이밍, 공통 설정 상수를 정의합니다.
+ */
+
 export const APP_LANGUAGE = "ko";
 
 export const ROUTE_ANCHORS = {

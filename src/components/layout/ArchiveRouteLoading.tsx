@@ -1,3 +1,7 @@
+/**
+ * 공통 라우트 로딩 화면의 시각 요소와 진행 바를 렌더링합니다.
+ */
+
 import { ARCHIVE_LOADING_COPY } from "@/constants/archive/archive-content";
 import { ROUTE_LOADING_STYLES } from "@/constants/styles/ui-styles";
 

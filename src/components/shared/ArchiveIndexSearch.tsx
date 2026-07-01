@@ -1,3 +1,7 @@
+/**
+ * 색인 페이지에서 재사용하는 검색 입력과 자동완성 UI를 제공합니다.
+ */
+
 import { type ChangeEventHandler } from "react";
 import { Search, X } from "lucide-react";
 import { ICON_STYLES } from "@/constants/styles/ui-styles";

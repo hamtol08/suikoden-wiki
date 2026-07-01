@@ -1,3 +1,7 @@
+/**
+ * 작품별 캐릭터 목록 페이지의 검색, 탭, 목록 레이아웃을 조합합니다.
+ */
+
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterIndexTable from "@/components/characters/list/CharacterIndexTable";

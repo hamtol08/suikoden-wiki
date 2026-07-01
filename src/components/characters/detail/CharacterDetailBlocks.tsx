@@ -1,3 +1,7 @@
+/**
+ * 캐릭터 상세 화면의 기록, 전투, 장비, 협력 공격 블록을 렌더링합니다.
+ */
+
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";

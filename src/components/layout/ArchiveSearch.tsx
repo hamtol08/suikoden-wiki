@@ -1,5 +1,10 @@
 "use client";
 
+/**
+ * 헤더 캐릭터 검색창의 입력, 추천, 이동 상호작용을 관리합니다.
+ */
+
+
 import {
   type ChangeEvent,
   type KeyboardEvent,

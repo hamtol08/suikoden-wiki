@@ -1,3 +1,7 @@
+/**
+ * 전역 내비게이션, 홈 화면, 타임라인, 월드맵 문구 데이터를 정의합니다.
+ */
+
 import {
   APP_ROUTES,
   buildCharacterDetailPath,
