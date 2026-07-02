@@ -4,10 +4,9 @@
  * 게임플레이 상세의 작품별 보충 기록을 탭으로 렌더링합니다.
  */
 
-
 import { useMemo, useState } from "react";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
-import { type CharacterGameId } from "@/constants/characters/character-content";
+import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-content";
 import { type GameplaySeriesNoteRecord } from "@/constants/gameplay/gameplay-content";
 import { GAMEPLAY_STYLES } from "@/constants/styles/ui-styles";
 
@@ -28,18 +27,6 @@ const buildSeriesPanelId = (game: string) => {
   return `series-note-panel-${game.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 };
 
-const getPreferredCharacterGame = (game?: string): CharacterGameId | undefined => {
-  if (game === "Suikoden I") {
-    return "suikoden-i";
-  }
-
-  if (game === "Suikoden II") {
-    return "suikoden-ii";
-  }
-
-  return undefined;
-};
-
 const GameplaySeriesNoteTabs = ({ copy, notes }: GameplaySeriesNoteTabsProps) => {
   const initialGame = notes[0]?.game ?? "";
   const [activeGame, setActiveGame] = useState(initialGame);
@@ -51,7 +38,7 @@ const GameplaySeriesNoteTabs = ({ copy, notes }: GameplaySeriesNoteTabsProps) =>
     return null;
   }
 
-  const preferredGame = getPreferredCharacterGame(activeNote.game);
+  const preferredGame = resolveCharacterGameIdBySeriesTitle(activeNote.game);
 
   return (
     <div className={GAMEPLAY_STYLES.duelRecordStack}>

@@ -10,3 +10,14 @@ export const THEME_CLASSES = {
   navyPanel: "border-[#c7d3e9] bg-[#131b2e] text-white dark:border-[#38475f]",
   mutedText: "text-[#4b5565] dark:text-[#c5c6cd]",
 } as const;
+
+export const THEME_META_COLORS = {
+  safeAreaLight: "#f8f4ec",
+  safeAreaDark: "#09111d",
+} as const;
+
+export const WORLD_STAGE_MARKER_COLORS = {
+  activeFill: "#ef1f2d",
+  activeGlint: "#ffffff",
+  activeCore: "#fff7f0",
+} as const;

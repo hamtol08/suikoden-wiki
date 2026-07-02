@@ -4,7 +4,6 @@
  * 공통 등장 애니메이션을 적용하는 클라이언트 래퍼입니다.
  */
 
-
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";

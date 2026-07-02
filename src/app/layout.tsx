@@ -8,6 +8,7 @@ import Script from "next/script";
 import ArchiveFooter from "@/components/layout/ArchiveFooter";
 import ArchiveNavigationLoading from "@/components/layout/ArchiveNavigationLoading";
 import { APP_LANGUAGE, THEME_MODES, THEME_STORAGE_KEY } from "@/constants/app/app-config";
+import { THEME_META_COLORS } from "@/constants/app/theme";
 import { ARCHIVE_COPY } from "@/constants/archive/archive-content";
 import { APP_SHELL_STYLES } from "@/constants/styles/ui-styles";
 import "./globals.css";
@@ -52,8 +53,14 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8f4ec" },
-    { media: "(prefers-color-scheme: dark)", color: "#09111d" },
+    {
+      media: "(prefers-color-scheme: light)",
+      color: THEME_META_COLORS.safeAreaLight,
+    },
+    {
+      media: "(prefers-color-scheme: dark)",
+      color: THEME_META_COLORS.safeAreaDark,
+    },
   ],
   viewportFit: "cover",
 };

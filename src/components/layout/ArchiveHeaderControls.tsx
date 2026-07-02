@@ -4,7 +4,6 @@
  * 헤더 내비게이션, 모바일 드로어, 검색, 테마 버튼의 클라이언트 상호작용을 관리합니다.
  */
 
-
 import { useEffect, useReducer } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";

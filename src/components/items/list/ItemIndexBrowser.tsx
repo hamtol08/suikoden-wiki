@@ -4,7 +4,6 @@
  * 아이템 목록의 검색어, 작품 필터, 자동완성 상태를 관리합니다.
  */
 
-
 import Link from "next/link";
 import { type ChangeEvent, type ReactNode, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";

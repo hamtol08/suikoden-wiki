@@ -9,6 +9,7 @@ import GameplaySeriesNoteTabs from "@/components/gameplay/detail/GameplaySeriesN
 import GameplayWarBattleTabs from "@/components/gameplay/detail/GameplayWarBattleTabs";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
+import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-content";
 import {
   GAMEPLAY_DETAIL_COPY,
   GAMEPLAY_DUEL_ACTION_LABELS,
@@ -23,7 +24,6 @@ import {
   type GameplayWarCommandGroup,
   type GameplayWarRoleRecord,
 } from "@/constants/gameplay/gameplay-content";
-import { type CharacterGameId } from "@/constants/characters/character-content";
 import { GAMEPLAY_STYLES } from "@/constants/styles/ui-styles";
 
 type GameplaySectionProps = {
@@ -117,18 +117,6 @@ type GameplayRecipeRecordsProps = {
 
 type GameplayRestaurantTipsProps = {
   tips: readonly GameplayRestaurantTipRecord[];
-};
-
-const getPreferredCharacterGame = (game?: string): CharacterGameId | undefined => {
-  if (game === "Suikoden I") {
-    return "suikoden-i";
-  }
-
-  if (game === "Suikoden II") {
-    return "suikoden-ii";
-  }
-
-  return undefined;
 };
 
 export const GameplaySection = ({
@@ -297,7 +285,7 @@ export const GameplayDetailSeriesNotes = ({
           <h3 className={GAMEPLAY_STYLES.detailCardTitle}>{note.game}</h3>
           <p className={GAMEPLAY_STYLES.detailCardBody}>
             <CharacterNameLinkText
-              preferredGame={getPreferredCharacterGame(note.game)}
+              preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
               text={note.body}
             />
           </p>
@@ -310,7 +298,7 @@ export const GameplayDetailSeriesNotes = ({
                   key={`${note.game}-${pointIndex}`}
                 >
                   <CharacterNameLinkText
-                    preferredGame={getPreferredCharacterGame(note.game)}
+                    preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
                     text={point}
                   />
                 </li>
@@ -334,7 +322,7 @@ export const GameplayDetailSeriesNotes = ({
                     </h5>
                     <p className={GAMEPLAY_STYLES.detailFloorBody}>
                       <CharacterNameLinkText
-                        preferredGame={getPreferredCharacterGame(note.game)}
+                        preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
                         text={floor.summary}
                       />
                     </p>
@@ -345,7 +333,7 @@ export const GameplayDetailSeriesNotes = ({
                           key={`${note.game}-${floor.floor}-${facilityIndex}`}
                         >
                           <CharacterNameLinkText
-                            preferredGame={getPreferredCharacterGame(note.game)}
+                            preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
                             text={facility}
                           />
                         </span>
@@ -354,7 +342,7 @@ export const GameplayDetailSeriesNotes = ({
                     {floor.note ? (
                       <p className={GAMEPLAY_STYLES.detailFloorNote}>
                         <CharacterNameLinkText
-                          preferredGame={getPreferredCharacterGame(note.game)}
+                          preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
                           text={floor.note}
                         />
                       </p>
@@ -385,7 +373,7 @@ export const GameplayDetailSeriesNotes = ({
                           {GAMEPLAY_DETAIL_COPY.facilityLocationLabel}
                         </span>
                         <CharacterNameLinkText
-                          preferredGame={getPreferredCharacterGame(note.game)}
+                          preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
                           text={facility.location}
                         />
                       </p>
@@ -394,14 +382,14 @@ export const GameplayDetailSeriesNotes = ({
                           {GAMEPLAY_DETAIL_COPY.facilityUnlockLabel}
                         </span>
                         <CharacterNameLinkText
-                          preferredGame={getPreferredCharacterGame(note.game)}
+                          preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
                           text={facility.unlock}
                         />
                       </p>
                     </div>
                     <p className={GAMEPLAY_STYLES.detailFacilityBody}>
                       <CharacterNameLinkText
-                        preferredGame={getPreferredCharacterGame(note.game)}
+                        preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
                         text={facility.body}
                       />
                     </p>
@@ -590,7 +578,7 @@ export const GameplayWarBattleGuide = ({
             <p className={GAMEPLAY_STYLES.warGameLabel}>{group.game}</p>
             <p className={GAMEPLAY_STYLES.warGroupBody}>
               <CharacterNameLinkText
-                preferredGame={getPreferredCharacterGame(group.game)}
+                preferredGame={resolveCharacterGameIdBySeriesTitle(group.game)}
                 text={group.body}
               />
             </p>
@@ -605,7 +593,7 @@ export const GameplayWarBattleGuide = ({
                   </h4>
                   <p className={GAMEPLAY_STYLES.warCommandBody}>
                     <CharacterNameLinkText
-                      preferredGame={getPreferredCharacterGame(group.game)}
+                      preferredGame={resolveCharacterGameIdBySeriesTitle(group.game)}
                       text={command.body}
                     />
                   </p>
@@ -661,7 +649,7 @@ export const GameplayWarBattleGuide = ({
             <h4 className={GAMEPLAY_STYLES.warRoleTitle}>{role.title}</h4>
             <p className={GAMEPLAY_STYLES.warRoleBody}>
               <CharacterNameLinkText
-                preferredGame={getPreferredCharacterGame(role.game)}
+                preferredGame={resolveCharacterGameIdBySeriesTitle(role.game)}
                 text={role.body}
               />
             </p>
@@ -672,7 +660,7 @@ export const GameplayWarBattleGuide = ({
                   key={`${role.title}-${pointIndex}`}
                 >
                   <CharacterNameLinkText
-                    preferredGame={getPreferredCharacterGame(role.game)}
+                    preferredGame={resolveCharacterGameIdBySeriesTitle(role.game)}
                     text={point}
                   />
                 </span>

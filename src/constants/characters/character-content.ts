@@ -593,6 +593,10 @@ export type CharacterGameId = keyof typeof CHARACTER_DATA_BY_GAME;
 export type CharacterEntry =
   (typeof CHARACTER_DATA_BY_GAME)[CharacterGameId][number];
 
+const CHARACTER_GAME_ID_BY_SERIES_TITLE = new Map<string, CharacterGameId>(
+  CHARACTER_SERIES.map((series) => [series.title, series.id]),
+);
+
 export const isCharacterGameId = (gameId: string): gameId is CharacterGameId => {
   return gameId in CHARACTER_DATA_BY_GAME;
 };
@@ -607,6 +611,14 @@ export const isCharacterDetailAvailable = (
 export const getCharacterSeries = (gameId: CharacterGameId) => {
   return CHARACTER_SERIES.find((series) => series.id === gameId) ??
     CHARACTER_SERIES[0];
+};
+
+export const resolveCharacterGameIdBySeriesTitle = (
+  seriesTitle?: string,
+): CharacterGameId | undefined => {
+  return seriesTitle
+    ? CHARACTER_GAME_ID_BY_SERIES_TITLE.get(seriesTitle)
+    : undefined;
 };
 
 export const buildCharacterProfileRows = (

@@ -3,6 +3,7 @@
  */
 
 import Link from "next/link";
+import { WORLD_STAGE_MARKER_COLORS } from "@/constants/app/theme";
 import { WORLD_STAGE_MARKERS } from "@/constants/archive/archive-content";
 import {
   ATLAS_STYLES,
@@ -21,17 +22,22 @@ const LocationPinMark = () => (
   >
     <path
       d="M16 2.5c-6.1 0-11 4.8-11 10.8 0 7.8 11 16.2 11 16.2s11-8.4 11-16.2c0-6-4.9-10.8-11-10.8Z"
-      fill="#ef1f2d"
+      fill={WORLD_STAGE_MARKER_COLORS.activeFill}
     />
     <path
       d="M8.5 13.2c0-4.3 3.3-7.7 7.5-7.7"
       fill="none"
       opacity="0.28"
-      stroke="#ffffff"
+      stroke={WORLD_STAGE_MARKER_COLORS.activeGlint}
       strokeLinecap="round"
       strokeWidth="2"
     />
-    <circle cx="16" cy="13.2" fill="#fff7f0" r="4.4" />
+    <circle
+      cx="16"
+      cy="13.2"
+      fill={WORLD_STAGE_MARKER_COLORS.activeCore}
+      r="4.4"
+    />
   </svg>
 );
 

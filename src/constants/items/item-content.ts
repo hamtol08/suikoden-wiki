@@ -1786,7 +1786,6 @@ const formatGame8RecipeSourceLocation = (
 };
 
 const createItemRecordDraft = (
-  game: ItemIndexGameId,
   rawName: string,
   categoryOverride?: ItemCategoryId,
 ): {
@@ -1841,7 +1840,7 @@ const getOrCreateItemRecordDraft = (
   rawName: string,
   categoryOverride?: ItemCategoryId,
 ) => {
-  const created = createItemRecordDraft(game, rawName, categoryOverride);
+  const created = createItemRecordDraft(rawName, categoryOverride);
 
   if (!created) {
     return null;

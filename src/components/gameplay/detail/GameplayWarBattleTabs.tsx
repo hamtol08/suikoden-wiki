@@ -4,10 +4,9 @@
  * 작품별 전쟁 전투 기록을 탭으로 전환해 보여줍니다.
  */
 
-
 import { useMemo, useState } from "react";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
-import { type CharacterGameId } from "@/constants/characters/character-content";
+import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-content";
 import { type GameplayWarBattleRecordGroup } from "@/constants/gameplay/gameplay-content";
 import { GAMEPLAY_STYLES } from "@/constants/styles/ui-styles";
 
@@ -26,18 +25,6 @@ const buildWarBattlePanelId = (game: string) => {
   return `war-battle-panel-${game.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 };
 
-const getPreferredCharacterGame = (game?: string): CharacterGameId | undefined => {
-  if (game === "Suikoden I") {
-    return "suikoden-i";
-  }
-
-  if (game === "Suikoden II") {
-    return "suikoden-ii";
-  }
-
-  return undefined;
-};
-
 const GameplayWarBattleTabs = ({ copy, groups }: GameplayWarBattleTabsProps) => {
   const initialGame = groups[0]?.game ?? "";
   const [activeGame, setActiveGame] = useState(initialGame);
@@ -49,7 +36,7 @@ const GameplayWarBattleTabs = ({ copy, groups }: GameplayWarBattleTabsProps) => 
     return null;
   }
 
-  const preferredGame = getPreferredCharacterGame(activeGroup.game);
+  const preferredGame = resolveCharacterGameIdBySeriesTitle(activeGroup.game);
 
   return (
     <div className={GAMEPLAY_STYLES.duelRecordStack}>
