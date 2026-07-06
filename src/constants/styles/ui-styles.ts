@@ -614,6 +614,67 @@ export const ITEM_STYLES = {
     "mt-2 break-keep text-sm font-semibold leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
 } as const;
 
+export const MONSTER_STYLES = {
+  ...ITEM_STYLES,
+  card:
+    "grid gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 transition hover:border-[#d4af37] hover:bg-white dark:border-[#38475f] dark:bg-[#172337] dark:hover:bg-[#14243a]",
+  cardHeader:
+    "border-b border-[#c7d3e9] pb-3 dark:border-[#38475f]",
+  cardOriginal:
+    "mt-1 text-xs font-bold uppercase text-[#7d8795] dark:text-[#c5c6cd]",
+  encounterGrid: "grid gap-3 md:grid-cols-2",
+  encounterCard:
+    "grid gap-3 rounded-md border border-[#c7d3e9] bg-white/70 p-3 dark:border-[#38475f] dark:bg-[#111c2c]/80",
+  encounterField: "grid gap-1",
+  encounterTerm:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  encounterLocation:
+    "break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+  encounterLocationLink:
+    "break-keep text-sm font-semibold leading-6 text-[#101827] underline decoration-[#d4af37]/50 underline-offset-4 transition hover:text-[#7a5900] hover:decoration-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea] dark:hover:text-[#e9c176]",
+  dropList: "grid gap-2",
+  dropItem:
+    "grid gap-1 rounded border border-[#eee4cd] bg-[#fffaf0] px-3 py-2 dark:border-[#38475f] dark:bg-[#172337] sm:grid-cols-[minmax(0,1fr)_max-content] sm:items-center",
+  dropName:
+    "break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
+  dropNameLink:
+    "break-keep text-sm font-semibold leading-6 text-[#101827] underline decoration-[#d4af37]/50 underline-offset-4 transition hover:text-[#7a5900] hover:decoration-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea] dark:hover:text-[#e9c176]",
+  dropRate:
+    "w-fit rounded border border-[#d4af37]/35 bg-[#fff8e2] px-2.5 py-1 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
+  noDrop:
+    "mt-2 break-keep rounded border border-[#eee4cd] bg-[#fffaf0] px-3 py-2 text-sm font-semibold leading-6 text-[#4b5565] dark:border-[#38475f] dark:bg-[#172337] dark:text-[#c5c6cd]",
+  statTableWrap:
+    "mt-4 overflow-x-auto rounded border border-[#c7d3e9] dark:border-[#38475f]",
+  statTable:
+    "w-full min-w-[48rem] border-collapse bg-white/80 text-sm dark:bg-[#111c2c]/80",
+  statHeadCell:
+    "border-b border-r border-[#c7d3e9] bg-[#edf3ff] px-3 py-3 text-center text-xs font-extrabold uppercase text-[#7a5900] last:border-r-0 dark:border-[#38475f] dark:bg-[#172337] dark:text-[#e9c176]",
+  statCell:
+    "border-b border-r border-[#c7d3e9] px-3 py-3 text-center font-semibold text-[#101827] last:border-r-0 dark:border-[#38475f] dark:text-[#f4f1ea]",
+  statLocationCell:
+    "border-b border-r border-[#c7d3e9] px-3 py-3 text-left font-semibold text-[#101827] dark:border-[#38475f] dark:text-[#f4f1ea]",
+  affinityGrid: "mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3",
+  affinityCard:
+    "rounded border border-[#c7d3e9] bg-[#edf3ff] p-3 dark:border-[#38475f] dark:bg-[#172337]",
+  affinityLabel:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  affinityValue:
+    "mt-2 text-lg font-bold text-[#101827] dark:text-[#f4f1ea]",
+  statusTableWrap:
+    "mt-4 overflow-x-auto rounded border border-[#c7d3e9] dark:border-[#38475f]",
+  statusTable:
+    "w-full min-w-[32rem] border-collapse bg-white/80 text-sm dark:bg-[#111c2c]/80",
+  statusHeadCell:
+    "border-b border-r border-[#c7d3e9] bg-[#edf3ff] px-3 py-4 text-center text-xs font-extrabold uppercase text-[#7a5900] last:border-r-0 dark:border-[#38475f] dark:bg-[#172337] dark:text-[#e9c176]",
+  statusCell:
+    "border-r border-[#c7d3e9] px-3 py-4 text-center text-lg font-bold text-[#101827] last:border-r-0 dark:border-[#38475f] dark:text-[#f4f1ea]",
+  statusLegend:
+    "mt-3 break-keep text-sm font-semibold leading-6 text-[#6b7280] dark:text-[#c5c6cd]",
+  detailBackAction: "mt-5 flex justify-end border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
+  detailBackLink:
+    "rounded border border-[#d4af37] bg-[#fff8e2] px-4 py-2 text-sm font-bold text-[#7a5900] transition hover:bg-[#d4af37] hover:text-[#101827] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:bg-[#322002] dark:text-[#e9c176] dark:hover:bg-[#d4af37] dark:hover:text-[#101827]",
+} as const;
+
 export const ATLAS_STYLES = {
   shell: "min-w-0 px-4 py-6 sm:px-6 md:px-8 lg:px-8 xl:px-10",
   intro:
@@ -622,22 +683,56 @@ export const ATLAS_STYLES = {
   introTitle: "mt-2 font-serif text-4xl font-semibold md:text-5xl",
   introBody: "mt-4 max-w-3xl text-base leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
   mapPanel:
-    "relative mt-6 overflow-hidden rounded-lg border border-[#38475f] bg-[#050b14] shadow-sm",
+    "archive-map-reveal relative mt-6 overflow-hidden rounded-lg border border-[#38475f] bg-[#050b14] shadow-sm",
   mapCanvas: "relative aspect-[1037/770] overflow-hidden bg-[#596674]",
   mapImage: "object-contain opacity-100",
   mapVeil:
-    "pointer-events-none absolute inset-0 bg-transparent",
+    "archive-map-veil pointer-events-none absolute inset-0",
   mapFrame:
-    "pointer-events-none absolute inset-0 rounded-lg border border-[#d8e2ec]/75 shadow-[inset_0_0_0_1px_rgba(5,11,20,0.55),inset_0_0_18px_rgba(255,255,255,0.12),0_0_0_1px_rgba(5,11,20,0.62)]",
+    "archive-map-frame pointer-events-none absolute inset-0 rounded-lg border border-[#d8e2ec]/75 shadow-[inset_0_0_0_1px_rgba(5,11,20,0.55),inset_0_0_18px_rgba(255,255,255,0.12),0_0_0_1px_rgba(5,11,20,0.62)]",
   stageMarker:
-    "absolute flex h-12 w-52 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-full border px-3 text-center shadow-[0_8px_22px_rgba(5,11,20,0.28)] backdrop-blur-[2px] transition hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9c176]",
-  stageMarkerContent: "flex min-w-0 flex-col items-center leading-none",
-  stageMarkerActiveIcon:
-    "size-7 shrink-0 drop-shadow-[0_2px_5px_rgba(5,11,20,0.55)]",
+    "archive-stage-marker group absolute size-3 -translate-x-1/2 -translate-y-1/2 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[#e9c176]",
+  stageMarkerPoint:
+    "archive-stage-marker-point absolute left-1/2 top-1/2 z-20 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border opacity-75 shadow-[0_0_12px_rgba(5,11,20,0.32)]",
+  stageMarkerConnector:
+    "archive-stage-marker-connector pointer-events-none absolute left-1/2 top-1/2 z-10 h-40 w-[28rem] -translate-x-1/2 -translate-y-1/2 overflow-visible",
+  stageMarkerConnectorHalo:
+    "archive-stage-marker-connector-halo fill-none stroke-[#050b14]/55 stroke-[4]",
+  stageMarkerConnectorLine:
+    "archive-stage-marker-connector-line fill-none stroke-[#fffaf0] stroke-2 drop-shadow-[0_1px_4px_rgba(5,11,20,0.48)]",
+  stageMarkerLabel:
+    "absolute top-1/2 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border px-0 text-center shadow-[0_8px_22px_rgba(5,11,20,0.28)] backdrop-blur-[2px] transition group-hover:scale-[1.05] group-focus-visible:scale-[1.05] xl:flex xl:h-12 xl:w-48 xl:px-3 xl:group-hover:scale-[1.03] xl:group-focus-visible:scale-[1.03]",
+  stageMarkerLabelLeft:
+    "archive-stage-marker-label-left",
+  stageMarkerLabelRight:
+    "archive-stage-marker-label-right",
+  stageMarkerShortLabel:
+    "font-serif text-sm font-bold tracking-wide drop-shadow-[0_2px_5px_rgba(5,11,20,0.55)] xl:hidden",
+  stageMarkerContent: "hidden min-w-0 flex-col items-center leading-none xl:flex",
   stageMarkerTitle:
     "block whitespace-nowrap font-serif text-sm font-semibold tracking-wide",
   stageMarkerSubtitle:
     "mt-1 block whitespace-nowrap text-[0.55rem] font-bold uppercase tracking-[0.08em] opacity-85",
+  stageMarkerTooltip:
+    "pointer-events-none absolute left-1/2 z-30 hidden w-72 -translate-x-1/2 rounded-md border border-[#d8c9a5] bg-[#fffdf7]/95 p-3 text-left text-[#101827] opacity-0 shadow-[0_16px_34px_rgba(5,11,20,0.24)] backdrop-blur transition duration-200 after:absolute after:left-1/2 after:size-3 after:-translate-x-1/2 after:rotate-45 after:border-[#d8c9a5] after:bg-[#fffdf7]/95 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 dark:border-[#604403] dark:bg-[#111c2c]/95 dark:text-[#f4f1ea] dark:after:border-[#604403] dark:after:bg-[#111c2c]/95 xl:block",
+  stageMarkerTooltipAbove:
+    "bottom-[calc(100%+0.875rem)] translate-y-1 after:-bottom-[0.4375rem] after:border-b after:border-r",
+  stageMarkerTooltipBelow:
+    "top-[calc(100%+0.875rem)] -translate-y-1 after:-top-[0.4375rem] after:border-l after:border-t",
+  stageMarkerTooltipBody:
+    "block break-keep text-xs font-semibold leading-5 text-[#4b5565] dark:text-[#c5c6cd]",
+  mobileStageNotes:
+    "grid gap-3 border-t border-[#38475f] bg-[#050b14] p-3 xl:hidden",
+  mobileStageNoteCard:
+    "rounded-md border border-[#38475f] bg-[#111c2c]/90 p-3 text-[#f4f1ea] shadow-[inset_0_1px_0_rgba(244,241,234,0.08)]",
+  mobileStageNoteLink:
+    "block rounded-md border border-[#38475f] bg-[#111c2c]/90 p-3 text-[#f4f1ea] shadow-[inset_0_1px_0_rgba(244,241,234,0.08)] transition hover:-translate-y-0.5 hover:border-[#e9c176] hover:bg-[#172337] hover:shadow-[0_12px_26px_rgba(5,11,20,0.28),inset_0_1px_0_rgba(244,241,234,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9c176]",
+  mobileStageNoteTitle:
+    "font-serif text-base font-semibold tracking-wide text-[#f4f1ea]",
+  mobileStageNoteSubtitle:
+    "mt-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-[#e9c176]",
+  mobileStageNoteBody:
+    "mt-2 break-keep text-xs font-semibold leading-5 text-[#c5c6cd]",
   point:
     "absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-center",
   pointIcon:
@@ -985,4 +1080,13 @@ export const GAMEPLAY_STYLES = {
     "mt-4 grid gap-2",
   detailChecklistItem:
     "rounded border border-[#d8c9a5] bg-[#fff8e2] px-3 py-2 text-sm font-semibold text-[#7a5900] dark:border-[#604403] dark:bg-[#322002] dark:text-[#e9c176]",
+} as const;
+
+export const STAGE_MARKER_CONNECTOR_CONFIG = {
+  defaultLabelOffsetRem: 3,
+  elbowMax: 72,
+  elbowMin: 34,
+  elbowRatio: 0.52,
+  unitPerRem: 16,
+  viewBox: "-224 -80 448 160",
 } as const;

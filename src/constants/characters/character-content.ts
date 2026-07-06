@@ -176,6 +176,7 @@ const WEAPON_TYPE_LABELS = {
   Slingshot: "새총",
   Spear: "창",
   Staff: "지팡이",
+  Stones: "돌",
   Sword: "검",
   "Sword (Special)": "검",
   "Throwing Knife": "투척 나이프",
@@ -261,6 +262,8 @@ const UNITE_ATTACK_LABELS = {
   "Talisman Attack/Guardian Attack": "부적 공격 / 수호 공격",
   "Trick Attack": "트릭 공격",
   "Twin Fighter Attack": "쌍투사 공격",
+  "Also participant of True Beauty Attack": "진 미녀 공격",
+  "True Beauty Attack": "진 미녀 공격",
   "Warrior Attack": "전사 공격",
   "Wild Arrow Attack": "와일드 애로우 공격",
   "Winger Attack": "윙 호드 공격",
@@ -780,11 +783,13 @@ export const buildCharacterGameRoleRows = (
 };
 
 const normalizeDetailValue = (value: string) => {
-  if (["[none]", "n/a"].includes(value.trim().toLowerCase())) {
+  const normalizedValue = value.replace(/\s\/\*?Imported Data\*?/g, "").trim();
+
+  if (["[none]", "n/a"].includes(normalizedValue.toLowerCase())) {
     return CHARACTER_COPY.unavailableDetail;
   }
 
-  return translateItemName(value);
+  return translateItemName(normalizedValue);
 };
 
 const EQUIPMENT_FIXED_MARK = "*";
@@ -795,7 +800,7 @@ const removeEquipmentFixedMark = (value: string) =>
   value.replaceAll(EQUIPMENT_FIXED_MARK, "").trim();
 
 const translateFixedEquipmentName = (value: string) =>
-  removeEquipmentFixedMark(translateItemName(value));
+  removeEquipmentFixedMark(normalizeDetailValue(value));
 
 const translateWeaponType = (value: string) => {
   return WEAPON_TYPE_LABELS[value as keyof typeof WEAPON_TYPE_LABELS] ?? value;
@@ -1231,6 +1236,13 @@ const translateUniteAttackLine = (line: string) => {
     return `${translateUniteAttackName(bulletWithMatch[1])}을 ${translateUniteCharacterList(bulletWithMatch[2])}와 함께 사용할 수 있습니다.`;
   }
 
+  const alsoParticipantWithMatch = normalizedLine.match(
+    /^Also participant of (.+?) with (.+)\.$/,
+  );
+  if (alsoParticipantWithMatch) {
+    return `${translateUniteAttackName(alsoParticipantWithMatch[1])}을 ${translateUniteCharacterList(alsoParticipantWithMatch[2])}와 함께 사용할 수 있습니다.`;
+  }
+
   const participateWithMatch = normalizedLine.match(
     /^(.+) can participate in (?:both )?(?:the )?(.+?) with (.+)\.$/,
   );
@@ -1411,6 +1423,16 @@ const parseUniteAttackLine = (line: string): ParsedUniteAttackRecord[] => {
     return buildParsedUniteAttackRecords({
       attackText: bulletWithMatch[1],
       partnerText: bulletWithMatch[2],
+    });
+  }
+
+  const alsoParticipantWithMatch = normalizedLine.match(
+    /^Also participant of (.+?) with (.+)\.$/,
+  );
+  if (alsoParticipantWithMatch) {
+    return buildParsedUniteAttackRecords({
+      attackText: alsoParticipantWithMatch[1],
+      partnerText: alsoParticipantWithMatch[2],
     });
   }
 

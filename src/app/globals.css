@@ -89,8 +89,163 @@ body {
   }
 }
 
+@keyframes archive-map-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.992);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes archive-map-veil-drift {
+  0% {
+    opacity: 0.42;
+    transform: translateX(-18%);
+  }
+
+  50% {
+    opacity: 0.72;
+  }
+
+  100% {
+    opacity: 0.42;
+    transform: translateX(18%);
+  }
+}
+
+@keyframes archive-map-frame-glow {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgba(5, 11, 20, 0.55),
+      inset 0 0 18px rgba(255, 255, 255, 0.12),
+      0 0 0 1px rgba(5, 11, 20, 0.62);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgba(5, 11, 20, 0.55),
+      inset 0 0 24px rgba(233, 193, 118, 0.22),
+      0 0 0 1px rgba(5, 11, 20, 0.62);
+  }
+}
+
+@keyframes archive-stage-marker-enter {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -44%) scale(0.94);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes archive-motion-surface-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.archive-map-reveal {
+  animation: archive-map-reveal 0.42s ease-out both;
+}
+
+.archive-motion-surface {
+  animation: archive-motion-surface-enter 0.28s ease-out both;
+}
+
+.archive-map-veil {
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 42%,
+      rgba(233, 193, 118, 0.1) 50%,
+      rgba(255, 255, 255, 0.08) 58%,
+      transparent 100%
+    );
+  animation: archive-map-veil-drift 7s ease-in-out infinite;
+}
+
+.archive-map-frame {
+  animation: archive-map-frame-glow 5.8s ease-in-out infinite;
+}
+
+.archive-stage-marker {
+  animation: archive-stage-marker-enter 0.34s ease-out both;
+  animation-delay: var(--archive-marker-delay, 0ms);
+  left: var(--archive-marker-x);
+  top: var(--archive-marker-y);
+}
+
+.archive-stage-marker-point,
+.archive-stage-marker-connector {
+  display: none;
+}
+
+.archive-stage-marker-connector {
+  opacity: 0.92;
+}
+
+.archive-stage-marker-label-left,
+.archive-stage-marker-label-right {
+  left: calc(50% - 1.25rem);
+  right: auto;
+}
+
+.archive-stage-marker-connector-halo,
+.archive-stage-marker-connector-line {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+@media (min-width: 1280px) {
+  .archive-stage-marker {
+    left: var(--archive-marker-desktop-x, var(--archive-marker-x));
+    top: var(--archive-marker-desktop-y, var(--archive-marker-y));
+  }
+
+  .archive-stage-marker-point,
+  .archive-stage-marker-connector {
+    display: block;
+  }
+
+  .archive-stage-marker-label-left {
+    left: auto;
+    right: var(--archive-marker-desktop-label-offset, 3rem);
+    top: calc(50% + var(--archive-marker-desktop-label-y, 0rem));
+  }
+
+  .archive-stage-marker-label-right {
+    left: var(--archive-marker-desktop-label-offset, 3rem);
+    right: auto;
+    top: calc(50% + var(--archive-marker-desktop-label-y, 0rem));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .archive-hero-title-flow {
+    animation: none;
+  }
+
+  .archive-map-reveal,
+  .archive-map-veil,
+  .archive-map-frame,
+  .archive-motion-surface,
+  .archive-stage-marker {
     animation: none;
   }
 }

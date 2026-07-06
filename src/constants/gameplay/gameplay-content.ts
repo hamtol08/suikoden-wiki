@@ -174,7 +174,6 @@ export const GAMEPLAY_SYSTEMS = [
   },
 ] as const;
 
-export type GameplaySystemId = (typeof GAMEPLAY_SYSTEMS)[number]["id"];
 export type GameplayDetailId =
   (typeof GAMEPLAY_DETAIL_IDS)[keyof typeof GAMEPLAY_DETAIL_IDS];
 

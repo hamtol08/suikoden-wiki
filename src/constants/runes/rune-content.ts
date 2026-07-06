@@ -139,10 +139,6 @@ export const RUNE_FALLBACK_IMAGE = {
   alt: "문장 대체 마크",
 } as const;
 
-const RUNE_SOURCE_IMAGE_PATH = "/runes/";
-
-const RUNE_NORMALIZED_ICON_PATH = "/rune-icons/";
-
 const buildRuneReference = (
   rune: Omit<RuneReference, "href">,
 ): RuneReference => {
@@ -160,7 +156,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "ソウルイーター",
     category: "trueRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/soul-eater.png",
+    imageSrc: "/rune-icons/soul-eater.png",
   }),
   buildRuneReference({
     id: "bright-shield-rune",
@@ -169,7 +165,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "輝く盾の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/bright-shield-rune.png",
+    imageSrc: "/rune-icons/bright-shield-rune.png",
   }),
   buildRuneReference({
     id: "black-sword-rune",
@@ -178,7 +174,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "黒き刃の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/black-sword-rune.png",
+    imageSrc: "/rune-icons/black-sword-rune.png",
   }),
   buildRuneReference({
     id: "rune-of-beginning",
@@ -187,7 +183,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "始まりの紋章",
     category: "trueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/rune-of-beginning.png",
+    imageSrc: "/rune-icons/rune-of-beginning.png",
   }),
   buildRuneReference({
     id: "rune-of-change",
@@ -196,7 +192,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "変化の紋章",
     category: "trueRune",
     games: ["unrevealed"],
-    imageSrc: "/runes/rune-of-change.png",
+    imageSrc: "/rune-icons/rune-of-change.png",
   }),
   buildRuneReference({
     id: "rune-of-punishment",
@@ -205,7 +201,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "罰の紋章",
     category: "trueRune",
     games: ["suikoden-iv", "suikoden-tactics"],
-    imageSrc: "/runes/rune-of-punishment.png",
+    imageSrc: "/rune-icons/rune-of-punishment.png",
   }),
   buildRuneReference({
     id: "blue-moon-rune",
@@ -214,7 +210,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "月の紋章",
     category: "trueRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/blue-moon-rune.png",
+    imageSrc: "/rune-icons/blue-moon-rune.png",
   }),
   buildRuneReference({
     id: "sovereign-rune",
@@ -231,7 +227,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "火の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/fire-rune.png",
+    imageSrc: "/rune-icons/fire-rune.png",
   }),
   buildRuneReference({
     id: "water-rune",
@@ -240,7 +236,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "水の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/water-rune.png",
+    imageSrc: "/rune-icons/water-rune.png",
   }),
   buildRuneReference({
     id: "wind-rune",
@@ -249,7 +245,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "風の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/wind-rune.png",
+    imageSrc: "/rune-icons/wind-rune.png",
   }),
   buildRuneReference({
     id: "lightning-rune",
@@ -258,7 +254,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "雷の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/lightning-rune.png",
+    imageSrc: "/rune-icons/lightning-rune.png",
   }),
   buildRuneReference({
     id: "thunder-rune",
@@ -267,7 +263,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "雷鳴の紋章",
     category: "generalRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/thunder-rune.png",
+    imageSrc: "/rune-icons/thunder-rune.png",
   }),
   buildRuneReference({
     id: "rage-rune",
@@ -276,7 +272,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "烈火の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/rage-rune.png",
+    imageSrc: "/rune-icons/rage-rune.png",
   }),
   buildRuneReference({
     id: "flowing-rune",
@@ -285,7 +281,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "流水の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/flowing-rune.png",
+    imageSrc: "/rune-icons/flowing-rune.png",
   }),
   buildRuneReference({
     id: "earth-rune",
@@ -294,7 +290,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "土の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/earth-rune.png",
+    imageSrc: "/rune-icons/earth-rune.png",
   }),
   buildRuneReference({
     id: "mother-earth-rune",
@@ -303,7 +299,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "母なる大地の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/mother-earth-rune.png",
+    imageSrc: "/rune-icons/mother-earth-rune.png",
   }),
   buildRuneReference({
     id: "resurrection-rune",
@@ -312,7 +308,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "破魔の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/resurrection-rune.png",
+    imageSrc: "/rune-icons/resurrection-rune.png",
   }),
   buildRuneReference({
     id: "blue-gate-rune",
@@ -321,7 +317,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "蒼き門の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/blue-gate-rune.png",
+    imageSrc: "/rune-icons/blue-gate-rune.png",
   }),
   buildRuneReference({
     id: "darkness-rune",
@@ -330,7 +326,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "闇の紋章",
     category: "generalRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/darkness-rune.png",
+    imageSrc: "/rune-icons/darkness-rune.png",
   }),
   buildRuneReference({
     id: "cyclone-rune",
@@ -339,7 +335,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "旋風の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/cyclone-rune.png",
+    imageSrc: "/rune-icons/cyclone-rune.png",
   }),
   buildRuneReference({
     id: "killer-rune",
@@ -348,7 +344,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "必殺の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/killer-rune.png",
+    imageSrc: "/rune-icons/killer-rune.png",
   }),
   buildRuneReference({
     id: "turtle-rune",
@@ -357,7 +353,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "亀の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/turtle-rune.png",
+    imageSrc: "/rune-icons/turtle-rune.png",
   }),
   buildRuneReference({
     id: "phero-rune",
@@ -366,7 +362,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "フェロの紋章",
     category: "generalRune",
     games: ["suikoden-i"],
-    imageSrc: "/runes/phero-rune.png",
+    imageSrc: "/rune-icons/phero-rune.png",
   }),
   buildRuneReference({
     id: "fortune-rune",
@@ -375,7 +371,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "幸運の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/fortune-rune.png",
+    imageSrc: "/rune-icons/fortune-rune.png",
   }),
   buildRuneReference({
     id: "counter-rune",
@@ -384,7 +380,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "返し刃の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/counter-rune.png",
+    imageSrc: "/rune-icons/counter-rune.png",
   }),
   buildRuneReference({
     id: "hazy-rune",
@@ -393,7 +389,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "陽炎の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/hazy-rune.png",
+    imageSrc: "/rune-icons/hazy-rune.png",
   }),
   buildRuneReference({
     id: "holy-rune",
@@ -402,7 +398,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "神行法の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/holy-rune.png",
+    imageSrc: "/rune-icons/holy-rune.png",
   }),
   buildRuneReference({
     id: "true-holy-rune",
@@ -411,7 +407,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "真神行法の紋章",
     category: "uniqueRune",
     games: ["suikoden-i"],
-    imageSrc: "/runes/true-holy-rune.png",
+    imageSrc: "/rune-icons/true-holy-rune.png",
   }),
   buildRuneReference({
     id: "fury-rune",
@@ -436,7 +432,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "倍返しの紋章",
     category: "generalRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/double-strike-rune.png",
+    imageSrc: "/rune-icons/double-strike-rune.png",
   }),
   buildRuneReference({
     id: "gale-rune",
@@ -445,7 +441,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "疾風の紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/gale-rune.png",
+    imageSrc: "/rune-icons/gale-rune.png",
   }),
   buildRuneReference({
     id: "balance-rune",
@@ -454,7 +450,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "バランスの紋章",
     category: "generalRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/balance-rune.png",
+    imageSrc: "/rune-icons/balance-rune.png",
   }),
   buildRuneReference({
     id: "spark-rune",
@@ -463,7 +459,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "スパークの紋章",
     category: "generalRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/spark-rune.png",
+    imageSrc: "/rune-icons/spark-rune.png",
   }),
   buildRuneReference({
     id: "warrior-rune",
@@ -472,7 +468,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "戦士の紋章",
     category: "generalRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/warrior-rune.png",
+    imageSrc: "/rune-icons/warrior-rune.png",
   }),
   buildRuneReference({
     id: "barrier-rune",
@@ -505,7 +501,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "分身の紋章",
     category: "generalRune",
     games: ["suikoden-i"],
-    imageSrc: "/runes/clone-rune.png",
+    imageSrc: "/rune-icons/clone-rune.png",
   }),
   buildRuneReference({
     id: "blinking-rune",
@@ -514,7 +510,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "瞬きの紋章",
     category: "uniqueRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/blinking-rune.png",
+    imageSrc: "/rune-icons/blinking-rune.png",
   }),
   buildRuneReference({
     id: "falcon-rune",
@@ -523,7 +519,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "はやぶさの紋章",
     category: "uniqueRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/falcon-rune.png",
+    imageSrc: "/rune-icons/falcon-rune.png",
   }),
   buildRuneReference({
     id: "boar-rune",
@@ -532,7 +528,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "猪の紋章",
     category: "uniqueRune",
     games: ["suikoden-i"],
-    imageSrc: "/runes/boar-rune.png",
+    imageSrc: "/rune-icons/boar-rune.png",
   }),
   buildRuneReference({
     id: "hate-rune",
@@ -541,7 +537,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "憎しみの紋章",
     category: "uniqueRune",
     games: ["suikoden-i"],
-    imageSrc: "/runes/hate-rune.png",
+    imageSrc: "/rune-icons/hate-rune.png",
   }),
   buildRuneReference({
     id: "trick-rune",
@@ -550,7 +546,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "からくりの紋章",
     category: "uniqueRune",
     games: ["suikoden-i", "suikoden-ii"],
-    imageSrc: "/runes/trick-rune.png",
+    imageSrc: "/rune-icons/trick-rune.png",
   }),
   buildRuneReference({
     id: "fire-breath-rune",
@@ -583,7 +579,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "大鷹の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/great-hawk-rune.png",
+    imageSrc: "/rune-icons/great-hawk-rune.png",
   }),
   buildRuneReference({
     id: "shining-wind-rune",
@@ -600,7 +596,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "祝福の白き貴婦人の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/blessed-white-lady-rune.png",
+    imageSrc: "/rune-icons/blessed-white-lady-rune.png",
   }),
   buildRuneReference({
     id: "blue-drop-rune",
@@ -633,7 +629,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "目覚めの紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/waking-rune.png",
+    imageSrc: "/rune-icons/waking-rune.png",
   }),
   buildRuneReference({
     id: "spider-slay-rune",
@@ -650,7 +646,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "一角獣の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/unicorn-rune.png",
+    imageSrc: "/rune-icons/unicorn-rune.png",
   }),
   buildRuneReference({
     id: "knight-rune",
@@ -667,7 +663,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "百舌鳥の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/shrike-rune.png",
+    imageSrc: "/rune-icons/shrike-rune.png",
   }),
   buildRuneReference({
     id: "mayfly-rune",
@@ -708,7 +704,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "白聖の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/white-saint-rune.png",
+    imageSrc: "/rune-icons/white-saint-rune.png",
   }),
   buildRuneReference({
     id: "swallow-rune",
@@ -725,7 +721,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "土竜の紋章",
     category: "uniqueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/groundhog-rune.png",
+    imageSrc: "/rune-icons/groundhog-rune.png",
   }),
   buildRuneReference({
     id: "alert-rune",
@@ -734,7 +730,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "警報の紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/alert-rune.png",
+    imageSrc: "/rune-icons/alert-rune.png",
   }),
   buildRuneReference({
     id: "alertness-rune",
@@ -743,7 +739,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "警戒の紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-iv"],
-    imageSrc: "/runes/alertness-rune.png",
+    imageSrc: "/rune-icons/alertness-rune.png",
   }),
   buildRuneReference({
     id: "back-gate-rune",
@@ -776,7 +772,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "獣の紋章",
     category: "trueRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/beast-rune.png",
+    imageSrc: "/rune-icons/beast-rune.png",
   }),
   buildRuneReference({
     id: "beast-rune-suikoden-v",
@@ -833,7 +829,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "チャンピオンの紋章",
     category: "generalRune",
     games: ["suikoden-i","suikoden-ii","suikoden-iii","suikoden-iv","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/champion-s-rune.png",
+    imageSrc: "/rune-icons/champion-s-rune.png",
   }),
   buildRuneReference({
     id: "charm-rune",
@@ -842,7 +838,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "魅惑の紋章",
     category: "generalRune",
     games: ["suikoden-iv","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/charm-rune.png",
+    imageSrc: "/rune-icons/charm-rune.png",
   }),
   buildRuneReference({
     id: "chimera-rune",
@@ -859,7 +855,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "円の紋章",
     category: "trueRune",
     games: ["suikoden-iii"],
-    imageSrc: "/runes/circle-rune.png",
+    imageSrc: "/rune-icons/circle-rune.png",
   }),
   buildRuneReference({
     id: "comet-rune",
@@ -892,7 +888,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "黎明の紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/dawn-rune.png",
+    imageSrc: "/rune-icons/dawn-rune.png",
   }),
   buildRuneReference({
     id: "deer-rune",
@@ -917,7 +913,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "ドレミの紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/doremi-rune.png",
+    imageSrc: "/rune-icons/doremi-rune.png",
   }),
   buildRuneReference({
     id: "double-tusk-rune",
@@ -934,7 +930,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "両刃の紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/double-edged-rune.png",
+    imageSrc: "/rune-icons/double-edged-rune.png",
   }),
   buildRuneReference({
     id: "down-rune",
@@ -951,7 +947,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "竜の紋章",
     category: "trueRune",
     games: ["suikoden-i"],
-    imageSrc: "/runes/dragon-rune.png",
+    imageSrc: "/rune-icons/dragon-rune.png",
   }),
   buildRuneReference({
     id: "drain-rune",
@@ -960,7 +956,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "吸収の紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-iv","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/drain-rune.png",
+    imageSrc: "/rune-icons/drain-rune.png",
   }),
   buildRuneReference({
     id: "dryad-rune",
@@ -1001,7 +997,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "均衡の紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/equilibrium-rune.png",
+    imageSrc: "/rune-icons/equilibrium-rune.png",
   }),
   buildRuneReference({
     id: "exertion-rune",
@@ -1026,7 +1022,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "火蜥蜴の紋章",
     category: "generalRune",
     games: ["suikoden-ii"],
-    imageSrc: "/runes/fire-lizard-rune.png",
+    imageSrc: "/rune-icons/fire-lizard-rune.png",
   }),
   buildRuneReference({
     id: "fire-sealing-rune",
@@ -1035,7 +1031,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "火封じの紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-v"],
-    imageSrc: "/runes/fire-sealing-rune.png",
+    imageSrc: "/rune-icons/fire-sealing-rune.png",
   }),
   buildRuneReference({
     id: "firefly-rune",
@@ -1092,7 +1088,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "門の紋章",
     category: "trueRune",
     games: ["suikoden-i"],
-    imageSrc: "/runes/gate-rune.png",
+    imageSrc: "/rune-icons/gate-rune.png",
   }),
   buildRuneReference({
     id: "giant-owl-rune",
@@ -1109,7 +1105,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "神速の紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/godspeed-rune.png",
+    imageSrc: "/rune-icons/godspeed-rune.png",
   }),
   buildRuneReference({
     id: "gozz-rune",
@@ -1118,7 +1114,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "ゴズの紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-tactics"],
-    imageSrc: "/runes/gozz-rune.png",
+    imageSrc: "/rune-icons/gozz-rune.png",
   }),
   buildRuneReference({
     id: "great-firefly-rune",
@@ -1135,7 +1131,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "鷹の紋章",
     category: "generalRune",
     games: ["suikoden-tactics"],
-    imageSrc: "/runes/hawk-rune.png",
+    imageSrc: "/rune-icons/hawk-rune.png",
   }),
   buildRuneReference({
     id: "haziness-rune",
@@ -1144,7 +1140,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "朧の紋章",
     category: "generalRune",
     games: ["suikoden-i","suikoden-ii","suikoden-iii"],
-    imageSrc: "/runes/haziness-rune.png",
+    imageSrc: "/rune-icons/haziness-rune.png",
   }),
   buildRuneReference({
     id: "hunter-rune",
@@ -1169,7 +1165,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "曲芸師の紋章",
     category: "generalRune",
     games: ["suikoden-iii"],
-    imageSrc: "/runes/jongleur-rune.png",
+    imageSrc: "/rune-icons/jongleur-rune.png",
   }),
   buildRuneReference({
     id: "kangacorn-rune",
@@ -1194,7 +1190,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "鳶の紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-v"],
-    imageSrc: "/runes/kite-rune.png",
+    imageSrc: "/rune-icons/kite-rune.png",
   }),
   buildRuneReference({
     id: "lion-rune",
@@ -1203,7 +1199,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "獅子の紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/lion-rune.png",
+    imageSrc: "/rune-icons/lion-rune.png",
   }),
   buildRuneReference({
     id: "lion-s-trial-rune",
@@ -1308,7 +1304,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "青白き門の紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-v"],
-    imageSrc: "/runes/pale-gate-rune.png",
+    imageSrc: "/rune-icons/pale-gate-rune.png",
   }),
   buildRuneReference({
     id: "parent-turtle-rune",
@@ -1333,7 +1329,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "ピクシーの紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-v"],
-    imageSrc: "/runes/pixie-rune.png",
+    imageSrc: "/rune-icons/pixie-rune.png",
   }),
   buildRuneReference({
     id: "poison-rune",
@@ -1358,7 +1354,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "繁栄の紋章",
     category: "generalRune",
     games: ["suikoden-i","suikoden-ii","suikoden-iv","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/prosperity-rune.png",
+    imageSrc: "/rune-icons/prosperity-rune.png",
   }),
   buildRuneReference({
     id: "raven-rune",
@@ -1383,7 +1379,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "赤い薔薇の紋章",
     category: "generalRune",
     games: ["suikoden-iii","suikoden-iv","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/red-rose-rune.png",
+    imageSrc: "/rune-icons/red-rose-rune.png",
   }),
   buildRuneReference({
     id: "ripple-rune",
@@ -1400,7 +1396,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "盾の紋章",
     category: "generalRune",
     games: ["suikoden-iii","suikoden-v"],
-    imageSrc: "/runes/shield-rune.png",
+    imageSrc: "/rune-icons/shield-rune.png",
   }),
   buildRuneReference({
     id: "shining-wing-rune",
@@ -1457,7 +1453,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "眠りの紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-v"],
-    imageSrc: "/runes/sleep-rune.png",
+    imageSrc: "/rune-icons/sleep-rune.png",
   }),
   buildRuneReference({
     id: "solitude-rune",
@@ -1490,7 +1486,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "星の紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/star-rune.png",
+    imageSrc: "/rune-icons/star-rune.png",
   }),
   buildRuneReference({
     id: "steel-rune",
@@ -1515,7 +1511,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "太陽の紋章",
     category: "trueRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/sun-rune.png",
+    imageSrc: "/rune-icons/sun-rune.png",
   }),
   buildRuneReference({
     id: "sunbeam-rune",
@@ -1524,7 +1520,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "日光の紋章",
     category: "generalRune",
     games: ["suikoden-i","suikoden-ii","suikoden-iii","suikoden-iv","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/sunbeam-rune.png",
+    imageSrc: "/rune-icons/sunbeam-rune.png",
   }),
   buildRuneReference({
     id: "sword-of-cyclone-rune",
@@ -1533,7 +1529,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "旋風剣の紋章",
     category: "generalRune",
     games: ["suikoden-iii","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/sword-of-cyclone-rune.png",
+    imageSrc: "/rune-icons/sword-of-cyclone-rune.png",
   }),
   buildRuneReference({
     id: "sword-of-rage-rune",
@@ -1542,7 +1538,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "烈火剣の紋章",
     category: "generalRune",
     games: ["suikoden-iii","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/sword-of-rage-rune.png",
+    imageSrc: "/rune-icons/sword-of-rage-rune.png",
   }),
   buildRuneReference({
     id: "sword-of-thunder-rune",
@@ -1551,7 +1547,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "雷鳴剣の紋章",
     category: "generalRune",
     games: ["suikoden-iii","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/sword-of-thunder-rune.png",
+    imageSrc: "/rune-icons/sword-of-thunder-rune.png",
   }),
   buildRuneReference({
     id: "sylph-rune",
@@ -1568,7 +1564,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "タイタンの紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/titan-rune.png",
+    imageSrc: "/rune-icons/titan-rune.png",
   }),
   buildRuneReference({
     id: "true-earth-rune",
@@ -1577,7 +1573,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "真なる土の紋章",
     category: "trueRune",
     games: ["suikoden-iii"],
-    imageSrc: "/runes/true-earth-rune.png",
+    imageSrc: "/rune-icons/true-earth-rune.png",
   }),
   buildRuneReference({
     id: "true-fire-rune",
@@ -1586,7 +1582,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "真なる火の紋章",
     category: "trueRune",
     games: ["suikoden-iii"],
-    imageSrc: "/runes/true-fire-rune.png",
+    imageSrc: "/rune-icons/true-fire-rune.png",
   }),
   buildRuneReference({
     id: "true-lightning-rune",
@@ -1595,7 +1591,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "真なる雷の紋章",
     category: "trueRune",
     games: ["suikoden-iii"],
-    imageSrc: "/runes/true-lightning-rune.png",
+    imageSrc: "/rune-icons/true-lightning-rune.png",
   }),
   buildRuneReference({
     id: "true-water-rune",
@@ -1604,7 +1600,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "真なる水の紋章",
     category: "trueRune",
     games: ["suikoden-iii"],
-    imageSrc: "/runes/true-water-rune.png",
+    imageSrc: "/rune-icons/true-water-rune.png",
   }),
   buildRuneReference({
     id: "true-wind-rune",
@@ -1613,7 +1609,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "真なる風の紋章",
     category: "trueRune",
     games: ["suikoden-i","suikoden-ii","suikoden-iii"],
-    imageSrc: "/runes/true-wind-rune.png",
+    imageSrc: "/rune-icons/true-wind-rune.png",
   }),
   buildRuneReference({
     id: "twilight-rune",
@@ -1622,7 +1618,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "黄昏の紋章",
     category: "generalRune",
     games: ["suikoden-v"],
-    imageSrc: "/runes/twilight-rune.png",
+    imageSrc: "/rune-icons/twilight-rune.png",
   }),
   buildRuneReference({
     id: "venom-rune",
@@ -1647,7 +1643,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "毒蛇の紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-tactics","suikoden-v"],
-    imageSrc: "/runes/viper-rune.png",
+    imageSrc: "/rune-icons/viper-rune.png",
   }),
   buildRuneReference({
     id: "wall-rune",
@@ -1656,7 +1652,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "壁の紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-v"],
-    imageSrc: "/runes/wall-rune.png",
+    imageSrc: "/rune-icons/wall-rune.png",
   }),
   buildRuneReference({
     id: "war-horse-rune",
@@ -1689,7 +1685,7 @@ export const RUNE_REFERENCES = [
     japaneseName: "魔法使いの紋章",
     category: "generalRune",
     games: ["suikoden-ii","suikoden-iii","suikoden-iv","suikoden-tactics"],
-    imageSrc: "/runes/wizard-rune.png",
+    imageSrc: "/rune-icons/wizard-rune.png",
   }),
   buildRuneReference({
     id: "wrath-rune",
@@ -3030,7 +3026,7 @@ export const getRuneDisplayImageSrc = (rune: RuneReference) => {
     return RUNE_FALLBACK_IMAGE.src;
   }
 
-  return rune.imageSrc.replace(RUNE_SOURCE_IMAGE_PATH, RUNE_NORMALIZED_ICON_PATH);
+  return rune.imageSrc;
 };
 
 export const isRuneFallbackImage = (rune: RuneReference) => !rune.imageSrc;

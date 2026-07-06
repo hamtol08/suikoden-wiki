@@ -110,6 +110,13 @@ const RuneIndexPageShell = ({ pageId }: RuneIndexPageShellProps) => {
             title={activePage.title}
           />
 
+          <ArchiveIndexTabs
+            activeId={pageId}
+            ariaLabel={RUNE_ARCHIVE_COPY.ariaLabels.categoryTabs}
+            pages={RUNE_INDEX_PAGES}
+            styles={RUNE_STYLES}
+          />
+
           <RuneIndexBrowser
             copy={{
               noResults: RUNE_ARCHIVE_COPY.noResults,
@@ -118,14 +125,7 @@ const RuneIndexPageShell = ({ pageId }: RuneIndexPageShellProps) => {
               searchPlaceholder: RUNE_ARCHIVE_COPY.searchPlaceholder,
             }}
             runes={browserRunes}
-          >
-            <ArchiveIndexTabs
-              activeId={pageId}
-              ariaLabel={RUNE_ARCHIVE_COPY.ariaLabels.categoryTabs}
-              pages={RUNE_INDEX_PAGES}
-              styles={RUNE_STYLES}
-            />
-          </RuneIndexBrowser>
+          />
         </section>
       </div>
     </main>

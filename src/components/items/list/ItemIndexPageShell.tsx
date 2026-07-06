@@ -71,6 +71,7 @@ const buildItemBrowserItem = (item: ItemIndexRecord): ItemIndexBrowserItem => {
     displayNames,
     dropLocations: display.dropLocations,
     dropRates: display.dropRates,
+    game: item.game,
     href: item.href,
     id: item.id,
     hasInitialOwners: item.initialOwners.length > 0,
@@ -147,6 +148,33 @@ const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
             title={ITEM_ARCHIVE_COPY.title}
           />
 
+          <ArchiveIndexTabs
+            activeId={gameId}
+            ariaLabel={ITEM_ARCHIVE_COPY.tabsAriaLabel}
+            pages={ITEM_INDEX_PAGES}
+            styles={ITEM_STYLES}
+          />
+
+          <section className={ITEM_STYLES.summaryGrid}>
+            {summaryItems(summary).map((item, index) => {
+              const isLeadSummary = index === 0;
+
+              return (
+                <article
+                  className={
+                    isLeadSummary ?
+                      ITEM_STYLES.summaryLeadCard :
+                      ITEM_STYLES.summaryCard
+                  }
+                  key={item.label}
+                >
+                  <p className={ITEM_STYLES.summaryLabel}>{item.label}</p>
+                  <p className={ITEM_STYLES.summaryValue}>{item.value}</p>
+                </article>
+              );
+            })}
+          </section>
+
           <ItemIndexBrowser
             copy={{
               clearSearchLabel: ITEM_ARCHIVE_COPY.clearSearchLabel,
@@ -169,34 +197,7 @@ const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
             items={browserItems}
             panelEyebrow={summary.eyebrow}
             panelTitle={activePage.title}
-          >
-            <ArchiveIndexTabs
-              activeId={gameId}
-              ariaLabel={ITEM_ARCHIVE_COPY.tabsAriaLabel}
-              pages={ITEM_INDEX_PAGES}
-              styles={ITEM_STYLES}
-            />
-
-            <section className={ITEM_STYLES.summaryGrid}>
-              {summaryItems(summary).map((item, index) => {
-                const isLeadSummary = index === 0;
-
-                return (
-                  <article
-                    className={
-                      isLeadSummary ?
-                        ITEM_STYLES.summaryLeadCard :
-                        ITEM_STYLES.summaryCard
-                    }
-                    key={item.label}
-                  >
-                    <p className={ITEM_STYLES.summaryLabel}>{item.label}</p>
-                    <p className={ITEM_STYLES.summaryValue}>{item.value}</p>
-                  </article>
-                );
-              })}
-            </section>
-          </ItemIndexBrowser>
+          />
         </section>
       </div>
     </main>

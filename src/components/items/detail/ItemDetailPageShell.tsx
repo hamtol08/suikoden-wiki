@@ -7,6 +7,7 @@ import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
+import MonsterNameLinkText from "@/components/shared/MonsterNameLinkText";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   buildItemRecordDisplay,
@@ -241,7 +242,10 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                           {ITEM_ARCHIVE_COPY.labels.dropLocations}
                         </dt>
                         <dd className={ITEM_STYLES.ledgerValue}>
-                          <CharacterNameLinkText text={record.dropLocations} />
+                          <MonsterNameLinkText
+                            preferredGame={record.key}
+                            text={record.dropLocations}
+                          />
                         </dd>
                       </div>
                       <div className={ITEM_STYLES.ledgerRow}>
@@ -257,7 +261,10 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                           {ITEM_ARCHIVE_COPY.labels.dropRate}
                         </dt>
                         <dd className={ITEM_STYLES.ledgerValue}>
-                          <CharacterNameLinkText text={record.dropRates} />
+                          <MonsterNameLinkText
+                            preferredGame={record.key}
+                            text={record.dropRates}
+                          />
                         </dd>
                       </div>
                       <div className={ITEM_STYLES.ledgerRow}>

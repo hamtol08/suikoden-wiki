@@ -5,13 +5,15 @@
  */
 
 import Link from "next/link";
-import { type ChangeEvent, type ReactNode, useMemo, useState } from "react";
+import { type ChangeEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
 import LocalizedNameList, {
   type LocalizedNameEntry,
 } from "@/components/shared/LocalizedNameList";
+import MonsterNameLinkText from "@/components/shared/MonsterNameLinkText";
 import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
+import { type ItemIndexGameId } from "@/constants/items/item-content";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";
 import { ITEM_STYLES } from "@/constants/styles/ui-styles";
 
@@ -20,6 +22,7 @@ export type ItemIndexBrowserItem = {
   displayNames: readonly LocalizedNameEntry[];
   dropLocations: string;
   dropRates: string;
+  game: ItemIndexGameId;
   hasInitialOwners: boolean;
   href: string;
   id: string;
@@ -51,7 +54,6 @@ type ItemIndexBrowserCopy = {
 };
 
 type ItemIndexBrowserProps = {
-  children: ReactNode;
   copy: ItemIndexBrowserCopy;
   items: readonly ItemIndexBrowserItem[];
   panelEyebrow: string;
@@ -59,7 +61,6 @@ type ItemIndexBrowserProps = {
 };
 
 const ItemIndexBrowser = ({
-  children,
   copy,
   items,
   panelEyebrow,
@@ -97,8 +98,6 @@ const ItemIndexBrowser = ({
         onChange={handleSearchChange}
         onClear={clearSearch}
       />
-
-      {children}
 
       <section className={ITEM_STYLES.panel}>
         <header className={ITEM_STYLES.panelHeader}>
@@ -179,7 +178,10 @@ const ItemIndexBrowser = ({
                       {copy.labels.dropLocations}
                     </dt>
                     <dd className={ITEM_STYLES.ledgerValue}>
-                      {item.dropLocations}
+                      <MonsterNameLinkText
+                        preferredGame={item.game}
+                        text={item.dropLocations}
+                      />
                     </dd>
                   </div>
                   <div className={ITEM_STYLES.ledgerRow}>
@@ -195,7 +197,10 @@ const ItemIndexBrowser = ({
                       {copy.labels.dropRate}
                     </dt>
                     <dd className={ITEM_STYLES.ledgerValue}>
-                      {item.dropRates}
+                      <MonsterNameLinkText
+                        preferredGame={item.game}
+                        text={item.dropRates}
+                      />
                     </dd>
                   </div>
                 </dl>

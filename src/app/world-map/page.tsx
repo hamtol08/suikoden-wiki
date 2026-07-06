@@ -3,6 +3,7 @@
  */
 
 import Image from "next/image";
+import Link from "next/link";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import WorldStageMarker from "@/components/world-map/WorldStageMarker";
 import { APP_ROUTES, IMAGE_LOADING } from "@/constants/app/app-config";
@@ -43,16 +44,61 @@ const WorldMap = () => {
               />
               <div className={ATLAS_STYLES.mapVeil} />
 
-              {WORLD_STAGE_MARKERS.map((marker) => (
-                <WorldStageMarker key={marker.label} marker={marker} />
+              {WORLD_STAGE_MARKERS.map((marker, index) => (
+                <WorldStageMarker
+                  index={index}
+                  key={marker.label}
+                  marker={marker}
+                />
               ))}
 
               <div aria-hidden="true" className={ATLAS_STYLES.mapFrame} />
             </div>
+
+            <div
+              aria-label={WORLD_MAP_COPY.stageNotesLabel}
+              className={ATLAS_STYLES.mobileStageNotes}
+            >
+              {WORLD_STAGE_MARKERS.map((marker) => {
+                if (!("description" in marker)) {
+                  return null;
+                }
+
+                const stageNoteContent = (
+                  <>
+                    <h2 className={ATLAS_STYLES.mobileStageNoteTitle}>
+                      {marker.label}
+                    </h2>
+                    <p className={ATLAS_STYLES.mobileStageNoteSubtitle}>
+                      {marker.subLabel}
+                    </p>
+                    <p className={ATLAS_STYLES.mobileStageNoteBody}>
+                      {marker.description}
+                    </p>
+                  </>
+                );
+
+                return marker.href ? (
+                  <Link
+                    className={ATLAS_STYLES.mobileStageNoteLink}
+                    href={marker.href}
+                    key={`${marker.label}-stage-note`}
+                  >
+                    {stageNoteContent}
+                  </Link>
+                ) : (
+                  <article
+                    className={ATLAS_STYLES.mobileStageNoteCard}
+                    key={`${marker.label}-stage-note`}
+                  >
+                    {stageNoteContent}
+                  </article>
+                );
+              })}
+            </div>
           </section>
         </section>
       </div>
-
     </main>
   );
 };

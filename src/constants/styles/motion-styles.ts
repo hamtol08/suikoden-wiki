@@ -2,17 +2,13 @@
  * 등장 애니메이션과 모션 전환에 쓰는 공통 설정을 정의합니다.
  */
 
+export const MOTION_SURFACE_CLASS = "archive-motion-surface";
+
 export const MOTION_PRESETS = {
   search: {
     initial: { opacity: 0, y: -4 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.25 },
-  },
-  surface: {
-    initial: { opacity: 0, y: 12 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-48px" },
-    transition: { duration: 0.28, ease: "easeOut" },
   },
   list: {
     initial: { opacity: 0 },

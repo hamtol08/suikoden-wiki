@@ -29,10 +29,16 @@ import {
 } from "@/constants/regions/region-detail-content";
 import {
   getRuneFunctionRecords,
+  RUNE_REFERENCES,
   resolveRuneReference,
   type RuneSpellRecord,
 } from "@/constants/runes/rune-content";
 import { GAME8_ITEM_SOURCE_RECORDS } from "@/constants/items/game8-item-source-records";
+import {
+  GAME8_SUIKODEN_I_MONSTER_SOURCE_RECORDS,
+  GAME8_SUIKODEN_II_MONSTER_SOURCE_RECORDS,
+  type Game8MonsterSourceRecord,
+} from "@/constants/monsters/game8-monster-source-records";
 
 export const ITEM_ARCHIVE_COPY = {
   eyebrow: "Items",
@@ -234,7 +240,7 @@ const buildItemReference = (
 
 const ITEM_VALUE_SUFFIX_PATTERN = /(\s\(x\d+\)|\*)/g;
 
-const ITEM_NORMALIZATION_SUFFIX_PATTERN = /(\s\(x\d+\)|\*|\s\/Imported Data)/g;
+const ITEM_NORMALIZATION_SUFFIX_PATTERN = /(\s\(x\d+\)|\s\/\*?Imported Data\*?|\*)/g;
 
 const ITEM_EMPTY_VALUES = new Set(["", "-", "[none]", "None", "None.", "N/A"]);
 
@@ -302,6 +308,16 @@ const GAME8_SOURCE_TYPE_MAP = {
   "Trading Post": "trade",
   "Treasure Chest": "treasure",
 } as const satisfies Record<string, ItemSourceType>;
+
+const GAME8_MONSTER_DROP_RATE_LABELS = {
+  High: "높음",
+  Low: "낮음",
+  Medium: "보통",
+  "Once Only": "1회 한정",
+  Rare: "희귀",
+} as const;
+
+type Game8MonsterDropRate = keyof typeof GAME8_MONSTER_DROP_RATE_LABELS;
 
 const ITEM_RUNE_NAME_PATTERN = /\bRune$/i;
 
@@ -396,9 +412,10 @@ const ITEM_NAME_TRANSLATIONS = {
   "Fire Emblem": "불의 엠블럼",
   "Fire Wall": "불의 벽",
   "Fish Badge": "물고기 배지",
-  "Fried Fish Balls": "생선 완자튀김",
   "Flower Painting": "꽃 그림",
   "Flower Vase": "꽃병",
+  "French Toast": "프렌치토스트",
+  "Fried Fish Balls": "생선 완자튀김",
   "Full Armor": "풀 아머",
   "Full Helmet": "풀헬름",
   "Fur Cape": "모피 망토",
@@ -586,6 +603,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Fish Badge": "魚のバッジ",
   "Flower Painting": "花の絵",
   "Flower Vase": "花びん",
+  "French Toast": "フレンチトースト",
   "Fried Fish Balls": "魚団子揚げ",
   "Full Armor": "フルアーマー",
   "Full Helmet": "フルヘルム",
@@ -710,10 +728,215 @@ const ITEM_DETAIL_EFFECTS = {
   medicine: ["아군 한 명의 체력을 100 회복합니다."],
 } as const satisfies Partial<Record<string, readonly string[]>>;
 
+const ITEM_DIRECT_EFFECTS_BY_ORIGINAL_NAME = {
+  Antitoxin: ["독 상태를 치료합니다."],
+  "Blinking Mirror": ["사용하면 본거지로 즉시 귀환합니다."],
+  "Dragon Incense": ["특정 이벤트와 수집 기록에 쓰이는 특수 아이템입니다."],
+  "Escape Talisman": ["던전이나 위험 지역에서 빠져나와 입구 쪽으로 이동합니다."],
+  "Mega Medicine": ["아군 한 명의 체력을 크게 회복합니다."],
+  Medicine: ["아군 한 명의 체력을 100 회복합니다."],
+  Needle: ["수집 기록과 시설 관련 항목으로 다루는 소형 아이템입니다."],
+  "Sacrificial Buddha": ["소지자가 전투 불능이 될 때 대신 소비되어 전투 복귀를 돕습니다."],
+  "Sacrificial Jizo": ["소지자가 전투 불능이 될 때 대신 소비되어 전투 복귀를 돕습니다."],
+  "Throat Drop": ["침묵 상태를 치료하는 데 쓰입니다."],
+  "World Map": ["이동 중 세계지도를 확인하는 데 쓰입니다."],
+} as const satisfies Record<string, readonly string[]>;
+
+const ITEM_DIRECT_EFFECTS_BY_ID = {
+  binoculars: ["탐색과 수집 기록에 쓰이는 보조 아이템입니다."],
+} as const satisfies Partial<Record<string, readonly string[]>>;
+
+const ITEM_SCROLL_SPELL_NAMES = {
+  "Angry Blow": "분노의 일격",
+  "Bolt of Wrath": "격노의 벼락",
+  "Canopy Defense": "천개의 방어",
+  "Clay Guardian": "진흙 수호자",
+  "Dancing Flames": "춤추는 불꽃",
+  "Drops of Kindness": "상냥함의 물방울",
+  "Fire Wall": "화염의 벽",
+  "Flaming Arrows": "화염 화살",
+  "Healing Wind": "치유의 바람",
+  "Protection Mist": "수호의 안개",
+  "Rain of Kindness": "상냥함의 비",
+  "Revenge Earth": "복수의 대지",
+  "The Shredding": "절단의 바람",
+  "Thunder Runner": "천둥의 질주",
+  "Wind of Sleep": "수면의 바람",
+} as const satisfies Record<string, string>;
+
+const ITEM_RUNE_PIECE_EFFECT_LABELS = {
+  Defense: "방어",
+  Earth: "대지",
+  Fire: "불",
+  Lightning: "번개",
+  Luck: "행운",
+  Magic: "마법",
+  Power: "힘",
+  Skill: "기술",
+  Speed: "속도",
+  Water: "물",
+  Wind: "바람",
+} as const satisfies Record<string, string>;
+
+const ITEM_STONE_EFFECT_LABELS = {
+  Defense: "방어",
+  Luck: "행운",
+  Magic: "마법",
+  "Magic Defense": "마법 방어",
+  Power: "힘",
+  Skill: "기술",
+  Speed: "속도",
+} as const satisfies Record<string, string>;
+
+const ITEM_FOOD_ORIGINAL_NAMES = new Set([
+  "Cream Cutlets",
+  "Cream Stew",
+  "Diet Lunch",
+  "Dried Fish",
+  "Fried Chicken",
+  "Gengis Khan",
+  "Green Salad",
+  "Grilled Beef",
+  "Japanese Stew",
+  "Millet Dumplings",
+  "Sandwich",
+  "Spinach Juice",
+  "Sweet & Sour Fish",
+]);
+
 const buildRuneSpellSummary = (spells?: readonly RuneSpellRecord[]) => {
   return spells
     ?.map((spell) => `Lv.${spell.level} ${spell.name}`)
     .join(", ");
+};
+
+const uniqueItemEffectLines = (lines: readonly string[]) =>
+  [...new Set(lines.filter(Boolean))];
+
+const findRuneSpellEffectLines = (spellName: string) => {
+  return uniqueItemEffectLines(
+    RUNE_REFERENCES.flatMap((rune) =>
+      getRuneFunctionRecords(rune).flatMap((record) =>
+        record.spells
+          ?.filter((spell) => spell.name === spellName)
+          .map((spell) => `${record.game}: ${spell.name} - ${spell.effect}`) ??
+        [],
+      ),
+    ),
+  );
+};
+
+const normalizeScrollSourceName = (name: string) =>
+  normalizeItemName(name).replace(/\s+Scroll$/, "").trim();
+
+const buildScrollEffectLines = (originalNames: readonly string[]) => {
+  const spellNames = uniqueItemEffectLines(
+    originalNames
+      .map(normalizeScrollSourceName)
+      .map((name) =>
+        ITEM_SCROLL_SPELL_NAMES[
+          name as keyof typeof ITEM_SCROLL_SPELL_NAMES
+        ],
+      )
+      .filter(Boolean),
+  );
+
+  return spellNames.flatMap((spellName) => {
+    const spellEffectLines = findRuneSpellEffectLines(spellName);
+
+    return spellEffectLines.length > 0 ?
+        spellEffectLines :
+        [`${spellName} 주문을 1회 사용합니다.`];
+  });
+};
+
+const buildRunePieceEffectLines = (originalNames: readonly string[]) => {
+  const effects = originalNames.flatMap((name) => {
+    const match = normalizeItemName(name).match(
+      /^(Defense|Earth|Fire|Lightning|Luck|Magic|Power|Skill|Speed|Water|Wind) Rune Piece$/,
+    );
+
+    if (!match) {
+      return [];
+    }
+
+    const label =
+      ITEM_RUNE_PIECE_EFFECT_LABELS[
+        match[1] as keyof typeof ITEM_RUNE_PIECE_EFFECT_LABELS
+      ];
+
+    return ["Earth", "Fire", "Lightning", "Water", "Wind"].includes(match[1]) ?
+        [`무기에 부착해 ${label} 계열 보정을 부여하는 문장 조각입니다.`] :
+        [`사용하면 대상의 ${label} 능력치를 올리는 문장 조각입니다.`];
+  });
+
+  return uniqueItemEffectLines(effects);
+};
+
+const buildStoneEffectLines = (originalNames: readonly string[]) => {
+  const effects = originalNames.flatMap((name) => {
+    const match = normalizeItemName(name).match(
+      /^Stone of (Defense|Luck|Magic|Magic Defense|Power|Skill|Speed)$/,
+    );
+
+    if (!match) {
+      return [];
+    }
+
+    const label =
+      ITEM_STONE_EFFECT_LABELS[
+        match[1] as keyof typeof ITEM_STONE_EFFECT_LABELS
+      ];
+
+    return [`사용하면 대상의 ${label} 능력치를 영구적으로 올립니다.`];
+  });
+
+  return uniqueItemEffectLines(effects);
+};
+
+const buildPatternEffectLines = (originalNames: readonly string[]) => {
+  const normalizedNames = originalNames.map(normalizeItemName);
+
+  if (normalizedNames.some((name) => /^(Dragon|Rabbit|Turtle|Unicorn) Plans \d+$/.test(name))) {
+    return ["본거지 수호신상 조합에 쓰이는 설계도입니다."];
+  }
+
+  if (normalizedNames.some((name) => /^Sound Set \d+$/.test(name))) {
+    return ["본거지에서 소리 설정과 수집 기록에 쓰이는 세트 아이템입니다."];
+  }
+
+  if (normalizedNames.some((name) => /^Window Set \d+$/.test(name))) {
+    return ["창 디자인을 바꾸는 데 쓰이는 세트 아이템입니다."];
+  }
+
+  if (normalizedNames.some((name) => ITEM_FOOD_ORIGINAL_NAMES.has(name))) {
+    return ["사용하면 체력 회복에 쓰이는 음식 소비 아이템입니다."];
+  }
+
+  return [];
+};
+
+const buildCategoryEffectLines = (category: ItemCategoryId) => {
+  const effectLines: Partial<Record<ItemCategoryId, readonly string[]>> = {
+    accessory: ["장착하면 능력치, 속성, 상태 보정 등 장신구 효과를 부여합니다."],
+    animal: ["본거지 목장에 맡기면 수집 및 생산 기록으로 등록됩니다."],
+    antique: ["감정소와 수집 기록에 쓰이는 감정품입니다. 직접 전투 효과는 없습니다."],
+    armor: ["몸 방어구로 장비하면 방어 성능을 올립니다."],
+    blacksmithHammer: ["대장간에 맡기면 무기 강화 한도를 확장합니다."],
+    book: ["본거지 도서관에 등록되는 기록 아이템입니다."],
+    guardianPlan: ["본거지 수호신상 조합에 쓰이는 설계도입니다."],
+    helmet: ["머리 방어구로 장비하면 방어 성능을 올립니다."],
+    ingredient: ["요리와 식당 운영에 쓰이는 식재료입니다."],
+    keyItem: ["이벤트 진행과 기록 해금에 쓰이는 중요 아이템입니다. 직접 전투 효과는 없습니다."],
+    paint: ["본거지 꾸미기와 수집 기록에 쓰이는 색상 아이템입니다."],
+    recipe: ["하이요 식당에 등록하면 해당 요리를 만들 수 있습니다."],
+    shield: ["방패로 장비하면 방어 성능을 올립니다."],
+    soundSet: ["본거지에서 소리 설정과 수집 기록에 쓰이는 세트 아이템입니다."],
+    tradeItem: ["교역소 매매와 수집 기록에 쓰이는 거래 아이템입니다. 직접 전투 효과는 없습니다."],
+    windowSet: ["창 디자인을 바꾸는 데 쓰이는 세트 아이템입니다."],
+  };
+
+  return effectLines[category] ?? [];
 };
 
 const buildSealedOrbEffectLines = (originalNames: readonly string[]) => {
@@ -756,6 +979,55 @@ const buildSealedOrbEffectLines = (originalNames: readonly string[]) => {
       ...noteLines,
     ];
   });
+};
+
+const buildGeneratedItemEffectLines = (
+  itemId: string,
+  category: ItemCategoryId,
+  originalNames: readonly string[],
+) => {
+  const directEffects = uniqueItemEffectLines([
+    ...(ITEM_DIRECT_EFFECTS_BY_ID[
+      itemId as keyof typeof ITEM_DIRECT_EFFECTS_BY_ID
+    ] ?? []),
+    ...originalNames.flatMap((name) =>
+      ITEM_DIRECT_EFFECTS_BY_ORIGINAL_NAME[
+        normalizeItemName(name) as keyof typeof ITEM_DIRECT_EFFECTS_BY_ORIGINAL_NAME
+      ] ?? [],
+    ),
+  ]);
+
+  if (directEffects.length > 0) {
+    return directEffects;
+  }
+
+  if (category === "sealedOrb") {
+    return buildSealedOrbEffectLines(originalNames);
+  }
+
+  if (category === "runePiece") {
+    return buildRunePieceEffectLines(originalNames);
+  }
+
+  const stoneEffectLines = buildStoneEffectLines(originalNames);
+
+  if (stoneEffectLines.length > 0) {
+    return stoneEffectLines;
+  }
+
+  const scrollEffectLines = buildScrollEffectLines(originalNames);
+
+  if (scrollEffectLines.length > 0) {
+    return scrollEffectLines;
+  }
+
+  const patternEffectLines = buildPatternEffectLines(originalNames);
+
+  if (patternEffectLines.length > 0) {
+    return patternEffectLines;
+  }
+
+  return buildCategoryEffectLines(category);
 };
 
 const ITEM_RECIPE_RELATED_LINKS = [
@@ -2007,6 +2279,21 @@ const resolveGame8SourceType = (sourceType: string): ItemSourceType => {
   );
 };
 
+const parseGame8MonsterDrop = (dropValue: string) => {
+  const dropMatch = dropValue.trim().match(
+    /^(.+)\s\((High|Medium|Low|Rare|Once Only)\)$/,
+  );
+
+  if (!dropMatch) {
+    return null;
+  }
+
+  return {
+    itemName: dropMatch[1],
+    rate: dropMatch[2] as Game8MonsterDropRate,
+  };
+};
+
 const addGame8ItemSourceRecords = (records: Map<string, ItemRecordDraft>) => {
   GAME8_ITEM_SOURCE_RECORDS.forEach((sourceRecord) => {
     if (!isItemIndexGameId(sourceRecord.game)) {
@@ -2046,6 +2333,39 @@ const addGame8ItemSourceRecords = (records: Map<string, ItemRecordDraft>) => {
   });
 };
 
+const addGame8MonsterDropItemRecords = (
+  records: Map<string, ItemRecordDraft>,
+  game: ItemIndexGameId,
+  monsterSourceRecords: readonly Game8MonsterSourceRecord[],
+) => {
+  monsterSourceRecords.forEach((sourceRecord) => {
+    const monsterName = translateMonsterName(sourceRecord.monster);
+
+    sourceRecord.entries.forEach((entry) => {
+      const [, dropValue = ""] = entry.split(" | ");
+
+      dropValue.split(",").forEach((drop) => {
+        const parsedDrop = parseGame8MonsterDrop(drop);
+
+        if (!parsedDrop) {
+          return;
+        }
+
+        const item = getOrCreateItemRecordDraft(records, game, parsedDrop.itemName);
+
+        if (!item) {
+          return;
+        }
+
+        addItemSourceLocation(item, "drop", monsterName);
+        item.dropRates.add(
+          `${monsterName} · ${GAME8_MONSTER_DROP_RATE_LABELS[parsedDrop.rate]}`,
+        );
+      });
+    });
+  });
+};
+
 const buildItemIndexRecords = () => {
   const records = new Map<string, ItemRecordDraft>();
   const initialOwnerIndex = buildItemInitialOwnerIndex();
@@ -2055,6 +2375,16 @@ const buildItemIndexRecords = () => {
   >;
 
   addGame8ItemSourceRecords(records);
+  addGame8MonsterDropItemRecords(
+    records,
+    ITEM_INDEX_PAGE_IDS.suikodenI,
+    GAME8_SUIKODEN_I_MONSTER_SOURCE_RECORDS,
+  );
+  addGame8MonsterDropItemRecords(
+    records,
+    ITEM_INDEX_PAGE_IDS.suikodenII,
+    GAME8_SUIKODEN_II_MONSTER_SOURCE_RECORDS,
+  );
 
   Object.entries(regionRecords).forEach(([key, regionRecord]) => {
     const [gameId, regionId] = key.split(":");
@@ -2195,10 +2525,10 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
     ],
     effectLines: ITEM_DETAIL_EFFECTS[
       itemId as keyof typeof ITEM_DETAIL_EFFECTS
-    ] ?? (
-      firstRecord.category === "sealedOrb" ?
-        buildSealedOrbEffectLines(originalNames) :
-        []
+    ] ?? buildGeneratedItemEffectLines(
+      itemId,
+      firstRecord.category,
+      originalNames,
     ),
     gameRecords,
   };

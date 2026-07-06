@@ -15,6 +15,7 @@ export const APP_ROUTES = {
   characters: "/characters",
   gameplay: "/gameplay",
   items: "/items",
+  monsters: "/monsters",
   news: "/news",
   runes: "/runes",
   regionAtlas: "/region-atlas",
@@ -34,6 +35,12 @@ export const buildItemDetailPath = (itemId: string) =>
 
 export const buildItemGamePath = (gameId: string) =>
   `${APP_ROUTES.items}/${gameId}`;
+
+export const buildMonsterGamePath = (gameId: string) =>
+  `${APP_ROUTES.monsters}/${gameId}`;
+
+export const buildMonsterDetailPath = (gameId: string, monsterId: string) =>
+  `${buildMonsterGamePath(gameId)}/${monsterId}`;
 
 export const buildGameplayDetailPath = (guideId: string) =>
   `${APP_ROUTES.gameplay}/${guideId}`;

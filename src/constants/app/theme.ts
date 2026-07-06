@@ -15,9 +15,3 @@ export const THEME_META_COLORS = {
   safeAreaLight: "#f8f4ec",
   safeAreaDark: "#09111d",
 } as const;
-
-export const WORLD_STAGE_MARKER_COLORS = {
-  activeFill: "#ef1f2d",
-  activeGlint: "#ffffff",
-  activeCore: "#fff7f0",
-} as const;

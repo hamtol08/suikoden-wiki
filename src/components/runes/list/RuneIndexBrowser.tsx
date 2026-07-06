@@ -6,7 +6,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type ChangeEvent, type ReactNode, useMemo, useState } from "react";
+import { type ChangeEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
 import LocalizedNameList, {
@@ -37,13 +37,11 @@ type RuneIndexBrowserCopy = {
 };
 
 type RuneIndexBrowserProps = {
-  children: ReactNode;
   copy: RuneIndexBrowserCopy;
   runes: readonly RuneIndexBrowserItem[];
 };
 
 const RuneIndexBrowser = ({
-  children,
   copy,
   runes,
 }: RuneIndexBrowserProps) => {
@@ -71,8 +69,6 @@ const RuneIndexBrowser = ({
         value={query}
         onChange={handleSearchChange}
       />
-
-      {children}
 
       <AnimatePresence mode="wait">
         {filteredRunes.length > 0 ? (
