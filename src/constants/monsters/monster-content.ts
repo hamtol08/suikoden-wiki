@@ -3,9 +3,14 @@
  */
 
 import {
+  buildMonsterBossPath,
   buildMonsterDetailPath,
   buildMonsterGamePath,
 } from "@/constants/app/app-config";
+import {
+  formatArchiveCount,
+  formatArchiveNumber,
+} from "@/constants/app/archive-utils";
 import { REGION_ATLAS_LOCATIONS } from "@/constants/archive/archive-content";
 import {
   resolveItemDetailHref,
@@ -16,6 +21,10 @@ import {
   GAME8_SUIKODEN_II_MONSTER_SOURCE_RECORDS,
   type Game8MonsterSourceRecord,
 } from "@/constants/monsters/game8-monster-source-records";
+import {
+  resolveMonsterBossGuide,
+  type MonsterBossGuideRecord,
+} from "@/constants/monsters/monster-boss-guides";
 import { SUIKODEN_I_MONSTER_DETAIL_SOURCE_RECORDS } from "@/constants/monsters/suikoden-i-monster-detail-records";
 import { SUIKODEN_II_MONSTER_DETAIL_SOURCE_RECORDS } from "@/constants/monsters/suikoden-ii-monster-detail-records";
 
@@ -23,9 +32,12 @@ export const MONSTER_ARCHIVE_COPY = {
   eyebrow: "Monsters",
   title: "Monster Bestiary",
   body: "환상수호전 I의 필드 몬스터와 전투 상대를 출현 위치, 드롭 아이템, 획득 확률 기준으로 정리합니다.",
+  bossTitle: "Boss Monsters",
+  bossBody: "작품별 보스 전투를 일반 몬스터 도감과 분리해, 출현 위치와 드롭 기록, 전투 공략 기준으로 정리합니다.",
   tabsAriaLabel: "Monster series",
   searchLabel: "Monster search",
   searchPlaceholder: "몬스터 이름, 출현 위치, 드롭 아이템 검색",
+  bossGameTabsAriaLabel: "Boss monster series",
   clearSearchLabel: "검색어 지우기",
   resultCountSuffix: "종",
   entryCountSuffix: "종",
@@ -35,6 +47,7 @@ export const MONSTER_ARCHIVE_COPY = {
   detailBody: "몬스터별 출현 위치, 드롭 아이템, 위치별 전투 스탯과 속성 반응을 정리합니다.",
   summaryTitle: "Bestiary Summary",
   encounterTitle: "Drops and Locations",
+  bossGuideTitle: "Boss Strategy",
   statTitle: "Level and Stats",
   affinityTitle: "Element Affinity",
   statusResistanceTitle: "Status Resistances",
@@ -50,6 +63,13 @@ export const MONSTER_ARCHIVE_COPY = {
     drops: "드롭",
     dropRate: "획득 확률",
     noDrop: "드롭 없음",
+    bossType: "보스형",
+    suikodenICount: "Suikoden I",
+    suikodenIICount: "Suikoden II",
+    bossOverview: "전투 개요",
+    bossPreparation: "준비",
+    bossTactics: "전투 흐름",
+    bossWarning: "주의점",
     monsterCount: "Monster Summary",
     locationCount: "Locations",
     dropCount: "Drop Items",
@@ -79,13 +99,44 @@ export const MONSTER_ARCHIVE_COPY = {
   },
 } as const;
 
+export const MONSTER_BROWSER_COPY = {
+  clearSearchLabel: MONSTER_ARCHIVE_COPY.clearSearchLabel,
+  entryCountSuffix: MONSTER_ARCHIVE_COPY.entryCountSuffix,
+  labels: {
+    bossType: MONSTER_ARCHIVE_COPY.labels.bossType,
+    drops: MONSTER_ARCHIVE_COPY.labels.drops,
+    englishName: MONSTER_ARCHIVE_COPY.labels.englishName,
+    location: MONSTER_ARCHIVE_COPY.labels.location,
+    noDrop: MONSTER_ARCHIVE_COPY.labels.noDrop,
+  },
+  noResults: MONSTER_ARCHIVE_COPY.noResults,
+  resultCountSuffix: MONSTER_ARCHIVE_COPY.resultCountSuffix,
+  searchLabel: MONSTER_ARCHIVE_COPY.searchLabel,
+  searchPlaceholder: MONSTER_ARCHIVE_COPY.searchPlaceholder,
+} as const;
+
+export const MONSTER_BOSS_BROWSER_COPY = {
+  ...MONSTER_BROWSER_COPY,
+  gameTabsAriaLabel: MONSTER_ARCHIVE_COPY.bossGameTabsAriaLabel,
+} as const;
+
 export const MONSTER_INDEX_PAGE_IDS = {
   suikodenI: "suikoden-i",
   suikodenII: "suikoden-ii",
 } as const;
 
+export const MONSTER_BOSS_PAGE_ID = "bosses";
+
 export type MonsterIndexGameId =
   (typeof MONSTER_INDEX_PAGE_IDS)[keyof typeof MONSTER_INDEX_PAGE_IDS];
+
+export const isMonsterIndexGameId = (
+  gameId: string,
+): gameId is MonsterIndexGameId => {
+  return Object.values(MONSTER_INDEX_PAGE_IDS).includes(
+    gameId as MonsterIndexGameId,
+  );
+};
 
 export const MONSTER_INDEX_PAGES = [
   {
@@ -102,6 +153,21 @@ export const MONSTER_INDEX_PAGES = [
   },
 ] as const satisfies readonly {
   id: MonsterIndexGameId;
+  href: string;
+  title: string;
+  eyebrow: string;
+}[];
+
+export const MONSTER_INDEX_TABS = [
+  ...MONSTER_INDEX_PAGES,
+  {
+    id: MONSTER_BOSS_PAGE_ID,
+    href: buildMonsterBossPath(),
+    title: "Boss Monsters",
+    eyebrow: "Strategy Records",
+  },
+] as const satisfies readonly {
+  id: string;
   href: string;
   title: string;
   eyebrow: string;
@@ -651,6 +717,7 @@ export type MonsterIndexRecord = {
   game: MonsterIndexGameId;
   hasDrops: boolean;
   id: string;
+  isBoss: boolean;
   name: string;
   originalName: string;
   encounters: readonly MonsterEncounterRecord[];
@@ -693,6 +760,7 @@ export type MonsterStatusResistanceRecord = {
 
 export type MonsterDetailRecord = MonsterIndexRecord & {
   affinity: MonsterAffinityRecord | null;
+  bossGuide: MonsterBossGuideRecord | null;
   gameEyebrow: string;
   gameTitle: string;
   indexHref: string;
@@ -934,14 +1002,16 @@ const buildMonsterRecord = (
     parseMonsterEncounter(entry, game),
   );
   const monsterId = buildMonsterId(sourceRecord.monster);
+  const originalName = resolveMonsterDisplayName(sourceRecord.monster);
 
   return {
     detailHref: resolveMonsterDetailHref(game, monsterId),
     game,
     hasDrops: encounters.some((encounter) => encounter.drops.length > 0),
     id: monsterId,
+    isBoss: resolveMonsterBossGuide(game, originalName) !== null,
     name: translateMonsterName(sourceRecord.monster),
-    originalName: resolveMonsterDisplayName(sourceRecord.monster),
+    originalName,
     encounters,
   };
 };
@@ -989,6 +1059,7 @@ const mergeMonsterRecords = (
       hasDrops:
         existing.hasDrops ||
         mergedEncounters.some((encounter) => encounter.drops.length > 0),
+      isBoss: existing.isBoss || record.isBoss,
     });
   });
 
@@ -1014,7 +1085,32 @@ export const getMonsterIndexPage = (gameId: MonsterIndexGameId) => {
 };
 
 export const getMonsterIndexRecordsByGame = (gameId: MonsterIndexGameId) => {
-  return MONSTER_INDEX_RECORDS.filter((record) => record.game === gameId);
+  return MONSTER_INDEX_RECORDS.filter((record) =>
+    record.game === gameId && !record.isBoss
+  );
+};
+
+export const resolveMonsterDetailHrefByName = (
+  gameId: string,
+  monsterName: string,
+) => {
+  if (!isMonsterIndexGameId(gameId)) {
+    return null;
+  }
+
+  const displayName = resolveMonsterDisplayName(monsterName);
+  const monsterId = buildMonsterId(displayName);
+  const record = MONSTER_INDEX_RECORDS.find(
+    (monster) =>
+      monster.game === gameId &&
+      (monster.id === monsterId || monster.originalName === displayName),
+  );
+
+  return record?.detailHref ?? null;
+};
+
+export const getBossMonsterIndexRecords = () => {
+  return MONSTER_INDEX_RECORDS.filter((record) => record.isBoss);
 };
 
 export const getMonsterIndexSummary = (gameId: MonsterIndexGameId) => {
@@ -1038,6 +1134,66 @@ export const getMonsterIndexSummary = (gameId: MonsterIndexGameId) => {
     monsterCount: records.length,
   };
 };
+
+export const buildMonsterSummaryItems = (
+  summary: ReturnType<typeof getMonsterIndexSummary>,
+) => [
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.monsterCount,
+    value: formatArchiveCount(
+      summary.monsterCount,
+      MONSTER_ARCHIVE_COPY.entryCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.locationCount,
+    value: formatArchiveNumber(summary.locationCount),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.dropCount,
+    value: formatArchiveNumber(summary.dropCount),
+  },
+];
+
+export const getBossMonsterIndexSummary = () => {
+  const records = getBossMonsterIndexRecords();
+
+  return {
+    monsterCount: records.length,
+    suikodenICount: records.filter((record) =>
+      record.game === MONSTER_INDEX_PAGE_IDS.suikodenI
+    ).length,
+    suikodenIICount: records.filter((record) =>
+      record.game === MONSTER_INDEX_PAGE_IDS.suikodenII
+    ).length,
+  };
+};
+
+export const buildBossMonsterSummaryItems = (
+  summary: ReturnType<typeof getBossMonsterIndexSummary>,
+) => [
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.monsterCount,
+    value: formatArchiveCount(
+      summary.monsterCount,
+      MONSTER_ARCHIVE_COPY.entryCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.suikodenICount,
+    value: formatArchiveCount(
+      summary.suikodenICount,
+      MONSTER_ARCHIVE_COPY.entryCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.suikodenIICount,
+    value: formatArchiveCount(
+      summary.suikodenIICount,
+      MONSTER_ARCHIVE_COPY.entryCountSuffix,
+    ),
+  },
+];
 
 const getMonsterDetailSourceRecord = (
   monster: MonsterIndexRecord,
@@ -1082,6 +1238,7 @@ const buildMonsterDetailRecord = (
   return {
     ...monster,
     affinity: detailSourceRecord?.affinities ?? null,
+    bossGuide: resolveMonsterBossGuide(monster.game, monster.originalName),
     gameEyebrow: page.eyebrow,
     gameTitle: page.title,
     indexHref: page.href,

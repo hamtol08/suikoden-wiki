@@ -8,6 +8,7 @@ import GameplayDuelTabs from "@/components/gameplay/detail/GameplayDuelTabs";
 import GameplaySeriesNoteTabs from "@/components/gameplay/detail/GameplaySeriesNoteTabs";
 import GameplayWarBattleTabs from "@/components/gameplay/detail/GameplayWarBattleTabs";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import ItemNameLinkText from "@/components/shared/ItemNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-content";
 import {
@@ -17,6 +18,8 @@ import {
   groupGameplayWarBattleRecordsByGame,
   type GameplayCookingContestRecord,
   type GameplayDuelRecord,
+  type GameplayGuardianDeityPlanRecord,
+  type GameplayMinigameRecord,
   type GameplayRecipeRecord,
   type GameplayRestaurantTipRecord,
   type GameplaySeriesNoteRecord,
@@ -109,6 +112,14 @@ type GameplayWarBattleGuideProps = {
 
 type GameplayCookingContestRecordsProps = {
   records: readonly GameplayCookingContestRecord[];
+};
+
+type GameplayMinigameRecordsProps = {
+  records: readonly GameplayMinigameRecord[];
+};
+
+type GameplayGuardianDeityPlanRecordsProps = {
+  records: readonly GameplayGuardianDeityPlanRecord[];
 };
 
 type GameplayRecipeRecordsProps = {
@@ -468,6 +479,177 @@ export const GameplayCookingContestRecords = ({
           </p>
         </article>
       ))}
+    </div>
+  );
+};
+
+export const GameplayMinigameRecords = ({
+  records,
+}: GameplayMinigameRecordsProps) => {
+  if (records.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={GAMEPLAY_STYLES.minigameGrid}>
+      {records.map((record) => (
+        <article
+          className={GAMEPLAY_STYLES.minigameCard}
+          key={`${record.game}-${record.title}`}
+        >
+          <header className={GAMEPLAY_STYLES.minigameHeader}>
+            <p className={GAMEPLAY_STYLES.minigameGame}>{record.game}</p>
+            <h3 className={GAMEPLAY_STYLES.minigameTitle}>
+              <CharacterNameLinkText
+                preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
+                text={record.title}
+              />
+            </h3>
+          </header>
+          <dl className={GAMEPLAY_STYLES.minigameMetaGrid}>
+            <div className={GAMEPLAY_STYLES.minigameMeta}>
+              <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
+                {GAMEPLAY_DETAIL_COPY.minigameLocationLabel}
+              </dt>
+              <dd>
+                <CharacterNameLinkText
+                  preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
+                  text={record.location}
+                />
+              </dd>
+            </div>
+            <div className={GAMEPLAY_STYLES.minigameMeta}>
+              <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
+                {GAMEPLAY_DETAIL_COPY.minigameUnlockLabel}
+              </dt>
+              <dd>
+                <CharacterNameLinkText
+                  preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
+                  text={record.unlock}
+                />
+              </dd>
+            </div>
+            <div className={GAMEPLAY_STYLES.minigameMeta}>
+              <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
+                {GAMEPLAY_DETAIL_COPY.minigameRewardLabel}
+              </dt>
+              <dd>
+                <CharacterNameLinkText
+                  preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
+                  text={record.reward}
+                />
+              </dd>
+            </div>
+          </dl>
+          <p className={GAMEPLAY_STYLES.minigameBody}>
+            <CharacterNameLinkText
+              preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
+              text={record.body}
+            />
+          </p>
+          {record.relatedItems ? (
+            <div className={GAMEPLAY_STYLES.minigameRelatedList}>
+              {record.relatedItems.map((item) => (
+                <span
+                  className={GAMEPLAY_STYLES.tag}
+                  key={`${record.game}-${record.title}-${item}`}
+                >
+                  <ItemNameLinkText text={item} />
+                </span>
+              ))}
+            </div>
+          ) : null}
+          <div className={GAMEPLAY_STYLES.minigameTipBlock}>
+            <p className={GAMEPLAY_STYLES.minigameTipTitle}>
+              {GAMEPLAY_DETAIL_COPY.minigameTipsLabel}
+            </p>
+            <ul className={GAMEPLAY_STYLES.minigameTipList}>
+              {record.tips.map((tip, tipIndex) => (
+                <li
+                  className={GAMEPLAY_STYLES.minigameTipItem}
+                  key={`${record.game}-${record.title}-${tipIndex}`}
+                >
+                  <CharacterNameLinkText
+                    preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
+                    text={tip}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+};
+
+export const GameplayGuardianDeityPlanRecords = ({
+  records,
+}: GameplayGuardianDeityPlanRecordsProps) => {
+  if (records.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={GAMEPLAY_STYLES.guardianPlanTableWrap}>
+      <table className={GAMEPLAY_STYLES.guardianPlanTable}>
+        <thead>
+          <tr>
+            <th className={GAMEPLAY_STYLES.guardianPlanHeadCell}>
+              {GAMEPLAY_DETAIL_COPY.guardianDeityPlanLabel}
+            </th>
+            <th className={GAMEPLAY_STYLES.guardianPlanHeadCell}>
+              {GAMEPLAY_DETAIL_COPY.guardianDeityCodeLabel}
+            </th>
+            <th className={GAMEPLAY_STYLES.guardianPlanHeadCell}>
+              {GAMEPLAY_DETAIL_COPY.guardianDeityHeadLabel}
+            </th>
+            <th className={GAMEPLAY_STYLES.guardianPlanHeadCell}>
+              {GAMEPLAY_DETAIL_COPY.guardianDeityBodyLabel}
+            </th>
+            <th className={GAMEPLAY_STYLES.guardianPlanHeadCell}>
+              {GAMEPLAY_DETAIL_COPY.guardianDeityLegsLabel}
+            </th>
+            <th className={GAMEPLAY_STYLES.guardianPlanHeadCell}>
+              {GAMEPLAY_DETAIL_COPY.guardianDeityTailLabel}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {records.map((record) => (
+            <tr key={record.code}>
+              <th className={GAMEPLAY_STYLES.guardianPlanNameCell} scope="row">
+                <span className={GAMEPLAY_STYLES.guardianPlanName}>
+                  {record.name}
+                </span>
+                <span className={GAMEPLAY_STYLES.guardianPlanBody}>
+                  {record.body}
+                </span>
+              </th>
+              <td className={GAMEPLAY_STYLES.guardianPlanCodeCell}>
+                {record.code}
+              </td>
+              {record.planLocations.map((location, locationIndex) => (
+                <td
+                  className={GAMEPLAY_STYLES.guardianPlanCell}
+                  key={`${record.code}-${locationIndex}`}
+                >
+                  <span className={GAMEPLAY_STYLES.guardianPlanLocationLabel}>
+                    <ItemNameLinkText
+                      preferredGame="suikoden-ii"
+                      text={`${record.name} ${locationIndex + 1}`}
+                    />
+                  </span>
+                  <span className={GAMEPLAY_STYLES.guardianPlanLocationLabel}>
+                    {GAMEPLAY_DETAIL_COPY.guardianDeityLocationLabel}
+                  </span>
+                  <span>{location}</span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -9,9 +9,14 @@ import {
   MONSTER_INDEX_RECORDS,
   type MonsterIndexGameId,
 } from "@/constants/monsters/monster-content";
+import {
+  CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
+  CHARACTER_LINK_TOKEN_PATTERN,
+} from "@/constants/characters/character-linking";
 import { TEXT_STYLES } from "@/constants/styles/ui-styles";
 
 type MonsterNameLinkTextProps = {
+  linkClassName?: string;
   preferredGame?: MonsterIndexGameId;
   text: string;
 };
@@ -22,13 +27,11 @@ type MonsterNameLinkReference = {
   name: string;
 };
 
-const MONSTER_LINK_TOKEN_PATTERN = /[0-9A-Za-z가-힣]/;
-
 const escapeRegExp = (value: string) =>
   value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 const isTokenCharacter = (value?: string) => {
-  return value ? MONSTER_LINK_TOKEN_PATTERN.test(value) : false;
+  return value ? CHARACTER_LINK_TOKEN_PATTERN.test(value) : false;
 };
 
 const isDelimitedMonsterName = (
@@ -39,7 +42,17 @@ const isDelimitedMonsterName = (
   const previous = text[offset - 1];
   const next = text[offset + match.length];
 
-  return !isTokenCharacter(previous) && !isTokenCharacter(next);
+  if (isTokenCharacter(previous)) {
+    return false;
+  }
+
+  if (!isTokenCharacter(next)) {
+    return true;
+  }
+
+  return CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN.test(
+    text.slice(offset + match.length),
+  );
 };
 
 const buildMonsterReferences = () => {
@@ -101,6 +114,7 @@ const resolveMonsterReference = (
 
 const renderLinkedText = (
   text: string,
+  linkClassName: string = TEXT_STYLES.characterNameLink,
   preferredGame?: MonsterIndexGameId,
 ) => {
   const nodes: ReactNode[] = [];
@@ -122,7 +136,7 @@ const renderLinkedText = (
     }
 
     nodes.push(
-      <Link className={TEXT_STYLES.characterNameLink} href={reference.href}>
+      <Link className={linkClassName} href={reference.href}>
         {match}
       </Link>,
     );
@@ -147,10 +161,11 @@ const renderLinkedText = (
 };
 
 const MonsterNameLinkText = ({
+  linkClassName,
   preferredGame,
   text,
 }: MonsterNameLinkTextProps) => {
-  return <>{renderLinkedText(text, preferredGame)}</>;
+  return <>{renderLinkedText(text, linkClassName, preferredGame)}</>;
 };
 
 export default MonsterNameLinkText;

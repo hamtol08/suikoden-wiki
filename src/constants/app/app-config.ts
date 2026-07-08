@@ -39,6 +39,8 @@ export const buildItemGamePath = (gameId: string) =>
 export const buildMonsterGamePath = (gameId: string) =>
   `${APP_ROUTES.monsters}/${gameId}`;
 
+export const buildMonsterBossPath = () => `${APP_ROUTES.monsters}/bosses`;
+
 export const buildMonsterDetailPath = (gameId: string, monsterId: string) =>
   `${buildMonsterGamePath(gameId)}/${monsterId}`;
 

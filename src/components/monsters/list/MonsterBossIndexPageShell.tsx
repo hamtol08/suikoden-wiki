@@ -1,24 +1,23 @@
 /**
- * 몬스터 도감 페이지의 서버 레이아웃과 목록 데이터를 조합합니다.
+ * 보스 몬스터 전용 색인 페이지의 서버 레이아웃과 목록 데이터를 조합합니다.
  */
 
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
-import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
-import ArchiveSummaryGrid from "@/components/shared/ArchiveSummaryGrid";
-import MonsterIndexBrowser from "@/components/monsters/list/MonsterIndexBrowser";
+import MonsterBossIndexBrowser from "@/components/monsters/list/MonsterBossIndexBrowser";
 import { buildMonsterBrowserItem } from "@/components/monsters/list/monster-browser-records";
+import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import ArchiveSummaryGrid from "@/components/shared/ArchiveSummaryGrid";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
-  buildMonsterSummaryItems,
-  getMonsterIndexPage,
-  getMonsterIndexRecordsByGame,
-  getMonsterIndexSummary,
+  buildBossMonsterSummaryItems,
+  getBossMonsterIndexRecords,
+  getBossMonsterIndexSummary,
   MONSTER_ARCHIVE_COPY,
-  MONSTER_BROWSER_COPY,
+  MONSTER_BOSS_BROWSER_COPY,
+  MONSTER_BOSS_PAGE_ID,
   MONSTER_INDEX_PAGES,
   MONSTER_INDEX_TABS,
-  type MonsterIndexGameId,
 } from "@/constants/monsters/monster-content";
 import {
   APP_SHELL_STYLES,
@@ -26,40 +25,30 @@ import {
   RESPONSIVE_SHELL,
 } from "@/constants/styles/ui-styles";
 
-type MonsterIndexPageShellProps = {
-  gameId: MonsterIndexGameId;
-};
-
-const MonsterIndexPageShell = ({ gameId }: MonsterIndexPageShellProps) => {
-  const activePage = loadArchiveJsonSafely({
-    fallback: () => MONSTER_INDEX_PAGES.find((page) => page.id === gameId) ??
-      MONSTER_INDEX_PAGES[0],
-    label: `monster-index-page:${gameId}`,
-    load: () => getMonsterIndexPage(gameId),
-  });
-
+const MonsterBossIndexPageShell = () => {
+  const activePage = MONSTER_INDEX_TABS.find((page) =>
+    page.id === MONSTER_BOSS_PAGE_ID
+  ) ?? MONSTER_INDEX_TABS[0];
   const monsters = loadArchiveJsonSafely({
     fallback: [],
-    label: `monster-index-records:${gameId}`,
-    load: () => getMonsterIndexRecordsByGame(gameId),
+    label: "boss-monster-index-records",
+    load: () => getBossMonsterIndexRecords(),
   });
-
   const browserItems = monsters.flatMap((monster) =>
     loadArchiveJsonSafely({
       fallback: [],
-      label: `monster-browser-record:${monster.id}`,
-      load: () => [buildMonsterBrowserItem(monster)],
+      label: `boss-monster-browser-record:${monster.id}`,
+      load: () => [buildMonsterBrowserItem(monster, monster.game)],
     }),
   );
-
   const summary = loadArchiveJsonSafely({
     fallback: {
-      dropCount: 0,
-      locationCount: 0,
       monsterCount: 0,
+      suikodenICount: 0,
+      suikodenIICount: 0,
     },
-    label: `monster-index-summary:${gameId}`,
-    load: () => getMonsterIndexSummary(gameId),
+    label: "boss-monster-index-summary",
+    load: () => getBossMonsterIndexSummary(),
   });
 
   return (
@@ -69,29 +58,33 @@ const MonsterIndexPageShell = ({ gameId }: MonsterIndexPageShellProps) => {
       <div className={RESPONSIVE_SHELL.atlasGrid}>
         <section className={MONSTER_STYLES.shell}>
           <ArchivePageIntro
-            body={MONSTER_ARCHIVE_COPY.body}
+            body={MONSTER_ARCHIVE_COPY.bossBody}
             eyebrow={MONSTER_ARCHIVE_COPY.eyebrow}
             styles={MONSTER_STYLES}
-            title={MONSTER_ARCHIVE_COPY.title}
+            title={MONSTER_ARCHIVE_COPY.bossTitle}
           />
 
           <ArchiveIndexTabs
-            activeId={gameId}
+            activeId={MONSTER_BOSS_PAGE_ID}
             ariaLabel={MONSTER_ARCHIVE_COPY.tabsAriaLabel}
             pages={MONSTER_INDEX_TABS}
             styles={MONSTER_STYLES}
           />
 
           <ArchiveSummaryGrid
-            items={buildMonsterSummaryItems(summary)}
+            items={buildBossMonsterSummaryItems(summary)}
             styles={MONSTER_STYLES}
           />
 
-          <MonsterIndexBrowser
-            copy={MONSTER_BROWSER_COPY}
+          <MonsterBossIndexBrowser
+            copy={MONSTER_BOSS_BROWSER_COPY}
             monsters={browserItems}
             panelEyebrow={activePage.eyebrow}
             panelTitle={activePage.title}
+            tabs={MONSTER_INDEX_PAGES.map((page) => ({
+              id: page.id,
+              title: page.title,
+            }))}
           />
         </section>
       </div>
@@ -99,4 +92,4 @@ const MonsterIndexPageShell = ({ gameId }: MonsterIndexPageShellProps) => {
   );
 };
 
-export default MonsterIndexPageShell;
+export default MonsterBossIndexPageShell;

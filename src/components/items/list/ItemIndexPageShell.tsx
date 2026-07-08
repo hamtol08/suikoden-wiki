@@ -5,18 +5,21 @@
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import ArchiveSummaryGrid from "@/components/shared/ArchiveSummaryGrid";
 import ItemIndexBrowser, {
   type ItemIndexBrowserItem,
 } from "@/components/items/list/ItemIndexBrowser";
 import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
+  buildItemSummaryItems,
   buildItemRecordDisplay,
   getItemJapaneseNames,
   getItemIndexPage,
   getItemIndexRecordsByGame,
   getItemIndexSummary,
   ITEM_ARCHIVE_COPY,
+  ITEM_BROWSER_COPY,
   ITEM_CATEGORY_LABELS,
   ITEM_INDEX_PAGES,
   type ItemIndexRecord,
@@ -31,23 +34,6 @@ import {
 type ItemIndexPageShellProps = {
   gameId: ItemIndexGameId;
 };
-
-type ItemIndexPageSummary = ReturnType<typeof getItemIndexSummary>;
-
-const summaryItems = (summary: ItemIndexPageSummary) => [
-  {
-    label: ITEM_ARCHIVE_COPY.summaryTitle,
-    value: `${summary.itemCount.toLocaleString("ko-KR")}${ITEM_ARCHIVE_COPY.entryCountSuffix}`,
-  },
-  {
-    label: ITEM_ARCHIVE_COPY.labels.shop,
-    value: summary.shopCount.toLocaleString("ko-KR"),
-  },
-  {
-    label: ITEM_ARCHIVE_COPY.labels.drop,
-    value: summary.dropCount.toLocaleString("ko-KR"),
-  },
-];
 
 const buildItemBrowserItem = (item: ItemIndexRecord): ItemIndexBrowserItem => {
   const categoryLabel = ITEM_CATEGORY_LABELS[item.category];
@@ -155,45 +141,13 @@ const ItemIndexPageShell = ({ gameId }: ItemIndexPageShellProps) => {
             styles={ITEM_STYLES}
           />
 
-          <section className={ITEM_STYLES.summaryGrid}>
-            {summaryItems(summary).map((item, index) => {
-              const isLeadSummary = index === 0;
-
-              return (
-                <article
-                  className={
-                    isLeadSummary ?
-                      ITEM_STYLES.summaryLeadCard :
-                      ITEM_STYLES.summaryCard
-                  }
-                  key={item.label}
-                >
-                  <p className={ITEM_STYLES.summaryLabel}>{item.label}</p>
-                  <p className={ITEM_STYLES.summaryValue}>{item.value}</p>
-                </article>
-              );
-            })}
-          </section>
+          <ArchiveSummaryGrid
+            items={buildItemSummaryItems(summary)}
+            styles={ITEM_STYLES}
+          />
 
           <ItemIndexBrowser
-            copy={{
-              clearSearchLabel: ITEM_ARCHIVE_COPY.clearSearchLabel,
-              entryCountSuffix: ITEM_ARCHIVE_COPY.entryCountSuffix,
-              labels: {
-                drop: ITEM_ARCHIVE_COPY.labels.drop,
-                dropLocations: ITEM_ARCHIVE_COPY.labels.dropLocations,
-                dropRate: ITEM_ARCHIVE_COPY.labels.dropRate,
-                initialEquipment: ITEM_ARCHIVE_COPY.labels.initialEquipment,
-                otherLocations: ITEM_ARCHIVE_COPY.labels.otherLocations,
-                price: ITEM_ARCHIVE_COPY.labels.price,
-                shop: ITEM_ARCHIVE_COPY.labels.shop,
-                shopLocations: ITEM_ARCHIVE_COPY.labels.shopLocations,
-              },
-              noResults: ITEM_ARCHIVE_COPY.noResults,
-              resultCountSuffix: ITEM_ARCHIVE_COPY.resultCountSuffix,
-              searchLabel: ITEM_ARCHIVE_COPY.searchLabel,
-              searchPlaceholder: ITEM_ARCHIVE_COPY.searchPlaceholder,
-            }}
+            copy={ITEM_BROWSER_COPY}
             items={browserItems}
             panelEyebrow={summary.eyebrow}
             panelTitle={activePage.title}

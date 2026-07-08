@@ -14,6 +14,11 @@ import {
   buildItemDetailPath,
   buildItemGamePath,
 } from "@/constants/app/app-config";
+import {
+  ARCHIVE_LOCALE,
+  formatArchiveCount,
+  formatArchiveNumber,
+} from "@/constants/app/archive-utils";
 import { GAMEPLAY_DETAIL_IDS } from "@/constants/gameplay/gameplay-content";
 import {
   REGION_ATLAS_LOCATIONS,
@@ -58,7 +63,7 @@ export const ITEM_ARCHIVE_COPY = {
   searchLabel: "Item search",
   searchPlaceholder: "아이템 이름, 영문 표기, 분류, 입수처 검색",
   resultCountSuffix: "개 아이템",
-  resultCount: (count: number) => `${count.toLocaleString("ko-KR")}개 아이템`,
+  resultCount: (count: number) => `${formatArchiveNumber(count)}개 아이템`,
   noResults: "검색 조건에 맞는 아이템이 없습니다.",
   clearSearchLabel: "검색어 지우기",
   labels: {
@@ -80,6 +85,45 @@ export const ITEM_ARCHIVE_COPY = {
     drop: "Drop",
   },
 } as const;
+
+export const ITEM_BROWSER_COPY = {
+  clearSearchLabel: ITEM_ARCHIVE_COPY.clearSearchLabel,
+  entryCountSuffix: ITEM_ARCHIVE_COPY.entryCountSuffix,
+  labels: {
+    drop: ITEM_ARCHIVE_COPY.labels.drop,
+    dropLocations: ITEM_ARCHIVE_COPY.labels.dropLocations,
+    dropRate: ITEM_ARCHIVE_COPY.labels.dropRate,
+    initialEquipment: ITEM_ARCHIVE_COPY.labels.initialEquipment,
+    otherLocations: ITEM_ARCHIVE_COPY.labels.otherLocations,
+    price: ITEM_ARCHIVE_COPY.labels.price,
+    shop: ITEM_ARCHIVE_COPY.labels.shop,
+    shopLocations: ITEM_ARCHIVE_COPY.labels.shopLocations,
+  },
+  noResults: ITEM_ARCHIVE_COPY.noResults,
+  resultCountSuffix: ITEM_ARCHIVE_COPY.resultCountSuffix,
+  searchLabel: ITEM_ARCHIVE_COPY.searchLabel,
+  searchPlaceholder: ITEM_ARCHIVE_COPY.searchPlaceholder,
+} as const;
+
+export const buildItemSummaryItems = (
+  summary: ReturnType<typeof getItemIndexSummary>,
+) => [
+  {
+    label: ITEM_ARCHIVE_COPY.summaryTitle,
+    value: formatArchiveCount(
+      summary.itemCount,
+      ITEM_ARCHIVE_COPY.entryCountSuffix,
+    ),
+  },
+  {
+    label: ITEM_ARCHIVE_COPY.labels.shop,
+    value: formatArchiveNumber(summary.shopCount),
+  },
+  {
+    label: ITEM_ARCHIVE_COPY.labels.drop,
+    value: formatArchiveNumber(summary.dropCount),
+  },
+];
 
 export const ITEM_CATEGORY_LABELS = {
   helmet: "투구",
@@ -924,6 +968,7 @@ const buildCategoryEffectLines = (category: ItemCategoryId) => {
     armor: ["몸 방어구로 장비하면 방어 성능을 올립니다."],
     blacksmithHammer: ["대장간에 맡기면 무기 강화 한도를 확장합니다."],
     book: ["본거지 도서관에 등록되는 기록 아이템입니다."],
+    consumable: ["사용하면 회복, 상태 치료, 이동 보조 등 즉시 효과를 내는 소비 아이템입니다."],
     guardianPlan: ["본거지 수호신상 조합에 쓰이는 설계도입니다."],
     helmet: ["머리 방어구로 장비하면 방어 성능을 올립니다."],
     ingredient: ["요리와 식당 운영에 쓰이는 식재료입니다."],
@@ -932,6 +977,7 @@ const buildCategoryEffectLines = (category: ItemCategoryId) => {
     recipe: ["하이요 식당에 등록하면 해당 요리를 만들 수 있습니다."],
     shield: ["방패로 장비하면 방어 성능을 올립니다."],
     soundSet: ["본거지에서 소리 설정과 수집 기록에 쓰이는 세트 아이템입니다."],
+    specialItem: ["수집, 시설, 이벤트 기록에 쓰이는 특수 아이템입니다."],
     tradeItem: ["교역소 매매와 수집 기록에 쓰이는 거래 아이템입니다. 직접 전투 효과는 없습니다."],
     windowSet: ["창 디자인을 바꾸는 데 쓰이는 세트 아이템입니다."],
   };
@@ -1975,13 +2021,13 @@ const formatItemPrices = (prices: readonly number[]) => {
   }
 
   return `${prices
-    .map((price) => price.toLocaleString("ko-KR"))
+    .map(formatArchiveNumber)
     .join(" / ")} 포치`;
 };
 
 const sortItemRecords = (items: readonly ItemIndexRecord[]) => {
   return [...items].sort((left, right) =>
-    left.name.localeCompare(right.name, "ko-KR"),
+    left.name.localeCompare(right.name, ARCHIVE_LOCALE),
   );
 };
 
@@ -2010,28 +2056,28 @@ const sortItemSourceLocations = (
   sourceLocations: Record<ItemSourceType, Set<string>>,
 ): Record<ItemSourceType, readonly string[]> => ({
   shop: [...sourceLocations.shop].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
   drop: [...sourceLocations.drop].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
   found: [...sourceLocations.found].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
   treasure: [...sourceLocations.treasure].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
   trade: [...sourceLocations.trade].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
   minigame: [...sourceLocations.minigame].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
   gds: [...sourceLocations.gds].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
   other: [...sourceLocations.other].sort((left, right) =>
-    left.localeCompare(right, "ko-KR"),
+    left.localeCompare(right, ARCHIVE_LOCALE),
   ),
 });
 
@@ -2250,7 +2296,7 @@ const buildItemInitialOwnerIndex = () => {
     owners.set(
       key,
       [...currentOwners].sort((left, right) =>
-        left.name.localeCompare(right.name, "ko-KR"),
+        left.name.localeCompare(right.name, ARCHIVE_LOCALE),
       ),
     );
   });
@@ -2452,11 +2498,11 @@ const buildItemIndexRecords = () => {
       ),
       prices: [...record.prices].sort((left, right) => left - right),
       locations: [...record.locations].sort((left, right) =>
-        left.localeCompare(right, "ko-KR"),
+        left.localeCompare(right, ARCHIVE_LOCALE),
       ),
       sourceLocations: sortItemSourceLocations(record.sourceLocations),
       dropRates: [...record.dropRates].sort((left, right) =>
-        left.localeCompare(right, "ko-KR"),
+        left.localeCompare(right, ARCHIVE_LOCALE),
       ),
       initialOwners: initialOwnerIndex.get(`${record.game}:${record.id}`) ?? [],
     })),

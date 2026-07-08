@@ -8,7 +8,13 @@ import Link from "next/link";
 import { type ChangeEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
-import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
+import ItemNameLinkText from "@/components/shared/ItemNameLinkText";
+import {
+  formatArchiveCount,
+  formatArchiveNumber,
+  normalizeArchiveSearchText,
+} from "@/constants/app/archive-utils";
+import { type MonsterIndexGameId } from "@/constants/monsters/monster-content";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";
 import { MONSTER_STYLES } from "@/constants/styles/ui-styles";
 
@@ -28,9 +34,12 @@ export type MonsterBrowserEncounter = {
 
 export type MonsterBrowserItem = {
   encounters: readonly MonsterBrowserEncounter[];
+  game: MonsterIndexGameId;
+  groupLabel?: string;
   hasDrops: boolean;
   href: string | null;
   id: string;
+  isBoss: boolean;
   name: string;
   originalName: string;
   searchText: string;
@@ -40,6 +49,7 @@ type MonsterIndexBrowserCopy = {
   clearSearchLabel: string;
   entryCountSuffix: string;
   labels: {
+    bossType: string;
     drops: string;
     englishName: string;
     location: string;
@@ -53,6 +63,7 @@ type MonsterIndexBrowserCopy = {
 
 type MonsterIndexBrowserProps = {
   copy: MonsterIndexBrowserCopy;
+  hideSearch?: boolean;
   monsters: readonly MonsterBrowserItem[];
   panelEyebrow: string;
   panelTitle: string;
@@ -60,6 +71,7 @@ type MonsterIndexBrowserProps = {
 
 const MonsterIndexBrowser = ({
   copy,
+  hideSearch = false,
   monsters,
   panelEyebrow,
   panelTitle,
@@ -75,6 +87,138 @@ const MonsterIndexBrowser = ({
       monster.searchText.includes(normalizedQuery),
     );
   }, [monsters, normalizedQuery]);
+  const groupedMonsters = filteredMonsters.reduce<
+    {
+      id: string;
+      monsters: MonsterBrowserItem[];
+      title: string;
+    }[]
+  >((groups, monster) => {
+    if (!monster.groupLabel) {
+      return groups;
+    }
+
+    const existingGroup = groups.find((group) => group.title === monster.groupLabel);
+
+    if (existingGroup) {
+      existingGroup.monsters.push(monster);
+      return groups;
+    }
+
+    return [
+      ...groups,
+      {
+        id: monster.groupLabel,
+        monsters: [monster],
+        title: monster.groupLabel,
+      },
+    ];
+  }, []);
+  const hasGroupedMonsters = groupedMonsters.length > 0;
+
+  const renderMonsterCard = (monster: MonsterBrowserItem) => (
+    <motion.article
+      animate={MOTION_PRESETS.listItem.animate}
+      className={MONSTER_STYLES.card}
+      exit={MOTION_PRESETS.listItem.exit}
+      id={monster.id}
+      initial={MOTION_PRESETS.listItem.initial}
+      key={monster.id}
+      transition={MOTION_PRESETS.listItem.transition}
+    >
+      <header className={MONSTER_STYLES.cardHeader}>
+        <h3 className={MONSTER_STYLES.cardName}>
+          {monster.href ? (
+            <Link
+              className={MONSTER_STYLES.cardTitleLink}
+              href={monster.href}
+            >
+              {monster.name}
+            </Link>
+          ) : (
+            monster.name
+          )}
+        </h3>
+        <p className={MONSTER_STYLES.cardOriginal}>
+          {copy.labels.englishName} {monster.originalName}
+        </p>
+        {monster.isBoss ? (
+          <div className={MONSTER_STYLES.chipRow}>
+            <span className={MONSTER_STYLES.chip}>
+              {copy.labels.bossType}
+            </span>
+          </div>
+        ) : null}
+      </header>
+
+      <div className={MONSTER_STYLES.encounterGrid}>
+        {monster.encounters.map((encounter, encounterIndex) => (
+          <section
+            className={MONSTER_STYLES.encounterCard}
+            key={`${monster.id}-${encounter.originalLocation}-${encounterIndex}`}
+          >
+            <div className={MONSTER_STYLES.encounterField}>
+              <p className={MONSTER_STYLES.encounterTerm}>
+                {copy.labels.location}
+              </p>
+              {encounter.href ? (
+                <Link
+                  className={MONSTER_STYLES.encounterLocationLink}
+                  href={encounter.href}
+                >
+                  {encounter.location}
+                </Link>
+              ) : (
+                <p className={MONSTER_STYLES.encounterLocation}>
+                  {encounter.location}
+                </p>
+              )}
+            </div>
+
+            <div className={MONSTER_STYLES.encounterField}>
+              <p className={MONSTER_STYLES.encounterTerm}>
+                {copy.labels.drops}
+              </p>
+              {encounter.drops.length > 0 ? (
+                <ul className={MONSTER_STYLES.dropList}>
+                  {encounter.drops.map((drop, dropIndex) => (
+                    <li
+                      className={MONSTER_STYLES.dropItem}
+                      key={`${monster.id}-${encounter.originalLocation}-${drop.originalName}-${dropIndex}`}
+                    >
+                      {drop.href ? (
+                        <Link
+                          className={MONSTER_STYLES.dropNameLink}
+                          href={drop.href}
+                        >
+                          {drop.name}
+                        </Link>
+                      ) : (
+                        <span className={MONSTER_STYLES.dropName}>
+                          <ItemNameLinkText
+                            linkClassName={MONSTER_STYLES.dropNameLink}
+                            preferredGame={monster.game}
+                            text={drop.name}
+                          />
+                        </span>
+                      )}
+                      <span className={MONSTER_STYLES.dropRate}>
+                        {drop.rateLabel}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={MONSTER_STYLES.noDrop}>
+                  {copy.labels.noDrop}
+                </p>
+              )}
+            </div>
+          </section>
+        ))}
+      </div>
+    </motion.article>
+  );
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
@@ -86,16 +230,18 @@ const MonsterIndexBrowser = ({
 
   return (
     <div className={MONSTER_STYLES.browser}>
-      <ArchiveIndexSearch
-        ariaLabel={copy.searchLabel}
-        clearLabel={copy.clearSearchLabel}
-        meta={`${filteredMonsters.length.toLocaleString("ko-KR")}${copy.resultCountSuffix}`}
-        placeholder={copy.searchPlaceholder}
-        styles={MONSTER_STYLES}
-        value={query}
-        onChange={handleSearchChange}
-        onClear={clearSearch}
-      />
+      {hideSearch ? null : (
+        <ArchiveIndexSearch
+          ariaLabel={copy.searchLabel}
+          clearLabel={copy.clearSearchLabel}
+          meta={formatArchiveCount(filteredMonsters.length, copy.resultCountSuffix)}
+          placeholder={copy.searchPlaceholder}
+          styles={MONSTER_STYLES}
+          value={query}
+          onChange={handleSearchChange}
+          onClear={clearSearch}
+        />
+      )}
 
       <section className={MONSTER_STYLES.panel}>
         <header className={MONSTER_STYLES.panelHeader}>
@@ -104,7 +250,7 @@ const MonsterIndexBrowser = ({
             <h2 className={MONSTER_STYLES.panelTitle}>{panelTitle}</h2>
           </div>
           <p className={MONSTER_STYLES.panelMeta}>
-            {filteredMonsters.length.toLocaleString("ko-KR")}
+            {formatArchiveNumber(filteredMonsters.length)}
             {copy.entryCountSuffix}
           </p>
         </header>
@@ -119,98 +265,18 @@ const MonsterIndexBrowser = ({
               key={normalizedQuery || "all-monsters"}
               transition={MOTION_PRESETS.list.transition}
             >
-              {filteredMonsters.map((monster) => (
-                <motion.article
-                  animate={MOTION_PRESETS.listItem.animate}
-                  className={MONSTER_STYLES.card}
-                  exit={MOTION_PRESETS.listItem.exit}
-                  id={monster.id}
-                  initial={MOTION_PRESETS.listItem.initial}
-                  key={monster.id}
-                  transition={MOTION_PRESETS.listItem.transition}
-                >
-                  <header className={MONSTER_STYLES.cardHeader}>
-                    <h3 className={MONSTER_STYLES.cardName}>
-                      {monster.href ? (
-                        <Link
-                          className={MONSTER_STYLES.cardTitleLink}
-                          href={monster.href}
-                        >
-                          {monster.name}
-                        </Link>
-                      ) : (
-                        monster.name
-                      )}
+              {hasGroupedMonsters ?
+                groupedMonsters.map((group) => (
+                  <section className={MONSTER_STYLES.listGroup} key={group.id}>
+                    <h3 className={MONSTER_STYLES.listGroupTitle}>
+                      {group.title}
                     </h3>
-                    <p className={MONSTER_STYLES.cardOriginal}>
-                      {copy.labels.englishName} {monster.originalName}
-                    </p>
-                  </header>
-
-                  <div className={MONSTER_STYLES.encounterGrid}>
-                    {monster.encounters.map((encounter, encounterIndex) => (
-                      <section
-                        className={MONSTER_STYLES.encounterCard}
-                        key={`${monster.id}-${encounter.originalLocation}-${encounterIndex}`}
-                      >
-                        <div className={MONSTER_STYLES.encounterField}>
-                          <p className={MONSTER_STYLES.encounterTerm}>
-                            {copy.labels.location}
-                          </p>
-                          {encounter.href ? (
-                            <Link
-                              className={MONSTER_STYLES.encounterLocationLink}
-                              href={encounter.href}
-                            >
-                              {encounter.location}
-                            </Link>
-                          ) : (
-                            <p className={MONSTER_STYLES.encounterLocation}>
-                              {encounter.location}
-                            </p>
-                          )}
-                        </div>
-
-                        <div className={MONSTER_STYLES.encounterField}>
-                          <p className={MONSTER_STYLES.encounterTerm}>
-                            {copy.labels.drops}
-                          </p>
-                          {encounter.drops.length > 0 ? (
-                            <ul className={MONSTER_STYLES.dropList}>
-                              {encounter.drops.map((drop, dropIndex) => (
-                                <li
-                                  className={MONSTER_STYLES.dropItem}
-                                  key={`${monster.id}-${encounter.originalLocation}-${drop.originalName}-${dropIndex}`}
-                                >
-                                  {drop.href ? (
-                                    <Link
-                                      className={MONSTER_STYLES.dropNameLink}
-                                      href={drop.href}
-                                    >
-                                      {drop.name}
-                                    </Link>
-                                  ) : (
-                                    <span className={MONSTER_STYLES.dropName}>
-                                      {drop.name}
-                                    </span>
-                                  )}
-                                  <span className={MONSTER_STYLES.dropRate}>
-                                    {drop.rateLabel}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <p className={MONSTER_STYLES.noDrop}>
-                              {copy.labels.noDrop}
-                            </p>
-                          )}
-                        </div>
-                      </section>
-                    ))}
-                  </div>
-                </motion.article>
-              ))}
+                    <div className={MONSTER_STYLES.listGroupItems}>
+                      {group.monsters.map(renderMonsterCard)}
+                    </div>
+                  </section>
+                )) :
+                filteredMonsters.map(renderMonsterCard)}
             </motion.div>
           ) : (
             <motion.p

@@ -473,6 +473,13 @@ export const RUNE_STYLES = {
     "mt-3 grid gap-2 break-keep text-sm font-semibold leading-7 text-[#3e4654] dark:text-[#c5c6cd]",
   functionTypeNote:
     "mt-3 break-keep rounded-md border border-[#d8c9a5] bg-[#fff8e2] p-4 text-sm font-semibold leading-7 text-[#3e4654] dark:border-[#604403] dark:bg-[#322002] dark:text-[#e9c176]",
+  relatedLinkGrid: "mt-5 grid gap-3 sm:grid-cols-2",
+  relatedLink:
+    "rounded-md border border-[#d8c9a5] bg-[#fff8e2] p-4 transition hover:border-[#d4af37] hover:bg-[#fff2bd] dark:border-[#604403] dark:bg-[#322002] dark:hover:bg-[#3d2906]",
+  relatedLinkTitle:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  relatedLinkBody:
+    "mt-2 break-keep text-sm font-semibold leading-6 text-[#3e4654] dark:text-[#f4f1ea]",
   ledger:
     "mt-5 overflow-hidden rounded border border-[#d8c9a5] dark:border-[#38475f]",
   ledgerRow:
@@ -616,6 +623,11 @@ export const ITEM_STYLES = {
 
 export const MONSTER_STYLES = {
   ...ITEM_STYLES,
+  listGroup:
+    "grid gap-3 rounded-lg border border-[#eee4cd] bg-white/60 p-3 dark:border-[#38475f] dark:bg-[#111c2c]/60",
+  listGroupTitle:
+    "text-xs font-extrabold uppercase tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  listGroupItems: "grid gap-3",
   card:
     "grid gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 transition hover:border-[#d4af37] hover:bg-white dark:border-[#38475f] dark:bg-[#172337] dark:hover:bg-[#14243a]",
   cardHeader:
@@ -643,6 +655,20 @@ export const MONSTER_STYLES = {
     "w-fit rounded border border-[#d4af37]/35 bg-[#fff8e2] px-2.5 py-1 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
   noDrop:
     "mt-2 break-keep rounded border border-[#eee4cd] bg-[#fffaf0] px-3 py-2 text-sm font-semibold leading-6 text-[#4b5565] dark:border-[#38475f] dark:bg-[#172337] dark:text-[#c5c6cd]",
+  bossGuideGrid:
+    "mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]",
+  bossGuideCard:
+    "rounded border border-[#c7d3e9] bg-white/75 p-3 dark:border-[#38475f] dark:bg-[#172337]",
+  bossGuideCardWide:
+    "rounded border border-[#c7d3e9] bg-white/75 p-3 dark:border-[#38475f] dark:bg-[#172337] lg:col-span-2",
+  bossGuideLabel:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  bossGuideBody:
+    "mt-2 break-keep text-sm font-semibold leading-7 text-[#3e4654] dark:text-[#c5c6cd]",
+  bossGuideList:
+    "mt-2 grid gap-2 break-keep text-sm font-semibold leading-6 text-[#3e4654] dark:text-[#c5c6cd]",
+  bossGuideListItem:
+    "rounded border border-[#eee4cd] bg-[#fffaf0] px-3 py-2 dark:border-[#38475f] dark:bg-[#111c2c]",
   statTableWrap:
     "mt-4 overflow-x-auto rounded border border-[#c7d3e9] dark:border-[#38475f]",
   statTable:
@@ -854,24 +880,24 @@ export const GAMEPLAY_STYLES = {
   section:
     "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#111c2c] sm:p-6",
   tabList:
-    "mt-6 flex flex-wrap gap-2 rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c]",
+    "mt-6 flex snap-x gap-2 overflow-x-auto overscroll-x-contain rounded-lg border border-[#d8c9a5] bg-white/70 p-2 dark:border-[#604403] dark:bg-[#111c2c] md:flex-wrap md:overflow-visible",
   tab:
-    "flex-1 rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] sm:flex-none sm:text-left",
+    "shrink-0 snap-start whitespace-nowrap rounded px-4 py-3 text-center text-sm font-bold text-[#3e4654] transition hover:bg-[#fff8e2] hover:text-[#7a5900] dark:text-[#c5c6cd] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176] md:text-left",
   sectionHeader:
     "flex flex-col gap-2 border-b border-[#d8c9a5] pb-4 dark:border-[#38475f] sm:flex-row sm:items-end sm:justify-between",
   sectionEyebrow:
     "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   sectionTitle: "font-serif text-3xl font-semibold",
   sectionBody: "max-w-2xl text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
-  systemGrid: "mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3",
+  systemGrid: "mt-5 grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-3",
   systemCard:
-    "grid min-h-44 grid-rows-[auto_1fr_auto] gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-5 text-left transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#172337] dark:hover:bg-[#14243a]",
+    "grid min-h-44 min-w-0 grid-rows-[auto_1fr_auto] gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-5 text-left transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#172337] dark:hover:bg-[#14243a]",
   systemTitle:
     "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   systemBody: "break-keep text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
   tagList: "flex flex-wrap content-start gap-2 border-t border-[#c7d3e9] pt-4 dark:border-[#38475f]",
   tag:
-    "rounded border border-[#d4af37]/35 bg-[#fff8e2] px-2.5 py-1 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
+    "break-keep rounded border border-[#d4af37]/35 bg-[#fff8e2] px-2.5 py-1 text-xs font-bold text-[#7a5900] dark:bg-[#322002] dark:text-[#e9c176]",
   guideGrid: "mt-5 grid gap-4 xl:grid-cols-2",
   gamePanel:
     "rounded-lg border border-[#d8c9a5] bg-[#fffdf7] p-4 dark:border-[#38475f] dark:bg-[#172337]",
@@ -880,7 +906,7 @@ export const GAMEPLAY_STYLES = {
     "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   gameTitle: "font-serif text-2xl font-semibold",
   guideGroup:
-    "mt-4 block rounded-md border border-[#c7d3e9] bg-white/70 p-4 text-left transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#111c2c]/65 dark:hover:bg-[#14243a]",
+    "mt-4 block min-w-0 rounded-md border border-[#c7d3e9] bg-white/70 p-4 text-left transition hover:border-[#d4af37] hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:border-[#38475f] dark:bg-[#111c2c]/65 dark:hover:bg-[#14243a]",
   guideTitle:
     "font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   guideBody: "mt-2 break-keep text-sm leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
@@ -975,6 +1001,49 @@ export const GAMEPLAY_STYLES = {
     "mr-2 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   cookingRecordNote:
     "mt-3 break-keep text-sm font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  minigameGrid: "mt-4 grid gap-3 xl:grid-cols-2",
+  minigameCard:
+    "grid min-w-0 gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  minigameHeader:
+    "border-b border-[#c7d3e9] pb-3 dark:border-[#38475f]",
+  minigameGame:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  minigameTitle:
+    "mt-1 break-keep font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  minigameMetaGrid: "grid gap-2 sm:grid-cols-3",
+  minigameMeta:
+    "rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 text-sm font-semibold leading-6 text-[#3e4654] dark:border-[#604403] dark:bg-[#111c2c]/75 dark:text-[#c5c6cd]",
+  minigameMetaLabel:
+    "mb-1 block text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  minigameBody:
+    "break-keep text-sm font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  minigameRelatedList:
+    "flex flex-wrap gap-2 border-t border-[#c7d3e9] pt-3 dark:border-[#38475f]",
+  minigameTipBlock:
+    "rounded border border-[#d8c9a5] bg-[#fff8e2] p-3 dark:border-[#604403] dark:bg-[#322002]",
+  minigameTipTitle:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  minigameTipList: "mt-2 grid gap-2",
+  minigameTipItem:
+    "break-keep text-sm font-semibold leading-6 text-[#3e4654] dark:text-[#e9c176]",
+  guardianPlanTableWrap:
+    "mt-4 overflow-x-auto rounded-lg border border-[#c7d3e9] dark:border-[#38475f]",
+  guardianPlanTable:
+    "w-full min-w-[52rem] border-collapse bg-white/80 text-sm dark:bg-[#111c2c]/80",
+  guardianPlanHeadCell:
+    "border-b border-r border-[#c7d3e9] bg-[#edf3ff] px-3 py-3 text-left text-xs font-extrabold uppercase text-[#7a5900] last:border-r-0 dark:border-[#38475f] dark:bg-[#172337] dark:text-[#e9c176]",
+  guardianPlanNameCell:
+    "w-64 border-b border-r border-[#c7d3e9] px-3 py-3 text-left align-top dark:border-[#38475f]",
+  guardianPlanName:
+    "block break-keep font-serif text-lg font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  guardianPlanBody:
+    "mt-2 block break-keep text-xs font-semibold leading-5 text-[#4b5565] dark:text-[#c5c6cd]",
+  guardianPlanCodeCell:
+    "border-b border-r border-[#c7d3e9] px-3 py-3 text-center font-serif text-2xl font-semibold text-[#101827] dark:border-[#38475f] dark:text-[#f4f1ea]",
+  guardianPlanCell:
+    "border-b border-r border-[#c7d3e9] px-3 py-3 align-top font-semibold leading-6 text-[#3e4654] last:border-r-0 dark:border-[#38475f] dark:text-[#c5c6cd]",
+  guardianPlanLocationLabel:
+    "mb-1 block text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
   recipeGrid: "mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3",
   recipeCard:
     "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",

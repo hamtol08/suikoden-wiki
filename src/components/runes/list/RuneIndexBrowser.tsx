@@ -12,7 +12,10 @@ import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
 import LocalizedNameList, {
   type LocalizedNameEntry,
 } from "@/components/shared/LocalizedNameList";
-import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
+import {
+  formatArchiveCount,
+  normalizeArchiveSearchText,
+} from "@/constants/app/archive-utils";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";
 import { RUNE_STYLES } from "@/constants/styles/ui-styles";
 
@@ -63,7 +66,7 @@ const RuneIndexBrowser = ({
     <div className={RUNE_STYLES.browser}>
       <ArchiveIndexSearch
         ariaLabel={copy.searchLabel}
-        meta={`${filteredRunes.length.toLocaleString("ko-KR")}${copy.resultCountSuffix}`}
+        meta={formatArchiveCount(filteredRunes.length, copy.resultCountSuffix)}
         placeholder={copy.searchPlaceholder}
         styles={RUNE_STYLES}
         value={query}

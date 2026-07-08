@@ -4,11 +4,17 @@
 
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import RuneFunctionRecords from "@/components/runes/detail/RuneFunctionRecords";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  ITEM_CATEGORY_LABELS,
+  resolveItemReference,
+  type ItemReference,
+} from "@/constants/items/item-content";
 import {
   formatRuneGames,
   getRuneReference,
@@ -26,6 +32,7 @@ import {
   RUNE_FALLBACK_IMAGE,
   RUNE_INDEX_PAGES,
   type RuneFunctionRecord,
+  type RuneReference,
 } from "@/constants/runes/rune-content";
 import {
   APP_SHELL_STYLES,
@@ -37,6 +44,25 @@ type RuneDetailProps = {
   params: Promise<{
     rune: string;
   }>;
+};
+
+const buildRuneRelatedItems = (rune: RuneReference): ItemReference[] => {
+  const itemReferences = [rune.name, ...rune.aliases].flatMap((name) => {
+    const normalizedName = name.replace(/의 문장$/, "의 봉인구");
+
+    return [
+      resolveItemReference(name),
+      resolveItemReference(normalizedName),
+    ].filter((item): item is ItemReference => Boolean(item));
+  });
+
+  return [
+    ...new Map(
+      itemReferences
+        .filter((item) => item.category === "sealedOrb")
+        .map((item) => [item.href, item]),
+    ).values(),
+  ];
 };
 
 const RuneDetail = async ({ params }: RuneDetailProps) => {
@@ -129,6 +155,11 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
     label: `rune-detail-function-type-description:${rune.id}`,
     load: () => getRuneFunctionTypeDescription(rune),
   });
+  const relatedItems = loadArchiveJsonSafely<readonly ItemReference[]>({
+    fallback: [],
+    label: `rune-detail-related-items:${rune.id}`,
+    load: () => buildRuneRelatedItems(rune),
+  });
 
   return (
     <main className={APP_SHELL_STYLES.page}>
@@ -192,6 +223,25 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
                 </div>
               ))}
             </dl>
+
+            {relatedItems.length > 0 ? (
+              <div className={RUNE_STYLES.relatedLinkGrid}>
+                {relatedItems.map((item) => (
+                  <Link
+                    className={RUNE_STYLES.relatedLink}
+                    href={item.href}
+                    key={item.href}
+                  >
+                    <p className={RUNE_STYLES.relatedLinkTitle}>
+                      {ITEM_CATEGORY_LABELS[item.category]}
+                    </p>
+                    <p className={RUNE_STYLES.relatedLinkBody}>
+                      {item.name} · {RUNE_ARCHIVE_COPY.relatedItemBody}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            ) : null}
           </MotionSurface>
 
           <RuneFunctionRecords records={runeFunctionRecords} />

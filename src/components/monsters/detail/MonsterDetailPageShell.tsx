@@ -5,6 +5,7 @@
 import Link from "next/link";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import ItemNameLinkText from "@/components/shared/ItemNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
@@ -229,7 +230,11 @@ const MonsterDetailPageShell = ({
                                 </Link>
                               ) : (
                                 <span className={MONSTER_STYLES.dropName}>
-                                  {drop.name}
+                                  <ItemNameLinkText
+                                    linkClassName={MONSTER_STYLES.dropNameLink}
+                                    preferredGame={monster.game}
+                                    text={drop.name}
+                                  />
                                 </span>
                               )}
                               <span className={MONSTER_STYLES.dropRate}>
@@ -248,6 +253,67 @@ const MonsterDetailPageShell = ({
                 ))}
               </div>
             </section>
+
+            {monster.bossGuide ? (
+              <section className={MONSTER_STYLES.detailSection}>
+                <h3 className={MONSTER_STYLES.detailSectionTitle}>
+                  {MONSTER_ARCHIVE_COPY.bossGuideTitle}
+                </h3>
+                <div className={MONSTER_STYLES.bossGuideGrid}>
+                  <article className={MONSTER_STYLES.bossGuideCardWide}>
+                    <p className={MONSTER_STYLES.bossGuideLabel}>
+                      {MONSTER_ARCHIVE_COPY.labels.bossOverview}
+                    </p>
+                    <p className={MONSTER_STYLES.bossGuideBody}>
+                      {monster.bossGuide.overview}
+                    </p>
+                  </article>
+
+                  <article className={MONSTER_STYLES.bossGuideCard}>
+                    <p className={MONSTER_STYLES.bossGuideLabel}>
+                      {MONSTER_ARCHIVE_COPY.labels.bossPreparation}
+                    </p>
+                    <ul className={MONSTER_STYLES.bossGuideList}>
+                      {monster.bossGuide.preparation.map((tip, tipIndex) => (
+                        <li
+                          className={MONSTER_STYLES.bossGuideListItem}
+                          key={`preparation-${tipIndex}-${tip}`}
+                        >
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+
+                  <article className={MONSTER_STYLES.bossGuideCard}>
+                    <p className={MONSTER_STYLES.bossGuideLabel}>
+                      {MONSTER_ARCHIVE_COPY.labels.bossTactics}
+                    </p>
+                    <ul className={MONSTER_STYLES.bossGuideList}>
+                      {monster.bossGuide.tactics.map((tip, tipIndex) => (
+                        <li
+                          className={MONSTER_STYLES.bossGuideListItem}
+                          key={`tactics-${tipIndex}-${tip}`}
+                        >
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+
+                  {monster.bossGuide.warning ? (
+                    <article className={MONSTER_STYLES.bossGuideCardWide}>
+                      <p className={MONSTER_STYLES.bossGuideLabel}>
+                        {MONSTER_ARCHIVE_COPY.labels.bossWarning}
+                      </p>
+                      <p className={MONSTER_STYLES.bossGuideBody}>
+                        {monster.bossGuide.warning}
+                      </p>
+                    </article>
+                  ) : null}
+                </div>
+              </section>
+            ) : null}
 
             <section className={MONSTER_STYLES.detailSection}>
               <h3 className={MONSTER_STYLES.detailSectionTitle}>

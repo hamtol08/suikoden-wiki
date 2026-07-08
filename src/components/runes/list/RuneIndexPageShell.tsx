@@ -19,6 +19,7 @@ import {
   getRuneLineageNote,
   isRuneFallbackImage,
   RUNE_ARCHIVE_COPY,
+  RUNE_BROWSER_COPY,
   RUNE_CATEGORY_LABELS,
   RUNE_INDEX_PAGES,
   type RuneReference,
@@ -117,15 +118,7 @@ const RuneIndexPageShell = ({ pageId }: RuneIndexPageShellProps) => {
             styles={RUNE_STYLES}
           />
 
-          <RuneIndexBrowser
-            copy={{
-              noResults: RUNE_ARCHIVE_COPY.noResults,
-              resultCountSuffix: RUNE_ARCHIVE_COPY.resultCountSuffix,
-              searchLabel: RUNE_ARCHIVE_COPY.searchLabel,
-              searchPlaceholder: RUNE_ARCHIVE_COPY.searchPlaceholder,
-            }}
-            runes={browserRunes}
-          />
+          <RuneIndexBrowser copy={RUNE_BROWSER_COPY} runes={browserRunes} />
         </section>
       </div>
     </main>

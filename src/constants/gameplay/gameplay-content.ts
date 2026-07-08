@@ -42,6 +42,18 @@ export const GAMEPLAY_DETAIL_COPY = {
   cookingContestRoundLabel: "회차",
   cookingContestRewardLabel: "보상",
   cookingContestNoteLabel: "비고",
+  minigameListLabel: "미니게임 일람",
+  minigameLocationLabel: "위치",
+  minigameUnlockLabel: "개방",
+  minigameRewardLabel: "기록",
+  minigameTipsLabel: "운영 팁",
+  guardianDeityPlanLabel: "수호신상 설계도",
+  guardianDeityCodeLabel: "코드",
+  guardianDeityHeadLabel: "머리",
+  guardianDeityBodyLabel: "몸통",
+  guardianDeityLegsLabel: "다리",
+  guardianDeityTailLabel: "꼬리",
+  guardianDeityLocationLabel: "입수처",
   recipeListLabel: "환상수호전 II 요리 레시피",
   recipeNumberLabel: "번호",
   recipeSourceLabel: "입수",
@@ -72,9 +84,11 @@ export const GAMEPLAY_DETAIL_IDS = {
   headquarters: "headquarters",
   repeatablePlay: "repeatable-play",
   runeSystem: "rune-system",
+  suikodenIMinigames: "suikoden-i-minigames",
   suikodenIDuels: "suikoden-i-duels",
   suikodenIGameplayMechanics: "suikoden-i-gameplay-mechanics",
   suikodenITips: "suikoden-i-tips",
+  suikodenIIMinigames: "suikoden-ii-minigames",
   suikodenIIDuels: "suikoden-ii-duels",
   suikodenIIFacilitiesMinigames: "suikoden-ii-facilities-minigames",
   suikodenIIGameplayMechanics: "suikoden-ii-gameplay-mechanics",
@@ -172,6 +186,20 @@ export const GAMEPLAY_SYSTEMS = [
     body: "하이요 영입 뒤 본거지 식당에서 이어지는 요리 대결 연속 이벤트입니다.",
     points: ["식당", "요리 대결", "레시피", "보상"],
   },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIMinigames,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIMinigames),
+    title: "1편 미니게임",
+    body: "가스파, 마르코, 조르쥬 영입 뒤 본거지에서 이용하는 반복형 놀이와 포치 수급 항목입니다.",
+    points: ["주사위 도박", "동전 맞히기", "기억력 게임"],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIIMinigames,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIMinigames),
+    title: "2편 미니게임",
+    body: "교역, 낚시, 요리 대결, 주사위 도박처럼 본거지 확장과 함께 열리는 반복 콘텐츠입니다.",
+    points: ["교역", "낚시", "요리 대결", "주사위 도박"],
+  },
 ] as const;
 
 export type GameplayDetailId =
@@ -263,6 +291,24 @@ export type GameplayRestaurantTipRecord = {
   title: string;
 };
 
+export type GameplayMinigameRecord = {
+  body: string;
+  game: string;
+  location: string;
+  relatedItems?: readonly string[];
+  reward: string;
+  tips: readonly string[];
+  title: string;
+  unlock: string;
+};
+
+export type GameplayGuardianDeityPlanRecord = {
+  body: string;
+  code: string;
+  name: string;
+  planLocations: readonly [string, string, string, string];
+};
+
 export type GameplayFacilityRecord = {
   body: string;
   location: string;
@@ -302,6 +348,8 @@ export type GameplayDetailRecord = {
   warCommandGroups?: readonly GameplayWarCommandGroup[];
   warRoleRecords?: readonly GameplayWarRoleRecord[];
   cookingContestRecords?: readonly GameplayCookingContestRecord[];
+  guardianDeityPlanRecords?: readonly GameplayGuardianDeityPlanRecord[];
+  minigameRecords?: readonly GameplayMinigameRecord[];
   recipeRecords?: readonly GameplayRecipeRecord[];
   restaurantTips?: readonly GameplayRestaurantTipRecord[];
   seriesNotes: readonly GameplaySeriesNoteRecord[];
@@ -347,6 +395,194 @@ export const groupGameplayWarBattleRecordsByGame = (
     return [...groups, { game: record.game, records: [record] }];
   }, []);
 };
+
+export const GAMEPLAY_SUIKODEN_I_MINIGAME_RECORDS = [
+  {
+    game: "Suikoden I",
+    title: "주사위 도박",
+    location: "카쿠 / 트란 성",
+    unlock: "가스파 영입",
+    reward: "포치 수급",
+    relatedItems: ["무기 강화 비용", "방어구 구입 비용"],
+    body: "가스파의 주사위 도박은 1편에서 가장 직접적인 반복 포치 수급 수단입니다. 무기 강화 비용이 크게 누적되는 시점에 함께 관리하면 좋습니다.",
+    tips: [
+      "큰 금액을 걸기 전에는 저장을 분리합니다.",
+      "무기 강화와 방어구 구입 전 필요한 포치를 먼저 계산합니다.",
+      "손실이 커지면 전투 수급으로 전환하는 편이 안정적입니다.",
+    ],
+  },
+  {
+    game: "Suikoden I",
+    title: "동전 맞히기",
+    location: "트란 성",
+    unlock: "마르코 영입",
+    reward: "소량 포치 / 본거지 놀이 기록",
+    relatedItems: ["포치"],
+    body: "마르코의 동전 맞히기는 짧게 반복할 수 있는 확률형 미니게임입니다. 큰 수급원보다는 본거지 생활 콘텐츠로 보는 편이 자연스럽습니다.",
+    tips: [
+      "초반에는 무리해서 반복하기보다 본거지 시설 확인 흐름에 함께 봅니다.",
+      "포치 수급 목적이라면 주사위 도박과 전투 수급을 우선 비교합니다.",
+    ],
+  },
+  {
+    game: "Suikoden I",
+    title: "기억력 카드",
+    location: "키로프 여관 / 트란 성",
+    unlock: "조르쥬 영입",
+    reward: "조르쥬 영입 / 기록 갱신",
+    relatedItems: ["카드 기록"],
+    body: "조르쥬의 기억력 게임은 카드 위치를 외워 맞히는 방식입니다. 영입 조건과 본거지 반복 플레이 요소가 함께 붙어 있습니다.",
+    tips: [
+      "낮은 난도에서 카드 배치와 흐름을 먼저 익힙니다.",
+      "기록 갱신보다 조르쥬 영입 여부를 우선 확인합니다.",
+      "본거지 합류 뒤에는 수집형 콘텐츠처럼 가볍게 재확인합니다.",
+    ],
+  },
+] as const satisfies readonly GameplayMinigameRecord[];
+
+export const GAMEPLAY_GUARDIAN_DEITY_PLAN_RECORDS = [
+  {
+    name: "용 설계도",
+    code: "D",
+    body: "공격적인 인상을 주는 수호신상 계열입니다. 코드에서 D가 들어간 위치에 용 부위를 배치합니다.",
+    planLocations: ["그린힐", "라쿠테이 산", "틴토", "록엑스 성"],
+  },
+  {
+    name: "유니콘 설계도",
+    code: "U",
+    body: "유니콘 부위를 쓰는 수호신상 계열입니다. 예를 들어 UTTT는 머리 유니콘, 몸통 거북, 다리 거북, 꼬리 거북 조합입니다.",
+    planLocations: ["그린힐", "라쿠테이 산", "틴토", "록엑스 성"],
+  },
+  {
+    name: "토끼 설계도",
+    code: "R",
+    body: "토끼 부위를 쓰는 수호신상 계열입니다. 상점과 발견 입수처가 섞이므로 번호별 입수처를 따로 확인합니다.",
+    planLocations: ["그린힐", "하이웨이 마을 상점", "바나 마을 상점", "그린힐 상점"],
+  },
+  {
+    name: "거북 설계도",
+    code: "T",
+    body: "거북 부위를 쓰는 수호신상 계열입니다. 드롭과 미니게임 보상이 섞여 있어 가장 놓치기 쉽습니다.",
+    planLocations: [
+      "록아딜로 드롭",
+      "래기드 원 드롭",
+      "스카이 나이트 드롭",
+      "나무 베기 영웅 리그 1위",
+    ],
+  },
+] as const satisfies readonly GameplayGuardianDeityPlanRecord[];
+
+export const GAMEPLAY_SUIKODEN_II_MINIGAME_RECORDS = [
+  {
+    game: "Suikoden II",
+    title: "주사위 도박",
+    location: "쿠스쿠스 / 레이크웨스트 / 본거지",
+    unlock: "타이호 또는 시로우 관련 이벤트",
+    reward: "포치 수급 / 동료 영입",
+    relatedItems: ["포치", "타이호 영입", "시로우 영입"],
+    body: "2편의 주사위 도박은 동료 영입과 포치 수급이 함께 얽힌 반복형 미니게임입니다. 손실 가능성이 있으므로 저장을 나눠 진행하는 편이 좋습니다.",
+    tips: [
+      "타이호와 시로우 영입 조건을 먼저 확인합니다.",
+      "큰 금액을 걸기 전 저장 파일을 분리합니다.",
+      "무기 강화 비용이 필요한 시점에 포치 수급 수단으로 활용합니다.",
+    ],
+  },
+  {
+    game: "Suikoden II",
+    title: "낚시",
+    location: "본거지 선착장",
+    unlock: "야무크 합류",
+    reward: "생선 판매 / 요리 재료",
+    relatedItems: ["송어", "생선", "요리 재료"],
+    body: "야무크가 담당하는 낚시는 포치 수급과 하이요 식당 재료 수급을 함께 보조합니다. 요리 대결을 진행할 때 같이 확인하면 좋습니다.",
+    tips: [
+      "미끼 비용과 판매 수익을 함께 봅니다.",
+      "요리 대결과 레시피 수집을 진행할 때 낚시 재료도 확인합니다.",
+      "반복 수급보다 식당 운영 보조 콘텐츠로 관리합니다.",
+    ],
+  },
+  {
+    game: "Suikoden II",
+    title: "요리 대결",
+    location: "본거지 식당",
+    unlock: "하이요 합류",
+    reward: "레시피 보상 / 식당 이벤트",
+    relatedItems: ["레시피", "식재료", "요리 보상"],
+    body: "하이요 이벤트의 중심 콘텐츠입니다. 도전 요리사와의 대결을 진행하며, 승리 보상으로 여러 레시피를 얻습니다.",
+    tips: [
+      "회차별 상대와 보상은 하이요 이벤트 상세에서 따로 확인합니다.",
+      "레시피 입수처와 식재료 수급 시설을 함께 봅니다.",
+      "후반에 몰아서 진행할 때 누락된 레시피 번호를 먼저 확인합니다.",
+    ],
+  },
+  {
+    game: "Suikoden II",
+    title: "교역",
+    location: "교역소 / 각 마을",
+    unlock: "본거지 교역소 개방",
+    reward: "지역 시세 차익",
+    relatedItems: ["교역품", "포치"],
+    body: "교역은 마을별 가격 차이를 이용하는 반복 수급 콘텐츠입니다. 이동 동선과 함께 묶으면 포치 확보 부담이 줄어듭니다.",
+    tips: [
+      "새 마을에 도착하면 교역품 가격을 확인합니다.",
+      "스토리 이동 동선과 함께 처리해 왕복 부담을 줄입니다.",
+      "대장간 강화나 고가 장비 구입 전에 시세 차익을 활용합니다.",
+    ],
+  },
+  {
+    game: "Suikoden II",
+    title: "줄 오르기",
+    location: "본거지",
+    unlock: "본거지 확장 후",
+    reward: "기록형 미니게임",
+    relatedItems: ["마법의 돌", "기록 보상"],
+    body: "줄 오르기는 본거지에서 즐기는 기록형 미니게임입니다. 진행 필수 요소는 아니지만 본거지 반복 콘텐츠로 함께 분류하기 좋습니다.",
+    tips: [
+      "스토리 진행보다 본거지 시설 점검 중 가볍게 확인합니다.",
+      "기록 갱신형 콘텐츠로 보고 다른 수집 항목과 함께 정리합니다.",
+    ],
+  },
+  {
+    game: "Suikoden II",
+    title: "두더지 잡기",
+    location: "본거지",
+    unlock: "본거지 확장 후",
+    reward: "기록형 미니게임",
+    relatedItems: ["두더지 투구", "두더지복", "두더지 방패"],
+    body: "두더지 잡기는 반응 속도와 반복 숙련을 보는 본거지 미니게임입니다. 전투 보상보다 기록과 놀이 성격이 강합니다.",
+    tips: [
+      "한 번에 오래 붙잡기보다 시설 확인 루틴에 함께 둡니다.",
+      "기록형 콘텐츠로 분류해 후반 정리 목록에 포함합니다.",
+    ],
+  },
+  {
+    game: "Suikoden II",
+    title: "춤 연습",
+    location: "쿠스쿠스",
+    unlock: "카렌 영입 이벤트",
+    reward: "카렌 영입",
+    relatedItems: ["카렌 영입"],
+    body: "카렌 관련 춤 이벤트는 리듬형 미니게임에 가깝습니다. 전투 성능보다 동료 영입과 본거지 기록 측면에서 확인합니다.",
+    tips: [
+      "카렌 영입 조건을 먼저 확인합니다.",
+      "입력 흐름을 익히기 전에는 저장을 나눠 둡니다.",
+    ],
+  },
+  {
+    game: "Suikoden II",
+    title: "수호신상 조합",
+    location: "본거지",
+    unlock: "수호신상 설계도 수집",
+    reward: "수호신상 보상 / 장식 기록",
+    relatedItems: ["용 설계도", "유니콘 설계도", "토끼 설계도", "거북 설계도"],
+    body: "수호신상은 머리, 몸통, 다리, 꼬리 부위를 조합해 결과를 확인하는 수집형 본거지 콘텐츠입니다. D는 용, R은 토끼, T는 거북, U는 유니콘으로 관리합니다.",
+    tips: [
+      "조합 코드는 머리, 몸통, 다리, 꼬리 순서로 읽습니다.",
+      "유니콘, 거북, 용, 토끼 부위를 따로 기록해 누락을 줄입니다.",
+      "식당, 낚시, 목장처럼 후반 수집 정리 항목과 함께 확인합니다.",
+    ],
+  },
+] as const satisfies readonly GameplayMinigameRecord[];
 
 export const GAMEPLAY_DUEL_RECORDS = [
   {
@@ -1863,6 +2099,105 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     ],
   },
   {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIMinigames,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIMinigames),
+    eyebrow: "Gate Rune War",
+    title: "Suikoden I Minigames",
+    summary:
+      "환상수호전 I의 주사위 도박, 동전 맞히기, 기억력 게임처럼 본거지에서 반복 확인할 수 있는 미니게임을 정리합니다.",
+    tags: ["주사위 도박", "동전 맞히기", "기억력 게임", "포치 수급"],
+    overview: [
+      "1편 미니게임은 대부분 동료 영입 뒤 본거지 기능으로 열리며, 전투 필수 요소보다는 포치 수급과 기록성 콘텐츠에 가깝습니다.",
+      "가스파의 주사위 도박은 무기 강화와 장비 구입 비용을 보완하는 대표적인 반복 수급 수단입니다.",
+      "마르코와 조르쥬의 미니게임은 본거지 생활감을 보여주는 짧은 놀이형 콘텐츠로, 진행 중 부담 없이 확인하기 좋습니다.",
+    ],
+    keyPoints: [
+      {
+        title: "주사위 도박",
+        body: "가스파를 영입하면 본거지에서 주사위 도박을 이용할 수 있습니다. 포치 변동 폭이 크므로 저장을 나누고 진행하는 편이 안전합니다.",
+      },
+      {
+        title: "동전 맞히기",
+        body: "마르코 영입 뒤 확인할 수 있는 짧은 확률형 미니게임입니다. 큰 진행 보상보다 본거지 수집 요소로 보는 편이 좋습니다.",
+      },
+      {
+        title: "기억력 게임",
+        body: "조르쥬 영입 뒤 이용하는 기억력 계열 미니게임입니다. 패턴을 외워 맞히는 방식이라 반복할수록 난도가 낮아집니다.",
+      },
+    ],
+    seriesNotes: [
+      {
+        game: "Suikoden I",
+        body: "1편은 미니게임 수가 많지는 않지만, 주사위 도박이 포치 수급의 체감 비중을 크게 차지합니다.",
+        points: [
+          "가스파 영입 뒤 주사위 도박으로 포치를 확보합니다.",
+          "마르코와 조르쥬의 미니게임은 동료 영입 뒤 본거지에서 확인합니다.",
+          "무기 강화 전에는 도박 수급과 전투 수급을 함께 비교합니다.",
+        ],
+      },
+    ],
+    minigameRecords: GAMEPLAY_SUIKODEN_I_MINIGAME_RECORDS,
+    checklist: [
+      "가스파 영입 후 주사위 도박 개방 확인",
+      "마르코 영입 후 동전 맞히기 확인",
+      "조르쥬 영입 후 기억력 게임 확인",
+      "무기 강화 전 포치 수급 상태 확인",
+    ],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.suikodenIIMinigames,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIMinigames),
+    eyebrow: "Dunan Unification War",
+    title: "Suikoden II Minigames",
+    summary:
+      "환상수호전 II의 교역, 낚시, 요리 대결, 주사위 도박, 목욕탕과 수집형 본거지 활동을 정리합니다.",
+    tags: ["교역", "낚시", "요리 대결", "본거지 활동"],
+    overview: [
+      "2편은 본거지 확장과 동료 영입에 따라 전투 외 콘텐츠가 넓게 열립니다.",
+      "교역과 주사위 도박은 포치 수급, 낚시와 요리 대결은 수집형 콘텐츠, 목욕탕과 창·소리세트는 감상형 기록에 가깝습니다.",
+      "탐정 사무소와 지도 제작자 기능은 엄밀한 미니게임은 아니지만, 영입과 탐색을 돕는 반복 확인 항목으로 함께 관리하면 편합니다.",
+    ],
+    keyPoints: [
+      {
+        title: "교역",
+        body: "마을별 시세 차이를 이용해 교역품을 사고팝니다. 이동 동선이 길어지는 구간에 함께 처리하면 포치 수급 부담이 줄어듭니다.",
+      },
+      {
+        title: "낚시와 요리",
+        body: "낚시는 식재료 수급과 본거지 생활 콘텐츠에 연결됩니다. 하이요 이벤트와 레시피 수집을 함께 확인하면 누락을 줄일 수 있습니다.",
+      },
+      {
+        title: "주사위 도박",
+        body: "본거지에서 반복할 수 있는 포치 수급형 미니게임입니다. 손실 가능성이 있으므로 큰 금액을 걸기 전 저장을 분리합니다.",
+      },
+      {
+        title: "감상형 콘텐츠",
+        body: "목욕탕, 창 세트, 소리세트, 음악가 기능은 전투 성능보다 수집과 감상 기록에 가까우므로 후반 정리 항목으로 묶어 봅니다.",
+      },
+    ],
+    seriesNotes: [
+      {
+        game: "Suikoden II",
+        body: "2편 미니게임은 본거지 시설, 영입 동료, 수집 아이템이 서로 이어지는 구조입니다.",
+        points: [
+          "교역소는 지역 시세와 이동 동선을 함께 봅니다.",
+          "하이요 이벤트는 식당, 요리 대결, 레시피 보상을 별도 상세에서 확인합니다.",
+          "낚시와 목장은 식재료와 수집형 운영 콘텐츠를 보조합니다.",
+          "탐정 사무소와 지도 제작자는 영입 단서와 지역 확인을 돕습니다.",
+        ],
+      },
+    ],
+    minigameRecords: GAMEPLAY_SUIKODEN_II_MINIGAME_RECORDS,
+    guardianDeityPlanRecords: GAMEPLAY_GUARDIAN_DEITY_PLAN_RECORDS,
+    checklist: [
+      "교역소 개방 후 주요 마을 시세 확인",
+      "낚시와 목장 수집 상태 확인",
+      "하이요 이벤트와 레시피 보상 확인",
+      "목욕탕, 창 세트, 소리세트 수집 상태 확인",
+      "탐정 사무소 조사 항목 확인",
+    ],
+  },
+  {
     id: GAMEPLAY_DETAIL_IDS.suikodenITips,
     href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenITips),
     eyebrow: "Gate Rune War",
@@ -2126,6 +2461,8 @@ export const GAMEPLAY_DETAIL_RECORDS = [
         ],
       },
     ],
+    minigameRecords: GAMEPLAY_SUIKODEN_II_MINIGAME_RECORDS,
+    guardianDeityPlanRecords: GAMEPLAY_GUARDIAN_DEITY_PLAN_RECORDS,
     checklist: [
       "성 레벨 상승 후 시설 재확인",
       "교역품 시세 확인",
@@ -2323,6 +2660,18 @@ export const GAMEPLAY_HEADQUARTERS_SECTIONS = [
     points: ["교역", "낚시", "요리", "주사위 도박"],
   },
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIMinigames),
+    title: "1편 미니게임",
+    body: "가스파, 마르코, 조르쥬 영입 뒤 본거지에서 확인하는 주사위 도박, 동전 맞히기, 기억력 게임입니다.",
+    points: ["가스파", "마르코", "조르쥬"],
+  },
+  {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIMinigames),
+    title: "2편 미니게임",
+    body: "교역, 낚시, 요리 대결, 주사위 도박, 목욕탕과 수집형 본거지 활동을 따로 묶어 봅니다.",
+    points: ["교역", "낚시", "요리 대결", "목욕탕"],
+  },
+  {
     href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
     title: "하이요 이벤트",
     body: "하이요 합류 뒤 식당에서 진행되는 요리 대결 연속 이벤트입니다. 레시피, 상대 요리사, 보상 흐름을 따로 확인합니다.",
@@ -2344,6 +2693,11 @@ export const GAMEPLAY_GUIDE_GROUPS = [
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIGameplayMechanics),
         title: "Gameplay Mechanics",
         body: "문장 장착과 성장, 전투 이탈, 파티·진형 변경, 합동 마법, 보호 행동, 상태 이상을 묶어 봅니다.",
+      },
+      {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIMinigames),
+        title: "Minigames",
+        body: "가스파의 주사위 도박, 마르코의 동전 맞히기, 조르쥬의 기억력 게임처럼 본거지에서 확인하는 놀이형 콘텐츠입니다.",
       },
       {
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIDuels),
@@ -2370,6 +2724,11 @@ export const GAMEPLAY_GUIDE_GROUPS = [
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIFacilitiesMinigames),
         title: "Facilities & Minigames",
         body: "교역소, 목장, 지도 제작자, 음악가, 탐정 사무소, 요리·낚시·주사위 도박 같은 시설과 미니게임 항목입니다.",
+      },
+      {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIMinigames),
+        title: "Minigames",
+        body: "교역, 낚시, 요리 대결, 주사위 도박, 목욕탕과 수집형 본거지 활동을 반복 콘텐츠 기준으로 정리합니다.",
       },
       {
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),

@@ -8,6 +8,7 @@ import {
   buildCharacterGamePath,
   buildItemGamePath,
   buildMonsterGamePath,
+  buildMonsterBossPath,
   buildRuneCategoryPath,
   buildRegionAtlasDetailPath,
   buildRegionAtlasGamePath,
@@ -134,6 +135,7 @@ export const NAV_GROUPS = [
     items: [
       { label: "Suikoden I", href: buildMonsterGamePath("suikoden-i") },
       { label: "Suikoden II", href: buildMonsterGamePath("suikoden-ii") },
+      { label: "Boss Monsters", href: buildMonsterBossPath() },
     ],
   },
   {

@@ -100,7 +100,11 @@ const Home = () => {
                 const Icon = categoryIconMap[category.icon];
 
                 return (
-                  <a className={CARD_STYLES.category} href={category.href} key={category.title}>
+                  <Link
+                    className={CARD_STYLES.category}
+                    href={category.href}
+                    key={category.title}
+                  >
                     <span className={SECTION_STYLES.categoryIcon}>
                       <Icon aria-hidden="true" className={ICON_STYLES.category} />
                     </span>
@@ -108,7 +112,7 @@ const Home = () => {
                     <p className={TEXT_STYLES.cardBody}>
                       {category.body}
                     </p>
-                  </a>
+                  </Link>
                 );
               })}
             </div>
@@ -146,13 +150,13 @@ const Home = () => {
             <h2 className={RIGHT_RAIL_STYLES.trendingTitle}>{ARCHIVE_COPY.trending.title}</h2>
             <div className={RIGHT_RAIL_STYLES.trendingList}>
               {TRENDING_STARS.map((star) => (
-                <a
+                <Link
                   className={RIGHT_RAIL_STYLES.trendingLink}
                   href={star.href}
                   key={star.label}
                 >
                   {star.label}
-                </a>
+                </Link>
               ))}
             </div>
           </MotionSurface>

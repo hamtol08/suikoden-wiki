@@ -12,7 +12,11 @@ import LocalizedNameList, {
   type LocalizedNameEntry,
 } from "@/components/shared/LocalizedNameList";
 import MonsterNameLinkText from "@/components/shared/MonsterNameLinkText";
-import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
+import {
+  formatArchiveCount,
+  formatArchiveNumber,
+  normalizeArchiveSearchText,
+} from "@/constants/app/archive-utils";
 import { type ItemIndexGameId } from "@/constants/items/item-content";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";
 import { ITEM_STYLES } from "@/constants/styles/ui-styles";
@@ -91,7 +95,7 @@ const ItemIndexBrowser = ({
       <ArchiveIndexSearch
         ariaLabel={copy.searchLabel}
         clearLabel={copy.clearSearchLabel}
-        meta={`${filteredItems.length.toLocaleString("ko-KR")}${copy.resultCountSuffix}`}
+        meta={formatArchiveCount(filteredItems.length, copy.resultCountSuffix)}
         placeholder={copy.searchPlaceholder}
         styles={ITEM_STYLES}
         value={query}
@@ -106,7 +110,7 @@ const ItemIndexBrowser = ({
             <h2 className={ITEM_STYLES.panelTitle}>{panelTitle}</h2>
           </div>
           <p className={ITEM_STYLES.panelMeta}>
-            {filteredItems.length.toLocaleString("ko-KR")}
+            {formatArchiveNumber(filteredItems.length)}
             {copy.entryCountSuffix}
           </p>
         </header>

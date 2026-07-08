@@ -6,6 +6,10 @@ import {
   buildRuneCategoryPath,
   buildRuneDetailPath,
 } from "@/constants/app/app-config";
+import {
+  ARCHIVE_LOCALE,
+  formatArchiveNumber,
+} from "@/constants/app/archive-utils";
 
 export const RUNE_ARCHIVE_COPY = {
   eyebrow: "Runes",
@@ -26,6 +30,8 @@ export const RUNE_ARCHIVE_COPY = {
   runeSpellLabel: "주문",
   runeEffectLabel: "효과",
   runeWeaponEffectLabel: "무기 장착 효과",
+  relatedItemTitle: "관련 봉인구",
+  relatedItemBody: "아이템 기록에서 봉인구 입수처와 드롭 정보를 함께 확인합니다.",
   categoryLabel: "구분",
   functionTypeLabel: "기능 타입",
   lineageLabel: "문장 계열",
@@ -36,12 +42,19 @@ export const RUNE_ARCHIVE_COPY = {
   searchLabel: "Rune search",
   searchPlaceholder: "문장 이름, 영문 표기, 등장 작품 검색",
   resultCountSuffix: "개 문장",
-  resultCount: (count: number) => `${count.toLocaleString("ko-KR")}개 문장`,
+  resultCount: (count: number) => `${formatArchiveNumber(count)}개 문장`,
   noResults: "검색 조건에 맞는 문장이 없습니다.",
   unavailableDetail: "-",
   ariaLabels: {
     categoryTabs: "Rune categories",
   },
+} as const;
+
+export const RUNE_BROWSER_COPY = {
+  noResults: RUNE_ARCHIVE_COPY.noResults,
+  resultCountSuffix: RUNE_ARCHIVE_COPY.resultCountSuffix,
+  searchLabel: RUNE_ARCHIVE_COPY.searchLabel,
+  searchPlaceholder: RUNE_ARCHIVE_COPY.searchPlaceholder,
 } as const;
 
 export const RUNE_FUNCTION_TYPE_LABELS = {
@@ -2949,7 +2962,7 @@ export const getRuneReferencesByPageId = (pageId: RuneIndexPageId) => {
   return RUNE_REFERENCES.filter((rune) =>
     (page.categories as readonly RuneCategoryId[]).includes(rune.category),
   ).toSorted((left, right) =>
-    left.name.localeCompare(right.name, "ko-KR", { numeric: true }),
+    left.name.localeCompare(right.name, ARCHIVE_LOCALE, { numeric: true }),
   );
 };
 

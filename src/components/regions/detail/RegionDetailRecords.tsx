@@ -6,6 +6,10 @@ import Link from "next/link";
 import MotionSurface from "@/components/shared/MotionSurface";
 import { buildCharacterDetailPath } from "@/constants/app/app-config";
 import {
+  ARCHIVE_LOCALE,
+  formatArchiveNumber,
+} from "@/constants/app/archive-utils";
+import {
   CHARACTER_DATA_BY_GAME,
   formatCharacterOrder,
   isCharacterDetailAvailable,
@@ -30,6 +34,7 @@ import {
   resolveItemReference,
   translateItemName,
 } from "@/constants/items/item-content";
+import { resolveMonsterDetailHrefByName } from "@/constants/monsters/monster-content";
 import { resolveRuneReference } from "@/constants/runes/rune-content";
 import { ATLAS_STYLES } from "@/constants/styles/ui-styles";
 
@@ -40,7 +45,7 @@ type RegionDetailRecordsProps = {
 };
 
 const normalizeLocationName = (value: string) =>
-  value.toLocaleLowerCase("ko-KR").replace(/\s+/g, "").trim();
+  value.toLocaleLowerCase(ARCHIVE_LOCALE).replace(/\s+/g, "").trim();
 
 const buildLocationCandidates = (value: string) => {
   const trimmedValue = value.trim();
@@ -89,7 +94,7 @@ const buildRegionCharacters = (region: Region) => {
 };
 
 const formatPrice = (price: number) =>
-  `${price.toLocaleString("ko-KR")} ${REGION_DETAIL_COPY.priceCurrency}`;
+  `${formatArchiveNumber(price)} ${REGION_DETAIL_COPY.priceCurrency}`;
 
 const translateDropName = (name: string) => {
   const rune = resolveRuneReference(name);
@@ -99,6 +104,16 @@ const translateDropName = (name: string) => {
   }
 
   return translateItemName(name);
+};
+
+const resolveDropHref = (name: string) => {
+  const rune = resolveRuneReference(name);
+
+  if (rune) {
+    return rune.href;
+  }
+
+  return resolveItemReference(name)?.href ?? null;
 };
 
 const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
@@ -140,6 +155,7 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                     categoryLabel: itemReference
                       ? ITEM_CATEGORY_LABELS[itemReference.category]
                       : null,
+                    href: itemReference?.href ?? resolveDropHref(item.name),
                     key: item.name,
                     name: translateDropName(item.name),
                     price: formatPrice(item.price),
@@ -169,12 +185,14 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
               load: () => [
                 {
                   chance: REGION_DROP_CHANCE_LABELS[drop.chance],
+                  href: resolveDropHref(drop.item),
                   key: drop.item,
                   name: translateDropName(drop.item),
                 },
               ],
             }),
           ),
+          href: resolveMonsterDetailHrefByName(region.game, enemy.name),
           key: enemy.name,
           name: translateMonsterName(enemy.name),
           phase: enemy.phase,
@@ -253,9 +271,18 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                   {shop.items.map((item) => (
                     <li className={ATLAS_STYLES.regionDataRow} key={item.key}>
                       <span>
-                        <span className={ATLAS_STYLES.regionDataName}>
-                          {item.name}
-                        </span>
+                        {item.href ? (
+                          <Link
+                            className={ATLAS_STYLES.regionDataName}
+                            href={item.href}
+                          >
+                            {item.name}
+                          </Link>
+                        ) : (
+                          <span className={ATLAS_STYLES.regionDataName}>
+                            {item.name}
+                          </span>
+                        )}
                         {item.availabilityLabel ? (
                           <span className={ATLAS_STYLES.regionDataMeta}>
                             {item.availabilityLabel}
@@ -288,7 +315,16 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
             {enemyCards.map((enemy) => (
               <section className={ATLAS_STYLES.regionRecordCard} key={enemy.key}>
                 <h4 className={ATLAS_STYLES.regionRecordCardTitle}>
-                  {enemy.name}
+                  {enemy.href ? (
+                    <Link
+                      className={ATLAS_STYLES.regionRecordCardTitle}
+                      href={enemy.href}
+                    >
+                      {enemy.name}
+                    </Link>
+                  ) : (
+                    enemy.name
+                  )}
                 </h4>
                 {enemy.phase ? (
                   <p className={ATLAS_STYLES.regionRecordCardMeta}>
@@ -298,9 +334,18 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                 <ul className={ATLAS_STYLES.regionDataList}>
                   {enemy.drops.map((drop) => (
                     <li className={ATLAS_STYLES.regionDataRow} key={drop.key}>
-                      <span className={ATLAS_STYLES.regionDataName}>
-                        {drop.name}
-                      </span>
+                      {drop.href ? (
+                        <Link
+                          className={ATLAS_STYLES.regionDataName}
+                          href={drop.href}
+                        >
+                          {drop.name}
+                        </Link>
+                      ) : (
+                        <span className={ATLAS_STYLES.regionDataName}>
+                          {drop.name}
+                        </span>
+                      )}
                       <span className={ATLAS_STYLES.regionDataValue}>
                         {drop.chance}
                       </span>

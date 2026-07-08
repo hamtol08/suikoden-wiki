@@ -11,6 +11,8 @@ import {
   GameplayCookingContestRecords,
   GameplayDetailSeriesNotes,
   GameplayDuelRecords,
+  GameplayGuardianDeityPlanRecords,
+  GameplayMinigameRecords,
   GameplayRecipeRecords,
   GameplayRestaurantTips,
   GameplayWarBattleGuide,
@@ -124,6 +126,26 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                   </h2>
                   <GameplayCookingContestRecords
                     records={record.cookingContestRecords}
+                  />
+                </section>
+              ) : null}
+
+              {record.minigameRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.minigameListLabel}
+                  </h2>
+                  <GameplayMinigameRecords records={record.minigameRecords} />
+                </section>
+              ) : null}
+
+              {record.guardianDeityPlanRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.guardianDeityPlanLabel}
+                  </h2>
+                  <GameplayGuardianDeityPlanRecords
+                    records={record.guardianDeityPlanRecords}
                   />
                 </section>
               ) : null}
