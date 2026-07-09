@@ -9,7 +9,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import ArchiveSearch, {
-  type CharacterSearchResult,
+  type ArchiveSearchResult,
 } from "@/components/layout/ArchiveSearch";
 import ThemeModeToggle from "@/components/layout/ThemeModeToggle";
 import { ROUTE_ANCHORS } from "@/constants/app/app-config";
@@ -26,7 +26,7 @@ type ArchiveHeaderControlsProps = {
   activeLabel?: string | null;
   copy: ArchiveHeaderControlsCopy;
   navigationGroups: readonly ArchiveNavigationGroup[];
-  searchIndex: readonly CharacterSearchResult[];
+  searchIndex: readonly ArchiveSearchResult[];
 };
 
 type ArchiveHeaderControlsCopy = {

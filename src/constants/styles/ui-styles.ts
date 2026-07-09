@@ -492,6 +492,13 @@ export const RUNE_STYLES = {
     "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
   functionTitle:
     "font-serif text-3xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  functionSummaryGrid: "mt-5 grid gap-3 sm:grid-cols-3",
+  functionSummaryCard:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#111c2c]/80",
+  functionSummaryLabel:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  functionSummaryValue:
+    "mt-2 font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   functionGrid: "mt-5 grid gap-4 xl:grid-cols-2",
   functionCard:
     "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#111c2c]",
@@ -605,6 +612,14 @@ export const ITEM_STYLES = {
     "grid gap-px overflow-hidden rounded border border-[#c7d3e9] bg-[#c7d3e9] dark:border-[#38475f] dark:bg-[#38475f] md:grid-cols-2",
   detailMetaRow:
     "grid items-center gap-1 bg-[#edf3ff] p-3 dark:bg-[#111c2c]/80 sm:grid-cols-[7rem_minmax(0,1fr)]",
+  detailInsightGrid:
+    "mt-5 grid gap-3 border-t border-[#d8c9a5] pt-5 dark:border-[#38475f] sm:grid-cols-2 xl:grid-cols-4",
+  detailInsightCard:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#111c2c]/80",
+  detailInsightLabel:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  detailInsightValue:
+    "mt-2 break-keep font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   detailSection:
     "mt-5 rounded-md border border-[#eee4cd] bg-[#fff8e2] p-4 dark:border-[#38475f] dark:bg-[#111c2c]",
   detailSectionTitle:
@@ -669,6 +684,14 @@ export const MONSTER_STYLES = {
     "mt-2 grid gap-2 break-keep text-sm font-semibold leading-6 text-[#3e4654] dark:text-[#c5c6cd]",
   bossGuideListItem:
     "rounded border border-[#eee4cd] bg-[#fffaf0] px-3 py-2 dark:border-[#38475f] dark:bg-[#111c2c]",
+  bossGuideSummaryGrid:
+    "grid gap-2 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-3 dark:border-[#38475f] dark:bg-[#111c2c]/80 sm:grid-cols-3 lg:col-span-2",
+  bossGuideSummaryCard:
+    "rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 dark:border-[#604403] dark:bg-[#172337]",
+  bossGuideSummaryLabel:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  bossGuideSummaryValue:
+    "mt-1 break-keep text-sm font-semibold leading-6 text-[#101827] dark:text-[#f4f1ea]",
   statTableWrap:
     "mt-4 overflow-x-auto rounded border border-[#c7d3e9] dark:border-[#38475f]",
   statTable:
@@ -826,6 +849,13 @@ export const ATLAS_STYLES = {
   regionRecordHeader: "flex items-center gap-3",
   regionRecordAccent: "h-8 w-1 rounded-full bg-[#d4af37]",
   regionRecordTitle: "font-serif text-3xl font-semibold",
+  regionSummaryGrid: "grid gap-3 sm:grid-cols-2 xl:grid-cols-5",
+  regionSummaryCard:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
+  regionSummaryLabel:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  regionSummaryValue:
+    "mt-2 font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   regionRecordPanel:
     "rounded-lg border border-[#d8c9a5] bg-white p-5 dark:border-[#604403] dark:bg-[#172337] sm:p-6",
   regionRecordPanelTitle:
@@ -847,6 +877,8 @@ export const ATLAS_STYLES = {
     "mt-1 mr-2 inline-flex rounded border border-[#d4af37]/35 px-2 py-0.5 text-[0.68rem] font-bold text-[#7a5900] dark:text-[#e9c176]",
   regionDataValue:
     "whitespace-nowrap text-sm font-bold text-[#7a5900] dark:text-[#e9c176]",
+  regionRecordEmpty:
+    "mt-3 rounded border border-[#c7d3e9] bg-white/55 px-3 py-3 text-sm font-semibold leading-6 text-[#4b5565] dark:border-[#38475f] dark:bg-[#111c2c]/55 dark:text-[#c5c6cd]",
   regionCharacterGrid: "mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3",
   regionCharacterCard:
     "grid gap-1 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#38475f] dark:bg-[#14243a] dark:hover:bg-[#172337]",
@@ -1026,6 +1058,41 @@ export const GAMEPLAY_STYLES = {
   minigameTipList: "mt-2 grid gap-2",
   minigameTipItem:
     "break-keep text-sm font-semibold leading-6 text-[#3e4654] dark:text-[#e9c176]",
+  uniteAttackGrid: "mt-4 grid gap-3 xl:grid-cols-2",
+  uniteAttackCard:
+    "grid min-w-0 gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  uniteAttackHeader:
+    "border-b border-[#c7d3e9] pb-3 dark:border-[#38475f]",
+  uniteAttackGame:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  uniteAttackTitle:
+    "mt-1 break-keep font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  uniteAttackMetaGrid: "grid gap-2 md:grid-cols-3",
+  uniteAttackMeta:
+    "rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 text-sm font-semibold leading-6 text-[#3e4654] dark:border-[#604403] dark:bg-[#111c2c]/75 dark:text-[#c5c6cd]",
+  uniteAttackMetaLabel:
+    "mb-1 block text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  uniteAttackBody:
+    "break-keep text-sm font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  uniteAttackTagList:
+    "flex flex-wrap gap-2 border-t border-[#c7d3e9] pt-3 dark:border-[#38475f]",
+  missablePhaseGrid: "mt-4 grid gap-3 xl:grid-cols-2",
+  missablePhaseCard:
+    "grid min-w-0 gap-4 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#172337]",
+  missablePhaseHeader:
+    "border-b border-[#c7d3e9] pb-3 dark:border-[#38475f]",
+  missablePhaseGame:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  missablePhaseTitle:
+    "mt-1 break-keep font-serif text-xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  missablePhaseMeta:
+    "rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 text-sm font-semibold leading-6 text-[#3e4654] dark:border-[#604403] dark:bg-[#111c2c]/75 dark:text-[#c5c6cd]",
+  missablePhaseMetaLabel:
+    "mb-1 block text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  missablePhaseBody:
+    "break-keep text-sm font-semibold leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  missablePhaseTagList:
+    "flex flex-wrap gap-2 border-t border-[#c7d3e9] pt-3 dark:border-[#38475f]",
   guardianPlanTableWrap:
     "mt-4 overflow-x-auto rounded-lg border border-[#c7d3e9] dark:border-[#38475f]",
   guardianPlanTable:

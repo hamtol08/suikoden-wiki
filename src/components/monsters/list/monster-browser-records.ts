@@ -8,35 +8,51 @@ import {
   MONSTER_ARCHIVE_COPY,
   type MonsterIndexRecord,
 } from "@/constants/monsters/monster-content";
+import { resolveMonsterBossGuide } from "@/constants/monsters/monster-boss-guides";
 
 export const buildMonsterBrowserItem = (
   monster: MonsterIndexRecord,
   groupLabel?: string,
-): MonsterBrowserItem => ({
-  encounters: monster.encounters,
-  game: monster.game,
-  groupLabel,
-  href: monster.detailHref,
-  hasDrops: monster.hasDrops,
-  id: monster.id,
-  isBoss: monster.isBoss,
-  name: monster.name,
-  originalName: monster.originalName,
-  searchText: normalizeArchiveSearchText(
-    [
-      monster.name,
-      monster.originalName,
-      groupLabel ?? "",
-      monster.isBoss ? MONSTER_ARCHIVE_COPY.labels.bossType : "",
-      ...monster.encounters.flatMap((encounter) => [
-        encounter.location,
-        encounter.originalLocation,
-        ...encounter.drops.flatMap((drop) => [
-          drop.name,
-          drop.originalName,
-          drop.rateLabel,
+): MonsterBrowserItem => {
+  const bossGuide = monster.isBoss
+    ? resolveMonsterBossGuide(monster.game, monster.originalName)
+    : null;
+  const bossGuideSummary = bossGuide
+    ? `${MONSTER_ARCHIVE_COPY.labels.bossGuideReady} · ${
+        bossGuide.preparation.length + bossGuide.tactics.length
+      }${MONSTER_ARCHIVE_COPY.labels.bossGuideCount}`
+    : undefined;
+
+  return {
+    bossGuideSummary,
+    encounters: monster.encounters,
+    game: monster.game,
+    groupLabel,
+    href: monster.detailHref,
+    hasDrops: monster.hasDrops,
+    id: monster.id,
+    isBoss: monster.isBoss,
+    japaneseName: monster.japaneseName,
+    name: monster.name,
+    originalName: monster.originalName,
+    searchText: normalizeArchiveSearchText(
+      [
+        monster.name,
+        monster.originalName,
+        monster.japaneseName,
+        groupLabel ?? "",
+        monster.isBoss ? MONSTER_ARCHIVE_COPY.labels.bossType : "",
+        bossGuideSummary ?? "",
+        ...monster.encounters.flatMap((encounter) => [
+          encounter.location,
+          encounter.originalLocation,
+          ...encounter.drops.flatMap((drop) => [
+            drop.name,
+            drop.originalName,
+            drop.rateLabel,
+          ]),
         ]),
-      ]),
-    ].join(" "),
-  ),
-});
+      ].join(" "),
+    ),
+  };
+};

@@ -7,6 +7,7 @@ import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import ItemNameLinkText from "@/components/shared/ItemNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
+import { formatArchiveCount } from "@/constants/app/archive-utils";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
   getMonsterDetailRecord,
@@ -35,6 +36,16 @@ type MonsterDetailRow = {
 type MonsterStatField = {
   key: keyof MonsterStatRecord;
   label: string;
+};
+
+type BossGuideSummaryRow = {
+  label: string;
+  value: string;
+};
+
+type MonsterInsightRow = {
+  label: string;
+  value: string;
 };
 
 const BASE_STAT_FIELDS = [
@@ -85,6 +96,38 @@ const STATUS_RESISTANCE_FIELDS = [
   label: string;
 }[];
 
+const AFFINITY_EFFECTIVE_MARKS = new Set(["○", "◯"]);
+const AFFINITY_RESISTANT_MARKS = new Set(["△"]);
+const AFFINITY_INVALID_MARKS = new Set(["×", "✕"]);
+
+const formatNumberRange = (values: readonly number[]) => {
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+
+  return min === max ? `${min}` : `${min} - ${max}`;
+};
+
+const summarizeMarkedFields = <
+  TRecord extends Record<string, string>,
+  TField extends readonly { key: keyof TRecord; label: string }[],
+>(
+  record: TRecord | null,
+  fields: TField,
+  marks: ReadonlySet<string>,
+) => {
+  if (!record) {
+    return MONSTER_ARCHIVE_COPY.unavailableDetail;
+  }
+
+  const labels = fields
+    .filter((field) => marks.has(record[field.key]))
+    .map((field) => field.label);
+
+  return labels.length > 0
+    ? labels.join(", ")
+    : MONSTER_ARCHIVE_COPY.labels.normalAffinity;
+};
+
 const buildDetailRows = (monster: MonsterDetailRecord): MonsterDetailRow[] => [
   {
     label: MONSTER_ARCHIVE_COPY.labels.games,
@@ -93,6 +136,123 @@ const buildDetailRows = (monster: MonsterDetailRecord): MonsterDetailRow[] => [
   {
     label: MONSTER_ARCHIVE_COPY.labels.originalName,
     value: monster.originalName,
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.japaneseName,
+    value: monster.japaneseName,
+  },
+];
+
+const buildDetailSummaryRows = (
+  monster: MonsterDetailRecord,
+): MonsterDetailRow[] => [
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.recordType,
+    value: monster.bossGuide
+      ? MONSTER_ARCHIVE_COPY.labels.bossType
+      : MONSTER_ARCHIVE_COPY.labels.fieldType,
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.encounterCount,
+    value: formatArchiveCount(
+      monster.encounters.length,
+      MONSTER_ARCHIVE_COPY.locationCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.detailDropCount,
+    value: formatArchiveCount(
+      new Set(
+        monster.encounters.flatMap((encounter) =>
+          encounter.drops.map((drop) => drop.name)
+        ),
+      ).size,
+      MONSTER_ARCHIVE_COPY.recordCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.statRecordCount,
+    value: formatArchiveCount(
+      monster.stats.length,
+      MONSTER_ARCHIVE_COPY.recordCountSuffix,
+    ),
+  },
+];
+
+const buildBossGuideSummaryRows = (
+  guide: NonNullable<MonsterDetailRecord["bossGuide"]>,
+): BossGuideSummaryRow[] => [
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.bossPreparationCount,
+    value: formatArchiveCount(
+      guide.preparation.length,
+      MONSTER_ARCHIVE_COPY.recordCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.bossTacticsCount,
+    value: formatArchiveCount(
+      guide.tactics.length,
+      MONSTER_ARCHIVE_COPY.recordCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.bossWarningState,
+    value: guide.warning
+      ? MONSTER_ARCHIVE_COPY.labels.bossWarningAvailable
+      : MONSTER_ARCHIVE_COPY.labels.bossWarningUnavailable,
+  },
+];
+
+const buildCombatInsightRows = (
+  monster: MonsterDetailRecord,
+  affinityFields: ReturnType<typeof buildAffinityFields>,
+): MonsterInsightRow[] => [
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.levelRange,
+    value:
+      monster.stats.length > 0
+        ? formatNumberRange(monster.stats.map((stat) => stat.level))
+        : MONSTER_ARCHIVE_COPY.unavailableDetail,
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.hpRange,
+    value:
+      monster.stats.length > 0
+        ? formatNumberRange(monster.stats.map((stat) => stat.hp))
+        : MONSTER_ARCHIVE_COPY.unavailableDetail,
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.effectiveElements,
+    value: summarizeMarkedFields(
+      monster.affinity,
+      affinityFields,
+      AFFINITY_EFFECTIVE_MARKS,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.invalidElements,
+    value: summarizeMarkedFields(
+      monster.affinity,
+      affinityFields,
+      AFFINITY_INVALID_MARKS,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.resistantElements,
+    value: summarizeMarkedFields(
+      monster.affinity,
+      affinityFields,
+      AFFINITY_RESISTANT_MARKS,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.statusInvalid,
+    value: summarizeMarkedFields(
+      monster.statusResistances,
+      STATUS_RESISTANCE_FIELDS,
+      AFFINITY_INVALID_MARKS,
+    ),
   },
 ];
 
@@ -147,8 +307,17 @@ const MonsterDetailPageShell = ({
     label: `monster-detail-rows:${monster.game}:${monster.id}`,
     load: () => buildDetailRows(monster),
   });
+  const summaryRows = loadArchiveJsonSafely({
+    fallback: [],
+    label: `monster-detail-summary:${monster.game}:${monster.id}`,
+    load: () => buildDetailSummaryRows(monster),
+  });
   const statFields = buildStatFields(monster.stats);
   const affinityFields = buildAffinityFields(monster.affinity);
+  const combatInsightRows = buildCombatInsightRows(monster, affinityFields);
+  const bossGuideSummaryRows = monster.bossGuide
+    ? buildBossGuideSummaryRows(monster.bossGuide)
+    : [];
 
   return (
     <main className={APP_SHELL_STYLES.page}>
@@ -180,7 +349,38 @@ const MonsterDetailPageShell = ({
                   ))}
                 </dl>
               </div>
+
+              <dl className={MONSTER_STYLES.detailMetaGrid}>
+                {summaryRows.map((row) => (
+                  <div className={MONSTER_STYLES.detailMetaRow} key={row.label}>
+                    <dt className={MONSTER_STYLES.ledgerTerm}>
+                      {row.label}
+                    </dt>
+                    <dd className={MONSTER_STYLES.ledgerValue}>
+                      {row.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </header>
+
+            <section className={MONSTER_STYLES.detailSection}>
+              <h3 className={MONSTER_STYLES.detailSectionTitle}>
+                {MONSTER_ARCHIVE_COPY.combatSummaryTitle}
+              </h3>
+              <dl className={MONSTER_STYLES.detailInsightGrid}>
+                {combatInsightRows.map((row) => (
+                  <div className={MONSTER_STYLES.detailInsightCard} key={row.label}>
+                    <dt className={MONSTER_STYLES.detailInsightLabel}>
+                      {row.label}
+                    </dt>
+                    <dd className={MONSTER_STYLES.detailInsightValue}>
+                      {row.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
 
             <section className={MONSTER_STYLES.detailSection}>
               <h3 className={MONSTER_STYLES.detailSectionTitle}>
@@ -260,6 +460,22 @@ const MonsterDetailPageShell = ({
                   {MONSTER_ARCHIVE_COPY.bossGuideTitle}
                 </h3>
                 <div className={MONSTER_STYLES.bossGuideGrid}>
+                  <dl className={MONSTER_STYLES.bossGuideSummaryGrid}>
+                    {bossGuideSummaryRows.map((row) => (
+                      <div
+                        className={MONSTER_STYLES.bossGuideSummaryCard}
+                        key={row.label}
+                      >
+                        <dt className={MONSTER_STYLES.bossGuideSummaryLabel}>
+                          {row.label}
+                        </dt>
+                        <dd className={MONSTER_STYLES.bossGuideSummaryValue}>
+                          {row.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+
                   <article className={MONSTER_STYLES.bossGuideCardWide}>
                     <p className={MONSTER_STYLES.bossGuideLabel}>
                       {MONSTER_ARCHIVE_COPY.labels.bossOverview}

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * 헤더 캐릭터 검색창의 입력, 추천, 이동 상호작용을 관리합니다.
+ * 헤더 아카이브 검색창의 입력, 추천, 이동 상호작용을 관리합니다.
  */
 
 import {
@@ -22,7 +22,7 @@ import { useArchiveUiStore } from "@/stores/archive-ui-store";
 
 type ArchiveSearchProps = {
   copy: ArchiveSearchCopy;
-  searchIndex: readonly CharacterSearchResult[];
+  searchIndex: readonly ArchiveSearchResult[];
   variant?: "desktop" | "header";
 };
 
@@ -34,7 +34,7 @@ type ArchiveSearchCopy = {
   searchPlaceholder: string;
 };
 
-export type CharacterSearchResult = {
+export type ArchiveSearchResult = {
   href: string;
   id: string;
   meta: string;
@@ -71,7 +71,7 @@ const searchInteractionReducer = (
     case "blur":
       return { ...state, isFocused: false };
     case "clear":
-      return { activeIndex: 0, isFocused: state.isFocused };
+      return { activeIndex: 0, isFocused: true };
     case "focus":
       return { ...state, isFocused: true };
     case "moveDown":
@@ -112,8 +112,8 @@ const ArchiveSearch = ({
       return [];
     }
 
-    return searchIndex.filter((character) =>
-      character.searchText.includes(normalizedQuery),
+    return searchIndex.filter((result) =>
+      result.searchText.includes(normalizedQuery),
     ).slice(0, MAX_VISIBLE_SUGGESTIONS);
   }, [normalizedQuery, searchIndex]);
 
@@ -121,15 +121,15 @@ const ArchiveSearch = ({
   const showSuggestions =
     interactionState.isFocused && normalizedQuery.length > 0;
 
-  const navigateToCharacter = (character: CharacterSearchResult) => {
-    setSearchQuery(character.name);
+  const navigateToResult = (result: ArchiveSearchResult) => {
+    setSearchQuery(result.name);
     dispatchInteraction({ type: "blur" });
     window.dispatchEvent(
       new CustomEvent(ARCHIVE_NAVIGATION_EVENT_NAME, {
-        detail: { href: character.href },
+        detail: { href: result.href },
       }),
     );
-    router.push(character.href);
+    router.push(result.href);
   };
 
   const clearSearch = () => {
@@ -139,7 +139,7 @@ const ArchiveSearch = ({
 
   const submitSearch = () => {
     if (hasSuggestions) {
-      navigateToCharacter(
+      navigateToResult(
         suggestions[interactionState.activeIndex] ?? suggestions[0],
       );
     }
@@ -212,6 +212,7 @@ const ArchiveSearch = ({
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
+        onFocus={() => dispatchInteraction({ type: "focus" })}
         onKeyDown={handleKeyDown}
       />
       {searchQuery ? (
@@ -230,7 +231,7 @@ const ArchiveSearch = ({
 
       {showSuggestions && hasSuggestions ? (
         <div className={SEARCH_STYLES.suggestions} id={listboxId} role="listbox">
-          {suggestions.map((character, index) => (
+          {suggestions.map((result, index) => (
             <button
               aria-selected={interactionState.activeIndex === index}
               className={
@@ -238,7 +239,7 @@ const ArchiveSearch = ({
                   ? SEARCH_STYLES.suggestionButtonActive
                   : SEARCH_STYLES.suggestionButton
               }
-              key={`${character.id}-${character.href}`}
+              key={`${result.id}-${result.href}`}
               role="option"
               type="button"
               onMouseEnter={() =>
@@ -249,18 +250,18 @@ const ArchiveSearch = ({
               }
               onMouseDown={(event) => {
                 event.preventDefault();
-                navigateToCharacter(character);
+                navigateToResult(result);
               }}
             >
               <span className={SEARCH_STYLES.suggestionOrder}>
-                {character.order}
+                {result.order}
               </span>
               <span className={SEARCH_STYLES.suggestionText}>
                 <span className={SEARCH_STYLES.suggestionName}>
-                  {character.name}
+                  {result.name}
                 </span>
                 <span className={SEARCH_STYLES.suggestionMeta}>
-                  {character.meta}
+                  {result.meta}
                 </span>
               </span>
             </button>

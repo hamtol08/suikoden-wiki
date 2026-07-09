@@ -31,7 +31,7 @@ import { SUIKODEN_II_MONSTER_DETAIL_SOURCE_RECORDS } from "@/constants/monsters/
 export const MONSTER_ARCHIVE_COPY = {
   eyebrow: "Monsters",
   title: "Monster Bestiary",
-  body: "환상수호전 I의 필드 몬스터와 전투 상대를 출현 위치, 드롭 아이템, 획득 확률 기준으로 정리합니다.",
+  body: "환상수호전 I·II의 필드 몬스터와 전투 상대를 출현 위치, 드롭 아이템, 획득 확률 기준으로 정리합니다.",
   bossTitle: "Boss Monsters",
   bossBody: "작품별 보스 전투를 일반 몬스터 도감과 분리해, 출현 위치와 드롭 기록, 전투 공략 기준으로 정리합니다.",
   tabsAriaLabel: "Monster series",
@@ -41,38 +41,64 @@ export const MONSTER_ARCHIVE_COPY = {
   clearSearchLabel: "검색어 지우기",
   resultCountSuffix: "종",
   entryCountSuffix: "종",
+  locationCountSuffix: "곳",
+  recordCountSuffix: "건",
   noResults: "검색 조건에 맞는 몬스터 기록이 없습니다.",
   unavailableDetail: "-",
   detailEyebrow: "Monster Profile",
   detailBody: "몬스터별 출현 위치, 드롭 아이템, 위치별 전투 스탯과 속성 반응을 정리합니다.",
-  summaryTitle: "Bestiary Summary",
-  encounterTitle: "Drops and Locations",
-  bossGuideTitle: "Boss Strategy",
-  statTitle: "Level and Stats",
-  affinityTitle: "Element Affinity",
-  statusResistanceTitle: "Status Resistances",
+  summaryTitle: "도감 요약",
+  encounterTitle: "출현 위치와 드롭",
+  combatSummaryTitle: "전투 요약",
+  bossGuideTitle: "보스 공략",
+  statTitle: "레벨·스탯",
+  affinityTitle: "속성 반응",
+  statusResistanceTitle: "상태 이상 내성",
   backToList: "목록으로 돌아가기",
   noStatRecords: "상세 스탯 기록이 아직 정리되지 않은 몬스터입니다.",
   noAffinityRecords: "속성 반응 기록이 아직 정리되지 않은 몬스터입니다.",
   statusResistanceLegend: "○ = 유효 / △ = 내성 / × = 무효 / - = 보통",
   labels: {
     englishName: "EN",
+    japaneseName: "JP",
     games: "작품",
     originalName: "EN",
     location: "출현 위치",
     drops: "드롭",
     dropRate: "획득 확률",
     noDrop: "드롭 없음",
+    recordType: "기록 구분",
     bossType: "보스형",
+    fieldType: "필드형",
+    encounterCount: "출현 기록",
+    detailDropCount: "드롭 기록",
+    statRecordCount: "스탯 기록",
+    levelRange: "레벨 범위",
+    hpRange: "HP 범위",
+    effectiveElements: "유효 속성",
+    invalidElements: "무효 속성",
+    resistantElements: "내성 속성",
+    normalAffinity: "특이 반응 없음",
+    statusInvalid: "상태 무효",
+    statusResistant: "상태 내성",
+    statusEffective: "상태 유효",
+    statusNormal: "일반 반응",
     suikodenICount: "Suikoden I",
     suikodenIICount: "Suikoden II",
     bossOverview: "전투 개요",
     bossPreparation: "준비",
     bossTactics: "전투 흐름",
     bossWarning: "주의점",
-    monsterCount: "Monster Summary",
-    locationCount: "Locations",
-    dropCount: "Drop Items",
+    bossPreparationCount: "준비 항목",
+    bossTacticsCount: "전투 흐름",
+    bossWarningState: "주의점",
+    bossWarningAvailable: "주의점 있음",
+    bossWarningUnavailable: "기본 전투",
+    bossGuideReady: "공략 정리",
+    bossGuideCount: "전투 팁",
+    monsterCount: "몬스터 요약",
+    locationCount: "출현 위치",
+    dropCount: "드롭 아이템",
     level: "Lv.",
     hp: "HP",
     range: "Range",
@@ -103,9 +129,12 @@ export const MONSTER_BROWSER_COPY = {
   clearSearchLabel: MONSTER_ARCHIVE_COPY.clearSearchLabel,
   entryCountSuffix: MONSTER_ARCHIVE_COPY.entryCountSuffix,
   labels: {
+    bossGuideCount: MONSTER_ARCHIVE_COPY.labels.bossGuideCount,
+    bossGuideReady: MONSTER_ARCHIVE_COPY.labels.bossGuideReady,
     bossType: MONSTER_ARCHIVE_COPY.labels.bossType,
     drops: MONSTER_ARCHIVE_COPY.labels.drops,
     englishName: MONSTER_ARCHIVE_COPY.labels.englishName,
+    japaneseName: MONSTER_ARCHIVE_COPY.labels.japaneseName,
     location: MONSTER_ARCHIVE_COPY.labels.location,
     noDrop: MONSTER_ARCHIVE_COPY.labels.noDrop,
   },
@@ -113,6 +142,7 @@ export const MONSTER_BROWSER_COPY = {
   resultCountSuffix: MONSTER_ARCHIVE_COPY.resultCountSuffix,
   searchLabel: MONSTER_ARCHIVE_COPY.searchLabel,
   searchPlaceholder: MONSTER_ARCHIVE_COPY.searchPlaceholder,
+  unavailableDetail: MONSTER_ARCHIVE_COPY.unavailableDetail,
 } as const;
 
 export const MONSTER_BOSS_BROWSER_COPY = {
@@ -312,6 +342,7 @@ const MONSTER_NAME_TRANSLATIONS = {
   "Giant Slug": "거대 민달팽이",
   "Giant Snail": "거대 달팽이",
   Gigantes: "기간테스",
+  "Golden Hydra": "황금 히드라",
   GoldBoar: "골드 보어",
   GrandHolly: "그랜드 홀리",
   "Grave Master": "그레이브 마스터",
@@ -697,6 +728,79 @@ const MONSTER_TYPE_PATTERNS = [
   },
 ] as const;
 
+const MONSTER_JAPANESE_TYPE_PATTERNS = [
+  {
+    pattern: /^Highlands \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `ハイランド兵(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Bandit \((.+)\)(?: \((\d)\))?$/,
+    translate: (match: RegExpMatchArray) =>
+      `山賊(${translateMonsterJapaneseVariant(match[1])})${match[2] ? ` ${match[2]}` : ""}`,
+  },
+  {
+    pattern: /^Bandit ([ABC])$/,
+    translate: (match: RegExpMatchArray) =>
+      `山賊${translateMonsterJapaneseVariant(match[1])}`,
+  },
+  {
+    pattern: /^Kobold \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `コボルト(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Empire Soldier \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `帝国兵(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Empire Captain \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `帝国隊長(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Robot Soldier \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `ロボット兵(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Death Machine \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `デスマシーン(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Veteran Soldier \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `ベテラン兵(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Imperial Guard \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `近衛兵(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Zombie \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `ゾンビ(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Skeleton \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `スケルトン(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^DoReMi Elf \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `ドレミの精(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+  {
+    pattern: /^Karayans \((.+)\)$/,
+    translate: (match: RegExpMatchArray) =>
+      `カラヤン(${translateMonsterJapaneseVariant(match[1])})`,
+  },
+] as const;
+
 export type MonsterDrop = {
   href: string | null;
   name: string;
@@ -718,6 +822,7 @@ export type MonsterIndexRecord = {
   hasDrops: boolean;
   id: string;
   isBoss: boolean;
+  japaneseName: string;
   name: string;
   originalName: string;
   encounters: readonly MonsterEncounterRecord[];
@@ -764,6 +869,7 @@ export type MonsterDetailRecord = MonsterIndexRecord & {
   gameEyebrow: string;
   gameTitle: string;
   indexHref: string;
+  japaneseName: string;
   stats: readonly MonsterStatRecord[];
   statusResistances: MonsterStatusResistanceRecord | null;
 };
@@ -803,6 +909,168 @@ const DEFAULT_MONSTER_STATUS_RESISTANCES = {
   sleep: "-",
   stun: "-",
 } as const satisfies MonsterStatusResistanceRecord;
+
+export const MONSTER_JAPANESE_NAME_TRANSLATIONS = {
+  "Air Lizard": "エアリザード",
+  "Ain Gide": "アイン・ジード",
+  Angie: "アンジー",
+  Armadilloid: "アルマジロイド",
+  Armadillon: "アルマジロン",
+  Assassin: "アサシン",
+  Banshee: "バンシー",
+  "Beast Commander": "ビーストコマンダー",
+  BlackTiger: "ブラックタイガー",
+  "Black Elemental": "ブラックエレメンタル",
+  "Black Wild Boar": "ブラックワイルドボア",
+  BonBon: "ボンボン",
+  Bronzem: "ブロンゼム",
+  Chimera: "キメラ",
+  "Clay Doll": "クレイドール",
+  Cockatrice: "コカトリス",
+  Colossus: "コロッサス",
+  Commander: "コマンダー",
+  "Copper Sun": "カッパーサン",
+  Creeper: "クリーパー",
+  "Crimson Dwarf": "クリムゾンドワーフ",
+  "Crystal Core": "クリスタルコア",
+  Crow: "カラス",
+  Dagon: "ダゴン",
+  DarkBunny: "ダークバニー",
+  Delf: "デルフ",
+  "Demon Hound": "デーモンハウンド",
+  "Demon Sorcerer": "デーモンソーサラー",
+  "Death Boar": "デスボア",
+  DevilEye: "デビルアイ",
+  "Devil Armor": "デビルアーマー",
+  "Devil Shield": "デビルシールド",
+  Dragon: "ドラゴン",
+  Dwarf: "ドワーフ",
+  "Eagle Man": "イーグルマン",
+  "Earth Golem": "アースゴーレム",
+  Ekidonna: "エキドナ",
+  "Elite Soldier": "エリート兵",
+  EyeFlower: "アイフラワー",
+  "Fei Yu": "フェイユー",
+  Fisheye: "フィッシュアイ",
+  Furball: "ファーボール",
+  FurFur: "フルフル",
+  "Flying Squirrel": "ムササビ",
+  GhostSlug: "ゴーストスラッグ",
+  "Ghost Armor": "ゴーストアーマー",
+  "Giant Slug": "ジャイアントスラッグ",
+  "Giant Snail": "ジャイアントスネイル",
+  "Queen Ant": "クイーンアント",
+  Gigantes: "ギガンテス",
+  "Golden Hydra": "ゴールデンヒドラ",
+  GoldBoar: "ゴールドボア",
+  GrandHolly: "グランドホリー",
+  "Grave Master": "グレイブマスター",
+  Griffin: "グリフォン",
+  "Grizzly Bear": "グリズリーベア",
+  "Hawk Man": "ホークマン",
+  HawkMan: "ホークマン",
+  Hippogriff: "ヒポグリフ",
+  "Hell Hound": "ヘルハウンド",
+  "Hell Unicorn": "ヘルユニコーン",
+  "Holly Boy": "ホーリーボーイ",
+  "Holly Fairy": "ホーリーフェアリー",
+  HollyElf: "ホーリーエルフ",
+  "Holly Master": "ホーリーマスター",
+  "Holly Spirit": "ホーリースピリット",
+  Ivy: "アイビー",
+  IronClaw: "アイアンクロー",
+  IronMoon: "アイアンムーン",
+  Kanak: "カナック",
+  Kerberos: "ケルベロス",
+  "Killer Rabbit": "キラーラビット",
+  KillerBee: "キラービー",
+  KillerDog: "キラードッグ",
+  KillSpider: "キルスパイダー",
+  "Killer Slime": "キラースライム",
+  Kookaburra: "クッカブラ",
+  LandShark: "ランドシャーク",
+  Larvae: "ラーバ",
+  Leathercut: "レザーカット",
+  Leonardo: "レオナルド",
+  "Li Lan": "リィラン",
+  "Mad Ivy": "マッドアイビー",
+  "Magic Shield": "マジックシールド",
+  "M-Knight": "Mナイト",
+  Magus: "マグス",
+  Magician: "マジシャン",
+  MegaWatt: "メガワット",
+  Melonzoo: "メロンゾー",
+  Minos: "ミノス",
+  Minotaurus: "ミノタウロス",
+  Mirage: "ミラージュ",
+  Monwer: "モンワー",
+  Mosquito: "モスキート",
+  "Mr.Venus": "ミスタービーナス",
+  Nariqua: "ナリクア",
+  Neclord: "ネクロード",
+  Neclordia: "ネクローディア",
+  Nightmare: "ナイトメア",
+  Ninja: "ニンジャ",
+  "Ninja Master": "ニンジャマスター",
+  Oannes: "オアンネス",
+  Orc: "オーク",
+  PapaHolly: "パパホリー",
+  Phantom: "ファントム",
+  PinkBird: "ピンクバード",
+  Pixie: "ピクシー",
+  "Pseudo-Siren": "シュードセイレーン",
+  "Rabbit Bird": "ラビットバード",
+  RaggedOne: "ラギッドワン",
+  RanRan: "ランラン",
+  RinRin: "リンリン",
+  "Red Elemental": "レッドエレメンタル",
+  "Red Slime": "レッドスライム",
+  "Red Soldier Ant": "レッドソルジャーアント",
+  Roc: "ロック",
+  "Rock Buster": "ロックバスター",
+  Rockadillo: "ロックアディロ",
+  Rowd: "ラウド",
+  Salamander: "サラマンダー",
+  Samurai: "サムライ",
+  Sandillo: "サンディロ",
+  Sauroid: "サウロイド",
+  Shadow: "シャドウ",
+  ShadowDog: "シャドウドッグ",
+  "Shadow Man": "シャドウマン",
+  "Shell Venus": "シェルビーナス",
+  "Shiu Lin": "シュウリン",
+  Sierra: "シエラ",
+  Sickle: "シックル",
+  Simurgh: "シームルグ",
+  Siren: "セイレーン",
+  "Slot Man": "スロットマン",
+  "Slasher Rabbit": "スラッシャーラビット",
+  SkyKnight: "スカイナイト",
+  Spider: "スパイダー",
+  Spikebeak: "スパイクビーク",
+  Spiker: "スパイカー",
+  "Soldier Ant": "ソルジャーアント",
+  "Sonya Shulen": "ソニア・シューレン",
+  Sorcerer: "ソーサラー",
+  "Star Dragon Sword": "星辰剣",
+  "Strong Arm": "ストロングアーム",
+  SunKing: "サンキング",
+  "Sunshine King": "サンシャインキング",
+  TargetGirl: "ターゲットガール",
+  TenTen: "テンテン",
+  Tiger: "タイガー",
+  TimeKnight: "タイムナイト",
+  Viperman: "バイパーマン",
+  "Whip Master": "ウィップマスター",
+  "Whip Wolf": "ウィップウルフ",
+  WhiteTiger: "ホワイトタイガー",
+  "Wild Boar": "ワイルドボア",
+  Wolf: "ウルフ",
+  Woodpecker: "キツツキ",
+  Wyvern: "ワイバーン",
+  "Zombie Dragon": "ゾンビドラゴン",
+  ZombieSlug: "ゾンビスラッグ",
+} as const satisfies Partial<Record<string, string>>;
 
 const MONSTER_LOCATION_REGION_OVERRIDES: Record<
   MonsterIndexGameId,
@@ -851,6 +1119,28 @@ const translateMonsterVariant = (value: string) => {
   return variants[value as keyof typeof variants] ?? value;
 };
 
+const translateMonsterJapaneseVariant = (value: string) => {
+  const variants = {
+    Bow: "弓",
+    Aqua: "水色",
+    Blue: "青",
+    Female: "女",
+    Green: "緑",
+    Mage: "魔法",
+    Male: "男",
+    Pink: "桃",
+    Red: "赤",
+    Spear: "槍",
+    Sword: "剣",
+    Yellow: "黄",
+    A: "A",
+    B: "B",
+    C: "C",
+  } as const;
+
+  return variants[value as keyof typeof variants] ?? value;
+};
+
 export const translateMonsterName = (monsterName: string) => {
   const displayName = resolveMonsterDisplayName(monsterName);
   const direct =
@@ -873,6 +1163,32 @@ export const translateMonsterName = (monsterName: string) => {
   const match = displayName.match(matchedPattern.pattern);
 
   return match ? matchedPattern.translate(match) : displayName;
+};
+
+const getMonsterJapaneseName = (monsterName: string) => {
+  const displayName = resolveMonsterDisplayName(monsterName);
+  const direct =
+    MONSTER_JAPANESE_NAME_TRANSLATIONS[
+      displayName as keyof typeof MONSTER_JAPANESE_NAME_TRANSLATIONS
+    ];
+
+  if (direct) {
+    return direct;
+  }
+
+  const matchedPattern = MONSTER_JAPANESE_TYPE_PATTERNS.find(({ pattern }) =>
+    pattern.test(displayName)
+  );
+
+  if (!matchedPattern) {
+    return MONSTER_ARCHIVE_COPY.unavailableDetail;
+  }
+
+  const match = displayName.match(matchedPattern.pattern);
+
+  return match ?
+      matchedPattern.translate(match) :
+      MONSTER_ARCHIVE_COPY.unavailableDetail;
 };
 
 const translateMonsterLocation = (location: string) =>
@@ -1010,6 +1326,7 @@ const buildMonsterRecord = (
     hasDrops: encounters.some((encounter) => encounter.drops.length > 0),
     id: monsterId,
     isBoss: resolveMonsterBossGuide(game, originalName) !== null,
+    japaneseName: getMonsterJapaneseName(originalName),
     name: translateMonsterName(sourceRecord.monster),
     originalName,
     encounters,
@@ -1242,6 +1559,7 @@ const buildMonsterDetailRecord = (
     gameEyebrow: page.eyebrow,
     gameTitle: page.title,
     indexHref: page.href,
+    japaneseName: monster.japaneseName,
     stats: detailSourceRecord?.stats.map((row) => ({
       ...row,
       location: translateMonsterLocation(row.location),

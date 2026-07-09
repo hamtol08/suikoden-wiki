@@ -36,6 +36,7 @@ import {
   getRuneFunctionRecords,
   RUNE_REFERENCES,
   resolveRuneReference,
+  type RuneReference,
   type RuneSpellRecord,
 } from "@/constants/runes/rune-content";
 import { GAME8_ITEM_SOURCE_RECORDS } from "@/constants/items/game8-item-source-records";
@@ -51,6 +52,10 @@ export const ITEM_ARCHIVE_COPY = {
   body: "아이템과 장비명을 작품별로 정리합니다. 입수처는 상점과 드롭 기록이 확인되는 경우에만 표시합니다.",
   unavailableDetail: "-",
   entryCountSuffix: "개",
+  effectRecordCountSuffix: "건",
+  gameCountSuffix: "작품",
+  initialOwnerCountSuffix: "명",
+  relatedRecordCountSuffix: "건",
   tabsAriaLabel: "Item series",
   summaryTitle: "Item Summary",
   tableTitle: "Item Index",
@@ -60,6 +65,7 @@ export const ITEM_ARCHIVE_COPY = {
   effectTitle: "효과",
   gameRecordsTitle: "작품별 기록",
   relatedRecordsTitle: "관련 기록",
+  relatedRuneBody: "문장 기록에서 기능, 주문, 무기 장착 효과를 함께 확인합니다.",
   searchLabel: "Item search",
   searchPlaceholder: "아이템 이름, 영문 표기, 분류, 입수처 검색",
   resultCountSuffix: "개 아이템",
@@ -77,6 +83,9 @@ export const ITEM_ARCHIVE_COPY = {
     dropRate: "획득 확률",
     initialEquipment: "초기 장비",
     initialOwners: "초기 소유자",
+    effectRecords: "효과 기록",
+    initialOwnerRecords: "초기 소유자 기록",
+    relatedRecords: "관련 기록",
     englishName: "EN",
     japaneseName: "JP",
     originalName: "영문 표기",
@@ -660,6 +669,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Gold Necklace": "金の首飾り",
   "Goddess Statue": "女神像",
   Graffiti: "落書き",
+  "Gengis Khan": "ジンギスカン",
   "Green Salad": "グリーンサラダ",
   Greaves: "グリーブ",
   "Grilled Beef": "牛肉の網焼き",
@@ -731,6 +741,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Skill Ring": "技の指輪",
   "Speed Ring": "速の指輪",
   "Sound Set 3": "音セット3",
+  "Spinach Juice": "ほうれん草ジュース",
   "Spicy Pilaf": "スパイシーピラフ",
   "Star Earrings": "星のイヤリング",
   "Steamed Abalone": "アワビの蒸し物",
@@ -800,6 +811,7 @@ const ITEM_SCROLL_SPELL_NAMES = {
   "Fire Wall": "화염의 벽",
   "Flaming Arrows": "화염 화살",
   "Healing Wind": "치유의 바람",
+  "Kindness Drops": "상냥함의 물방울",
   "Protection Mist": "수호의 안개",
   "Rain of Kindness": "상냥함의 비",
   "Revenge Earth": "복수의 대지",
@@ -833,19 +845,41 @@ const ITEM_STONE_EFFECT_LABELS = {
 } as const satisfies Record<string, string>;
 
 const ITEM_FOOD_ORIGINAL_NAMES = new Set([
+  "Anchovy Pizza",
+  "BBQ Meat Bun",
+  "Broiled Eel",
+  "Cheesecake",
+  "Chirashi-Zushi",
+  "Crab Cakes",
   "Cream Cutlets",
   "Cream Stew",
+  "Croquettes",
   "Diet Lunch",
   "Dried Fish",
   "Fried Chicken",
+  "Fried Fish Balls",
   "Gengis Khan",
   "Green Salad",
   "Grilled Beef",
+  "Grilled Fish",
+  "Ice Cream",
   "Japanese Stew",
+  "Mayo Rice Omelet",
+  "Meat Pie",
   "Millet Dumplings",
+  "Obento",
+  "Potato Pudding",
+  "Pudding",
   "Sandwich",
   "Spinach Juice",
+  "Spicy Pilaf",
+  "Steamed Abalone",
+  "Steamed Gyoza",
+  "Sunomono",
   "Sweet & Sour Fish",
+  "Tempura",
+  "Tomato Juice",
+  "Veggie Sandwich",
 ]);
 
 const buildRuneSpellSummary = (spells?: readonly RuneSpellRecord[]) => {
@@ -1083,6 +1117,28 @@ const ITEM_RECIPE_RELATED_LINKS = [
     title: "하이요 이벤트",
   },
 ] as const satisfies readonly ItemRelatedLink[];
+
+const buildSealedOrbRelatedLinks = (
+  originalNames: readonly string[],
+): readonly ItemRelatedLink[] => {
+  const runeLinks = originalNames.flatMap((name) => {
+    const rune = resolveRuneReference(normalizeItemName(name));
+
+    return rune ?
+        [
+          {
+            body: ITEM_ARCHIVE_COPY.relatedRuneBody,
+            href: rune.href,
+            title: rune.name,
+          },
+        ] :
+        [];
+  });
+
+  return [
+    ...new Map(runeLinks.map((link) => [link.href, link])).values(),
+  ];
+};
 
 const ITEM_GENERATED_NAME_TRANSLATIONS = {
   "Ancient Text": "고대 문서",
@@ -1618,6 +1674,71 @@ const ITEM_REFERENCE_BY_NAME = buildItemReferenceByName();
 
 export const resolveItemReference = (name: string) => {
   return ITEM_REFERENCE_BY_NAME.get(normalizeItemName(name).toLowerCase());
+};
+
+export const getSealedOrbItemReferencesForRune = (
+  rune: Pick<RuneReference, "aliases" | "games" | "name">,
+): ItemReference[] => {
+  const itemReferences = [rune.name, ...rune.aliases].flatMap((name) => {
+    const sealedOrbName = buildSealedOrbItemName(name);
+    const originalName = normalizeItemName(name);
+    const itemId = buildItemId(originalName);
+    const indexedItem = ITEM_INDEX_RECORDS.find(
+      (item) =>
+        item.category === "sealedOrb" &&
+        (item.id === itemId ||
+          item.name === sealedOrbName ||
+          item.originalNames.some(
+            (indexedOriginalName) =>
+              normalizeItemName(indexedOriginalName).toLowerCase() ===
+              originalName.toLowerCase(),
+          )),
+    );
+    const indexedItemGames = indexedItem ?
+      [
+        ...new Set(
+          ITEM_INDEX_RECORDS.filter((item) => item.id === indexedItem.id).map(
+            (item) => item.game,
+          ),
+        ),
+      ] :
+      [];
+
+    return [
+      resolveItemReference(name),
+      indexedItem ?
+        buildItemReference({
+          category: indexedItem.category,
+          games: indexedItemGames,
+          id: indexedItem.id,
+          name: indexedItem.name,
+          originalName: indexedItem.originalNames[0] ?? originalName,
+        }) :
+        null,
+      sealedOrbName ?
+        buildItemReference({
+          category: "sealedOrb",
+          games: rune.games,
+          id: itemId,
+          name: sealedOrbName,
+          originalName,
+        }) :
+        null,
+      ...(sealedOrbName ? [resolveItemReference(sealedOrbName)] : []),
+    ].filter(
+      (item): item is ItemReference =>
+        Boolean(item) &&
+        ITEM_INDEX_RECORDS.some((record) => record.id === item?.id),
+    );
+  });
+
+  return [
+    ...new Map(
+      itemReferences
+        .filter((item) => item.category === "sealedOrb")
+        .map((item) => [item.href, item]),
+    ).values(),
+  ];
 };
 
 export const translateItemName = (name: string) => {
@@ -2559,9 +2680,10 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
     japaneseNames: [
       ...new Set(gameRecords.flatMap((item) => getItemJapaneseNames(item))),
     ],
-    relatedLinks: firstRecord.category === "recipe" ?
-      ITEM_RECIPE_RELATED_LINKS :
-      [],
+    relatedLinks:
+      firstRecord.category === "recipe" ?
+        ITEM_RECIPE_RELATED_LINKS :
+        buildSealedOrbRelatedLinks(originalNames),
     descriptionLines: ITEM_DETAIL_DESCRIPTIONS[
       itemId as keyof typeof ITEM_DETAIL_DESCRIPTIONS
     ] ?? [

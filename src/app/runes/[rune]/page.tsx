@@ -11,8 +11,8 @@ import MotionSurface from "@/components/shared/MotionSurface";
 import RuneFunctionRecords from "@/components/runes/detail/RuneFunctionRecords";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
 import {
+  getSealedOrbItemReferencesForRune,
   ITEM_CATEGORY_LABELS,
-  resolveItemReference,
   type ItemReference,
 } from "@/constants/items/item-content";
 import {
@@ -25,6 +25,7 @@ import {
   getRuneFunctionRecords,
   getRuneFunctionTypeDescription,
   getRuneFunctionTypeLabel,
+  getRelatedRuneReferences,
   isRuneFallbackImage,
   getRuneLineageNote,
   RUNE_ARCHIVE_COPY,
@@ -32,7 +33,6 @@ import {
   RUNE_FALLBACK_IMAGE,
   RUNE_INDEX_PAGES,
   type RuneFunctionRecord,
-  type RuneReference,
 } from "@/constants/runes/rune-content";
 import {
   APP_SHELL_STYLES,
@@ -44,25 +44,6 @@ type RuneDetailProps = {
   params: Promise<{
     rune: string;
   }>;
-};
-
-const buildRuneRelatedItems = (rune: RuneReference): ItemReference[] => {
-  const itemReferences = [rune.name, ...rune.aliases].flatMap((name) => {
-    const normalizedName = name.replace(/의 문장$/, "의 봉인구");
-
-    return [
-      resolveItemReference(name),
-      resolveItemReference(normalizedName),
-    ].filter((item): item is ItemReference => Boolean(item));
-  });
-
-  return [
-    ...new Map(
-      itemReferences
-        .filter((item) => item.category === "sealedOrb")
-        .map((item) => [item.href, item]),
-    ).values(),
-  ];
 };
 
 const RuneDetail = async ({ params }: RuneDetailProps) => {
@@ -158,7 +139,12 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
   const relatedItems = loadArchiveJsonSafely<readonly ItemReference[]>({
     fallback: [],
     label: `rune-detail-related-items:${rune.id}`,
-    load: () => buildRuneRelatedItems(rune),
+    load: () => getSealedOrbItemReferencesForRune(rune),
+  });
+  const relatedRunes = loadArchiveJsonSafely({
+    fallback: [],
+    label: `rune-detail-related-runes:${rune.id}`,
+    load: () => getRelatedRuneReferences(rune),
   });
 
   return (
@@ -224,23 +210,56 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
               ))}
             </dl>
 
+            {relatedRunes.length > 0 ? (
+              <section className={RUNE_STYLES.descriptionBlock}>
+                <h3 className={RUNE_STYLES.descriptionTitle}>
+                  {RUNE_ARCHIVE_COPY.relatedRuneTitle}
+                </h3>
+                <div className={RUNE_STYLES.descriptionLines}>
+                  <p>{RUNE_ARCHIVE_COPY.relatedRuneBody}</p>
+                </div>
+                <div className={RUNE_STYLES.relatedLinkGrid}>
+                  {relatedRunes.map((relatedRune) => (
+                    <Link
+                      className={RUNE_STYLES.relatedLink}
+                      href={relatedRune.href}
+                      key={relatedRune.id}
+                    >
+                      <p className={RUNE_STYLES.relatedLinkTitle}>
+                        {RUNE_CATEGORY_LABELS[relatedRune.category]}
+                      </p>
+                      <p className={RUNE_STYLES.relatedLinkBody}>
+                        {relatedRune.name}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             {relatedItems.length > 0 ? (
-              <div className={RUNE_STYLES.relatedLinkGrid}>
-                {relatedItems.map((item) => (
-                  <Link
-                    className={RUNE_STYLES.relatedLink}
-                    href={item.href}
-                    key={item.href}
-                  >
-                    <p className={RUNE_STYLES.relatedLinkTitle}>
-                      {ITEM_CATEGORY_LABELS[item.category]}
-                    </p>
-                    <p className={RUNE_STYLES.relatedLinkBody}>
-                      {item.name} · {RUNE_ARCHIVE_COPY.relatedItemBody}
-                    </p>
-                  </Link>
-                ))}
-              </div>
+              <section className={RUNE_STYLES.descriptionBlock}>
+                <h3 className={RUNE_STYLES.descriptionTitle}>
+                  {RUNE_ARCHIVE_COPY.relatedItemTitle}
+                </h3>
+                <div className={RUNE_STYLES.descriptionLines}>
+                  <p>{RUNE_ARCHIVE_COPY.relatedItemBody}</p>
+                </div>
+                <div className={RUNE_STYLES.relatedLinkGrid}>
+                  {relatedItems.map((item) => (
+                    <Link
+                      className={RUNE_STYLES.relatedLink}
+                      href={item.href}
+                      key={item.href}
+                    >
+                      <p className={RUNE_STYLES.relatedLinkTitle}>
+                        {ITEM_CATEGORY_LABELS[item.category]}
+                      </p>
+                      <p className={RUNE_STYLES.relatedLinkBody}>{item.name}</p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
             ) : null}
           </MotionSurface>
 

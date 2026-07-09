@@ -13,8 +13,10 @@ import {
   GameplayDuelRecords,
   GameplayGuardianDeityPlanRecords,
   GameplayMinigameRecords,
+  GameplayMissablePhaseRecords,
   GameplayRecipeRecords,
   GameplayRestaurantTips,
+  GameplayUniteAttackRecords,
   GameplayWarBattleGuide,
 } from "@/components/gameplay/detail/GameplayBlocks";
 import { APP_ROUTES } from "@/constants/app/app-config";
@@ -126,6 +128,26 @@ const GameplayDetailPage = async ({ params }: GameplayDetailPageProps) => {
                   </h2>
                   <GameplayCookingContestRecords
                     records={record.cookingContestRecords}
+                  />
+                </section>
+              ) : null}
+
+              {record.uniteAttackRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.uniteAttackLabel}
+                  </h2>
+                  <GameplayUniteAttackRecords records={record.uniteAttackRecords} />
+                </section>
+              ) : null}
+
+              {record.missablePhaseRecords ? (
+                <section className={GAMEPLAY_STYLES.detailSection}>
+                  <h2 className={GAMEPLAY_STYLES.detailSectionTitle}>
+                    {GAMEPLAY_DETAIL_COPY.missablePhaseLabel}
+                  </h2>
+                  <GameplayMissablePhaseRecords
+                    records={record.missablePhaseRecords}
                   />
                 </section>
               ) : null}

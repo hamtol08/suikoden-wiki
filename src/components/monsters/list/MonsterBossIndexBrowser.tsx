@@ -26,8 +26,11 @@ type MonsterBossIndexBrowserCopy = {
   gameTabsAriaLabel: string;
   labels: {
     bossType: string;
+    bossGuideCount: string;
+    bossGuideReady: string;
     drops: string;
     englishName: string;
+    japaneseName: string;
     location: string;
     noDrop: string;
   };
@@ -35,6 +38,7 @@ type MonsterBossIndexBrowserCopy = {
   resultCountSuffix: string;
   searchLabel: string;
   searchPlaceholder: string;
+  unavailableDetail: string;
 };
 
 type MonsterBossIndexBrowserProps = {

@@ -20,9 +20,11 @@ import {
   type GameplayDuelRecord,
   type GameplayGuardianDeityPlanRecord,
   type GameplayMinigameRecord,
+  type GameplayMissablePhaseRecord,
   type GameplayRecipeRecord,
   type GameplayRestaurantTipRecord,
   type GameplaySeriesNoteRecord,
+  type GameplayUniteAttackRecord,
   type GameplayWarBattleRecord,
   type GameplayWarCommandGroup,
   type GameplayWarRoleRecord,
@@ -116,6 +118,14 @@ type GameplayCookingContestRecordsProps = {
 
 type GameplayMinigameRecordsProps = {
   records: readonly GameplayMinigameRecord[];
+};
+
+type GameplayUniteAttackRecordsProps = {
+  records: readonly GameplayUniteAttackRecord[];
+};
+
+type GameplayMissablePhaseRecordsProps = {
+  records: readonly GameplayMissablePhaseRecord[];
 };
 
 type GameplayGuardianDeityPlanRecordsProps = {
@@ -479,6 +489,144 @@ export const GameplayCookingContestRecords = ({
           </p>
         </article>
       ))}
+    </div>
+  );
+};
+
+export const GameplayUniteAttackRecords = ({
+  records,
+}: GameplayUniteAttackRecordsProps) => {
+  if (records.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={GAMEPLAY_STYLES.uniteAttackGrid}>
+      {records.map((record) => {
+        const preferredGame = resolveCharacterGameIdBySeriesTitle(record.game);
+
+        return (
+          <MotionSurface
+            as="article"
+            className={GAMEPLAY_STYLES.uniteAttackCard}
+            key={`${record.game}-${record.name}`}
+          >
+            <header className={GAMEPLAY_STYLES.uniteAttackHeader}>
+              <p className={GAMEPLAY_STYLES.uniteAttackGame}>{record.game}</p>
+              <h3 className={GAMEPLAY_STYLES.uniteAttackTitle}>
+                {record.name}
+              </h3>
+            </header>
+            <dl className={GAMEPLAY_STYLES.uniteAttackMetaGrid}>
+              <div className={GAMEPLAY_STYLES.uniteAttackMeta}>
+                <dt className={GAMEPLAY_STYLES.uniteAttackMetaLabel}>
+                  {GAMEPLAY_DETAIL_COPY.uniteAttackMemberLabel}
+                </dt>
+                <dd>
+                  {record.members.map((member, memberIndex) => (
+                    <Fragment key={`${record.game}-${record.name}-${member}`}>
+                      {memberIndex > 0 ? " / " : null}
+                      <CharacterNameLinkText
+                        preferredGame={preferredGame}
+                        text={member}
+                      />
+                    </Fragment>
+                  ))}
+                </dd>
+              </div>
+              <div className={GAMEPLAY_STYLES.uniteAttackMeta}>
+                <dt className={GAMEPLAY_STYLES.uniteAttackMetaLabel}>
+                  {GAMEPLAY_DETAIL_COPY.uniteAttackEffectLabel}
+                </dt>
+                <dd>{record.effect}</dd>
+              </div>
+              <div className={GAMEPLAY_STYLES.uniteAttackMeta}>
+                <dt className={GAMEPLAY_STYLES.uniteAttackMetaLabel}>
+                  {GAMEPLAY_DETAIL_COPY.uniteAttackConditionLabel}
+                </dt>
+                <dd>
+                  <CharacterNameLinkText
+                    preferredGame={preferredGame}
+                    text={record.condition}
+                  />
+                </dd>
+              </div>
+            </dl>
+            <p className={GAMEPLAY_STYLES.uniteAttackBody}>
+              <CharacterNameLinkText preferredGame={preferredGame} text={record.body} />
+            </p>
+            <div className={GAMEPLAY_STYLES.uniteAttackTagList}>
+              {record.tags.map((tag, tagIndex) => (
+                <span
+                  className={GAMEPLAY_STYLES.tag}
+                  key={`${record.game}-${record.name}-${tagIndex}`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </MotionSurface>
+        );
+      })}
+    </div>
+  );
+};
+
+export const GameplayMissablePhaseRecords = ({
+  records,
+}: GameplayMissablePhaseRecordsProps) => {
+  if (records.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className={GAMEPLAY_STYLES.missablePhaseGrid}>
+      {records.map((record) => {
+        const preferredGame = resolveCharacterGameIdBySeriesTitle(record.game);
+
+        return (
+          <MotionSurface
+            as="article"
+            className={GAMEPLAY_STYLES.missablePhaseCard}
+            key={`${record.game}-${record.phase}`}
+          >
+            <header className={GAMEPLAY_STYLES.missablePhaseHeader}>
+              <p className={GAMEPLAY_STYLES.missablePhaseGame}>{record.game}</p>
+              <h3 className={GAMEPLAY_STYLES.missablePhaseTitle}>
+                {record.phase}
+              </h3>
+            </header>
+            <p className={GAMEPLAY_STYLES.missablePhaseMeta}>
+              <span className={GAMEPLAY_STYLES.missablePhaseMetaLabel}>
+                {GAMEPLAY_DETAIL_COPY.missableTimingLabel}
+              </span>
+              <CharacterNameLinkText
+                preferredGame={preferredGame}
+                text={record.timing}
+              />
+            </p>
+            <p className={GAMEPLAY_STYLES.missablePhaseBody}>
+              <CharacterNameLinkText
+                preferredGame={preferredGame}
+                text={record.body}
+              />
+            </p>
+            <div className={GAMEPLAY_STYLES.missablePhaseTagList}>
+              {record.points.map((point, pointIndex) => (
+                <span
+                  className={GAMEPLAY_STYLES.tag}
+                  key={`${record.game}-${record.phase}-${pointIndex}`}
+                >
+                  <CharacterNameLinkText
+                    preferredGame={preferredGame}
+                    text={point}
+                  />
+                </span>
+              ))}
+            </div>
+          </MotionSurface>
+        );
+      })}
     </div>
   );
 };

@@ -3,6 +3,7 @@
  */
 
 import {
+  APP_ROUTES,
   buildGameplayDetailPath,
   buildItemDetailPath,
   buildRegionAtlasDetailPath,
@@ -28,6 +29,13 @@ export const GAMEPLAY_DETAIL_COPY = {
   keyPointLabel: "Key Points",
   seriesLabel: "Series Notes",
   seriesTabsAriaLabel: "Series tabs",
+  uniteAttackLabel: "협력 공격 운용",
+  uniteAttackMemberLabel: "참여 인물",
+  uniteAttackEffectLabel: "효과",
+  uniteAttackConditionLabel: "조건",
+  missablePhaseLabel: "구간별 체크",
+  missableTimingLabel: "확인 시점",
+  missablePointLabel: "핵심 항목",
   duelDialogLabel: "Duel Dialogue",
   duelPlayerLabel: "조작",
   duelLocationLabel: "장소",
@@ -93,6 +101,8 @@ export const GAMEPLAY_DETAIL_IDS = {
   suikodenIIFacilitiesMinigames: "suikoden-ii-facilities-minigames",
   suikodenIIGameplayMechanics: "suikoden-ii-gameplay-mechanics",
   suikodenIITips: "suikoden-ii-tips",
+  uniteAttacks: "unite-attacks",
+  missableChecklist: "missable-checklist",
   warBattle: "war-battle",
 } as const;
 
@@ -143,6 +153,13 @@ export const GAMEPLAY_SYSTEMS = [
     title: "일반 전투",
     body: "6인 파티 편성, 전열·후열, 무기 사거리, 방어와 보호 행동을 함께 관리하는 기본 전투입니다.",
     points: ["파티 편성", "무기 사거리", "상태 이상", "장비 교체"],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.uniteAttacks,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.uniteAttacks),
+    title: "협력 공격",
+    body: "특정 동료 조합이 같은 파티에 있을 때 사용하는 전용 공격과 운용 기준을 정리합니다.",
+    points: ["참여 인물", "공격 효과", "파티 조합", "전투 역할"],
   },
   {
     id: GAMEPLAY_DETAIL_IDS.runeSystem,
@@ -199,6 +216,13 @@ export const GAMEPLAY_SYSTEMS = [
     title: "2편 미니게임",
     body: "교역, 낚시, 요리 대결, 주사위 도박처럼 본거지 확장과 함께 열리는 반복 콘텐츠입니다.",
     points: ["교역", "낚시", "요리 대결", "주사위 도박"],
+  },
+  {
+    id: GAMEPLAY_DETAIL_IDS.missableChecklist,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.missableChecklist),
+    title: "놓치기 쉬운 항목",
+    body: "동료, 분기, 레시피, 전쟁 전투, 엔딩 조건처럼 되돌리기 어려운 항목을 진행 전 체크합니다.",
+    points: ["108성", "분기", "레시피", "엔딩"],
   },
 ] as const;
 
@@ -302,6 +326,24 @@ export type GameplayMinigameRecord = {
   unlock: string;
 };
 
+export type GameplayUniteAttackRecord = {
+  body: string;
+  condition: string;
+  effect: string;
+  game: string;
+  members: readonly string[];
+  name: string;
+  tags: readonly string[];
+};
+
+export type GameplayMissablePhaseRecord = {
+  body: string;
+  game: string;
+  phase: string;
+  points: readonly string[];
+  timing: string;
+};
+
 export type GameplayGuardianDeityPlanRecord = {
   body: string;
   code: string;
@@ -352,6 +394,8 @@ export type GameplayDetailRecord = {
   minigameRecords?: readonly GameplayMinigameRecord[];
   recipeRecords?: readonly GameplayRecipeRecord[];
   restaurantTips?: readonly GameplayRestaurantTipRecord[];
+  uniteAttackRecords?: readonly GameplayUniteAttackRecord[];
+  missablePhaseRecords?: readonly GameplayMissablePhaseRecord[];
   seriesNotes: readonly GameplaySeriesNoteRecord[];
   checklist: readonly string[];
 };
@@ -583,6 +627,108 @@ export const GAMEPLAY_SUIKODEN_II_MINIGAME_RECORDS = [
     ],
   },
 ] as const satisfies readonly GameplayMinigameRecord[];
+
+export const GAMEPLAY_UNITE_ATTACK_RECORDS = [
+  {
+    game: "Suikoden I",
+    name: "사제 공격",
+    members: ["주인공", "카이"],
+    effect: "적 다수를 공격합니다.",
+    condition: "주인공과 카이가 같은 전투 파티에 있을 때 사용할 수 있습니다.",
+    body: "초반부터 이해하기 쉬운 대표 협력 공격입니다. 다수의 적을 한 번에 정리할 수 있어 일반 전투 수를 줄이는 데 도움이 됩니다.",
+    tags: ["전체 공격", "초반 운용", "파티 고정"],
+  },
+  {
+    game: "Suikoden I",
+    name: "부부 공격",
+    members: ["레판토", "아이린"],
+    effect: "적 1체에게 강한 물리 피해를 줍니다.",
+    condition: "레판토와 아이린이 같은 전투 파티에 있을 때 사용할 수 있습니다.",
+    body: "단일 대상 화력에 초점을 둔 조합입니다. 보스전처럼 적 수가 적은 전투에서 일반 공격보다 높은 피해를 노릴 수 있습니다.",
+    tags: ["단일 대상", "물리 화력", "부부 조합"],
+  },
+  {
+    game: "Suikoden I",
+    name: "부적 공격 / 수호 공격",
+    members: ["그레미오", "판"],
+    effect: "적 1체에게 2배 피해를 주며, 사용 후 균형을 잃지 않습니다.",
+    condition: "그레미오와 판이 같은 전투 파티에 있을 때 사용할 수 있습니다.",
+    body: "초반 동료 조합으로 확인하기 좋은 공격입니다. 판의 일반 화력과 그레미오의 보조 역할을 한 턴에 묶어 단일 적을 압박합니다.",
+    tags: ["단일 대상", "초반 조합", "균형 유지"],
+  },
+  {
+    game: "Suikoden II",
+    name: "가족 공격",
+    members: ["주인공", "나나미"],
+    effect: "적 1체에게 강한 물리 피해를 줍니다.",
+    condition: "주인공과 나나미가 같은 전투 파티에 있을 때 사용할 수 있습니다.",
+    body: "스토리 초반부터 인지하기 쉬운 대표 조합입니다. 나나미가 파티에 있을 때 일반 공격보다 큰 단일 피해를 안정적으로 기대할 수 있습니다.",
+    tags: ["단일 대상", "초반 운용", "남매 조합"],
+  },
+  {
+    game: "Suikoden II",
+    name: "부부 공격",
+    members: ["프리드 Y", "요시노"],
+    effect: "적 1체에게 강한 물리 피해를 줍니다.",
+    condition: "프리드 Y와 요시노가 같은 전투 파티에 있을 때 사용할 수 있습니다.",
+    body: "역할이 분명한 부부 조합입니다. 전열 물리 화력을 보완하고 싶을 때 파티 구성 후보로 함께 검토할 수 있습니다.",
+    tags: ["단일 대상", "물리 화력", "부부 조합"],
+  },
+  {
+    game: "Suikoden II",
+    name: "트릭 공격",
+    members: ["멕", "가젯"],
+    effect: "적 전체를 공격합니다.",
+    condition: "멕과 가젯이 같은 전투 파티에 있을 때 사용할 수 있습니다.",
+    body: "적이 여러 명 등장하는 일반 전투에서 활용하기 좋은 조합입니다. 멕의 장비와 가젯 운용을 함께 확인하면 효율이 올라갑니다.",
+    tags: ["전체 공격", "기계 조합", "일반 전투"],
+  },
+] as const satisfies readonly GameplayUniteAttackRecord[];
+
+export const GAMEPLAY_MISSABLE_PHASE_RECORDS = [
+  {
+    game: "Suikoden I",
+    phase: "본거지 확보 전후",
+    timing: "토란 호수의 성을 얻고 이전 마을을 다시 돌기 전",
+    body: "초반 지역은 스토리 속도가 빠르게 넘어가므로, 본거지 확보 뒤 이전 마을의 영입 가능 인물과 상점 재고를 다시 확인합니다.",
+    points: ["초반 영입", "본거지 기능", "이전 마을 재방문"],
+  },
+  {
+    game: "Suikoden I",
+    phase: "테오 맥돌 관련 전투",
+    timing: "판이 일기토에 들어가기 전",
+    body: "판의 장비와 무기 강화 상태가 생존 흐름에 직접 연결됩니다. 전투 전 별도 저장을 남기고 회복 아이템을 정리합니다.",
+    points: ["판 장비", "일기토", "저장 분리"],
+  },
+  {
+    game: "Suikoden I",
+    phase: "최종 결전 전",
+    timing: "그레그민스터 진입 전",
+    body: "108성 현황과 전쟁 전투 사망 위험을 확인합니다. 남은 감정품, 오래된 책, 창 세트, 소리세트도 이 시점에 함께 점검합니다.",
+    points: ["108성", "전쟁 전투", "수집 기록"],
+  },
+  {
+    game: "Suikoden II",
+    phase: "초반 분기와 영입",
+    timing: "뮤즈 진입 전후",
+    body: "초반 영입 조건과 세이브 데이터 계승 여부를 확인합니다. 분기 전에는 저장을 나누어 이후 회수 가능한 항목과 불가능한 항목을 구분합니다.",
+    points: ["세이브 계승", "초반 영입", "분기 저장"],
+  },
+  {
+    game: "Suikoden II",
+    phase: "본거지 확장 구간",
+    timing: "성 레벨이 오를 때마다",
+    body: "시설, 레시피, 수호신상 설계도, 창 세트, 소리세트가 본거지 확장과 함께 늘어납니다. 새 시설이 열릴 때마다 관련 아이템 상세를 확인합니다.",
+    points: ["시설 개방", "레시피", "수호신상"],
+  },
+  {
+    game: "Suikoden II",
+    phase: "후반 진입 전",
+    timing: "틴토 이후 주요 후반 흐름 전",
+    body: "카스미·발레리아 선택, 나나미와 죠우이 관련 조건, 하이요 이벤트의 레시피 공백을 함께 점검합니다.",
+    points: ["분기 선택", "엔딩 조건", "레시피 공백"],
+  },
+] as const satisfies readonly GameplayMissablePhaseRecord[];
 
 export const GAMEPLAY_DUEL_RECORDS = [
   {
@@ -1599,6 +1745,61 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     ],
   },
   {
+    id: GAMEPLAY_DETAIL_IDS.uniteAttacks,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.uniteAttacks),
+    eyebrow: "Battle",
+    title: "협력 공격",
+    summary:
+      "협력 공격은 특정 동료들이 같은 전투 파티에 있을 때 열리는 전용 공격으로, 파티 구성과 전투 역할을 함께 결정합니다.",
+    tags: ["참여 인물", "공격 효과", "파티 조합", "전투 역할"],
+    overview: [
+      "협력 공격은 일반 공격보다 높은 피해를 주거나 여러 적을 공격하는 식으로 파티 조합의 가치를 높입니다.",
+      "일부 조합은 특정 장비나 조건에 따라 성능이 달라지므로, 보스전과 반복 전투에서 쓰임새를 따로 보는 편이 좋습니다.",
+      "캐릭터 상세의 협력 공격 기록과 함께 확인하면 누가 누구와 함께 공격하는지 빠르게 추적할 수 있습니다.",
+    ],
+    keyPoints: [
+      {
+        title: "참여 인물 우선 확인",
+        body: "협력 공격은 이름보다 참여 인물이 중요합니다. 전투 파티를 짜기 전에 핵심 딜러와 함께 들어갈 동료를 먼저 확인합니다.",
+      },
+      {
+        title: "전체 공격과 단일 공격 분리",
+        body: "일반 전투에서는 전체 공격 조합, 보스전에서는 단일 대상 고화력 조합을 우선 검토하면 턴 효율이 좋아집니다.",
+      },
+      {
+        title: "캐릭터 상세와 교차 확인",
+        body: "각 캐릭터 상세의 협력 공격 기록에서는 함께하는 인물 링크를 통해 파티 후보를 바로 이어서 확인할 수 있습니다.",
+      },
+    ],
+    uniteAttackRecords: GAMEPLAY_UNITE_ATTACK_RECORDS,
+    seriesNotes: [
+      {
+        game: "Suikoden I",
+        body: "1편은 참여 인물 조합이 비교적 단순해서 초반 파티와 주요 물리 조합을 중심으로 확인하기 좋습니다.",
+        points: [
+          "주인공과 카이의 사제 공격은 다수의 적을 상대할 때 유용합니다.",
+          "레판토와 아이린의 부부 공격은 단일 적을 압박하는 물리 조합입니다.",
+          "그레미오와 판의 부적 공격 / 수호 공격은 초반 동료 조합으로 확인하기 쉽습니다.",
+        ],
+      },
+      {
+        game: "Suikoden II",
+        body: "2편은 동료 수와 협력 공격 폭이 넓어져 보스전용 조합과 일반 전투용 조합을 나눠 운용하기 좋습니다.",
+        points: [
+          "주인공과 나나미의 가족 공격은 초반부터 의미가 분명한 단일 대상 조합입니다.",
+          "멕과 가젯의 트릭 공격처럼 적 전체를 공격하는 조합은 반복 전투에서 효율이 좋습니다.",
+          "캐릭터 풀이 넓어진 뒤에는 물리 화력, 회복, 문장 마법과 협력 공격을 함께 묶어 파티를 구성합니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "협력 공격 참여 인물의 전열·후열 배치 확인",
+      "전체 공격 조합과 단일 대상 조합 구분",
+      "보스전 전 무기 강화와 장비 효과 확인",
+      "캐릭터 상세에서 함께하는 인물 링크 확인",
+    ],
+  },
+  {
     id: GAMEPLAY_DETAIL_IDS.runeSystem,
     href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.runeSystem),
     eyebrow: "Runes",
@@ -2198,6 +2399,62 @@ export const GAMEPLAY_DETAIL_RECORDS = [
     ],
   },
   {
+    id: GAMEPLAY_DETAIL_IDS.missableChecklist,
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.missableChecklist),
+    eyebrow: "Archive Checklist",
+    title: "놓치기 쉬운 항목",
+    summary:
+      "진행 시점, 선택 분기, 전쟁 전투, 레시피와 108성 조건처럼 되돌리기 어려운 항목을 작품별로 정리합니다.",
+    tags: ["기간 한정", "분기", "108성", "엔딩"],
+    overview: [
+      "두 작품 모두 스토리 진행으로 마을 상태나 동료 조건이 바뀌는 구간이 있어, 큰 전환점 전에는 체크리스트를 먼저 확인하는 편이 안전합니다.",
+      "전쟁 전투와 일기토는 일부 캐릭터 생존과 연결될 수 있으므로 저장을 분리하고 장비를 정비한 뒤 진행합니다.",
+      "레시피, 오래된 책, 창 세트, 소리세트 같은 수집형 아이템은 목록 카드보다 상세 페이지에서 입수처와 초기 소유자를 함께 보는 편이 정확합니다.",
+    ],
+    keyPoints: [
+      {
+        title: "전환점 전 저장 분리",
+        body: "대규모 전투, 성 해방, 도시 점령, 후반 진입처럼 세계 상태가 바뀌는 구간은 별도 저장 파일을 남겨둡니다.",
+      },
+      {
+        title: "108성 현황 확인",
+        body: "본거지 석판으로 영입 상태를 확인하고, 전투 캐릭터와 시설 담당 동료를 함께 점검합니다.",
+      },
+      {
+        title: "수집형 아이템 재점검",
+        body: "레시피와 설계도처럼 특정 상점 레어 아이템, 드롭, 이벤트 보상이 섞인 항목은 후반에 번호 공백을 기준으로 확인합니다.",
+      },
+    ],
+    missablePhaseRecords: GAMEPLAY_MISSABLE_PHASE_RECORDS,
+    seriesNotes: [
+      {
+        game: "Suikoden I",
+        body: "1편은 진행이 빠르고 일부 동료 조건이 특정 지역 상태와 연결됩니다. 본거지 확보 뒤 이전 지역을 다시 도는 습관이 중요합니다.",
+        points: [
+          "토란 호수의 성 확보 뒤 이전 마을을 다시 확인합니다.",
+          "판과 테오 맥돌 관련 전투 전에는 판의 장비와 무기 강화를 점검합니다.",
+          "최종 결전 전 108성 현황과 전쟁 전투 사망 위험을 확인합니다.",
+        ],
+      },
+      {
+        game: "Suikoden II",
+        body: "2편은 분기, 레시피, 수호신상 설계도, 세이브 데이터 계승처럼 확인할 축이 많습니다.",
+        points: [
+          "카스미·발레리아처럼 동시에 얻기 어려운 분기는 선택 전 저장합니다.",
+          "하이요 이벤트와 레시피 번호 공백은 후반 진입 전 한 번 더 확인합니다.",
+          "루카 브라이트 이후 후반 흐름에서는 108성, 나나미, 죠우이 관련 조건을 따로 관리합니다.",
+        ],
+      },
+    ],
+    checklist: [
+      "큰 전환점 전 저장 파일 분리",
+      "본거지 석판에서 108성 현황 확인",
+      "전쟁 전투 전 동료 사망 위험 확인",
+      "레시피와 수호신상 설계도 번호 공백 확인",
+      "분기 선택 전 대체 저장 확보",
+    ],
+  },
+  {
     id: GAMEPLAY_DETAIL_IDS.suikodenITips,
     href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenITips),
     eyebrow: "Gate Rune War",
@@ -2600,16 +2857,25 @@ export const getGameplayDetailStaticParams = () => {
 
 export const GAMEPLAY_BATTLE_SECTIONS = [
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.battleBasics),
     title: "파티 편성",
     body: "최대 6명의 전투 멤버를 전열과 후열에 배치합니다. 무기 사거리와 방어 역할을 함께 맞추면 초반 난도가 안정됩니다.",
     points: ["전열", "후열", "무기 사거리", "보호"],
   },
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.battleBasics),
     title: "행동 선택",
     body: "공격, 방어, 문장 마법, 아이템, 협력 공격을 전황에 맞춰 고르는 기본 전투 흐름입니다.",
     points: ["공격", "방어", "문장 마법", "협력 공격"],
   },
   {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.uniteAttacks),
+    title: "협력 공격",
+    body: "특정 동료 조합이 같은 파티에 있을 때 열리는 전용 공격입니다. 참여 인물과 공격 효과를 함께 확인합니다.",
+    points: ["참여 인물", "공격 효과", "전체 공격", "단일 공격"],
+  },
+  {
+    href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.battleBasics),
     title: "상태와 성장",
     body: "상태 이상, 장비 교체, 무기 레벨, 문장 슬롯이 전투 지속력과 화력에 직접 연결됩니다.",
     points: ["상태 이상", "장비", "무기 레벨", "문장 슬롯"],
@@ -2695,6 +2961,16 @@ export const GAMEPLAY_GUIDE_GROUPS = [
         body: "문장 장착과 성장, 전투 이탈, 파티·진형 변경, 합동 마법, 보호 행동, 상태 이상을 묶어 봅니다.",
       },
       {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.headquarters),
+        title: "Headquarters",
+        body: "트란 성의 층별 시설, 시설 담당 동료, 정비 동선을 본거지 기준으로 확인합니다.",
+      },
+      {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.uniteAttacks),
+        title: "Unite Attacks",
+        body: "참여 인물, 공격 효과, 전투 역할을 기준으로 협력 공격 대표 조합을 확인합니다.",
+      },
+      {
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIMinigames),
         title: "Minigames",
         body: "가스파의 주사위 도박, 마르코의 동전 맞히기, 조르쥬의 기억력 게임처럼 본거지에서 확인하는 놀이형 콘텐츠입니다.",
@@ -2703,6 +2979,21 @@ export const GAMEPLAY_GUIDE_GROUPS = [
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIDuels),
         title: "Duels",
         body: "콴다 로스먼, 테오 맥돌 1차전과 2차전이 대표 일기토로 분리되어 있습니다.",
+      },
+      {
+        href: APP_ROUTES.regionAtlas,
+        title: "Region Atlas",
+        body: "트란 지역의 마을, 던전, 필드 출연 몬스터와 아이템 연결을 지역별로 확인합니다.",
+      },
+      {
+        href: APP_ROUTES.runes,
+        title: "Rune Archive",
+        body: "문장 계열, 봉인구, 장착 효과와 등장 작품을 문장 아카이브에서 함께 확인합니다.",
+      },
+      {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.missableChecklist),
+        title: "Missable Checklist",
+        body: "108성, 전쟁 전투, 일기토, 수집 아이템처럼 되돌리기 어려운 항목을 진행 전 점검합니다.",
       },
     ],
   },
@@ -2719,6 +3010,16 @@ export const GAMEPLAY_GUIDE_GROUPS = [
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIGameplayMechanics),
         title: "Gameplay Mechanics",
         body: "봉인구 장착, 문장 레벨, 전쟁 전투, 무기 사거리, 상태 이상, 빠른 이동과 파티 변경을 정리합니다.",
+      },
+      {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.headquarters),
+        title: "Headquarters",
+        body: "노스윈도우 본거지의 층별 시설, 시설 담당 동료, 확장 단계와 정비 동선을 확인합니다.",
+      },
+      {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.uniteAttacks),
+        title: "Unite Attacks",
+        body: "참여 인물, 공격 효과, 전투 역할을 기준으로 협력 공격 대표 조합을 확인합니다.",
       },
       {
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIFacilitiesMinigames),
@@ -2739,6 +3040,21 @@ export const GAMEPLAY_GUIDE_GROUPS = [
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.suikodenIIDuels),
         title: "Duels",
         body: "플릭, 아마다, 루카 브라이트, 한 커닝엄, 죠우이 아트레이드 일기토가 별도 항목으로 분리되어 있습니다.",
+      },
+      {
+        href: APP_ROUTES.regionAtlas,
+        title: "Region Atlas",
+        body: "듀난 지역의 마을, 던전, 필드 출연 몬스터와 아이템 연결을 지역별로 확인합니다.",
+      },
+      {
+        href: APP_ROUTES.runes,
+        title: "Rune Archive",
+        body: "문장 계열, 봉인구, 장착 효과와 등장 작품을 문장 아카이브에서 함께 확인합니다.",
+      },
+      {
+        href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.missableChecklist),
+        title: "Missable Checklist",
+        body: "분기, 레시피, 108성, 전쟁 전투, 엔딩 조건처럼 되돌리기 어려운 항목을 진행 전 점검합니다.",
       },
     ],
   },

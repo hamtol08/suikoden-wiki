@@ -10,6 +10,9 @@ import {
   type MonsterIndexGameId,
 } from "@/constants/monsters/monster-content";
 import {
+  MONSTER_NAME_TRANSLATIONS as REGION_MONSTER_NAME_TRANSLATIONS,
+} from "@/constants/regions/region-detail-content";
+import {
   CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
   CHARACTER_LINK_TOKEN_PATTERN,
 } from "@/constants/characters/character-linking";
@@ -61,8 +64,17 @@ const buildMonsterReferences = () => {
   MONSTER_INDEX_RECORDS.forEach((monster) => {
     const href =
       monster.detailHref ?? `${buildMonsterGamePath(monster.game)}#${monster.id}`;
+    const regionLocalizedName =
+      REGION_MONSTER_NAME_TRANSLATIONS[
+        monster.originalName as keyof typeof REGION_MONSTER_NAME_TRANSLATIONS
+      ];
 
-    [monster.name, monster.originalName].forEach((name) => {
+    [
+      monster.name,
+      monster.originalName,
+      monster.japaneseName,
+      regionLocalizedName,
+    ].forEach((name) => {
       if (!name || name.length < 2) {
         return;
       }

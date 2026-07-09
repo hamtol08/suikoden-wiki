@@ -203,6 +203,35 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
   const hasRecruitableCharacters = recruitableCharacters.length > 0;
   const hasShops = shopCards.length > 0;
   const hasEnemies = enemyCards.length > 0;
+  const shopItemCount = shopCards.reduce(
+    (total, shop) => total + shop.items.length,
+    0,
+  );
+  const enemyDropCount = new Set(
+    enemyCards.flatMap((enemy) => enemy.drops.map((drop) => drop.name)),
+  ).size;
+  const summaryItems = [
+    {
+      label: REGION_DETAIL_COPY.recruitableCountLabel,
+      value: formatArchiveNumber(recruitableCharacters.length),
+    },
+    {
+      label: REGION_DETAIL_COPY.shopCountLabel,
+      value: formatArchiveNumber(shopCards.length),
+    },
+    {
+      label: REGION_DETAIL_COPY.shopItemCountLabel,
+      value: formatArchiveNumber(shopItemCount),
+    },
+    {
+      label: REGION_DETAIL_COPY.enemyCountLabel,
+      value: formatArchiveNumber(enemyCards.length),
+    },
+    {
+      label: REGION_DETAIL_COPY.enemyDropCountLabel,
+      value: formatArchiveNumber(enemyDropCount),
+    },
+  ] as const;
 
   if (!hasRecruitableCharacters && !hasShops && !hasEnemies) {
     return null;
@@ -216,6 +245,24 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
           {REGION_DETAIL_COPY.sectionTitle}
         </h2>
       </div>
+
+      <article className={ATLAS_STYLES.regionRecordPanel}>
+        <h3 className={ATLAS_STYLES.regionRecordPanelTitle}>
+          {REGION_DETAIL_COPY.summaryTitle}
+        </h3>
+        <dl className={ATLAS_STYLES.regionSummaryGrid}>
+          {summaryItems.map((item) => (
+            <div className={ATLAS_STYLES.regionSummaryCard} key={item.label}>
+              <dt className={ATLAS_STYLES.regionSummaryLabel}>
+                {item.label}
+              </dt>
+              <dd className={ATLAS_STYLES.regionSummaryValue}>
+                {item.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </article>
 
       {hasRecruitableCharacters ? (
         <article className={ATLAS_STYLES.regionRecordPanel}>
@@ -331,27 +378,36 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                     {enemy.phase}
                   </p>
                 ) : null}
-                <ul className={ATLAS_STYLES.regionDataList}>
-                  {enemy.drops.map((drop) => (
-                    <li className={ATLAS_STYLES.regionDataRow} key={drop.key}>
-                      {drop.href ? (
-                        <Link
-                          className={ATLAS_STYLES.regionDataName}
-                          href={drop.href}
-                        >
-                          {drop.name}
-                        </Link>
-                      ) : (
-                        <span className={ATLAS_STYLES.regionDataName}>
-                          {drop.name}
+                {enemy.drops.length > 0 ? (
+                  <ul className={ATLAS_STYLES.regionDataList}>
+                    {enemy.drops.map((drop, dropIndex) => (
+                      <li
+                        className={ATLAS_STYLES.regionDataRow}
+                        key={`${drop.key}-${dropIndex}`}
+                      >
+                        {drop.href ? (
+                          <Link
+                            className={ATLAS_STYLES.regionDataName}
+                            href={drop.href}
+                          >
+                            {drop.name}
+                          </Link>
+                        ) : (
+                          <span className={ATLAS_STYLES.regionDataName}>
+                            {drop.name}
+                          </span>
+                        )}
+                        <span className={ATLAS_STYLES.regionDataValue}>
+                          {drop.chance}
                         </span>
-                      )}
-                      <span className={ATLAS_STYLES.regionDataValue}>
-                        {drop.chance}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className={ATLAS_STYLES.regionRecordEmpty}>
+                    {REGION_DETAIL_COPY.noDrop}
+                  </p>
+                )}
               </section>
             ))}
           </div>

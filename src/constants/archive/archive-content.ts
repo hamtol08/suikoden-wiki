@@ -29,6 +29,28 @@ export const ARCHIVE_COPY = {
     searchButton: "Search",
     clearSearchLabel: "Clear search",
     searchEmpty: "일치하는 캐릭터가 없습니다.",
+    searchContexts: {
+      characters: {
+        searchPlaceholder: "Search Characters...",
+        searchEmpty: "일치하는 캐릭터가 없습니다.",
+      },
+      items: {
+        searchPlaceholder: "Search Items...",
+        searchEmpty: "일치하는 아이템이 없습니다.",
+      },
+      monsters: {
+        searchPlaceholder: "Search Monsters...",
+        searchEmpty: "일치하는 몬스터가 없습니다.",
+      },
+      regions: {
+        searchPlaceholder: "Search Regions...",
+        searchEmpty: "일치하는 지역이 없습니다.",
+      },
+      runes: {
+        searchPlaceholder: "Search Runes...",
+        searchEmpty: "일치하는 문장이 없습니다.",
+      },
+    },
     menuLabel: "Open Navigation",
     closeMenuLabel: "Close Navigation",
     themeToggle: {
@@ -316,6 +338,17 @@ export const REGION_ATLAS_TABS = [
     body: "하이랜드 국경에서 시작해 죠스턴, 트란 공화국, 틴토, 황도 루루노이에로 이어지는 2편의 여정 순서대로 정리합니다.",
   },
 ] as const;
+
+export const REGION_ATLAS_SEARCH_ALIASES = {
+  "suikoden-i:gregminster": ["그렉민스터", "그렉", "적월 수도"],
+  "suikoden-ii:gregminster": ["그렉민스터", "그렉", "트란 수도"],
+  "suikoden-i:toran-republic": ["토란공화국", "토란", "트란"],
+  "suikoden-ii:banner-village": ["바나", "바나마을"],
+  "suikoden-ii:kyaro": ["캬로", "캬로 마을", "캐로마을"],
+  "suikoden-ii:north-window": ["노스윈도우", "북창"],
+  "suikoden-ii:south-window": ["사우스윈도우", "남창"],
+  "suikoden-ii:tigermouth-village": ["호랑이 입 마을", "호랑이입"],
+} as const satisfies Record<string, readonly string[]>;
 
 const attachRegionAtlasDetailHrefs = <
   T extends { readonly game: string; readonly id: string },

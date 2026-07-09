@@ -8520,7 +8520,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Speak to Wakaba in the Forest Village after the events in Two River."
         ],
         "overall": [
-          "Wakaba is a solid frontline fighter with decent attack power and high speed, tech and luck attributes. Despite having slightly lower defensive attributes, this weakness is offset with her having extremely high hit points, allowing her to function as a viable tank."
+          "와카바는 공격력과 속도, 기술, 운이 고르게 높은 전열 전투원입니다. 방어 계열 능력은 다소 낮지만 HP가 높아 전열에서 버티는 역할을 맡기 좋습니다."
         ],
         "weapon": {
           "type": "Kicks",
@@ -9707,7 +9707,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           "Marlowe joins automatically after the events in Tinto."
         ],
         "overall": [
-          "Marlowe's function is unclear at this time."
+          "말로우의 구체적인 기능 기록은 아직 정리 중입니다."
         ],
         "weapon": {
           "type": "",

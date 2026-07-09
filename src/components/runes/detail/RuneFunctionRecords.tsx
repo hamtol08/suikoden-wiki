@@ -5,6 +5,10 @@
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import {
+  formatArchiveCount,
+  formatArchiveNumber,
+} from "@/constants/app/archive-utils";
+import {
   RUNE_ARCHIVE_COPY,
   type RuneFunctionRecord,
 } from "@/constants/runes/rune-content";
@@ -14,16 +18,66 @@ type RuneFunctionRecordsProps = {
   records: readonly RuneFunctionRecord[];
 };
 
+const buildRuneFunctionSummaryRows = (
+  records: readonly RuneFunctionRecord[],
+) => {
+  const spellCount = records.reduce(
+    (total, record) => total + (record.spells?.length ?? 0),
+    0,
+  );
+  const weaponEffectCount = records.filter((record) =>
+    Boolean(record.weaponEffect)
+  ).length;
+
+  return [
+    {
+      label: RUNE_ARCHIVE_COPY.runeFunctionGameCountLabel,
+      value: formatArchiveCount(
+        records.length,
+        RUNE_ARCHIVE_COPY.runeFunctionRecordCountSuffix,
+      ),
+    },
+    {
+      label: RUNE_ARCHIVE_COPY.runeFunctionSpellCountLabel,
+      value: formatArchiveCount(
+        spellCount,
+        RUNE_ARCHIVE_COPY.runeFunctionSpellCountSuffix,
+      ),
+    },
+    {
+      label: RUNE_ARCHIVE_COPY.runeFunctionWeaponCountLabel,
+      value: formatArchiveNumber(weaponEffectCount),
+    },
+  ];
+};
+
 const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
   if (records.length === 0) {
     return null;
   }
+  const summaryRows = buildRuneFunctionSummaryRows(records);
 
   return (
     <MotionSurface as="section" className={RUNE_STYLES.functionPanel}>
       <h2 className={RUNE_STYLES.functionTitle}>
         {RUNE_ARCHIVE_COPY.runeFunctionTitle}
       </h2>
+
+      <dl
+        aria-label={RUNE_ARCHIVE_COPY.runeFunctionSummaryLabel}
+        className={RUNE_STYLES.functionSummaryGrid}
+      >
+        {summaryRows.map((row) => (
+          <div className={RUNE_STYLES.functionSummaryCard} key={row.label}>
+            <dt className={RUNE_STYLES.functionSummaryLabel}>
+              {row.label}
+            </dt>
+            <dd className={RUNE_STYLES.functionSummaryValue}>
+              {row.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
 
       <div className={RUNE_STYLES.functionGrid}>
         {records.map((record) => (

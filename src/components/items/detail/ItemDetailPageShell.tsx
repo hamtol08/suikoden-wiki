@@ -2,13 +2,16 @@
  * 아이템 상세 화면의 요약, 입수 기록, 초기 소유자 정보를 렌더링합니다.
  */
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import MonsterNameLinkText from "@/components/shared/MonsterNameLinkText";
+import { formatArchiveCount } from "@/constants/app/archive-utils";
 import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import type { MonsterIndexGameId } from "@/constants/monsters/monster-content";
 import {
   buildItemRecordDisplay,
   getItemDetailRecord,
@@ -17,6 +20,8 @@ import {
   ITEM_CATEGORY_LABELS,
   ITEM_INDEX_PAGE_IDS,
   type ItemDetailRecord,
+  type ItemInitialOwner,
+  type ItemRecordDisplay,
 } from "@/constants/items/item-content";
 import {
   APP_SHELL_STYLES,
@@ -26,6 +31,22 @@ import {
 
 type ItemDetailPageShellProps = {
   itemId: string;
+};
+
+type ItemGameRecordCard = ItemRecordDisplay & {
+  gameTitle: string;
+  initialOwners: readonly ItemInitialOwner[];
+  key: MonsterIndexGameId;
+};
+
+type ItemGameRecordRow = {
+  label: string;
+  value: ReactNode;
+};
+
+type ItemInsightRow = {
+  label: string;
+  value: string;
 };
 
 const buildDetailRows = (item: ItemDetailRecord) => [
@@ -50,6 +71,111 @@ const buildDetailRows = (item: ItemDetailRecord) => [
     ] :
     []),
 ];
+
+const renderInitialOwners = (owners: readonly ItemInitialOwner[]) => {
+  if (owners.length === 0) {
+    return ITEM_ARCHIVE_COPY.unavailableDetail;
+  }
+
+  return (
+    <span className={ITEM_STYLES.initialOwnerList}>
+      {owners.map((owner, index) => (
+        <span key={`${owner.href}-${index}`}>
+          {index > 0 ? " / " : null}
+          <Link className={ITEM_STYLES.initialOwnerLink} href={owner.href}>
+            {owner.name}
+          </Link>
+        </span>
+      ))}
+    </span>
+  );
+};
+
+const buildGameRecordRows = (
+  record: ItemGameRecordCard,
+): ItemGameRecordRow[] => [
+  {
+    label: ITEM_ARCHIVE_COPY.labels.price,
+    value: record.price,
+  },
+  {
+    label: ITEM_ARCHIVE_COPY.labels.shopLocations,
+    value: <CharacterNameLinkText text={record.shopLocations} />,
+  },
+  {
+    label: ITEM_ARCHIVE_COPY.labels.dropLocations,
+    value: (
+      <MonsterNameLinkText
+        preferredGame={record.key}
+        text={record.dropLocations}
+      />
+    ),
+  },
+  {
+    label: ITEM_ARCHIVE_COPY.labels.otherLocations,
+    value: <CharacterNameLinkText text={record.otherLocations} />,
+  },
+  {
+    label: ITEM_ARCHIVE_COPY.labels.dropRate,
+    value: (
+      <MonsterNameLinkText preferredGame={record.key} text={record.dropRates} />
+    ),
+  },
+  {
+    label: ITEM_ARCHIVE_COPY.labels.initialOwners,
+    value: renderInitialOwners(record.initialOwners),
+  },
+];
+
+const buildItemInsightRows = (
+  item: ItemDetailRecord,
+  records: readonly ItemGameRecordCard[],
+): ItemInsightRow[] => {
+  const initialOwnerCount = records.reduce(
+    (total, record) => total + record.initialOwners.length,
+    0,
+  );
+
+  return [
+    {
+      label: ITEM_ARCHIVE_COPY.labels.effectRecords,
+      value:
+        item.effectLines.length > 0
+          ? formatArchiveCount(
+              item.effectLines.length,
+              ITEM_ARCHIVE_COPY.effectRecordCountSuffix,
+            )
+          : ITEM_ARCHIVE_COPY.unavailableDetail,
+    },
+    {
+      label: ITEM_ARCHIVE_COPY.labels.initialOwnerRecords,
+      value:
+        initialOwnerCount > 0
+          ? formatArchiveCount(
+              initialOwnerCount,
+              ITEM_ARCHIVE_COPY.initialOwnerCountSuffix,
+            )
+          : ITEM_ARCHIVE_COPY.unavailableDetail,
+    },
+    {
+      label: ITEM_ARCHIVE_COPY.labels.games,
+      value: formatArchiveCount(
+        item.games.length,
+        ITEM_ARCHIVE_COPY.gameCountSuffix,
+      ),
+    },
+    {
+      label: ITEM_ARCHIVE_COPY.labels.relatedRecords,
+      value:
+        item.relatedLinks.length > 0
+          ? formatArchiveCount(
+              item.relatedLinks.length,
+              ITEM_ARCHIVE_COPY.relatedRecordCountSuffix,
+            )
+          : ITEM_ARCHIVE_COPY.unavailableDetail,
+    },
+  ];
+};
 
 const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
   const item = loadArchiveJsonSafely({
@@ -89,7 +215,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
             gameTitle: getItemIndexPage(record.game).title,
             initialOwners: record.initialOwners,
             key: record.game,
-          },
+          } satisfies ItemGameRecordCard,
         ];
       },
     }),
@@ -97,6 +223,7 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
   const primaryRecordDisplay = primaryRecord
     ? buildItemRecordDisplay(primaryRecord)
     : null;
+  const insightRows = buildItemInsightRows(item, gameRecordCards);
 
   return (
     <main className={APP_SHELL_STYLES.page}>
@@ -150,6 +277,19 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                 </div>
               </dl>
             </header>
+
+            <dl className={ITEM_STYLES.detailInsightGrid}>
+              {insightRows.map((row) => (
+                <div className={ITEM_STYLES.detailInsightCard} key={row.label}>
+                  <dt className={ITEM_STYLES.detailInsightLabel}>
+                    {row.label}
+                  </dt>
+                  <dd className={ITEM_STYLES.detailInsightValue}>
+                    {row.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
 
             <section className={ITEM_STYLES.detailSection}>
               <h3 className={ITEM_STYLES.detailSectionTitle}>
@@ -221,76 +361,16 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                       </div>
                     </div>
                     <dl className={ITEM_STYLES.ledger}>
-                      <div className={ITEM_STYLES.ledgerRow}>
-                        <dt className={ITEM_STYLES.ledgerTerm}>
-                          {ITEM_ARCHIVE_COPY.labels.price}
-                        </dt>
-                        <dd className={ITEM_STYLES.ledgerValue}>
-                          {record.price}
-                        </dd>
-                      </div>
-                      <div className={ITEM_STYLES.ledgerRow}>
-                        <dt className={ITEM_STYLES.ledgerTerm}>
-                          {ITEM_ARCHIVE_COPY.labels.shopLocations}
-                        </dt>
-                        <dd className={ITEM_STYLES.ledgerValue}>
-                          <CharacterNameLinkText text={record.shopLocations} />
-                        </dd>
-                      </div>
-                      <div className={ITEM_STYLES.ledgerRow}>
-                        <dt className={ITEM_STYLES.ledgerTerm}>
-                          {ITEM_ARCHIVE_COPY.labels.dropLocations}
-                        </dt>
-                        <dd className={ITEM_STYLES.ledgerValue}>
-                          <MonsterNameLinkText
-                            preferredGame={record.key}
-                            text={record.dropLocations}
-                          />
-                        </dd>
-                      </div>
-                      <div className={ITEM_STYLES.ledgerRow}>
-                        <dt className={ITEM_STYLES.ledgerTerm}>
-                          {ITEM_ARCHIVE_COPY.labels.otherLocations}
-                        </dt>
-                        <dd className={ITEM_STYLES.ledgerValue}>
-                          <CharacterNameLinkText text={record.otherLocations} />
-                        </dd>
-                      </div>
-                      <div className={ITEM_STYLES.ledgerRow}>
-                        <dt className={ITEM_STYLES.ledgerTerm}>
-                          {ITEM_ARCHIVE_COPY.labels.dropRate}
-                        </dt>
-                        <dd className={ITEM_STYLES.ledgerValue}>
-                          <MonsterNameLinkText
-                            preferredGame={record.key}
-                            text={record.dropRates}
-                          />
-                        </dd>
-                      </div>
-                      <div className={ITEM_STYLES.ledgerRow}>
-                        <dt className={ITEM_STYLES.ledgerTerm}>
-                          {ITEM_ARCHIVE_COPY.labels.initialOwners}
-                        </dt>
-                        <dd className={ITEM_STYLES.ledgerValue}>
-                          {record.initialOwners.length > 0 ? (
-                            <span className={ITEM_STYLES.initialOwnerList}>
-                              {record.initialOwners.map((owner, index) => (
-                                <span key={owner.href}>
-                                  {index > 0 ? " / " : null}
-                                  <Link
-                                    className={ITEM_STYLES.initialOwnerLink}
-                                    href={owner.href}
-                                  >
-                                    {owner.name}
-                                  </Link>
-                                </span>
-                              ))}
-                            </span>
-                          ) : (
-                            ITEM_ARCHIVE_COPY.unavailableDetail
-                          )}
-                        </dd>
-                      </div>
+                      {buildGameRecordRows(record).map((row) => (
+                        <div className={ITEM_STYLES.ledgerRow} key={row.label}>
+                          <dt className={ITEM_STYLES.ledgerTerm}>
+                            {row.label}
+                          </dt>
+                          <dd className={ITEM_STYLES.ledgerValue}>
+                            {row.value}
+                          </dd>
+                        </div>
+                      ))}
                     </dl>
                   </article>
                 ))}

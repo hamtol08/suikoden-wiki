@@ -33,6 +33,7 @@ export type MonsterBrowserEncounter = {
 };
 
 export type MonsterBrowserItem = {
+  bossGuideSummary?: string;
   encounters: readonly MonsterBrowserEncounter[];
   game: MonsterIndexGameId;
   groupLabel?: string;
@@ -40,6 +41,7 @@ export type MonsterBrowserItem = {
   href: string | null;
   id: string;
   isBoss: boolean;
+  japaneseName: string;
   name: string;
   originalName: string;
   searchText: string;
@@ -52,6 +54,7 @@ type MonsterIndexBrowserCopy = {
     bossType: string;
     drops: string;
     englishName: string;
+    japaneseName: string;
     location: string;
     noDrop: string;
   };
@@ -59,6 +62,7 @@ type MonsterIndexBrowserCopy = {
   resultCountSuffix: string;
   searchLabel: string;
   searchPlaceholder: string;
+  unavailableDetail: string;
 };
 
 type MonsterIndexBrowserProps = {
@@ -142,11 +146,21 @@ const MonsterIndexBrowser = ({
         <p className={MONSTER_STYLES.cardOriginal}>
           {copy.labels.englishName} {monster.originalName}
         </p>
+        {monster.japaneseName === copy.unavailableDetail ? null : (
+          <p className={MONSTER_STYLES.cardOriginal}>
+            {copy.labels.japaneseName} {monster.japaneseName}
+          </p>
+        )}
         {monster.isBoss ? (
           <div className={MONSTER_STYLES.chipRow}>
             <span className={MONSTER_STYLES.chip}>
               {copy.labels.bossType}
             </span>
+            {monster.bossGuideSummary ? (
+              <span className={MONSTER_STYLES.chip}>
+                {monster.bossGuideSummary}
+              </span>
+            ) : null}
           </div>
         ) : null}
       </header>

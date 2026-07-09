@@ -5,6 +5,7 @@
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import {
+  getItemJapaneseNames,
   ITEM_INDEX_RECORDS,
   resolveItemDetailHref,
   type ItemIndexGameId,
@@ -53,7 +54,11 @@ const isDelimitedItemName = (text: string, offset: number, match: string) => {
 
 const ITEM_NAME_REFERENCES: readonly ItemNameLinkReference[] =
   ITEM_INDEX_RECORDS.flatMap((item) => {
-    const names = [item.name, ...item.originalNames]
+    const names = [
+      item.name,
+      ...item.originalNames,
+      ...getItemJapaneseNames(item),
+    ]
       .map((name) => name.trim())
       .filter(Boolean);
     const uniqueNames = [...new Set(names)];

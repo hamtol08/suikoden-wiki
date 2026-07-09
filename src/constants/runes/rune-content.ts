@@ -30,6 +30,14 @@ export const RUNE_ARCHIVE_COPY = {
   runeSpellLabel: "주문",
   runeEffectLabel: "효과",
   runeWeaponEffectLabel: "무기 장착 효과",
+  runeFunctionSummaryLabel: "기능 요약",
+  runeFunctionGameCountLabel: "작품 기록",
+  runeFunctionSpellCountLabel: "주문 기록",
+  runeFunctionWeaponCountLabel: "무기 효과",
+  runeFunctionRecordCountSuffix: "건",
+  runeFunctionSpellCountSuffix: "개",
+  relatedRuneTitle: "관련 문장",
+  relatedRuneBody: "같은 속성 계열의 기본 문장과 상위 문장을 함께 확인합니다.",
   relatedItemTitle: "관련 봉인구",
   relatedItemBody: "아이템 기록에서 봉인구 입수처와 드롭 정보를 함께 확인합니다.",
   categoryLabel: "구분",
@@ -352,7 +360,7 @@ export const RUNE_REFERENCES = [
   }),
   buildRuneReference({
     id: "killer-rune",
-    name: "필살의 문장",
+    name: "필사의 공격의 문장",
     aliases: ["Killer Rune"],
     japaneseName: "必殺の紋章",
     category: "generalRune",
@@ -2293,6 +2301,19 @@ export const RUNE_LINEAGE_NOTES = {
   "thunder-rune": "기본 문장: 번개의 문장 / 상위 문장: 천둥의 문장",
 } as const satisfies Partial<Record<string, string>>;
 
+const RUNE_LINEAGE_RELATED_IDS = {
+  "fire-rune": ["rage-rune"],
+  "rage-rune": ["fire-rune"],
+  "water-rune": ["flowing-rune"],
+  "flowing-rune": ["water-rune"],
+  "wind-rune": ["cyclone-rune"],
+  "cyclone-rune": ["wind-rune"],
+  "earth-rune": ["mother-earth-rune"],
+  "mother-earth-rune": ["earth-rune"],
+  "lightning-rune": ["thunder-rune"],
+  "thunder-rune": ["lightning-rune"],
+} as const satisfies Partial<Record<string, readonly string[]>>;
+
 const buildSpellRecords = (
   spells: readonly Omit<RuneSpellRecord, "level">[],
   startIndex = 0,
@@ -2997,6 +3018,19 @@ export const getRuneLineageNote = (rune: RuneReference) => {
   return RUNE_LINEAGE_NOTES[
     rune.id as keyof typeof RUNE_LINEAGE_NOTES
   ] ?? null;
+};
+
+export const getRelatedRuneReferences = (rune: RuneReference) => {
+  const relatedIds =
+    RUNE_LINEAGE_RELATED_IDS[
+      rune.id as keyof typeof RUNE_LINEAGE_RELATED_IDS
+    ] ?? [];
+
+  return relatedIds.flatMap((relatedId) => {
+    const relatedRune = getRuneReference(relatedId);
+
+    return relatedRune ? [relatedRune] : [];
+  });
 };
 
 export const getRuneFunctionRecords = (
