@@ -12,9 +12,9 @@ export const SUIKODEN_NEWS_ITEMS = [
     tag: "Star Leap",
   },
   {
-    date: "Mar 04, 2026",
+    date: "Mar 05, 2026",
     title: "Suikoden Anime Trailer Highlights the Suikoden II Adaptation",
-    body: "환상수호전 2편 기반 애니메이션의 새 영상과 방영 시기 관련 정보가 공개됐습니다.",
+    body: "환상수호전 2편 기반 애니메이션의 새 영상과 10월 방영 예정 정보가 공개됐습니다.",
     href: "https://www.gamesradar.com/entertainment/anime-shows/suikoden-anime-trailer-proves-its-a-pitch-perfect-adaptation-of-the-legendary-ps1-rpgs-sequel-but-were-not-sure-it-will-fit-in-all-108-companions/",
     outlet: "GamesRadar+",
     tag: "Anime",

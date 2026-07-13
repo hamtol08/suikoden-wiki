@@ -108,9 +108,9 @@ export const ARTICLE_INDEX_SECTIONS = [
     cards: FEATURE_CARDS,
   },
   {
-    id: "reference",
+    id: "archive",
     eyebrow: "Archive Routes",
-    title: "Reference Index",
+    title: "Archive Index",
     body: "인물, 문장, 아이템, 몬스터, 지역, 전투 기록으로 바로 이어지는 상세 색인입니다.",
     cards: ARTICLE_ARCHIVE_CARDS,
   },

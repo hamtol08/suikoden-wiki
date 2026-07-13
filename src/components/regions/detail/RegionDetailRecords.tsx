@@ -91,6 +91,7 @@ type RegionShopItemCard = {
 };
 
 type RegionShopCard = {
+  body: string | null;
   items: readonly RegionShopItemCard[];
   key: string;
   name: string;
@@ -352,16 +353,21 @@ const buildRegionShopCards = (
 ): RegionShopCard[] =>
   mapArchiveRecordsSafely({
     getLabel: (shop) => `region-shop:${region.game}:${region.id}:${shop.name}`,
-    map: (shop) => ({
-      items: mapArchiveRecordsSafely({
-        getLabel: (item) =>
-          `region-shop-item:${region.game}:${region.id}:${shop.name}:${item.name}`,
-        map: buildRegionShopItemCard,
-        records: shop.items,
-      }),
-      key: shop.name,
-      name: getRegionFacilityLabel(shop.name),
-    }),
+    map: (shop) => {
+      const role = resolveRegionFacilityRole(shop.name);
+
+      return {
+        body: role ? REGION_FACILITY_ROLE_DESCRIPTIONS[role] : null,
+        items: mapArchiveRecordsSafely({
+          getLabel: (item) =>
+            `region-shop-item:${region.game}:${region.id}:${shop.name}:${item.name}`,
+          map: buildRegionShopItemCard,
+          records: shop.items,
+        }),
+        key: shop.name,
+        name: getRegionFacilityLabel(shop.name),
+      };
+    },
     records: shops,
   });
 
@@ -605,6 +611,11 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                 <h4 className={ATLAS_STYLES.regionRecordCardTitle}>
                   {shop.name}
                 </h4>
+                {shop.body ? (
+                  <p className={ATLAS_STYLES.regionRecordCardMeta}>
+                    {shop.body}
+                  </p>
+                ) : null}
                 <ul className={ATLAS_STYLES.regionDataList}>
                   {shop.items.map((item) => (
                     <li className={ATLAS_STYLES.regionDataRow} key={item.key}>

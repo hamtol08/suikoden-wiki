@@ -355,7 +355,7 @@ const GAME8_ITEM_CATEGORY_MAP = {
   Sound: "soundSet",
   "Sound Sets": "soundSet",
   Special: "specialItem",
-  "Special Equipment": "accessory",
+  "Special Equipment": "specialItem",
   "Special Items": "specialItem",
   Stones: "consumable",
   "Trade Items": "tradeItem",

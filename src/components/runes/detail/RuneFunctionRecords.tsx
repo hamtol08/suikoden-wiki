@@ -80,8 +80,11 @@ const RuneFunctionRecords = ({ records }: RuneFunctionRecordsProps) => {
       </dl>
 
       <div className={RUNE_STYLES.functionGrid}>
-        {records.map((record) => (
-          <article className={RUNE_STYLES.functionCard} key={record.game}>
+        {records.map((record, recordIndex) => (
+          <article
+            className={RUNE_STYLES.functionCard}
+            key={`${record.game}-${recordIndex}`}
+          >
             <h3 className={RUNE_STYLES.functionGame}>{record.game}</h3>
             {record.note ? (
               <p className={RUNE_STYLES.functionNote}>

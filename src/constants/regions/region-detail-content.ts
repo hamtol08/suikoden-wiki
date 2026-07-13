@@ -45,16 +45,21 @@ export const REGION_DETAIL_COPY = {
 export const REGION_FACILITY_ROLE_DESCRIPTIONS = FACILITY_ROLE_DESCRIPTIONS;
 
 export const REGION_DEFAULT_FACILITY_ROLES_BY_CATEGORY = {
+  "Border Village": ["inn", "itemShop", "save"],
   Capital: ["inn", "itemShop", "armorShop", "save"],
   "Castle Town": ["inn", "itemShop", "armorShop", "save"],
   "City-State": ["inn", "itemShop", "armorShop", "save"],
+  Headquarters: ["tavern", "storage", "inn", "itemShop", "armorShop", "blacksmith", "runeShop", "save"],
   Hometown: ["inn", "itemShop", "save"],
   "Mining City-State": ["inn", "itemShop", "trade", "save"],
   "Mountain Village": ["inn", "itemShop", "save"],
+  "Opening Front": ["storage", "save"],
   "Port Town": ["inn", "itemShop", "port", "save"],
   "River Town": ["inn", "itemShop", "port", "save"],
+  "Ruined Town": ["storage", "inn", "itemShop", "save"],
   Settlement: ["inn", "itemShop", "save"],
   Town: ["inn", "itemShop", "save"],
+  "Toran Capital": ["inn", "itemShop", "armorShop", "save"],
   Village: ["inn", "itemShop", "save"],
 } as const satisfies Partial<Record<string, readonly FacilityRoleKey[]>>;
 

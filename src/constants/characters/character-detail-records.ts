@@ -141,7 +141,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Lepant can participate in both the Couple Attack and the Family Attack."
+          "레판토는 부부 공격과 가족 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -282,7 +282,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Humphrey can participate in the Bumpy Attack with Krin."
+          "험프리는 크린과 함께 울퉁불퉁 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -292,10 +292,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "모라비아 성 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Sword",
-          "Weapon Range: S",
-          "Weapon Starting Level: 13"
+          "무기 성장 =",
+          "무기 유형: 검",
+          "무기 사거리: S",
+          "무기 시작 레벨: 13"
         ],
         "weapon": {
           "type": "Sword",
@@ -521,7 +521,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Gremio can participate in the Talisman Attack/Guardian Attack with Pahn."
+          "그레미오는 판과 함께 부적 공격과 수호 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -531,10 +531,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "모라비아 성 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Spear",
-          "Weapon Range: M",
-          "Weapon Starting Level: 12"
+          "무기 성장 =",
+          "무기 유형: 창",
+          "무기 사거리: M",
+          "무기 시작 레벨: 12"
         ],
         "weapon": {
           "type": "Spear",
@@ -546,7 +546,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Physical runes are suited for him."
+            "물리 공격형 문장이 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -590,7 +590,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kun-to": {
       "role": {
         "recruitment": [
-          "Joins automatically after lending boats to carry the Fire Spears."
+          "화염창을 운반할 배를 빌려준 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -744,10 +744,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [
             "Falcon Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "고정 문장이라 해제할 수 없습니다."
           ],
           "recommended": [
-            "Valeria has a Falcon Rune permanently attached."
+          "발레리아는 매의 문장을 고정 장착하고 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -961,7 +961,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Flik can participate in the Pretty Boy Attack with Alen and Grenseal."
+          "플릭은 아렌, 그렌실과 함께 미남 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1020,7 +1020,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Camille can participate in Pretty Girl Attack."
+          "카밀은 미녀 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1099,7 +1099,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [
             "True Holy Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "고정 문장이라 해제할 수 없습니다."
           ],
           "recommended": [
             "진정한 신행법의 문장이 고정 장착되어 있습니다."
@@ -1139,7 +1139,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Stallion can participate in both the Elf Attack and the Wild Arrow Attack."
+          "스탈리온은 엘프 공격과 와일드 애로우 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1149,10 +1149,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "비밀 공장에서 말을 걸고 의뢰비 20,000 포치를 지불하면 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Dart",
-          "Weapon Range: L",
-          "Weapon Starting Level: 9"
+          "무기 성장 =",
+          "무기 유형: 다트",
+          "무기 사거리: L",
+          "무기 시작 레벨: 9"
         ],
         "weapon": {
           "type": "Dart",
@@ -1201,7 +1201,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kage can participate in the Ninja Attack."
+          "카게는 닌자 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1261,7 +1261,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Fu Su Lu can participate in the Kobold + 1 Attack."
+          "후 스 루는 코볼트 + 1 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1320,7 +1320,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kirkis can participate in both the Wild Arrow Attack and the Elf Attack."
+          "키르키스는 와일드 애로우 공격과 엘프 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1399,7 +1399,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [
             "Boar Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "고정 문장이라 해제할 수 없습니다."
           ],
           "recommended": [
             "멧돼지의 문장이 고정 장착되어 있습니다."
@@ -1499,7 +1499,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sonya can participate in the Beauty Attack."
+          "소니아 슈렌은 미녀 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1558,7 +1558,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Anji can participate in the Pirate Attack, with Leonardo and Kanak."
+          "안지는 레오나르도, 카나크와 함께 해적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1672,7 +1672,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kanak can participate in the Pirate Attack."
+          "카나크는 해적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1786,7 +1786,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Leonardo can participate in the Pirate Attack."
+          "레오나르도는 해적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1845,7 +1845,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Hix can participate in the Warrior Attack, with Tengaar."
+          "힉스는 텐가알과 함께 전사 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -1961,7 +1961,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Varkas can participate in the Bandit Attack."
+          "바르카스는 산적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2020,7 +2020,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sydonia can participate in the Bandit Attack."
+          "시드니아는 산적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2079,7 +2079,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Eileen can participate in the Couple Attack, the Family Attack, and the Beauty Attack."
+          "아일린은 부부 공격, 가족 공격, 미녀 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2107,7 +2107,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "georges": {
       "role": {
         "recruitment": [
-          "Talk to him at the inn in Kirov and beat the record of the Matching Cards in any level he offers."
+          "키로프 여관에서 말을 걸고, 제시하는 난도의 카드 맞추기 기록을 넘기면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -2226,7 +2226,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Eikei can participate in the Martial Arts Attack."
+          "에이케이는 격투가 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2292,7 +2292,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [
             "Thunder Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "고정 문장이라 해제할 수 없습니다."
           ],
           "recommended": [
             "뇌명의 문장이 고정 장착되어 있습니다."
@@ -2332,7 +2332,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Grenseal can participate in the Pretty Boy Attack with Flik and Alen."
+          "그렌실은 플릭, 아렌과 함께 미남 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2352,7 +2352,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [
             "Rage Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "고정 문장이라 해제할 수 없습니다."
           ],
           "recommended": [
             "열화의 문장이 고정 장착되어 있습니다."
@@ -2392,7 +2392,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Alen can participate in the Pretty Boy Attack with Flik and Grenseal."
+          "아렌은 플릭, 그렌실과 함께 미남 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2825,7 +2825,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Liukan can participate in the Flash Attack."
+          "류칸은 섬광 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2845,7 +2845,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [
             "Resurrection Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "고정 문장이라 해제할 수 없습니다."
           ],
           "recommended": [
             "부활의 문장이 고정 장착되어 있습니다."
@@ -2885,7 +2885,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Fukien can participate in the Flash Attack."
+          "후켄은 섬광 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2895,10 +2895,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "시크 계곡에서 돌아온 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Spear",
-          "Weapon Range: M",
-          "Weapon Starting Level: 9"
+          "무기 성장 =",
+          "무기 유형: 창",
+          "무기 사거리: M",
+          "무기 시작 레벨: 9"
         ],
         "weapon": {
           "type": "Spear",
@@ -2947,7 +2947,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Futch can participate in the Dragon Knight Attack."
+          "풋치는 용기사 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -2957,10 +2957,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "테오 맥돌 군과의 첫 전투 전에 자동으로 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Dart",
-          "Weapon Range: L",
-          "Weapon Starting Level: 6"
+          "무기 성장 =",
+          "무기 유형: 다트",
+          "무기 사거리: L",
+          "무기 시작 레벨: 6"
         ],
         "weapon": {
           "type": "Dart",
@@ -2970,7 +2970,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [
             "Shrike Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "고정 문장이라 해제할 수 없습니다."
           ],
           "recommended": []
         },
@@ -3008,7 +3008,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kasumi can participate in both the Pretty Girl Attack and the Ninja Attack."
+          "카스미는 미녀 공격과 닌자 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -3137,10 +3137,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "본거지 레벨 3 이상에서 용기사의 요새 바깥 오른쪽 위에 있는 후마에게 말을 걸고 합류를 허락하면 동료가 됩니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Shuriken",
-          "Weapon Range: L",
-          "Weapon Starting Level: 11"
+          "무기 성장 =",
+          "무기 유형: 수리검",
+          "무기 사거리: L",
+          "무기 시작 레벨: 11"
         ],
         "weapon": {
           "type": "Shuriken",
@@ -3187,7 +3187,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Fuma can participate in the Ninja Attack, with Kage and Kasumi."
+          "후마는 카게, 카스미와 함께 닌자 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -3244,7 +3244,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Moose can participate in the Blacksmith Attack."
+          "무스는 대장장이 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -3303,7 +3303,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Meese can participate in the Blacksmith Attack."
+          "메스는 대장장이 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -3487,10 +3487,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "로니 벨을 도운 뒤 비밀 공장에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Axe",
-          "Weapon Range: M",
-          "Weapon Starting Level: 9"
+          "무기 성장 =",
+          "무기 유형: 도끼",
+          "무기 사거리: M",
+          "무기 시작 레벨: 9"
         ],
         "weapon": {
           "type": "Axe",
@@ -3771,10 +3771,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "드래곤 치료를 위해 시크 계곡으로 향하기 전 자동으로 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Spear",
-          "Weapon Range: M",
-          "Weapon Starting Level: 9"
+          "무기 성장 =",
+          "무기 유형: 창",
+          "무기 사거리: M",
+          "무기 시작 레벨: 9"
         ],
         "weapon": {
           "type": "Spear",
@@ -4414,10 +4414,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "본거지 레벨 4 이상에서 마스, 미스, 무스, 모스를 모두 파티에 넣고 시크 계곡의 메스에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Hammer",
-          "Weapon Range: M",
-          "Weapon Starting Level: 15"
+          "무기 성장 =",
+          "무기 유형: 망치",
+          "무기 사거리: M",
+          "무기 시작 레벨: 15"
         ],
         "weapon": {
           "type": "Hammer",
@@ -4615,10 +4615,10 @@ export const CHARACTER_DETAIL_RECORDS = {
           "마리를 영입한 뒤 본거지에서 요리사가 필요하다는 말을 들으면, 세이카 여관의 안토니오에게 말을 걸어 합류시킬 수 있습니다. 본거지에서 몇 차례 숙박하거나 머무르지 않는 선택을 반복해 마리의 대사를 확인한 뒤 찾아가면 됩니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Pan",
-          "Weapon Range: M",
-          "Weapon Starting Level: 8"
+          "무기 성장 =",
+          "무기 유형: 프라이팬",
+          "무기 사거리: M",
+          "무기 시작 레벨: 8"
         ],
         "weapon": {
           "type": "Pan",
@@ -8997,18 +8997,18 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "She has a Unite with Rina, Karen, or Kasumi (any combination of the 3) called the Beauty Attack which does 0.25% damage to all enemies and has a chance at putting the enemies to sleep.",
-          "Also participant of True Beauty Attack with Rina, Karen and Kasumi."
+          "리나, 카렌, 카스미 중 함께 편성된 인물과 미인 공격을 사용할 수 있습니다. 적 전체에게 피해를 주고 일정 확률로 수면 상태를 부여합니다.",
+          "리나, 카렌, 카스미와 함께 진 미인 공격에도 참여합니다."
         ]
       }
     },
     "sasuke": {
       "role": {
         "recruitment": [
-          "Enter Rokkaku. The entrance is hidden on the 4th screen in the Forest Path to Gregminster. Hanzo will order Mondo and him to join. If you recruited Kasumi, she must be in the active party. If you recruited Valeria, you must have recruited 100 or more Stars of Destiny."
+          "그레그민스터 방면 숲길 네 번째 화면에 숨겨진 롯카쿠에 들어가면 한조의 명령으로 몬도와 함께 합류합니다. 카스미를 선택했다면 파티에 카스미가 있어야 하며, 발레리아를 선택했다면 108성 100명 이상을 모은 상태여야 합니다."
         ],
         "overall": [
-          "Sasuke is an L ranged fighter, best put in the back row. Sasuke has incredibly high Technique and Speed stats, but also has a small advantage in hit points compared to other L range fighters, having the same amount as some S range characters. This makes him a better fighter than a magician from the back row, which is rare. He has only one open rune slot, but considering he has no major strengths in magic, it may be worth putting a combat rune there, like a Fury Rune or a Spark Rune instead, to maximize his attack or other skills."
+          "사스케는 후열 배치에 적합한 장거리 전투형 인물입니다. 기술과 속도가 높고 장거리 캐릭터치고 체력도 나쁘지 않아, 마법 운용보다는 분노의 문장이나 스파크의 문장처럼 전투 보조 문장으로 공격 성능을 끌어올리는 편이 좋습니다."
         ],
         "weapon": {
           "type": "Shurikens",
@@ -9045,7 +9045,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sasuke can participate in the Pretty Boy Attack, translated as the \"Cutie Boy Attack\"."
+          "사스케는 미남 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9090,7 +9090,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Mondo can participate in the Ninja Attack."
+          "몬도는 닌자 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9122,10 +9122,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "badeaux": {
       "role": {
         "recruitment": [
-          "Once your castle is at level 3, bring either Shiro or Mukumuku to visit Badeaux on the Forest Path to Matilda Knightdom."
+          "성 레벨 3 이후 시로 또는 무쿠무쿠를 파티에 넣고 마틸다 기사단 방면 숲길의 바드에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Badeaux is an all around average character. His magic stat is decent, but his affinity with all magic runes is appalling making him better suited for physical skills and status runes. His real strength comes with his affinity with beast party members, making them berserk and having unites attacks involving them. If you're using a beast heavy party, the player should consider using him. Otherwise, there are better alternatives."
+          "바드는 평균적인 능력치를 가진 전투형 인물입니다. 마법 적성은 낮은 편이라 물리 기술과 상태 보조 문장에 더 잘 맞고, 짐승 계열 동료와 함께 편성할 때 협력 공격과 특수 운용 가치가 커집니다."
         ],
         "weapon": {
           "type": "Whip",
@@ -9178,19 +9178,19 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Badeaux can participate in the Beastmaster Attack."
+          "바드는 비스트마스터 공격에 참여할 수 있습니다."
         ]
       }
     },
     "ayda": {
       "role": {
         "recruitment": [
-          "There are two ways to recruit Ayda:",
-          "#Joins with Feather in Forest Village. Win the battle and accept Feather in your party. You must use one of the two Listening Crystals in order to get both of them.",
-          "#Ayda can still be recruited alone (without Feather) if the player loses the battle against the Griffins. The easy way is to attach Riou a Fire Lizard Rune and bring him to 1 HP. Remove all party members and trigger this battle with this condition and lose on purpose. This event needs to be activated before recruiting Abizboah and/or Sigfried."
+          "아이다 영입은 두 가지 흐름으로 갈립니다.",
+          "숲의 마을에서 페더 관련 전투에 승리하고 페더를 받아들이면 함께 합류합니다. 둘을 모두 얻으려면 들음의 결정 중 하나를 사용해야 합니다.",
+          "그리핀 전투에서 패배하면 페더 없이 아이다만 합류시킬 수도 있습니다. 이 이벤트는 아비즈보아나 지그프리드를 영입하기 전에 진행해야 합니다."
         ],
         "overall": [
-          "Ayda is frail but she does hit very hard and can also make great use of the Water Rune or Earth Rune to provide support for the party."
+          "아이다는 내구가 낮은 편이지만 공격력이 높고, 물의 문장이나 흙의 문장을 활용해 파티 지원 역할도 맡을 수 있습니다."
         ],
         "weapon": {
           "type": "Bow",
@@ -9243,7 +9243,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Ayda can participate in the Bow Attack with Kinnison."
+          "아이다는 킨니슨과 함께 활 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9328,7 +9328,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Karen can participate in the Beauty Attack."
+          "카렌은 미녀 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9361,10 +9361,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "raura": {
       "role": {
         "recruitment": [
-          "Speak to her at Tinto after you have recruited Jeane and let her know that she is at your headquarters."
+          "진을 영입한 뒤 틴토에서 말을 걸어 진이 본거지에 있다는 사실을 알려주면 합류합니다."
         ],
         "overall": [
-          "Raura opens and manages a Scroll Shop at the HQ."
+          "라우라는 본거지에서 주문서 상점을 열고 관리합니다."
         ],
         "weapon": {
           "type": "",
@@ -9386,10 +9386,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kahn-marley": {
       "role": {
         "recruitment": [
-          "Kahn is recruited automatically after defeating Neclord in Tinto."
+          "틴토에서 네크로드를 쓰러뜨린 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Kahn is a exceptional fighter who can wield two weapons on his arsenal. He normally attacks his enemies using a sword but can deal critical damage his opponent by hitting it with a spear. His Resurrection Rune was his most powerful rune to face undead creatures including zombies, Bone Dragon and Neclord to deal heavy damage but can't be used against non-undead creatures cause it deals weak damage."
+          "칸은 검과 창을 함께 다루는 전투형 인물입니다. 평소에는 검으로 공격하지만 창을 이용해 치명타를 노릴 수 있으며, 부활의 문장은 좀비, 본 드래곤, 네크로드 같은 언데드 계열 적을 상대할 때 특히 강력합니다."
         ],
         "weapon": {
           "type": "Sword (Special)",
@@ -9473,8 +9473,8 @@ export const CHARACTER_DETAIL_RECORDS = {
     "long-chan-chan": {
       "role": {
         "recruitment": [
-          "With Wakaba in the party, go to the Inn at Crom Village. After the scene, speak to L.C.Chan behind the Item Shop and he will join.",
-          "There is an exploit that allows the recruitment of L.C.Chan before Crom. When Teresa accompanies Riou to sign the peace treaty with Jowy in Muse City, before entering Muse, head north to the Muse-Matilda Border, and push the door far enough to get through. With Wakaba in the party, proceed to Rockaxe Town and head to the inn. A cutscene will follow, and L.C.Chan will run out of the inn. Exit to find him hiding behind the inn. Talk to him and he will join."
+          "와카바를 파티에 넣고 크롬 마을 여관으로 가면 이벤트가 발생합니다. 이후 도구점 뒤쪽의 롱 찬찬에게 말을 걸면 합류합니다.",
+          "특수한 진행으로 크롬 방문 전에도 영입할 수 있지만, 일반 흐름에서는 와카바와 함께 크롬 마을 이벤트를 진행하는 것이 기준입니다."
         ],
         "overall": [],
         "weapon": {
@@ -9512,7 +9512,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "L.C. Chan can participate in the Flash Attack and Twin Fighter Attack."
+          "롱 찬찬은 섬광 공격과 쌍격투가 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9574,7 +9574,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Gijimu can participate in the Bandit Attack."
+          "기지무는 산적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9619,7 +9619,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Lo Wen can participate in the Bandit Attack."
+          "로웬은 산적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9664,7 +9664,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Koyu can participate in the Bandit Attack."
+          "코우유는 산적 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9696,10 +9696,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "lebrante": {
       "role": {
         "recruitment": [
-          "Once your castle has reached level 3, speak to Lebrante in Radat with a Celadon Urn in your inventory."
+          "성 레벨 3 이후 청자 항아리를 소지한 상태로 라다트의 레브란테에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Lebrante will open an Appraisal Shop at the HQ."
+          "레브란테는 본거지에서 감정소를 열고 감정품 확인을 담당합니다."
         ],
         "weapon": {
           "type": "",
@@ -9761,7 +9761,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Simone can participate in the Narcissus Attack."
+          "시몬은 나르시스 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9806,7 +9806,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Hoi can participate in the Copycat Attack."
+          "호이는 흉내쟁이 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9866,7 +9866,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Gantetsu can participate in Flash Attack."
+          "간테츠는 섬광 공격에 참여할 수 있습니다."
         ]
       }
     },
@@ -9898,10 +9898,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "bob": {
       "role": {
         "recruitment": [
-          "Speak to Bob in the Kobold section of Two River after your castle is at level 3 and you have recruited at least 80 stars."
+          "성 레벨 3 이후 108성 80명 이상을 모은 상태로 투 리버 코볼트 구역의 밥에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Bob is a well rounded character capable of dishing out decent magic damage but he excels at dealing physical damage with his werewolf transformation."
+          "밥은 균형 잡힌 능력치를 가진 전투형 인물입니다. 마법도 어느 정도 다룰 수 있지만, 늑대인간 변신을 활용한 물리 공격에서 강점이 큽니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -9954,17 +9954,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Bob can participate in the Servant Attack."
+          "밥은 하인 공격에 참여할 수 있습니다."
         ]
       }
     },
     "jude": {
       "role": {
         "recruitment": [
-          "Speak to Jude in the Greenhill Academy after the liberation. He will tell you he needs clay. Speak to a man walking in the woods in Forest Village and he will give you clay. Return to Jude and he will join you."
+          "그린힐 해방 뒤 그린힐 학원의 주드에게 말을 걸어 점토가 필요하다는 이야기를 듣습니다. 숲의 마을 숲길을 걷는 남자에게 점토를 받은 뒤 주드에게 돌아가면 합류합니다."
         ],
         "overall": [
-          "Jude can sculpt a Guardian Deity for your castle."
+          "주드는 본거지의 수호신상을 제작하는 시설 담당 동료입니다."
         ],
         "weapon": {
           "type": "",
@@ -10036,10 +10036,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tessai": {
       "role": {
         "recruitment": [
-          "Speak to Tessai in Kuskus with Viktor in your party after you have liberated Greenhill. You must have gained 101 Stars of Destiny beforehand."
+          "그린힐 해방 후 108성 101명 이상을 모은 상태에서 빅토르를 파티에 넣고 쿠스쿠스의 텟사이에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Tessai is the blacksmith in your castle."
+          "텟사이는 본거지에서 대장간을 담당합니다."
         ],
         "weapon": {
           "type": "",
@@ -10061,8 +10061,8 @@ export const CHARACTER_DETAIL_RECORDS = {
     "genshu": {
       "role": {
         "recruitment": [
-          "Speak to Genshu at the Coronet docks with anyone's weapon sharped to level 14 or above. Must also have at least 101 stars.",
-          "Note: If Tessai does not have the Silver Hammer, recruit and bring Pesmerga in your party, as his sword is level 14 automatically. Genshu is one of the last Stars of Destiny required to get all 108 Stars."
+          "108성 101명 이상을 모은 뒤, 누군가의 무기를 레벨 14 이상으로 강화한 상태에서 코로네 부두의 겐슈에게 말을 걸면 합류합니다.",
+          "은망치가 없어 강화가 어렵다면, 기본 무기 레벨이 높은 페슈메르가를 파티에 넣어 조건을 맞출 수 있습니다. 겐슈는 108성 완성을 위한 후반 영입 인물입니다."
         ],
         "overall": [],
         "weapon": {
@@ -10115,14 +10115,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Genshu can participate in Swordsman Attack with Shin."
+          "겐슈는 신과 함께 검객 공격에 참여할 수 있습니다."
         ]
       }
     },
     "vincent": {
       "role": {
         "recruitment": [
-          "Speak to Vincent in Radat with Simone in the party, after Greenhill has been liberated."
+          "그린힐 해방 후 시몬을 파티에 넣고 라다트의 뱅상에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -10156,15 +10156,15 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Vincent can participate in the Narcissus Attack."
+          "뱅상은 나르시스 공격에 참여할 수 있습니다."
         ]
       }
     },
     "mazus": {
       "role": {
         "recruitment": [
-          "Speak to Mazus in the Tinto Mines after liberating Greenhill. You have to have at least 100 recruits, since he is a very proud man.",
-          "Note: Mazus is one of the few characters that can be Lv. 99 upon recruiting due to a glitch."
+          "그린힐 해방 뒤 108성 100명 이상을 모은 상태로 틴토 광산의 마자스에게 말을 걸면 합류합니다.",
+          "마자스는 특정 진행 상황에서 합류 시 레벨이 매우 높게 잡힐 수 있는 인물로 알려져 있습니다."
         ],
         "overall": [],
         "weapon": {
