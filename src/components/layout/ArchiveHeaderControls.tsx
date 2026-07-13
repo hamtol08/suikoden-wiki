@@ -1,8 +1,8 @@
-"use client";
-
 /**
- * 헤더 내비게이션, 모바일 드로어, 검색, 테마 버튼의 클라이언트 상호작용을 관리합니다.
+ * 아카이브 헤더의 검색, 테마 전환, 내비게이션 드로어 상태를 관리합니다.
  */
+
+"use client";
 
 import { useEffect, useReducer } from "react";
 import { createPortal } from "react-dom";

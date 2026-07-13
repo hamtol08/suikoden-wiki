@@ -22,6 +22,8 @@ import {
   type CharacterDetailRecord,
 } from "@/constants/characters/character-detail-records";
 import {
+  ITEM_ARCHIVE_COPY,
+  resolveItemInitialPossessionKind,
   resolveItemDetailHref,
   translateItemName,
 } from "@/constants/items/item-content";
@@ -29,9 +31,12 @@ import {
   buildCharacterDetailPath,
   buildGameplayDetailPath,
 } from "@/constants/app/app-config";
+import { escapeArchiveRegExp } from "@/constants/app/archive-utils";
 import { GAMEPLAY_DETAIL_IDS } from "@/constants/gameplay/gameplay-content";
 import { RUNE_REFERENCES, resolveRuneReference } from "@/constants/runes/rune-content";
 import { STAR_OF_DESTINY_KOREAN_NAMES } from "@/constants/characters/star-of-destiny";
+
+export { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-game-ids";
 
 export const CHARACTER_COPY = {
   eyebrow: "Characters",
@@ -83,6 +88,19 @@ export const CHARACTER_COPY = {
   detailMessages: {
     fixedEquipment: (items: readonly string[]) =>
       `별표(*)가 붙은 장비는 해제할 수 없는 고정 장비입니다. 대상: ${items.join(", ")}.`,
+  },
+  combatPanelTitles: {
+    equipment: "장비",
+    defaultRune: "기본 문장",
+    maxLevelStatus: "최대 레벨 능력치",
+    overall: "종합",
+    uniteAttacks: "협력 공격",
+    weaponGrowth: "무기 성장",
+  },
+  combatPanelLabels: {
+    startingLevel: "초기 레벨",
+    weaponRange: "사거리",
+    weaponType: "유형",
   },
 } as const;
 
@@ -137,7 +155,7 @@ const MAX_LEVEL_STATUS_GROUPS = [
     keys: ["lvl 1", "lvl 2", "lvl 3", "lvl 4"],
   },
   {
-    title: "Battle Stats",
+    title: "전투 능력치",
     keys: ["atk", "def", "str", "pdf", "skl", "mdf", "mag", "spd", "eva", "luc"],
   },
 ] as const;
@@ -210,6 +228,11 @@ const EQUIPMENT_SLOT_LABELS = {
   shield: "방패",
   other1: "장신구 1",
   other2: "장신구 2",
+} as const;
+
+const INITIAL_ACCESSORY_SLOT_LABELS = {
+  other1: "1",
+  other2: "2",
 } as const;
 
 const UNITE_ATTACK_LABELS = {
@@ -431,7 +454,7 @@ const SUIKODEN_II_APPEARANCE_MATCHES = [
   ["바나 마을", "바나 마을"],
   ["코볼트 마을", "코볼트 마을"],
   ["사우스 윈도우", "사우스 윈도우"],
-  ["노스 윈도우", "노스 윈도우"],
+  ["노스 윈도우", "노스윈도우"],
   ["틴토", "틴토"],
   ["크롬", "크롬"],
   ["숲의 마을", "숲의 마을"],
@@ -596,10 +619,6 @@ export type CharacterGameId = keyof typeof CHARACTER_DATA_BY_GAME;
 export type CharacterEntry =
   (typeof CHARACTER_DATA_BY_GAME)[CharacterGameId][number];
 
-const CHARACTER_GAME_ID_BY_SERIES_TITLE = new Map<string, CharacterGameId>(
-  CHARACTER_SERIES.map((series) => [series.title, series.id]),
-);
-
 export const isCharacterGameId = (gameId: string): gameId is CharacterGameId => {
   return gameId in CHARACTER_DATA_BY_GAME;
 };
@@ -614,14 +633,6 @@ export const isCharacterDetailAvailable = (
 export const getCharacterSeries = (gameId: CharacterGameId) => {
   return CHARACTER_SERIES.find((series) => series.id === gameId) ??
     CHARACTER_SERIES[0];
-};
-
-export const resolveCharacterGameIdBySeriesTitle = (
-  seriesTitle?: string,
-): CharacterGameId | undefined => {
-  return seriesTitle
-    ? CHARACTER_GAME_ID_BY_SERIES_TITLE.get(seriesTitle)
-    : undefined;
 };
 
 export const buildCharacterProfileRows = (
@@ -666,9 +677,29 @@ const getCharacterDetailLines = (
     character.id as keyof typeof gameOverrides
   ];
   const lines = characterOverrides?.[key];
+  const sourceLines = lines && lines.length > 0 ? lines : fallback;
+  const visibleLines = sourceLines.filter(isVisibleCharacterDetailLine);
 
-  return lines ?? fallback;
+  return visibleLines.length > 0 ? visibleLines : fallback;
 };
+
+const CHARACTER_DETAIL_SOURCE_ONLY_LINE_PATTERNS = [
+  /^Weapon Growth =$/i,
+  /^Weapon Type:/i,
+  /^Weapon Range:/i,
+  /^Weapon Starting Level:/i,
+  /^Investigations =$/i,
+  /^Secret #\d+\s*=$/i,
+  /^Name:/i,
+  /^Age:/i,
+  /^From:/i,
+  /^Position:/i,
+] as const;
+
+const isVisibleCharacterDetailLine = (line: string) =>
+  !CHARACTER_DETAIL_SOURCE_ONLY_LINE_PATTERNS.some((pattern) =>
+    pattern.test(line.trim()),
+  );
 
 export const getCharacterDetailRecord = (
   character: CharacterEntry,
@@ -815,10 +846,38 @@ const translateEquipmentSlot = (value: string) => {
     value;
 };
 
+const buildDefaultEquipmentLabel = (slot: string, value: string) => {
+  const possessionKind = resolveItemInitialPossessionKind(value);
+
+  if (possessionKind === "possession") {
+    return ITEM_ARCHIVE_COPY.labels.initialPossession;
+  }
+
+  if (possessionKind === "accessory") {
+    const slotNumber =
+      INITIAL_ACCESSORY_SLOT_LABELS[
+        slot as keyof typeof INITIAL_ACCESSORY_SLOT_LABELS
+      ];
+
+    return slotNumber ?
+        `${ITEM_ARCHIVE_COPY.labels.initialAccessory} ${slotNumber}` :
+        ITEM_ARCHIVE_COPY.labels.initialAccessory;
+  }
+
+  return `${EQUIPMENT_GROUP_LABELS.default} ${translateEquipmentSlot(slot)}`;
+};
+
 const buildEquipmentLabel = (
   group: keyof typeof EQUIPMENT_GROUP_LABELS,
   slot: string,
-) => `${EQUIPMENT_GROUP_LABELS[group]} ${translateEquipmentSlot(slot)}`;
+  value: string,
+) => {
+  if (group === "default") {
+    return buildDefaultEquipmentLabel(slot, value);
+  }
+
+  return `${EQUIPMENT_GROUP_LABELS[group]} ${translateEquipmentSlot(slot)}`;
+};
 
 const hasFinalConsonant = (value: string) => {
   const lastCharacter = value.trim().at(-1);
@@ -863,14 +922,11 @@ const buildCharacterOverallFallbackLines = (
   ];
 };
 
-const escapeRegExp = (value: string) =>
-  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 const RUNE_NAME_MATCHERS = RUNE_REFERENCES.flatMap((rune) =>
   [rune.name, ...rune.aliases].map((name) => ({
     name,
     runeName: rune.name,
-    pattern: new RegExp(`${escapeRegExp(name)}(?!\\s+Piece)`, "gi"),
+    pattern: new RegExp(`${escapeArchiveRegExp(name)}(?!\\s+Piece)`, "gi"),
   })),
 );
 
@@ -1259,6 +1315,10 @@ const translateUniteAttackLine = (line: string) => {
   );
   if (participateMatch) {
     return formatUniteAttackUsage(participateMatch[1], participateMatch[2]);
+  }
+
+  if (/[A-Za-z]{3,}/.test(normalizedLine)) {
+    return CHARACTER_COPY.unavailableDetail;
   }
 
   return normalizedLine;
@@ -1675,7 +1735,8 @@ const buildUniteAttackPanelContent = (
     .filter((line) => !isNoUniteAttackLine(line))
     .filter((line) => !isUniteAttackHeadingLine(line))
     .filter((line) => parseUniteAttackLine(line).length === 0)
-    .map(translateUniteAttackLine);
+    .map(translateUniteAttackLine)
+    .filter((line) => line !== CHARACTER_COPY.unavailableDetail);
 
   if (rowGroups.length > 0) {
     return {
@@ -1715,7 +1776,7 @@ const buildEquipmentRows = (record: CharacterDetailRecord | null) => {
     value: string,
   ) => ({
     href: resolveItemDetailHref(value) ?? undefined,
-    label: buildEquipmentLabel(group, label),
+    label: buildEquipmentLabel(group, label, value),
     value: normalizeDetailValue(value),
   });
 
@@ -1768,9 +1829,18 @@ export const buildCharacterCombatDataPanels = (
 
   const role = record?.role;
   const weaponRows = role?.weapon ? [
-    { label: "유형", value: translateWeaponType(role.weapon.type) },
-    { label: "사거리", value: translateWeaponRange(role.weapon.range) },
-    { label: "초기 레벨", value: role.weapon.startingLevel },
+    {
+      label: CHARACTER_COPY.combatPanelLabels.weaponType,
+      value: translateWeaponType(role.weapon.type),
+    },
+    {
+      label: CHARACTER_COPY.combatPanelLabels.weaponRange,
+      value: translateWeaponRange(role.weapon.range),
+    },
+    {
+      label: CHARACTER_COPY.combatPanelLabels.startingLevel,
+      value: role.weapon.startingLevel,
+    },
   ].filter((row) => row.value) : [];
   const runeLines = resolveCharacterPrimaryRunes(character, record);
   const uniteAttackPanelContent = buildUniteAttackPanelContent(
@@ -1781,7 +1851,7 @@ export const buildCharacterCombatDataPanels = (
   return [
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-overall`,
-      title: "Overall",
+      title: CHARACTER_COPY.combatPanelTitles.overall,
       lines: getCharacterDetailLines(
         character,
         "overall",
@@ -1791,19 +1861,19 @@ export const buildCharacterCombatDataPanels = (
     },
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-weapon-growth`,
-      title: "Weapon Growth",
+      title: CHARACTER_COPY.combatPanelTitles.weaponGrowth,
       lines: [],
       rows: weaponRows,
     },
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-runes`,
-      title: "기본 문장",
+      title: CHARACTER_COPY.combatPanelTitles.defaultRune,
       lines: runeLines,
       rows: [],
     },
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-max-lv-status`,
-      title: "Max Lv. Status",
+      title: CHARACTER_COPY.combatPanelTitles.maxLevelStatus,
       lines: [],
       rowGroups: role?.maxLevelStatus ?
         buildMaxLevelStatusRows(role.maxLevelStatus) :
@@ -1812,13 +1882,13 @@ export const buildCharacterCombatDataPanels = (
     },
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-equipment`,
-      title: "Equipment",
+      title: CHARACTER_COPY.combatPanelTitles.equipment,
       lines: buildEquipmentLines(record),
       rows: buildEquipmentRows(record),
     },
     {
       id: `${COMBAT_DATA_ANCHOR_PREFIX}-unite-attacks`,
-      title: "협력 공격",
+      title: CHARACTER_COPY.combatPanelTitles.uniteAttacks,
       lines: uniteAttackPanelContent.lines,
       rowGroups: uniteAttackPanelContent.rowGroups,
       rows: [],

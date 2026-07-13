@@ -4,10 +4,10 @@
 
 export const SUIKODEN_NEWS_ITEMS = [
   {
-    date: "Jun 25, 2026",
-    title: "Suikoden Live Broadcast Set for July 1",
-    body: "코나미가 스타 리프와 시리즈 전개를 다루는 생방송을 예고했습니다.",
-    href: "https://www.gematsu.com/2026/06/suikoden-live-broadcast-set-for-july-1",
+    date: "Jul 01, 2026",
+    title: "Suikoden Live 2026 Focuses on STAR LEAP",
+    body: "코나미가 스타 리프 최신 정보를 중심으로 한 환상수호전 라이브 방송을 진행했습니다.",
+    href: "https://www.gematsu.com/event/suikoden-live-july-1-2026",
     outlet: "Gematsu",
     tag: "Star Leap",
   },
@@ -44,3 +44,25 @@ export const SUIKODEN_NEWS_ITEMS = [
     tag: "Remaster",
   },
 ] as const;
+
+export const NEWS_PAGE_COPY = {
+  latestEyebrow: "Latest Dispatch",
+  latestCta: "Read Latest",
+  topicsEyebrow: "News Streams",
+  topicsTitle: "Tracked Topics",
+  topicsBody: "시리즈 전개, 리마스터, 애니메이션, 스타 리프 관련 소식을 흐름별로 확인합니다.",
+  archiveEyebrow: "News Archive",
+  archiveTitle: "All News",
+  articleCountSuffix: "건",
+  latestDateLabel: "최근 기록",
+} as const;
+
+export const SUIKODEN_NEWS_TOPIC_CARDS = [
+  ...new Map(
+    SUIKODEN_NEWS_ITEMS.map((item) => [item.tag, item]),
+  ).entries(),
+].map(([tag, latestItem]) => ({
+  tag,
+  count: SUIKODEN_NEWS_ITEMS.filter((item) => item.tag === tag).length,
+  latestDate: latestItem.date,
+}));

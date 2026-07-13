@@ -5,6 +5,8 @@
 export type MonsterBossGuideRecord = {
   overview: string;
   preparation: readonly string[];
+  rewards?: readonly string[];
+  relatedEvents?: readonly string[];
   tactics: readonly string[];
   warning?: string;
 };
@@ -21,6 +23,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "여왕개미에게 공격을 집중해 전투 시간을 줄입니다.",
       "HP가 절반 아래로 내려간 동료는 즉시 회복해 연속 피격에 대비합니다.",
     ],
+    relatedEvents: ["청풍산을 통과해 산적단 사건과 록랜드 흐름으로 이어집니다."],
     warning:
       "초반 장비가 약한 상태라 장기전이 되면 회복 부담이 커집니다.",
   },
@@ -35,6 +38,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "전열은 일반 공격을 반복하고, 후열은 공격 마법과 회복을 번갈아 운용합니다.",
       "여러 명의 HP가 동시에 낮아지면 공격을 멈추고 회복을 먼저 처리합니다.",
     ],
+    relatedEvents: ["전투 후 토란 호수성 본거지 흐름이 본격적으로 열립니다."],
     warning:
       "본거지 전투 직후 흐름이라 소모품 정리가 부족하면 난도가 크게 올라갑니다.",
   },
@@ -49,6 +53,8 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "전열 공격과 마법을 함께 사용해 짧은 전투로 끌고 갑니다.",
       "강한 공격을 맞은 동료는 다음 턴에 바로 회복합니다.",
     ],
+    rewards: ["드워프 금고 이벤트 진행"],
+    relatedEvents: ["드워프 마을과 엘프 마을 사건의 핵심 분기입니다."],
   },
   Dragon: {
     overview:
@@ -61,6 +67,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "전열은 일반 공격, 후열은 강한 마법으로 꾸준히 피해를 넣습니다.",
       "체력이 낮은 동료가 있으면 공격보다 회복을 우선합니다.",
     ],
+    relatedEvents: ["판누 야쿠타 성 공략 흐름과 연결됩니다."],
   },
   Neclord: {
     overview:
@@ -73,6 +80,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "빅토르는 꾸준히 공격하고, 다른 동료는 강한 마법과 회복을 분담합니다.",
       "피해가 누적된 턴에는 공격을 줄이고 파티 전체 HP를 먼저 복구합니다.",
     ],
+    relatedEvents: ["별의 드래곤 검과 전사의 마을, 네크로드 성 흐름의 결전입니다."],
     warning:
       "이 전투는 이벤트 조건과 전투 조건이 맞물리므로 빅토르의 생존을 특히 신경 써야 합니다.",
   },
@@ -87,6 +95,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "강한 마법을 아끼지 말고 보스에게 집중합니다.",
       "피해가 분산될 때는 한 턴을 회복에 사용해 다음 공격을 준비합니다.",
     ],
+    relatedEvents: ["시크 계곡 탐색과 용기사단 기록으로 이어집니다."],
   },
   "Shell Venus": {
     overview:
@@ -99,6 +108,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "전열 공격과 마법 피해를 한 대상에 집중합니다.",
       "회복 담당이 쓰러지지 않도록 HP를 넉넉히 유지합니다.",
     ],
+    relatedEvents: ["수상요새 샤사라자드 공략의 중간 관문입니다."],
   },
   "Sonya Shulen": {
     overview:
@@ -111,6 +121,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "전열 공격으로 꾸준히 압박하고, 후열은 회복과 마법 지원을 맡습니다.",
       "체력이 낮은 동료가 생기면 다음 공격보다 회복을 우선합니다.",
     ],
+    relatedEvents: ["수상요새 샤사라자드 후반부와 소니아 슈렌 합류 흐름에 연결됩니다."],
   },
   "Ain Gide": {
     overview:
@@ -123,6 +134,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "초반부터 강한 공격을 집중해 전투 시간을 줄입니다.",
       "위험한 동료만 즉시 회복하고, 전체 자원 소모는 최소화합니다.",
     ],
+    relatedEvents: ["그레그민스터 성 최종 진입 직전 전투입니다."],
   },
   "Golden Hydra": {
     overview:
@@ -136,6 +148,7 @@ const SUIKODEN_I_BOSS_GUIDES = {
       "강한 문장 마법은 회복 타이밍과 겹치지 않게 배분합니다.",
       "파티 전체 HP가 흔들리면 한 턴을 회복에 투자해 다음 공격 턴을 만듭니다.",
     ],
+    relatedEvents: ["적월제국 최종전과 트란 공화국 성립 흐름의 마지막 전투입니다."],
     warning:
       "마지막 전투라 소모품을 아낄 필요가 없습니다. 남은 자원을 적극적으로 사용합니다.",
   },
@@ -153,6 +166,7 @@ const SUIKODEN_II_BOSS_GUIDES = {
       "전열 공격을 꾸준히 넣고, 회복 담당은 HP가 절반 아래로 내려가기 전에 행동합니다.",
       "전투가 길어지면 회복 자원부터 마르므로 공격 대상을 분산하지 않습니다.",
     ],
+    relatedEvents: ["별의 드래곤 검을 얻는 바람의 동굴 이벤트와 연결됩니다."],
     warning:
       "던전 탐색 뒤 바로 이어지는 전투라, 진입 전 체력 회복을 놓치면 난도가 올라갑니다.",
   },
@@ -167,6 +181,7 @@ const SUIKODEN_II_BOSS_GUIDES = {
       "강한 문장 마법과 전열 공격을 한 번에 몰아 전투 시간을 줄입니다.",
       "피해가 누적되는 턴에는 회복을 우선해 다음 공격 턴을 만듭니다.",
     ],
+    relatedEvents: ["타이거마우스 마을의 흡혈귀 사건과 네크로드 추적 흐름에 연결됩니다."],
   },
   Neclordia: {
     overview:
@@ -179,6 +194,7 @@ const SUIKODEN_II_BOSS_GUIDES = {
       "보스에게 화력을 집중하고, 일반 몬스터전처럼 공격을 분산하지 않습니다.",
       "회복 담당이 행동하기 전 쓰러지지 않도록 HP를 넉넉히 유지합니다.",
     ],
+    relatedEvents: ["틴토 광산과 네크로드 사건의 중심 전투입니다."],
     warning:
       "장기전이 되면 회복 자원 압박이 커지므로 고위 마법을 아끼지 않는 편이 좋습니다.",
   },
@@ -193,6 +209,7 @@ const SUIKODEN_II_BOSS_GUIDES = {
       "전열은 공격을 유지하되, 큰 피해를 받은 캐릭터는 바로 회복합니다.",
       "후열은 회복과 마법 지원을 번갈아 사용해 전열이 무너지지 않게 합니다.",
     ],
+    relatedEvents: ["카리야전 전후의 하이랜드군 추격 흐름과 연결됩니다."],
   },
   "M-Knight": {
     overview:
@@ -205,6 +222,7 @@ const SUIKODEN_II_BOSS_GUIDES = {
       "전열 공격과 문장 마법을 집중해 빠르게 체력을 깎습니다.",
       "피해가 몰린 캐릭터가 있으면 다음 턴을 회복에 사용합니다.",
     ],
+    relatedEvents: ["록엑스 성과 마틸다 기사단 흐름의 중후반 전투입니다."],
   },
   Assassin: {
     overview:
@@ -217,6 +235,7 @@ const SUIKODEN_II_BOSS_GUIDES = {
       "초반부터 강한 공격을 사용해 단기전으로 마무리합니다.",
       "위험한 캐릭터가 생기면 즉시 회복하고, 공격 재개는 그 다음 턴으로 미룹니다.",
     ],
+    relatedEvents: ["라쿠테이 산 후반부 추격전과 연결됩니다."],
   },
   Salamander: {
     overview:
@@ -229,6 +248,7 @@ const SUIKODEN_II_BOSS_GUIDES = {
       "강한 문장 마법과 물리 공격을 보스에게 집중합니다.",
       "광역 피해를 맞은 뒤에는 공격을 늦추고 파티 체력을 먼저 복구합니다.",
     ],
+    relatedEvents: ["신다르 유적 탐색과 문장 기록 흐름에 연결됩니다."],
   },
 } as const satisfies Record<string, MonsterBossGuideRecord>;
 

@@ -35,8 +35,7 @@ export const FEATURE_CARDS = [
   },
 ] as const;
 
-export const ARTICLE_INDEX_CARDS = [
-  ...FEATURE_CARDS,
+export const ARTICLE_ARCHIVE_CARDS = [
   {
     title: "Characters",
     eyebrow: "108 Stars",
@@ -92,5 +91,27 @@ export const ARTICLE_INDEX_CARDS = [
     image: IMAGE_PATHS.worldMap,
     alt: "Suikoden world map archive crop",
     body: "트란, 듀난, 하이랜드와 주요 도시의 정치권, 전쟁 무대, 지역 기록을 따라갑니다.",
+  },
+] as const;
+
+export const ARTICLE_INDEX_CARDS = [
+  ...FEATURE_CARDS,
+  ...ARTICLE_ARCHIVE_CARDS,
+] as const;
+
+export const ARTICLE_INDEX_SECTIONS = [
+  {
+    id: "series",
+    eyebrow: "Core Records",
+    title: "Series Articles",
+    body: "작품별 큰 흐름을 먼저 잡는 입문 색인입니다.",
+    cards: FEATURE_CARDS,
+  },
+  {
+    id: "reference",
+    eyebrow: "Archive Routes",
+    title: "Reference Index",
+    body: "인물, 문장, 아이템, 몬스터, 지역, 전투 기록으로 바로 이어지는 상세 색인입니다.",
+    cards: ARTICLE_ARCHIVE_CARDS,
   },
 ] as const;

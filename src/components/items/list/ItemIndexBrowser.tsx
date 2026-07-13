@@ -1,21 +1,22 @@
-"use client";
-
 /**
  * 아이템 목록의 검색어, 작품 필터, 자동완성 상태를 관리합니다.
  */
 
+"use client";
+
 import Link from "next/link";
-import { type ChangeEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
+import LinkedTextParts, {
+  type LinkedTextPart,
+} from "@/components/shared/LinkedTextParts";
 import LocalizedNameList, {
   type LocalizedNameEntry,
 } from "@/components/shared/LocalizedNameList";
-import MonsterNameLinkText from "@/components/shared/MonsterNameLinkText";
+import { useArchiveSearch } from "@/components/shared/useArchiveSearch";
 import {
   formatArchiveCount,
   formatArchiveNumber,
-  normalizeArchiveSearchText,
 } from "@/constants/app/archive-utils";
 import { type ItemIndexGameId } from "@/constants/items/item-content";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";
@@ -25,11 +26,13 @@ export type ItemIndexBrowserItem = {
   categoryLabel: string;
   displayNames: readonly LocalizedNameEntry[];
   dropLocations: string;
+  dropLocationParts: readonly LinkedTextPart[];
   dropRates: string;
+  dropRateParts: readonly LinkedTextPart[];
   game: ItemIndexGameId;
-  hasInitialOwners: boolean;
   href: string;
   id: string;
+  initialOwnerLabel: string | null;
   name: string;
   otherLocations: string;
   price: string;
@@ -46,6 +49,7 @@ type ItemIndexBrowserCopy = {
     dropLocations: string;
     dropRate: string;
     initialEquipment: string;
+    initialPossession: string;
     otherLocations: string;
     price: string;
     shop: string;
@@ -70,25 +74,13 @@ const ItemIndexBrowser = ({
   panelEyebrow,
   panelTitle,
 }: ItemIndexBrowserProps) => {
-  const [query, setQuery] = useState("");
-  const normalizedQuery = normalizeArchiveSearchText(query);
-  const filteredItems = useMemo(() => {
-    if (!normalizedQuery) {
-      return items;
-    }
-
-    return items.filter((item) =>
-      item.searchText.includes(normalizedQuery),
-    );
-  }, [items, normalizedQuery]);
-
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
-
-  const clearSearch = () => {
-    setQuery("");
-  };
+  const {
+    clearSearch,
+    filteredRecords: filteredItems,
+    handleSearchChange,
+    normalizedQuery,
+    query,
+  } = useArchiveSearch(items);
 
   return (
     <div className={ITEM_STYLES.browser}>
@@ -152,9 +144,9 @@ const ItemIndexBrowser = ({
                     <span className={ITEM_STYLES.chip}>
                       {item.sourceLabel}
                     </span>
-                    {item.hasInitialOwners ? (
+                    {item.initialOwnerLabel ? (
                       <span className={ITEM_STYLES.chip}>
-                        {copy.labels.initialEquipment}
+                        {item.initialOwnerLabel}
                       </span>
                     ) : null}
                   </div>
@@ -182,10 +174,7 @@ const ItemIndexBrowser = ({
                       {copy.labels.dropLocations}
                     </dt>
                     <dd className={ITEM_STYLES.ledgerValue}>
-                      <MonsterNameLinkText
-                        preferredGame={item.game}
-                        text={item.dropLocations}
-                      />
+                      <LinkedTextParts parts={item.dropLocationParts} />
                     </dd>
                   </div>
                   <div className={ITEM_STYLES.ledgerRow}>
@@ -201,10 +190,7 @@ const ItemIndexBrowser = ({
                       {copy.labels.dropRate}
                     </dt>
                     <dd className={ITEM_STYLES.ledgerValue}>
-                      <MonsterNameLinkText
-                        preferredGame={item.game}
-                        text={item.dropRates}
-                      />
+                      <LinkedTextParts parts={item.dropRateParts} />
                     </dd>
                   </div>
                 </dl>

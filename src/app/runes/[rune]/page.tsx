@@ -9,7 +9,10 @@ import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import RuneFunctionRecords from "@/components/runes/detail/RuneFunctionRecords";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import {
   getSealedOrbItemReferencesForRune,
   ITEM_CATEGORY_LABELS,
@@ -50,7 +53,7 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
   const { rune: runeId } = await params;
   const rune = loadArchiveJsonSafely({
     fallback: null,
-    label: `rune-detail:${runeId}`,
+    label: buildArchiveDataLabel("rune-detail", runeId),
     load: () => getRuneReference(runeId),
   });
 
@@ -60,7 +63,7 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
 
   const rows = loadArchiveJsonSafely({
     fallback: [],
-    label: `rune-detail-rows:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-rows", rune.id),
     load: () => {
       const functionTypeLabel = getRuneFunctionTypeLabel(rune);
       const lineageNote = getRuneLineageNote(rune);
@@ -103,47 +106,50 @@ const RuneDetail = async ({ params }: RuneDetailProps) => {
   });
   const activeRunePage = loadArchiveJsonSafely({
     fallback: RUNE_INDEX_PAGES[0],
-    label: `rune-detail-active-page:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-active-page", rune.id),
     load: () => getRuneIndexPageByCategory(rune.category),
   });
   const runeImageSrc = loadArchiveJsonSafely({
     fallback: RUNE_FALLBACK_IMAGE.src,
-    label: `rune-detail-image:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-image", rune.id),
     load: () => getRuneDisplayImageSrc(rune),
   });
   const isFallbackImage = loadArchiveJsonSafely({
     fallback: true,
-    label: `rune-detail-image-fallback:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-image-fallback", rune.id),
     load: () => isRuneFallbackImage(rune),
   });
   const runeDescription = loadArchiveJsonSafely<readonly string[]>({
     fallback: [],
-    label: `rune-detail-description:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-description", rune.id),
     load: () => getRuneDescriptionLines(rune),
   });
   const runeDescriptionTitle = loadArchiveJsonSafely({
     fallback: RUNE_ARCHIVE_COPY.runeDescriptionTitle,
-    label: `rune-detail-description-title:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-description-title", rune.id),
     load: () => getRuneDescriptionTitle(rune),
   });
   const runeFunctionRecords = loadArchiveJsonSafely<readonly RuneFunctionRecord[]>({
     fallback: [],
-    label: `rune-detail-functions:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-functions", rune.id),
     load: () => getRuneFunctionRecords(rune),
   });
   const runeFunctionTypeDescription = loadArchiveJsonSafely({
     fallback: "",
-    label: `rune-detail-function-type-description:${rune.id}`,
+    label: buildArchiveDataLabel(
+      "rune-detail-function-type-description",
+      rune.id,
+    ),
     load: () => getRuneFunctionTypeDescription(rune),
   });
   const relatedItems = loadArchiveJsonSafely<readonly ItemReference[]>({
     fallback: [],
-    label: `rune-detail-related-items:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-related-items", rune.id),
     load: () => getSealedOrbItemReferencesForRune(rune),
   });
   const relatedRunes = loadArchiveJsonSafely({
     fallback: [],
-    label: `rune-detail-related-runes:${rune.id}`,
+    label: buildArchiveDataLabel("rune-detail-related-runes", rune.id),
     load: () => getRelatedRuneReferences(rune),
   });
 

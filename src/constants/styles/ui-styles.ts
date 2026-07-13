@@ -169,11 +169,22 @@ export const CARD_STYLES = {
   newsArticle: "p-0",
   newsArticleLink:
     "block p-5 text-[#101827] transition hover:bg-[#fff8e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea] dark:hover:bg-[#14243a]",
+  newsSpotlight:
+    "rounded-lg border border-[#d8c9a5] bg-white p-5 shadow-sm dark:border-[#604403] dark:bg-[#172337]",
+  newsSpotlightLink:
+    "mt-5 inline-flex rounded border border-[#d4af37]/45 bg-[#fff8e2] px-4 py-3 text-sm font-bold text-[#7a5900] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:bg-[#14243a] dark:text-[#e9c176] dark:hover:bg-[#172337]",
+  newsTopic:
+    "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
+  archiveLinkCard:
+    "h-full rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 transition hover:-translate-y-0.5 hover:border-[#d4af37] hover:bg-white dark:border-[#38475f] dark:bg-[#14243a] dark:hover:bg-[#172337]",
+  archiveLinkCardLink:
+    "block h-full text-[#101827] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#f4f1ea]",
 } as const;
 
 export const SECTION_STYLES = {
   block: "mt-9",
   headerRow: "flex items-end justify-between gap-4",
+  headerStack: "flex max-w-3xl flex-col gap-2",
   viewAllLink: "hidden text-sm font-semibold text-[#7a5900] dark:text-[#e9c176] sm:block",
   cardBody: "p-4",
   cardAction:
@@ -182,6 +193,7 @@ export const SECTION_STYLES = {
     "flex size-10 items-center justify-center rounded bg-[#dfe8ff] text-[#233144] dark:bg-[#050b14] dark:text-[#e9c176]",
   newsHeader: "bg-[#131b2e] px-5 py-4",
   newsTitle: "font-serif text-2xl font-semibold text-white",
+  newsTopicGrid: "mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3",
   newsList: "divide-y divide-[#e5dcc7] dark:divide-[#38475f]",
   timelineMetaRow: "flex flex-wrap items-center justify-between gap-3",
   timelineDate: "text-xs font-bold text-[#7a5900] dark:text-[#e9c176]",
@@ -190,6 +202,10 @@ export const SECTION_STYLES = {
   timelineTitle: "mt-3 font-serif text-lg font-semibold",
   newsArticleFooter:
     "mt-4 flex flex-wrap items-center justify-between gap-3 text-xs font-bold text-[#7a5900] dark:text-[#e9c176]",
+  newsSpotlightBody:
+    "mt-3 max-w-4xl break-keep text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  newsTopicMeta:
+    "mt-3 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
 } as const;
 
 export const RIGHT_RAIL_STYLES = {
@@ -206,6 +222,7 @@ export const RIGHT_RAIL_STYLES = {
 export const GRID_STYLES = {
   feature: "mt-5 grid gap-4 md:grid-cols-3 xl:gap-5",
   categories: "mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3 xl:gap-5",
+  recentUpdates: "mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4",
   atlasLogs: "grid gap-4 md:grid-cols-2",
 } as const;
 
@@ -217,6 +234,7 @@ export const TEXT_STYLES = {
   featureEyebrow: "text-xs font-bold text-[#7a5900] dark:text-[#e9c176]",
   cardTitle: "mt-2 font-serif text-xl font-semibold",
   categoryTitle: "mt-4 font-serif text-lg font-semibold",
+  sectionBody: `mt-2 max-w-3xl text-sm leading-6 ${THEME_CLASSES.mutedText}`,
   characterNameLink:
     "font-semibold text-[#7a5900] underline decoration-[#d4af37]/45 underline-offset-4 transition hover:text-[#101827] hover:decoration-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:text-[#e9c176] dark:hover:text-[#f4f1ea]",
   characterNameLinkPhrase: "whitespace-nowrap",
@@ -685,7 +703,7 @@ export const MONSTER_STYLES = {
   bossGuideListItem:
     "rounded border border-[#eee4cd] bg-[#fffaf0] px-3 py-2 dark:border-[#38475f] dark:bg-[#111c2c]",
   bossGuideSummaryGrid:
-    "grid gap-2 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-3 dark:border-[#38475f] dark:bg-[#111c2c]/80 sm:grid-cols-3 lg:col-span-2",
+    "grid gap-2 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-3 dark:border-[#38475f] dark:bg-[#111c2c]/80 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 lg:col-span-2",
   bossGuideSummaryCard:
     "rounded border border-[#d8c9a5] bg-white/70 px-3 py-2 dark:border-[#604403] dark:bg-[#172337]",
   bossGuideSummaryLabel:
@@ -849,7 +867,7 @@ export const ATLAS_STYLES = {
   regionRecordHeader: "flex items-center gap-3",
   regionRecordAccent: "h-8 w-1 rounded-full bg-[#d4af37]",
   regionRecordTitle: "font-serif text-3xl font-semibold",
-  regionSummaryGrid: "grid gap-3 sm:grid-cols-2 xl:grid-cols-5",
+  regionSummaryGrid: "grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7",
   regionSummaryCard:
     "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
   regionSummaryLabel:
@@ -861,6 +879,17 @@ export const ATLAS_STYLES = {
   regionRecordPanelTitle:
     "font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
   regionRecordGrid: "mt-4 grid gap-4 lg:grid-cols-2",
+  regionFacilityGrid: "mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3",
+  regionFacilityCard:
+    "grid gap-3 rounded-lg border border-[#d8c9a5] bg-[#fff8e2] p-4 dark:border-[#604403] dark:bg-[#1d2636]",
+  regionFacilityIntro:
+    "mt-2 max-w-3xl break-keep text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  regionFacilityBody:
+    "text-sm leading-7 text-[#4b5565] dark:text-[#c5c6cd]",
+  regionFacilityDetailList:
+    "grid gap-2 border-t border-[#e5dcc7] pt-3 dark:border-[#38475f]",
+  regionFacilityDetailItem:
+    "break-keep rounded border border-[#d4af37]/35 bg-white/60 px-3 py-2 text-xs font-bold leading-5 text-[#7a5900] dark:bg-[#111c2c]/55 dark:text-[#e9c176]",
   regionRecordCard:
     "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
   regionRecordCardTitle:
@@ -898,6 +927,48 @@ export const STAGE_MARKER_TONE_STYLES = {
   sage: "border-[#a7c778]/60 bg-[#263315]/76 text-[#dceab7]/90",
   amber: "border-[#d99430]/60 bg-[#38240e]/76 text-[#ffd99a]/90",
   copper: "border-[#c8753d]/60 bg-[#351b12]/76 text-[#ffc2a3]/90",
+} as const;
+
+export const SEARCH_PAGE_STYLES = {
+  browser: "mt-6",
+  empty:
+    "mt-5 rounded-lg border border-[#d8c9a5] bg-white/70 p-6 text-center text-sm font-semibold text-[#4b5565] dark:border-[#604403] dark:bg-[#111c2c] dark:text-[#c5c6cd]",
+  filterButton:
+    "shrink-0 snap-start rounded border border-[#d8c9a5] bg-white/70 px-4 py-2 text-sm font-bold text-[#3e4654] transition hover:border-[#d4af37] hover:bg-[#fff8e2] hover:text-[#7a5900] dark:border-[#38475f] dark:bg-[#172337] dark:text-[#c5c6cd] dark:hover:border-[#e9c176] dark:hover:bg-[#14243a] dark:hover:text-[#e9c176]",
+  filterButtonActive:
+    "shrink-0 snap-start rounded border border-[#d4af37] bg-[#131b2e] px-4 py-2 text-sm font-bold text-white shadow-sm dark:border-[#e9c176] dark:bg-[#e9c176] dark:text-[#101827]",
+  filterList:
+    "mt-4 flex snap-x gap-2 overflow-x-auto overscroll-x-contain pb-1 md:flex-wrap md:overflow-visible",
+  panel:
+    "mt-6 rounded-lg border border-[#d8c9a5] bg-white p-4 dark:border-[#604403] dark:bg-[#111c2c] sm:p-5",
+  panelHeader:
+    "flex flex-col gap-2 border-b border-[#d8c9a5] pb-4 dark:border-[#38475f] sm:flex-row sm:items-end sm:justify-between",
+  panelMeta:
+    "text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  panelTitle: "font-serif text-3xl font-semibold",
+  resultCard:
+    "grid gap-3 rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 transition hover:border-[#d4af37] hover:bg-[#fff8e2] dark:border-[#38475f] dark:bg-[#172337] dark:hover:bg-[#14243a]",
+  resultCta:
+    "w-fit rounded border border-[#d4af37]/45 bg-white/60 px-3 py-2 text-xs font-bold text-[#7a5900] transition hover:bg-white dark:bg-[#111c2c]/60 dark:text-[#e9c176] dark:hover:bg-[#172337]",
+  resultGrid: "mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3",
+  resultLink:
+    "transition hover:text-[#7a5900] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:hover:text-[#e9c176]",
+  resultMeta:
+    "break-keep text-sm font-semibold leading-6 text-[#4b5565] dark:text-[#c5c6cd]",
+  resultOrder:
+    "text-[0.68rem] font-extrabold uppercase tracking-wide text-[#7a5900] dark:text-[#e9c176]",
+  resultTitle:
+    "break-keep font-serif text-2xl font-semibold text-[#101827] dark:text-[#f4f1ea]",
+  searchClearButton:
+    "flex size-8 shrink-0 items-center justify-center rounded text-[#7a5900] transition hover:bg-[#fff8e2] hover:text-[#101827] dark:text-[#e9c176] dark:hover:bg-[#14243a] dark:hover:text-[#f4f1ea]",
+  searchForm:
+    "flex min-h-12 items-center gap-3 rounded-md border border-[#d8c9a5] bg-white px-4 dark:border-[#38475f] dark:bg-[#172337]",
+  searchInput:
+    "min-w-0 flex-1 bg-transparent text-sm font-semibold text-[#101827] outline-none placeholder:text-[#7d8795] dark:text-[#f4f1ea] dark:placeholder:text-[#7d8795]",
+  searchMeta:
+    "mt-2 px-1 text-xs font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  searchPanel:
+    "rounded-lg border border-[#d8c9a5] bg-white/70 p-3 dark:border-[#604403] dark:bg-[#111c2c]",
 } as const;
 
 export const GAMEPLAY_STYLES = {

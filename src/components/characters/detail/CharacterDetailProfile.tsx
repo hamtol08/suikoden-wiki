@@ -13,7 +13,10 @@ import {
 } from "@/components/characters/detail/CharacterDetailBlocks";
 import RuneReferenceLink from "@/components/runes/shared/RuneReferenceLink";
 import { buildCharacterGamePath } from "@/constants/app/app-config";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import {
   buildCharacterCombatDataPanels,
   buildCharacterDetailNavigationItems,
@@ -49,32 +52,32 @@ const CharacterDetailProfile = ({
   const characterListHref = buildCharacterGamePath(character.game);
   const detailRecord = loadArchiveJsonSafely({
     fallback: null,
-    label: `character-detail-record:${character.id}`,
+    label: buildArchiveDataLabel("character-detail-record", character.id),
     load: () => getCharacterDetailRecord(character),
   });
   const profileRows = loadArchiveJsonSafely({
     fallback: [],
-    label: `character-profile-rows:${character.id}`,
+    label: buildArchiveDataLabel("character-profile-rows", character.id),
     load: () => buildCharacterProfileRows(character, seriesTitle),
   });
   const gameRoleRows = loadArchiveJsonSafely({
     fallback: [],
-    label: `character-game-role-rows:${character.id}`,
+    label: buildArchiveDataLabel("character-game-role-rows", character.id),
     load: () => buildCharacterGameRoleRows(character, detailRecord),
   });
   const primaryRunes = loadArchiveJsonSafely({
     fallback: [],
-    label: `character-primary-runes:${character.id}`,
+    label: buildArchiveDataLabel("character-primary-runes", character.id),
     load: () => resolveCharacterPrimaryRunes(character, detailRecord),
   });
   const combatDataPanels = loadArchiveJsonSafely({
     fallback: [],
-    label: `character-combat-data:${character.id}`,
+    label: buildArchiveDataLabel("character-combat-data", character.id),
     load: () => buildCharacterCombatDataPanels(character, detailRecord),
   });
   const detailNavigationItems = loadArchiveJsonSafely({
     fallback: [],
-    label: `character-detail-navigation:${character.id}`,
+    label: buildArchiveDataLabel("character-detail-navigation", character.id),
     load: () =>
       buildCharacterDetailNavigationItems({
         character,

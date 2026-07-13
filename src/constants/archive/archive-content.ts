@@ -80,6 +80,11 @@ export const ARCHIVE_COPY = {
   explore: {
     title: "Explore the Wiki",
   },
+  recentUpdates: {
+    eyebrow: "Recent Updates",
+    title: "Recently Indexed",
+    body: "최근 정리한 기록을 빠르게 이어봅니다.",
+  },
   news: {
     eyebrow: "Suikoden News",
     title: "Suikoden News",
@@ -116,6 +121,13 @@ export const ARCHIVE_NOT_FOUND_COPY = {
   archiveLabel: "Browse Characters",
 } as const;
 
+export const ARCHIVE_HEADER_SEARCH_ORDER_LABELS = {
+  item: "ITEM",
+  monster: "MON",
+  region: "AREA",
+  rune: "RUNE",
+} as const;
+
 export const NAV_GROUPS = [
   {
     label: "Series",
@@ -123,6 +135,7 @@ export const NAV_GROUPS = [
     items: [
       { label: "Series Overview", href: APP_ROUTES.home },
       { label: "Historical Timeline", href: APP_ROUTES.timeline },
+      { label: "Search Archive", href: APP_ROUTES.search },
       { label: "Articles", href: APP_ROUTES.articles },
       { label: "Suikoden News", href: APP_ROUTES.news },
     ],
@@ -186,8 +199,36 @@ export const ARCHIVE_CATEGORIES = [
   { title: "Items", icon: "archive", href: APP_ROUTES.items, body: "무기, 방어구, 희귀 수집품" },
   { title: "Monsters", icon: "swords", href: APP_ROUTES.monsters, body: "출현 위치, 드롭 아이템, 획득 확률" },
   { title: "Gameplay", icon: "swords", href: APP_ROUTES.gameplay, body: "전투, 일기토, 전쟁 시스템" },
+  { title: "Search", icon: "compass", href: APP_ROUTES.search, body: "전체 아카이브 통합 검색" },
   { title: "Articles", icon: "archive", href: APP_ROUTES.articles, body: "주요 아카이브 글 모음" },
   { title: "News", icon: "sparkles", href: APP_ROUTES.news, body: "시리즈 최신 기사 색인" },
+] as const;
+
+export const RECENT_UPDATE_CARDS = [
+  {
+    title: "Monster Bestiary",
+    eyebrow: "Monsters",
+    href: APP_ROUTES.monsters,
+    body: "환상수호전 I·II 몬스터 도감과 상세 스탯, 출현 위치, 드롭 아이템을 연결했습니다.",
+  },
+  {
+    title: "Boss Records",
+    eyebrow: "Boss Monsters",
+    href: buildMonsterBossPath(),
+    body: "보스형 몬스터를 일반 몬스터 도감과 분리하고 전투 팁을 함께 정리했습니다.",
+  },
+  {
+    title: "Search Archive",
+    eyebrow: "Archive Search",
+    href: APP_ROUTES.search,
+    body: "인물, 문장, 아이템, 몬스터, 지역 기록을 한 번에 검색하고 분류별로 좁혀볼 수 있습니다.",
+  },
+  {
+    title: "Region Facilities",
+    eyebrow: "Region Atlas",
+    href: APP_ROUTES.regionAtlas,
+    body: "마을별 상점, 여관, 창고, 시설 역할을 지역 상세 기록과 연결했습니다.",
+  },
 ] as const;
 
 export const TRENDING_STARS = [
@@ -669,20 +710,20 @@ export const REGION_ATLAS_LOCATIONS = attachRegionAtlasDetailHrefs([
     status: "남부 도시국가",
     ruling: "사우스 윈도우 도시국가",
     rune: "-",
-    description: "죠스턴 남부의 주요 도시국가입니다. 노스 윈도우, 라다트, 쿠스쿠스와 함께 남부 동선을 이룹니다.",
-    locations: ["사우스 윈도우 시내", "노스 윈도우 방면 길"],
+    description: "죠스턴 남부의 주요 도시국가입니다. 노스윈도우, 라다트, 쿠스쿠스와 함께 남부 동선을 이룹니다.",
+    locations: ["사우스 윈도우 시내", "노스윈도우 방면 길"],
     traits: ["죠스턴 남부 정치권", "초중반 이동 동선의 중심", "주변 항구와 강길로 연결"],
   },
   {
     id: "north-window",
     game: "suikoden-ii",
-    name: "노스 윈도우",
+    name: "노스윈도우",
     category: "Ruined Town",
     status: "본거지가 되는 폐허 도시",
     ruling: "신동맹군",
     rune: "-",
     description: "빅토르의 고향이자 네크로드 사건 이후 신동맹군의 본거지가 되는 폐허 도시입니다. 108성 수집과 전쟁 지휘의 중심으로 확장됩니다.",
-    locations: ["노스 윈도우 폐허", "본거지", "바람의 동굴"],
+    locations: ["노스윈도우 폐허", "본거지", "바람의 동굴"],
     traits: ["신동맹군 본거지", "네크로드 사건과 연결", "동료 영입에 따라 기능이 확장"],
   },
   {
@@ -906,7 +947,7 @@ export const REGION_KOREAN_NAMES = {
   coronet: "코로네",
   kuskus: "쿠스쿠스",
   "south-window": "사우스 윈도우",
-  "north-window": "노스 윈도우",
+  "north-window": "노스윈도우",
   radat: "라다트",
   lakewest: "레이크웨스트 마을",
   "two-river": "투 리버",

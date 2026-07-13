@@ -29,10 +29,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hero": {
       "role": {
         "recruitment": [
-          "Because of his status as the Hero of Suikoden, Tir is technically the first character to \"join\" your party at the very beginning of the game. Tir cannot be removed from the party."
+          "티르는 환상수호전 I의 주인공으로, 게임 시작과 함께 일행에 합류한 상태입니다. 파티에서 제외할 수 없습니다."
         ],
         "overall": [
-          "As Tir is a required member of the party at all times, it helps that he's a well balanced character, with above average stats. His attack rating raises well and he gains a moderate magician's power in rune spells. His Unite Attack with Kai is very good against dealing with large forces, and his Soul Eater Rune is excellent due to it's powerful instant death magic and incredible offensive spells."
+          "티르는 항상 파티에 포함되는 필수 멤버이며, 전반적인 능력치가 균형 잡힌 편입니다. 공격력이 안정적으로 성장하고 문장 마법도 무난하게 다룰 수 있습니다. 카이와 사용하는 사제 공격은 다수의 적을 상대할 때 강력하며, 소울이터는 즉사 마법과 공격 마법 모두 뛰어난 주력 문장입니다."
         ],
         "weapon": {
           "type": "Bo Staff",
@@ -41,11 +41,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Soul Eater*",
-            "''*Become a Fixed Rune, can't be detached.''"
+            "소울이터*",
+            "*고정 문장이 되어 해제할 수 없습니다."
           ],
           "recommended": [
-            "After some events, Tir has the Soul Eater permanently attached."
+            "이벤트 진행 후 티르는 소울이터를 고정 문장으로 지니게 됩니다."
           ]
         },
         "maxLevelStatus": {
@@ -82,17 +82,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Tir has a Master Pupil Attack with his master, Kai."
+          "티르는 스승 카이와 함께 사제 공격을 사용할 수 있습니다."
         ]
       }
     },
     "lepant": {
       "role": {
         "recruitment": [
-          "Lepant joins Tir automatically after saving Eileen."
+          "아이린을 구한 뒤 레판토가 자동으로 합류합니다."
         ],
         "overall": [
-          "Lepant is a strong front line fighter."
+          "레판토는 전열에서 안정적으로 싸우는 강력한 물리 공격수입니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -101,10 +101,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "None."
+            "-"
           ],
           "recommended": [
-            "Lepant is a good character to attach a Counter Rune or Killer Rune too."
+            "레판토는 반격의 문장이나 필살의 문장과 궁합이 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -148,7 +148,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "mathiu": {
       "role": {
         "recruitment": [
-          "Mathiu joins automatically after Tir agrees to become leader of the Liberation Army."
+          "주인공이 해방군의 지도자가 되기로 결심한 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -171,10 +171,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "luc": {
       "role": {
         "recruitment": [
-          "Luc joins Tir automatically at Toran Castle."
+          "트란 성에서 자동으로 합류합니다."
         ],
         "overall": [
-          "Luc is a strong mage, but his weapon makes him a liability, as in the front row he can't take much damage due to his low HP, but in the back row he can't attack, either. This makes him reliant on his magic to do anything. He has a Guard Robe and Speed Ring permanently equipped, which limits his defensive options. Despite these shortcomings, Luc is one of the best mages in the game, only beaten out by Crowley."
+          "루크는 강력한 마법형 캐릭터입니다. 체력이 낮아 전열 운용은 부담스럽고, 후열에서는 일반 공격을 하기 어렵기 때문에 마법 의존도가 높습니다. 가드 로브와 스피드 링이 고정 장비라 방어 장비 선택지도 좁지만, 순수 마법 성능만큼은 크로울리 다음가는 수준입니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -186,7 +186,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "Wind Rune"
           ],
           "recommended": [
-            "Upgrade Luc to a Cyclone Rune or Thunder Rune to take better advantage of his magic power."
+            "마법 능력을 살리려면 바람의 문장을 선풍의 문장으로 강화하거나, 번개의 문장 계열을 장착하는 운용이 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -223,17 +223,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Luc has no Unite Attacks."
+          "-"
         ]
       }
     },
     "humphrey": {
       "role": {
         "recruitment": [
-          "Humphrey joins automatically after the original remaining members from the Liberation Army meet up at the new headquarters."
+          "해방군의 기존 생존 멤버들이 새 본거지에서 합류한 뒤 험프리가 자동으로 합류합니다."
         ],
         "overall": [
-          "Humphrey is a strong front line fighter and tank. He has high strength and excellent defense, but low speed and accuracy, so equipment that improves his speed or attack reliability helps him stay useful."
+          "험프리는 강력한 전열 공격수이자 방어형 탱커입니다. 힘과 방어력이 높지만 속도와 명중 안정성이 낮으므로, 속도나 공격 신뢰도를 보완하는 장비를 주면 더 오래 활약할 수 있습니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -242,7 +242,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "None."
+            "-"
           ],
           "recommended": [
             "Clone Rune or Killer Rune"
@@ -289,7 +289,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kasim-hazil": {
       "role": {
         "recruitment": [
-          "Joins automatically after the events at Moravia Castle."
+          "모라비아 성 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -307,7 +307,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Gale Rune since it lack a bit in Speed."
+            "속도가 다소 부족하므로 질풍의 문장이 보완책이 됩니다."
           ]
         },
         "maxLevelStatus": {
@@ -344,19 +344,19 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kasim has no Unite Attacks."
+          "-"
         ]
       }
     },
     "kwanda-rosman": {
       "role": {
         "recruitment": [
-          "After defeating Kwanda in a duel in Pannu Yakuta, choose the following choices:",
-          "* \"Something's wrong.\"",
-          "* \"I want you to join us.\""
+          "판누 야쿠타에서 콴다를 일기토로 쓰러뜨린 뒤 다음 선택지를 고르면 합류합니다.",
+          "* 뭔가 이상하다.",
+          "* 우리와 함께해 달라."
         ],
         "overall": [
-          "Kwanda is easily the best tank in game if he's up to level because of his DEF growth and all kinds of heavy armors and shields that are available for him."
+          "콴다는 방어 성장과 중장비 착용 폭이 뛰어나, 레벨만 충분하다면 1편에서 손꼽히는 탱커로 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Axe",
@@ -368,7 +368,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Sunbeam Rune or Holy Rune."
+            "햇살의 문장이나 신행법의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -405,15 +405,15 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kwanda has no Unite Attacks."
+          "-"
         ]
       }
     },
     "pesmerga": {
       "role": {
         "recruitment": [
-          "In order to recruit Pesmerga, speak with him on the top floor of Neclord's Castle.",
-          "Note: The castle must be Lv. 4 in order to recruit Pesmerga."
+          "네크로드 성 최상층에서 페슈메르가에게 말을 걸면 합류합니다.",
+          "페슈메르가를 영입하려면 본거지 레벨이 4 이상이어야 합니다."
         ],
         "overall": [],
         "weapon": {
@@ -426,7 +426,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Pesmerga is able to use the Clone Rune. A Killer Rune also works well."
+            "분신의 문장을 사용할 수 있으며, 필살의 문장도 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -468,11 +468,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "gremio": {
       "role": {
         "recruitment": [
-          "Joins automatically before receiving the first mission from Kraze, but leaves after the events in Soniere. However, he rejoins just before the final battle if all 107 other stars are recruited."
+          "크레이즈에게 첫 임무를 받기 전 자동으로 합류합니다. 소니에르 사건 이후 이탈하지만, 다른 107성을 모두 모았다면 최종 결전 직전에 다시 합류합니다."
         ],
         "overall": [
-          "Gremio is a required party member during the early parts of the game. He is an average character in stat growth, but his medium range weapon makes him a good back or front row character. His weapon also gains some significant power at the highest level, which helps to offset his average strength. The best with offense he could do is to the Talisman Attack with Pahn, which benefits both of them with double damage and no unbalance at all. He will also protect Tir in combat if Tir is at critical HP.",
-          "Ironically, after level 60, his STR changes growth type to be really impressive. So, if the player employs the leveling trick to quickly get him to Level 96+, he would become a good fighter like any other prominent warriors."
+          "그레미오는 초반부 필수 파티 멤버입니다. 능력치 성장은 평균적이지만, 중거리 무기를 사용해 전열과 후열 모두 배치할 수 있습니다. 무기 최종 강화 시 화력이 꽤 올라 평균적인 힘을 보완할 수 있고, 판과 함께 사용하는 부적 공격은 불균형 없이 높은 피해를 줄 수 있습니다. 티르의 HP가 위급할 때는 전투 중 티르를 보호하기도 합니다.",
+          "레벨 60 이후에는 힘 성장 유형이 크게 좋아집니다. 고레벨 육성을 활용해 96레벨 이상까지 올리면 주요 전사형 캐릭터에 가까운 공격수로도 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Axe",
@@ -481,10 +481,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "None"
+            "-"
           ],
           "recommended": [
-            "Gremio is statistically average in many areas. While he can use magic runes, his MP pool will be low for most of the game, so it may be best to give him support runes like the Prosperity Rune or the Holy Rune. Eventually the Killer Rune could be an alternate choice for him."
+            "그레미오는 전반적으로 평균적인 능력치를 지닙니다. 마법 문장을 사용할 수는 있지만 주문 사용 횟수가 넉넉하지 않으므로, 번영의 문장이나 신행법의 문장처럼 보조 성격의 문장이 어울립니다. 후반에는 필살의 문장도 선택지가 될 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -528,7 +528,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "warren": {
       "role": {
         "recruitment": [
-          "Joins automatically after the events at Moravia Castle."
+          "모라비아 성 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -583,7 +583,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Warren has no Unite Attacks."
+          "-"
         ]
       }
     },
@@ -613,10 +613,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "cleo": {
       "role": {
         "recruitment": [
-          "She joins Tir automatically in Gregminster."
+          "그레그민스터에서 티르 일행에 자동으로 합류합니다."
         ],
         "overall": [
-          "Cleo is a required member of the main battle party during the early part of the game. Her long range weapon, medium armor, and rune spell abilities make her a good back row character. She will also protect Tir in combat if Tir is at critical HP."
+          "클레오는 초반부 주요 전투 파티의 필수 멤버입니다. 장거리 무기, 중간급 방어구, 문장 마법을 함께 활용할 수 있어 후열 배치에 잘 맞습니다. 티르의 HP가 위급할 때는 전투 중 티르를 보호하기도 합니다."
         ],
         "weapon": {
           "type": "Dart",
@@ -625,10 +625,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "None"
+            "-"
           ],
           "recommended": [
-            "Cleo has a good magic rune growth, making her ideal for magic runes. As Leknaat gives her a Fire Rune to protect Tir, it is a viable choice for the early portions of the game. However, as many options become more available, it's advisable to make good use of her high MP with the other elements or eventually update her Fire Rune to Rage Rune. She makes an excellent and fast healer with the Flowing Rune in the later stages of the story, when monsters and bosses frequently use special attacks that target the entire team."
+            "클레오는 문장 마법 성장치가 좋아 마법 문장 운용에 적합합니다. 레크나트가 티르를 지키라고 불의 문장을 맡기므로 초반에는 그대로 써도 좋습니다. 이후 선택지가 늘어나면 높은 주문 사용 횟수를 살려 다른 원소 문장으로 바꾸거나, 불의 문장을 열화의 문장으로 올리는 것도 좋습니다. 후반에는 류수의 문장을 장착하면 빠르고 안정적인 회복 담당으로 활약할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -665,17 +665,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Cleo can unite with Eileen and either Valeria or Sonya to perform the Beauty Attack."
+          "클레오는 아이린, 발레리아 또는 소니아 슈렌과 함께 미녀 공격을 사용할 수 있습니다."
         ]
       }
     },
     "viktor": {
       "role": {
         "recruitment": [
-          "Viktor joins Tir automatically after leaving Gregminster."
+          "그레그민스터를 떠난 뒤 빅토르가 자동으로 합류합니다."
         ],
         "overall": [
-          "Viktor will be a required member in the party often in the main storyline. Fortunately he's one of the most powerful physical attackers in the game with strong physical stats to back it up. He also has decent enough defensive attributes and HP as he levels up."
+          "빅토르는 본편 진행 중 자주 필수 멤버로 들어오는 전열 공격수입니다. 물리 능력치가 강해 1편에서 손꼽히는 물리 화력을 보여주며, 레벨이 오를수록 HP와 방어력도 충분히 따라옵니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -684,10 +684,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "None"
+            "-"
           ],
           "recommended": [
-            "Viktor can equip the Clone Rune found on Mt. Tigerwolf. This is the only place the rune is available, and any character who wields a heavy sword can use it, but with the frequency that Viktor is in the battle party and how early on it is available, it tends to be a good idea to put it on Viktor and leave it there. The Killer Rune is also a nice alternative in the later stages, due to Viktor's critical hits being capable of outdamaging the Clone Rune ability when his levels get high enough. It is also suggested to embed a Fire Rune Piece or Lightning Rune Piece to his sword. Just like any other non-magic character, Viktor benefits most from equipping him with a Fury Rune and Double Beat Rune, turning him into a powerhouse."
+            "빅토르는 호랑이 늑대산에서 얻는 분신의 문장을 잘 활용합니다. 중검 사용자라면 장착할 수 있지만, 빅토르가 전투 파티에 자주 들어가고 획득 시점도 이르기 때문에 그대로 맡기기 좋습니다. 후반에는 치명타 화력을 살리는 필살의 문장도 대안이 됩니다. 무기에는 불의 문장 조각이나 번개의 문장 조각을 붙이면 좋고, 물리 특화 운용에서는 분노의 문장과 2회공격의 문장 조합으로 화력을 크게 끌어올릴 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -724,17 +724,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Viktor has no Unite Attacks."
+          "-"
         ]
       }
     },
     "valeria": {
       "role": {
         "recruitment": [
-          "Valeria joins automatically after the events in Pannu Yakuta."
+          "판누 야쿠타 사건 이후 발레리아가 자동으로 합류합니다."
         ],
         "overall": [
-          "Valeria is a strong front line fighter, with her Falcon Rune being good for consistent damage."
+          "발레리아는 강력한 전열 공격수입니다. 고유 문장인 매의 문장은 안정적인 피해를 주기 좋아 꾸준한 화력 담당으로 쓰기 좋습니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -784,20 +784,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Valeria can participate in the Beauty Attack."
+          "발레리아는 미녀 공격에 참여할 수 있습니다."
         ]
       }
     },
     "griffith": {
       "role": {
         "recruitment": [
-          "Griffith is recruited automatically after defeating him at the Northern Checkpoint, regardless of the player's choice."
+          "북쪽 관문에서 그리피스를 쓰러뜨리면 선택과 관계없이 자동으로 합류합니다."
         ],
         "overall": [
-          "Weapon Growth =",
-          "Weapon Type: Sword",
-          "Weapon Range: S",
-          "Weapon Starting Level: 8"
+          "그리피스는 검을 사용하는 전열형 캐릭터입니다. 무기 시작 레벨이 높아 합류 직후에도 기본 화력을 확보하기 쉽습니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -806,10 +803,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "None."
+            "-"
           ],
           "recommended": [
-            "Counter Rune."
+            "반격의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -846,17 +843,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Griffith has no Unite Attacks."
+          "-"
         ]
       }
     },
     "clive": {
       "role": {
         "recruitment": [
-          "He joins when spoken to when he appears at the Inn in Rikon. He appears there at random starting after events in Lorimar."
+          "로리마 지역 사건 이후 리콘 여관에 무작위로 나타납니다. 그때 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Clive is a strong rear line fighter, his gun Storm can do as much damage as some of the front line S type fighters, and his speed stat is exceptional. He is physical and magic defense are not great, so keep him in the back row. With a careful set-up, Clive can be a very versatile main fighter/support unit in combat."
+          "클라이브는 강력한 후열 물리 공격수입니다. 총 스톰의 화력은 일부 전열 S거리 캐릭터에 맞먹고, 속도도 매우 뛰어납니다. 물리·마법 방어는 높지 않으므로 후열에 두는 편이 좋으며, 세팅에 따라 공격과 보조를 모두 맡는 다재다능한 전투 요원이 될 수 있습니다."
         ],
         "weapon": {
           "type": "Gun",
@@ -865,10 +862,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "None"
+            "-"
           ],
           "recommended": [
-            "Rear line physical runes are helpful. Due to his high speed stat and good backrow combat skills, Clive makes good use of the Spark Rune. A Killer Rune is also handy. Though magic isn't his forte, he can be competent as a back-up support spell caster with a Earth Rune or Water Rune."
+            "후열 물리 운용을 보조하는 문장이 잘 맞습니다. 높은 속도와 후열 전투 능력 덕분에 스파크의 문장을 활용하기 좋고, 필살의 문장도 유용합니다. 마법 특화 캐릭터는 아니지만 대지의 문장이나 물의 문장을 장착하면 보조 주문 담당으로도 쓸 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -905,17 +902,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Clive has no unite attacks."
+          "-"
         ]
       }
     },
     "flik": {
       "role": {
         "recruitment": [
-          "He joins automatically in Kaku when Viktor and Tir speak to him after the events in Pannu Yakuta occur."
+          "판누 야쿠타 사건 이후 카쿠에서 빅토르와 주인공이 말을 걸면 자동으로 합류합니다."
         ],
         "overall": [
-          "Flik is a regularly-required party member. He has good physical abilities and is fair with his Lightning Rune. Upon upgraded to Thunder Rune, Flik is powerful lightning wielder, that can deal heavy damage."
+          "플릭은 주요 흐름에서 자주 동행하는 전열형 캐릭터입니다. 물리 능력이 안정적이고 번개의 문장도 무난하게 다룹니다. 번개의 문장을 뇌명의 문장으로 강화하면 높은 피해를 낼 수 있는 번개 계열 전력이 됩니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -927,7 +924,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "Lightning Rune"
           ],
           "recommended": [
-            "Flik comes with a Lightning Rune attached, but which can be removed. Upgrading to the Thunder Rune is recommended. Once he is at a higher character level, his sword attack becomes more useful than his magic, and equipping him with either a Fury Rune or a Double Beat Rune can turn him into an extremely powerful front line character."
+            "초기 장착 문장인 번개의 문장은 탈착할 수 있습니다. 뇌명의 문장으로 강화하는 선택이 무난하며, 레벨이 오른 뒤에는 검 공격의 비중도 커집니다. 분노의 문장이나 2회공격의 문장을 쓰면 강력한 전열 공격수로 운용할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -971,10 +968,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "camille": {
       "role": {
         "recruitment": [
-          "Camille joins automatically after talking to her in Kaku."
+          "카쿠에서 말을 걸면 자동으로 합류합니다."
         ],
         "overall": [
-          "Camille is a decent M weapon character who also has good magic growth."
+          "카밀은 중거리 무기를 쓰는 균형형 캐릭터이며, 마법 성장도 나쁘지 않습니다."
         ],
         "weapon": {
           "type": "Spear",
@@ -986,7 +983,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None"
           ],
           "recommended": [
-            "Camille has a decent magic growth, so an attack or healing magic rune would be recommended for her, such as a Fire Rune or Water Rune."
+            "마법 성장도 나쁘지 않으므로 불의 문장이나 물의 문장처럼 공격·회복 마법을 보조하는 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -1030,10 +1027,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kreutz": {
       "role": {
         "recruitment": [
-          "Speak to him at the Dragon's Den with Humphrey in the active party."
+          "험프리를 파티에 넣고 용동굴에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Kreutz is all physical combat, but lack a lot in speed. Statistically, he's similar to Humphrey, just with a heavier focus on defense as the cost of speed and a little of his strength. He can be a powerful fighter, especially when geared towards being a defensive wall. Thankfully, despite his low speed, he is one of a handful of characters that can equip the Windspun Armor which will slightly offset the issue. He can in fact equip most of the heaviest armor types in the game, making him an excellent shield on the front lines."
+          "크로이츠는 물리 전투에 특화된 전열형 캐릭터입니다. 속도가 낮은 대신 방어 쪽에 무게가 실려 있으며, 험프리와 비슷한 계열로 운용할 수 있습니다. 중장비 착용 폭이 넓고 풍사의 갑옷을 장비할 수 있어, 전열에서 방패 역할을 맡기 좋습니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -1045,7 +1042,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Gale Rune since he lacks terribly in Speed. The Killer Rune is also a good choice to help beef up his good physical strength."
+            "속도가 낮으므로 질풍의 문장으로 보완하기 좋습니다. 높은 물리 능력을 살리려면 필살의 문장도 좋은 선택입니다."
           ]
         },
         "maxLevelStatus": {
@@ -1082,17 +1079,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kreutz has no Unite Attacks."
+          "-"
         ]
       }
     },
     "stallion": {
       "role": {
         "recruitment": [
-          "Stallion joins Tir automatically after events at Pannu Yakuta."
+          "판누 야쿠타 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Stallion is an archer who, with his great speed, usually attacks first."
+          "스탈리온은 속도가 매우 높은 궁수입니다. 대부분의 전투에서 먼저 행동하기 쉬운 후열 전력입니다."
         ],
         "weapon": {
           "type": "Bow",
@@ -1105,7 +1102,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "''*Fixed Rune, can't be detached.''"
           ],
           "recommended": [
-            "Stallion come with a True Holy Rune permanently attached."
+            "진정한 신행법의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -1149,7 +1146,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kage": {
       "role": {
         "recruitment": [
-          "Speak to him at the Secret Factory and pay his 20,000 Potch service fee."
+          "비밀 공장에서 말을 걸고 의뢰비 20,000 포치를 지불하면 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -1167,7 +1164,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Killer Rune would be the best for him."
+            "필살의 문장이 가장 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -1211,11 +1208,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "fu-su-lu": {
       "role": {
         "recruitment": [
-          "He joins Tir if Tir agrees to pay his 10,000 Potch food bill at the Inn in the Great Forest Kobold Village."
+          "대삼림 코볼트 마을 여관에서 식사값 10,000 포치를 대신 내주면 합류합니다."
         ],
         "overall": [
-          "Fu Su Lu is a strong close range physical fighter with high marks in HP, attack, and defense. He contributes to the strongest unite attack in the game when teamed up with Kuromimi and Gon in the Kobold + 1 Attack.",
-          "Fu Su Lu is also one of the slowest characters in the game, and this presents a problem when his astounding attack score could better contribute to battles where the enemies have higher HP scores. However, it is possible to make Fu Su Lu into an agile character. This is accomplished by first equipping him with the Gale Rune, found in a slightly hidden area in Pannu Yakuta. Second, Speed Rune Pieces can be farmed from the Red Elementals in the Cave of the Past. Using a Speed Rune Piece on a character equipped with the Gale Rune causes them to gain two points in speed instead of just one (as the Gale Rune doubles the Speed stat of the character, the game reads the increase as double too, hence giving them two points instead of the usual one). Using this method, Fu Su Lu can become a speedy frontline powerhouse."
+          "후 수 루는 체력, 공격, 방어가 높은 근접 물리형 캐릭터입니다. 쿠로미미, 곤과 함께하는 코볼트+1 공격에 참여해 높은 피해를 낼 수 있습니다.",
+          "다만 속도는 매우 낮은 편입니다. 판누 야쿠타의 숨은 장소에서 얻는 질풍의 문장을 장착하고 속도의 문장 조각을 사용하면 속도 보완이 쉬워집니다. 이 방식으로 단점을 줄이면 강력한 전열 공격수로 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Axe",
@@ -1227,7 +1224,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None"
           ],
           "recommended": [
-            "The Gale Rune is arguably the best for Fu Su Lu due to his low SPD."
+            "속도가 낮기 때문에 질풍의 문장이 가장 안정적인 보완책입니다."
           ]
         },
         "maxLevelStatus": {
@@ -1271,10 +1268,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kirkis": {
       "role": {
         "recruitment": [
-          "Kirkis joins automatically after events in Pannu Yakuta."
+          "판누 야쿠타 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Kirkis is a fast archer, working very well from the back line. He is also competent with runes."
+          "키르키스는 속도가 빠른 궁수로, 후열에서 안정적으로 활약합니다. 문장 운용도 어느 정도 가능한 편입니다."
         ],
         "weapon": {
           "type": "Bow",
@@ -1286,7 +1283,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Kirkis does well with basic magic runes, such as the Fire Rune or Water Rune."
+            "불의 문장이나 물의 문장 같은 기본 마법 문장을 무난하게 활용할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -1330,10 +1327,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "milich": {
       "role": {
         "recruitment": [
-          "After defeating Milich at Scarleticia Castle, forgive him for the events caused under the Black Rune's control and ask him to join."
+          "스칼레티시아 성에서 밀리히를 쓰러뜨린 뒤, 검은 문장의 영향으로 벌어진 일을 용서하고 합류를 요청하면 동료가 됩니다."
         ],
         "overall": [
-          "Milich is a well-rounded swordsman and magic user. His balanced stats let him serve as a front line fighter while still making good use of elemental runes."
+          "밀리히는 검술과 마법을 함께 다루는 균형형 캐릭터입니다. 전열에서 싸우면서도 속성 문장을 활용할 수 있는 능력치를 갖추고 있습니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -1345,7 +1342,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Elemental runes work well with Milich because of his magic skill."
+            "마법 능력이 괜찮으므로 속성 문장과 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -1382,17 +1379,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Milich has no Unite Attacks."
+          "-"
         ]
       }
     },
     "pahn": {
       "role": {
         "recruitment": [
-          "Pahn joins Tir when spoken to after the events in Kouan. At a later point in the game, Pahn must duel Teo McDohl. If Pahn is defeated in the duel, then he will be technically killed in the story. The player must keep his weapon properly sharpened and have Pahn higher than level 30 with good equipment in order to increase the possibility of winning the duel."
+          "코우안 사건 이후 말을 걸면 합류합니다. 이후 테오 맥돌과의 일기토가 발생하므로, 무기를 충분히 강화하고 레벨 30 이상과 좋은 장비를 갖춰 두면 승리 가능성을 높일 수 있습니다."
         ],
         "overall": [
-          "Pahn is a slow but otherwise great front line fighter, and his Boar Rune does decent damage to one enemy, but unbalances him after using it. His best asset is his synergy with different party combinations. Pahn has three different Unite attacks he can participate in, all of which have powerful fighters involved for high damage potential."
+          "파안은 속도가 낮지만 전열 전투 능력은 좋은 캐릭터입니다. 멧돼지의 문장은 단일 적에게 괜찮은 피해를 주지만 사용 후 균형을 잃습니다. 여러 조합의 협력 공격에 참여할 수 있어 파티 구성에 따라 높은 피해를 기대할 수 있습니다."
         ],
         "weapon": {
           "type": "Claw",
@@ -1405,7 +1402,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "''*Fixed Rune, can't be detached.''"
           ],
           "recommended": [
-            "Pahn has a Boar Rune permanently attached."
+            "멧돼지의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -1442,20 +1439,20 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "*Talisman Attack/Guardian Attack with Gremio",
-          "*Beat Em' Up Attack with Ronnie Bell",
-          "*Martial Arts Attack with Eikei and Morgan"
+          "그레미오와 함께 부적 공격 / 수호자 공격을 사용할 수 있습니다.",
+          "로니 벨과 함께 두들겨 패기 공격을 사용할 수 있습니다.",
+          "에이케이, 모건과 함께 무술 공격을 사용할 수 있습니다."
         ]
       }
     },
     "sonya-shulen": {
       "role": {
         "recruitment": [
-          "After the mission at Shasarazade, speak to her in the prison at the HQ. Request her assistance.",
-          "Note: She is generally the last Star of Destiny required to get all 108 Stars."
+          "샤사라자드 임무 이후 본거지 감옥에서 말을 걸고 협력을 요청하면 합류합니다.",
+          "일반적으로 108성을 모두 모을 때 마지막으로 필요한 동료입니다."
         ],
         "overall": [
-          "Sonya is both a decent fighter and magic user."
+          "소니아 슈렌은 전투와 마법 양쪽을 모두 무난하게 다루는 캐릭터입니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -1509,10 +1506,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "anji": {
       "role": {
         "recruitment": [
-          "After the castle is level 3 or higher, take Tai Ho and Yam Koo in a party to the Pirate's Hideout. Defeat the 3 pirates within 5 rounds to recruit them."
+          "본거지 레벨 3 이상에서 타이 호와 얌 쿠를 파티에 넣고 해적의 아지트로 가면 됩니다. 세 해적을 5턴 안에 쓰러뜨리면 합류합니다."
         ],
         "overall": [
-          "Anji's a capable fighter, more so in the company of his crew."
+          "안지는 전투 능력이 좋은 중거리 캐릭터이며, 해적단 동료들과 함께할 때 더 강하게 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Spear",
@@ -1524,7 +1521,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None"
           ],
           "recommended": [
-            "Anji is a typical Medium-range fighter, and does well with any physical rune."
+            "중거리 물리형 캐릭터이므로 물리 공격을 보강하는 문장과 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -1568,7 +1565,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tai-ho": {
       "role": {
         "recruitment": [
-          "Tai Ho joins Tir in Kaku after beating him at Chinchirorin before going to explore Toran Castle."
+          "트란 성을 조사하러 가기 전, 카쿠에서 주사위 도박으로 이기면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -1581,7 +1578,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Due to his weak magic abilities, an effect rune would be recommended to specialize Tai Ho for physical attacks, like the Hazy Rune or the Killer Rune."
+            "마법 능력은 낮으므로 흐릿한 문장이나 필살의 문장처럼 물리 공격을 보조하는 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -1623,10 +1620,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kanak": {
       "role": {
         "recruitment": [
-          "Kanak joins alongside Anji and Leonardo when defeated at their hideout. Take Tai Ho and Yam Koo to the Pirate's Hideout once the castle is Level 3 or higher."
+          "본거지 레벨 3 이상에서 타이 호와 얌 쿠를 파티에 넣고 해적의 아지트로 가면 안지, 레오나르도와 함께 등장합니다. 전투에서 이기면 세 명이 함께 합류합니다."
         ],
         "overall": [
-          "Kanak is a powerful fighter, and alongside the other pirates makes for a formidable ally."
+          "카낙은 강력한 물리형 캐릭터이며, 다른 해적단 동료들과 함께 편성하면 위협적인 전력이 됩니다."
         ],
         "weapon": {
           "type": "Sickle & Chain",
@@ -1638,7 +1635,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None"
           ],
           "recommended": [
-            "Physical combat runes are best."
+            "물리 전투를 강화하는 문장이 가장 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -1682,7 +1679,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "yam-koo": {
       "role": {
         "recruitment": [
-          "Yam Koo joins the Tir automatically after clearing monsters out of Toran Castle."
+          "트란 성의 몬스터를 정리한 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -1695,7 +1692,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "A Turtle Rune to negate Unbalanced status after using unite attack with Tai Ho."
+            "타이 호와의 협력 공격 뒤 균형 잃음 상태를 막기 위해 거북이의 문장이 유용합니다."
           ]
         },
         "maxLevelStatus": {
@@ -1737,10 +1734,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "leonardo": {
       "role": {
         "recruitment": [
-          "After the castle reaches level 3, take Tai Ho and Yam Koo to the Pirate's Hideout, and upon defeating Anji, Leonardo, and Kanak, they will join."
+          "본거지 레벨 3 이후 타이 호와 얌 쿠를 파티에 넣고 해적의 아지트로 가면 됩니다. 안지, 레오나르도, 카낙을 쓰러뜨리면 함께 합류합니다."
         ],
         "overall": [
-          "Leonardo is yet another strong fighter, and when combined with the other pirates in a battle party, he is rather formidable."
+          "레오나르도 역시 강한 물리형 캐릭터입니다. 다른 해적단 동료들과 함께 전투 파티를 구성하면 더 위협적인 전력이 됩니다."
         ],
         "weapon": {
           "type": "Axe",
@@ -1752,7 +1749,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Physical effect runes accentuate Leonardo's combat abilities."
+            "물리 효과를 강화하는 문장이 전투 능력을 더 잘 살려 줍니다."
           ]
         },
         "maxLevelStatus": {
@@ -1796,10 +1793,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hix": {
       "role": {
         "recruitment": [
-          "He joins automatically along with Tengaar after defeating Neclord."
+          "네클로드를 쓰러뜨린 뒤 텐가알과 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Hix is an average fighter with low magic usability. A Killer Rune or a Prosperity Rune can give him more use in battle. The Fury Rune could also be used."
+          "힉스는 평균적인 전열 전투 캐릭터이며 마법 활용도는 낮은 편입니다. 필살의 문장이나 행운의 문장으로 전투 기여도를 올릴 수 있고, 분노의 문장도 선택지가 됩니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -1811,7 +1808,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Killer Rune, to deal more damage. To balance his relatively average/poor stats at the point when he joins, as he must go with you through Neclord's Castle before he can be removed from your party."
+            "합류 직후 네클로드 성을 함께 돌파해야 하므로, 부족한 화력을 보완하려면 필살의 문장이 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -1855,10 +1852,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tengaar": {
       "role": {
         "recruitment": [
-          "Automatically joins after rescuing her from Neclord's Castle."
+          "네클로드 성에서 구출한 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Tengaar is a very underrated character. She has above-average magic ability and a long ranged weapon which makes her ideal for a backline magician. Equipping her with an elemental rune and sharpening her weapon can make her a very valuable member on your team."
+          "텐가알은 마법 능력이 높고 장거리 무기를 사용하므로 후열 마법 운용에 적합합니다. 속성 문장을 장착하고 무기를 강화하면 안정적인 후열 전력이 됩니다."
         ],
         "weapon": {
           "type": "Throwing Knife",
@@ -1870,7 +1867,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Elemental runes work best for Tengaar, especially the Earth Rune."
+            "속성 문장이 잘 어울리며, 특히 흙의 문장을 활용하기 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -1912,10 +1909,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "varkas": {
       "role": {
         "recruitment": [
-          "Varkas joins Tir alongside Sydonia automatically in Toran Castle after the events in Kouan."
+          "코우안 사건 이후 트란 성에서 시드니아와 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Varkas is a solid fighter with good strength and defense."
+          "바르카스는 힘과 방어가 좋은 안정적인 물리형 캐릭터입니다."
         ],
         "weapon": {
           "type": "Axe",
@@ -1927,7 +1924,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "He's best used when paired with Sydonia for their unite, so a Holy Rune is a good help for the party."
+            "시드니아와의 협력 공격을 함께 운용하기 좋습니다. 이동과 탐색 편의를 위해 신행법의 문장도 도움이 됩니다."
           ]
         },
         "maxLevelStatus": {
@@ -1971,10 +1968,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "sydonia": {
       "role": {
         "recruitment": [
-          "Sydonia joins automatically with Varkas at Toran Castle after events in Kouan."
+          "코우안 사건 이후 트란 성에서 바르카스와 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Sydonia is a fast fighter, making him useful for getting the drop on enemies. Sydonia's speed makes him good for attack runes to deal damage before enemies can strike. With medium range and weak defense, keep in the back row and just let him harass enemies from the backlines."
+          "시드니아는 속도가 빠른 장거리형 캐릭터입니다. 적보다 먼저 행동하기 쉬워 공격 문장과 궁합이 좋고, 방어가 약하므로 후열에서 적을 견제하는 운용이 안정적입니다."
         ],
         "weapon": {
           "type": "Dart",
@@ -1986,7 +1983,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "The best use for him is to unite attack with Varkas, so a support rune such as a Water or Flowing Rune for him to heal outside of battle is recommended."
+            "바르카스와의 협력 공격을 중심으로 운용하기 좋습니다. 전투 밖 회복까지 고려하면 물의 문장이나 류수의 문장 같은 보조 문장도 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -2030,10 +2027,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "eileen": {
       "role": {
         "recruitment": [
-          "She joins Tir with her husband Lepant automatically after the events in Kouan."
+          "코우안 사건 이후 남편 레판토와 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Eileen wields throwing darts. She has a high magic stat, and makes a very decent magician early on. Because of her equally high speed stat, equipping her with a version of the Earth or Water rune makes Eileen a very good defensive and offensive force for the party. She has Star Earrings permanently equipped in one of her accessory slots, affording her a small measure of auto healing each turn should she get injured."
+          "아이린은 투척 무기를 사용하는 장거리 캐릭터입니다. 마법 능력과 속도가 높아 초반 마법 운용에 좋으며, 흙의 문장이나 물의 문장 계열을 장착하면 방어와 회복을 모두 보조할 수 있습니다. 별 귀걸이가 고정 장비라 매 턴 소량 회복 효과도 기대할 수 있습니다."
         ],
         "weapon": {
           "type": "Dart",
@@ -2177,10 +2174,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "eikei": {
       "role": {
         "recruitment": [
-          "Speak to Eikei in Teien when Tir is Lv. 40 or higher."
+          "주인공 레벨이 40 이상일 때 테이엔에서 에이케이에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Eikei is another powerful frontline fighter with high marks in HP, strength, skill and defense. However, he has little to no magical skill, as well as average luck and speed."
+          "에이케이는 체력, 힘, 기술, 방어가 높은 강력한 전열 캐릭터입니다. 대신 마법 능력은 거의 없고 운과 속도는 평균적인 편입니다."
         ],
         "weapon": {
           "type": "Claw",
@@ -2189,10 +2186,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Lion's Trial Rune (Sega Saturn only), Double Beat Rune (PlayStation only)"
+            "사자의 시련의 문장(세가 새턴판), 2회공격의 문장(플레이스테이션판)"
           ],
           "recommended": [
-            "Boar Rune (PlayStation only)"
+            "멧돼지의 문장(플레이스테이션판)"
           ]
         },
         "maxLevelStatus": {
@@ -2236,7 +2233,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "maximillian": {
       "role": {
         "recruitment": [
-          "Joins upon request at the Northern Checkpoint after rescuing Warren and Viktor."
+          "워렌과 빅토르를 구출한 뒤 북방 검문소에서 합류를 요청하면 동료가 됩니다."
         ],
         "overall": [],
         "weapon": {
@@ -2259,7 +2256,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "sancho": {
       "role": {
         "recruitment": [
-          "Joins with Maximillian at the Northern Checkpoint after rescuing Warren and Viktor."
+          "워렌과 빅토르를 구출한 뒤 북방 검문소에서 막시밀리안과 함께 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -2282,10 +2279,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "glenshiel": {
       "role": {
         "recruitment": [
-          "Grenseal joins automatically with Alen after defeating General Teo."
+          "테오 장군을 쓰러뜨린 뒤 아렌과 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Grenseal is a good swordsman and magic user. His permanently attached Thunder Rune and strong magic growth make him useful against groups of enemies as an attacking mage."
+          "그렌실은 검술과 마법을 함께 다루는 캐릭터입니다. 고정 장착된 뇌명의 문장과 좋은 마법 성장을 바탕으로 다수의 적을 상대하는 공격 마법 운용에 유용합니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -2298,7 +2295,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "''*Fixed Rune, can't be detached.''"
           ],
           "recommended": [
-            "Grenseal has the Thunder Rune permanently attached."
+            "뇌명의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -2342,10 +2339,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "alen": {
       "role": {
         "recruitment": [
-          "Joins automatically with Grenseal after defeating General Teo."
+          "테오 장군을 쓰러뜨린 뒤 그렌실과 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Alen is a decent character overall, thanks to his excellent affinity with magic, and his decent fighting skills."
+          "아렌은 마법 적성이 뛰어나고 전투 능력도 안정적인 균형형 캐릭터입니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -2358,7 +2355,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "''*Fixed Rune, can't be detached.''"
           ],
           "recommended": [
-            "Alen's Rage Rune is permanently attached."
+            "열화의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -2402,7 +2399,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tesla": {
       "role": {
         "recruitment": [
-          "Tesla joins automatically when spoken to in Antei after Mathiu assigns Tir to recruit he and Kimberly."
+          "맷슈가 테슬라와 킴벌리 영입을 지시한 뒤 안테이에서 말을 걸면 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -2425,7 +2422,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "jabba": {
       "role": {
         "recruitment": [
-          "Fight Holly Fairies around the Scarleticia Area until one drops a Nameless Urn, then speak to Jabba in Rikon with the urn in your inventory to get him to join."
+          "스칼레티시아 주변에서 홀리 페어리를 쓰러뜨려 이름 없는 항아리를 얻은 뒤, 그 항아리를 소지한 상태로 리콘의 자바에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -2448,10 +2445,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "lorelai": {
       "role": {
         "recruitment": [
-          "After having set the HQ, Lorelai joins Tir in Kouan if he's over level 25 when he talks to her."
+          "본거지를 얻은 뒤 주인공 레벨이 25 이상인 상태로 코우안에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Lorelai is an effective back row attacker with her bow, though this is offset by her mediocre magic parameter."
+          "로렐라이는 활을 쓰는 후열 공격수입니다. 마법 능력은 평범하지만 원거리 물리 공격으로 안정적으로 기여합니다."
         ],
         "weapon": {
           "type": "Bow",
@@ -2463,7 +2460,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Since her magic parameter never climbs to a sufficient number to make good use of spells, it is recommended to give her a Hazy Rune to help her avoid certain enemies' long distance attacks."
+            "마법 능력은 크게 오르지 않으므로 주문 운용보다는 흐릿한 문장으로 생존력을 보완하는 편이 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -2500,18 +2497,18 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Lorelai has no Unite Attacks."
+          "-"
         ]
       }
     },
     "blackman": {
       "role": {
         "recruitment": [
-          "Speak to him at Kalekka without stepping on his plants.",
-          "Note: If you step on his plants before speaking to him, simply exit the village and return."
+          "칼레카에서 밭을 밟지 않고 말을 걸면 합류합니다.",
+          "말을 걸기 전에 밭을 밟았다면 마을 밖으로 나갔다가 다시 들어오면 됩니다."
         ],
         "overall": [
-          "Blackman is a very strong fighter."
+          "블랙맨은 물리 전투력이 높은 강력한 전열 캐릭터입니다."
         ],
         "weapon": {
           "type": "Pickaxe",
@@ -2523,7 +2520,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None"
           ],
           "recommended": [
-            "Physicals runes like the Killer Rune would be perfect for him."
+            "필살의 문장처럼 물리 전투를 강화하는 문장이 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -2560,7 +2557,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Blackman does not have any unite attacks with other characters."
+          "-"
         ]
       }
     },
@@ -2588,10 +2585,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "morgan": {
       "role": {
         "recruitment": [
-          "Speak to him at Qlon Temple if your Castle is at least Level 3 and allow him to join the army, otherwise he will say he needs more training."
+          "본거지 레벨 3 이상에서 크론 사원에 있는 모건에게 말을 걸고 합류를 허락하면 동료가 됩니다. 조건을 만족하지 못하면 아직 수련이 더 필요하다고 말합니다."
         ],
         "overall": [
-          "Morgan plays very similar to Pahn, with high attack power and HP but low speed and light armor."
+          "모건은 파안과 비슷한 근접 물리형 캐릭터입니다. 공격력과 체력이 높지만 속도가 낮고 방어구 선택은 가벼운 편입니다."
         ],
         "weapon": {
           "type": "Fists",
@@ -2603,7 +2600,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "Counter Rune"
           ],
           "recommended": [
-            "He is one of 3 characters that can use the Boar Rune, which is a nice alternative for him. A Killer Rune is also useful."
+            "멧돼지의 문장을 사용할 수 있는 몇 안 되는 캐릭터라 대체 선택지로 좋습니다. 필살의 문장도 유용합니다."
           ]
         },
         "maxLevelStatus": {
@@ -2640,17 +2637,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Morgan can participate in the Martial Arts Attack."
+          "파안, 에이케이와 함께 무술 공격을 사용할 수 있습니다."
         ]
       }
     },
     "mose": {
       "role": {
         "recruitment": [
-          "Joins automatically at Kirov after obtaining the Fire Spears."
+          "화염창을 확보한 뒤 키로프에서 자동으로 합류합니다."
         ],
         "overall": [
-          "Like the other smiths, Mose is a solid M range physical fighter."
+          "모스는 다른 대장장이 동료처럼 중거리 물리형 캐릭터로 무난하게 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Hammer",
@@ -2662,7 +2659,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Mose is well suited to most physical effect runes."
+            "대부분의 물리 효과 문장과 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -2699,14 +2696,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Mose can participate in the Blacksmith Attack."
+          "마스, 미스, 무스, 메스와 함께 대장장이 공격을 사용할 수 있습니다."
         ]
       }
     },
     "esmeralda": {
       "role": {
         "recruitment": [
-          "Head to the the Inn at Antei, she will join when presented with an Opal. The Opal is dropped by the Nightmare enemy in Soniere Prison."
+          "안테이 여관에서 오팔을 건네면 합류합니다. 오팔은 소니에르 감옥의 나이트메어가 드롭합니다."
         ],
         "overall": [],
         "weapon": {
@@ -2729,7 +2726,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "melodye": {
       "role": {
         "recruitment": [
-          "Speak to her at Kirov with the Sound Orb in your inventory."
+          "소리의 봉인구를 소지한 상태로 키로프에서 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -2752,7 +2749,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "chapman": {
       "role": {
         "recruitment": [
-          "Chapman joins when talked to at the Antei Armor store."
+          "안테이 방어구점에서 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -2775,11 +2772,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "liukan": {
       "role": {
         "recruitment": [
-          "Joins automatically when spoken to in Soniere Prison."
+          "소니에르 감옥에서 말을 걸면 자동으로 합류합니다."
         ],
         "overall": [
-          "Low stats, with exception of skill and luck. Able to equip shields.",
-          "He is also a decent magic user."
+          "기술과 운을 제외한 능력치는 낮은 편이지만 방패를 장비할 수 있습니다.",
+          "마법 운용도 어느 정도 가능한 캐릭터입니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -2835,10 +2832,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "fukien": {
       "role": {
         "recruitment": [
-          "Fukien automatically joins after you enter Qlon Temple."
+          "크론 사원에 들어간 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Fukien is a really good magic user and his Resurrection Rune is pretty useful."
+          "후켄은 뛰어난 마법형 캐릭터이며, 고정 장착된 부활의 문장도 활용도가 높습니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -2851,7 +2848,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "''*Fixed Rune, can't be detached.''"
           ],
           "recommended": [
-            "Fukien has the Resurrection Rune permanently attached."
+            "부활의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -2895,7 +2892,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "futch": {
       "role": {
         "recruitment": [
-          "Joins automatically after returning from Seek Valley."
+          "시크 계곡에서 돌아온 뒤 자동으로 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -2957,7 +2954,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kasumi": {
       "role": {
         "recruitment": [
-          "Joins automatically before the first battle with Teo McDohl's army."
+          "테오 맥돌 군과의 첫 전투 전에 자동으로 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -3018,10 +3015,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "maas": {
       "role": {
         "recruitment": [
-          "Maas joins Tir when spoken to in the Great Forest Kobold Village."
+          "대삼림 코볼트 마을에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Maas is an average character, but can be used as a good attacker early on."
+          "마스는 평균적인 능력치의 캐릭터지만, 초반에는 공격수로 활용할 수 있습니다."
         ],
         "weapon": {
           "type": "Hammer",
@@ -3033,7 +3030,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Maas is weak in magic, so runes that give him a bonus like the Hazy Rune are best. He can also be useful early on by putting a Holy Rune on him for the ability to dash."
+            "마법은 약하므로 흐릿한 문장처럼 전투 보조 효과가 있는 문장이 어울립니다. 초반에는 신행법의 문장을 장착해 이동 편의를 챙기는 선택도 가능합니다."
           ]
         },
         "maxLevelStatus": {
@@ -3070,19 +3067,18 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Maas can participate in the Blacksmith Attack. The unite attack is very powerful, so the best way to use him is to take advantage of this unite attack."
+          "메스, 무스, 모스와 함께 대장장이 공격을 사용할 수 있습니다. 협력 공격 위력이 높아 이 조합을 활용하는 운용이 좋습니다."
         ]
       }
     },
     "crowley": {
       "role": {
         "recruitment": [
-          "Prerequisites: Level 4 Headquarters",
-          "To recruit Crowley, speak to him in a secret passage in the Cave of the Past.",
-          "To get to the secret passage, once inside the cave, take the north exit and head down the stairs. Head all the way to the right, and then south to a new screen. Start heading right and go south. Head up the stairs and you will be in the previous screen. Take the stairs down and head south to the next screen, and then head south once more. The hidden passage is against the southern wall."
+          "본거지 레벨 4 이후 과거의 동굴 숨은 통로에서 말을 걸면 합류합니다.",
+          "동굴 안쪽에서 북쪽 출구와 계단을 이용해 우회한 뒤, 남쪽 벽 쪽 숨은 통로를 찾아야 합니다."
         ],
         "overall": [
-          "Crowley is one of the most powerful magic users."
+          "크로울리는 1편에서 손꼽히는 강력한 마법형 캐릭터입니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -3094,7 +3090,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "Cyclone Rune"
           ],
           "recommended": [
-            "Cyclone Rune or Rage Rune."
+            "선풍의 문장이나 열화의 문장이 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -3131,15 +3127,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Crowley has no Unite Attacks."
+          "-"
         ]
       }
     },
     "fuma": {
       "role": {
         "recruitment": [
-          "Speak to him at the Dragon Knights' Fortress and allow him to join the party.",
-          "Note: He is at the upper-right corner outside of the fortress, and will not appear unless your Castle is at least Level 3."
+          "본거지 레벨 3 이상에서 용기사의 요새 바깥 오른쪽 위에 있는 후마에게 말을 걸고 합류를 허락하면 동료가 됩니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -3199,10 +3194,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "moose": {
       "role": {
         "recruitment": [
-          "Speak to him in the weapon shop at the Warrior's Village with Maas, Meese, and Mose in your active party."
+          "마스, 메스, 모스를 파티에 넣고 전사의 마을 무기점에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Like the other smiths, Moose is a solid M range physical fighter."
+          "무스는 다른 대장장이 동료처럼 중거리 물리형 캐릭터로 무난하게 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Hammer",
@@ -3256,10 +3251,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "meese": {
       "role": {
         "recruitment": [
-          "Speak to Meese in the Village of the Dwarves after recruiting Maas and he will join."
+          "마스를 영입한 뒤 드워프 마을의 메스에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Like the other blacksmiths, Meese is a solid M range physical fighter."
+          "메스는 다른 대장장이 동료처럼 중거리 물리형 캐릭터로 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Hammer",
@@ -3271,7 +3266,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Meese is well suited to most physical effect runes, such as a Killer Rune."
+            "필살의 문장처럼 물리 효과를 강화하는 문장과 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -3315,10 +3310,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "sergei": {
       "role": {
         "recruitment": [
-          "Sergei joins Tir when spoken to in Kaku after exploring Toran Castle."
+          "트란 성을 조사한 뒤 카쿠에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Sergei is a fairly standard physical fighter."
+          "세르게이는 표준적인 근접 물리형 캐릭터입니다."
         ],
         "weapon": {
           "type": "Wrench",
@@ -3330,7 +3325,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Physical runes work well."
+            "물리 전투를 보조하는 문장이 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -3367,17 +3362,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sergei has no Unite Attacks."
+          "-"
         ]
       }
     },
     "kimberly": {
       "role": {
         "recruitment": [
-          "Kimberly will join when spoken to at her home in Antei, after Mathiu instructs Tir to recruit her and Tesla."
+          "맷슈가 킴벌리와 테슬라 영입을 지시한 뒤 안테이의 킴벌리 집에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Other than a high skill and luck stat, she's very vulnerable and weak as a magician and fighter. Her weak defense and attack prevents her from being a decent frontline character. It's best to keep her as a back row magician with some medicine. However, with the right rune and equipment, she can actually deal some pretty decent damage with her weapon."
+          "킴벌리는 기술과 운이 높지만 방어와 공격은 낮아 전열 운용에는 취약합니다. 후열에 배치하고 회복 아이템을 보조로 들려주는 편이 안정적이며, 문장과 장비를 잘 맞추면 무기 공격으로도 어느 정도 피해를 낼 수 있습니다."
         ],
         "weapon": {
           "type": "Knife",
@@ -3389,7 +3384,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Any basic magic rune works well, such as a Lightning Rune."
+            "번개의 문장처럼 기본 마법 문장이 무난하게 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -3426,14 +3421,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kimberly has no Unite Attacks."
+          "-"
         ]
       }
     },
     "sheena": {
       "role": {
         "recruitment": [
-          "Sheena joins Tir when spoken to with Lepant in the party at the Inn in Seika."
+          "레판토를 파티에 넣고 세이카 여관의 시나에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -3443,11 +3438,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Lightning Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "번개의 문장*",
+            "*고정 문장이 되어 해제할 수 없습니다."
           ],
           "recommended": [
-            "Sheena joins with a Lightning Rune permanently equipped."
+            "번개의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -3489,7 +3484,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kessler": {
       "role": {
         "recruitment": [
-          "Speak to him at the Secret Factory."
+          "로니 벨을 도운 뒤 비밀 공장에서 말을 걸면 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -3507,7 +3502,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Physical combat runes are best."
+            "물리 전투를 강화하는 문장이 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -3544,14 +3539,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kessler has no Unite Attacks."
+          "-"
         ]
       }
     },
     "marco": {
       "role": {
         "recruitment": [
-          "Play his game and win 5,000 potch from him in the Warrior's Village."
+          "전사의 마을에서 마르코의 게임에 승리해 5,000 포치를 따면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -3574,10 +3569,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "gen": {
       "role": {
         "recruitment": [
-          "Gen will automatically join when spoken to in a house in Teien when Tir and party need a way to pass the Dunan Rapids."
+          "듀난 급류를 건너야 하는 시점에 테이엔의 집에서 말을 걸면 커맨돌과 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Gen is a strong physical fighter with plenty of HP and defense to handle the frontline, with low magical skill being his only real flaw. He has decent speed and can keep up with faster characters in the party."
+          "겐은 체력과 방어가 좋아 전열을 맡기 쉬운 물리형 캐릭터입니다. 마법 능력이 낮은 점이 단점이지만, 속도는 무난해 전투 흐름을 따라가기 어렵지 않습니다."
         ],
         "weapon": {
           "type": "Saw",
@@ -3589,7 +3584,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None"
           ],
           "recommended": [
-            "Gen is competent with front row physical runes, such as the Hazy Rune, Counter Rune, and Killer Rune."
+            "흐릿한 문장, 반격의 문장, 필살의 문장처럼 전열 물리 운용을 보조하는 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -3626,7 +3621,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Gen can participate in both the Carpenter Attack and the Fatal Attack."
+          "산스케와 함께 목수 공격을 사용할 수 있고, 커맨돌과 함께 필사의 공격을 사용할 수 있습니다."
         ]
       }
     },
@@ -3654,10 +3649,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hellion": {
       "role": {
         "recruitment": [
-          "Hellion joins Tir when spoken to at the Inn in Teien, as long as the castle is level 2 or higher."
+          "본거지 레벨 2 이상에서 테이엔 여관의 헬리온에게 말을 걸고 합류 요청을 받아들이면 동료가 됩니다."
         ],
         "overall": [
-          "Hellion is a powerful magician."
+          "헬리온은 강력한 마법형 캐릭터입니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -3666,11 +3661,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Mother Earth Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "대지의 문장*",
+            "*고정 문장이 되어 해제할 수 없습니다."
           ],
           "recommended": [
-            "Hellion comes with a Mother Earth Rune permanently attached."
+            "대지의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -3707,17 +3702,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "None"
+          "-"
         ]
       }
     },
     "mina": {
       "role": {
         "recruitment": [
-          "To recruit Mina, speak with her at the inn in Antei, where she is dancing, with Toe Shoes equipped to Tir. Agree to dance with her and she will join after a short scene."
+          "주인공에게 발가락 신발을 장비시킨 뒤 안테이 여관에서 춤추는 미나에게 말을 걸고 함께 춤추면 합류합니다."
         ],
         "overall": [
-          "Mina's very high magic power is noteworthy and makes her a great candidate for runes of either attack or support magic; this is equally supported by her excellent speed parameter. Her shawl weapon is short-ranged and unique among mages. However, it's best to keep her out of the front positions due to the fact she has both a Magic Robe and Toe Shoes permanently attached, which limits her defense options quite a bit."
+          "미나는 마법 능력과 속도가 높아 공격·보조 마법 문장 모두에 잘 맞습니다. 숄 무기는 짧은 사거리라 마법형 캐릭터 중에서도 독특하지만, 마법 로브와 발가락 신발이 고정 장비라 방어 선택지가 좁으므로 전열 배치는 피하는 편이 좋습니다."
         ],
         "weapon": {
           "type": "Shawl",
@@ -3729,7 +3724,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Magic runes are suited well to her."
+            "마법 문장 전반이 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -3766,14 +3761,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Mina has no Unite Attacks."
+          "-"
         ]
       }
     },
     "milia": {
       "role": {
         "recruitment": [
-          "Joins automatically before heading to Seek Valley."
+          "드래곤 치료를 위해 시크 계곡으로 향하기 전 자동으로 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -3791,7 +3786,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Killer Rune."
+            "필살의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -3828,17 +3823,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Milia can participate in the Dragon Knight Attack."
+          "후치와 함께 용기사 공격을 사용할 수 있습니다."
         ]
       }
     },
     "kamandol": {
       "role": {
         "recruitment": [
-          "Kamandol joins automatically alongside Gen during the events to pass the Dunan Rapids."
+          "듀난 급류를 건너는 이벤트 중 겐과 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Kamandol is a capable magic rune user. Meanwhile, sticking him to his unite attack is also a viable option."
+          "커맨돌은 문장 마법을 어느 정도 다룰 수 있는 캐릭터입니다. 겐과의 협력 공격을 중심으로 운용하는 것도 선택지입니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -3850,7 +3845,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Any basic magic rune, such as a Fire Rune, is recommended."
+            "불의 문장처럼 기본 마법 문장이 무난합니다."
           ]
         },
         "maxLevelStatus": {
@@ -3887,18 +3882,18 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kamandol can participate in the Fatal Attack."
+          "겐과 함께 필사의 공격을 사용할 수 있습니다."
         ]
       }
     },
     "juppo": {
       "role": {
         "recruitment": [
-          "He joins in Lepant's Mansion when spoken to outside of the wheel room.",
-          "''Note: If you didn't recruit him while sneaking in Lepant's Mansion, he will automatically be available at the HQ after Lepant joined.''"
+          "코안의 레판토 저택에서 바퀴 장치 방 밖에 있는 쥬포에게 말을 걸면 합류합니다.",
+          "잠입 중 영입하지 못해도 레판토 합류 이후 본거지에서 다시 합류할 수 있습니다."
         ],
         "overall": [
-          "Juppo is a decent back row physical fighter."
+          "쥬포는 후열에서 운용하기 좋은 물리형 캐릭터입니다."
         ],
         "weapon": {
           "type": "Dart",
@@ -3907,11 +3902,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Trick Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "트릭의 문장*",
+            "*고정 문장이 되어 해제할 수 없습니다."
           ],
           "recommended": [
-            "Juppo has a Trick Rune permanently attached."
+            "트릭의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -3948,14 +3943,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Juppo can participate in the Trick Attack."
+          "멕과 함께 트릭 공격을 사용할 수 있습니다."
         ]
       }
     },
     "kasios": {
       "role": {
         "recruitment": [
-          "Speak to him in Scarleticia Castle with Milich Oppenheimer in the party."
+          "밀리히 오펜하이머를 파티에 넣고 스칼레티시아 성에서 카시오스에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -3978,10 +3973,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "viki": {
       "role": {
         "recruitment": [
-          "Viki speaks to Tir when she teleports herself to the forest path, where he can offer to recruit her."
+          "엘프 마을로 향하는 대삼림 길에서 빅키가 순간이동으로 나타납니다. 이때 합류를 제안하면 동료가 됩니다."
         ],
         "overall": [
-          "Viki is a powerful magic rune user and a good addition to the battle party, if you are very lucky. It is rather risky to use spells with her, because she has a 20% chance of backfiring with every spell cast. This can damage your group badly, because of Viki's high magic skill. She's a bit more limited with rune customization over some of the other mages due to her Blinking Rune being permanently attached to a slot."
+          "빅키는 강력한 마법형 캐릭터지만, 주문 사용 시 역효과가 발생할 수 있어 운용에 위험이 따릅니다. 마법 능력이 높기 때문에 역효과가 파티에 큰 피해를 줄 수도 있습니다. 점멸의 문장이 고정되어 있어 다른 마법형 캐릭터보다 문장 구성 자유도는 낮은 편입니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -3990,16 +3985,16 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Viki has her permanently attached Blinking Rune.",
-            "Growth =",
-            "*Head - Gained at Level 30.",
-            "*R. Hand - Blinking Rune",
-            "*L. Hand - None"
+            "점멸의 문장이 고정 장착되어 있습니다.",
+            "문장 슬롯 =",
+            "*머리 - 레벨 30에 개방",
+            "*오른손 - 점멸의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "With her magic power, any magic rune is recommended, as well as a Blue Gate Rune on her forehead.",
-            "Rune Affinity =",
-            "Viki has skill E in every rune, which means she damages 20% more, but also has a chance of backfiring."
+            "마법 능력이 높으므로 대부분의 마법 문장이 잘 맞습니다. 머리 슬롯에는 푸른 문의 문장도 선택지가 됩니다.",
+            "문장 적성 =",
+            "모든 문장 숙련이 E로 처리되어 피해량이 20% 높아지지만 역효과가 발생할 수 있습니다."
           ]
         },
         "maxLevelStatus": {},
@@ -4022,17 +4017,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Head Up!! teleports Abizboah or Rulodia on to one enemy for 2x damage, unbalancing the octopus."
+          "문어 계열 동료와 함께 사용하는 협력 공격은 단일 적에게 큰 피해를 주고 사용자를 균형 잃음 상태로 만듭니다."
         ]
       }
     },
     "rubi": {
       "role": {
         "recruitment": [
-          "Bring Kirkis to speak to Rubi at the Great Forest Kobold Village when Kirkis is Lv. 35 or higher and speak to Rubi to recruit him."
+          "키르키스를 파티에 넣고 대삼림 코볼트 마을의 루비에게 말을 걸면 합류합니다. 키르키스의 레벨 조건을 만족해야 합니다."
         ],
         "overall": [
-          "Rubi is another capable Elven archer."
+          "루비는 엘프 궁수 계열의 후열 공격수입니다."
         ],
         "weapon": {
           "type": "Bow",
@@ -4044,7 +4039,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Rubi can make competent use of basic elemental runes or physical attack runes."
+            "기본 속성 문장이나 물리 공격 보조 문장을 무난하게 활용할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -4081,7 +4076,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Rubi can participate in the Wild Arrow Attack."
+          "키르키스, 실비나와 함께 야생 화살 공격을 사용할 수 있습니다."
         ]
       }
     },
@@ -4109,10 +4104,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "meg": {
       "role": {
         "recruitment": [
-          "In order to recruit Meg in Suikoden, speak to her outside the inn at Kaku with Juppo in the party."
+          "쥬포를 파티에 넣고 카쿠 여관 밖의 멕에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Meg mirrors Juppo in being a good back row physical fighter. She has a Guard Robe permanently equipped. Compared to her uncle, she's much stronger and her high luck stat ensures she lands critical hits more often. Her lower HP and defense stats means she can't survive much punishment for long, at least until she acquires more powerful gear."
+          "멕은 쥬포와 비슷하게 후열에서 운용하기 좋은 물리형 캐릭터입니다. 가드 로브가 고정 장착되어 있으며, 운이 높아 치명타를 기대하기 쉽습니다. 체력과 방어가 낮아 강한 장비를 갖추기 전까지는 오래 맞는 운용에 약합니다."
         ],
         "weapon": {
           "type": "Throwing Knife",
@@ -4124,7 +4119,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Meg is the only character other than Juppo who can equip a Trick Rune. Another option is to give her a Killer Rune, which when combined with her naturally high luck parameter, allows her to inflict many critical hits in one fight alone."
+            "쥬포 외에 트릭의 문장을 활용할 수 있는 캐릭터입니다. 높은 운을 살려 필살의 문장을 장착하면 한 전투에서 치명타를 여러 번 노릴 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -4161,14 +4156,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Meg can participate in the Trick Attack."
+          "쥬포와 함께 트릭 공격을 사용할 수 있습니다."
         ]
       }
     },
     "taggart": {
       "role": {
         "recruitment": [
-          "Joins automatically after informing of Warren's capture."
+          "워렌이 붙잡혔다는 사실을 알린 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -4191,7 +4186,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "giovanni": {
       "role": {
         "recruitment": [
-          "Giovanni joins automatically with Lepant."
+          "코안에서 아이린을 구출한 뒤 레판토와 함께 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -4214,11 +4209,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "quincy": {
       "role": {
         "recruitment": [
-          "Speak to him at the Garan Fortress with at least 80 recruits (dead and \"away\" characters do not count)."
+          "동료 80명 이상을 모은 뒤 가란 성새에서 퀸시에게 말을 걸면 합류합니다. 사망했거나 이탈 중인 인물은 수에 포함되지 않습니다."
         ],
         "overall": [
-          "Quincy is another strong long range attacker with subpar magic skills being his only weakness. Therefore, it is best to give him a Killer Rune to allow him to inflict some critical hits from afar. His speed is also high, so he has no trouble contributing to battles quickly.",
-          "Quincy is an expert at using bows, he uses it only for hunting, but he uses dual-edged phurbas in battle."
+          "퀸시는 강력한 장거리 공격수이며, 마법 능력이 낮은 것이 가장 큰 약점입니다. 필살의 문장으로 원거리 치명타를 노리면 장점을 살리기 좋습니다.",
+          "활 솜씨가 뛰어나지만 전투에서는 양날 푸르바를 사용합니다."
         ],
         "weapon": {
           "type": "Throwing Knife (Shuriken)",
@@ -4230,7 +4225,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Killer Rune."
+            "필살의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -4267,14 +4262,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Quincy has no Unite Attacks."
+          "-"
         ]
       }
     },
     "apple": {
       "role": {
         "recruitment": [
-          "Speak to her in Seika and she'll join to find out Mathiu's reason for joining."
+          "세이카에서 말을 걸면 맷슈가 해방군에 합류한 이유를 확인하기 위해 함께합니다."
         ],
         "overall": [],
         "weapon": {
@@ -4297,10 +4292,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kai": {
       "role": {
         "recruitment": [
-          "After having set the HQ, He joins Tir when spoken to at the Garan Fortress."
+          "본거지를 얻은 뒤 가란 성새에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Kai is a solid physical attacker, but weak in magic. But what makes Kai a powerhouse is his Unite Attack with the Protagonist, which is the best Unite Attack in the game to hit multiple enemies. Due that, Kai is best suited to take care of Random Battles."
+          "카이는 물리 공격이 안정적이지만 마법은 약한 캐릭터입니다. 주인공과 함께 사용하는 사제 공격이 다수의 적을 상대하는 데 매우 강력해, 일반 전투 정리에 특히 좋습니다."
         ],
         "weapon": {
           "type": "Bo Staff",
@@ -4309,11 +4304,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Hazy Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "흐릿한 문장*",
+            "*고정 문장이 되어 해제할 수 없습니다."
           ],
           "recommended": [
-            "Kai comes with a Hazy Rune permanently attached."
+            "흐릿한 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -4350,17 +4345,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kai can participate in both the Master Pupil Attack and the Flash Attack."
+          "주인공과 함께 사제 공격을 사용할 수 있고, 류칸과 함께 섬광 공격을 사용할 수 있습니다."
         ]
       }
     },
     "lotte": {
       "role": {
         "recruitment": [
-          "Lotte can be found in the inn in Rikon. Talk to her when your HQ has reached LV3, retrieve her cat in Kaku, and return it to her."
+          "본거지 레벨 3 이후 리콘 여관의 롯테에게 말을 걸고, 카쿠에서 고양이를 찾아 돌려주면 합류합니다."
         ],
         "overall": [
-          "Lotte is a powerful magician, so keep her in the back row and equip her with an upgraded elemental rune that is needed. She's a poor melee fighter, like most dedicated mages, but her high magic stat allows her to use Lv.1 and Lv.2 spells with decent frequency in long dungeon crawls."
+          "롯테는 강력한 마법형 캐릭터입니다. 근접 전투는 약하므로 후열에 두고 필요한 상위 속성 문장을 장착하는 편이 좋습니다. 마법 능력이 높아 장기 던전 탐색에서도 낮은 레벨 주문을 안정적으로 사용할 수 있습니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -4372,7 +4367,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "Earth Rune"
           ],
           "recommended": [
-            "Lotte is a powerful mage who can make good use of any of the Elemental Runes. She starts with an Earth Rune, but it can be switched to a more offense-oriented category like a Thunder or Rage Rune. She can also be a strong support unit by upgrading to a Mother Earth Rune or by equipping either a Cyclone or Flowing Rune."
+            "초기 흙의 문장을 유지해도 좋고, 공격형으로 쓰려면 뇌명의 문장이나 열화의 문장으로 바꿀 수 있습니다. 보조형으로는 대지의 문장, 선풍의 문장, 류수의 문장도 잘 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -4409,14 +4404,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Lotte has no Unite Attacks."
+          "-"
         ]
       }
     },
     "mace": {
       "role": {
         "recruitment": [
-          "Speak to him at Seek Valley with Maas, Meese, Moose and Mose in your active party. A Level 4 Headquarters is required before recruiting him."
+          "본거지 레벨 4 이상에서 마스, 미스, 무스, 모스를 모두 파티에 넣고 시크 계곡의 메스에게 말을 걸면 합류합니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -4469,14 +4464,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Mace can participate in the Blacksmith Attack."
+          "마스, 미스, 무스, 모스와 함께 대장장이 공격을 사용할 수 있습니다."
         ]
       }
     },
     "onil": {
       "role": {
         "recruitment": [
-          "Onil joins Tir when spoken to in Seika after exploring Toran Castle."
+          "트란 성을 조사한 뒤 세이카에서 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -4499,10 +4494,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kuromimi": {
       "role": {
         "recruitment": [
-          "Kuromimi joins Tir automatically after the events at Pannu Yakuta."
+          "판누 야쿠타 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Kuromimi is a strong frontline swordsman with good attack and HP scores. He also has excellent defense due to being able to equip helmets, mid-weight armor, shields and Kobold-exclusive Necklace accessories."
+          "크로미미는 공격과 체력이 좋은 전열 검사입니다. 투구, 중량 방어구, 방패, 코볼트 전용 목걸이를 장비할 수 있어 방어 면에서도 안정적입니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -4514,7 +4509,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "A Killer Rune or Counter Rune complements Kuromimi's fighting abilities."
+            "필살의 문장이나 반격의 문장이 전투 능력을 잘 보완합니다."
           ]
         },
         "maxLevelStatus": {
@@ -4551,17 +4546,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kuromimi can participate in both the Kobold Attack and the Kobold + 1 Attack."
+          "곤과 함께 코볼트 공격을 사용할 수 있고, 곤과 후 수 루와 함께 코볼트+1 공격을 사용할 수 있습니다."
         ]
       }
     },
     "gon": {
       "role": {
         "recruitment": [
-          "Bring Kuromimi to visit him in the Great Forest Kobold Village and speak to him to recruit him."
+          "크로미미를 파티에 넣고 대삼림 코볼트 마을의 곤에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Much like Kuromimi, Gon is a good frontline fighter with excellent defense due to being able to equip helmets, mid-weight armor, shields and exclusive Necklace accessories. A rather unique feature he has is an extremely high luck parameter, a trait that Meg also has in common with him. This allows him to make more critical hits, making him an incredibly powerful character."
+          "곤은 크로미미처럼 전열에서 버티기 좋은 물리형 캐릭터입니다. 투구, 중량 방어구, 방패, 전용 목걸이를 장비할 수 있어 방어가 높고, 운이 매우 높아 치명타도 기대하기 쉽습니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -4573,7 +4568,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None"
           ],
           "recommended": [
-            "Gon can make good use of any physical effect runes, such as the Counter Rune or Hazy Rune. Like Meg, a Killer Rune would be something he can benefit from due to his high luck stat."
+            "반격의 문장이나 흐릿한 문장처럼 물리 효과를 보조하는 문장을 잘 활용합니다. 운이 높으므로 필살의 문장도 좋은 선택입니다."
           ]
         },
         "maxLevelStatus": {
@@ -4610,14 +4605,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Gon can participate in both the Kobold Attack and the Kobold + 1 Attack."
+          "크로미미와 함께 코볼트 공격을 사용할 수 있고, 크로미미와 후 수 루와 함께 코볼트+1 공격을 사용할 수 있습니다."
         ]
       }
     },
     "antonio": {
       "role": {
         "recruitment": [
-          "He joins when Tir speaks to him at the Inn in Seika, after Marie has been recruited and mentions she needs help. You need to sleep or just choose \"don't stay\" a couple of times at your HQ until Marie triggers the dialog that she needs help, then go back see Antonio."
+          "마리를 영입한 뒤 본거지에서 요리사가 필요하다는 말을 들으면, 세이카 여관의 안토니오에게 말을 걸어 합류시킬 수 있습니다. 본거지에서 몇 차례 숙박하거나 머무르지 않는 선택을 반복해 마리의 대사를 확인한 뒤 찾아가면 됩니다."
         ],
         "overall": [
           "Weapon Growth =",
@@ -4670,17 +4665,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Antonio has no known unite attacks."
+          "-"
         ]
       }
     },
     "lester": {
       "role": {
         "recruitment": [
-          "In Kirov, enter the houses to the left and right of Sarah and taste the stew on the stove. Then enter the house south of Sarah and talk to him. Will not appear unless Toran Castle is at least Level 3."
+          "본거지 레벨 3 이상에서 키로프의 세일라 좌우 집에 들어가 난로 위 스튜를 맛본 뒤, 세일라 남쪽 집의 레스터에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Lester joins as a cook, although this doesn't grant any specific abilities or bonuses."
+          "레스터는 요리사로 합류하지만, 전투 능력이나 별도 보너스를 제공하는 시설 효과는 없습니다."
         ],
         "weapon": {
           "type": "Pan",
@@ -4692,7 +4687,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Physicals runes would be suited for him."
+            "물리 전투를 보조하는 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -4729,17 +4724,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Lester has no Unite Attacks."
+          "-"
         ]
       }
     },
     "kirke": {
       "role": {
         "recruitment": [
-          "Kirke joins when spoken to at the Lorimar checkpoint after the events there make the area available."
+          "로리마 성새를 제압한 뒤 해당 지역을 이용할 수 있게 되면, 검문소의 키르케에게 말을 걸어 합류시킬 수 있습니다."
         ],
         "overall": [
-          "Kirke is a moderately good physical combat character."
+          "키르케는 무난한 물리 전투 캐릭터입니다."
         ],
         "weapon": {
           "type": "Scythe",
@@ -4751,7 +4746,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Kirke is well suited to physical combat runes. The Killer Rune would be thematically appropriate."
+            "물리 전투 문장과 잘 맞으며, 필살의 문장도 분위기와 성능 양쪽에서 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -4788,7 +4783,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kirke has no Unite Attacks."
+          "-"
         ]
       }
     },
@@ -4816,7 +4811,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "ledon": {
       "role": {
         "recruitment": [
-          "Speak to him at the Secret Factory."
+          "로니 벨을 도운 뒤 비밀 공장에서 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -4839,10 +4834,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "sylvina": {
       "role": {
         "recruitment": [
-          "Sylvina joins automatically after events at Pannu Yakuta."
+          "판누 야쿠타 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Sylvina has decent magic growth, so giving her magic runes can make her a useful party member."
+          "실비나는 마법 성장도 나쁘지 않아 마법 문장을 장착하면 후열에서 유용하게 활용할 수 있습니다."
         ],
         "weapon": {
           "type": "Bow",
@@ -4854,7 +4849,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Sylvina is a capable archer and magic rune user."
+            "궁수이면서 문장 마법도 어느 정도 다룰 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -4891,17 +4886,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sylvina can participate in both the Elf Attack and the Wild Arrow Attack."
+          "키르키스, 루비와 함께 엘프 공격과 야생 화살 공격을 사용할 수 있습니다."
         ]
       }
     },
     "ronnie-bell": {
       "role": {
         "recruitment": [
-          "Joins automatically before delivering the Fire Spears."
+          "화염창을 전달하기 전 자동으로 합류합니다."
         ],
         "overall": [
-          "Ronnie Bell is a powerful fighter that bears the Hate Rune. This can allow her to be a great frontline or backline fighter since her rune is a ranged attack."
+          "로니 벨은 증오의 문장을 지닌 강력한 전투 캐릭터입니다. 문장 공격이 원거리라 전열과 후열 어느 쪽에서도 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Claws",
@@ -4910,11 +4905,11 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Hate Rune*",
-            "''*Fixed Rune, can't be detached.''"
+            "증오의 문장*",
+            "*고정 문장이 되어 해제할 수 없습니다."
           ],
           "recommended": [
-            "Ronnie Bell has a Hate Rune permanently attached."
+            "증오의 문장이 고정 장착되어 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -4951,14 +4946,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Ronnie Bell can participate in the Beat Em' Up Attack."
+          "파안과 함께 두들겨 패기 공격을 사용할 수 있습니다."
         ]
       }
     },
     "gaspar": {
       "role": {
         "recruitment": [
-          "Gaspar joins if Tir wins 5000 potch off of him in Chinchirorin in Kaku."
+          "카쿠 주점 지하에서 주사위 도박으로 5,000 포치를 따면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -4981,7 +4976,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "window": {
       "role": {
         "recruitment": [
-          "Talk to him at Warrior's Village with the Window Orb in your inventory and he will join."
+          "창의 봉인구를 소지한 상태로 전사의 마을의 윈도우에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -5004,7 +4999,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "marie": {
       "role": {
         "recruitment": [
-          "Marie joins Tir when talked to at the inn in Seika after securing Toran Castle."
+          "트란 성을 확보한 뒤 세이카 여관에서 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -5027,7 +5022,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "zen": {
       "role": {
         "recruitment": [
-          "Joins upon request at Qlon Temple if you bring him Blue, Red, and Yellow Flower Seeds."
+          "클론 사원에서 빨간 꽃의 씨앗, 파란 꽃의 씨앗, 노란 꽃의 씨앗을 건네면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -5050,10 +5045,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "sarah": {
       "role": {
         "recruitment": [
-          "Sarah joins in Kirov after Tir completes the trade sequence and gives her Soap."
+          "키로프 주민들과의 교환을 통해 얻은 비누를 세일라에게 건네면 합류합니다."
         ],
         "overall": [
-          "Sarah is a balanced long range fighter and a capable magic rune user. She can attack safely from the back row and works especially well with support or healing runes."
+          "세일라는 균형 잡힌 장거리 전투 캐릭터이며 문장 마법도 다룰 수 있습니다. 후열에서 안전하게 공격할 수 있고, 보조나 회복 문장과 특히 잘 맞습니다."
         ],
         "weapon": {
           "type": "Throwing Knife",
@@ -5065,7 +5060,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Water Rune or Flowing Rune"
+            "물의 문장이나 류수의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -5102,17 +5097,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sarah has no Unite Attacks."
+          "-"
         ]
       }
     },
     "sansuke": {
       "role": {
         "recruitment": [
-          "Sansuke joins Tir when spoken to in Great Forest Village after exploring Toran Castle."
+          "트란 성을 조사한 뒤 대삼림 마을에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Sansuke is an average attack character."
+          "산스케는 평균적인 물리 공격 캐릭터입니다."
         ],
         "weapon": {
           "type": "Saw",
@@ -5124,7 +5119,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "Physical effect runes or a Holy Rune are effective uses of Sansuke as a party member."
+            "물리 효과 문장이나 신행법의 문장을 장착하면 활용도가 높아집니다."
           ]
         },
         "maxLevelStatus": {
@@ -5161,14 +5156,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sansuke can participate in the Carpenter Attack with Gen."
+          "겐과 함께 목수 공격을 사용할 수 있습니다."
         ]
       }
     },
     "qlon": {
       "role": {
         "recruitment": [
-          "Qlon joins if you speak to him in Antei after liberating it from Milich Oppenheimer."
+          "안테이를 해방한 뒤 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -5191,7 +5186,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "templeton": {
       "role": {
         "recruitment": [
-          "Templeton joins Tir when spoken to at the Burnt village of the Elves."
+          "불타버린 엘프 마을에서 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -5214,10 +5209,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "krin": {
       "role": {
         "recruitment": [
-          "Krin joins Tir automatically during the events in Kouan."
+          "코우안 사건 중 자동으로 합류합니다."
         ],
         "overall": [
-          "Krin is a fairly weak rear line fighter, and ends up being a liability if not properly leveled by the time he's a required party member."
+          "크린은 후열 전투 캐릭터지만 기본 전투력은 낮은 편입니다. 필수 동행 구간 전까지 제대로 성장시키지 않으면 부담이 될 수 있습니다."
         ],
         "weapon": {
           "type": "Needle/Dart",
@@ -5229,7 +5224,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "None."
           ],
           "recommended": [
-            "A Holy Rune makes Krin useful for his tenure as a required party member."
+            "필수 동행 구간을 고려하면 신행법의 문장이 유용합니다."
           ]
         },
         "maxLevelStatus": {
@@ -5266,14 +5261,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Krin can participate in the Bumpy Attack."
+          "험프리와 함께 울퉁불퉁 공격을 사용할 수 있습니다."
         ]
       }
     },
     "chandler": {
       "role": {
         "recruitment": [
-          "Chandler can be recruited at the Kwaba Fortress after Tir has claimed Toran Castle."
+          "트란 성을 확보한 뒤 쿠와바 성새에서 영입할 수 있습니다."
         ],
         "overall": [],
         "weapon": {
@@ -5298,10 +5293,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hero": {
       "role": {
         "recruitment": [
-          "As the main protagonist of Suikoden II, Riou is available by default at the beginning of the game, and cannot be removed from the party."
+          "환상수호전 II의 주인공으로, 게임 시작부터 일행에 포함되어 있으며 파티에서 제외할 수 없습니다."
         ],
         "overall": [
-          "Riou is a fantastic character with above average stats in all categories. He has several powerful Unite Attacks in the game and his Bright Shield Rune is one of the most powerful and useful runes in the game with its diverse functions as both an offensive and defensive rune. A close inspection of his stats show that Riou's stats favor melee stats, but his well-rounded affinity and extra rune slots make him quite diverse for player customization."
+          "주인공은 전반적인 능력치가 평균 이상인 뛰어난 캐릭터입니다. 여러 강력한 협력 공격에 참여할 수 있고, 빛나는 방패의 문장은 공격과 방어 양쪽에서 모두 유용한 핵심 문장입니다. 근접 전투 능력이 좋으면서도 문장 슬롯과 적성이 균형 잡혀 있어 다양한 방식으로 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Tonfas",
@@ -5310,13 +5305,13 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head - Gained at Lv. 40",
-            "*Right Hand - Bright Shield Rune (Permanent, Story Event)",
-            "*Left Hand - Gained at Lv. 25",
-            "*Weapon - No rune attached."
+            "*머리 - 레벨 40에 개방",
+            "*오른손 - 빛나는 방패의 문장(스토리 고정)",
+            "*왼손 - 레벨 25에 개방",
+            "*무기 - 장착 문장 없음"
           ],
           "recommended": [
-            "Riou has all-around great stats and can be customized for magic or melee. For a melee set-up, a combination of a Double Beat Rune, Double Strike Rune, Killer Rune, or even a Fury Rune will work wonders for him. For a mage set-up, Riou is one of the few characters who can equip a Blue Gate Rune, and he has a high affinity with the Resurrection Rune. The Bright Shield Rune is literally all the party needs for healing although the Forgiver Sign spell is a powerful damaging move too. Riou is a perfect candidate for the Friendship Rune to be embedded on his weapon. Attaching a Fire Sealing Rune to him is very useful in the battle against Luca Blight, because the attack of Luca Blight usually uses the element of fire. If the player has a lot of potch, the player can embed a Technique Rune for Riou."
+            "근접 운용에서는 2회공격의 문장, 2배공격의 문장, 필살의 문장, 분노의 문장이 잘 맞습니다. 마법 운용에서는 푸른 문의 문장과 부활의 문장 적성을 활용할 수 있습니다. 빛나는 방패의 문장만으로도 회복 역할을 충분히 맡을 수 있고, 무기에는 우정의 문장이나 기술의 문장을 붙이는 선택도 좋습니다. 루카 블라이트전에서는 불 봉인의 문장이 도움이 됩니다."
           ]
         },
         "maxLevelStatus": {
@@ -5354,22 +5349,21 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Riou can perform the following Unite Attacks:",
-          "*Buddy Attack with Jowy",
-          "*Family Attack with Nanami",
-          "*Leisure Attack with Nanami",
-          "*Copycat Attack with Hoi",
-          "*Double Leader Attack with Tir"
+          "죠우이와 함께 친구 공격을 사용할 수 있습니다.",
+          "나나미와 함께 가족 공격을 사용할 수 있습니다.",
+          "나나미와 함께 한가로운 공격을 사용할 수 있습니다.",
+          "호이와 함께 흉내 공격을 사용할 수 있습니다.",
+          "티르와 함께 더블 리더 공격을 사용할 수 있습니다."
         ]
       }
     },
     "nanami": {
       "role": {
         "recruitment": [
-          "Nanami joins while escaping Kyaro if the player chooses to rescue her. If not, Nanami joins automatically at the first visit to Muse after getting the Bright Shield Rune. She permanently leaves after liberating Rockaxe."
+          "캬로 탈출 중 나나미를 구하기로 선택하면 함께 합류합니다. 이때 구하지 않아도 빛나는 방패의 문장을 얻은 뒤 뮤즈를 처음 방문하면 자동으로 합류합니다. 록엑스 해방 이후에는 영구 이탈합니다."
         ],
         "overall": [
-          "Nanami is a balanced character, with high speed status."
+          "나나미는 균형 잡힌 능력치와 높은 속도가 장점인 전투 캐릭터입니다."
         ],
         "weapon": {
           "type": "Tri-Nunchaku",
@@ -5378,12 +5372,12 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Right Hand - None",
-            "*Left Hand - None",
-            "*Weapon - No Rune attached"
+            "*오른손 - 없음",
+            "*왼손 - 없음",
+            "*무기 - 장착 문장 없음"
           ],
           "recommended": [
-            "Spark Rune, Balance Rune, Double Beat Rune and Water Rune."
+            "번개의 문장, 균형의 문장, 2회공격의 문장, 물의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -5421,14 +5415,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Nanami can participate in the Family Attack and Leisure Attack with Riou."
+          "주인공과 함께 가족 공격과 한가로운 공격을 사용할 수 있습니다."
         ]
       }
     },
     "tsai": {
       "role": {
         "recruitment": [
-          "Tsai joins automatically when you ask him to repair the fire spears."
+          "화염창 수리를 부탁하면 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -5438,12 +5432,12 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Unicorn Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 유니콘의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Resurrection Rune and Wind Rune"
+            "부활의 문장과 바람의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {},
@@ -5466,17 +5460,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Tsai can participate in Dad and Daughter Attack."
+          "토모와 함께 부녀 공격을 사용할 수 있습니다."
         ]
       }
     },
     "hanna": {
       "role": {
         "recruitment": [
-          "Speak to Hanna in Toto Village after it is burned to the ground."
+          "토토 마을이 불탄 뒤 한나에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Hanna is a decent frontline party member with high defensive stats and the ability to carry shields for that extra bit of survivability. Only flaw is her one-rune slot limitation, which causes her to be outclassed by other frontline party members later in the game."
+          "한나는 방어 능력이 높고 방패를 장비할 수 있어 초반 전열에서 안정적인 캐릭터입니다. 다만 문장 슬롯이 하나뿐이라 후반에는 다른 전열 캐릭터보다 확장성이 떨어집니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -5485,12 +5479,12 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Double Beat Rune, Fury Rune"
+            "2회공격의 문장이나 분노의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -5528,19 +5522,19 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Hanna can participate in the Tackle Attack."
+          "오울란과 함께 태클 공격을 사용할 수 있습니다."
         ]
       }
     },
     "anita": {
       "role": {
         "recruitment": [
-          "There are two ways to recruit Anita.",
-          "#Speak with her at the tavern in Muse or the inn at Banner Village and complete her requests. Travel in/out of town in order to get more requests from her until she can be recruited. Her level is only 16.",
-          "#Speak with Anita at the Banner Village Inn with Valeria in the party. Her level this time is 40. (Sometimes 99 due to a glitch.)"
+          "아니타는 두 가지 방식으로 영입할 수 있습니다.",
+          "뮤즈 주점 또는 바나 마을 여관에서 여러 번 말을 걸고 부탁을 들어주면 합류합니다. 마을을 드나들며 추가 부탁을 확인해야 합니다.",
+          "발레리아를 파티에 넣고 바나 마을 여관에서 아니타에게 말을 걸면 바로 영입할 수 있습니다."
         ],
         "overall": [
-          "Anita is a decent unit but she is outclassed by her rival Valeria. Although have the same amount of rune slots, Valeria generally has superior stats."
+          "아니타는 무난한 전열 캐릭터지만, 라이벌인 발레리아와 비교하면 전반적인 능력치에서 밀리는 편입니다. 문장 슬롯 수는 같지만 순수 성능은 발레리아가 더 안정적입니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -5549,13 +5543,13 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head - N/A",
-            "*R. Hand - Falcon Rune (Permanently attached)",
-            "*L. Hand - None (Acquired at level 50)",
-            "*Weapon - No rune attached."
+            "*머리 - 없음",
+            "*오른손 - 매의 문장(고정 장착)",
+            "*왼손 - 없음(레벨 50에 개방)",
+            "*무기 - 장착 문장 없음"
           ],
           "recommended": [
-            "Giving Anita the Fury Rune is the best way to increase the damage she can output with her Falcon Rune"
+            "매의 문장 피해를 높이려면 분노의 문장을 함께 운용하는 방식이 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -5593,17 +5587,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Anita can perform the Rival Attack with Valeria."
+          "발레리아와 함께 라이벌 공격을 사용할 수 있습니다."
         ]
       }
     },
     "viktor": {
       "role": {
         "recruitment": [
-          "Viktor automatically joins in South Window."
+          "사우스 윈도우에서 자동으로 합류합니다."
         ],
         "overall": [
-          "As with Suikoden, Viktor is one of the better physical attack characters in Suikoden II, and has a good HP, high strength growth and decent enough survivability. He makes an extremely solid front line character once he joins the party. Viktor wields his 2 handed sword until he once again reunites with the Celestial Sword."
+          "빅토르는 2편에서도 뛰어난 물리 공격수입니다. 체력과 힘 성장이 좋고 생존력도 안정적이라 합류 직후부터 전열 핵심으로 운용할 수 있습니다. 별의 검과 다시 만나기 전까지는 양손검을 사용합니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -5612,12 +5606,12 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head - No Slot",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 슬롯 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Viktor does well with the Titan Rune, which replaces the Clone Rune from the first Suikoden. He only gains 2 rune slots, but it is a huge upgrade from one in Suikoden 1. His weak magic abilities make combat enhancing runes, like the Warrior Rune, a recommended choice. That said, he is one of the very few physical warriors that gain 2 Rune slots. With that, he can take full advantage of the exceptionally powerful physical rune set of Double Beat Rune and Double Strike Rune or the Fury Rune or Violence Rune. A rune attached to his weapon like a Friendship Rune is recommended or the Exertion Rune which will make Viktor in prolonged battles even more effective. With the right setup of his runes, Viktor possibly has the potential to be one of the most powerful, if not the most powerful, physical attackers in the game."
+            "마법 능력은 낮으므로 전사의 문장처럼 전투를 강화하는 문장이 좋습니다. 슬롯이 두 개까지 열리기 때문에 2회공격의 문장, 2배공격의 문장, 분노의 문장, 폭력의 문장 같은 물리형 조합을 적극적으로 활용할 수 있습니다. 무기에는 우정의 문장이나 분발의 문장을 붙이면 장기전에서 더 강해집니다."
           ]
         },
         "maxLevelStatus": {
@@ -5656,17 +5650,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Viktor can use the Cross Attack with Flik."
+          "플릭과 함께 십자 공격을 사용할 수 있습니다."
         ]
       }
     },
     "flik": {
       "role": {
         "recruitment": [
-          "Flik joins automatically in South Window."
+          "사우스 윈도우에서 자동으로 합류합니다."
         ],
         "overall": [
-          "Flik is still an effective and reliable front line fighter and competent magic rune user, much like in the first game. His affinity with the lightning element remains, so he works well with the Lightning Rune and later the Thunder Rune. He has solid physical stats and good survivability and the ability to carry shields as part of his gear further augments it. Flik is also a powerful lightning magic user once his rune was upgraded to Thunder Rune and is capable of dealing magic heavy damage to his enemy using its final spell, Thunder Storm."
+          "플릭은 1편처럼 안정적인 전열 전투와 문장 마법을 모두 소화하는 캐릭터입니다. 번개 속성 적성이 좋아 번개의 문장과 천둥의 문장을 잘 활용하며, 방패 장비도 가능해 생존력이 괜찮습니다. 천둥의 문장으로 강화하면 강력한 번개 마법 전력으로도 활약합니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -5675,12 +5669,12 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head -",
-            "*R. Hand - Lightning Rune",
-            "*L. Hand -"
+            "*머리 - 없음",
+            "*오른손 - 번개의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Thunder Rune, Fury Rune, Double Beat Rune, and/or Double Strike Rune"
+            "천둥의 문장, 분노의 문장, 2회공격의 문장, 2배공격의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -5719,16 +5713,16 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "*Cross Attack with Viktor does 1.5x damage to one enemy with 30% chance of knockdown.",
-          "*Groupie Attack with Nina does 2.5x damage to one enemy, Nina unbalances.",
-          "*Fancy Lad Attack, mistranslated as Pretty Boy Attack, with Camus and Miklotov does 1.5x damage to one enemy with a 25% chance of instant death."
+          "빅토르와 함께 십자 공격을 사용해 단일 적에게 1.5배 피해를 주고 일정 확률로 넘어뜨립니다.",
+          "니나와 함께 추종자 공격을 사용해 단일 적에게 2.5배 피해를 주며, 니나는 균형을 잃습니다.",
+          "카뮤, 마이크로토프와 함께 미남 공격을 사용해 단일 적에게 1.5배 피해를 주고 일정 확률로 즉사시킵니다."
         ]
       }
     },
     "freed-yamamoto": {
       "role": {
         "recruitment": [
-          "Joins automatically after meeting with Granmeyer in South Window."
+          "사우스 윈도우에서 그랜마이어를 만난 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -5738,12 +5732,12 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Fire Rune, Earth Rune or Wind Rune."
+            "불의 문장, 흙의 문장, 바람의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -5781,17 +5775,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Freed can participate in the Husband and Wife Attack."
+          "요시노와 함께 부부 공격을 사용할 수 있습니다."
         ]
       }
     },
     "shu": {
       "role": {
         "recruitment": [
-          "Shu joins automatically after the events in Radat."
+          "라다트 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Shu is the Military Strategist."
+          "슈는 신동맹군의 군사입니다."
         ],
         "weapon": {
           "type": "",
@@ -5813,10 +5807,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "luc": {
       "role": {
         "recruitment": [
-          "He automatically joins in North Window Castle."
+          "노스윈도우 성에서 자동으로 합류합니다."
         ],
         "overall": [
-          "Luc becomes a very useful character early on with his magic power and Pixie Rune. The Pixie Rune allows him to attack from the back row, making him a well balanced mage. Luc has all three Rune slots available and is one of the best characters to utilize the Blue Gate Rune. Due to his high magic, available Rune slots, and spell charges; equipping Luc with two Runes that can perform a Unite Magic spell will allow him to do it by himself, though it will cost two Lv. 4 spell charges to do so."
+          "루크는 높은 마법 능력과 요정의 문장 덕분에 초반부터 유용한 마법형 캐릭터입니다. 요정의 문장으로 후열에서도 공격할 수 있고, 세 문장 슬롯을 모두 사용할 수 있어 푸른 문의 문장을 활용하기 좋은 캐릭터입니다. 마법 능력과 주문 횟수가 높아 조합 마법 운용에도 강합니다."
         ],
         "weapon": {
           "type": "Rod",
@@ -5825,12 +5819,12 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "*Head -",
-            "*R. Hand - Wind Rune",
-            "*L. Hand - Pixie Rune"
+            "*머리 - 없음",
+            "*오른손 - 바람의 문장",
+            "*왼손 - 요정의 문장"
           ],
           "recommended": [
-            "Upgrade the Wind Rune to a Cyclone Rune, and a Blue Gate Rune on his forehead for a good attack/support mage. The Pixie Rune is useful in the beginning when he has limited magic charges, but later on it's better to drop it for another magic rune like a Flowing Rune or even a magic enhancing Rune like a Wizard Rune or Alertness Rune. The Darkness Rune is great on him, as he can do the highest possible damage from it compared to everyone else. He has very high affinities for every Rune."
+            "바람의 문장을 선풍의 문장으로 강화하면 공격·보조 마법을 안정적으로 맡길 수 있습니다. 푸른 문의 문장도 잘 어울리며, 후반에는 류수의 문장이나 마법 보조 문장으로 바꾸는 선택도 좋습니다. 어둠의 문장 역시 높은 마법 능력을 살리기 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -5868,17 +5862,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Luc can participate in Pretty Boy Attack, mistranslated as the Cutie Boy Attack, with Futch and Sasuke."
+          "프치, 사스케와 함께 미남 공격을 사용할 수 있습니다."
         ]
       }
     },
     "tai-ho": {
       "role": {
         "recruitment": [
-          "Tai Ho appears in Suikoden II as one of the 108 Stars of Destiny. He can be recruited in Kuskus as one of the boatmen needed to get to Two River, however you need to win 5000 potch from him in Chinchirorin. Saving before taking him on is recommended."
+          "타이 호는 투 리버로 가기 위해 필요한 뱃사공 중 한 명입니다. 쿠스쿠스에서 주사위 도박으로 5,000 포치를 따면 합류합니다."
         ],
         "overall": [
-          "Tai Ho is an average combat character."
+          "타이 호는 평균적인 전투 캐릭터입니다."
         ],
         "weapon": {
           "type": "Spear",
@@ -5888,7 +5882,7 @@ export const CHARACTER_DETAIL_RECORDS = {
         "rune": {
           "attached": [],
           "recommended": [
-            "Tai Ho can use the Unicorn Rune for his spear, which makes him useful against enemy columns."
+            "창 계열 무기에 유니콘의 문장을 활용할 수 있어 적 열을 상대할 때 도움이 됩니다."
           ]
         },
         "maxLevelStatus": {},
@@ -5911,17 +5905,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Tai Ho has no Unite Attacks."
+          "-"
         ]
       }
     },
     "yam-koo": {
       "role": {
         "recruitment": [
-          "Yam Koo joins when you recruit Tai Ho."
+          "타이호를 영입하면 야무크도 함께 합류합니다."
         ],
         "overall": [
-          "He is no longer a battle character like he was in the first game and he allows you to play the Fishing Minigame, which allows you to make some money off of the fish you catch, as well as supply ingredients for the Cook-off Minigame. You pay Yam Koo 100 potch for bait, then may choose to sell your catch to him, often for a profit."
+          "1편과 달리 전투 캐릭터로는 참여하지 않고, 본거지에서 낚시를 담당합니다. 미끼값 100 포치를 내고 낚시를 진행하며, 잡은 물고기는 판매해 포치를 벌거나 하이요 식당의 식재료 수급에 활용할 수 있습니다."
         ],
         "weapon": {
           "type": "",
@@ -5943,11 +5937,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "ridley-wizen": {
       "role": {
         "recruitment": [
-          "Ridley is recruited automatically after the events in Two River."
+          "투 리버 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Ridley is an Infantry Unit with 10 ATK and 7 DEF.",
-          "Like Georg, Shu and Jowy, Ridley has a Critical skill at his disposal to dispatch his enemies. However, this ability is nullified when either Seed, Culgan or other Highland soldiers attack."
+          "전쟁 전투에서는 공격 10, 방어 7의 보병 부대로 활약합니다.",
+          "리드리는 강력한 일격 계열 지휘 능력을 사용할 수 있지만, 시드와 컬건을 비롯한 하이랜드군과 맞설 때는 이 효과가 제한됩니다."
         ],
         "weapon": {
           "type": "",
@@ -5969,10 +5963,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "boris-wizen": {
       "role": {
         "recruitment": [
-          "Boris shows up in Dunan in his father's stead if Ridley is killed in the Dunan Unification War. This occurs if you choose to run away with Nanami when she asks you in Tinto."
+          "틴토에서 나나미와 함께 도망치는 선택을 해 리드리가 듀난 통일전쟁 중 전사하면, 보리스가 리드리 대신 듀난 성에 합류합니다."
         ],
         "overall": [
-          "Boris is a leader unit with 9 ATK and 8 DEF."
+          "전쟁 전투에서는 공격 9, 방어 8의 지휘관 부대로 편성됩니다."
         ],
         "weapon": {
           "type": "",
@@ -5994,8 +5988,8 @@ export const CHARACTER_DETAIL_RECORDS = {
     "fitcher": {
       "role": {
         "recruitment": [
-          "Fitcher is recruited automatically after the events in Two River.",
-          "Fitcher plays an important role in the story. Other than that, he serves no function."
+          "투 리버 사건 이후 자동으로 합류합니다.",
+          "이야기 진행에서 외교와 중개 역할을 맡지만, 별도의 전투·시설 기능은 없습니다."
         ],
         "overall": [],
         "weapon": {
@@ -6018,24 +6012,24 @@ export const CHARACTER_DETAIL_RECORDS = {
     "chaco": {
       "role": {
         "recruitment": [
-          "Chaco joins automatically after the events in Two River."
+          "투 리버 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Chaco as a spear user, can attack from the back row. As far as attributes go, he has rather low health, but has good luck and high speed stats and oddly enough, solid magic defence to make up for his low HP. He gains access to 3 rune slots as he levels, opening up some real powerful options and setups for the late game."
+          "창을 쓰는 중거리 전투원이라 후열에서도 공격할 수 있습니다. HP는 낮은 편이지만 행운과 속도가 높고 마법 방어도 괜찮아 약점을 어느 정도 보완합니다. 레벨이 오르면 문장 슬롯을 최대 3개까지 활용할 수 있어 후반에는 강한 세팅을 만들 수 있습니다."
         ],
         "weapon": {
-          "type": "Spear",
+          "type": "창",
           "range": "M",
           "startingLevel": "8"
         },
         "rune": {
           "attached": [
-            "*Head - None (Acquired at level 55)",
-            "*R. Hand - None (Acquired at level 45)",
-            "*L. Hand - None (Available upon recruitment)"
+            "*머리 - 없음 (55레벨에 개방)",
+            "*오른손 - 없음 (45레벨에 개방)",
+            "*왼손 - 없음 (합류 시 사용 가능)"
           ],
           "recommended": [
-            "Chaco gains access to all 3 rune slots available as he levels up. Therefore this grants Chaco access to a great amount of customization and huge damage potential. Chaco has a low magic stat but he can work as a mage. Chaco would work best with a combination of Resurrection Rune, Wind Rune, Lightning Rune and Wind Rune. Chaco's 3 runes slots gives him access to the Double-Strike Rune, Double-Beat Rune and Fury Rune combo which along with his high strength stat allows him to output high amounts of damage."
+            "레벨이 오르면 문장 슬롯 3개를 모두 사용할 수 있어 세팅 폭이 넓습니다. 마력은 낮지만 회생의 문장, 바람의 문장, 번개의 문장 같은 보조·공격 문장도 활용할 수 있고, 2회공격의 문장, 2회공격의 봉인구 계열, 분노의 문장을 조합하면 높은 힘을 바탕으로 큰 물리 피해를 낼 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -6073,27 +6067,27 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Chaco can participate in the Winger Attacks."
+          "윙 호드 공격에 참여할 수 있습니다."
         ]
       }
     },
     "hix": {
       "role": {
         "recruitment": [
-          "Speak to Hix and Tengaar in the inn in Lakewest after the events in Two River. Follow them to the Kobold Village and help them complete the Test of the Unicorn."
+          "투 리버 사건 이후 레이크웨스트 여관에서 힉스와 텐가알에게 말을 걸고, 코볼트 마을로 따라가 유니콘의 시험을 도우면 합류합니다."
         ],
         "overall": [
-          "Statistically, Hix is the same as the first game, with below-average stats and attributes. However, his permanently attached Exertion Rune (one of the strongest embedded runes) to his weapon makes him far more usable in this game compared to the first. This gives him a heavy boost in his attack power and makes him deadly in prolonged battles like boss encounters but will require Strength increasing gear for that to be most effective."
+          "기본 능력치는 1편과 비슷하게 평균보다 낮은 편입니다. 다만 무기에 고정된 분발의 문장 덕분에 장기전에서 공격력이 크게 올라가며, 보스전처럼 전투가 길어지는 상황에서 더 쓸 만합니다. 힘을 보강하는 장비를 함께 쓰면 효과가 잘 살아납니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "5"
         },
         "rune": {
           "attached": [],
           "recommended": [
-            "To take full advantage of the Exertion Rune, a powerful physical rune like the Double Beat Rune or the Violence Rune is recommended."
+            "분발의 문장을 살리려면 2회공격의 문장이나 폭력의 문장처럼 물리 공격을 보강하는 문장이 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -6131,30 +6125,30 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Hix can participate in the Warrior Attack, with Tengaar."
+          "텐가알과 함께 전사 공격에 참여할 수 있습니다."
         ]
       }
     },
     "tengaar": {
       "role": {
         "recruitment": [
-          "Joins with Hix after completing the Test of the Unicorn sidequest in Kobold Village."
+          "코볼트 마을에서 유니콘의 시험을 마치면 힉스와 함께 합류합니다."
         ],
         "overall": [
-          "Tengaar can be a very valuable asset to your team, especially against Luca Blight. With 2 available rune slots, she can be an amazing support mage. With a Mother Earth Rune and a Flowing Rune, she can spam heals, buffs, and dish out some damage with Earthquake.",
-          "Unlike most Mages, her weapon is L-ranged, which makes her being a backrow magician just a bit better."
+          "텐가알은 루카 블라이트전 같은 장기전에서 특히 유용한 지원형 마법사입니다. 문장 슬롯 2개를 활용해 대지의 문장과 류수의 문장을 조합하면 회복, 보조, 지진 계열 공격을 함께 맡을 수 있습니다.",
+          "무기가 장거리라 후열에서 안정적으로 운용하기 좋습니다."
         ],
         "weapon": {
-          "type": "Throwing Knife",
+          "type": "투척 단검",
           "range": "L",
           "startingLevel": "8"
         },
         "rune": {
           "attached": [
-            "Earth Rune"
+            "흙의 문장"
           ],
           "recommended": [
-            "Mother Earth Rune, Flowing Rune"
+            "대지의 문장, 류수의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -6192,31 +6186,31 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Tengaar can participate in both the Warrior Attack and the Pretty Girl Attack."
+          "전사 공격과 미소녀 공격에 참여할 수 있습니다."
         ]
       }
     },
     "yoshino-yamamoto": {
       "role": {
         "recruitment": [
-          "After you obtain your headquarters, speak to her in Radat with Freed in your party."
+          "본거지를 얻은 뒤 프리드 야마모토를 파티에 넣고 라다트에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Yoshino is one of the few characters that is pretty much all rounded. With no real weaknesses or strenghts when it comes to stats, she is a suitable choice for both a fighter and a magician. As a fighter, she can be in both lines of the party to attack, and as a magician, she truly excels with the Water Rune. Her amount of hitpoints is very typical for a medium ranged fighter, but this can make Yoshino a rare breed in the Suikoden world; a magician standing on the first row. Yoshino comes equipped with a Water Amulet that can't be unequipped."
+          "요시노는 뚜렷한 약점이나 특출난 한쪽 장점 없이 균형 잡힌 능력치를 가진 인물입니다. 중거리 무기 덕분에 전열과 후열 양쪽에서 공격할 수 있고, 마법 운용에서는 물 계열 문장과 궁합이 좋습니다. 물의 부적을 기본 장비하고 있으며 해제할 수 없습니다."
         ],
         "weapon": {
-          "type": "Naginata",
+          "type": "나기나타",
           "range": "M",
           "startingLevel": "6"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Yoshino has high skills with all runes, but excels with a Water Rune or Flowing Rune."
+            "여러 문장을 무난히 다루지만, 물의 문장이나 류수의 문장을 장착했을 때 특히 안정적으로 활약합니다."
           ]
         },
         "maxLevelStatus": {},
@@ -6239,31 +6233,30 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Yoshino can participate in the Husband and Wife Attack."
+          "부부 공격에 참여할 수 있습니다."
         ]
       }
     },
     "stallion": {
       "role": {
         "recruitment": [
-          "Run Away (or Let Go) from battles over 50 times, then speak to Stallion in Radat town to race him after progressing the storyline in Two River. If you've run away enough, you win and he joins.",
-          "Entourage Ability =",
-          "Stallion grants doubled walking speed while on the field."
+          "전투에서 50회 이상 도망친 뒤, 투 리버 사건을 진행하고 라다트에서 스탈리온에게 말을 걸어 달리기 승부를 하면 합류합니다.",
+          "동행 효과: 필드 이동 속도가 빨라집니다."
         ],
         "overall": [
-          "Stallion remains a speedy archer, usually able to attack first."
+          "스탈리온은 속도가 높은 궁수라 전투에서 먼저 행동하기 쉽습니다."
         ],
         "weapon": {
-          "type": "Bow",
+          "type": "활",
           "range": "L",
           "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "True Holy Rune"
+            "진정한 신행법의 문장"
           ],
           "recommended": [
-            "Great Hawk Rune"
+            "대매의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -6286,32 +6279,32 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Stallion can participate in the Bow Attack."
+          "궁 공격에 참여할 수 있습니다."
         ]
       }
     },
     "clive": {
       "role": {
         "recruitment": [
-          "Talk to Clive in South Window once passage to Lakewest has been secured and he will join."
+          "레이크웨스트로 가는 동선이 열린 뒤 사우스 윈도우에서 클라이브에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Clive is still a great rear line fighter, and he's still capable of being a good support unit. His speed stat and attack power are both excellent."
+          "클라이브는 후열 공격수로 뛰어나며 보조 역할도 맡을 수 있습니다. 속도와 공격력이 모두 좋아 안정적인 장거리 화력을 제공합니다."
         ],
         "weapon": {
-          "type": "Gun",
+          "type": "총",
           "range": "L",
           "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "*Head - N/A",
-            "*Right Hand - None",
-            "*Left Hand - N/A",
-            "*Weapon - No rune attached."
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음",
+            "*무기 - 장착 문장 없음"
           ],
           "recommended": [
-            "Clive is well suited to a Kite Rune. You can also still use a Spark Rune or Medicine Rune for support. Clive works best with a Double-Beat Rune, a Killer Rune due to his high TEC stat and an embedded Exertion Rune."
+            "솔개의 문장과 잘 맞으며, 지원용으로는 스파크의 문장이나 약의 문장도 활용할 수 있습니다. 기술 수치가 높으므로 2회공격의 문장, 필살의 문장, 무기 고정형 분발의 문장과도 궁합이 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -6349,19 +6342,19 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Clive has no unite attacks."
+          "-"
         ]
       }
     },
     "teresa-wisemail": {
       "role": {
         "recruitment": [
-          "Teresa is recruited automatically after the events in Greenhill."
+          "그린힐 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Teresa is an Archery Unit with 5 ATK and 6 DEF.",
-          "Teresa is a second bow cavalry sprite after Flik and she is able to bombard the enemy frontlines. She can also be considered as an equivalent to Culgan in bombarding the enemy. When being put in other characters in both offense and defense, she can overpower bow sprites or soldiers and being evenly matched with Culgan when bombarding each other with bow and arrows.",
-          "Her skill in the war tactics is Bombard which she can bombard the enemy in a single attack to damage their opponent. However her skill will be ineffective when attacking, Seed, Culgan, Yuber, Lucia and Jowy."
+          "전쟁 전투에서는 공격 5, 방어 6의 궁병 부대로 편성됩니다.",
+          "활 부대 지휘관으로 적 전열을 견제하는 역할을 맡습니다. 플릭 이후 합류하는 원거리 전력이며, 컬건과 맞서는 장면에서도 원거리 견제 성격이 두드러집니다.",
+          "전쟁 전투 기술은 포격 계열입니다. 다만 시드, 컬건, 유버, 루시아, 죠우이 같은 주요 지휘관을 상대로는 효과가 제한됩니다."
         ],
         "weapon": {
           "type": "",
@@ -6383,24 +6376,24 @@ export const CHARACTER_DETAIL_RECORDS = {
     "nina": {
       "role": {
         "recruitment": [
-          "Nina joins automatically after the events in Greenhill."
+          "그린힐 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Suprisingly, she is one of the best characters in the entire game. A high magic and magic defense stat, coupled with above average HP, defense and strength + her strong weapon, she can dish out good magical and physical damage. She also has a great unite attack with Flik, adding even more usefulness."
+          "마력과 마법 방어가 높고 HP, 방어, 힘도 평균 이상이라 마법과 물리 양쪽에서 활약할 수 있습니다. 플릭과의 협력 공격도 있어 실전 활용도가 높습니다."
         ],
         "weapon": {
-          "type": "Book",
+          "type": "책",
           "range": "M",
           "startingLevel": "6"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Fire Rune, Earth Rune, Balance Rune and Fury Rune"
+            "불의 문장, 흙의 문장, 밸런스의 문장, 분노의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -6423,29 +6416,29 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Nina can participate in the Groupie Attack."
+          "추종자 공격에 참여할 수 있습니다."
         ]
       }
     },
     "humphrey-mintz": {
       "role": {
         "recruitment": [
-          "Speak to Humphrey in the Inn at the Highway Village a few times. Complete the quest with him and Futch."
+          "가도 마을 여관에서 험프리에게 여러 번 말을 걸고, 후치와 함께 이어지는 의뢰를 완료하면 합류합니다."
         ],
         "overall": [
-          "Just like his appearance in the first game, Humphrey boasts superior defense and good strength. With his ability to equip heavy armor and the possibility of carrying the Winspun Armor from the save transfer, Humphrey is one of the best front line tank in the game. unfortunately, he still suffers from low speed and technique making him almost always attack last and very rarely hitting more than once, and he is very vulnerable to magic."
+          "1편과 마찬가지로 높은 방어력과 힘을 가진 전열 탱커입니다. 중장비를 착용할 수 있고 세이브 데이터 계승으로 바람잣는 갑옷을 가져올 수 있어 전열 안정성이 뛰어납니다. 대신 속도와 기술이 낮아 행동이 늦고 연속 공격이 잘 나오지 않으며, 마법에는 취약합니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "9"
         },
         "rune": {
           "attached": [
-            "None"
+            "없음"
           ],
           "recommended": [
-            "The Warrior Rune is great for him since his defense can be very high."
+            "방어력이 높아 전사의 문장과 궁합이 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -6483,17 +6476,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "None"
+          "-"
         ]
       }
     },
     "kiba-windamier": {
       "role": {
         "recruitment": [
-          "Kiba is recruited automatically after defeating his company in battle, regardless if you choose to have him beheaded."
+          "전쟁 전투에서 키바의 부대를 격파한 뒤, 처형 선택 여부와 관계없이 자동으로 합류합니다."
         ],
         "overall": [
-          "Before he sides with Riou's group, he is sided with his son Klaus and his stats are- Attack 7 and Defense 16. When he is sided with Riou's group his stats are bigger than the other characters even to put each of characters in both attack and defense stat. His ability in the war tactics was Heavy Armor that makes his opponent to damage him up to three hits instead of two. He is the second character to have a cavalry in Riou's group after Flik."
+          "합류 전에는 클라우스와 함께 하이랜드군 지휘관으로 등장하며, 전쟁 전투에서 방어가 높은 부대로 표현됩니다. 합류 후에는 플릭에 이어 기병 전력을 제공하며, 중장갑 특성으로 전쟁 전투에서 높은 내구력을 발휘합니다."
         ],
         "weapon": {
           "type": "",
@@ -6515,28 +6508,25 @@ export const CHARACTER_DETAIL_RECORDS = {
     "valeria": {
       "role": {
         "recruitment": [
-          "Valeria is one of two choices offered by Lepant, along with Kasumi, as a recruitment option in Gregminster when forging an alliance with Toran.",
-          "Choosing her will grant you the following:",
-          "#Innate Cavalry ability for map battles",
-          "#Better defense for greater staying power",
-          "#Can equip Shields (Mangosh for Counter ability or a good shield with higher defense, such as a Silver Shield)"
+          "트란공화국과 동맹을 맺을 때 그레그민스터에서 카스미와 함께 제시되는 선택지 중 한 명입니다.",
+          "발레리아를 선택하면 전쟁 전투에서 기병 전력을 확보할 수 있고, 높은 방어력과 방패 장비를 바탕으로 안정적인 전열 운용이 가능합니다."
         ],
         "overall": [
-          "Valeria is a skilled front line fighter. Valeria is famous for being one of a few characters that are able to break the damage limit put into the game by the designers."
+          "발레리아는 숙련된 전열 전투원입니다. 매의 문장을 활용한 강한 단일 공격이 특징이며, 특정 세팅에서는 매우 높은 피해를 낼 수 있습니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "6"
         },
         "rune": {
           "attached": [
-            "*Head - No Slot",
-            "*R. Hand - Falcon Rune (permanently attached.)",
-            "*L. Hand - None"
+            "*머리 - 슬롯 없음",
+            "*오른손 - 매의 문장 (고정 장착)",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Valeria can equip the Viper Rune with her weapon type. A Double Strike Rune is also great on her."
+            "무기 유형상 독사의 문장을 활용할 수 있고, 2회공격의 문장도 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -6574,29 +6564,29 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Rival Attack with Anita, which deals 3x damage to one enemy, unbalancing Valeria."
+          "아니타와 라이벌 공격을 사용할 수 있습니다. 적 하나에게 3배 피해를 주고, 사용 후 발레리아가 언밸런스 상태가 됩니다."
         ]
       }
     },
     "tomo": {
       "role": {
         "recruitment": [
-          "Take Tsai back to his house in Ryube Forest after recruiting either Valeria or Kasumi. After a scene, Tomo will join you."
+          "발레리아 또는 카스미를 영입한 뒤 챠이를 류베 숲의 집으로 데려가면, 이벤트 후 토모가 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Spear",
+          "type": "창",
           "range": "M",
           "startingLevel": "9"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Unicorn Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 유니콘의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Unicorn Rune and Earth Rune"
+            "유니콘의 문장, 흙의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -6619,29 +6609,29 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Tomo can participate in the Dad and Daughter Attack."
+          "부녀 공격에 참여할 수 있습니다."
         ]
       }
     },
     "feather": {
       "role": {
         "recruitment": [
-          "Defeat the griffins enemies in Forest Village when your castle is at level 3. If the player wins this battle, use one of Badeaux's Listening Crystals. If the player loses this battle, Feather can't be recruited, but Ayda can still be recruited (this proves that Feather is no longer mandatory in the 108 Stars of Destiny and can choose 2 of 3 available beasts between Feather, Abizboah, and Sigfried)."
+          "성 레벨 3 이후 숲의 마을에서 그리폰 계열 적을 쓰러뜨리고 바도의 듣기 수정을 사용하면 합류합니다. 이 전투에서 패배하면 페더는 영입할 수 없지만, 아이다는 계속 영입할 수 있습니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "N/A",
-          "range": "N/A",
-          "startingLevel": "N/A"
+          "type": "-",
+          "range": "-",
+          "startingLevel": "-"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Shining Wind Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 빛나는 바람의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Double Strike Rune, Fury Rune or Balance Rune"
+            "2회공격의 문장, 분노의 문장, 밸런스의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -6667,34 +6657,30 @@ export const CHARACTER_DETAIL_RECORDS = {
           "recommended": {}
         },
         "uniteAttacks": [
-          "Feather can participate in the Beastmaster Attack and Double Monster Attack."
+          "비스트마스터 공격과 더블 몬스터 공격에 참여할 수 있습니다."
         ]
       }
     },
     "sigfried": {
       "role": {
         "recruitment": [
-          "Go through the Kobold Forest with a pure maiden in the party. One of Badeaux's Listening Crystals has to be used, and Hix and Tengaar must be recruited. Most young females are considered pure maidens.",
-          "Here a list of characters that can be brought to recruit Siegfried:",
-          "* Ayda",
-          "* Eilie",
-          "* Karen",
-          "* Kasumi"
+          "힉스와 텐가알을 영입한 뒤, 순결한 소녀로 판정되는 여성 동료를 파티에 넣고 코볼트 숲을 지나가면 지크프리드를 만날 수 있습니다. 이때 바도의 듣기 수정을 사용해야 합니다.",
+          "지크프리드 영입에 데려갈 수 있는 대표 인물은 아이다, 아이리, 카렌, 카스미입니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "N/A",
-          "range": "N/A",
-          "startingLevel": "N/A"
+          "type": "-",
+          "range": "-",
+          "startingLevel": "-"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Blessed White Lady Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 축복받은 백색 숙녀의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Lightning Rune, and Resurrection Rune"
+            "번개의 문장, 회생의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -6720,30 +6706,30 @@ export const CHARACTER_DETAIL_RECORDS = {
           "recommended": {}
         },
         "uniteAttacks": [
-          "Sigfried can participate in the Beastmaster Attack and Double Monster Attack."
+          "비스트마스터 공격과 더블 몬스터 공격에 참여할 수 있습니다."
         ]
       }
     },
     "sierra-mikain": {
       "role": {
         "recruitment": [
-          "Sierra joins automatically after defeating Neclord."
+          "네크로드를 격파하면 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Claws",
+          "type": "손톱",
           "range": "S",
           "startingLevel": "10"
         },
         "rune": {
           "attached": [
-            "*Head - Darkness Rune",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 어둠의 문장",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Darkness Rune and Lightning Rune",
-            "Or Double Strike Rune and Fury Rune for the Servant Attack"
+            "어둠의 문장, 번개의 문장",
+            "하인 공격을 중시한다면 2회공격의 문장과 분노의 문장도 선택지입니다."
           ]
         },
         "maxLevelStatus": {},
@@ -6766,29 +6752,29 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sierra can participate in the Servant Attack."
+          "하인 공격에 참여할 수 있습니다."
         ]
       }
     },
     "hauser": {
       "role": {
         "recruitment": [
-          "Hauser joins automatically after defeating Neclord in Tinto."
+          "틴토에서 네크로드를 격파하면 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "11"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "**Double Beat Rune"
+            "2회공격의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -6811,23 +6797,20 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "None."
+          "-"
         ]
       }
     },
     "jess": {
       "role": {
         "recruitment": [
-          "After defeating Neclord, accept his apology.",
-          "Note: Do not reject his apology, or you will not be able to recruit him again."
+          "네크로드를 격파한 뒤 제스의 사과를 받아들이면 합류합니다.",
+          "사과를 거절하면 다시 영입할 수 없습니다."
         ],
         "overall": [
-          "Jess is a military support character. ATK+2 DEF+0.",
-          "Jess is a military support character and like both Klaus and Boris, he has an evade skill which he tries to defend from strong enemies with high offense.",
-          "When using his evade skill he says:",
-          "Original:",
-          "Remastered:",
-          "\"I see their plan, and we'll avert their offense!\""
+          "전쟁 전투에서는 공격 +2, 방어 +0의 군사 지원 인물입니다.",
+          "클라우스나 보리스처럼 회피 계열 전술을 사용해 강한 적의 공세를 흘려보내는 역할을 맡습니다.",
+          "회피 전술 사용 시 리마스터판에서는 “적의 의도를 읽었다. 공세를 피한다!”라는 취지의 대사를 말합니다."
         ],
         "weapon": {
           "type": "",
@@ -6849,22 +6832,22 @@ export const CHARACTER_DETAIL_RECORDS = {
     "georg-prime": {
       "role": {
         "recruitment": [
-          "After defeating Neclord in Tinto, return to the Tinto Pass and take the lower path. You'll find a clearing with an unused campfire and Georg Prime staring off in the distance. Speak with him and either choose \"Yeah\" or \"I can't pay you with money\" and Georg Prime will join your team."
+          "틴토에서 네크로드를 격파한 뒤 틴토 산길로 돌아가 아래쪽 길을 따라가면 빈 모닥불이 있는 공터에서 게오르그 프라임을 만날 수 있습니다. 대화에서 “그래” 또는 “돈으로는 못 갚아”에 해당하는 선택지를 고르면 합류합니다."
         ],
         "overall": [
-          "Georg Prime is a powerhouse of a fighter. He has high attack power and is incredibly fast. He will usually join the group around level 60 and his Killer Rune also helps him do higher damage."
+          "게오르그 프라임은 공격력과 속도가 매우 높은 강력한 전투원입니다. 보통 60레벨 전후로 합류하며, 필살의 문장 덕분에 높은 피해를 안정적으로 노릴 수 있습니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "12"
         },
         "rune": {
           "attached": [
-            "Georg Prime comes equipped with a Killer Rune attached to his right hand."
+            "오른손에 필살의 문장을 장착한 상태로 합류합니다."
           ],
           "recommended": [
-            "Attach a Rage Rune or Thunder Rune onto his weapon to increase his damage significantly."
+            "무기에 열화의 문장이나 번개의 문장을 부여하면 피해량을 크게 끌어올릴 수 있습니다."
           ]
         },
         "maxLevelStatus": {},
@@ -6887,28 +6870,28 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Georg Prime has no known Unite Attacks."
+          "-"
         ]
       }
     },
     "killey": {
       "role": {
         "recruitment": [
-          "Before defeating Luca Blight, you can find him outside the trade shop in South Window. Tell him about Alex and then return to headquarters. You find him in the item shop at your castle arguing with Alex. After those events find him again in South Window and ask him to join. You can find him even earlier in South Window after the scene with Jowy Atreides and Sasarai, but you must have your castle at level 3.",
-          "*Killey can be brought to Gregminster to help recruit Lorelai. A scene plays out between them reminiscing Lorelai's \"tip\" that landed him in prison on the Queendom of Falena."
+          "루카 블라이트 격파 전 사우스 윈도우 교역소 밖에서 키리를 만나 알렉스 이야기를 전한 뒤 본거지로 돌아가면, 도구점에서 알렉스와 말다툼하는 장면을 볼 수 있습니다. 이후 다시 사우스 윈도우에서 키리에게 합류를 요청하면 동료가 됩니다.",
+          "죠우이 아트레이드와 사사라이 이벤트 이후에도 성 레벨 3 이상이면 더 이른 시점에 만날 수 있습니다. 키리를 데리고 그레그민스터에 가면 로렐라이 영입 관련 대화를 볼 수 있습니다."
         ],
         "overall": [
-          "Early on, Killey is one of such characters who is the jack of all trades, master of none. His stat growth is pretty balanced, but nothing outstanding, with slightly lesser stats in attack than his defenses. His Hit Points are quite mediocre however, making staying at the back row a better choice. Despite his average attributes, Killey is one of the very few characters that can equip all 3 rune slots, which is where Killey really comes into his own. Therefore, he can be geared as a spellcaster or even better, a pure physical attacker, giving Killey extreme potential for damage and versatility in the late game. The best choice for Killey would be to equip a Fury Rune, a Double-Beat Rune and a Double-Strike Rune and see the amount of damage he can dish on the enemies."
+          "키리는 초반 기준으로 능력치가 고르게 분포한 만능형 인물입니다. HP가 아주 높지는 않아 후열 운용이 안정적이고, 세 개의 문장 슬롯을 모두 활용할 수 있어 후반에는 물리 화력 세팅이나 마법 보조 세팅 모두 가능합니다. 분노의 문장, 2회공격의 문장, 2회공격 계열 보조 문장을 조합하면 높은 폭발력을 낼 수 있습니다."
         ],
         "weapon": {
-          "type": "Dual Swords",
+          "type": "쌍검",
           "range": "M",
           "startingLevel": "9"
         },
         "rune": {
           "attached": [],
           "recommended": [
-            "Given Killey is one of the very few characters in the game who has access to all three available rune slots, he has the potential to be one of the most potent and hardest hitting fighters in the game when equipped with the Double-Beat Rune, Double-Strike Rune, and Fury Rune. As a result, he can potentially deal even significantly more damage than the likes of Viktor and Riou. With a full physical rune setup, a weapon embedded rune that grants physical damage bonus like the Friendship Rune and the Exertion Rune is also greatly recommended."
+            "문장 슬롯 3개를 모두 활용할 수 있어 2회공격의 문장, 2회공격 계열 보조 문장, 분노의 문장 조합이 강력합니다. 물리 세팅을 극대화하려면 무기에 우정의 문장이나 분발의 문장처럼 물리 피해를 올리는 문장을 붙이는 것도 좋습니다."
           ]
         },
         "maxLevelStatus": {},
@@ -6931,29 +6914,29 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Killey has no known unite attacks."
+          "-"
         ]
       }
     },
     "pesmerga": {
       "role": {
         "recruitment": [
-          "Talk to him in Cave of the Wind after defeating the Bone Dragon. The player must have recruited over 100 Stars of Destiny."
+          "108성 동료를 100명 이상 모은 뒤, 본 드래곤을 격파하고 바람의 동굴 깊은 곳에서 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Once again, Pesmerga returns as a powerful ally with high stats in Strength, HP, and Defense. His one open Rune slot and one open equipment slot means he has extremely limited customization options, but his high stats and good equipment still keeps him as one of the top fighters. He still needs a speedy ally with a Spark Rune to overcome his lackluster speed stat. His permanently embedded Rage Rune gives his weapon a fire elemental property, but also increases his high attack power even more. His magic stat has also been given a modest boost that makes him more flexible, but the player may still want to concentrate on his melee skills over magic."
+          "페슈멜가는 높은 힘, HP, 방어력을 갖춘 강력한 전열 전투원입니다. 문장과 장비 선택 폭은 좁지만 기본 능력과 장비가 좋아 상위권 물리 공격수로 운용할 수 있습니다. 속도가 낮으므로 스파크의 문장을 지닌 동료와 함께 쓰면 단점이 줄어듭니다. 무기에 고정된 열화의 문장은 화염 속성을 부여하고 공격력을 더 끌어올립니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "14"
         },
         "rune": {
           "attached": [
-            "Pesmerga comes with a Counter Rune attached and a Rage Rune permanently embedded into his weapon."
+            "반격의 문장을 장착하고 있으며, 무기에는 열화의 문장이 고정되어 있습니다."
           ],
           "recommended": [
-            "Fury Rune, Killer Rune, Double Beat Rune, Double Strike Rune, or Titan Rune"
+            "분노의 문장, 필살의 문장, 2회공격의 문장, 2회공격 계열 보조 문장, 타이탄의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -6991,26 +6974,26 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Pesmerga has no Unite Attacks."
+          "-"
         ]
       }
     },
     "abizboah": {
       "role": {
         "recruitment": [
-          "Obtain the Listening Crystals fron Badeaux. Go to Tinto Mines and speak to him at the lake."
+          "바도에게 듣기 수정을 받은 뒤 틴토 광산의 호수로 가서 어비스보어에게 사용하면 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "N/A",
-          "range": "N/A",
-          "startingLevel": "N/A"
+          "type": "-",
+          "range": "-",
+          "startingLevel": "-"
         },
         "rune": {
           "attached": [
-            "*Head - Blue Drop Rune (Permanently attached)",
-            "*R. Hand - N/A",
-            "*L. Hand - N/A"
+            "*머리 - 푸른 물방울의 문장 (고정 장착)",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": []
         },
@@ -7037,33 +7020,33 @@ export const CHARACTER_DETAIL_RECORDS = {
           "recommended": {}
         },
         "uniteAttacks": [
-          "Head Up!! and Double Kraken Attack"
+          "머리 들기!!, 더블 크라켄 공격"
         ]
       }
     },
     "mukumuku": {
       "role": {
         "recruitment": [
-          "There are two ways to recruit Mukumuku:",
-          "#Examine the large tree behind Genkaku's Dojo in Kyaro three times before meeting Nanami.",
-          "#Wander the path from Greenhill to the Muse/Greenhill Border until he enters your active party. There must be a free spot in the party, and chances are higher if less people are in it. A True Holy Rune and a Champion's Rune can speed up the time it takes to get him in the party. Also, note that battles are not required, but rather standing still for over 30 minutes makes the chances better. This way is not recommended for the impatient, but is required for the remaining squirrel characters."
+          "무쿠무쿠는 두 가지 방식으로 영입할 수 있습니다.",
+          "나나미를 만나기 전 캐로의 겐카쿠 도장 뒤 큰 나무를 세 번 조사하면 합류합니다.",
+          "또는 파티에 빈자리를 둔 상태로 그린힐과 뮤즈-그린힐 국경 사이 길에서 기다리면 파티에 들어올 수 있습니다. 파티 인원이 적을수록 확률이 오르며, 진정한 신행법의 문장과 챔피언의 문장이 있으면 시간을 줄일 수 있습니다."
         ],
         "overall": [
-          "Despite his appearance, Mukumuku has very solid stats, as all monster-type characters. Mukumuku excels at strength, defense and speed, which compensates the fact he cannot equip any type of gear. Also, he is a long-range character, which can keep him safe in the back row, as his HP is lower than most monster characters."
+          "무쿠무쿠는 장비를 착용할 수 없지만 몬스터형 동료답게 힘, 방어, 속도가 탄탄합니다. 장거리 공격이 가능해 후열에서 안전하게 운용할 수 있으며, HP가 낮은 편인 단점도 어느 정도 보완됩니다."
         ],
         "weapon": {
-          "type": "N/A",
-          "range": "N/A",
-          "startingLevel": "N/A"
+          "type": "-",
+          "range": "-",
+          "startingLevel": "-"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Double Beat Rune"
+            "2회공격의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -7090,17 +7073,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           "recommended": {}
         },
         "uniteAttacks": [
-          "Mukumuku can participate in the 5 Squirrel Attack."
+          "무쿠무쿠는 5마리 날다람쥐 공격에 참여할 수 있습니다."
         ]
       }
     },
     "rikimaru": {
       "role": {
         "recruitment": [
-          "Find him collapsed in Ryube and offer to buy him dinner for 3000 potch. If you missed him in Ryube, Rikimaru could be found later in Coronet, again paying for his 3000 potch meal."
+          "류베에서 쓰러져 있는 리키마루를 발견한 뒤 3,000 포치짜리 식사를 사주겠다고 하면 합류합니다. 류베에서 놓쳤다면 이후 코로네에서 다시 만날 수 있으며, 이때도 3,000 포치 식사값을 내야 합니다."
         ],
         "overall": [
-          "Rikimaru is possibly the first character that Riou can recruit as a very early-game physical heavy hitter and tank (If Riou pays for his dinner in Ryube) with his HP skyrocketing as he levels. He wields a two handed sword in battle."
+          "리키마루는 초반에 영입할 수 있는 물리 전열 요원입니다. 레벨이 오를수록 HP가 크게 늘어 탱커 역할을 맡기 좋고, 전투에서는 양손검을 사용합니다."
         ],
         "weapon": {
           "type": "Sword",
@@ -7114,7 +7097,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "*L. Hand - None"
           ],
           "recommended": [
-            "*Rikimaru is a basic heavy attacker, with a lot of Hit Points. His One-Rune slot limitation does limit his potency however. Double Beat Rune (or Fury Rune if unite attack with Amada). And because of this limitation and partly because as a physical attacker, embedding runes to his weapon that benefits it are almost always a must if the player is using him."
+            "리키마루는 HP가 높은 중전열 공격수입니다. 문장 슬롯이 하나뿐이라 확장성은 낮지만, 2회공격의 문장이나 아마다와 함께 쓸 경우 분노의 문장을 고려할 수 있습니다. 물리 공격수로 운용한다면 무기에 화력을 보조하는 문장을 붙이는 편이 좋습니다."
           ]
         },
         "maxLevelStatus": {},
@@ -7137,14 +7120,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Rikimaru can participate in the Manly Attack. With a Cup of Promise equipped to either him or Amada, the unite attack has a chance to inflict Knockdown on targets."
+          "리키마루는 사나이 공격에 참여할 수 있습니다. 리키마루나 아마다 중 한 명이 약속의 잔을 장비하면 협력 공격에 넘어뜨리기 효과가 붙을 수 있습니다."
         ]
       }
     },
     "millie": {
       "role": {
         "recruitment": [
-          "Speak to her in Ryube and help her retrieve Bonaparte. Go to the right in the forest, chase Bonaparte and fight him. Once defeated, she will join."
+          "류베에서 밀리에게 말을 걸고 보나파르트를 되찾는 일을 도와주면 됩니다. 숲 오른쪽으로 이동해 보나파르트를 쫓아가 전투에서 이기면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -7154,13 +7137,13 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Millie has a personal rune, the Groundhog Rune. She can only use it once she is recruited and it only works once per battle.",
+            "밀리는 고유 문장인 땅다람쥐의 문장을 지니고 있습니다. 영입 후 사용할 수 있으며 전투당 한 번만 발동합니다.",
             "*Head - None",
             "*R. Hand - Groundhog Rune",
             "*L. Hand - None"
           ],
           "recommended": [
-            "Millie excels with the Fire Rune and Lightning Rune, but she's good with all elementals, except the Water Rune. As for alignment runes, Millie is good with the Darkness Rune, but poor with Resurrection Rune."
+            "밀리는 불의 문장과 번개의 문장 적성이 좋고, 물의 문장을 제외한 원소 문장 전반을 무난하게 다룹니다. 계열 문장에서는 어둠 계열과 궁합이 좋지만, 부활 계열은 효율이 낮습니다."
           ]
         },
         "maxLevelStatus": {
@@ -7195,30 +7178,30 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Millie can participate in the Pretty Girl Attack with Meg and Tengaar."
+          "메그, 텐가알과 함께 미소녀 공격에 참여할 수 있습니다."
         ]
       }
     },
     "kinnison": {
       "role": {
         "recruitment": [
-          "Find the bird's nest in Ryube Forest and place it back in the tree. Leave the forest and return to the same spot after several minutes. Choose the first option, and he and Shiro will join.",
-          "Note: Do not choose the second option, \"I can't say...\", when given the two options. If you do, they will leave and you will not be able to recruit them again."
+          "류베 숲에서 새 둥지를 찾아 나무에 돌려놓고, 숲을 나갔다가 잠시 뒤 같은 장소로 돌아가면 키니슨과 시로를 만날 수 있습니다. 첫 번째 선택지를 고르면 둘이 함께 합류합니다.",
+          "두 번째 선택지를 고르면 떠나 버려 다시 영입할 수 없습니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Bow",
+          "type": "활",
           "range": "L",
           "startingLevel": "2"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Double Beat Rune, Great Hawk Rune, and Hazy Rune."
+            "2회공격의 문장, 대매의 문장, 흐릿함의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -7241,31 +7224,31 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kinnison can participate in Loyal Dog Attack and Bow Attack."
+          "충견 공격과 궁 공격에 참여할 수 있습니다."
         ]
       }
     },
     "shiro": {
       "role": {
         "recruitment": [
-          "Place the bird back in its nest in Ryube Forest. Return after a few minutes have passed and talk to Kinnison and Shiro. Choose the first option and they will join."
+          "류베 숲에서 새 둥지를 나무에 돌려놓은 뒤 잠시 후 돌아와 키니슨과 시로에게 말을 걸고 첫 번째 선택지를 고르면 함께 합류합니다."
         ],
         "overall": [
-          "Being a monster/animal type, Shiro has very solid stats, excelling in strength, defense and speed, which compensates for the fact he cannot equip any type of gear. Shiro ends up being one of the fastest characters in the game, with speed ratings that put him on par with Riou, Nanami, Kasumi, and similar agility specialists."
+          "시로는 동물형 동료라 장비를 착용할 수 없지만 힘, 방어, 속도가 모두 뛰어납니다. 특히 속도는 주인공, 나나미, 카스미 같은 민첩형 인물과 견줄 정도로 높습니다."
         ],
         "weapon": {
-          "type": "N/A",
-          "range": "N/A",
-          "startingLevel": "N/A"
+          "type": "-",
+          "range": "-",
+          "startingLevel": "-"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Counter Rune, Fury Rune, Spark Rune, or Double Beat Rune"
+            "반격의 문장, 분노의 문장, 스파크의 문장, 2회공격의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -7276,33 +7259,33 @@ export const CHARACTER_DETAIL_RECORDS = {
           "recommended": {}
         },
         "uniteAttacks": [
-          "Shiro can participate in Loyal Dog Attack and Bow Wow Attack."
+          "충견 공격과 멍멍 공격에 참여할 수 있습니다."
         ]
       }
     },
     "zamza": {
       "role": {
         "recruitment": [
-          "There are two ways to recruit Zamza:",
-          "#Speak to Zamza in the inn in Toto Village with Nanami in your party.",
-          "#He can also be recruited in South Window Inn later in the game, if you missed him in Toto Village. Once again, Nanami must be in the party."
+          "자무자는 두 가지 방식으로 영입할 수 있습니다.",
+          "나나미를 파티에 넣고 토토 마을 여관에서 자무자에게 말을 걸면 합류합니다.",
+          "토토에서 놓쳤다면 이후 사우스 윈도우 여관에서 다시 만날 수 있으며, 이때도 나나미가 파티에 있어야 합니다."
         ],
         "overall": [
-          "Zamza is a very well rounded character, with no particular weakness. However, this also means that he does not excel at many skills either. His strongest point is his high amount of hit points, which is needed because of his Equipment Class. Since his personal rune, the Fire Dragon Rune, has infinite attacks, it is adviced to embed a Fire Sealing Rune on Zamza to utilize its power fully, as it damages Zamza as well. It is advised to embed the Fire Lizard Rune on his weapon, to get max damage. Another Rune Zamza has high affinity with is the Fire Rune or Rage Rune, but his mediocre magic stat make him an unfitting choice for a pure magician (This can be remedied through the usage of Stones of Magic obtained through the Rope Climbing Minigame and the Game Over trick)."
+          "자무자는 뚜렷한 약점이 적은 균형형 전열 인물입니다. HP가 높아 전열 유지력이 좋고, 고유 문장인 화룡의 문장을 반복 사용할 수 있습니다. 다만 화룡의 문장은 자무자에게도 피해를 주므로 화염 봉인의 문장과 함께 운용하면 안정성이 올라갑니다. 순수 마법사보다는 물리 전투원에 가깝습니다."
         ],
         "weapon": {
-          "type": "Fists",
+          "type": "권격",
           "range": "S",
           "startingLevel": "3"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Fire Dragon Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 화룡의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Fire Rune, Rage Rune, Fire Sealing Rune, and Fire Lizard Rune"
+            "불의 문장, 열화의 문장, 화염 봉인의 문장, 불도마뱀의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -7325,17 +7308,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Zamza has no known unite attacks."
+          "-"
         ]
       }
     },
     "apple": {
       "role": {
         "recruitment": [
-          "Apple joins automatically during the events at the Mercenary Fortress."
+          "용병 요새 이벤트 중 자동으로 합류합니다."
         ],
         "overall": [
-          "Speaking to Apple allows Riou to set arrangement for Army battle units."
+          "애플에게 말을 걸면 전쟁 전투 부대 편성을 정리할 수 있습니다."
         ],
         "weapon": {
           "type": "",
@@ -7357,20 +7340,20 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tuta": {
       "role": {
         "recruitment": [
-          "Speak to Tuta in Muse after Jess asks you to spy on the Highland Army."
+          "제스가 하이랜드군 정찰을 요청한 뒤 뮤즈에서 토우타에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Stones",
+          "type": "돌",
           "range": "L",
           "startingLevel": "2"
         },
         "rune": {
           "attached": [
-            "Medicine Rune"
+            "약의 문장"
           ],
           "recommended": [
-            "Medicine Rune and Water Rune"
+            "약의 문장, 물의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -7408,17 +7391,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Tuta has no Unite Attacks."
+          "-"
         ]
       }
     },
     "gilbert": {
       "role": {
         "recruitment": [
-          "In order to recruit Gilbert, you must damage his unit during the third major battle. Gilbert must also survive this battle."
+          "세 번째 대규모 전쟁 전투에서 길버트 부대에 피해를 주고, 길버트가 전투에서 살아남으면 합류합니다."
         ],
         "overall": [
-          "Gilbert is a leader unit with +7 ATK and +8 DEF."
+          "전쟁 전투에서는 공격 +7, 방어 +8의 지휘관 부대로 편성됩니다."
         ],
         "weapon": {
           "type": "",
@@ -7440,22 +7423,22 @@ export const CHARACTER_DETAIL_RECORDS = {
     "eilie": {
       "role": {
         "recruitment": [
-          "Joins automatically in Coronet after securing the passage to South Window."
+          "사우스 윈도우로 가는 이동 동선을 확보한 뒤 코로네에서 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Throwing Knifes",
+          "type": "투척 단검",
           "range": "L",
           "startingLevel": "3"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Fire Rune, Lightning Rune, Earth Rune and Water Rune"
+            "불의 문장, 번개의 문장, 흙의 문장, 물의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -7493,32 +7476,32 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Eilie can participate in the Circus Attack with Rina and Bolgan."
+          "리나, 볼간과 함께 서커스 공격에 참여할 수 있습니다."
         ]
       }
     },
     "rina": {
       "role": {
         "recruitment": [
-          "Rina joins automatically in Coronet after securing passage to South Window."
+          "사우스 윈도우로 가는 이동 동선을 확보한 뒤 코로네에서 자동으로 합류합니다."
         ],
         "overall": [
-          "Rina is an L Ranged fighter, which means she can attack from all positions in the party. Rina has 3 Rune slots completely free, which is a rarity amongst most characters. With those 3 rune slots, you can make her quite the fighter from the back row, which again, is a rarity. However, many players would argue that her true power is in her magic, although her only above average rune affinity is water. Rina can also affix the Blue Gate Rune, one of twenty characters in the game. Rina also has higher magic defense than average, so when placed in the back row of a party, Rina can last long in battle and deal great damage."
+          "리나는 장거리 전투원이라 파티 어느 위치에서도 공격할 수 있습니다. 세 개의 문장 슬롯을 모두 자유롭게 쓸 수 있는 드문 인물이며, 후열 물리 공격수나 마법사로 모두 운용 가능합니다. 물 계열 문장 적성이 좋고, 푸른 문장의 문장도 장착할 수 있어 마법 운용 폭이 넓습니다."
         ],
         "weapon": {
-          "type": "Darts",
+          "type": "다트",
           "range": "L",
           "startingLevel": "1"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Fire Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 불의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Blue Gate Rune, Lightning Rune, and Water Rune",
-            "Rina is a very well rounded magician. She can equip every magical rune, and has a C in all, except Water, where she has a B."
+            "푸른 문장의 문장, 번개의 문장, 물의 문장",
+            "리나는 전반적으로 균형 잡힌 마법사입니다. 대부분의 마법 문장을 무난히 다루며, 특히 물 계열 적성이 더 좋습니다."
           ]
         },
         "maxLevelStatus": {
@@ -7556,32 +7539,32 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Rina can participate in the Circus Attack and the Beauty Attack."
+          "서커스 공격과 미녀 공격에 참여할 수 있습니다."
         ]
       }
     },
     "bolgan": {
       "role": {
         "recruitment": [
-          "Bolgan joins automatically in Coronet after securing passage to South Window."
+          "사우스 윈도우로 가는 이동 동선을 확보한 뒤 코로네에서 자동으로 합류합니다."
         ],
         "overall": [
-          "Bolgan only has access to the Fire Breath Rune and overall his stats range from mediocre to bad. He is not unusable but there are several alternatives that are leagues above him."
+          "볼간은 화염 숨결의 문장을 고정으로 사용합니다. 전반적인 능력치는 높지 않지만, 초중반에는 서커스 공격 등 협력 공격 구성원으로 활용할 수 있습니다."
         ],
         "weapon": {
-          "type": "Fists",
+          "type": "권격",
           "range": "S",
           "startingLevel": "2"
         },
         "rune": {
           "attached": [
-            "*Head - N/A",
-            "*R. Hand - Fire Breath Rune (Permanently attached)",
-            "*L. Hand - N/A",
-            "*Weapon - No rune attached."
+            "*머리 - 없음",
+            "*오른손 - 화염 숨결의 문장 (고정 장착)",
+            "*왼손 - 없음",
+            "*무기 - 장착 문장 없음"
           ],
           "recommended": [
-            "Bolgan only has 1 rune slot and the player can not remove his Fire Breath Rune leaving no room for customization."
+            "문장 슬롯이 사실상 화염 숨결의 문장으로 고정되어 있어 세팅 자유도는 낮습니다."
           ]
         },
         "maxLevelStatus": {
@@ -7618,17 +7601,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Bolgan can participate in Circus Attack, Servant Attack, and Flash Attack."
+          "서커스 공격, 하인 공격, 번쩍 공격에 참여할 수 있습니다."
         ]
       }
     },
     "leona": {
       "role": {
         "recruitment": [
-          "Leona joins automatically after gaining your headquarters."
+          "본거지를 얻은 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Talking to Leona allows you to change your party."
+          "레오나에게 말을 걸면 파티 편성을 변경할 수 있습니다."
         ],
         "weapon": {
           "type": "",
@@ -7650,24 +7633,24 @@ export const CHARACTER_DETAIL_RECORDS = {
     "gengen": {
       "role": {
         "recruitment": [
-          "Gengen joins automatically after returning to the Mercenary Fortress."
+          "캐로에서 돌아온 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Gengen is the king of average. While not really being being bad at everything, he's not great either and often other characters will fill specific roles better. His unite atack with Shiro can be useful too. Overall, Gengen is good for the early to mid game, but will quickly get outclassed. Still, he will never be an awful choice in a party if you really want to keep him around. As a plus, he can be loaded up with armor, a shield, and necklaces to tank hits in the front row if needed. One of his worst flaws is his low magic defense, which is liable to get him knocked out more easily against enemy magic users and special attacks."
+          "겐겐은 전반적으로 평균적인 전열 전투원입니다. 초중반에는 방어구와 방패를 갖춰 전열을 맡길 수 있고, 시로와의 협력 공격도 활용할 수 있습니다. 다만 후반에는 특화형 동료에게 밀리기 쉽고, 마법 방어가 낮아 적 마법과 특수 공격에 약합니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "3"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Barrier Rune"
+            "방벽의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -7705,17 +7688,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Gengen can participate in the Kobold Attack (with a small chance for alternative version as 100 Kobold Attack) and the Bow Wow Attack."
+          "코볼트 공격과 멍멍 공격에 참여할 수 있습니다. 코볼트 공격은 낮은 확률로 100 코볼트 공격으로 변화할 수 있습니다."
         ]
       }
     },
     "barbara": {
       "role": {
         "recruitment": [
-          "Barbara helps out from the beginning but rejoins for good after defeating Solon Jhee."
+          "초반부터 일행을 돕고, 솔론 지의 군대를 격파한 뒤 정식으로 합류합니다."
         ],
         "overall": [
-          "Barbara runs the storehouse in the HQ."
+          "본거지에서 창고를 운영합니다."
         ],
         "weapon": {
           "type": "",
@@ -7737,10 +7720,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "huan": {
       "role": {
         "recruitment": [
-          "Huan joins automatically after defeating Solon Jhee."
+          "솔론 지의 군대를 격파한 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Huan is the doctor in the HQ."
+          "호우안은 본거지의 의사로, 회복과 의료 관련 이벤트를 담당합니다."
         ],
         "weapon": {
           "type": "",
@@ -7762,23 +7745,23 @@ export const CHARACTER_DETAIL_RECORDS = {
     "oulan": {
       "role": {
         "recruitment": [
-          "Speak with the woman near the entrance of Kuskus to learn about the bandits attacking women. Exit and return with an all-female party and walk across the bridge. After a brief scene Oulan will save you and then can be asked to join your group.",
-          "*You can get Oulan prior to obtaining your headquarters, as soon as you're able to form an all female party."
+          "쿠스쿠스 입구 근처 여성에게 여성만 노리는 산적 이야기를 들은 뒤, 여성 캐릭터만으로 파티를 구성해 마을에 다시 들어가 다리를 건너면 이벤트가 발생합니다. 오우란이 일행을 구해 준 뒤 합류를 요청할 수 있습니다.",
+          "여성 파티를 구성할 수 있는 시점이라면 본거지를 얻기 전에도 영입할 수 있습니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Fists",
+          "type": "권격",
           "range": "S",
           "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Angry Dragon Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 성난 용의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Fury Rune"
+            "분노의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -7816,17 +7799,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Oulan can participate in the Tackle Attack."
+          "오울란은 몸통박치기 공격에 참여할 수 있습니다."
         ]
       }
     },
     "taki": {
       "role": {
         "recruitment": [
-          "Speak to Taki three times after reaching Lakewest and she will join you. Taki can be recruited a bit earlier through the Matilda Glitch, As soon as Highland have taken over Muse. Player should travel through the path between Greenhill-Matilda then Two-River (You can also recruit Hans in the 2nd floor of Inn in the Human's District with this method) to finally reach Lakewest. Tetsu is also possible to recruit."
+          "레이크웨스트에 도착한 뒤 타키에게 세 번 말을 걸면 합류합니다. 마틸다 국경 우회 동선을 이용하면 조금 더 이르게 영입할 수 있습니다. 하이랜드군이 뮤즈를 점령한 뒤 그린힐-마틸다 방면 길을 지나 투 리버를 거쳐 레이크웨스트까지 이동하면 됩니다. 같은 방법으로 투 리버 인간 구역 여관 2층에서 한스를 먼저 영입할 수 있고, 테츠도 이르게 영입할 수 있습니다."
         ],
         "overall": [
-          "Taki is a gossiper and talking to her will give you a hint about how to make the story progress and how to recruit certain characters."
+          "타키는 소문과 정보를 들려주는 인물입니다. 말을 걸면 다음 진행 방향이나 특정 동료 영입에 대한 힌트를 얻을 수 있습니다."
         ],
         "weapon": {
           "type": "",
@@ -7848,11 +7831,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hans": {
       "role": {
         "recruitment": [
-          "Hans can be found in the Inn in Two River. If you ask him to give you money, it will take him a while to get it and you'll have to return to the Inn to get him.",
-          "Hans can be recruited a bit earlier through the Matilda Glitch, As soon as the Highland Army have taken over Muse. Player should travel through the path between Greenhill-Matilda to Two River and recruit him on the 2nd floor of the Inn, He should already open his shop as soon as the player defeated the boss in the North Window Castle."
+          "한스는 투 리버 여관에서 만날 수 있습니다. 돈을 달라고 요청하면 준비 시간이 필요하므로, 잠시 뒤 다시 여관으로 돌아와야 합류시킬 수 있습니다.",
+          "마틸다 국경 우회 동선을 이용하면 조금 더 이르게 영입할 수 있습니다. 하이랜드군이 뮤즈를 점령한 뒤 그린힐-마틸다 방면 길을 통해 투 리버로 이동하고, 인간 구역 여관 2층에서 한스를 영입하면 됩니다. 노스윈도우 성 보스전을 마친 뒤에는 바로 상점을 열 수 있습니다."
         ],
         "overall": [
-          "Hans opens an Armor Shop in the HQ."
+          "한스는 본거지에 방어구점을 엽니다."
         ],
         "weapon": {
           "type": "",
@@ -7874,11 +7857,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tetsu": {
       "role": {
         "recruitment": [
-          "Speak with Tetsu at his house in Lakewest while under the toasty status effect. You can get this from eating Fried Tacos purchased in the Kobold section in Two River City.",
-          "Tetsu can be recruited a bit earlier through the Matilda Glitch. As soon as the Highland Army has taken over Muse, the player should travel through the path between Greenhill-Matilda then Two-River (You can also recruit Hans in the 2nd floor of Inn in the Human's District with this method) to finally reach Lakewest."
+          "따끈따끈 상태가 된 뒤 레이크웨스트의 테츠 집에서 말을 걸면 합류합니다. 이 상태는 투 리버 코볼트 구역에서 산 튀김 타코를 먹으면 얻을 수 있습니다.",
+          "마틸다 국경 우회 동선을 이용하면 조금 더 이르게 영입할 수 있습니다. 하이랜드군이 뮤즈를 점령한 뒤 그린힐-마틸다 방면 길을 지나 투 리버를 거쳐 레이크웨스트까지 이동하면 됩니다. 같은 방법으로 투 리버 인간 구역 여관 2층에서 한스도 먼저 영입할 수 있습니다."
         ],
         "overall": [
-          "Tetsu will open a bath in your castle."
+          "테츠는 본거지에 목욕탕을 엽니다."
         ],
         "weapon": {
           "type": "",
@@ -7900,10 +7883,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hai-yo": {
       "role": {
         "recruitment": [
-          "Find Hai Yo in your castle after the events in Two River, he should be on a balcony the opposite direction of the mountain view, where Yoshino does laundry. Once you find him, talk and choose the first option to have him join."
+          "투 리버 사건 이후 본거지에서 하이요를 찾을 수 있습니다. 요시노가 빨래를 하는 곳과 반대편, 산이 보이는 발코니 쪽에 있으니 말을 걸고 첫 번째 선택지를 고르면 합류합니다."
         ],
         "overall": [
-          "For most of the game, Hai Yo's stat will all be under average to average, and he'll be forced into the front line due to his S range, making him a bad choice most of the time. However, in the later game he should open a 3rd rune slot allowing you to customize him more, along with a free weapon slot and 3 accessories slot open. With the right set up he can then become a powerhouse, dealing more damage than the likes of Pesmerga. This, however, will require a lot of training and diversion of rare resources toward him that would probably best used on Killey or Sheena who will fill that heavy powerhouse even better due to their superior natural stats."
+          "하이요는 대부분의 구간에서 능력치가 평균 이하에서 평균 정도이며, 무기 사거리가 S라 전열에 서야 하므로 초중반 전투 요원으로는 다루기 까다롭습니다. 다만 후반에는 세 번째 문장 슬롯이 열리고 무기 문장 슬롯과 장신구 슬롯을 활용할 수 있어 세팅 폭이 넓어집니다. 충분히 육성하고 희귀 장비와 문장을 투자하면 강력한 물리 화력 요원이 될 수 있지만, 같은 자원을 키리나 시나처럼 기본 성능이 높은 캐릭터에게 쓰는 편이 더 효율적일 때가 많습니다."
         ],
         "weapon": {
           "type": "Wok",
@@ -7955,24 +7938,18 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Hai Yo has no known unite attacks."
+          "-"
         ]
       }
     },
     "richmond": {
       "role": {
         "recruitment": [
-          "After obtaining and defending the headquarters, Richmond can be recruited in Radat. Accept his challenge and lose the coin flip, then speak to the customer in the tavern that is closest to the door, and he will give a coin to have Richmond use. Bring Richmond the coin and he will join."
+          "본거지를 얻고 방어전을 마친 뒤 라다트에서 리치몬드를 영입할 수 있습니다. 동전 던지기 승부를 받아들여 일부러 패배한 뒤, 술집 입구 가까이에 있는 손님에게 말을 걸면 리치몬드에게 쓰게 할 동전을 받을 수 있습니다. 그 동전을 리치몬드에게 가져가면 합류합니다."
         ],
         "overall": [
-          "Richmond is the Investigator in Suikoden II. After recruiting him, he can perform investigations on characters for a fee to obtain more information about the character. Richmond takes approximately 10 minutes on each investigation.",
-          "Investigations =",
-          "'''Richmond's Investigations",
-          "Secret #1 =",
-          "Name:Richmond",
-          "Age: 35",
-          "From:South Window",
-          "Position:Special Forces"
+          "리치몬드는 환상수호전 II의 조사 담당 동료입니다. 영입 후에는 비용을 받고 동료 조사를 진행해 인물 정보를 추가로 확인해 줍니다.",
+          "조사에는 약 10분 정도가 걸리며, 본거지에서 동료 기록을 보강하는 정보 시설 역할을 맡습니다."
         ],
         "weapon": {
           "type": "",
@@ -7994,10 +7971,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "amada": {
       "role": {
         "recruitment": [
-          "Defeat him in a Duel at Radat after agreeing to take Fitcher to Two River City."
+          "피처를 투 리버까지 데려가기로 한 뒤 라다트에서 아마다와 일기토를 벌여 승리하면 합류합니다."
         ],
         "overall": [
-          "Amada is a solid frontline option during the earlier parts of the game due to high HP and strength. Once you progress further through the game you will find that his access to only 1 rune slot limits him greatly when compared to other options."
+          "아마다는 높은 HP와 힘 덕분에 초반 전열 요원으로 안정적입니다. 다만 문장 슬롯이 하나뿐이라 후반으로 갈수록 다른 전열 캐릭터보다 세팅 폭이 좁아집니다."
         ],
         "weapon": {
           "type": "Oar",
@@ -8012,7 +7989,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "*Weapon - Earth Rune"
           ],
           "recommended": [
-            "Amada is a decent frontline unit during the early stages of the game however he is limited to only have 1 rune slot which hinders his late game viability. He will make good use of the Unicorn Rune or Double-Beat Rune."
+            "초반에는 전열 요원으로 충분히 쓸 수 있지만, 문장 슬롯이 하나뿐이라 후반 확장성이 낮습니다. 유니콘의 문장이나 2회공격의 문장을 활용하면 물리 화력을 보완할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -8050,17 +8027,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Amada can participate in the Manly Attack with Rikimaru."
+          "아마다는 리키마루와 함께 사나이 공격에 참여할 수 있습니다."
         ]
       }
     },
     "alex": {
       "role": {
         "recruitment": [
-          "Speak to Alex and Hilda in the Inn at South Window after obtaining your castle."
+          "본거지를 얻은 뒤 사우스 윈도우 여관에서 알렉스와 힐다에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Alex opens an item shop in your castle."
+          "알렉스는 본거지에 도구점을 엽니다."
         ],
         "weapon": {
           "type": "",
@@ -8082,10 +8059,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hilda": {
       "role": {
         "recruitment": [
-          "Speak to Hilda and Alex in the Inn at South Window after getting your castle."
+          "본거지를 얻은 뒤 사우스 윈도우 여관에서 힐다와 알렉스에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Hilda runs the Inn at the HQ."
+          "힐다는 본거지에서 여관을 운영합니다."
         ],
         "weapon": {
           "type": "",
@@ -8107,10 +8084,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "adlai": {
       "role": {
         "recruitment": [
-          "After you obtain your headquarters, you can find Adlai in South Window. You must get him a Sacrificial Jizo, a Wooden Shield, and a Wind Crystal in that order. All except the Sacrificial Jizo can be found in South Window. When you give him the Wind Crystal, you must throw it at him instead of handing it to him. Adlai will praise you for standing up to him and join your army."
+          "본거지를 얻은 뒤 사우스 윈도우에서 아다리를 만날 수 있습니다. 대역지장보살, 나무 방패, 바람의 봉인구를 순서대로 가져가야 하며, 대역지장보살을 제외한 물품은 사우스 윈도우에서 구할 수 있습니다. 마지막 바람의 봉인구는 건네지 말고 던지는 선택을 해야 하며, 아다리가 그 배짱을 인정하고 합류합니다."
         ],
         "overall": [
-          "Adlai sets up an elevator at Dunan Castle."
+          "아다리는 듀난 성에 승강기를 설치합니다."
         ],
         "weapon": {
           "type": "",
@@ -8132,17 +8109,16 @@ export const CHARACTER_DETAIL_RECORDS = {
     "emilia": {
       "role": {
         "recruitment": [
-          "Once you first enter Greenhill after it is captured, confide to Emilia your true reason for being there. If you do, then she will join you after you escape Greenhill. If you do not, you'll have to wait until you liberate Greenhill to recruit her."
+          "하이랜드군 점령 후 그린힐에 처음 들어갔을 때 에밀리아에게 정체를 밝히면, 그린힐 탈출 후 합류합니다. 정체를 밝히지 않았다면 그린힐 해방 후에 다시 영입해야 합니다."
         ],
         "overall": [
-          "Emilia is the castle Librarian. She will stay at the library and she will receive the books that Riou will brought to her.",
-          "====Old Book Locations====",
-          "*Old Book Vol. 1 - Genkaku's room when you visit Kyaro.",
-          "*Old Book Vol. 2 - Chest inside Sindar Ruins.",
-          "*Old Book Vol. 3 - Rare find at item shop in South Window.",
-          "*Old Book Vol. 4 - Bookshelf in Muse Meeting Hall where Jess gives you the Highland Uniforms. (missable)",
-          "*Old Book Vol. 5 - In the 2nd room on the left on the first floor in Greenhill Academy.",
-          "*Old Book Vol. 6 - Speak to a person in Forest Village trading post."
+          "에밀리아는 본거지 도서관을 담당합니다. 오래된 책을 가져가면 도서관 기록으로 보관됩니다.",
+          "오래된 책 1권: 캐로 방문 시 겐카쿠의 방",
+          "오래된 책 2권: 신다르 유적 보물상자",
+          "오래된 책 3권: 사우스 윈도우 도구점 레어 아이템",
+          "오래된 책 4권: 제스가 하이랜드 군복을 건네는 뮤즈 회의장 책장",
+          "오래된 책 5권: 그린힐 학원 1층 왼쪽 두 번째 방",
+          "오래된 책 6권: 숲의 마을 교역소 인물과 대화"
         ],
         "weapon": {
           "type": "",
@@ -8164,24 +8140,24 @@ export const CHARACTER_DETAIL_RECORDS = {
     "gabocha": {
       "role": {
         "recruitment": [
-          "Speak to him at his house in the Kobold District in Two River with Gengen in your active party. Gabocha will follow you back to your castle."
+          "겐겐을 파티에 넣고 투 리버 코볼트 구역의 카보챠 집에서 말을 걸면 본거지까지 따라와 합류합니다."
         ],
         "overall": [
-          "Most of Gabocha stats are poor to average, only being okay in luck and speed. His unite attack with Gengen has a 20% chance of being good, but will only deal 1x damage 80% of the time to a single enemy with Gabocha always being unbalanced therefor isnt really worth it. Unless you find him so cute you just have to use him, Its better to use another L range character."
+          "카보챠는 행운과 속도를 제외하면 능력치가 낮거나 평균적인 편입니다. 겐겐과의 협력 공격은 낮은 확률로 강화되지만 대부분은 단일 적에게 낮은 피해만 주고 카보챠가 언밸런스 상태가 되므로 실전 효율은 높지 않습니다. 장거리 공격수가 필요하다면 다른 동료가 더 안정적입니다."
         ],
         "weapon": {
-          "type": "Slingshot",
+          "type": "새총",
           "range": "L",
           "startingLevel": "6"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Killer Rune"
+            "필살의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -8219,31 +8195,31 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Gabocha can participate in the Bow Wow Attack, the Kobold Attack, and the 100 Kobold Attack."
+          "멍멍 공격, 코볼트 공격, 100 코볼트 공격에 참여할 수 있습니다."
         ]
       }
     },
     "sid": {
       "role": {
         "recruitment": [
-          "Once your castle is at Level 2, find Sid in his room behind the waterfall in the Two River Sewers with Chaco in your party and he will join you."
+          "성 레벨 2 이후 챠코를 파티에 넣고 투 리버 하수도의 폭포 뒤 방에서 시드를 만나면 합류합니다."
         ],
         "overall": [
-          "Sid is similar to Chaco in terms of play style and the fact he also gains access to all 3 runes as he levels up. The key difference is that Sid is a glass cannon. He trades physical and magical defense attributes for significantly higher attack. With the 3 rune setup, he has huge potential to hit extremely hard. However care must be taken as Sid cannot really take much punishment."
+          "시드는 챠코처럼 레벨이 오르면 문장 슬롯 3개를 활용할 수 있습니다. 차이는 방어를 포기한 고화력형이라는 점입니다. 세 문장 세팅을 맞추면 매우 강한 공격을 낼 수 있지만, 물리·마법 방어가 낮아 집중 공격에는 취약합니다."
         ],
         "weapon": {
-          "type": "Spear",
+          "type": "창",
           "range": "M",
           "startingLevel": "8"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - Waking Rune"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 각성의 문장"
           ],
           "recommended": [
-            "Resurrection Rune, Darkness Rune, and Unicorn Rune."
+            "회생의 문장, 어둠의 문장, 유니콘의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -8266,14 +8242,14 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sid can participate in the Winger Attack."
+          "윙 호드 공격에 참여할 수 있습니다."
         ]
       }
     },
     "jeane": {
       "role": {
         "recruitment": [
-          "After the quest in Greenhill City, make sure your Castle Level is 2 and speak with Jeane at the Rune Shop at Two River City."
+          "그린힐 사건 후 성 레벨 2 이상에서 투 리버 문장점의 진에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -8296,22 +8272,22 @@ export const CHARACTER_DETAIL_RECORDS = {
     "shilo": {
       "role": {
         "recruitment": [
-          "Speak to Shilo in the Inn in Lakewest after the events in Two River. Win 5000 potch from him in Chinchirorin."
+          "투 리버 사건 이후 레이크웨스트 여관에서 시로우에게 말을 걸고 주사위 도박으로 5,000 포치를 따면 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Darts",
+          "type": "다트",
           "range": "L",
           "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "*Head - N/A",
-            "*R. Hand - None",
-            "*L. Hand - N/A"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Killer Rune"
+            "필살의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -8334,24 +8310,21 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Shilo has no known unite attacks."
+          "-"
         ]
       }
     },
     "yuzu": {
       "role": {
         "recruitment": [
-          "Yuzu can be found in Kobold Village after recruiting Hix and Tengaar and after the events in Greenhill. Help Yuzu find her three missing sheep and she'll gladly help you out. The sheep are at the end of the Kobold Forest, where Sigfried was. Once all of them are retrieved, she will join you."
+          "힉스와 텐가알을 영입하고 그린힐 사건을 마친 뒤 코볼트 마을에서 유즈를 만날 수 있습니다. 사라진 양 세 마리를 코볼트 숲 끝, 지크프리드가 있던 장소에서 찾아 돌려주면 합류합니다."
         ],
         "overall": [
-          "Yuzu manage the Ranch at the HQ, and take care of the animals there. Any animal you find, bring it to her, and they will be added to the farm. These animals provide meat to be used at Hai Yo's Restaurant.",
-          "Animal Location=",
-          "Calf",
-          "*Bought from a boy by the road in Highway Village.",
-          "*Bought from a guy with a hat near the entrance to Drakemouth Village.",
-          "*Bought from a boy by the Inn in Highway Village, after Rockaxe has been liberated.",
-          "Lamb",
-          "*Yuzu will have this one by default."
+          "유즈는 본거지 목장을 관리합니다. 발견한 동물을 데려가면 목장에 추가되며, 일부 동물은 하이요 식당에서 사용할 식재료 수급과 연결됩니다.",
+          "송아지: 가도 마을 길가의 소년에게 구입",
+          "송아지: 용구마을 입구 근처 모자를 쓴 남자에게 구입",
+          "송아지: 록엑스 해방 후 가도 마을 여관 근처 소년에게 구입",
+          "양: 유즈가 기본으로 데리고 있습니다."
         ],
         "weapon": {
           "type": "",
@@ -8373,24 +8346,24 @@ export const CHARACTER_DETAIL_RECORDS = {
     "shin": {
       "role": {
         "recruitment": [
-          "Shin joins automatically after the events in Greenhill."
+          "그린힐 사건 이후 자동으로 합류합니다."
         ],
         "overall": [
-          "Shin comes in with good physical strength. His real value lies in his high luck and tech, allowing him to deal a lot of critical, counters, status effect, as well as a good dodge rate, which comes in handy against his sub par defense, both physical and magical. In other words, he is a good front line glass canon. Give him a Killer Rune and cast Clay Guardian on him to increase his pros while diminishing his cons and making him a solid character to have."
+          "신은 물리 공격력이 좋고 행운과 기술이 높아 치명타, 반격, 상태 이상, 회피를 노리기 좋습니다. 물리·마법 방어는 낮은 편이라 전열 고화력형 유리 대포에 가깝습니다. 필살의 문장과 대지 계열 방어 보조를 함께 쓰면 장점은 살리고 약점은 줄일 수 있습니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "9"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Spider Slay Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 거미베기의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Killer Rune"
+            "필살의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -8413,33 +8386,32 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Shin can participate in the Swordsman Attack with Genshu."
+          "겐슈와 함께 검객 공격에 참여할 수 있습니다."
         ]
       }
     },
     "meg": {
       "role": {
         "recruitment": [
-          "In order to recruit Meg, speak to her at the Muse-Greenhill Border when the HQ is at least at Level 2."
+          "본거지 레벨 2 이상에서 뮤즈-그린힐 국경에 있는 멕에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Meg is still a solid back row fighter, with decent physical and magic power. Meg usually reaches her fourth rune level (100+ magic skill) at level 60. Equipped with a Lightning Rune/Thunder Rune or a Wind Rune/Cyclone Rune, she can cause quite a bit of damage because of her affinity with both runes. Meg has the highest Luck stat in the game, and can easily top 250 at level 60 if built correctly. This luck stat makes her one of the better characters to have a Hunter Rune equipped, as a normal tactic is to cast Wind of Sleep, whose success is based partially on luck. Meg can equip robes and lighter equipment, but cannot equip the heavier kinds like chain and armors. She does not wear a shield, just as before. She has a Luck Ring equipped, which cannot be taken off. While she can make a nice healer with a Water Rune or a Flowing Rune in Suikoden, she loses this ability in Suikoden II because of her poor speed."
+          "멕은 후열에서 안정적으로 싸울 수 있는 장거리 전투원입니다. 물리와 마법을 모두 어느 정도 다루며, 번개 계열과 바람 계열 문장 적성이 좋아 공격 마법으로도 활약할 수 있습니다. 행운 수치가 매우 높아 사냥꾼의 문장이나 수면 계열 보조와도 궁합이 좋습니다. 다만 중장비와 방패는 장비할 수 없고, 행운의 반지는 해제할 수 없습니다."
         ],
         "weapon": {
-          "type": "Throwing Knife",
+          "type": "투척 단검",
           "range": "L",
           "startingLevel": "5"
         },
         "rune": {
           "attached": [
-            "*Head - No Slot",
-            "*R. Hand - Trick Rune",
-            "*L. Hand - Water Rune"
+            "*머리 - 슬롯 없음",
+            "*오른손 - 장난의 문장",
+            "*왼손 - 물의 문장"
           ],
           "recommended": [
-            "Meg's equipped runes make her a pretty balanced character, and can make her a decent healer right after recruitment. However, later in the game, it is advisable to equip her with a Lightning or Wind Rune, because of her high skill with those runes. Do not equip Earth, Fire or Resurrection Runes on Meg in Suikoden II, as she has a 20% chance of backfiring with them.",
-            "Meg affinities are:",
-            "Darkness : C Earth : E Fire : E Lightning: A Resurrection: E Water : C Wind : A"
+            "초기 문장 구성 덕분에 합류 직후에는 보조 회복도 맡을 수 있습니다. 후반에는 적성이 높은 번개 계열이나 바람 계열 문장이 더 어울립니다.",
+            "문장 적성: 어둠 C, 흙 E, 불 E, 번개 A, 회생 E, 물 C, 바람 A"
           ]
         },
         "maxLevelStatus": {},
@@ -8462,28 +8434,28 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Meg can participate in the Trick Attack."
+          "장난 공격에 참여할 수 있습니다."
         ]
       }
     },
     "gadget": {
       "role": {
         "recruitment": [
-          "After the events in Two River, find Meg and Gadget at the Muse-Greenhill Border. After some data analyzing and talking, they will join Riou."
+          "투 리버 사건 이후 뮤즈-그린힐 국경에서 멕과 카라쿠리마루를 만나면, 대화 이벤트 후 함께 합류합니다."
         ],
         "overall": [
-          "Gadgets is a great character for the the mid-game. Most of his stats are above average to great in order to make up for the fact that he cannot equip any gear. His defense is superior to the likes of even Humphrey making him a great damage sponge for the front line. His attacks are descent but he gets outshined in the offense department once other characters get better sharpened weapons and get to hit multiple times. His unite attack with Meg has no drawback like unbalance making it for a good aoe skill. His main drawback comes from the fact that he cannot equip any item, removing any utility or variety to him, making him a one trick... barrel."
+          "카라쿠리마루는 장비를 착용할 수 없는 대신 중반 기준 능력치가 높게 책정된 전열형 동료입니다. 방어력이 매우 높아 피해를 받아내기 좋고, 멕과의 협력 공격은 언밸런스 부담 없이 범위 피해를 줄 수 있습니다. 다만 장비와 아이템을 활용할 수 없어 후반으로 갈수록 운용 폭은 좁아집니다."
         ],
         "weapon": {
-          "type": "N/A",
-          "range": "N/A",
-          "startingLevel": "N/A"
+          "type": "-",
+          "range": "-",
+          "startingLevel": "-"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - None",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 없음",
+            "*왼손 - 없음"
           ],
           "recommended": []
         },
@@ -8510,31 +8482,31 @@ export const CHARACTER_DETAIL_RECORDS = {
           "recommended": {}
         },
         "uniteAttacks": [
-          "Gadget can participate in the Trick Attack, which could be powered up if Meg is equipped with the Lubricating Oil."
+          "장난 공격에 참여할 수 있습니다. 멕이 윤활유를 장비하면 협력 공격이 강화될 수 있습니다."
         ]
       }
     },
     "wakaba": {
       "role": {
         "recruitment": [
-          "Speak to Wakaba in the Forest Village after the events in Two River."
+          "투 리버 사건 이후 숲의 마을에서 와카바에게 말을 걸면 합류합니다."
         ],
         "overall": [
           "와카바는 공격력과 속도, 기술, 운이 고르게 높은 전열 전투원입니다. 방어 계열 능력은 다소 낮지만 HP가 높아 전열에서 버티는 역할을 맡기 좋습니다."
         ],
         "weapon": {
-          "type": "Kicks",
+          "type": "발차기",
           "range": "S",
           "startingLevel": "8"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - White Tiger Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 백호의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Fire Rune"
+            "불의 문장"
           ]
         },
         "maxLevelStatus": {},
@@ -8557,17 +8529,17 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Wakaba can participate in the Twin Fighter Attack."
+          "쌍투사 공격에 참여할 수 있습니다."
         ]
       }
     },
     "tony": {
       "role": {
         "recruitment": [
-          "Speak to Tony in Forest Village after forming an alliance with Two River City."
+          "투 리버와 동맹을 맺은 뒤 숲의 마을에서 토니에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Tony open a farm and grows crops that are used for cooking at the castle Headquarters."
+          "토니는 본거지에 농장을 열고, 요리에 쓰이는 작물을 재배합니다."
         ],
         "weapon": {
           "type": "",
@@ -8589,24 +8561,23 @@ export const CHARACTER_DETAIL_RECORDS = {
     "viki": {
       "role": {
         "recruitment": [
-          "Viki appears in the Path to Matilda, where she can again be recruited just by speaking to her."
+          "마틸다로 가는 길에서 빅키를 만나 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Viki is a powerful magic rune user and a good addition to the battle party, if you are very lucky. It is rather risky to use spells with her, because she has a 20% chance of backfiring with every spell cast. This can damage your group badly, because of Viki's high magic skill. She's a bit more limited with rune customization over some of the other mages due to her Blinking Rune being permanently attached to a slot."
+          "빅키는 강력한 마법 문장 사용자이지만, 주문 사용 시 역효과가 발생할 수 있어 운이 필요한 인물입니다. 높은 마법 능력 때문에 역효과가 터지면 아군 피해도 커질 수 있습니다. 눈깜박임의 문장이 고정되어 있어 다른 마법형 동료보다 문장 세팅 폭은 좁습니다."
         ],
         "weapon": {
-          "type": "Rod",
+          "type": "지팡이",
           "range": "S",
           "startingLevel": "5"
         },
         "rune": {
           "attached": [
-            "Viki has her permanently attached Blinking Rune."
+            "눈깜박임의 문장이 고정 장착되어 있습니다."
           ],
           "recommended": [
-            "With her magic power, any magic rune is recommended, as well as a Blue Gate Rune on her forehead.",
-            "Rune Affinity =",
-            "Viki has skill E in every rune, which means she damages 20% more, but also has a chance of backfiring."
+            "마력이 높아 공격 마법 문장 전반과 잘 맞으며, 머리 슬롯에는 푸른 문장의 문장도 선택할 수 있습니다.",
+            "문장 적성은 대부분 E로, 피해량이 커지는 대신 역효과 위험도 함께 존재합니다."
           ]
         },
         "maxLevelStatus": {},
@@ -8629,28 +8600,28 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Head Up!! teleports Abizboah or Rulodia on to one enemy for 2x damage, unbalancing the octopus."
+          "머리 들기!!는 어비스보어나 루로디아를 적 하나에게 순간이동시켜 2배 피해를 주고, 사용 후 문어가 언밸런스 상태가 됩니다."
         ]
       }
     },
     "futch": {
       "role": {
         "recruitment": [
-          "Speak to Humphrey at the Inn in Highway Village. Spend the night. Leave the Inn, see a scene, and agree to help him on Mt. Rakutei.",
-          "Note: This can be done early in the game using the Matilda trick."
+          "가도 마을 여관에서 험프리에게 말을 걸고 하룻밤 묵은 뒤, 여관 밖 이벤트에서 라쿠테이 산 의뢰를 돕겠다고 하면 합류합니다.",
+          "마틸다 우회 동선을 이용하면 더 이른 시점에도 진행할 수 있습니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Spear",
+          "type": "창",
           "range": "M",
           "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "None"
+            "-"
           ],
           "recommended": [
-            "Unicorn Rune and Wind Rune"
+            "유니콘의 문장, 바람의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -8689,29 +8660,29 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Futch can participate in the Pretty Boy Attack, translated as Cutie Boy Attack"
+          "미소년 공격에 참여할 수 있습니다."
         ]
       }
     },
     "miklotov": {
       "role": {
         "recruitment": [
-          "Joins automatically after the mission in Rockaxe."
+          "록엑스 임무를 마친 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "9"
         },
         "rune": {
           "attached": [
-            "*Head - None",
-            "*R. Hand - Knight Rune",
-            "*L. Hand - None"
+            "*머리 - 없음",
+            "*오른손 - 기사단의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Fire Rune"
+            "불의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -8749,32 +8720,32 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Miklotov can participate in the Knight Attack and the Pretty Boy Attack, which is really the Fancy Lad Attack."
+          "기사 공격과 미소년 공격에 참여할 수 있습니다."
         ]
       }
     },
     "camus": {
       "role": {
         "recruitment": [
-          "Joins automatically along with Miklotov after your mission to Rockaxe."
+          "록엑스 임무를 마친 뒤 마이크로토프와 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "Camus is a well rounded character apart from his speed which is a bit lacking. His stats lean towards being physical attacker however his permanently attached Rage Rune prevents him from using the Double-Beat Rune and Fury Rune combo."
+          "카뮤는 속도가 조금 부족한 점을 제외하면 균형 잡힌 인물입니다. 능력치는 물리 공격수에 가깝지만, 오른손에 열화의 문장이 고정되어 있어 2회공격의 문장과 분노의 문장 조합을 그대로 쓰기는 어렵습니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "8"
         },
         "rune": {
           "attached": [
-            "*Head - N/A",
-            "*R. Hand - Rage Rune (Permanently attached)",
-            "*L. Hand - None (Acquired at level 47)",
-            "*Weapon - No rune attached."
+            "*머리 - 없음",
+            "*오른손 - 열화의 문장 (고정 장착)",
+            "*왼손 - 없음 (47레벨에 개방)",
+            "*무기 - 장착 문장 없음"
           ],
           "recommended": [
-            "Camus has a Rage Rune permanently equipped. Surprisingly he has a higher affinity for wind magic than fire magic so equipping a Wind Rune which would eventually be replaced with a Cyclone Rune is not a bad idea. Otherwise you could equip a Double-Beat Rune or Fury Rune to make use of his high strength."
+            "카뮤는 열화의 문장을 고정 장착하고 있지만, 의외로 바람 계열 적성이 좋아 바람의 문장이나 선풍의 문장도 선택지입니다. 물리 화력을 살리고 싶다면 2회공격의 문장이나 분노의 문장을 활용할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -8812,22 +8783,18 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Camus can participate in the Knight Attack and the Pretty Boy Attack which is really the Fancy Lad Attack."
+          "기사 공격과 미소년 공격에 참여할 수 있습니다."
         ]
       }
     },
     "klaus-windamier": {
       "role": {
         "recruitment": [
-          "Klaus is recruited automatically along with his father Kiba after you defeat them in battle."
+          "키바 부대를 격파한 뒤 아버지 키바와 함께 자동으로 합류합니다."
         ],
         "overall": [
-          "He is sided with his father Kiba Windamier in the Highland group to make their stat into Attack 7 and Defense 16. When he is sided with Riou's group, he has an evade skill similar to Jess and Boris Wizen, and also has a Cavalry skill to equip either in Riou and the other groups to have a cavalry sprite.",
-          "When he uses his evade skill he will say:",
-          "Original:",
-          "\"Be calm. Move with the enemy.\"",
-          "Remastered:",
-          "\"Be calm and deflect their blows.\""
+          "하이랜드군 시절에는 키바와 함께 높은 방어력을 지닌 부대로 등장합니다. 합류 후에는 제스나 보리스 와이젠처럼 회피 계열 전술을 사용할 수 있고, 기병 전술도 부대 편성에 보탤 수 있습니다.",
+          "회피 전술 사용 시 리마스터판에서는 “침착하게, 적의 공격을 흘려라.”라는 취지의 대사를 말합니다."
         ],
         "weapon": {
           "type": "",
@@ -8849,24 +8816,24 @@ export const CHARACTER_DETAIL_RECORDS = {
     "kasumi": {
       "role": {
         "recruitment": [
-          "Kasumi is one of two choices offered by Lepant, along with Valeria, as a recruitment option in Gregminster when forging an alliance with the Toran Republic."
+          "트란공화국과 동맹을 맺을 때 그레그민스터에서 발레리아와 함께 제시되는 선택지 중 한 명입니다."
         ],
         "overall": [
-          "She's got average to good stats all around, with superior speed, and access to good unite attacks. Kasumi's downfall is her relative low defense for a front line fighter making her quite susceptible to physical attacks. Keep her healed up and you'll have a very speedy hitter."
+          "카스미는 전반적으로 준수한 능력치와 높은 속도를 지닌 전열 공격수입니다. 협력 공격도 좋아 활용도가 높지만, 전열 인물치고 방어가 낮아 물리 공격에 취약합니다. 회복을 꾸준히 보조하면 빠른 타격 요원으로 활약합니다."
         ],
         "weapon": {
-          "type": "Claws",
+          "type": "손톱",
           "range": "S",
           "startingLevel": "7"
         },
         "rune": {
           "attached": [
-            "*Head - No Slot",
-            "*R. Hand - Shrike Rune",
-            "*L. Hand - None"
+            "*머리 - 슬롯 없음",
+            "*오른손 - 때까치의 문장",
+            "*왼손 - 없음"
           ],
           "recommended": [
-            "Spark Rune"
+            "스파크의 문장"
           ]
         },
         "maxLevelStatus": {
@@ -8904,27 +8871,27 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kasumi can participate in Ninja Attack and Beauty Attack."
+          "닌자 공격과 미녀 공격에 참여할 수 있습니다."
         ]
       }
     },
     "sheena": {
       "role": {
         "recruitment": [
-          "Sheena also appears in Suikoden II as a Star of Destiny. He joins automatically when President Lepant sends him along as part of the agreement with the Toran Republic."
+          "트란공화국과의 협정에 따라 레판토 대통령이 시나를 보내며 자동으로 합류합니다."
         ],
         "overall": [
-          "Sheena remains a competent swordsman as well as adept at rune use. His stats are also well rounded, equally capable physically or magically. He is another example of a character being the jack of all trades and master of none. Sheena is also unique in that he is one of the very few characters in the game to have three open Rune slots and an open weapon rune slot, meaning that he has deep customization potential. With the right set up, Sheena can be become one of the strongest characters in the game. It is recommended to equip him with a Fury Rune, Double-Beat Rune and Double-Strike Rune."
+          "시나는 검술과 문장 운용을 모두 무난히 해내는 균형형 인물입니다. 물리와 마법 모두 가능한 만능형에 가깝고, 세 개의 문장 슬롯과 무기 문장 슬롯을 활용할 수 있어 세팅 자유도가 매우 높습니다. 분노의 문장, 2회공격의 문장, 2회공격 계열 보조 문장을 조합하면 강력한 공격수로 만들 수 있습니다."
         ],
         "weapon": {
-          "type": "Sword",
+          "type": "검",
           "range": "S",
           "startingLevel": "8"
         },
         "rune": {
           "attached": [],
           "recommended": [
-            "Gaining access to all 3 rune slots as he levels opens up his extreme versatility. With that, Sheena has a huge potential to be one of the juggernauts in the game, especially when equipped with a Double Beat Rune, a Double Strike Rune, and/or a Fury Rune, along with an Exertion Rune embedded to his weapon."
+            "레벨이 오르면 문장 슬롯 3개를 활용할 수 있어 운용 폭이 넓어집니다. 2회공격의 문장, 2회공격 계열 보조 문장, 분노의 문장에 무기 고정형 분발의 문장을 더하면 높은 물리 화력을 기대할 수 있습니다."
           ]
         },
         "maxLevelStatus": {},
@@ -8947,7 +8914,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Sheena has no known Unite Attacks."
+          "-"
         ]
       }
     },
@@ -9474,7 +9441,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Kahn has no known unite attacks."
+          "-"
         ]
       }
     },
@@ -10235,7 +10202,7 @@ export const CHARACTER_DETAIL_RECORDS = {
           }
         },
         "uniteAttacks": [
-          "Mazus has no known unite attacks."
+          "-"
         ]
       }
     }

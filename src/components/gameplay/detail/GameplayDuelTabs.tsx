@@ -1,15 +1,18 @@
-"use client";
-
 /**
  * 작품별 일기토 기록과 대응 대사를 탭으로 전환해 보여줍니다.
  */
 
-import { useMemo, useState } from "react";
+"use client";
+
 import {
   type GameplayDuelActionId,
   type GameplayDuelRecordGroup,
 } from "@/constants/gameplay/gameplay-content";
 import { GAMEPLAY_STYLES } from "@/constants/styles/ui-styles";
+import {
+  buildGamePanelId,
+  useActiveGameRecord,
+} from "@/components/gameplay/detail/useActiveGameRecord";
 
 type GameplayDuelTabsCopy = {
   cueLabel: string;
@@ -26,20 +29,13 @@ type GameplayDuelTabsProps = {
   groups: readonly GameplayDuelRecordGroup[];
 };
 
-const buildDuelPanelId = (game: string) => {
-  return `duel-panel-${game.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-};
-
 const GameplayDuelTabs = ({
   actionLabels,
   copy,
   groups,
 }: GameplayDuelTabsProps) => {
-  const initialGame = groups[0]?.game ?? "";
-  const [activeGame, setActiveGame] = useState(initialGame);
-  const activeGroup = useMemo(() => {
-    return groups.find((group) => group.game === activeGame) ?? groups[0];
-  }, [activeGame, groups]);
+  const { activeRecord: activeGroup, setActiveGame } =
+    useActiveGameRecord(groups);
 
   if (!activeGroup) {
     return null;
@@ -58,7 +54,7 @@ const GameplayDuelTabs = ({
 
             return (
               <button
-                aria-controls={buildDuelPanelId(group.game)}
+                aria-controls={buildGamePanelId("duel-panel", group.game)}
                 aria-selected={isActive}
                 className={
                   isActive ?
@@ -79,7 +75,7 @@ const GameplayDuelTabs = ({
 
       <section
         className={GAMEPLAY_STYLES.duelGameGroup}
-        id={buildDuelPanelId(activeGroup.game)}
+        id={buildGamePanelId("duel-panel", activeGroup.game)}
         role="tabpanel"
       >
         <h3 className={GAMEPLAY_STYLES.duelGameTitle}>{activeGroup.game}</h3>

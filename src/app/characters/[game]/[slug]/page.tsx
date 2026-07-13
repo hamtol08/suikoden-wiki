@@ -6,7 +6,10 @@ import { notFound } from "next/navigation";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import CharacterDetailProfile from "@/components/characters/detail/CharacterDetailProfile";
 import { APP_ROUTES } from "@/constants/app/app-config";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import {
   CHARACTER_COPY,
   CHARACTER_DATA_BY_GAME,
@@ -31,7 +34,7 @@ const CharacterDetail = async ({ params }: CharacterDetailProps) => {
   const { game, slug } = await params;
   const isAvailableDetail = loadArchiveJsonSafely({
     fallback: false,
-    label: `character-detail-route:${game}:${slug}`,
+    label: buildArchiveDataLabel("character-detail-route", game, slug),
     load: () => isCharacterDetailAvailable(game),
   });
 
@@ -42,12 +45,12 @@ const CharacterDetail = async ({ params }: CharacterDetailProps) => {
   const detailGame = game as CharacterGameId;
   const detailSeries = loadArchiveJsonSafely({
     fallback: null,
-    label: `character-detail-series:${game}`,
+    label: buildArchiveDataLabel("character-detail-series", game),
     load: () => getCharacterSeries(detailGame),
   });
   const character = loadArchiveJsonSafely({
     fallback: null,
-    label: `character-detail:${game}:${slug}`,
+    label: buildArchiveDataLabel("character-detail", game, slug),
     load: () =>
       CHARACTER_DATA_BY_GAME[detailGame].find((entry) => entry.id === slug) ??
       null,

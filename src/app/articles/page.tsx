@@ -5,9 +5,10 @@
 import ArticleCardGrid from "@/components/articles/list/ArticleCardGrid";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import ArchiveSectionHeader from "@/components/shared/ArchiveSectionHeader";
 import { APP_ROUTES } from "@/constants/app/app-config";
 import { ARCHIVE_COPY } from "@/constants/archive/archive-content";
-import { ARTICLE_INDEX_CARDS } from "@/constants/articles/article-content";
+import { ARTICLE_INDEX_SECTIONS } from "@/constants/articles/article-content";
 import {
   APP_SHELL_STYLES,
   GAMEPLAY_STYLES,
@@ -31,9 +32,16 @@ const Articles = () => {
             title={ARCHIVE_COPY.articles.title}
           />
 
-          <section className={GAMEPLAY_STYLES.section}>
-            <ArticleCardGrid cards={ARTICLE_INDEX_CARDS} />
-          </section>
+          {ARTICLE_INDEX_SECTIONS.map((section) => (
+            <section className={GAMEPLAY_STYLES.section} key={section.id}>
+              <ArchiveSectionHeader
+                body={section.body}
+                eyebrow={section.eyebrow}
+                title={section.title}
+              />
+              <ArticleCardGrid cards={section.cards} />
+            </section>
+          ))}
         </section>
       </div>
     </main>

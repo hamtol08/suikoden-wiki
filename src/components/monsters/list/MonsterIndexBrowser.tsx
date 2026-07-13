@@ -1,18 +1,16 @@
-"use client";
-
 /**
  * 몬스터 도감 목록의 검색어와 애니메이션 표시 상태를 관리합니다.
  */
 
+"use client";
+
 import Link from "next/link";
-import { type ChangeEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
-import ItemNameLinkText from "@/components/shared/ItemNameLinkText";
+import { useArchiveSearch } from "@/components/shared/useArchiveSearch";
 import {
   formatArchiveCount,
   formatArchiveNumber,
-  normalizeArchiveSearchText,
 } from "@/constants/app/archive-utils";
 import { type MonsterIndexGameId } from "@/constants/monsters/monster-content";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";
@@ -36,6 +34,7 @@ export type MonsterBrowserItem = {
   bossGuideSummary?: string;
   encounters: readonly MonsterBrowserEncounter[];
   game: MonsterIndexGameId;
+  groupId?: string;
   groupLabel?: string;
   hasDrops: boolean;
   href: string | null;
@@ -73,36 +72,23 @@ type MonsterIndexBrowserProps = {
   panelTitle: string;
 };
 
-const MonsterIndexBrowser = ({
-  copy,
-  hideSearch = false,
-  monsters,
-  panelEyebrow,
-  panelTitle,
-}: MonsterIndexBrowserProps) => {
-  const [query, setQuery] = useState("");
-  const normalizedQuery = normalizeArchiveSearchText(query);
-  const filteredMonsters = useMemo(() => {
-    if (!normalizedQuery) {
-      return monsters;
-    }
+type MonsterBrowserGroup = {
+  id: string;
+  monsters: MonsterBrowserItem[];
+  title: string;
+};
 
-    return monsters.filter((monster) =>
-      monster.searchText.includes(normalizedQuery),
-    );
-  }, [monsters, normalizedQuery]);
-  const groupedMonsters = filteredMonsters.reduce<
-    {
-      id: string;
-      monsters: MonsterBrowserItem[];
-      title: string;
-    }[]
-  >((groups, monster) => {
-    if (!monster.groupLabel) {
+const buildMonsterBrowserGroups = (
+  monsters: readonly MonsterBrowserItem[],
+): MonsterBrowserGroup[] =>
+  monsters.reduce<MonsterBrowserGroup[]>((groups, monster) => {
+    if (!monster.groupId && !monster.groupLabel) {
       return groups;
     }
 
-    const existingGroup = groups.find((group) => group.title === monster.groupLabel);
+    const groupId = monster.groupId ?? monster.groupLabel ?? monster.game;
+    const groupTitle = monster.groupLabel ?? groupId;
+    const existingGroup = groups.find((group) => group.id === groupId);
 
     if (existingGroup) {
       existingGroup.monsters.push(monster);
@@ -112,12 +98,28 @@ const MonsterIndexBrowser = ({
     return [
       ...groups,
       {
-        id: monster.groupLabel,
+        id: groupId,
         monsters: [monster],
-        title: monster.groupLabel,
+        title: groupTitle,
       },
     ];
   }, []);
+
+const MonsterIndexBrowser = ({
+  copy,
+  hideSearch = false,
+  monsters,
+  panelEyebrow,
+  panelTitle,
+}: MonsterIndexBrowserProps) => {
+  const {
+    clearSearch,
+    filteredRecords: filteredMonsters,
+    handleSearchChange,
+    normalizedQuery,
+    query,
+  } = useArchiveSearch(monsters);
+  const groupedMonsters = buildMonsterBrowserGroups(filteredMonsters);
   const hasGroupedMonsters = groupedMonsters.length > 0;
 
   const renderMonsterCard = (monster: MonsterBrowserItem) => (
@@ -209,11 +211,7 @@ const MonsterIndexBrowser = ({
                         </Link>
                       ) : (
                         <span className={MONSTER_STYLES.dropName}>
-                          <ItemNameLinkText
-                            linkClassName={MONSTER_STYLES.dropNameLink}
-                            preferredGame={monster.game}
-                            text={drop.name}
-                          />
+                          {drop.name}
                         </span>
                       )}
                       <span className={MONSTER_STYLES.dropRate}>
@@ -234,21 +232,16 @@ const MonsterIndexBrowser = ({
     </motion.article>
   );
 
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
-
-  const clearSearch = () => {
-    setQuery("");
-  };
-
   return (
     <div className={MONSTER_STYLES.browser}>
       {hideSearch ? null : (
         <ArchiveIndexSearch
           ariaLabel={copy.searchLabel}
           clearLabel={copy.clearSearchLabel}
-          meta={formatArchiveCount(filteredMonsters.length, copy.resultCountSuffix)}
+          meta={formatArchiveCount(
+            filteredMonsters.length,
+            copy.resultCountSuffix,
+          )}
           placeholder={copy.searchPlaceholder}
           styles={MONSTER_STYLES}
           value={query}

@@ -2,21 +2,39 @@
  * 지역 상세 페이지의 마을, 던전, 시설, 몬스터 데이터를 정의합니다.
  */
 
+import {
+  FACILITY_ROLE_DESCRIPTIONS,
+  getFacilityLabel,
+  getFacilityRoleLabel,
+  resolveFacilityRole,
+  type FacilityRoleKey,
+} from "@/constants/shared/facility-content";
+
 export const REGION_DETAIL_COPY = {
   sectionTitle: "지역 기록",
   summaryTitle: "요약",
   recruitableTitle: "합류 인물",
+  facilityTitle: "상점 및 시설 역할",
+  facilityBody:
+    "시설은 판매 품목만이 아니라 회복, 저장, 문장 정비, 아이템 보관, 정보 확인 같은 진행 편의를 담당합니다. 실제 판매 품목은 상점 기록에서 확인합니다.",
+  facilityDefaultLabel: "지역 기본 기능",
+  facilityItemCountSuffix: "개",
+  facilityRecordLabel: "시설 기록",
+  facilityShopItemsLabel: "판매 품목",
   shopTitle: "상점 기록",
   enemyTitle: "필드 출연 몬스터",
+  acquisitionTitle: "획득 기록",
   recruitableCountLabel: "합류 인물",
+  facilityCountLabel: "시설",
   shopCountLabel: "상점",
   shopItemCountLabel: "상점 품목",
   enemyCountLabel: "필드 출연 몬스터",
   enemyDropCountLabel: "몬스터 드롭",
+  acquisitionCountLabel: "획득 아이템",
   villageSuffix: "마을",
   priceLabel: "가격",
   priceCurrency: "포치",
-  dropLabel: "드랍",
+  dropLabel: "드롭",
   chanceLabel: "획득 확률",
   noDrop: "드롭 기록 없음",
   earlyGame: "○ 초반 획득 가능",
@@ -24,10 +42,27 @@ export const REGION_DETAIL_COPY = {
   alwaysAvailable: "상시 획득 가능",
 } as const;
 
-export const REGION_SHOP_NAME_LABELS = {
-  Armorer: "방어구점",
-  "Item Shop": "아이템 상점",
-} as const;
+export const REGION_FACILITY_ROLE_DESCRIPTIONS = FACILITY_ROLE_DESCRIPTIONS;
+
+export const REGION_DEFAULT_FACILITY_ROLES_BY_CATEGORY = {
+  Capital: ["inn", "itemShop", "armorShop", "save"],
+  "Castle Town": ["inn", "itemShop", "armorShop", "save"],
+  "City-State": ["inn", "itemShop", "armorShop", "save"],
+  Hometown: ["inn", "itemShop", "save"],
+  "Mining City-State": ["inn", "itemShop", "trade", "save"],
+  "Mountain Village": ["inn", "itemShop", "save"],
+  "Port Town": ["inn", "itemShop", "port", "save"],
+  "River Town": ["inn", "itemShop", "port", "save"],
+  Settlement: ["inn", "itemShop", "save"],
+  Town: ["inn", "itemShop", "save"],
+  Village: ["inn", "itemShop", "save"],
+} as const satisfies Partial<Record<string, readonly FacilityRoleKey[]>>;
+
+export const getRegionFacilityLabel = getFacilityLabel;
+
+export const getRegionFacilityRoleLabel = getFacilityRoleLabel;
+
+export const resolveRegionFacilityRole = resolveFacilityRole;
 
 export const REGION_DROP_CHANCE_LABELS = {
   High: `${REGION_DETAIL_COPY.chanceLabel} 높음`,
@@ -58,6 +93,10 @@ export type RegionShopRecord = {
   items: readonly RegionShopItem[];
 };
 
+export type RegionFacilityRecord = {
+  name: string;
+};
+
 export type RegionEnemyDrop = {
   item: string;
   chance: "High" | "Medium" | "Low" | "None";
@@ -70,6 +109,7 @@ export type RegionEnemyRecord = {
 };
 
 export type RegionDetailRecord = {
+  facilities?: readonly RegionFacilityRecord[];
   shops?: readonly RegionShopRecord[];
   enemies?: readonly RegionEnemyRecord[];
 };

@@ -3,7 +3,10 @@
  */
 
 import Link from "next/link";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import { RUNE_ARCHIVE_COPY, resolveRuneReference } from "@/constants/runes/rune-content";
 
 type RuneReferenceLinkProps = {
@@ -14,7 +17,7 @@ type RuneReferenceLinkProps = {
 const RuneReferenceLink = ({ className, name }: RuneReferenceLinkProps) => {
   const rune = loadArchiveJsonSafely({
     fallback: undefined,
-    label: `rune-reference:${name}`,
+    label: buildArchiveDataLabel("rune-reference", name),
     load: () => resolveRuneReference(name),
   });
 

@@ -1,8 +1,8 @@
-"use client";
-
 /**
- * 클라이언트 라우트 이동 중 표시되는 진행 바 로딩 상태를 관리합니다.
+ * 페이지 이동 중 상단 진행 표시와 전환 상태를 관리합니다.
  */
+
+"use client";
 
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useReducer, useRef } from "react";

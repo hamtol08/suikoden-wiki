@@ -1,8 +1,8 @@
-"use client";
-
 /**
- * 헤더 아카이브 검색창의 입력, 추천, 이동 상호작용을 관리합니다.
+ * 헤더 검색 입력과 추천 결과 표시를 관리합니다.
  */
+
+"use client";
 
 import {
   type ChangeEvent,

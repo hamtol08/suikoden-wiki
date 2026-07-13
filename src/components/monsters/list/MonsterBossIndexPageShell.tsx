@@ -8,11 +8,16 @@ import { buildMonsterBrowserItem } from "@/components/monsters/list/monster-brow
 import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import ArchiveSummaryGrid from "@/components/shared/ArchiveSummaryGrid";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  ARCHIVE_DATA_LOAD_LABELS,
+  loadArchiveJsonSafely,
+  mapArchiveRecordsSafely,
+} from "@/constants/app/data-loading";
 import {
   buildBossMonsterSummaryItems,
   getBossMonsterIndexRecords,
   getBossMonsterIndexSummary,
+  getMonsterIndexPage,
   MONSTER_ARCHIVE_COPY,
   MONSTER_BOSS_BROWSER_COPY,
   MONSTER_BOSS_PAGE_ID,
@@ -31,23 +36,26 @@ const MonsterBossIndexPageShell = () => {
   ) ?? MONSTER_INDEX_TABS[0];
   const monsters = loadArchiveJsonSafely({
     fallback: [],
-    label: "boss-monster-index-records",
+    label: ARCHIVE_DATA_LOAD_LABELS.bossMonsterIndexRecords,
     load: () => getBossMonsterIndexRecords(),
   });
-  const browserItems = monsters.flatMap((monster) =>
-    loadArchiveJsonSafely({
-      fallback: [],
-      label: `boss-monster-browser-record:${monster.id}`,
-      load: () => [buildMonsterBrowserItem(monster, monster.game)],
-    }),
-  );
+  const browserItems = mapArchiveRecordsSafely({
+    getLabel: (monster) =>
+      ARCHIVE_DATA_LOAD_LABELS.monsterBrowserRecord(monster.id),
+    map: (monster) => {
+      const page = getMonsterIndexPage(monster.game);
+
+      return buildMonsterBrowserItem(monster, page.id, page.title);
+    },
+    records: monsters,
+  });
   const summary = loadArchiveJsonSafely({
     fallback: {
       monsterCount: 0,
       suikodenICount: 0,
       suikodenIICount: 0,
     },
-    label: "boss-monster-index-summary",
+    label: ARCHIVE_DATA_LOAD_LABELS.bossMonsterIndexSummary,
     load: () => getBossMonsterIndexSummary(),
   });
 
@@ -82,6 +90,7 @@ const MonsterBossIndexPageShell = () => {
             panelEyebrow={activePage.eyebrow}
             panelTitle={activePage.title}
             tabs={MONSTER_INDEX_PAGES.map((page) => ({
+              eyebrow: page.eyebrow,
               id: page.id,
               title: page.title,
             }))}

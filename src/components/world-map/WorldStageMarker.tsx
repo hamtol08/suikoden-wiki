@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { type CSSProperties } from "react";
+import { buildArchiveSlugId } from "@/constants/app/archive-utils";
 import { WORLD_STAGE_MARKERS } from "@/constants/archive/archive-content";
 import {
   ATLAS_STYLES,
@@ -38,7 +39,7 @@ const parseRemValue = (value: string | undefined, fallback: number) => {
 };
 
 const buildMarkerTooltipId = (label: string) => {
-  return `world-stage-marker-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  return `world-stage-marker-${buildArchiveSlugId(label)}`;
 };
 
 const buildConnectorPoints = (

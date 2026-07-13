@@ -2,8 +2,10 @@
  * 본문 속 아이템 이름을 아이템 상세 링크로 치환해 렌더링합니다.
  */
 
-import { Fragment, type ReactNode } from "react";
-import Link from "next/link";
+import {
+  escapeLinkTextRegExp,
+  renderLinkedReferenceText,
+} from "@/components/shared/link-text-utils";
 import {
   getItemJapaneseNames,
   ITEM_INDEX_RECORDS,
@@ -28,30 +30,6 @@ type ItemNameLinkReference = {
   name: string;
 };
 
-const escapeRegExp = (value: string) =>
-  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-const isTokenCharacter = (value?: string) => {
-  return value ? CHARACTER_LINK_TOKEN_PATTERN.test(value) : false;
-};
-
-const isDelimitedItemName = (text: string, offset: number, match: string) => {
-  const previous = text[offset - 1];
-  const next = text[offset + match.length];
-
-  if (isTokenCharacter(previous)) {
-    return false;
-  }
-
-  if (!isTokenCharacter(next)) {
-    return true;
-  }
-
-  return CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN.test(
-    text.slice(offset + match.length),
-  );
-};
-
 const ITEM_NAME_REFERENCES: readonly ItemNameLinkReference[] =
   ITEM_INDEX_RECORDS.flatMap((item) => {
     const names = [
@@ -71,7 +49,7 @@ const ITEM_NAME_REFERENCES: readonly ItemNameLinkReference[] =
   }).toSorted((left, right) => right.name.length - left.name.length);
 
 const ITEM_NAME_PATTERN = new RegExp(
-  `(${ITEM_NAME_REFERENCES.map((reference) => escapeRegExp(reference.name)).join("|")})`,
+  `(${ITEM_NAME_REFERENCES.map((reference) => escapeLinkTextRegExp(reference.name)).join("|")})`,
   "g",
 );
 
@@ -102,47 +80,14 @@ const renderLinkedText = (
   linkClassName: string = TEXT_STYLES.characterNameLink,
   preferredGame?: ItemIndexGameId,
 ) => {
-  const nodes: ReactNode[] = [];
-  let lastIndex = 0;
-
-  text.replace(ITEM_NAME_PATTERN, (match, _name, offset: number) => {
-    if (!isDelimitedItemName(text, offset, match)) {
-      return match;
-    }
-
-    const reference = resolveItemReference(match, preferredGame);
-
-    if (!reference) {
-      return match;
-    }
-
-    if (offset > lastIndex) {
-      nodes.push(text.slice(lastIndex, offset));
-    }
-
-    nodes.push(
-      <Link className={linkClassName} href={reference.href}>
-        {match}
-      </Link>,
-    );
-    lastIndex = offset + match.length;
-
-    return match;
+  return renderLinkedReferenceText({
+    linkClassName,
+    pattern: ITEM_NAME_PATTERN,
+    postpositionPattern: CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
+    resolveReference: (match) => resolveItemReference(match, preferredGame),
+    text,
+    tokenPattern: CHARACTER_LINK_TOKEN_PATTERN,
   });
-
-  if (nodes.length === 0) {
-    return text;
-  }
-
-  if (lastIndex < text.length) {
-    nodes.push(text.slice(lastIndex));
-  }
-
-  return nodes.map((node, index) => (
-    <Fragment key={typeof node === "string" ? `${node}-${index}` : index}>
-      {node}
-    </Fragment>
-  ));
 };
 
 const ItemNameLinkText = ({

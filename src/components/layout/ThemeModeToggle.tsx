@@ -1,8 +1,8 @@
-"use client";
-
 /**
- * 라이트/다크 테마 전환 버튼과 저장 상태를 관리합니다.
+ * 라이트 모드와 다크 모드 전환 상태를 관리합니다.
  */
+
+"use client";
 
 import { Moon, Sun } from "lucide-react";
 import { useEffect } from "react";
@@ -40,7 +40,10 @@ const getInitialThemeMode = () => {
 };
 
 const applyThemeMode = (themeMode: ThemeMode) => {
-  document.documentElement.classList.toggle("dark", themeMode === THEME_MODES.dark);
+  document.documentElement.classList.toggle(
+    THEME_MODES.dark,
+    themeMode === THEME_MODES.dark,
+  );
   document.documentElement.setAttribute("data-theme", themeMode);
 };
 

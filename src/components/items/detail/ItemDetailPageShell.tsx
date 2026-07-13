@@ -10,7 +10,11 @@ import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import MonsterNameLinkText from "@/components/shared/MonsterNameLinkText";
 import { formatArchiveCount } from "@/constants/app/archive-utils";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+  mapArchiveRecordsSafely,
+} from "@/constants/app/data-loading";
 import type { MonsterIndexGameId } from "@/constants/monsters/monster-content";
 import {
   buildItemRecordDisplay,
@@ -38,6 +42,15 @@ type ItemGameRecordCard = ItemRecordDisplay & {
   initialOwners: readonly ItemInitialOwner[];
   key: MonsterIndexGameId;
 };
+
+const buildItemGameRecordCard = (
+  record: ItemDetailRecord["gameRecords"][number],
+): ItemGameRecordCard => ({
+  ...buildItemRecordDisplay(record),
+  gameTitle: getItemIndexPage(record.game).title,
+  initialOwners: record.initialOwners,
+  key: record.game,
+});
 
 type ItemGameRecordRow = {
   label: string;
@@ -180,7 +193,7 @@ const buildItemInsightRows = (
 const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
   const item = loadArchiveJsonSafely({
     fallback: null,
-    label: `item-detail:${itemId}`,
+    label: buildArchiveDataLabel("item-detail", itemId),
     load: () => getItemDetailRecord(itemId),
   });
 
@@ -192,34 +205,22 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
   const activeItemPage = primaryGame
     ? loadArchiveJsonSafely({
         fallback: () => getItemIndexPage(primaryGame),
-        label: `item-detail-active-page:${item.id}`,
+        label: buildArchiveDataLabel("item-detail-active-page", item.id),
         load: () => getItemIndexPage(primaryGame),
       })
     : getItemIndexPage(ITEM_INDEX_PAGE_IDS.suikodenI);
   const detailRows = loadArchiveJsonSafely({
     fallback: [],
-    label: `item-detail-rows:${item.id}`,
+    label: buildArchiveDataLabel("item-detail-rows", item.id),
     load: () => buildDetailRows(item),
   });
   const primaryRecord = item.gameRecords[0] ?? null;
-  const gameRecordCards = item.gameRecords.flatMap((record) =>
-    loadArchiveJsonSafely({
-      fallback: [],
-      label: `item-detail-game-record:${item.id}:${record.game}`,
-      load: () => {
-        const display = buildItemRecordDisplay(record);
-
-        return [
-          {
-            ...display,
-            gameTitle: getItemIndexPage(record.game).title,
-            initialOwners: record.initialOwners,
-            key: record.game,
-          } satisfies ItemGameRecordCard,
-        ];
-      },
-    }),
-  );
+  const gameRecordCards = mapArchiveRecordsSafely({
+    getLabel: (record) =>
+      buildArchiveDataLabel("item-detail-game-record", item.id, record.game),
+    map: buildItemGameRecordCard,
+    records: item.gameRecords,
+  });
   const primaryRecordDisplay = primaryRecord
     ? buildItemRecordDisplay(primaryRecord)
     : null;
@@ -311,6 +312,21 @@ const ItemDetailPageShell = ({ itemId }: ItemDetailPageShellProps) => {
                 </h3>
                 <div className={ITEM_STYLES.detailSectionBody}>
                   {item.effectLines.map((line) => (
+                    <p key={line}>
+                      <CharacterNameLinkText text={line} />
+                    </p>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {item.usageLines.length > 0 ? (
+              <section className={ITEM_STYLES.detailSection}>
+                <h3 className={ITEM_STYLES.detailSectionTitle}>
+                  {ITEM_ARCHIVE_COPY.usageTitle}
+                </h3>
+                <div className={ITEM_STYLES.detailSectionBody}>
+                  {item.usageLines.map((line) => (
                     <p key={line}>
                       <CharacterNameLinkText text={line} />
                     </p>

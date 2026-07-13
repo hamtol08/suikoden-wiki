@@ -5,12 +5,13 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 import GameplayDuelTabs from "@/components/gameplay/detail/GameplayDuelTabs";
+import GameplaySeriesNoteCard from "@/components/gameplay/detail/GameplaySeriesNoteCard";
 import GameplaySeriesNoteTabs from "@/components/gameplay/detail/GameplaySeriesNoteTabs";
 import GameplayWarBattleTabs from "@/components/gameplay/detail/GameplayWarBattleTabs";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import ItemNameLinkText from "@/components/shared/ItemNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
-import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-content";
+import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-game-ids";
 import {
   GAMEPLAY_DETAIL_COPY,
   GAMEPLAY_DUEL_ACTION_LABELS,
@@ -284,15 +285,19 @@ export const GameplayDetailSeriesNotes = ({
   notes,
   tabbed,
 }: GameplayDetailSeriesNotesProps) => {
+  const copy = {
+    facilityLabel: GAMEPLAY_DETAIL_COPY.facilityLabel,
+    floorFacilityLabel: GAMEPLAY_DETAIL_COPY.floorFacilityLabel,
+    locationLabel: GAMEPLAY_DETAIL_COPY.facilityLocationLabel,
+    unlockLabel: GAMEPLAY_DETAIL_COPY.facilityUnlockLabel,
+  };
+
   if (tabbed) {
     return (
       <GameplaySeriesNoteTabs
         copy={{
-          facilityLabel: GAMEPLAY_DETAIL_COPY.facilityLabel,
-          floorFacilityLabel: GAMEPLAY_DETAIL_COPY.floorFacilityLabel,
-          locationLabel: GAMEPLAY_DETAIL_COPY.facilityLocationLabel,
+          ...copy,
           tabsAriaLabel: GAMEPLAY_DETAIL_COPY.seriesTabsAriaLabel,
-          unlockLabel: GAMEPLAY_DETAIL_COPY.facilityUnlockLabel,
         }}
         notes={notes}
       />
@@ -302,124 +307,7 @@ export const GameplayDetailSeriesNotes = ({
   return (
     <div className={GAMEPLAY_STYLES.detailSeriesGrid}>
       {notes.map((note) => (
-        <article className={GAMEPLAY_STYLES.detailCard} key={note.game}>
-          <h3 className={GAMEPLAY_STYLES.detailCardTitle}>{note.game}</h3>
-          <p className={GAMEPLAY_STYLES.detailCardBody}>
-            <CharacterNameLinkText
-              preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-              text={note.body}
-            />
-          </p>
-
-          {note.points ? (
-            <ul className={GAMEPLAY_STYLES.detailPointList}>
-              {note.points.map((point, pointIndex) => (
-                <li
-                  className={GAMEPLAY_STYLES.detailPointItem}
-                  key={`${note.game}-${pointIndex}`}
-                >
-                  <CharacterNameLinkText
-                    preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-                    text={point}
-                  />
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
-          {note.floorFacilities ? (
-            <section className={GAMEPLAY_STYLES.detailFacilitySection}>
-              <h4 className={GAMEPLAY_STYLES.detailFacilityTitle}>
-                {GAMEPLAY_DETAIL_COPY.floorFacilityLabel}
-              </h4>
-              <div className={GAMEPLAY_STYLES.detailFloorList}>
-                {note.floorFacilities.map((floor) => (
-                  <article
-                    className={GAMEPLAY_STYLES.detailFloorItem}
-                    key={`${note.game}-${floor.floor}`}
-                  >
-                    <h5 className={GAMEPLAY_STYLES.detailFloorTitle}>
-                      {floor.floor}
-                    </h5>
-                    <p className={GAMEPLAY_STYLES.detailFloorBody}>
-                      <CharacterNameLinkText
-                        preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-                        text={floor.summary}
-                      />
-                    </p>
-                    <div className={GAMEPLAY_STYLES.detailFloorTagList}>
-                      {floor.facilities.map((facility, facilityIndex) => (
-                        <span
-                          className={GAMEPLAY_STYLES.tag}
-                          key={`${note.game}-${floor.floor}-${facilityIndex}`}
-                        >
-                          <CharacterNameLinkText
-                            preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-                            text={facility}
-                          />
-                        </span>
-                      ))}
-                    </div>
-                    {floor.note ? (
-                      <p className={GAMEPLAY_STYLES.detailFloorNote}>
-                        <CharacterNameLinkText
-                          preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-                          text={floor.note}
-                        />
-                      </p>
-                    ) : null}
-                  </article>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          {note.facilities ? (
-            <section className={GAMEPLAY_STYLES.detailFacilitySection}>
-              <h4 className={GAMEPLAY_STYLES.detailFacilityTitle}>
-                {GAMEPLAY_DETAIL_COPY.facilityLabel}
-              </h4>
-              <div className={GAMEPLAY_STYLES.detailFacilityList}>
-                {note.facilities.map((facility) => (
-                  <article
-                    className={GAMEPLAY_STYLES.detailFacilityItem}
-                    key={`${note.game}-${facility.name}`}
-                  >
-                    <h5 className={GAMEPLAY_STYLES.detailFacilityName}>
-                      {facility.name}
-                    </h5>
-                    <div className={GAMEPLAY_STYLES.detailFacilityMetaGrid}>
-                      <p className={GAMEPLAY_STYLES.detailFacilityMeta}>
-                        <span className={GAMEPLAY_STYLES.detailFacilityMetaLabel}>
-                          {GAMEPLAY_DETAIL_COPY.facilityLocationLabel}
-                        </span>
-                        <CharacterNameLinkText
-                          preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-                          text={facility.location}
-                        />
-                      </p>
-                      <p className={GAMEPLAY_STYLES.detailFacilityMeta}>
-                        <span className={GAMEPLAY_STYLES.detailFacilityMetaLabel}>
-                          {GAMEPLAY_DETAIL_COPY.facilityUnlockLabel}
-                        </span>
-                        <CharacterNameLinkText
-                          preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-                          text={facility.unlock}
-                        />
-                      </p>
-                    </div>
-                    <p className={GAMEPLAY_STYLES.detailFacilityBody}>
-                      <CharacterNameLinkText
-                        preferredGame={resolveCharacterGameIdBySeriesTitle(note.game)}
-                        text={facility.body}
-                      />
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </section>
-          ) : null}
-        </article>
+        <GameplaySeriesNoteCard copy={copy} key={note.game} note={note} />
       ))}
     </div>
   );
@@ -640,93 +528,97 @@ export const GameplayMinigameRecords = ({
 
   return (
     <div className={GAMEPLAY_STYLES.minigameGrid}>
-      {records.map((record) => (
-        <article
-          className={GAMEPLAY_STYLES.minigameCard}
-          key={`${record.game}-${record.title}`}
-        >
-          <header className={GAMEPLAY_STYLES.minigameHeader}>
-            <p className={GAMEPLAY_STYLES.minigameGame}>{record.game}</p>
-            <h3 className={GAMEPLAY_STYLES.minigameTitle}>
-              <CharacterNameLinkText
-                preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
-                text={record.title}
-              />
-            </h3>
-          </header>
-          <dl className={GAMEPLAY_STYLES.minigameMetaGrid}>
-            <div className={GAMEPLAY_STYLES.minigameMeta}>
-              <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
-                {GAMEPLAY_DETAIL_COPY.minigameLocationLabel}
-              </dt>
-              <dd>
+      {records.map((record) => {
+        const preferredGame = resolveCharacterGameIdBySeriesTitle(record.game);
+
+        return (
+          <article
+            className={GAMEPLAY_STYLES.minigameCard}
+            key={`${record.game}-${record.title}`}
+          >
+            <header className={GAMEPLAY_STYLES.minigameHeader}>
+              <p className={GAMEPLAY_STYLES.minigameGame}>{record.game}</p>
+              <h3 className={GAMEPLAY_STYLES.minigameTitle}>
                 <CharacterNameLinkText
-                  preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
-                  text={record.location}
+                  preferredGame={preferredGame}
+                  text={record.title}
                 />
-              </dd>
-            </div>
-            <div className={GAMEPLAY_STYLES.minigameMeta}>
-              <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
-                {GAMEPLAY_DETAIL_COPY.minigameUnlockLabel}
-              </dt>
-              <dd>
-                <CharacterNameLinkText
-                  preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
-                  text={record.unlock}
-                />
-              </dd>
-            </div>
-            <div className={GAMEPLAY_STYLES.minigameMeta}>
-              <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
-                {GAMEPLAY_DETAIL_COPY.minigameRewardLabel}
-              </dt>
-              <dd>
-                <CharacterNameLinkText
-                  preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
-                  text={record.reward}
-                />
-              </dd>
-            </div>
-          </dl>
-          <p className={GAMEPLAY_STYLES.minigameBody}>
-            <CharacterNameLinkText
-              preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
-              text={record.body}
-            />
-          </p>
-          {record.relatedItems ? (
-            <div className={GAMEPLAY_STYLES.minigameRelatedList}>
-              {record.relatedItems.map((item) => (
-                <span
-                  className={GAMEPLAY_STYLES.tag}
-                  key={`${record.game}-${record.title}-${item}`}
-                >
-                  <ItemNameLinkText text={item} />
-                </span>
-              ))}
-            </div>
-          ) : null}
-          <div className={GAMEPLAY_STYLES.minigameTipBlock}>
-            <p className={GAMEPLAY_STYLES.minigameTipTitle}>
-              {GAMEPLAY_DETAIL_COPY.minigameTipsLabel}
-            </p>
-            <ul className={GAMEPLAY_STYLES.minigameTipList}>
-              {record.tips.map((tip, tipIndex) => (
-                <li
-                  className={GAMEPLAY_STYLES.minigameTipItem}
-                  key={`${record.game}-${record.title}-${tipIndex}`}
-                >
+              </h3>
+            </header>
+            <dl className={GAMEPLAY_STYLES.minigameMetaGrid}>
+              <div className={GAMEPLAY_STYLES.minigameMeta}>
+                <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
+                  {GAMEPLAY_DETAIL_COPY.minigameLocationLabel}
+                </dt>
+                <dd>
                   <CharacterNameLinkText
-                    preferredGame={resolveCharacterGameIdBySeriesTitle(record.game)}
-                    text={tip}
+                    preferredGame={preferredGame}
+                    text={record.location}
                   />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </article>
-      ))}
+                </dd>
+              </div>
+              <div className={GAMEPLAY_STYLES.minigameMeta}>
+                <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
+                  {GAMEPLAY_DETAIL_COPY.minigameUnlockLabel}
+                </dt>
+                <dd>
+                  <CharacterNameLinkText
+                    preferredGame={preferredGame}
+                    text={record.unlock}
+                  />
+                </dd>
+              </div>
+              <div className={GAMEPLAY_STYLES.minigameMeta}>
+                <dt className={GAMEPLAY_STYLES.minigameMetaLabel}>
+                  {GAMEPLAY_DETAIL_COPY.minigameRewardLabel}
+                </dt>
+                <dd>
+                  <CharacterNameLinkText
+                    preferredGame={preferredGame}
+                    text={record.reward}
+                  />
+                </dd>
+              </div>
+            </dl>
+            <p className={GAMEPLAY_STYLES.minigameBody}>
+              <CharacterNameLinkText
+                preferredGame={preferredGame}
+                text={record.body}
+              />
+            </p>
+            {record.relatedItems ? (
+              <div className={GAMEPLAY_STYLES.minigameRelatedList}>
+                {record.relatedItems.map((item) => (
+                  <span
+                    className={GAMEPLAY_STYLES.tag}
+                    key={`${record.game}-${record.title}-${item}`}
+                  >
+                    <ItemNameLinkText text={item} />
+                  </span>
+                ))}
+              </div>
+            ) : null}
+            <div className={GAMEPLAY_STYLES.minigameTipBlock}>
+              <p className={GAMEPLAY_STYLES.minigameTipTitle}>
+                {GAMEPLAY_DETAIL_COPY.minigameTipsLabel}
+              </p>
+              <ul className={GAMEPLAY_STYLES.minigameTipList}>
+                {record.tips.map((tip, tipIndex) => (
+                  <li
+                    className={GAMEPLAY_STYLES.minigameTipItem}
+                    key={`${record.game}-${record.title}-${tipIndex}`}
+                  >
+                    <CharacterNameLinkText
+                      preferredGame={preferredGame}
+                      text={tip}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 };
@@ -839,7 +731,9 @@ export const GameplayRecipeRecords = ({ records }: GameplayRecipeRecordsProps) =
                 </dt>
                 <dd className={GAMEPLAY_STYLES.recipeSourceDetail}>
                   {source.entries.map((entry, entryIndex) => (
-                    <Fragment key={`${record.number}-${source.label}-${entry.label}`}>
+                    <Fragment
+                      key={`${record.number}-${source.label}-${entry.label}-${entryIndex}`}
+                    >
                       {entryIndex > 0 ? " / " : null}
                       {entry.href ? (
                         <Link className={GAMEPLAY_STYLES.inlineLink} href={entry.href}>
@@ -903,51 +797,55 @@ export const GameplayWarBattleGuide = ({
         {GAMEPLAY_DETAIL_COPY.warCommandLabel}
       </h3>
       <div className={GAMEPLAY_STYLES.warCommandGrid}>
-        {commandGroups.map((group) => (
-          <article className={GAMEPLAY_STYLES.warCommandGroup} key={group.game}>
-            <p className={GAMEPLAY_STYLES.warGameLabel}>{group.game}</p>
-            <p className={GAMEPLAY_STYLES.warGroupBody}>
-              <CharacterNameLinkText
-                preferredGame={resolveCharacterGameIdBySeriesTitle(group.game)}
-                text={group.body}
-              />
-            </p>
-            <div className={GAMEPLAY_STYLES.warCommandList}>
-              {group.commands.map((command) => (
-                <section
-                  className={GAMEPLAY_STYLES.warCommandCard}
-                  key={`${group.game}-${command.name}`}
-                >
-                  <h4 className={GAMEPLAY_STYLES.warCommandName}>
-                    {command.name}
-                  </h4>
-                  <p className={GAMEPLAY_STYLES.warCommandBody}>
-                    <CharacterNameLinkText
-                      preferredGame={resolveCharacterGameIdBySeriesTitle(group.game)}
-                      text={command.body}
-                    />
-                  </p>
-                  {command.strongAgainst || command.weakAgainst ? (
-                    <div className={GAMEPLAY_STYLES.warCommandMetaGrid}>
-                      {command.strongAgainst ? (
-                        <p className={GAMEPLAY_STYLES.warCommandMeta}>
-                          {GAMEPLAY_DETAIL_COPY.warStrongAgainstLabel}{" "}
-                          {command.strongAgainst}
-                        </p>
-                      ) : null}
-                      {command.weakAgainst ? (
-                        <p className={GAMEPLAY_STYLES.warCommandMeta}>
-                          {GAMEPLAY_DETAIL_COPY.warWeakAgainstLabel}{" "}
-                          {command.weakAgainst}
-                        </p>
-                      ) : null}
-                    </div>
-                  ) : null}
-                </section>
-              ))}
-            </div>
-          </article>
-        ))}
+        {commandGroups.map((group) => {
+          const preferredGame = resolveCharacterGameIdBySeriesTitle(group.game);
+
+          return (
+            <article className={GAMEPLAY_STYLES.warCommandGroup} key={group.game}>
+              <p className={GAMEPLAY_STYLES.warGameLabel}>{group.game}</p>
+              <p className={GAMEPLAY_STYLES.warGroupBody}>
+                <CharacterNameLinkText
+                  preferredGame={preferredGame}
+                  text={group.body}
+                />
+              </p>
+              <div className={GAMEPLAY_STYLES.warCommandList}>
+                {group.commands.map((command) => (
+                  <section
+                    className={GAMEPLAY_STYLES.warCommandCard}
+                    key={`${group.game}-${command.name}`}
+                  >
+                    <h4 className={GAMEPLAY_STYLES.warCommandName}>
+                      {command.name}
+                    </h4>
+                    <p className={GAMEPLAY_STYLES.warCommandBody}>
+                      <CharacterNameLinkText
+                        preferredGame={preferredGame}
+                        text={command.body}
+                      />
+                    </p>
+                    {command.strongAgainst || command.weakAgainst ? (
+                      <div className={GAMEPLAY_STYLES.warCommandMetaGrid}>
+                        {command.strongAgainst ? (
+                          <p className={GAMEPLAY_STYLES.warCommandMeta}>
+                            {GAMEPLAY_DETAIL_COPY.warStrongAgainstLabel}{" "}
+                            {command.strongAgainst}
+                          </p>
+                        ) : null}
+                        {command.weakAgainst ? (
+                          <p className={GAMEPLAY_STYLES.warCommandMeta}>
+                            {GAMEPLAY_DETAIL_COPY.warWeakAgainstLabel}{" "}
+                            {command.weakAgainst}
+                          </p>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </section>
+                ))}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
 
@@ -970,34 +868,38 @@ export const GameplayWarBattleGuide = ({
         {GAMEPLAY_DETAIL_COPY.warRoleLabel}
       </h3>
       <div className={GAMEPLAY_STYLES.warRoleGrid}>
-        {roles.map((role) => (
-          <article
-            className={GAMEPLAY_STYLES.warRoleCard}
-            key={`${role.game}-${role.title}`}
-          >
-            <p className={GAMEPLAY_STYLES.warGameLabel}>{role.game}</p>
-            <h4 className={GAMEPLAY_STYLES.warRoleTitle}>{role.title}</h4>
-            <p className={GAMEPLAY_STYLES.warRoleBody}>
-              <CharacterNameLinkText
-                preferredGame={resolveCharacterGameIdBySeriesTitle(role.game)}
-                text={role.body}
-              />
-            </p>
-            <div className={GAMEPLAY_STYLES.warTagList}>
-              {role.points.map((point, pointIndex) => (
-                <span
-                  className={GAMEPLAY_STYLES.tag}
-                  key={`${role.title}-${pointIndex}`}
-                >
-                  <CharacterNameLinkText
-                    preferredGame={resolveCharacterGameIdBySeriesTitle(role.game)}
-                    text={point}
-                  />
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
+        {roles.map((role) => {
+          const preferredGame = resolveCharacterGameIdBySeriesTitle(role.game);
+
+          return (
+            <article
+              className={GAMEPLAY_STYLES.warRoleCard}
+              key={`${role.game}-${role.title}`}
+            >
+              <p className={GAMEPLAY_STYLES.warGameLabel}>{role.game}</p>
+              <h4 className={GAMEPLAY_STYLES.warRoleTitle}>{role.title}</h4>
+              <p className={GAMEPLAY_STYLES.warRoleBody}>
+                <CharacterNameLinkText
+                  preferredGame={preferredGame}
+                  text={role.body}
+                />
+              </p>
+              <div className={GAMEPLAY_STYLES.warTagList}>
+                {role.points.map((point, pointIndex) => (
+                  <span
+                    className={GAMEPLAY_STYLES.tag}
+                    key={`${role.title}-${pointIndex}`}
+                  >
+                    <CharacterNameLinkText
+                      preferredGame={preferredGame}
+                      text={point}
+                    />
+                  </span>
+                ))}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   </div>

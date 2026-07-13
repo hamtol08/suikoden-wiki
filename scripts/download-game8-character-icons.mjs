@@ -1,3 +1,7 @@
+/**
+ * Game8 캐릭터 목록 페이지에서 작품별 얼굴 아이콘을 내려받아 public 이미지 매니페스트를 갱신합니다.
+ */
+
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 

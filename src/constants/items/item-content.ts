@@ -16,6 +16,7 @@ import {
 } from "@/constants/app/app-config";
 import {
   ARCHIVE_LOCALE,
+  buildArchiveSlugId,
   formatArchiveCount,
   formatArchiveNumber,
 } from "@/constants/app/archive-utils";
@@ -28,7 +29,7 @@ import {
 import {
   REGION_DETAIL_RECORDS,
   REGION_DROP_CHANCE_LABELS,
-  REGION_SHOP_NAME_LABELS,
+  getRegionFacilityLabel,
   type RegionDetailRecord,
   translateMonsterName,
 } from "@/constants/regions/region-detail-content";
@@ -63,6 +64,7 @@ export const ITEM_ARCHIVE_COPY = {
   detailBody: "작품별 입수 기록과 기본 효과를 함께 정리합니다.",
   descriptionTitle: "개요",
   effectTitle: "효과",
+  usageTitle: "운용 기록",
   gameRecordsTitle: "작품별 기록",
   relatedRecordsTitle: "관련 기록",
   relatedRuneBody: "문장 기록에서 기능, 주문, 무기 장착 효과를 함께 확인합니다.",
@@ -82,6 +84,8 @@ export const ITEM_ARCHIVE_COPY = {
     otherLocations: "기타 입수처",
     dropRate: "획득 확률",
     initialEquipment: "초기 장비",
+    initialAccessory: "초기 장신구",
+    initialPossession: "초기 소유",
     initialOwners: "초기 소유자",
     effectRecords: "효과 기록",
     initialOwnerRecords: "초기 소유자 기록",
@@ -90,8 +94,8 @@ export const ITEM_ARCHIVE_COPY = {
     japaneseName: "JP",
     originalName: "영문 표기",
     games: "등장 작품",
-    shop: "Shop",
-    drop: "Drop",
+    shop: "상점",
+    drop: "드롭",
   },
 } as const;
 
@@ -103,6 +107,7 @@ export const ITEM_BROWSER_COPY = {
     dropLocations: ITEM_ARCHIVE_COPY.labels.dropLocations,
     dropRate: ITEM_ARCHIVE_COPY.labels.dropRate,
     initialEquipment: ITEM_ARCHIVE_COPY.labels.initialEquipment,
+    initialPossession: ITEM_ARCHIVE_COPY.labels.initialPossession,
     otherLocations: ITEM_ARCHIVE_COPY.labels.otherLocations,
     price: ITEM_ARCHIVE_COPY.labels.price,
     shop: ITEM_ARCHIVE_COPY.labels.shop,
@@ -224,7 +229,13 @@ export type ItemInitialOwner = {
   href: string;
   id: string;
   name: string;
+  possessionKind: ItemInitialPossessionKind;
 };
+
+export type ItemInitialPossessionKind =
+  | "accessory"
+  | "equipment"
+  | "possession";
 
 export type ItemIndexRecord = {
   id: string;
@@ -251,6 +262,7 @@ export type ItemDetailRecord = {
   relatedLinks: readonly ItemRelatedLink[];
   descriptionLines: readonly string[];
   effectLines: readonly string[];
+  usageLines: readonly string[];
   gameRecords: readonly ItemIndexRecord[];
 };
 
@@ -330,7 +342,6 @@ const GAME8_ITEM_CATEGORY_MAP = {
   Key: "keyItem",
   "Key Item": "keyItem",
   "Old Books": "book",
-  Others: "accessory",
   Paint: "paint",
   Paints: "paint",
   Recipes: "recipe",
@@ -349,7 +360,7 @@ const GAME8_ITEM_CATEGORY_MAP = {
   Stones: "consumable",
   "Trade Items": "tradeItem",
   "Window Sets": "windowSet",
-} as const satisfies Record<string, ItemCategoryId>;
+} as const satisfies Partial<Record<string, ItemCategoryId>>;
 
 const GAME8_SOURCE_TYPE_MAP = {
   Drop: "drop",
@@ -784,16 +795,16 @@ const ITEM_DETAIL_EFFECTS = {
 } as const satisfies Partial<Record<string, readonly string[]>>;
 
 const ITEM_DIRECT_EFFECTS_BY_ORIGINAL_NAME = {
-  Antitoxin: ["독 상태를 치료합니다."],
+  Antitoxin: ["아군 한 명의 독 상태를 치료합니다."],
   "Blinking Mirror": ["사용하면 본거지로 즉시 귀환합니다."],
   "Dragon Incense": ["특정 이벤트와 수집 기록에 쓰이는 특수 아이템입니다."],
   "Escape Talisman": ["던전이나 위험 지역에서 빠져나와 입구 쪽으로 이동합니다."],
-  "Mega Medicine": ["아군 한 명의 체력을 크게 회복합니다."],
+  "Mega Medicine": ["아군 한 명의 체력을 500 회복합니다."],
   Medicine: ["아군 한 명의 체력을 100 회복합니다."],
-  Needle: ["수집 기록과 시설 관련 항목으로 다루는 소형 아이템입니다."],
+  Needle: ["아군 한 명의 풍선 상태를 치료합니다."],
   "Sacrificial Buddha": ["소지자가 전투 불능이 될 때 대신 소비되어 전투 복귀를 돕습니다."],
   "Sacrificial Jizo": ["소지자가 전투 불능이 될 때 대신 소비되어 전투 복귀를 돕습니다."],
-  "Throat Drop": ["침묵 상태를 치료하는 데 쓰입니다."],
+  "Throat Drop": ["아군 한 명의 침묵 상태를 치료합니다."],
   "World Map": ["이동 중 세계지도를 확인하는 데 쓰입니다."],
 } as const satisfies Record<string, readonly string[]>;
 
@@ -972,6 +983,103 @@ const buildStoneEffectLines = (originalNames: readonly string[]) => {
   return uniqueItemEffectLines(effects);
 };
 
+const EQUIPMENT_NAME_EFFECT_RULES = [
+  {
+    pattern: /\b(Power|Strength)\b/i,
+    text: "장착하면 힘 계열 능력치를 보정합니다.",
+  },
+  {
+    pattern: /\b(Magic|Wizard|Rune)\b/i,
+    text: "장착하면 마법 운용과 마법 계열 능력치를 보정합니다.",
+  },
+  {
+    pattern: /\b(Speed|Wing|Winged)\b/i,
+    text: "장착하면 속도와 행동 순서에 관련된 능력치를 보정합니다.",
+  },
+  {
+    pattern: /\b(Skill|Technique)\b/i,
+    text: "장착하면 기술 계열 능력치를 보정합니다.",
+  },
+  {
+    pattern: /\b(Luck|Lucky)\b/i,
+    text: "장착하면 행운 계열 능력치를 보정합니다.",
+  },
+  {
+    pattern: /\b(Guard|Defense|Defence|Protect|Barrier)\b/i,
+    text: "장착하면 방어와 생존에 관련된 능력치를 보정합니다.",
+  },
+  {
+    pattern: /\b(Fire|Flame|Water|Wind|Earth|Thunder|Lightning)\b/i,
+    text: "장착하면 해당 속성 계열 보정이나 속성 방어에 영향을 줍니다.",
+  },
+] as const;
+
+const EQUIPMENT_EFFECT_CATEGORIES = new Set<ItemCategoryId>([
+  "accessory",
+  "armor",
+  "helmet",
+  "shield",
+]);
+
+export const isEquipmentItemCategory = (category: ItemCategoryId) => {
+  return EQUIPMENT_EFFECT_CATEGORIES.has(category);
+};
+
+const ITEM_INITIAL_POSSESSION_KIND_LABELS = {
+  accessory: ITEM_ARCHIVE_COPY.labels.initialAccessory,
+  equipment: ITEM_ARCHIVE_COPY.labels.initialEquipment,
+  possession: ITEM_ARCHIVE_COPY.labels.initialPossession,
+} as const satisfies Record<ItemInitialPossessionKind, string>;
+
+const resolveInitialPossessionKind = (
+  category: ItemCategoryId,
+): ItemInitialPossessionKind => {
+  if (category === "accessory") {
+    return "accessory";
+  }
+
+  return isEquipmentItemCategory(category) ? "equipment" : "possession";
+};
+
+export const resolveItemInitialPossessionKind = (name: string) => {
+  const normalizedName = normalizeItemName(name);
+  const itemReference = resolveItemReference(normalizedName);
+  const category = resolveItemRecordCategory(normalizedName, itemReference);
+
+  return resolveInitialPossessionKind(category);
+};
+
+export const buildInitialOwnerLabel = (
+  owners: readonly ItemInitialOwner[],
+) => {
+  const labels = [
+    ...new Set(
+      owners.map(
+        (owner) => ITEM_INITIAL_POSSESSION_KIND_LABELS[owner.possessionKind],
+      ),
+    ),
+  ];
+
+  return labels.length > 0 ? labels.join(" / ") : null;
+};
+
+const buildEquipmentNameEffectLines = (
+  category: ItemCategoryId,
+  originalNames: readonly string[],
+) => {
+  if (!isEquipmentItemCategory(category)) {
+    return [];
+  }
+
+  return uniqueItemEffectLines(
+    originalNames.flatMap((name) =>
+      EQUIPMENT_NAME_EFFECT_RULES.flatMap((rule) =>
+        rule.pattern.test(normalizeItemName(name)) ? [rule.text] : [],
+      ),
+    ),
+  );
+};
+
 const buildPatternEffectLines = (originalNames: readonly string[]) => {
   const normalizedNames = originalNames.map(normalizeItemName);
 
@@ -1017,6 +1125,70 @@ const buildCategoryEffectLines = (category: ItemCategoryId) => {
   };
 
   return effectLines[category] ?? [];
+};
+
+const buildItemUsageLines = (
+  category: ItemCategoryId,
+  records: readonly ItemIndexRecord[],
+) => {
+  const hasShopRecords = records.some((record) =>
+    record.sourceTypes.includes("shop"),
+  );
+  const hasDropRecords = records.some((record) =>
+    record.sourceTypes.includes("drop"),
+  );
+  const hasInitialOwners = records.some((record) =>
+    record.initialOwners.length > 0,
+  );
+  const usageLines: Partial<Record<ItemCategoryId, readonly string[]>> = {
+    accessory: [
+      "장신구 슬롯에 장착해 능력치 보정, 속성 저항, 상태 보조 효과를 챙기는 장비입니다.",
+      hasInitialOwners
+        ? "초기 소유자 기록이 있는 경우 해당 인물이 합류할 때 착용하거나 소지한 상태로 확인합니다."
+        : "입수 기록을 기준으로 상점, 드롭, 기타 획득 경로를 함께 확인합니다.",
+    ],
+    armor: [
+      "몸 방어구 슬롯에 장착해 전열과 후열 캐릭터의 생존력을 보강합니다.",
+      "캐릭터별 초기 장비 기록과 상점 입수 기록을 함께 보면 교체 시점을 정하기 쉽습니다.",
+    ],
+    consumable: [
+      "전투 중 또는 이동 중에 사용해 회복, 상태 치료, 이동 보조 효과를 처리합니다.",
+      hasShopRecords
+        ? "상점 기록이 있는 소비 아이템은 탐색 전 보급 기준으로 확인합니다."
+        : "상점 기록이 없으면 드롭이나 이벤트성 획득 기록을 우선 확인합니다.",
+    ],
+    helmet: [
+      "머리 방어구 슬롯에 장착하는 장비입니다.",
+      "초기 장비와 판매 품목을 함께 보며 방어구 갱신 흐름을 잡습니다.",
+    ],
+    ingredient: [
+      "요리와 식당 운영에 연결되는 재료 아이템입니다.",
+      "레시피, 식당 이벤트, 아이템 상점 레어 품목과 함께 확인하면 수집 흐름을 잡기 쉽습니다.",
+    ],
+    recipe: [
+      "하이요 식당에 등록해 조리 가능한 메뉴를 늘리는 기록 아이템입니다.",
+      "요리 대결 보상, 도구점 레어 아이템, 발견 기록을 기준으로 번호별 수집 상황을 확인합니다.",
+    ],
+    sealedOrb: [
+      "문장사에서 장착하면 봉인구가 문장으로 개방됩니다.",
+      "문장 상세 기록과 함께 보면 장착 효과, 주문, 무기 부착 효과를 함께 확인할 수 있습니다.",
+    ],
+    shield: [
+      "방패 슬롯에 장착해 물리 방어와 일부 보조 성능을 보강합니다.",
+      "초기 장비와 상점 판매 기록을 함께 확인해 방어구 갱신 경로를 정리합니다.",
+    ],
+    tradeItem: [
+      "교역소 시세 차이를 이용해 포치를 벌기 위한 거래 아이템입니다.",
+      "지역별 교역소와 판매 기록을 함께 보며 수익 동선을 정리합니다.",
+    ],
+  };
+  const fallbackLines = [
+    hasDropRecords
+      ? "몬스터 드롭 기록이 있는 아이템은 출현 지역과 획득 확률을 함께 확인합니다."
+      : "작품별 기록에서 입수 경로와 관련 시설을 함께 확인합니다.",
+  ];
+
+  return usageLines[category] ?? fallbackLines;
 };
 
 const buildSealedOrbEffectLines = (originalNames: readonly string[]) => {
@@ -1099,6 +1271,15 @@ const buildGeneratedItemEffectLines = (
 
   if (scrollEffectLines.length > 0) {
     return scrollEffectLines;
+  }
+
+  const equipmentNameEffectLines = buildEquipmentNameEffectLines(
+    category,
+    originalNames,
+  );
+
+  if (equipmentNameEffectLines.length > 0) {
+    return equipmentNameEffectLines;
   }
 
   const patternEffectLines = buildPatternEffectLines(originalNames);
@@ -1561,7 +1742,7 @@ const translateGeneratedItemJapaneseName = (name: string) => {
 };
 
 const buildItemId = (name: string) => {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return buildArchiveSlugId(name);
 };
 
 const normalizeItemName = (name: string) => {
@@ -1833,7 +2014,7 @@ const GAME8_SOURCE_ENTRY_TRANSLATIONS = {
   "Neclordia": "네크로디아",
   "Northern Checkpoint": "북쪽 관문",
   "North Sparrow Pass": "북쪽 참새 고개",
-  "North Window": "노스 윈도우",
+  "North Window": "노스윈도우",
   "Obtained in Sindar Ruins": "신다르 유적",
   "Obtained while shopping": "심부름 중 획득",
   "Pannu Yakuta Castle": "판누 야쿠타",
@@ -1994,7 +2175,7 @@ const translateGame8EventEntry = (entry: string) => {
   }
 
   if (text.includes("item store in Kirov")) {
-    return "키로프 아이템 상점에서 구매";
+    return "키로프 도구점에서 구매";
   }
 
   if (text.includes("Kirinji")) {
@@ -2006,7 +2187,7 @@ const translateGame8EventEntry = (entry: string) => {
   }
 
   if (text.includes("item store in Rikon")) {
-    return "리콘 아이템 상점에서 구매";
+    return "리콘 도구점에서 구매";
   }
 
   if (text.includes("Moonlight Weed")) {
@@ -2018,11 +2199,11 @@ const translateGame8EventEntry = (entry: string) => {
   }
 
   if (text.includes("item store in Teien")) {
-    return "테이엔 아이템 상점에서 구매";
+    return "테이엔 도구점에서 구매";
   }
 
   if (text.includes("item store in Warriors' Village")) {
-    return "전사의 마을 아이템 상점에서 구매";
+    return "전사의 마을 도구점에서 구매";
   }
 
   if (text.includes("Binoculars")) {
@@ -2094,7 +2275,7 @@ const translateGame8SourceEntry = (
   return translateGame8EventEntry(entry);
 };
 
-const isItemIndexGameId = (value: string): value is ItemIndexGameId => {
+export const isItemIndexGameId = (value: string): value is ItemIndexGameId => {
   return ITEM_INDEX_PAGES.some((page) => page.id === value);
 };
 
@@ -2218,7 +2399,7 @@ const formatGame8RecipeSourceLocation = (
   location: string,
 ) => {
   if (sourceType === "shop") {
-    return `${location} 아이템 상점 레어 아이템`;
+    return `${location} 도구점 레어 아이템`;
   }
 
   return formatGame8SourceLocation(sourceType, location);
@@ -2366,6 +2547,7 @@ const addItemInitialOwner = (
   gameId: ItemIndexGameId,
   itemId: string,
   characterId: string,
+  possessionKind: ItemInitialPossessionKind,
 ) => {
   const key = `${gameId}:${itemId}`;
   const owner = {
@@ -2373,6 +2555,7 @@ const addItemInitialOwner = (
     href: buildCharacterDetailPath(gameId, characterId),
     id: characterId,
     name: resolveCharacterInitialOwnerName(gameId, characterId),
+    possessionKind,
   };
   const currentOwners = owners.get(key) ?? [];
 
@@ -2408,6 +2591,7 @@ const buildItemInitialOwnerIndex = () => {
           gameId,
           resolveItemAvailabilityId(equipmentName),
           characterId,
+          resolveItemInitialPossessionKind(normalizedEquipmentName),
         );
       });
     });
@@ -2563,10 +2747,7 @@ const buildItemIndexRecords = () => {
     const regionLabel = buildRegionLabel(gameId, regionId);
 
     regionRecord.shops?.forEach((shop) => {
-      const shopLabel =
-        REGION_SHOP_NAME_LABELS[
-          shop.name as keyof typeof REGION_SHOP_NAME_LABELS
-        ] ?? shop.name;
+      const shopLabel = getRegionFacilityLabel(shop.name);
 
       shop.items.forEach((shopItem) => {
         const item = getOrCreateItemRecordDraft(records, gameId, shopItem.name);
@@ -2698,6 +2879,7 @@ export const getItemDetailRecord = (itemId: string): ItemDetailRecord | null => 
       firstRecord.category,
       originalNames,
     ),
+    usageLines: buildItemUsageLines(firstRecord.category, gameRecords),
     gameRecords,
   };
 };

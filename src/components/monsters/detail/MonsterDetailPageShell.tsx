@@ -5,10 +5,14 @@
 import Link from "next/link";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
+import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import ItemNameLinkText from "@/components/shared/ItemNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import { formatArchiveCount } from "@/constants/app/archive-utils";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import {
   getMonsterDetailRecord,
   MONSTER_ARCHIVE_COPY,
@@ -197,6 +201,20 @@ const buildBossGuideSummaryRows = (
     ),
   },
   {
+    label: MONSTER_ARCHIVE_COPY.labels.bossRelatedCount,
+    value: formatArchiveCount(
+      guide.relatedEvents?.length ?? 0,
+      MONSTER_ARCHIVE_COPY.recordCountSuffix,
+    ),
+  },
+  {
+    label: MONSTER_ARCHIVE_COPY.labels.bossRewardCount,
+    value: formatArchiveCount(
+      guide.rewards?.length ?? 0,
+      MONSTER_ARCHIVE_COPY.recordCountSuffix,
+    ),
+  },
+  {
     label: MONSTER_ARCHIVE_COPY.labels.bossWarningState,
     value: guide.warning
       ? MONSTER_ARCHIVE_COPY.labels.bossWarningAvailable
@@ -294,7 +312,7 @@ const MonsterDetailPageShell = ({
 }: MonsterDetailPageShellProps) => {
   const monster = loadArchiveJsonSafely({
     fallback: null,
-    label: `monster-detail:${gameId}:${monsterId}`,
+    label: buildArchiveDataLabel("monster-detail", gameId, monsterId),
     load: () => getMonsterDetailRecord(gameId, monsterId),
   });
 
@@ -304,12 +322,20 @@ const MonsterDetailPageShell = ({
 
   const detailRows = loadArchiveJsonSafely({
     fallback: [],
-    label: `monster-detail-rows:${monster.game}:${monster.id}`,
+    label: buildArchiveDataLabel(
+      "monster-detail-rows",
+      monster.game,
+      monster.id,
+    ),
     load: () => buildDetailRows(monster),
   });
   const summaryRows = loadArchiveJsonSafely({
     fallback: [],
-    label: `monster-detail-summary:${monster.game}:${monster.id}`,
+    label: buildArchiveDataLabel(
+      "monster-detail-summary",
+      monster.game,
+      monster.id,
+    ),
     load: () => buildDetailSummaryRows(monster),
   });
   const statFields = buildStatFields(monster.stats);
@@ -481,7 +507,7 @@ const MonsterDetailPageShell = ({
                       {MONSTER_ARCHIVE_COPY.labels.bossOverview}
                     </p>
                     <p className={MONSTER_STYLES.bossGuideBody}>
-                      {monster.bossGuide.overview}
+                      <CharacterNameLinkText text={monster.bossGuide.overview} />
                     </p>
                   </article>
 
@@ -495,7 +521,7 @@ const MonsterDetailPageShell = ({
                           className={MONSTER_STYLES.bossGuideListItem}
                           key={`preparation-${tipIndex}-${tip}`}
                         >
-                          {tip}
+                          <CharacterNameLinkText text={tip} />
                         </li>
                       ))}
                     </ul>
@@ -511,11 +537,47 @@ const MonsterDetailPageShell = ({
                           className={MONSTER_STYLES.bossGuideListItem}
                           key={`tactics-${tipIndex}-${tip}`}
                         >
-                          {tip}
+                          <CharacterNameLinkText text={tip} />
                         </li>
                       ))}
                     </ul>
                   </article>
+
+                  {monster.bossGuide.rewards ? (
+                    <article className={MONSTER_STYLES.bossGuideCard}>
+                      <p className={MONSTER_STYLES.bossGuideLabel}>
+                        {MONSTER_ARCHIVE_COPY.labels.bossRewards}
+                      </p>
+                      <ul className={MONSTER_STYLES.bossGuideList}>
+                        {monster.bossGuide.rewards.map((reward, rewardIndex) => (
+                          <li
+                            className={MONSTER_STYLES.bossGuideListItem}
+                            key={`reward-${rewardIndex}-${reward}`}
+                          >
+                            <ItemNameLinkText text={reward} />
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  ) : null}
+
+                  {monster.bossGuide.relatedEvents ? (
+                    <article className={MONSTER_STYLES.bossGuideCard}>
+                      <p className={MONSTER_STYLES.bossGuideLabel}>
+                        {MONSTER_ARCHIVE_COPY.labels.bossRelatedEvents}
+                      </p>
+                      <ul className={MONSTER_STYLES.bossGuideList}>
+                        {monster.bossGuide.relatedEvents.map((event, eventIndex) => (
+                          <li
+                            className={MONSTER_STYLES.bossGuideListItem}
+                            key={`event-${eventIndex}-${event}`}
+                          >
+                            <CharacterNameLinkText text={event} />
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  ) : null}
 
                   {monster.bossGuide.warning ? (
                     <article className={MONSTER_STYLES.bossGuideCardWide}>
@@ -523,7 +585,7 @@ const MonsterDetailPageShell = ({
                         {MONSTER_ARCHIVE_COPY.labels.bossWarning}
                       </p>
                       <p className={MONSTER_STYLES.bossGuideBody}>
-                        {monster.bossGuide.warning}
+                        <CharacterNameLinkText text={monster.bossGuide.warning} />
                       </p>
                     </article>
                   ) : null}

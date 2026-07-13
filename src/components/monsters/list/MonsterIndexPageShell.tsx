@@ -8,7 +8,11 @@ import ArchiveSummaryGrid from "@/components/shared/ArchiveSummaryGrid";
 import MonsterIndexBrowser from "@/components/monsters/list/MonsterIndexBrowser";
 import { buildMonsterBrowserItem } from "@/components/monsters/list/monster-browser-records";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+  mapArchiveRecordsSafely,
+} from "@/constants/app/data-loading";
 import {
   buildMonsterSummaryItems,
   getMonsterIndexPage,
@@ -34,23 +38,22 @@ const MonsterIndexPageShell = ({ gameId }: MonsterIndexPageShellProps) => {
   const activePage = loadArchiveJsonSafely({
     fallback: () => MONSTER_INDEX_PAGES.find((page) => page.id === gameId) ??
       MONSTER_INDEX_PAGES[0],
-    label: `monster-index-page:${gameId}`,
+    label: buildArchiveDataLabel("monster-index-page", gameId),
     load: () => getMonsterIndexPage(gameId),
   });
 
   const monsters = loadArchiveJsonSafely({
     fallback: [],
-    label: `monster-index-records:${gameId}`,
+    label: buildArchiveDataLabel("monster-index-records", gameId),
     load: () => getMonsterIndexRecordsByGame(gameId),
   });
 
-  const browserItems = monsters.flatMap((monster) =>
-    loadArchiveJsonSafely({
-      fallback: [],
-      label: `monster-browser-record:${monster.id}`,
-      load: () => [buildMonsterBrowserItem(monster)],
-    }),
-  );
+  const browserItems = mapArchiveRecordsSafely({
+    getLabel: (monster) =>
+      buildArchiveDataLabel("monster-browser-record", monster.id),
+    map: (monster) => buildMonsterBrowserItem(monster),
+    records: monsters,
+  });
 
   const summary = loadArchiveJsonSafely({
     fallback: {
@@ -58,7 +61,7 @@ const MonsterIndexPageShell = ({ gameId }: MonsterIndexPageShellProps) => {
       locationCount: 0,
       monsterCount: 0,
     },
-    label: `monster-index-summary:${gameId}`,
+    label: buildArchiveDataLabel("monster-index-summary", gameId),
     load: () => getMonsterIndexSummary(gameId),
   });
 

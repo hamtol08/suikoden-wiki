@@ -9,6 +9,7 @@ import {
   buildRegionAtlasDetailPath,
 } from "@/constants/app/app-config";
 import { GAME8_ITEM_SOURCE_RECORDS } from "@/constants/items/game8-item-source-records";
+import { FACILITY_ROLE_DESCRIPTIONS } from "@/constants/shared/facility-content";
 
 export const GAMEPLAY_COPY = {
   eyebrow: "Gameplay",
@@ -43,8 +44,8 @@ export const GAMEPLAY_DETAIL_COPY = {
   duelResponseLabel: "권장 대응",
   duelCueLabel: "대사",
   duelSeriesTabsAriaLabel: "Duel series",
-  warCommandLabel: "War Commands",
-  warRecordLabel: "War Battle Records",
+  warCommandLabel: "전쟁 명령",
+  warRecordLabel: "전쟁 전투 기록",
   warRecordListLabel: "전쟁 전투 일람",
   cookingContestLabel: "요리 대결 상대별 기록",
   cookingContestRoundLabel: "회차",
@@ -1102,25 +1103,25 @@ export const GAMEPLAY_WAR_COMMAND_GROUPS = [
     body: "트란 해방전쟁의 전쟁 전투는 매 턴 군 전체에 명령을 내리는 상성전입니다. 적 행동을 읽고 유리한 명령을 맞추는 것이 핵심입니다.",
     commands: [
       {
-        name: "Charge",
-        strongAgainst: "Bow",
-        weakAgainst: "Magic",
+        name: "돌격",
+        strongAgainst: "궁병",
+        weakAgainst: "마법",
         body: "기병·보병 중심의 돌격입니다. 궁병에는 강하지만 마법을 만나면 큰 손실을 입습니다.",
       },
       {
-        name: "Bow",
-        strongAgainst: "Magic",
-        weakAgainst: "Charge",
+        name: "궁병",
+        strongAgainst: "마법",
+        weakAgainst: "돌격",
         body: "어느 상황에서도 일정 피해를 주지만 돌격에는 손해를 보기 쉽습니다. 적 병력이 얼마 남지 않았을 때 마무리용으로 안정적입니다.",
       },
       {
-        name: "Magic",
-        strongAgainst: "Charge",
-        weakAgainst: "Bow",
+        name: "마법",
+        strongAgainst: "돌격",
+        weakAgainst: "궁병",
         body: "돌격을 완전히 받아칠 수 있지만 궁병에는 취약합니다. 적이 돌격을 고를 때 가장 강하게 작동합니다.",
       },
       {
-        name: "Other",
+        name: "보조 명령",
         body: "도적, 닌자, 전략가, 상인, 용기사처럼 전투 전에 전황을 바꾸는 보조 명령입니다. 정찰과 강화 후 본 명령을 고르는 흐름이 안정적입니다.",
       },
     ],
@@ -1130,19 +1131,19 @@ export const GAMEPLAY_WAR_COMMAND_GROUPS = [
     body: "듀난 통일전쟁의 전쟁 전투는 부대 단위로 이동하는 전술전입니다. 지형, 사거리, 특수 능력, 승리 조건을 함께 읽어야 합니다.",
     commands: [
       {
-        name: "Attack",
+        name: "공격",
         body: "사거리 안의 적 부대를 공격합니다. 보병과 기병은 인접 공격, 궁병과 마법 부대는 거리 유지가 중요합니다.",
       },
       {
-        name: "Rune",
+        name: "문장",
         body: "화염창, 마법, 회복처럼 부대가 가진 특수 능력을 사용합니다. 사용 횟수가 제한되어 있어 결정적인 턴에 쓰는 편이 좋습니다.",
       },
       {
-        name: "Wait",
+        name: "대기",
         body: "부대를 대기시켜 위치를 유지합니다. 적을 끌어들이거나 방어 목표를 지킬 때 필요합니다.",
       },
       {
-        name: "Leave it to Apple",
+        name: "애플에게 맡김",
         body: "자동 지휘입니다. 기본 진행에는 도움이 되지만 중요한 전투에서는 직접 이동과 사거리 관리를 하는 편이 더 안정적입니다.",
       },
     ],
@@ -1546,7 +1547,7 @@ const GAMEPLAY_RECIPE_SOURCE_TYPE_LABELS: Record<string, string> = {
   Drop: "드롭",
   Found: "발견",
   Other: "기타",
-  Shop: "아이템 상점 레어 아이템",
+  Shop: "도구점 레어 아이템",
 };
 
 const GAMEPLAY_RECIPE_SOURCE_ENTRY_LABELS: Record<string, string> = {
@@ -1675,7 +1676,7 @@ export const GAMEPLAY_HAIYO_RESTAURANT_TIPS = [
   },
   {
     title: "상점·드롭 레시피를 함께 모읍니다",
-    body: "모든 레시피가 식당 이벤트 보상으로만 들어오지는 않습니다. 마을 아이템 상점의 레어 아이템, 보물상자, 몬스터 드롭으로 얻는 레시피도 있으므로 지역 이동 때 함께 확인합니다.",
+    body: "모든 레시피가 식당 이벤트 보상으로만 들어오지는 않습니다. 마을 도구점의 레어 아이템, 보물상자, 몬스터 드롭으로 얻는 레시피도 있으므로 지역 이동 때 함께 확인합니다.",
     points: ["레어 아이템", "발견", "드롭"],
   },
   {
@@ -1685,7 +1686,7 @@ export const GAMEPLAY_HAIYO_RESTAURANT_TIPS = [
   },
   {
     title: "후반 진입 전 레시피 공백 확인",
-    body: "후반 지역으로 넘어가기 전에는 레시피 번호가 비어 있는지 먼저 점검합니다. 특히 아이템 상점 레어 아이템과 특정 몬스터 드롭은 나중에 찾으면 동선이 길어질 수 있습니다.",
+    body: "후반 지역으로 넘어가기 전에는 레시피 번호가 비어 있는지 먼저 점검합니다. 특히 도구점 레어 아이템과 특정 몬스터 드롭은 나중에 찾으면 동선이 길어질 수 있습니다.",
     points: ["번호 공백", "후반 점검", "수집 동선"],
   },
 ] as const satisfies readonly GameplayRestaurantTipRecord[];
@@ -2053,55 +2054,55 @@ export const GAMEPLAY_DETAIL_RECORDS = [
             name: "창고",
             location: "초기 본거지 기능 구역",
             unlock: "로크",
-            body: "아이템을 보관하고 꺼냅니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.storage,
           },
           {
             name: "여관",
             location: "초기 본거지 생활 구역",
             unlock: "마리",
-            body: "숙박과 세이브를 처리합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.inn,
           },
           {
             name: "도구점",
             location: "상점 구역",
             unlock: "챈들러",
-            body: "일반 아이템을 구입합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.itemShop,
           },
           {
             name: "방어구점",
             location: "성 확장 후 상점 구역",
             unlock: "채프먼",
-            body: "방어구를 구입합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.armorShop,
           },
           {
             name: "대장간",
             location: "성 내부 공방 구역",
             unlock: "마스 / 미스 / 모스 / 무스 / 메스",
-            body: "영입 단계에 따라 무기 강화 한계가 올라갑니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.blacksmith,
           },
           {
             name: "문장사",
             location: "성 확장 후 상점 구역",
             unlock: "진",
-            body: "문장을 장착하고 해제합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.runeShop,
           },
           {
             name: "감정사",
             location: "성 확장 후 상점 구역",
             unlock: "자바",
-            body: "감정품을 확인합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.appraisal,
           },
           {
             name: "목욕탕",
             location: "생활 시설 구역",
             unlock: "산스케",
-            body: "동료와 목욕 이벤트를 확인합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.bath,
           },
           {
             name: "도서관",
             location: "성 확장 후 서고",
             unlock: "휴고",
-            body: "오래된 책 기록을 읽습니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.library,
           },
           {
             name: "창 / 소리 변경",
@@ -2169,67 +2170,67 @@ export const GAMEPLAY_DETAIL_RECORDS = [
             name: "창고",
             location: "본거지 1층",
             unlock: "성 레벨 1",
-            body: "아이템을 보관하고 꺼냅니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.storage,
           },
           {
             name: "여관",
             location: "본거지 1층",
             unlock: "힐다",
-            body: "숙박과 세이브를 처리합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.inn,
           },
           {
             name: "도구점 / 방어구점",
             location: "본거지 1층 상점 구역",
             unlock: "알렉스 / 한스",
-            body: "아이템과 방어구를 구입합니다.",
+            body: `${FACILITY_ROLE_DESCRIPTIONS.itemShop} ${FACILITY_ROLE_DESCRIPTIONS.armorShop}`,
           },
           {
             name: "문장사",
             location: "성 레벨 2 이후 상점 구역",
             unlock: "진",
-            body: "문장 장착과 봉인구 관리를 맡습니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.runeShop,
           },
           {
             name: "농장 / 목장",
             location: "본거지 외곽",
             unlock: "토니 / 유즈",
-            body: "식재료와 동물 수집을 관리합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.farm,
           },
           {
             name: "식당",
             location: "성 레벨 2 이후 주방",
             unlock: "하이요",
-            body: "요리와 요리 대결을 진행합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.restaurant,
           },
           {
             name: "교역소",
             location: "성 레벨 3 이후 상업 구역",
             unlock: "고든",
-            body: "교역품 거래를 처리합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.trade,
           },
           {
             name: "감정소",
             location: "성 레벨 3 이후 상업 구역",
             unlock: "레브란테",
-            body: "감정품을 확인합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.appraisal,
           },
           {
             name: "대장간",
             location: "성 레벨 3 이후 공방 구역",
             unlock: "텟사이",
-            body: "무기 강화를 담당합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.blacksmith,
           },
           {
             name: "도서관",
             location: "성 레벨 2 이후 도서관",
             unlock: "에밀리아",
-            body: "오래된 책 기록을 읽습니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.library,
           },
           {
             name: "탐정 사무소",
             location: "본거지 1층 기능 구역",
             unlock: "리치먼드",
-            body: "영입 단서와 조사를 제공합니다.",
+            body: FACILITY_ROLE_DESCRIPTIONS.detective,
           },
           {
             name: "창 / 소리 변경",
@@ -3033,7 +3034,7 @@ export const GAMEPLAY_GUIDE_GROUPS = [
       },
       {
         href: buildGameplayDetailPath(GAMEPLAY_DETAIL_IDS.haiYoCookOff),
-        title: "Hai Yo Cook-Off",
+        title: "하이요 요리 대결",
         body: "하이요 영입 뒤 본거지 식당에서 이어지는 요리 대결, 레시피 보상, 수집 흐름을 따로 정리합니다.",
       },
       {
@@ -3074,22 +3075,22 @@ export const TIMELINE_WORLD_SECTIONS = [
   {
     title: "하르모니아와 문장의 분열",
     body: "북방 대륙의 정치 질서는 하르모니아의 영향권에서 출발합니다. 문장의 일족, 문의 문장, 소울이터의 행방은 이후 트란과 듀난 전쟁의 배경으로 이어집니다.",
-    tags: ["Harmonia", "Gate Rune", "Soul Eater"],
+    tags: ["하르모니아", "문의 문장", "소울이터"],
   },
   {
     title: "적월제국과 트란",
     body: "적월제국은 하르모니아에서 독립해 성장한 국가이며, 황가의 패왕의 문장과 제국 장군들의 군사력이 트란 지역 질서를 지탱합니다.",
-    tags: ["Scarlet Moon Empire", "Sovereign Rune", "Toran"],
+    tags: ["적월제국", "패왕의 문장", "트란"],
   },
   {
     title: "듀난 군주국의 해체와 도시동맹",
     body: "듀난 지역은 남창을 중심으로 한 군주국에서 출발했지만, 하이랜드의 성장과 도시들의 독립으로 쪼개집니다. 뮤즈, 사우스 윈도우, 투 리버, 마틸다 기사단은 이후 죠스턴 도시동맹을 이룹니다.",
-    tags: ["Dunan Monarchy", "Jowston", "Highland Kingdom"],
+    tags: ["듀난 군주국", "죠스턴", "하이랜드 왕국"],
   },
   {
     title: "시작의 문장과 듀난 전쟁",
     body: "겐카쿠와 한 커닝엄의 과거, 리오우와 죠우이에게 나뉜 시작의 문장, 루카 브라이트의 전쟁 도발이 듀난 통일전쟁의 핵심 축입니다.",
-    tags: ["Rune of Beginning", "New State Army", "Dunan Republic"],
+    tags: ["시작의 문장", "신동맹군", "듀난 공화국"],
   },
 ] as const;
 
@@ -3097,32 +3098,32 @@ export const TIMELINE_WAR_SECTIONS = [
   {
     title: "하르모니아 내전",
     body: "하르모니아의 내부 혼란은 적월제국 독립의 배경이 됩니다. 크라나흐 루그너가 옛 수도 그렉민스터를 중심으로 세력을 세우면서 트란 지역의 새 질서가 시작됩니다.",
-    tags: ["Harmonia", "Scarlet Moon Empire", "Gregminster"],
+    tags: ["하르모니아", "적월제국", "그렉민스터"],
   },
   {
     title: "듀난 군주국 내전",
     body: "듀난 군주국의 반란과 하이랜드의 개입은 사우스 윈도우 독립으로 이어집니다. 이 내전 이후 듀난 지역은 군주국 중심 질서에서 도시국가 연합의 시대로 이동합니다.",
-    tags: ["Dunan Monarchy", "South Window", "Highland Kingdom"],
+    tags: ["듀난 군주국", "사우스 윈도우", "하이랜드 왕국"],
   },
   {
     title: "하이랜드-죠스턴 전쟁",
     body: "하이랜드와 죠스턴 도시동맹의 충돌은 겐카쿠와 한 커닝엄의 전장 기록으로 이어집니다. 시작의 문장이 두 사람에게 나뉜 과거도 이 전쟁사의 핵심입니다.",
-    tags: ["Highland Kingdom", "Jowston", "Rune of Beginning"],
+    tags: ["하이랜드 왕국", "죠스턴", "시작의 문장"],
   },
   {
     title: "적월제국 계승 전쟁",
     body: "루그너 황가 내부의 권력 다툼은 바르바로사 즉위와 제국 장군 체제의 재편으로 이어집니다. 훗날 트란 해방전쟁에서 맞붙는 제국 권력의 전사를 이해하는 배경입니다.",
-    tags: ["Scarlet Moon Empire", "Barbarossa", "Six Great Generals"],
+    tags: ["적월제국", "바르바로사", "제국 6장군"],
   },
   {
     title: "문의 문장 전쟁",
     body: "오뎃사 실버버그의 트란 해방군 결성과 주인공의 소울이터 계승으로 본격화되는 환상수호전 I의 중심 전쟁입니다. 적월제국 붕괴와 트란 공화국 성립으로 마무리됩니다.",
-    tags: ["Gate Rune War", "Liberation Army", "Toran Republic"],
+    tags: ["문의 문장 전쟁", "해방군", "트란 공화국"],
   },
   {
     title: "듀난 통일전쟁",
     body: "루카 브라이트의 전쟁 도발과 유니콘 소년병 부대 학살로 시작되는 환상수호전 II의 중심 전쟁입니다. 하이랜드 왕국과 죠스턴 도시동맹의 붕괴 뒤 듀난 공화국이 탄생합니다.",
-    tags: ["Dunan Unification War", "New State Army", "Dunan Republic"],
+    tags: ["듀난 통일전쟁", "신동맹군", "듀난 공화국"],
   },
 ] as const;
 

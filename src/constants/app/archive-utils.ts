@@ -12,3 +12,23 @@ export const formatArchiveCount = (value: number, suffix: string) =>
 
 export const normalizeArchiveSearchText = (value: string) =>
   value.toLocaleLowerCase(ARCHIVE_LOCALE).replace(/\s+/g, " ").trim();
+
+export const normalizeArchiveCompactText = (value: string) =>
+  value.toLocaleLowerCase(ARCHIVE_LOCALE).replace(/\s+/g, "").trim();
+
+export const formatArchiveMeta = (
+  values: readonly (number | string | null | undefined | false)[],
+) => values.filter(Boolean).join(" · ");
+
+export const buildArchiveSearchText = (
+  values: readonly (number | string | null | undefined | false)[],
+) => normalizeArchiveSearchText(values.filter(Boolean).join(" "));
+
+export const buildArchiveSlugId = (value: string) =>
+  value
+    .toLocaleLowerCase("en-US")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+export const escapeArchiveRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

@@ -1,3 +1,7 @@
+/**
+ * Game8의 환상수호전 II 캐릭터 표와 로컬 아이콘 매니페스트를 합쳐 캐릭터 상수 초안을 생성합니다.
+ */
+
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import iconManifest from "../public/suikoden/characters/suikoden-ii/manifest.json" with {

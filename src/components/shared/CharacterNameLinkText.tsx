@@ -2,38 +2,28 @@
  * 본문 속 108성 캐릭터 이름을 상세 링크로 치환해 렌더링합니다.
  */
 
-import { Fragment, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import Link from "next/link";
-import { buildCharacterDetailPath } from "@/constants/app/app-config";
 import {
-  CHARACTER_DATA_BY_GAME,
+  escapeLinkTextRegExp,
+  isDelimitedLinkText,
+  wrapLinkedTextNodes,
+} from "@/components/shared/link-text-utils";
+import {
   type CharacterGameId,
-} from "@/constants/characters/character-content";
+} from "@/constants/characters/character-game-ids";
+import { CHARACTER_NAME_LINK_REFERENCES } from "@/constants/characters/character-link-references";
 import {
   CHARACTER_LINK_NOWRAP_FOLLOWERS,
   CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
   CHARACTER_LINK_PROTECTED_PHRASES,
   CHARACTER_LINK_TOKEN_PATTERN,
-  CHARACTER_NAME_ALIASES,
 } from "@/constants/characters/character-linking";
 import { TEXT_STYLES } from "@/constants/styles/ui-styles";
 
 type CharacterNameLinkTextProps = {
   preferredGame?: CharacterGameId;
   text: string;
-};
-
-type CharacterNameLinkReference = {
-  game: CharacterGameId;
-  href: string;
-  name: string;
-};
-
-const escapeRegExp = (value: string) =>
-  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-const isTokenCharacter = (value?: string) => {
-  return value ? CHARACTER_LINK_TOKEN_PATTERN.test(value) : false;
 };
 
 const isInsideProtectedPhrase = (text: string, offset: number, match: string) => {
@@ -56,47 +46,8 @@ const isInsideProtectedPhrase = (text: string, offset: number, match: string) =>
   });
 };
 
-const isDelimitedCharacterName = (
-  text: string,
-  offset: number,
-  match: string,
-) => {
-  const previous = text[offset - 1];
-  const next = text[offset + match.length];
-
-  if (isTokenCharacter(previous)) {
-    return false;
-  }
-
-  if (!isTokenCharacter(next)) {
-    return true;
-  }
-
-  return CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN.test(
-    text.slice(offset + match.length),
-  );
-};
-
-const CHARACTER_NAME_REFERENCES: readonly CharacterNameLinkReference[] = [
-  ...Object.entries(CHARACTER_DATA_BY_GAME).flatMap(([game, characters]) =>
-    characters.map((character) => ({
-      game: game as CharacterGameId,
-      href: buildCharacterDetailPath(game, character.id),
-      name: character.name,
-    })),
-  ),
-  ...CHARACTER_NAME_ALIASES.flatMap((alias) =>
-    alias.names.map((name) => ({
-      game: alias.game,
-      href: buildCharacterDetailPath(alias.game, alias.id),
-      name,
-    })),
-  ),
-]
-  .toSorted((left, right) => right.name.length - left.name.length);
-
 const CHARACTER_NAME_PATTERN = new RegExp(
-  `(${CHARACTER_NAME_REFERENCES.map((reference) => escapeRegExp(reference.name)).join("|")})`,
+  `(${CHARACTER_NAME_LINK_REFERENCES.map((reference) => escapeLinkTextRegExp(reference.name)).join("|")})`,
   "g",
 );
 
@@ -104,7 +55,7 @@ const resolveCharacterReference = (
   name: string,
   preferredGame?: CharacterGameId,
 ) => {
-  const matches = CHARACTER_NAME_REFERENCES.filter((reference) =>
+  const matches = CHARACTER_NAME_LINK_REFERENCES.filter((reference) =>
     reference.name === name
   );
 
@@ -128,7 +79,13 @@ const renderLinkedText = (
 
   text.replace(CHARACTER_NAME_PATTERN, (match, _name, offset: number) => {
     if (
-      !isDelimitedCharacterName(text, offset, match) ||
+      !isDelimitedLinkText({
+        match,
+        offset,
+        postpositionPattern: CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
+        text,
+        tokenPattern: CHARACTER_LINK_TOKEN_PATTERN,
+      }) ||
       isInsideProtectedPhrase(text, offset, match)
     ) {
       return match;
@@ -176,11 +133,7 @@ const renderLinkedText = (
     nodes.push(text.slice(lastIndex));
   }
 
-  return nodes.map((node, index) => (
-    <Fragment key={typeof node === "string" ? `${node}-${index}` : index}>
-      {node}
-    </Fragment>
-  ));
+  return wrapLinkedTextNodes(nodes);
 };
 
 const CharacterNameLinkText = ({

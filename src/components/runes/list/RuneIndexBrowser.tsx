@@ -1,21 +1,18 @@
-"use client";
-
 /**
  * 문장 목록의 검색어와 자동완성 상태를 관리합니다.
  */
 
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { type ChangeEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
 import LocalizedNameList, {
   type LocalizedNameEntry,
 } from "@/components/shared/LocalizedNameList";
-import {
-  formatArchiveCount,
-  normalizeArchiveSearchText,
-} from "@/constants/app/archive-utils";
+import { useArchiveSearch } from "@/components/shared/useArchiveSearch";
+import { formatArchiveCount } from "@/constants/app/archive-utils";
 import { MOTION_PRESETS } from "@/constants/styles/motion-styles";
 import { RUNE_STYLES } from "@/constants/styles/ui-styles";
 
@@ -33,6 +30,7 @@ export type RuneIndexBrowserItem = {
 };
 
 type RuneIndexBrowserCopy = {
+  clearSearchLabel: string;
   noResults: string;
   resultCountSuffix: string;
   searchLabel: string;
@@ -48,29 +46,25 @@ const RuneIndexBrowser = ({
   copy,
   runes,
 }: RuneIndexBrowserProps) => {
-  const [query, setQuery] = useState("");
-  const normalizedQuery = normalizeArchiveSearchText(query);
-  const filteredRunes = useMemo(() => {
-    if (!normalizedQuery) {
-      return runes;
-    }
-
-    return runes.filter((rune) => rune.searchText.includes(normalizedQuery));
-  }, [normalizedQuery, runes]);
-
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
+  const {
+    clearSearch,
+    filteredRecords: filteredRunes,
+    handleSearchChange,
+    normalizedQuery,
+    query,
+  } = useArchiveSearch(runes);
 
   return (
     <div className={RUNE_STYLES.browser}>
       <ArchiveIndexSearch
         ariaLabel={copy.searchLabel}
+        clearLabel={copy.clearSearchLabel}
         meta={formatArchiveCount(filteredRunes.length, copy.resultCountSuffix)}
         placeholder={copy.searchPlaceholder}
         styles={RUNE_STYLES}
         value={query}
         onChange={handleSearchChange}
+        onClear={clearSearch}
       />
 
       <AnimatePresence mode="wait">

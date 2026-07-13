@@ -1,21 +1,22 @@
-"use client";
-
 /**
- * 보스 몬스터 색인의 작품 탭과 검색어 상태를 관리합니다.
+ * 보스 몬스터 목록의 검색어와 애니메이션 표시 상태를 관리합니다.
  */
 
-import { type ChangeEvent, useMemo, useState } from "react";
+"use client";
+
+import { useMemo, useState } from "react";
 import ArchiveIndexSearch from "@/components/shared/ArchiveIndexSearch";
 import MonsterIndexBrowser, {
   type MonsterBrowserItem,
 } from "@/components/monsters/list/MonsterIndexBrowser";
+import { useArchiveSearch } from "@/components/shared/useArchiveSearch";
 import {
   formatArchiveCount,
-  normalizeArchiveSearchText,
 } from "@/constants/app/archive-utils";
 import { MONSTER_STYLES } from "@/constants/styles/ui-styles";
 
 type MonsterBossGameTab = {
+  eyebrow: string;
   id: string;
   title: string;
 };
@@ -57,29 +58,17 @@ const MonsterBossIndexBrowser = ({
   tabs,
 }: MonsterBossIndexBrowserProps) => {
   const [activeGameId, setActiveGameId] = useState(tabs[0]?.id ?? "");
-  const [query, setQuery] = useState("");
-  const normalizedQuery = normalizeArchiveSearchText(query);
+  const activeTab = tabs.find((tab) => tab.id === activeGameId) ?? tabs[0];
   const activeMonsters = useMemo(
-    () => monsters.filter((monster) => monster.groupLabel === activeGameId),
+    () => monsters.filter((monster) => monster.groupId === activeGameId),
     [activeGameId, monsters],
   );
-  const filteredMonsters = useMemo(() => {
-    if (!normalizedQuery) {
-      return activeMonsters;
-    }
-
-    return activeMonsters.filter((monster) =>
-      monster.searchText.includes(normalizedQuery)
-    );
-  }, [activeMonsters, normalizedQuery]);
-
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
-
-  const clearSearch = () => {
-    setQuery("");
-  };
+  const {
+    clearSearch,
+    filteredRecords: filteredMonsters,
+    handleSearchChange,
+    query,
+  } = useArchiveSearch(activeMonsters);
 
   return (
     <section className={MONSTER_STYLES.browser}>
@@ -95,7 +84,7 @@ const MonsterBossIndexBrowser = ({
             type="button"
             onClick={() => {
               setActiveGameId(tab.id);
-              setQuery("");
+              clearSearch();
             }}
           >
             {tab.title}
@@ -118,8 +107,8 @@ const MonsterBossIndexBrowser = ({
         copy={copy}
         hideSearch
         monsters={filteredMonsters}
-        panelEyebrow={panelEyebrow}
-        panelTitle={panelTitle}
+        panelEyebrow={activeTab?.eyebrow ?? panelEyebrow}
+        panelTitle={activeTab?.title ?? panelTitle}
       />
     </section>
   );

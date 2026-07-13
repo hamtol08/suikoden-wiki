@@ -16,6 +16,8 @@ import ArticleCardGrid from "@/components/articles/list/ArticleCardGrid";
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import NewsArticleList from "@/components/news/list/NewsArticleList";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
+import ArchiveLinkCardGrid from "@/components/shared/ArchiveLinkCardGrid";
+import ArchiveSectionHeader from "@/components/shared/ArchiveSectionHeader";
 import MotionSurface from "@/components/shared/MotionSurface";
 import {
   APP_ROUTES,
@@ -26,6 +28,7 @@ import { IMAGE_PATHS } from "@/constants/app/app-assets";
 import {
   ARCHIVE_CATEGORIES,
   ARCHIVE_COPY,
+  RECENT_UPDATE_CARDS,
   TRENDING_STARS,
 } from "@/constants/archive/archive-content";
 import { FEATURE_CARDS } from "@/constants/articles/article-content";
@@ -81,15 +84,14 @@ const Home = () => {
           </MotionSurface>
 
           <MotionSurface as="section" className={SECTION_STYLES.block} id={DOM_IDS.featured}>
-            <div className={SECTION_STYLES.headerRow}>
-              <div>
-                <p className={TEXT_STYLES.labelGold}>{ARCHIVE_COPY.featured.eyebrow}</p>
-                <h2 className={TEXT_STYLES.sectionTitle}>{ARCHIVE_COPY.featured.title}</h2>
-              </div>
-              <Link className={SECTION_STYLES.viewAllLink} href={APP_ROUTES.articles}>
-                {ARCHIVE_COPY.featured.viewAll}
-              </Link>
-            </div>
+            <ArchiveSectionHeader
+              action={{
+                href: APP_ROUTES.articles,
+                label: ARCHIVE_COPY.featured.viewAll,
+              }}
+              eyebrow={ARCHIVE_COPY.featured.eyebrow}
+              title={ARCHIVE_COPY.featured.title}
+            />
             <ArticleCardGrid cards={FEATURE_CARDS} />
           </MotionSurface>
 
@@ -116,6 +118,19 @@ const Home = () => {
                 );
               })}
             </div>
+          </MotionSurface>
+
+          <MotionSurface as="section" className={SECTION_STYLES.block}>
+            <ArchiveSectionHeader
+              body={ARCHIVE_COPY.recentUpdates.body}
+              eyebrow={ARCHIVE_COPY.recentUpdates.eyebrow}
+              title={ARCHIVE_COPY.recentUpdates.title}
+            />
+            <ArchiveLinkCardGrid
+              actionLabel={ARCHIVE_COPY.articles.openArticle}
+              cards={RECENT_UPDATE_CARDS}
+              gridClassName={GRID_STYLES.recentUpdates}
+            />
           </MotionSurface>
 
           <MotionSurface as="section" className={CONTAINER_STYLES.newsPanel}>

@@ -8,7 +8,10 @@ import {
   CHARACTER_DATA_BY_GAME,
   type CharacterGameId,
 } from "@/constants/characters/character-content";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 
 type CharacterGameProps = {
   params: Promise<{
@@ -26,7 +29,7 @@ const CharacterGame = async ({ params }: CharacterGameProps) => {
   const { game } = await params;
   const isAvailableGame = loadArchiveJsonSafely({
     fallback: false,
-    label: `character-game-route:${game}`,
+    label: buildArchiveDataLabel("character-game-route", game),
     load: () => isCharacterGameId(game),
   });
 

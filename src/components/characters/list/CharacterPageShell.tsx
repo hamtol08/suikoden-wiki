@@ -7,7 +7,10 @@ import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterIndexTable from "@/components/characters/list/CharacterIndexTable";
 import CharacterSeriesTabs from "@/components/characters/list/CharacterSeriesTabs";
 import { APP_ROUTES } from "@/constants/app/app-config";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import {
   CHARACTER_COPY,
   CHARACTER_DATA_BY_GAME,
@@ -26,13 +29,13 @@ type CharacterPageShellProps = {
 const CharacterPageShell = ({ gameId }: CharacterPageShellProps) => {
   const activeSeries = loadArchiveJsonSafely({
     fallback: CHARACTER_SERIES[0],
-    label: `character-series:${gameId}`,
+    label: buildArchiveDataLabel("character-series", gameId),
     load: () => CHARACTER_SERIES.find((series) => series.id === gameId) ??
       CHARACTER_SERIES[0],
   });
   const characters = loadArchiveJsonSafely({
     fallback: [],
-    label: `character-index:${gameId}`,
+    label: buildArchiveDataLabel("character-index", gameId),
     load: () => CHARACTER_DATA_BY_GAME[gameId],
   });
 

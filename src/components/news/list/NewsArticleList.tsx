@@ -37,7 +37,6 @@ const NewsArticleList = ({ items }: NewsArticleListProps) => (
             <CharacterNameLinkText text={item.body} />
           </p>
           <p className={SECTION_STYLES.newsArticleFooter}>
-            <span>{item.outlet}</span>
             <span>{ARCHIVE_COPY.news.readArticle}</span>
           </p>
         </a>

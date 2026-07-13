@@ -49,6 +49,7 @@ export const RUNE_ARCHIVE_COPY = {
   japaneseNameLabel: "JP",
   searchLabel: "Rune search",
   searchPlaceholder: "문장 이름, 영문 표기, 등장 작품 검색",
+  clearSearchLabel: "검색어 지우기",
   resultCountSuffix: "개 문장",
   resultCount: (count: number) => `${formatArchiveNumber(count)}개 문장`,
   noResults: "검색 조건에 맞는 문장이 없습니다.",
@@ -59,6 +60,7 @@ export const RUNE_ARCHIVE_COPY = {
 } as const;
 
 export const RUNE_BROWSER_COPY = {
+  clearSearchLabel: RUNE_ARCHIVE_COPY.clearSearchLabel,
   noResults: RUNE_ARCHIVE_COPY.noResults,
   resultCountSuffix: RUNE_ARCHIVE_COPY.resultCountSuffix,
   searchLabel: RUNE_ARCHIVE_COPY.searchLabel,
@@ -2299,6 +2301,16 @@ export const RUNE_LINEAGE_NOTES = {
   "mother-earth-rune": "기본 문장: 흙의 문장 / 상위 문장: 대지의 문장",
   "lightning-rune": "기본 문장: 번개의 문장 / 상위 문장: 천둥의 문장",
   "thunder-rune": "기본 문장: 번개의 문장 / 상위 문장: 천둥의 문장",
+  "blue-gate-rune": "문의 문장 계열: 푸른 문의 문장 / 창백한 문의 문장",
+  "pale-gate-rune": "문의 문장 계열: 푸른 문의 문장 / 창백한 문의 문장",
+  "bright-shield-rune": "시작의 문장 계열: 빛나는 방패의 문장 / 검은 검의 문장",
+  "black-sword-rune": "시작의 문장 계열: 빛나는 방패의 문장 / 검은 검의 문장",
+  "rune-of-beginning": "시작의 문장 계열: 빛나는 방패의 문장과 검은 검의 문장이 결합된 진정한 문장",
+  "sun-rune": "팔레나 계열: 태양의 문장 / 새벽의 문장 / 황혼의 문장",
+  "dawn-rune": "팔레나 계열: 태양의 문장 / 새벽의 문장 / 황혼의 문장",
+  "twilight-rune": "팔레나 계열: 태양의 문장 / 새벽의 문장 / 황혼의 문장",
+  "night-rune": "밤의 문장 계열: 밤의 문장 / 소울이터",
+  "soul-eater": "밤의 문장 계열: 밤의 문장과 생명·죽음의 흐름에 연결되는 진정한 문장",
 } as const satisfies Partial<Record<string, string>>;
 
 const RUNE_LINEAGE_RELATED_IDS = {
@@ -2312,6 +2324,16 @@ const RUNE_LINEAGE_RELATED_IDS = {
   "mother-earth-rune": ["earth-rune"],
   "lightning-rune": ["thunder-rune"],
   "thunder-rune": ["lightning-rune"],
+  "blue-gate-rune": ["pale-gate-rune"],
+  "pale-gate-rune": ["blue-gate-rune"],
+  "bright-shield-rune": ["black-sword-rune", "rune-of-beginning"],
+  "black-sword-rune": ["bright-shield-rune", "rune-of-beginning"],
+  "rune-of-beginning": ["bright-shield-rune", "black-sword-rune"],
+  "sun-rune": ["dawn-rune", "twilight-rune"],
+  "dawn-rune": ["sun-rune", "twilight-rune"],
+  "twilight-rune": ["sun-rune", "dawn-rune"],
+  "night-rune": ["soul-eater"],
+  "soul-eater": ["night-rune"],
 } as const satisfies Partial<Record<string, readonly string[]>>;
 
 const buildSpellRecords = (

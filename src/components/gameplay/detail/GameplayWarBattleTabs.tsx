@@ -1,14 +1,17 @@
-"use client";
-
 /**
  * 작품별 전쟁 전투 기록을 탭으로 전환해 보여줍니다.
  */
 
-import { useMemo, useState } from "react";
+"use client";
+
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
-import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-content";
+import { resolveCharacterGameIdBySeriesTitle } from "@/constants/characters/character-game-ids";
 import { type GameplayWarBattleRecordGroup } from "@/constants/gameplay/gameplay-content";
 import { GAMEPLAY_STYLES } from "@/constants/styles/ui-styles";
+import {
+  buildGamePanelId,
+  useActiveGameRecord,
+} from "@/components/gameplay/detail/useActiveGameRecord";
 
 type GameplayWarBattleTabsCopy = {
   locationLabel: string;
@@ -21,16 +24,9 @@ type GameplayWarBattleTabsProps = {
   groups: readonly GameplayWarBattleRecordGroup[];
 };
 
-const buildWarBattlePanelId = (game: string) => {
-  return `war-battle-panel-${game.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-};
-
 const GameplayWarBattleTabs = ({ copy, groups }: GameplayWarBattleTabsProps) => {
-  const initialGame = groups[0]?.game ?? "";
-  const [activeGame, setActiveGame] = useState(initialGame);
-  const activeGroup = useMemo(() => {
-    return groups.find((group) => group.game === activeGame) ?? groups[0];
-  }, [activeGame, groups]);
+  const { activeRecord: activeGroup, setActiveGame } =
+    useActiveGameRecord(groups);
 
   if (!activeGroup) {
     return null;
@@ -51,7 +47,7 @@ const GameplayWarBattleTabs = ({ copy, groups }: GameplayWarBattleTabsProps) => 
 
             return (
               <button
-                aria-controls={buildWarBattlePanelId(group.game)}
+                aria-controls={buildGamePanelId("war-battle-panel", group.game)}
                 aria-selected={isActive}
                 className={
                   isActive ?
@@ -72,7 +68,7 @@ const GameplayWarBattleTabs = ({ copy, groups }: GameplayWarBattleTabsProps) => 
 
       <section
         className={GAMEPLAY_STYLES.duelGameGroup}
-        id={buildWarBattlePanelId(activeGroup.game)}
+        id={buildGamePanelId("war-battle-panel", activeGroup.game)}
         role="tabpanel"
       >
         <h3 className={GAMEPLAY_STYLES.duelGameTitle}>{activeGroup.game}</h3>

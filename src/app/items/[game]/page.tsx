@@ -5,7 +5,10 @@
 import { notFound } from "next/navigation";
 import ItemDetailPageShell from "@/components/items/detail/ItemDetailPageShell";
 import ItemIndexPageShell from "@/components/items/list/ItemIndexPageShell";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  ARCHIVE_DATA_LOAD_LABELS,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import {
   getItemDetailRecord,
   getItemDetailStaticParams,
@@ -21,7 +24,7 @@ type ItemIndexGameProps = {
 export const generateStaticParams = () => {
   return loadArchiveJsonSafely({
     fallback: [],
-    label: "item-static-params",
+    label: ARCHIVE_DATA_LOAD_LABELS.itemStaticParams,
     load: () => [
       ...ITEM_INDEX_PAGES.map((page) => ({
         game: page.id,
@@ -35,7 +38,7 @@ const ItemIndexGame = async ({ params }: ItemIndexGameProps) => {
   const { game } = await params;
   const itemPage = loadArchiveJsonSafely({
     fallback: null,
-    label: `item-route-page:${game}`,
+    label: ARCHIVE_DATA_LOAD_LABELS.itemRoutePage(game),
     load: () => ITEM_INDEX_PAGES.find((page) => page.id === game) ?? null,
   });
 
@@ -45,7 +48,7 @@ const ItemIndexGame = async ({ params }: ItemIndexGameProps) => {
 
   const itemDetail = loadArchiveJsonSafely({
     fallback: null,
-    label: `item-route-detail:${game}`,
+    label: ARCHIVE_DATA_LOAD_LABELS.itemRouteDetail(game),
     load: () => getItemDetailRecord(game),
   });
 

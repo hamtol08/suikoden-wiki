@@ -5,24 +5,19 @@
 import ArchiveHeader from "@/components/layout/ArchiveHeader";
 import ArchiveIndexTabs from "@/components/shared/ArchiveIndexTabs";
 import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
-import RuneIndexBrowser, {
-  type RuneIndexBrowserItem,
-} from "@/components/runes/list/RuneIndexBrowser";
-import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import RuneIndexBrowser from "@/components/runes/list/RuneIndexBrowser";
+import { buildRuneBrowserItem } from "@/components/runes/list/rune-browser-records";
 import {
-  formatRuneGames,
-  getRuneDisplayImageSrc,
+  buildArchiveDataLabel,
+  loadArchiveJsonSafely,
+  mapArchiveRecordsSafely,
+} from "@/constants/app/data-loading";
+import {
   getRuneIndexPage,
   getRuneReferencesByPageId,
-  getRuneFunctionTypeLabel,
-  getRuneLineageNote,
-  isRuneFallbackImage,
   RUNE_ARCHIVE_COPY,
   RUNE_BROWSER_COPY,
-  RUNE_CATEGORY_LABELS,
   RUNE_INDEX_PAGES,
-  type RuneReference,
   type RuneIndexPageId,
 } from "@/constants/runes/rune-content";
 import {
@@ -35,68 +30,25 @@ type RuneIndexPageShellProps = {
   pageId: RuneIndexPageId;
 };
 
-const buildRuneBrowserItem = (rune: RuneReference): RuneIndexBrowserItem => {
-  const categoryLabel = RUNE_CATEGORY_LABELS[rune.category];
-  const gameLabel = formatRuneGames(rune.games);
-  const functionTypeLabel = getRuneFunctionTypeLabel(rune);
-  const lineageNote = getRuneLineageNote(rune);
-  const japaneseName = rune.japaneseName ?? RUNE_ARCHIVE_COPY.unavailableDetail;
-  const displayNames = [
-    {
-      label: RUNE_ARCHIVE_COPY.englishNameLabel,
-      value: rune.aliases.join(" / "),
-    },
-    {
-      label: RUNE_ARCHIVE_COPY.japaneseNameLabel,
-      value: japaneseName,
-    },
-  ];
-
-  return {
-    categoryLabel,
-    displayNames,
-    gameLabel,
-    href: rune.href,
-    id: rune.id,
-    imageSrc: getRuneDisplayImageSrc(rune),
-    isFallbackImage: isRuneFallbackImage(rune),
-    functionTypeLabel,
-    name: rune.name,
-    searchText: normalizeArchiveSearchText(
-      [
-        rune.name,
-        ...rune.aliases,
-        japaneseName,
-        categoryLabel,
-        functionTypeLabel,
-        lineageNote ?? "",
-        gameLabel,
-      ].join(" "),
-    ),
-  };
-};
-
 const RuneIndexPageShell = ({ pageId }: RuneIndexPageShellProps) => {
   const activePage = loadArchiveJsonSafely({
     fallback: () => RUNE_INDEX_PAGES.find((page) => page.id === pageId) ??
       RUNE_INDEX_PAGES[0],
-    label: `rune-index-page:${pageId}`,
+    label: buildArchiveDataLabel("rune-index-page", pageId),
     load: () => getRuneIndexPage(pageId),
   });
 
   const runes = loadArchiveJsonSafely({
     fallback: [],
-    label: `rune-index-records:${pageId}`,
+    label: buildArchiveDataLabel("rune-index-records", pageId),
     load: () => getRuneReferencesByPageId(pageId),
   });
 
-  const browserRunes = runes.flatMap((rune) =>
-    loadArchiveJsonSafely({
-      fallback: [],
-      label: `rune-browser-record:${rune.id}`,
-      load: () => [buildRuneBrowserItem(rune)],
-    }),
-  );
+  const browserRunes = mapArchiveRecordsSafely({
+    getLabel: (rune) => buildArchiveDataLabel("rune-browser-record", rune.id),
+    map: buildRuneBrowserItem,
+    records: runes,
+  });
 
   return (
     <main className={APP_SHELL_STYLES.page}>

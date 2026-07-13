@@ -4,7 +4,10 @@
 
 import { notFound } from "next/navigation";
 import MonsterIndexPageShell from "@/components/monsters/list/MonsterIndexPageShell";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  ARCHIVE_DATA_LOAD_LABELS,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import { MONSTER_INDEX_PAGES } from "@/constants/monsters/monster-content";
 
 type MonsterIndexGameProps = {
@@ -16,7 +19,7 @@ type MonsterIndexGameProps = {
 export const generateStaticParams = () => {
   return loadArchiveJsonSafely({
     fallback: [],
-    label: "monster-static-params",
+    label: ARCHIVE_DATA_LOAD_LABELS.monsterStaticParams,
     load: () =>
       MONSTER_INDEX_PAGES.map((page) => ({
         game: page.id,
@@ -28,7 +31,7 @@ const MonsterIndexGame = async ({ params }: MonsterIndexGameProps) => {
   const { game } = await params;
   const monsterPage = loadArchiveJsonSafely({
     fallback: null,
-    label: `monster-route-page:${game}`,
+    label: ARCHIVE_DATA_LOAD_LABELS.monsterRoutePage(game),
     load: () => MONSTER_INDEX_PAGES.find((page) => page.id === game) ?? null,
   });
 

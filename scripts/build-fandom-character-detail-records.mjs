@@ -1,3 +1,7 @@
+/**
+ * Suikoden Fandom API에서 캐릭터 상세 원문을 수집해 상세 기록 상수 초안을 생성합니다.
+ */
+
 import fs from "node:fs/promises";
 
 const API_URL = "https://suikoden.fandom.com/api.php";

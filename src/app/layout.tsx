@@ -7,8 +7,11 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import ArchiveFooter from "@/components/layout/ArchiveFooter";
 import ArchiveNavigationLoading from "@/components/layout/ArchiveNavigationLoading";
-import { APP_LANGUAGE, THEME_MODES, THEME_STORAGE_KEY } from "@/constants/app/app-config";
-import { THEME_META_COLORS } from "@/constants/app/theme";
+import { APP_LANGUAGE, THEME_MODES } from "@/constants/app/app-config";
+import {
+  THEME_META_COLORS,
+  THEME_MODE_INIT_SCRIPT,
+} from "@/constants/app/theme";
 import { ARCHIVE_COPY } from "@/constants/archive/archive-content";
 import { APP_SHELL_STYLES } from "@/constants/styles/ui-styles";
 import "./globals.css";
@@ -65,8 +68,6 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const themeModeScript = `(() => { try { const storedThemeMode = localStorage.getItem("${THEME_STORAGE_KEY}"); const preferredThemeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "${THEME_MODES.dark}" : "${THEME_MODES.light}"; const themeMode = storedThemeMode === "${THEME_MODES.dark}" || storedThemeMode === "${THEME_MODES.light}" ? storedThemeMode : preferredThemeMode; document.documentElement.classList.toggle("${THEME_MODES.dark}", themeMode === "${THEME_MODES.dark}"); document.documentElement.setAttribute("data-theme", themeMode); } catch (error) {} })();`;
-
 const RootLayout = ({
   children,
 }: Readonly<{
@@ -85,7 +86,7 @@ const RootLayout = ({
         <Script
           id="archive-theme-mode"
           strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: themeModeScript }}
+          dangerouslySetInnerHTML={{ __html: THEME_MODE_INIT_SCRIPT }}
         />
         <ArchiveNavigationLoading />
         {children}

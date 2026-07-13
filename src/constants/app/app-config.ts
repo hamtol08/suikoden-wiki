@@ -18,6 +18,7 @@ export const APP_ROUTES = {
   monsters: "/monsters",
   news: "/news",
   runes: "/runes",
+  search: "/search",
   regionAtlas: "/region-atlas",
   timeline: "/timeline",
   navigationFallbackNotFound: "/archive-navigation-timeout",

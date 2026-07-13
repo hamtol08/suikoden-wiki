@@ -8,6 +8,7 @@ import {
   buildMonsterGamePath,
 } from "@/constants/app/app-config";
 import {
+  buildArchiveSlugId,
   formatArchiveCount,
   formatArchiveNumber,
 } from "@/constants/app/archive-utils";
@@ -87,9 +88,13 @@ export const MONSTER_ARCHIVE_COPY = {
     suikodenIICount: "Suikoden II",
     bossOverview: "전투 개요",
     bossPreparation: "준비",
+    bossRelatedEvents: "관련 흐름",
+    bossRewards: "보상",
     bossTactics: "전투 흐름",
     bossWarning: "주의점",
     bossPreparationCount: "준비 항목",
+    bossRelatedCount: "관련 흐름",
+    bossRewardCount: "보상 기록",
     bossTacticsCount: "전투 흐름",
     bossWarningState: "주의점",
     bossWarningAvailable: "주의점 있음",
@@ -101,7 +106,7 @@ export const MONSTER_ARCHIVE_COPY = {
     dropCount: "드롭 아이템",
     level: "Lv.",
     hp: "HP",
-    range: "Range",
+    range: "사거리",
     str: "STR",
     mag: "MAG",
     con: "CON",
@@ -1087,10 +1092,7 @@ const MONSTER_LOCATION_REGION_OVERRIDES: Record<
 };
 
 const buildMonsterId = (monsterName: string) =>
-  resolveMonsterDisplayName(monsterName)
-    .toLocaleLowerCase("en-US")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+  buildArchiveSlugId(resolveMonsterDisplayName(monsterName));
 
 const resolveMonsterDisplayName = (monsterName: string) =>
   MONSTER_DISPLAY_NAME_OVERRIDES[
@@ -1281,10 +1283,11 @@ const parseMonsterDrop = (dropValue: string): MonsterDrop | null => {
 
   const originalName = dropMatch[1];
   const rate = dropMatch[2] as MonsterDropRateId;
+  const name = translateMonsterDropItem(originalName);
 
   return {
-    href: resolveItemDetailHref(originalName),
-    name: translateMonsterDropItem(originalName),
+    href: resolveItemDetailHref(originalName) ?? resolveItemDetailHref(name),
+    name,
     originalName,
     rate,
     rateLabel: MONSTER_DROP_RATE_LABELS[rate],

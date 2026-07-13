@@ -4,7 +4,10 @@
 
 import { notFound } from "next/navigation";
 import MonsterDetailPageShell from "@/components/monsters/detail/MonsterDetailPageShell";
-import { loadArchiveJsonSafely } from "@/constants/app/data-loading";
+import {
+  ARCHIVE_DATA_LOAD_LABELS,
+  loadArchiveJsonSafely,
+} from "@/constants/app/data-loading";
 import {
   getMonsterDetailRecord,
   getMonsterDetailStaticParams,
@@ -20,7 +23,7 @@ type MonsterDetailPageProps = {
 export const generateStaticParams = () => {
   return loadArchiveJsonSafely({
     fallback: [],
-    label: "monster-detail-static-params",
+    label: ARCHIVE_DATA_LOAD_LABELS.monsterDetailStaticParams,
     load: () => getMonsterDetailStaticParams(),
   });
 };
@@ -29,7 +32,7 @@ const MonsterDetailPage = async ({ params }: MonsterDetailPageProps) => {
   const { game, monster } = await params;
   const detailRecord = loadArchiveJsonSafely({
     fallback: null,
-    label: `monster-detail-route:${game}:${monster}`,
+    label: ARCHIVE_DATA_LOAD_LABELS.monsterDetailRoute(game, monster),
     load: () => getMonsterDetailRecord(game, monster),
   });
 

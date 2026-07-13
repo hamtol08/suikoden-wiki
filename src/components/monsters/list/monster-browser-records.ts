@@ -3,7 +3,8 @@
  */
 
 import { type MonsterBrowserItem } from "@/components/monsters/list/MonsterIndexBrowser";
-import { normalizeArchiveSearchText } from "@/constants/app/archive-utils";
+import { buildArchiveSearchText } from "@/constants/app/archive-utils";
+import { resolveItemDetailHref } from "@/constants/items/item-content";
 import {
   MONSTER_ARCHIVE_COPY,
   type MonsterIndexRecord,
@@ -12,6 +13,7 @@ import { resolveMonsterBossGuide } from "@/constants/monsters/monster-boss-guide
 
 export const buildMonsterBrowserItem = (
   monster: MonsterIndexRecord,
+  groupId?: string,
   groupLabel?: string,
 ): MonsterBrowserItem => {
   const bossGuide = monster.isBoss
@@ -25,8 +27,15 @@ export const buildMonsterBrowserItem = (
 
   return {
     bossGuideSummary,
-    encounters: monster.encounters,
+    encounters: monster.encounters.map((encounter) => ({
+      ...encounter,
+      drops: encounter.drops.map((drop) => ({
+        ...drop,
+        href: drop.href ?? resolveItemDetailHref(drop.name),
+      })),
+    })),
     game: monster.game,
+    groupId,
     groupLabel,
     href: monster.detailHref,
     hasDrops: monster.hasDrops,
@@ -35,11 +44,12 @@ export const buildMonsterBrowserItem = (
     japaneseName: monster.japaneseName,
     name: monster.name,
     originalName: monster.originalName,
-    searchText: normalizeArchiveSearchText(
+    searchText: buildArchiveSearchText(
       [
         monster.name,
         monster.originalName,
         monster.japaneseName,
+        groupId ?? "",
         groupLabel ?? "",
         monster.isBoss ? MONSTER_ARCHIVE_COPY.labels.bossType : "",
         bossGuideSummary ?? "",
@@ -52,7 +62,7 @@ export const buildMonsterBrowserItem = (
             drop.rateLabel,
           ]),
         ]),
-      ].join(" "),
+      ],
     ),
   };
 };
