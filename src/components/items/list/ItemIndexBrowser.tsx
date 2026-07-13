@@ -48,6 +48,7 @@ type ItemIndexBrowserCopy = {
     drop: string;
     dropLocations: string;
     dropRate: string;
+    initialAccessory: string;
     initialEquipment: string;
     initialPossession: string;
     otherLocations: string;

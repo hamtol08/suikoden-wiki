@@ -4,6 +4,14 @@
 
 export const SUIKODEN_NEWS_ITEMS = [
   {
+    date: "Jul 08, 2026",
+    title: "Suikoden STAR LEAP Official Website Renewed",
+    body: "공식 사이트가 리뉴얼되며 스타 리프의 세계관, 시스템, 제품 정보가 새롭게 정리됐습니다.",
+    href: "https://www.konami.com/games/suikoden/star_leap/./us/en-us/",
+    outlet: "KONAMI",
+    tag: "Star Leap",
+  },
+  {
     date: "Jul 01, 2026",
     title: "Suikoden Live 2026 Focuses on STAR LEAP",
     body: "코나미가 스타 리프 최신 정보를 중심으로 한 환상수호전 라이브 방송을 진행했습니다.",

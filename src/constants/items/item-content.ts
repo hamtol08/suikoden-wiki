@@ -106,6 +106,7 @@ export const ITEM_BROWSER_COPY = {
     drop: ITEM_ARCHIVE_COPY.labels.drop,
     dropLocations: ITEM_ARCHIVE_COPY.labels.dropLocations,
     dropRate: ITEM_ARCHIVE_COPY.labels.dropRate,
+    initialAccessory: ITEM_ARCHIVE_COPY.labels.initialAccessory,
     initialEquipment: ITEM_ARCHIVE_COPY.labels.initialEquipment,
     initialPossession: ITEM_ARCHIVE_COPY.labels.initialPossession,
     otherLocations: ITEM_ARCHIVE_COPY.labels.otherLocations,
@@ -479,6 +480,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Flower Painting": "꽃 그림",
   "Flower Vase": "꽃병",
   "French Toast": "프렌치토스트",
+  "Fried Chicken": "프라이드 치킨",
   "Fried Fish Balls": "생선 완자튀김",
   "Full Armor": "풀 아머",
   "Full Helmet": "풀헬름",
@@ -491,6 +493,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Gold Necklace": "금목걸이",
   "Goddess Statue": "여신상",
   Graffiti: "낙서",
+  "Gengis Khan": "징키스칸",
   "Green Salad": "그린 샐러드",
   Greaves: "그리브",
   "Grilled Beef": "소고기구이",
@@ -520,6 +523,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Leather Coat": "가죽 코트",
   "Leather Hat": "가죽 모자",
   Leggings: "레깅스",
+  "Lunch Box": "도시락",
   "Lovers' Garden": "연인의 정원",
   "Lucky Ring": "행운의 반지",
   "Magic Ring": "마법의 반지",
@@ -548,6 +552,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Power Gloves": "파워 글러브",
   "Power Ring": "파워 링",
   Pudding: "푸딩",
+  "Rising Sun Bento": "일출 도시락",
   "Red Flower Seeds": "빨간 꽃의 씨앗",
   Robe: "로브",
   "Robe of Mist": "안개의 로브",
@@ -563,6 +568,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Speed Ring": "스피드 링",
   "Sound Set 3": "소리세트 3",
   "Spicy Pilaf": "매운 필라프",
+  "Spicy Stew": "매운 스튜",
   "Star Earrings": "별 귀걸이",
   "Steamed Abalone": "전복찜",
   "Steamed Gyoza": "찐교자",
@@ -826,6 +832,7 @@ const ITEM_SCROLL_SPELL_NAMES = {
   "Protection Mist": "수호의 안개",
   "Rain of Kindness": "상냥함의 비",
   "Revenge Earth": "복수의 대지",
+  "Shredding Wind": "절단의 바람",
   "The Shredding": "절단의 바람",
   "Thunder Runner": "천둥의 질주",
   "Wind of Sleep": "수면의 바람",
@@ -875,15 +882,18 @@ const ITEM_FOOD_ORIGINAL_NAMES = new Set([
   "Grilled Fish",
   "Ice Cream",
   "Japanese Stew",
+  "Lunch Box",
   "Mayo Rice Omelet",
   "Meat Pie",
   "Millet Dumplings",
   "Obento",
   "Potato Pudding",
   "Pudding",
+  "Rising Sun Bento",
   "Sandwich",
   "Spinach Juice",
   "Spicy Pilaf",
+  "Spicy Stew",
   "Steamed Abalone",
   "Steamed Gyoza",
   "Sunomono",
@@ -892,6 +902,72 @@ const ITEM_FOOD_ORIGINAL_NAMES = new Set([
   "Tomato Juice",
   "Veggie Sandwich",
 ]);
+
+const ITEM_FOOD_EFFECT_RULES = [
+  {
+    names: [
+      "Spinach Juice",
+      "Tomato Juice",
+    ],
+    text: "사용하면 체력 회복에 쓰이는 음료형 음식 소비 아이템입니다.",
+  },
+  {
+    names: [
+      "Cheesecake",
+      "Ice Cream",
+      "Potato Pudding",
+      "Pudding",
+    ],
+    text: "사용하면 체력 회복에 쓰이는 디저트형 음식 소비 아이템입니다.",
+  },
+  {
+    names: [
+      "Cream Cutlets",
+      "Croquettes",
+      "Fried Chicken",
+      "Fried Fish Balls",
+      "Tempura",
+    ],
+    text: "사용하면 체력 회복에 쓰이는 튀김 요리 소비 아이템입니다.",
+  },
+  {
+    names: [
+      "Broiled Eel",
+      "Crab Cakes",
+      "Dried Fish",
+      "Grilled Beef",
+      "Grilled Fish",
+      "Steamed Abalone",
+      "Steamed Gyoza",
+      "Sweet & Sour Fish",
+    ],
+    text: "사용하면 체력 회복에 쓰이는 주 요리 소비 아이템입니다.",
+  },
+  {
+    names: [
+      "Anchovy Pizza",
+      "BBQ Meat Bun",
+      "Chirashi-Zushi",
+      "Cream Stew",
+      "Diet Lunch",
+      "Gengis Khan",
+      "Green Salad",
+      "Japanese Stew",
+      "Lunch Box",
+      "Mayo Rice Omelet",
+      "Meat Pie",
+      "Millet Dumplings",
+      "Obento",
+      "Rising Sun Bento",
+      "Sandwich",
+      "Spicy Pilaf",
+      "Spicy Stew",
+      "Sunomono",
+      "Veggie Sandwich",
+    ],
+    text: "사용하면 체력 회복에 쓰이는 식사형 음식 소비 아이템입니다.",
+  },
+] as const;
 
 const buildRuneSpellSummary = (spells?: readonly RuneSpellRecord[]) => {
   return spells
@@ -937,6 +1013,18 @@ const buildScrollEffectLines = (originalNames: readonly string[]) => {
         spellEffectLines :
         [`${spellName} 주문을 1회 사용합니다.`];
   });
+};
+
+const buildFoodEffectLines = (originalNames: readonly string[]) => {
+  const normalizedNames = originalNames.map(normalizeItemName);
+
+  return uniqueItemEffectLines(
+    ITEM_FOOD_EFFECT_RULES.flatMap((rule) =>
+      rule.names.some((name) => normalizedNames.includes(name)) ?
+          [rule.text] :
+          [],
+    ),
+  );
 };
 
 const buildRunePieceEffectLines = (originalNames: readonly string[]) => {
@@ -1025,7 +1113,7 @@ export const isEquipmentItemCategory = (category: ItemCategoryId) => {
   return EQUIPMENT_EFFECT_CATEGORIES.has(category);
 };
 
-const ITEM_INITIAL_POSSESSION_KIND_LABELS = {
+export const ITEM_INITIAL_POSSESSION_KIND_LABELS = {
   accessory: ITEM_ARCHIVE_COPY.labels.initialAccessory,
   equipment: ITEM_ARCHIVE_COPY.labels.initialEquipment,
   possession: ITEM_ARCHIVE_COPY.labels.initialPossession,
@@ -1271,6 +1359,12 @@ const buildGeneratedItemEffectLines = (
 
   if (scrollEffectLines.length > 0) {
     return scrollEffectLines;
+  }
+
+  const foodEffectLines = buildFoodEffectLines(originalNames);
+
+  if (foodEffectLines.length > 0) {
+    return foodEffectLines;
   }
 
   const equipmentNameEffectLines = buildEquipmentNameEffectLines(
@@ -1761,6 +1855,10 @@ const inferItemCategory = (name: string): ItemCategoryId => {
   }
 
   if (ITEM_CONSUMABLE_NAMES.has(name)) {
+    return "consumable";
+  }
+
+  if (ITEM_FOOD_ORIGINAL_NAMES.has(name)) {
     return "consumable";
   }
 

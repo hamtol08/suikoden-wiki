@@ -27,6 +27,7 @@ import {
 import {
   getRegionCharacterLocationAliases,
   getRegionDetailRecord,
+  REGION_DETAIL_ANCHORS,
   REGION_DROP_CHANCE_LABELS,
   REGION_DEFAULT_FACILITY_ROLES_BY_CATEGORY,
   REGION_DETAIL_COPY,
@@ -75,6 +76,7 @@ type RegionFacilityCard = {
   details: readonly string[];
   key: string;
   name: string;
+  shopHref: string | null;
 };
 
 type RegionFacilityRole = NonNullable<
@@ -265,6 +267,10 @@ const buildRegionFacilityCards = (
         : "",
     ].filter(Boolean);
   };
+  const buildFacilityShopHref = (role: RegionFacilityRole) =>
+    shops.some((shop) => resolveRegionFacilityRole(shop.name) === role)
+      ? `#${REGION_DETAIL_ANCHORS.shops}`
+      : null;
 
   const cardsByRole = uniqueFacilityNames.reduce(
     (cards, name) => {
@@ -279,6 +285,7 @@ const buildRegionFacilityCards = (
         details: buildFacilityDetails(role),
         key: role,
         name: getRegionFacilityRoleLabel(role),
+        shopHref: buildFacilityShopHref(role),
       });
 
       return cards;
@@ -300,6 +307,7 @@ const buildRegionFacilityCards = (
       details: buildFacilityDetails(role),
       key: role,
       name: getRegionFacilityRoleLabel(role),
+      shopHref: buildFacilityShopHref(role),
     });
   });
 
@@ -330,17 +338,37 @@ const resolveDropHref = (name: string) => {
     resolveItemDetailHref(translatedName);
 };
 
-const buildRegionShopItemCard = (item: RegionShopItem): RegionShopItemCard => {
+const findRegionShopItemRecord = (game: string, itemName: string) => {
+  if (!isItemIndexGameId(game)) {
+    return null;
+  }
+
+  const href = resolveDropHref(itemName);
+  const normalizedItemName = normalizeArchiveCompactText(itemName);
+
+  return getItemIndexRecordsByGame(game).find((record) =>
+    record.href === href ||
+    normalizeArchiveCompactText(record.name) === normalizedItemName ||
+    record.originalNames.some((name) =>
+      normalizeArchiveCompactText(name) === normalizedItemName
+    )
+  ) ?? null;
+};
+
+const buildRegionShopItemCard = (
+  game: string,
+  item: RegionShopItem,
+): RegionShopItemCard => {
   const itemReference = resolveItemReference(item.name);
+  const itemRecord = findRegionShopItemRecord(game, item.name);
+  const category = itemReference?.category ?? itemRecord?.category ?? null;
 
   return {
     availabilityLabel: item.availability
       ? REGION_SHOP_AVAILABILITY_LABELS[item.availability]
       : null,
-    categoryLabel: itemReference
-      ? ITEM_CATEGORY_LABELS[itemReference.category]
-      : null,
-    href: itemReference?.href ?? resolveDropHref(item.name),
+    categoryLabel: category ? ITEM_CATEGORY_LABELS[category] : null,
+    href: itemRecord?.href ?? itemReference?.href ?? resolveDropHref(item.name),
     key: item.name,
     name: translateDropName(item.name),
     price: formatPrice(item.price),
@@ -361,7 +389,7 @@ const buildRegionShopCards = (
         items: mapArchiveRecordsSafely({
           getLabel: (item) =>
             `region-shop-item:${region.game}:${region.id}:${shop.name}:${item.name}`,
-          map: buildRegionShopItemCard,
+          map: (item) => buildRegionShopItemCard(region.game, item),
           records: shop.items,
         }),
         key: shop.name,
@@ -594,6 +622,14 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                     </li>
                   ))}
                 </ul>
+                {facility.shopHref ? (
+                  <Link
+                    className={ATLAS_STYLES.regionFacilityLink}
+                    href={facility.shopHref}
+                  >
+                    {REGION_DETAIL_COPY.facilityShopLinkLabel}
+                  </Link>
+                ) : null}
               </section>
             ))}
           </div>
@@ -601,7 +637,10 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
       ) : null}
 
       {hasShops ? (
-        <article className={ATLAS_STYLES.regionRecordPanel}>
+        <article
+          className={ATLAS_STYLES.regionRecordPanel}
+          id={REGION_DETAIL_ANCHORS.shops}
+        >
           <h3 className={ATLAS_STYLES.regionRecordPanelTitle}>
             {REGION_DETAIL_COPY.shopTitle}
           </h3>

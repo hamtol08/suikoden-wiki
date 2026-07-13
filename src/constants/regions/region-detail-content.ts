@@ -20,6 +20,7 @@ export const REGION_DETAIL_COPY = {
   facilityDefaultLabel: "지역 기본 기능",
   facilityItemCountSuffix: "개",
   facilityRecordLabel: "시설 기록",
+  facilityShopLinkLabel: "상점 기록 보기",
   facilityShopItemsLabel: "판매 품목",
   shopTitle: "상점 기록",
   enemyTitle: "필드 출연 몬스터",
@@ -40,6 +41,10 @@ export const REGION_DETAIL_COPY = {
   earlyGame: "○ 초반 획득 가능",
   lateGame: "• 엔딩 전 획득 가능",
   alwaysAvailable: "상시 획득 가능",
+} as const;
+
+export const REGION_DETAIL_ANCHORS = {
+  shops: "region-shop-records",
 } as const;
 
 export const REGION_FACILITY_ROLE_DESCRIPTIONS = FACILITY_ROLE_DESCRIPTIONS;

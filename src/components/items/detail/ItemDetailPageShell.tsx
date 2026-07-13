@@ -9,6 +9,7 @@ import ArchivePageIntro from "@/components/shared/ArchivePageIntro";
 import CharacterNameLinkText from "@/components/shared/CharacterNameLinkText";
 import MotionSurface from "@/components/shared/MotionSurface";
 import MonsterNameLinkText from "@/components/shared/MonsterNameLinkText";
+import RegionNameLinkText from "@/components/shared/RegionNameLinkText";
 import { formatArchiveCount } from "@/constants/app/archive-utils";
 import {
   buildArchiveDataLabel,
@@ -23,6 +24,7 @@ import {
   ITEM_ARCHIVE_COPY,
   ITEM_CATEGORY_LABELS,
   ITEM_INDEX_PAGE_IDS,
+  ITEM_INITIAL_POSSESSION_KIND_LABELS,
   type ItemDetailRecord,
   type ItemInitialOwner,
   type ItemRecordDisplay,
@@ -98,6 +100,9 @@ const renderInitialOwners = (owners: readonly ItemInitialOwner[]) => {
           <Link className={ITEM_STYLES.initialOwnerLink} href={owner.href}>
             {owner.name}
           </Link>
+          <span className={ITEM_STYLES.initialOwnerKind}>
+            {ITEM_INITIAL_POSSESSION_KIND_LABELS[owner.possessionKind]}
+          </span>
         </span>
       ))}
     </span>
@@ -113,7 +118,12 @@ const buildGameRecordRows = (
   },
   {
     label: ITEM_ARCHIVE_COPY.labels.shopLocations,
-    value: <CharacterNameLinkText text={record.shopLocations} />,
+    value: (
+      <RegionNameLinkText
+        preferredGame={record.key}
+        text={record.shopLocations}
+      />
+    ),
   },
   {
     label: ITEM_ARCHIVE_COPY.labels.dropLocations,

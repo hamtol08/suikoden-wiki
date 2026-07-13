@@ -613,6 +613,8 @@ export const ITEM_STYLES = {
   initialOwnerList: "inline-flex flex-wrap gap-x-1 gap-y-1",
   initialOwnerLink:
     "underline decoration-[#d4af37]/60 underline-offset-4 transition hover:text-[#7a5900] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37] dark:hover:text-[#e9c176]",
+  initialOwnerKind:
+    "ml-1 rounded border border-[#d4af37]/35 px-1.5 py-0.5 text-[0.65rem] font-bold text-[#7a5900] dark:text-[#e9c176]",
   empty:
     "mt-5 rounded-lg border border-[#d8c9a5] bg-white/70 p-6 text-center text-sm font-semibold text-[#4b5565] dark:border-[#604403] dark:bg-[#111c2c] dark:text-[#c5c6cd]",
   detailPanel:
@@ -890,6 +892,8 @@ export const ATLAS_STYLES = {
     "grid gap-2 border-t border-[#e5dcc7] pt-3 dark:border-[#38475f]",
   regionFacilityDetailItem:
     "break-keep rounded border border-[#d4af37]/35 bg-white/60 px-3 py-2 text-xs font-bold leading-5 text-[#7a5900] dark:bg-[#111c2c]/55 dark:text-[#e9c176]",
+  regionFacilityLink:
+    "w-fit rounded border border-[#d4af37] bg-white/70 px-3 py-2 text-xs font-bold text-[#7a5900] transition hover:bg-[#fff1bd] dark:bg-[#111c2c]/60 dark:text-[#e9c176] dark:hover:bg-[#2a3447]",
   regionRecordCard:
     "rounded-lg border border-[#c7d3e9] bg-[#edf3ff] p-4 dark:border-[#38475f] dark:bg-[#14243a]",
   regionRecordCardTitle:
