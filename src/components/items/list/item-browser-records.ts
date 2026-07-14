@@ -4,11 +4,20 @@
 
 import { type ItemIndexBrowserItem } from "@/components/items/list/ItemIndexBrowser";
 import { type LinkedTextPart } from "@/components/shared/LinkedTextParts";
+import { buildLinkedTextParts } from "@/components/shared/link-text-utils";
+import {
+  REGION_NAME_LINK_PATTERN,
+  resolveRegionLinkReference,
+} from "@/components/shared/region-link-records";
 import {
   buildArchiveSearchText,
   escapeArchiveRegExp,
 } from "@/constants/app/archive-utils";
 import { buildMonsterGamePath } from "@/constants/app/app-config";
+import {
+  CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
+  CHARACTER_LINK_TOKEN_PATTERN,
+} from "@/constants/characters/character-linking";
 import {
   buildInitialOwnerLabel,
   buildItemRecordDisplay,
@@ -75,38 +84,26 @@ const resolveMonsterTextLinkReference = (
 const buildMonsterLinkedTextParts = (
   text: string,
   preferredGame: string,
-): readonly LinkedTextPart[] => {
-  const parts: LinkedTextPart[] = [];
-  let lastIndex = 0;
-
-  MONSTER_TEXT_LINK_PATTERN.lastIndex = 0;
-  text.replace(MONSTER_TEXT_LINK_PATTERN, (match, _name, offset: number) => {
-    const reference = resolveMonsterTextLinkReference(match, preferredGame);
-
-    if (!reference) {
-      return match;
-    }
-
-    if (offset > lastIndex) {
-      parts.push({ text: text.slice(lastIndex, offset) });
-    }
-
-    parts.push({ href: reference.href, text: match });
-    lastIndex = offset + match.length;
-
-    return match;
+): readonly LinkedTextPart[] =>
+  buildLinkedTextParts({
+    pattern: MONSTER_TEXT_LINK_PATTERN,
+    resolveReference: (match) =>
+      resolveMonsterTextLinkReference(match, preferredGame),
+    text,
   });
 
-  if (parts.length === 0) {
-    return [{ text }];
-  }
-
-  if (lastIndex < text.length) {
-    parts.push({ text: text.slice(lastIndex) });
-  }
-
-  return parts;
-};
+const buildRegionLinkedTextParts = (
+  text: string,
+  preferredGame: string,
+): readonly LinkedTextPart[] =>
+  buildLinkedTextParts({
+    pattern: REGION_NAME_LINK_PATTERN,
+    postpositionPattern: CHARACTER_LINK_KOREAN_POSTPOSITION_PATTERN,
+    resolveReference: (match) =>
+      resolveRegionLinkReference(match, preferredGame),
+    text,
+    tokenPattern: CHARACTER_LINK_TOKEN_PATTERN,
+  });
 
 export const buildItemBrowserItem = (
   item: ItemIndexRecord,
@@ -162,6 +159,10 @@ export const buildItemBrowserItem = (
       ],
     ),
     shopLocations: display.shopLocations,
+    shopLocationParts: buildRegionLinkedTextParts(
+      display.shopLocations,
+      item.game,
+    ),
     sourceLabel: display.sourceLabel,
   };
 };

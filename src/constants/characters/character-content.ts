@@ -117,6 +117,12 @@ const CHARACTER_TYPE_VALUE = {
   combat: "전투",
 } as const;
 
+type CharacterDetailLineKey = "overall";
+
+type CharacterDetailLineOverride = Partial<
+  Record<CharacterDetailLineKey, readonly string[]>
+>;
+
 const CHARACTER_DETAIL_LINE_OVERRIDES = {
   "suikoden-i": {
     hero: {
@@ -125,7 +131,71 @@ const CHARACTER_DETAIL_LINE_OVERRIDES = {
       ],
     },
   },
-} as const;
+  "suikoden-ii": {
+    alberto: {
+      overall: [
+        "알베르토는 본거지의 음악 활동을 담당하는 비전투 동료입니다. 안나리, 피코와 함께 합류 흐름이 이어지며, 전투 운용보다는 본거지 기록과 음악 관련 역할로 정리합니다.",
+      ],
+    },
+    annallee: {
+      overall: [
+        "안나리는 본거지의 음악 활동을 담당하는 비전투 동료입니다. 알베르토, 피코와 함께 음악 관련 기록을 구성하며, 전투보다 본거지 기능과 수집 흐름에서 의미가 큽니다.",
+      ],
+    },
+    ayda: {
+      overall: [
+        "아이다는 원거리 공격과 보조 문장 운용을 함께 맡을 수 있는 궁수형 동료입니다. 고유 문장인 큰 매의 문장을 활용하고, 필요에 따라 회복이나 보조 문장을 붙여 후열 지원 역할을 맡기 좋습니다.",
+      ],
+    },
+    badeaux: {
+      overall: [
+        "바드는 짐승 계열 동료와의 연계가 특징인 전투형 인물입니다. 울부짖음의 문장을 중심으로 운용하면 짐승 동료와의 시너지가 살아나고, 단독 운용 시에는 반격의 문장이나 2회공격 계열 문장으로 물리 성능을 보강할 수 있습니다.",
+      ],
+    },
+    bob: {
+      overall: [
+        "밥은 광폭한 송곳니의 문장을 활용하는 물리 특화 동료입니다. 2회공격의 문장이나 폭력의 문장과 조합하면 고유 문장의 폭발력을 높일 수 있고, 우정의 문장이나 분노의 문장 같은 물리 보조 문장도 잘 맞습니다.",
+      ],
+    },
+    connell: {
+      overall: [
+        "코넬은 본거지의 효과음을 바꾸는 비전투 동료입니다. 소리세트를 모으면 본거지에서 행동 효과음을 변경할 수 있어 수집 기록과 편의 기능을 담당합니다.",
+      ],
+    },
+    gijimu: {
+      overall: [
+        "기지무는 튼튼한 물리 공격수로, 무거운 방어구를 장비할 수 있어 전열 유지력이 좋습니다. 기본적으로 2회공격의 문장을 지니고 있어 후반까지 안정적인 물리 화력을 기대할 수 있습니다.",
+      ],
+    },
+    lorelai: {
+      overall: [
+        "로렐라이는 창을 사용하는 균형형 전투 캐릭터입니다. 전열과 후열을 모두 소화할 수 있고, 물리 공격과 문장 운용을 모두 적당히 다룰 수 있어 편성에 따라 유연하게 활용됩니다.",
+      ],
+    },
+    maximillian: {
+      overall: [
+        "맥시밀리언은 전쟁 전투에서 보병 부대로 활약하는 동료입니다. 합류 후에는 전투 기록보다 전쟁 전투 편성에서의 역할을 중심으로 확인합니다.",
+      ],
+    },
+    pico: {
+      overall: [
+        "피코는 본거지의 음악 활동을 담당하는 비전투 동료입니다. 안나리, 알베르토와 함께 음악 관련 기록을 완성하는 인물로 정리합니다.",
+      ],
+    },
+    tenkou: {
+      overall: [
+        "텐코우는 창 디자인을 바꾸는 장인입니다. 창세트를 모아 보여주면 본거지에서 창 디자인을 변경할 수 있습니다.",
+      ],
+    },
+    templeton: {
+      overall: [
+        "템플턴은 수이코 지도를 맡는 지도 제작자입니다. 합류 뒤에는 미니맵과 지역 안내를 통해 탐색 기록을 보조합니다.",
+      ],
+    },
+  },
+} as const satisfies Partial<
+  Record<string, Record<string, CharacterDetailLineOverride>>
+>;
 
 const MAX_LEVEL_STATUS_LABELS = {
   hp: "HP",
@@ -315,10 +385,6 @@ const UNITE_CHARACTER_LABELS = new Map<string, string>([
   ["Georg", "게오르그 프라임"],
   ["Grenseal", "그렌실"],
 ]);
-
-type CharacterDetailLineKey = keyof typeof CHARACTER_DETAIL_LINE_OVERRIDES[
-  "suikoden-i"
-]["hero"];
 
 export type CharacterDetailNavigationItem = {
   id: string;
@@ -672,10 +738,8 @@ const getCharacterDetailLines = (
 ) => {
   const gameOverrides = CHARACTER_DETAIL_LINE_OVERRIDES[
     character.game as keyof typeof CHARACTER_DETAIL_LINE_OVERRIDES
-  ];
-  const characterOverrides = gameOverrides?.[
-    character.id as keyof typeof gameOverrides
-  ];
+  ] as Record<string, CharacterDetailLineOverride> | undefined;
+  const characterOverrides = gameOverrides?.[character.id];
   const lines = characterOverrides?.[key];
   const sourceLines = lines && lines.length > 0 ? lines : fallback;
   const visibleLines = sourceLines.filter(isVisibleCharacterDetailLine);

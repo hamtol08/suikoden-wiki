@@ -38,6 +38,7 @@ export type ItemIndexBrowserItem = {
   price: string;
   searchText: string;
   shopLocations: string;
+  shopLocationParts: readonly LinkedTextPart[];
   sourceLabel: string;
 };
 
@@ -167,7 +168,7 @@ const ItemIndexBrowser = ({
                       {copy.labels.shopLocations}
                     </dt>
                     <dd className={ITEM_STYLES.ledgerValue}>
-                      {item.shopLocations}
+                      <LinkedTextParts parts={item.shopLocationParts} />
                     </dd>
                   </div>
                   <div className={ITEM_STYLES.ledgerRow}>

@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
+import { type LinkedTextPart } from "@/components/shared/LinkedTextParts";
 import { escapeArchiveRegExp } from "@/constants/app/archive-utils";
 
 type DelimitedLinkTextOptions = {
@@ -25,6 +26,14 @@ type LinkedReferenceTextOptions = {
   resolveReference: (match: string) => LinkTextReference | null;
   text: string;
   tokenPattern: RegExp;
+};
+
+type LinkedTextPartsOptions = {
+  pattern: RegExp;
+  postpositionPattern?: RegExp;
+  resolveReference: (match: string) => LinkTextReference | null;
+  text: string;
+  tokenPattern?: RegExp;
 };
 
 export const escapeLinkTextRegExp = (value: string) =>
@@ -119,4 +128,60 @@ export const renderLinkedReferenceText = ({
   }
 
   return wrapLinkedTextNodes(nodes);
+};
+
+export const buildLinkedTextParts = ({
+  pattern,
+  postpositionPattern,
+  resolveReference,
+  text,
+  tokenPattern,
+}: LinkedTextPartsOptions): readonly LinkedTextPart[] => {
+  const parts: LinkedTextPart[] = [];
+  let lastIndex = 0;
+
+  pattern.lastIndex = 0;
+  text.replace(pattern, (...matchArguments) => {
+    const match = matchArguments[0];
+    const offset = matchArguments.at(-2) as number;
+
+    if (
+      postpositionPattern &&
+      tokenPattern &&
+      !isDelimitedLinkText({
+        match,
+        offset,
+        postpositionPattern,
+        text,
+        tokenPattern,
+      })
+    ) {
+      return match;
+    }
+
+    const reference = resolveReference(match);
+
+    if (!reference) {
+      return match;
+    }
+
+    if (offset > lastIndex) {
+      parts.push({ text: text.slice(lastIndex, offset) });
+    }
+
+    parts.push({ href: reference.href, text: match });
+    lastIndex = offset + match.length;
+
+    return match;
+  });
+
+  if (parts.length === 0) {
+    return [{ text }];
+  }
+
+  if (lastIndex < text.length) {
+    parts.push({ text: text.slice(lastIndex) });
+  }
+
+  return parts;
 };

@@ -19,6 +19,7 @@ export const REGION_DETAIL_COPY = {
     "시설은 판매 품목만이 아니라 회복, 저장, 문장 정비, 아이템 보관, 정보 확인 같은 진행 편의를 담당합니다. 실제 판매 품목은 상점 기록에서 확인합니다.",
   facilityDefaultLabel: "지역 기본 기능",
   facilityItemCountSuffix: "개",
+  facilityFeaturedItemsLabel: "대표 품목",
   facilityRecordLabel: "시설 기록",
   facilityShopLinkLabel: "상점 기록 보기",
   facilityShopItemsLabel: "판매 품목",

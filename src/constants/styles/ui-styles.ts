@@ -892,6 +892,15 @@ export const ATLAS_STYLES = {
     "grid gap-2 border-t border-[#e5dcc7] pt-3 dark:border-[#38475f]",
   regionFacilityDetailItem:
     "break-keep rounded border border-[#d4af37]/35 bg-white/60 px-3 py-2 text-xs font-bold leading-5 text-[#7a5900] dark:bg-[#111c2c]/55 dark:text-[#e9c176]",
+  regionFacilityFeaturedItems:
+    "grid gap-2 border-t border-[#e5dcc7] pt-3 dark:border-[#38475f]",
+  regionFacilityFeaturedLabel:
+    "text-[0.68rem] font-bold uppercase text-[#7a5900] dark:text-[#e9c176]",
+  regionFacilityFeaturedList: "flex flex-wrap gap-2",
+  regionFacilityItemLink:
+    "inline-flex rounded border border-[#c7d3e9] bg-white/70 px-2.5 py-1 text-xs font-bold text-[#233144] transition hover:border-[#d4af37] hover:text-[#7a5900] dark:border-[#38475f] dark:bg-[#111c2c]/55 dark:text-[#f4f1ea] dark:hover:text-[#e9c176]",
+  regionFacilityItemName:
+    "inline-flex rounded border border-[#c7d3e9] bg-white/70 px-2.5 py-1 text-xs font-bold text-[#233144] dark:border-[#38475f] dark:bg-[#111c2c]/55 dark:text-[#f4f1ea]",
   regionFacilityLink:
     "w-fit rounded border border-[#d4af37] bg-white/70 px-3 py-2 text-xs font-bold text-[#7a5900] transition hover:bg-[#fff1bd] dark:bg-[#111c2c]/60 dark:text-[#e9c176] dark:hover:bg-[#2a3447]",
   regionRecordCard:

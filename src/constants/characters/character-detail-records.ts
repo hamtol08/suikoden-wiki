@@ -2130,7 +2130,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "ivanov": {
       "role": {
         "recruitment": [
-          "Speak with him at Scarleticia Castle after defeating Milich Oppenheimer."
+          "밀리히 오펜하이머를 쓰러뜨린 뒤 스칼렛티시아 성에서 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -8921,7 +8921,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "gordon": {
       "role": {
         "recruitment": [
-          "At Castle Level 3, speak to Gordon in Gregminster to accept his quest and make a total of 50,000 potch from trading. Speaking to him again will allow you to recruit him."
+          "성 레벨 3 이후 그레그민스터의 고든에게 말을 걸어 교역으로 50,000 포치 이상의 이익을 낸 뒤 다시 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -8944,10 +8944,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "lorelai": {
       "role": {
         "recruitment": [
-          "Lorelai appears in Suikoden II as one of the 108 Stars of Destiny. She can be recruited in Greminster by speaking to her. The easiest way to is by having Killey in your party."
+          "그레그민스터에서 말을 걸면 합류합니다. 킬리를 파티에 넣고 방문하면 영입 흐름을 더 쉽게 진행할 수 있습니다."
         ],
         "overall": [
-          "Lorelai is a balanced physical attacker and magic user, and with her spear can operate from the front or rear rows."
+          "로렐라이는 물리 공격과 문장 운용을 모두 다룰 수 있는 균형형 전투 캐릭터입니다. 창을 사용하므로 전열과 후열을 모두 운용할 수 있습니다."
         ],
         "weapon": {
           "type": "Scythe",
@@ -8956,10 +8956,10 @@ export const CHARACTER_DETAIL_RECORDS = {
         },
         "rune": {
           "attached": [
-            "Lorelai comes with a Drain Rune attached to her right hand."
+            "오른손에 흡수의 문장을 장착한 상태로 합류합니다."
           ],
           "recommended": [
-            "A Killer Rune is useful if you want to take advantage of her Drain Rune. She's a competent mage or fighter so she is rather flexible with most runes."
+            "흡수의 문장을 살리려면 필사의 문장이 유용합니다. 물리와 마법을 모두 다룰 수 있어 여러 문장 조합에 유연하게 대응합니다."
           ]
         },
         "maxLevelStatus": {
@@ -9052,7 +9052,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "mondo": {
       "role": {
         "recruitment": [
-          "You must either have Kasumi recruited, or have Valeria recruited and recruited 100 stars of Destiny or more. In either case, you must find the secret village of Rokkaku on the path to Gregminster. When you enter the village, Sasuke will catch you and immediately bring you to Hanzo. He will then order Sasuke and Mondo to your disposal."
+          "카스미를 영입했거나, 발레리아를 영입하고 108성 100명 이상을 모은 상태여야 합니다. 그레그민스터 방면 숲길에서 숨겨진 롯카쿠를 찾아 들어가면 사스케가 한조에게 안내하고, 한조의 명령으로 사스케와 몬도가 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -9097,10 +9097,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "templeton": {
       "role": {
         "recruitment": [
-          "Templeton can be found first at Viktor's ruined fort, then followed to Toto. Speaking to him there can get him to join."
+          "먼저 빅토르의 폐허가 된 요새에서 템플턴을 만난 뒤 토토 마을로 따라가 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Templeton once again entrusts the Suiko Map to Riou, allowing the player to see a minimap on the screen. You can also talk to Templeton to get a short description of the locations in the game."
+          "템플턴은 다시 한 번 수이코 지도를 맡기며, 화면에서 미니맵을 확인할 수 있게 해줍니다. 본거지에서 말을 걸면 각 지역에 대한 짧은 설명도 들을 수 있습니다."
         ],
         "weapon": {
           "type": "",
@@ -9140,7 +9140,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "*Weapon - No rune attached."
           ],
           "recommended": [
-            "If the player wishes to use Badeaux's for his niche natural synergy with beast party members they should equip him with the Howling Rune. Other than that he could use a Counter Rune for extra damage and survivability. If the player wishes to use Badeaux without beast party members they could equip with any combination of the following Double-Strike Rune, Double-Beat Rune or Fury Rune."
+            "짐승 계열 동료와 함께 운용하려면 울부짖음의 문장이 잘 맞습니다. 단독 물리 운용에서는 반격의 문장으로 생존력과 추가 피해를 보강하거나, 2회공격의 문장, 2회공격의 봉인구, 분노의 문장 조합을 고려할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -9205,7 +9205,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "*Weapon - No rune attached."
           ],
           "recommended": [
-            "Ayda can provide great support when equipped with the Flowing Rune and/or Mother Earth Rune. Equipping the Spark Rune is also viable as she is quite fast. She could also use the Great Hawk Rune or Double-Beat Rune along side with the Fury Rune if you want her to be a physical damage threat."
+            "류수의 문장이나 대지의 문장을 장착하면 후열 보조 역할을 안정적으로 맡을 수 있습니다. 속도가 빠르므로 스파크의 문장도 어울리며, 큰 매의 문장이나 2회공격의 문장과 분노의 문장을 조합하면 물리 화력도 보강할 수 있습니다."
           ]
         },
         "maxLevelStatus": {
@@ -9250,10 +9250,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "connell": {
       "role": {
         "recruitment": [
-          "After the Dunan Castle reaches Level 3, show Connell any of the Sound Sets in Forest Village."
+          "듀난성 레벨 3 이후 숲의 마을에서 코넬에게 소리세트 중 하나를 보여주면 합류합니다."
         ],
         "overall": [
-          "Connell can change your sound effects of your actions. The Sound Sets are needed to change the sound effect."
+          "코넬은 본거지에서 행동 효과음을 바꾸는 역할을 담당합니다. 효과음을 변경하려면 소리세트가 필요합니다."
         ],
         "weapon": {
           "type": "",
@@ -9275,7 +9275,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "karen": {
       "role": {
         "recruitment": [
-          "Find her in the Inn in Kuskus after defeating Luca Blight. Dance successfully with her and she'll join you."
+          "루카 브라이트를 쓰러뜨린 뒤 쿠스쿠스 여관에서 카렌을 만나 춤을 성공하면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -9335,11 +9335,11 @@ export const CHARACTER_DETAIL_RECORDS = {
     "maximillian": {
       "role": {
         "recruitment": [
-          "Enter South Window any time after beating Luca Blight and choose the first option to have Max join you.",
-          "Note: Do not choose the second option, \"Don't waste your breath, old man.\", upon being given the two options. If you do, Max will run off for good and you will not be able to recruit him again."
+          "루카 브라이트를 쓰러뜨린 뒤 사우스 윈도우에 들어가 첫 번째 선택지를 고르면 맥시밀리언이 합류합니다.",
+          "두 번째 선택지를 고르면 맥시밀리언이 떠나 다시 영입할 수 없으므로 주의합니다."
         ],
         "overall": [
-          "Maximillian is an Infantry Unit with 6 ATK and 7 DEF."
+          "맥시밀리언은 전쟁 전투에서 공격 6, 방어 7의 보병 부대로 활약합니다."
         ],
         "weapon": {
           "type": "",
@@ -9448,10 +9448,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "tenkou": {
       "role": {
         "recruitment": [
-          "Once in Crom, show Tenkou any Window Sets you have and he will join you."
+          "크롬 마을에서 텐코우에게 창세트 중 하나를 보여주면 합류합니다."
         ],
         "overall": [
-          "Tenkou is the Window Maker and can change your windows."
+          "텐코우는 본거지에서 창 디자인 변경을 담당하는 장인입니다."
         ],
         "weapon": {
           "type": "",
@@ -9519,10 +9519,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "gijimu": {
       "role": {
         "recruitment": [
-          "Gijimu is recruited automatically after defeating Neclord in Tinto."
+          "틴토에서 네크로드를 쓰러뜨린 뒤 자동으로 합류합니다."
         ],
         "overall": [
-          "Gijimu is just like any solid physical attacker. He is armed with sharp axes and can wear the heavy class armor, which includes some of the heaviest and best armor available, like the Windspun Armor. He also has the additional benefit of survivability of being able to attack from the back row, although he is already a perfectly capable frontline tank in his own right. He already comes with the powerful Double Beat Rune, making him pretty much set for the rest of the game."
+          "기지무는 견실한 물리 공격수입니다. 도끼를 사용하고 중장비 방어구를 장착할 수 있어 전열 유지력이 좋으며, 후열에서도 공격할 수 있습니다. 기본 장착 문장인 2회공격의 문장 덕분에 합류 직후부터 물리 화력이 안정적입니다."
         ],
         "weapon": {
           "type": "Double Axes",
@@ -9536,7 +9536,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "*L. Hand - None"
           ],
           "recommended": [
-            "Gijimu already comes equipped with one of the best physical attack passive runes in the game in form of the Double Beat Rune. That makes swapping that with another alternative with even a Fury Rune almost totally unnecessary. As a physical attacker with a one-rune limitation, having a rune attached to his weapon that will also benefit physical attack like the Exertion Rune or Friendship Rune helps."
+            "기지무는 2회공격의 문장을 기본 장착하고 있어 다른 문장으로 교체할 필요성이 낮습니다. 문장 슬롯 제약이 있으므로 무기에는 노력의 문장이나 우정의 문장처럼 물리 공격을 보강하는 문장이 잘 맞습니다."
           ]
         },
         "maxLevelStatus": {
@@ -9581,7 +9581,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "lo-wen": {
       "role": {
         "recruitment": [
-          "Lo Wen joins automatically after completely destroying Neclord in Tinto."
+          "틴토에서 네크로드를 완전히 쓰러뜨린 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -9626,7 +9626,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "koyu": {
       "role": {
         "recruitment": [
-          "Koyu joins automatically after completely destroying Neclord in Tinto."
+          "틴토에서 네크로드를 완전히 쓰러뜨린 뒤 자동으로 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -9671,7 +9671,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "marlowe": {
       "role": {
         "recruitment": [
-          "Marlowe joins automatically after the events in Tinto."
+          "틴토 이벤트 이후 자동으로 합류합니다."
         ],
         "overall": [
           "말로우의 구체적인 기능 기록은 아직 정리 중입니다."
@@ -9721,9 +9721,9 @@ export const CHARACTER_DETAIL_RECORDS = {
     "simone-verdricci": {
       "role": {
         "recruitment": [
-          "Purchase a Rose Brooch from the Rare Finds section of the item shop in Banner Village. Show it to Simone near the docks in Radat and ask him to join your group.",
-          "Note 1: Since Rare Finds refresh every 30 minutes and the items available are checked when selecting the option, it is recommended to save at Banner Village inn and check the rare Finds. If Rose Brooch isn't there, quit and reload.",
-          "Note 2: If you choose \"Run around and bark like a dog.\" or \"I want gold\", he will do it but you will never be able to recruit him anymore."
+          "바나 마을 도구점의 레어 아이템에서 장미 브로치를 구입한 뒤, 라다트 선착장 근처의 시몬에게 보여주고 합류를 권하면 영입할 수 있습니다.",
+          "레어 아이템은 일정 시간마다 갱신되므로, 바나 마을 여관에서 저장한 뒤 확인하는 방식이 안정적입니다.",
+          "대화 선택지에서 시몬을 놀리는 선택을 고르면 다시 영입할 수 없으므로 주의합니다."
         ],
         "overall": [],
         "weapon": {
@@ -9768,7 +9768,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "hoi": {
       "role": {
         "recruitment": [
-          "Find Hoi in the bar in Radat after defeating Luca Blight."
+          "루카 브라이트를 쓰러뜨린 뒤 라다트 술집에서 호이를 만나면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -9813,7 +9813,7 @@ export const CHARACTER_DETAIL_RECORDS = {
     "gantetsu": {
       "role": {
         "recruitment": [
-          "After defeating Neclord in Tinto, speak to Gantetsu in South Window with a full party."
+          "틴토에서 네크로드를 쓰러뜨린 뒤, 파티를 가득 채운 상태로 사우스 윈도우의 간테츠에게 말을 걸면 합류합니다."
         ],
         "overall": [],
         "weapon": {
@@ -9873,10 +9873,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "annallee": {
       "role": {
         "recruitment": [
-          "Find Annallee in the Inn in South Window (only when your castle is at level 3) after the scene the first scene Sasarai appears in, or you can recruit her after defeating Luca Blight."
+          "사사라이 첫 등장 이벤트 이후 성 레벨 3 상태에서 사우스 윈도우 여관의 안나리를 만나면 합류합니다. 루카 브라이트를 쓰러뜨린 뒤에도 영입할 수 있습니다."
         ],
         "overall": [
-          "Annallee plays music in the HQ along with Alberto and Pico."
+          "안나리는 알베르토, 피코와 함께 본거지 음악 활동을 담당합니다."
         ],
         "weapon": {
           "type": "",
@@ -9916,7 +9916,7 @@ export const CHARACTER_DETAIL_RECORDS = {
             "*Weapon - No rune attached."
           ],
           "recommended": [
-            "In terms of damage Bob's Rabid Fang Rune works best when paired with a Double-Beat Rune or the Violence Rune. However the Fury Rune and Double-Strike Rune are good alternatives. To further take advantage of it, it is recommend to embedded a bonus physical damage rune like Friendship or Exertion. This will make Bob potentially an extremely powerful physical nuke. In terms of magic damage Bob would work best with a Darkness Rune."
+            "밥의 광폭한 송곳니의 문장은 2회공격의 문장이나 폭력의 문장과 조합할 때 피해량을 크게 끌어올릴 수 있습니다. 분노의 문장과 2회공격의 봉인구도 대안이며, 우정의 문장이나 노력의 문장처럼 물리 피해를 보강하는 무기 문장을 함께 쓰면 순간 화력이 크게 올라갑니다. 마법 운용을 노린다면 어둠의 문장이 어울립니다."
           ]
         },
         "maxLevelStatus": {
@@ -9986,10 +9986,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "pico": {
       "role": {
         "recruitment": [
-          "After the liberation of Greenhill, speak to him in the Greenhill Inn. You must have recruited Annallee."
+          "그린힐 해방 뒤 안나리를 영입한 상태로 그린힐 여관의 피코에게 말을 걸면 합류합니다."
         ],
         "overall": [
-          "Pico plays music in the HQ along with Alberto and Annallee."
+          "피코는 알베르토, 안나리와 함께 본거지 음악 활동을 담당합니다."
         ],
         "weapon": {
           "type": "",
@@ -10011,10 +10011,10 @@ export const CHARACTER_DETAIL_RECORDS = {
     "alberto": {
       "role": {
         "recruitment": [
-          "After you have recruited both Annallee and Pico, you can find Alberto in the armorer in Tinto. Tell him where they can be found and he'll join you."
+          "안나리와 피코를 모두 영입한 뒤 틴토 방어구점의 알베르토에게 두 사람이 있는 곳을 알려주면 합류합니다."
         ],
         "overall": [
-          "Alberto plays music in the HQ along with Annallee and Pico."
+          "알베르토는 안나리, 피코와 함께 본거지 음악 활동을 담당합니다."
         ],
         "weapon": {
           "type": "",

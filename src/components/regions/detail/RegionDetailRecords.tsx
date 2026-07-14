@@ -74,6 +74,7 @@ type RegionAcquisitionCard = {
 type RegionFacilityCard = {
   body: string;
   details: readonly string[];
+  featuredItems: readonly RegionFacilityItem[];
   key: string;
   name: string;
   shopHref: string | null;
@@ -90,6 +91,12 @@ type RegionShopItemCard = {
   key: string;
   name: string;
   price: string;
+};
+
+type RegionFacilityItem = {
+  href: string | null;
+  key: string;
+  name: string;
 };
 
 type RegionShopCard = {
@@ -233,7 +240,7 @@ const buildRegionAcquisitionCards = (
 
 const buildRegionFacilityCards = (
   facilities: readonly { name: string }[],
-  shops: readonly { name: string; items: readonly unknown[] }[],
+  shops: readonly { name: string; items: readonly RegionShopItem[] }[],
   locations: readonly string[],
   category: string,
 ): RegionFacilityCard[] => {
@@ -271,6 +278,30 @@ const buildRegionFacilityCards = (
     shops.some((shop) => resolveRegionFacilityRole(shop.name) === role)
       ? `#${REGION_DETAIL_ANCHORS.shops}`
       : null;
+  const buildFacilityFeaturedItems = (
+    role: RegionFacilityRole,
+  ): RegionFacilityItem[] => [
+    ...new Map(
+      shops
+        .filter((shop) => resolveRegionFacilityRole(shop.name) === role)
+        .flatMap((shop) => shop.items)
+        .slice(0, 3)
+        .map((item) => {
+          const name = translateItemName(item.name);
+          const href =
+            resolveItemDetailHref(item.name) ?? resolveItemDetailHref(name);
+
+          return [
+            item.name,
+            {
+              href,
+              key: item.name,
+              name,
+            },
+          ] as const;
+        }),
+    ).values(),
+  ];
 
   const cardsByRole = uniqueFacilityNames.reduce(
     (cards, name) => {
@@ -283,6 +314,7 @@ const buildRegionFacilityCards = (
       cards.set(role, {
         body: REGION_FACILITY_ROLE_DESCRIPTIONS[role],
         details: buildFacilityDetails(role),
+        featuredItems: buildFacilityFeaturedItems(role),
         key: role,
         name: getRegionFacilityRoleLabel(role),
         shopHref: buildFacilityShopHref(role),
@@ -305,6 +337,7 @@ const buildRegionFacilityCards = (
     cardsByRole.set(role, {
       body: REGION_FACILITY_ROLE_DESCRIPTIONS[role],
       details: buildFacilityDetails(role),
+      featuredItems: buildFacilityFeaturedItems(role),
       key: role,
       name: getRegionFacilityRoleLabel(role),
       shopHref: buildFacilityShopHref(role),
@@ -622,6 +655,33 @@ const RegionDetailRecords = ({ region }: RegionDetailRecordsProps) => {
                     </li>
                   ))}
                 </ul>
+                {facility.featuredItems.length > 0 ? (
+                  <div className={ATLAS_STYLES.regionFacilityFeaturedItems}>
+                    <p className={ATLAS_STYLES.regionFacilityFeaturedLabel}>
+                      {REGION_DETAIL_COPY.facilityFeaturedItemsLabel}
+                    </p>
+                    <ul className={ATLAS_STYLES.regionFacilityFeaturedList}>
+                      {facility.featuredItems.map((item) => (
+                        <li key={`${facility.key}:${item.key}`}>
+                          {item.href ? (
+                            <Link
+                              className={ATLAS_STYLES.regionFacilityItemLink}
+                              href={item.href}
+                            >
+                              {item.name}
+                            </Link>
+                          ) : (
+                            <span
+                              className={ATLAS_STYLES.regionFacilityItemName}
+                            >
+                              {item.name}
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
                 {facility.shopHref ? (
                   <Link
                     className={ATLAS_STYLES.regionFacilityLink}
