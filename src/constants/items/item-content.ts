@@ -402,6 +402,8 @@ const ITEM_CONSUMABLE_NAMES = new Set([
   "Dancing Flames Scroll",
   "Escape Talisman",
   "Fire Wall",
+  "French Toast",
+  "Fried Chicken",
   "Fried Fish Balls",
   "Green Salad",
   "Grilled Beef",
@@ -414,6 +416,7 @@ const ITEM_CONSUMABLE_NAMES = new Set([
   "Meat Pie",
   "Medicine",
   "Mega Medicine",
+  "Millet Dumplings",
   "Needle",
   "Obento",
   "Potato Pudding",
@@ -447,6 +450,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Bonsai Tree": "분재",
   Boots: "부츠",
   "Brass Armor": "브라스 아머",
+  "Blood Armor": "피의 갑옷",
   "Broiled Eel": "장어구이",
   "Canopy Defense": "캐노피 디펜스",
   Cape: "망토",
@@ -471,6 +475,9 @@ const ITEM_NAME_TRANSLATIONS = {
   "Dragon Armor": "용 갑옷",
   "Dream Robe": "꿈의 로브",
   "Dried Fish": "건어물",
+  "Drops of Kindness": "친절의 물방울",
+  "Drops of Kindness Scroll": "친절의 물방울 두루마리",
+  "Earth Armor": "대지의 갑옷",
   "Earth Boots": "대지의 부츠",
   "Earth Rune Piece": "흙의 문장 조각",
   "Earth Shield": "대지의 방패",
@@ -480,14 +487,20 @@ const ITEM_NAME_TRANSLATIONS = {
   "Feathered Hat": "깃털 달린 모자",
   "Fire Emblem": "불의 엠블럼",
   "Fire Wall": "불의 벽",
+  "Flame Helmet": "불꽃 투구",
+  "Flaming Arrows": "불화살",
+  "Flaming Arrows Scroll": "불화살 두루마리",
+  "Flint Stone": "부싯돌",
   "Fish Badge": "물고기 배지",
   "Flower Painting": "꽃 그림",
   "Flower Vase": "꽃병",
+  "Fog Robe": "안개 로브",
   "French Toast": "프렌치토스트",
   "Fried Chicken": "프라이드 치킨",
   "Fried Fish Balls": "생선 완자튀김",
   "Full Armor": "풀 아머",
   "Full Helmet": "풀헬름",
+  "Full Plate": "풀 플레이트",
   "Fur Cape": "모피 망토",
   "Fur Robe": "모피 로브",
   Gauntlet: "건틀릿",
@@ -495,6 +508,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Gold Collar": "금 목줄",
   "Gold Emblem": "금 엠블럼",
   "Gold Necklace": "금목걸이",
+  "Golden Hammer": "황금 망치",
   "Goddess Statue": "여신상",
   Graffiti: "낙서",
   "Gengis Khan": "징키스칸",
@@ -528,6 +542,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Leather Coat": "가죽 코트",
   "Leather Hat": "가죽 모자",
   Leggings: "레깅스",
+  "Lightning Amulet": "번개의 부적",
   "Lunch Box": "도시락",
   "Lovers' Garden": "연인의 정원",
   "Lucky Ring": "행운의 반지",
@@ -557,9 +572,15 @@ const ITEM_NAME_TRANSLATIONS = {
   "Potato Pudding": "감자 푸딩",
   "Power Gloves": "파워 글러브",
   "Power Ring": "파워 링",
+  "Protection Mist": "수호의 안개",
+  "Protection Mist Scroll": "수호의 안개 두루마리",
   Pudding: "푸딩",
+  "Rain of Kindness": "친절의 비",
+  "Rain of Kindness Scroll": "친절의 비 두루마리",
   "Rising Sun Bento": "일출 도시락",
   "Red Flower Seeds": "빨간 꽃의 씨앗",
+  "Revenge Earth": "대지의 반격",
+  "Revenge Earth Scroll": "대지의 반격 두루마리",
   Robe: "로브",
   "Robe of Mist": "안개의 로브",
   "Rose Brooch": "장미 브로치",
@@ -569,6 +590,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Shoulder Pads": "어깨 보호대",
   "Silver Armor": "은 갑옷",
   "Silver Hat": "은모자",
+  "Silver Shield": "은 방패",
   Silverlet: "실버릿",
   "Skill Ring": "스킬 링",
   "Speed Ring": "스피드 링",
@@ -593,6 +615,7 @@ const ITEM_NAME_TRANSLATIONS = {
   "Toe Shoes": "토우슈즈",
   "Tomato Juice": "토마토 주스",
   Tunic: "튜닉",
+  "Two Parcels": "두 개의 소포",
   "Veggie Sandwich": "채소 샌드위치",
   "Water Amulet": "물의 부적",
   "Wind Amulet": "바람의 부적",
@@ -649,6 +672,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Bonsai Tree": "盆栽",
   Boots: "ブーツ",
   "Brass Armor": "真鍮の鎧",
+  "Blood Armor": "血の鎧",
   "Broiled Eel": "うなぎの蒲焼き",
   "Canopy Defense": "天蓋の守り",
   Cape: "マント",
@@ -673,6 +697,9 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Dragon Armor": "竜鎧",
   "Dream Robe": "夢のローブ",
   "Dried Fish": "干物",
+  "Drops of Kindness": "やさしさの雫",
+  "Drops of Kindness Scroll": "やさしさの雫の巻物",
+  "Earth Armor": "土の鎧",
   "Earth Boots": "土のブーツ",
   "Earth Rune Piece": "土の紋章片",
   "Earth Shield": "土の盾",
@@ -683,13 +710,19 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Fire Emblem": "火のエンブレム",
   "Fire Rune Piece": "火の紋章片",
   "Fire Wall": "火の壁",
+  "Flame Helmet": "炎の兜",
+  "Flaming Arrows": "火矢",
+  "Flaming Arrows Scroll": "火矢の巻物",
+  "Flint Stone": "火打ち石",
   "Fish Badge": "魚のバッジ",
   "Flower Painting": "花の絵",
   "Flower Vase": "花びん",
+  "Fog Robe": "霧のローブ",
   "French Toast": "フレンチトースト",
   "Fried Fish Balls": "魚団子揚げ",
   "Full Armor": "フルアーマー",
   "Full Helmet": "フルヘルム",
+  "Full Plate": "フルプレート",
   "Fur Cape": "毛皮のマント",
   "Fur Robe": "毛皮のローブ",
   Gauntlet: "ガントレット",
@@ -697,6 +730,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Gold Collar": "金の首輪",
   "Gold Emblem": "金のエンブレム",
   "Gold Necklace": "金の首飾り",
+  "Golden Hammer": "金のハンマー",
   "Goddess Statue": "女神像",
   Graffiti: "落書き",
   "Gengis Khan": "ジンギスカン",
@@ -730,6 +764,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Leather Coat": "革のコート",
   "Leather Hat": "革の帽子",
   Leggings: "レギンス",
+  "Lightning Amulet": "雷のお守り",
   "Lovers' Garden": "恋人たちの庭",
   "Lucky Ring": "幸運の指輪",
   "Magic Ring": "魔法の指輪",
@@ -758,9 +793,15 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Potato Pudding": "ポテトプリン",
   "Power Gloves": "パワーグローブ",
   "Power Ring": "パワーリング",
+  "Protection Mist": "守りの霧",
+  "Protection Mist Scroll": "守りの霧の巻物",
   Pudding: "プリン",
+  "Rain of Kindness": "やさしさの雨",
+  "Rain of Kindness Scroll": "やさしさの雨の巻物",
   "Rising Sun Bento": "日の出弁当",
   "Red Flower Seeds": "赤い花の種",
+  "Revenge Earth": "土の逆襲",
+  "Revenge Earth Scroll": "土の逆襲の巻物",
   Robe: "ローブ",
   "Robe of Mist": "霧のローブ",
   "Rose Brooch": "バラのブローチ",
@@ -770,6 +811,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Shoulder Pads": "肩当て",
   "Silver Armor": "銀の鎧",
   "Silver Hat": "銀の帽子",
+  "Silver Shield": "銀の盾",
   Silverlet: "シルバーレット",
   "Skill Ring": "技の指輪",
   "Speed Ring": "速の指輪",
@@ -794,6 +836,7 @@ const ITEM_JAPANESE_NAME_TRANSLATIONS = {
   "Toe Shoes": "トゥシューズ",
   "Tomato Juice": "トマトジュース",
   Tunic: "チュニック",
+  "Two Parcels": "二つの包み",
   "Veggie Sandwich": "野菜サンド",
   "Water Amulet": "水のお守り",
   "Wind Amulet": "風のお守り",
@@ -2220,6 +2263,13 @@ const GAME8_GDS_PART_LABELS = {
   U: "유니콘",
 } as const;
 
+const GAME8_RANCH_PRODUCER_LABELS = {
+  Calves: "송아지",
+  Chicks: "병아리",
+  Lambs: "양",
+  Piglets: "새끼돼지",
+} as const;
+
 const translateGame8GdsCode = (entry: string) => {
   if (!/^[DRTU]{4}$/.test(entry)) {
     return entry;
@@ -2377,10 +2427,15 @@ const translateGame8SourceEntry = (
     );
   }
 
-  const producedMatch = entry.match(/^Produced by (.+) in the Ranch\\.$/);
+  const producedMatch = entry.match(/^Produced by (.+) in the Ranch\.?$/);
 
   if (producedMatch) {
-    return `목장에서 ${producedMatch[1]} 생산`;
+    const producer =
+      GAME8_RANCH_PRODUCER_LABELS[
+        producedMatch[1] as keyof typeof GAME8_RANCH_PRODUCER_LABELS
+      ] ?? translateGeneratedItemName(producedMatch[1]);
+
+    return `목장에서 ${producer} 생산`;
   }
 
   const plantMatch = entry.match(/^Plant (.+)$/);
@@ -2616,12 +2671,15 @@ const addCharacterEquipmentItemRecords = (
     }
 
     Object.values(recordsByCharacter).forEach((record) => {
-      const equipmentValues = [
-        ...Object.values(record.role.equipment.default),
-        ...Object.values(record.role.equipment.recommended),
-      ];
+      Object.values(record.role.equipment.default).forEach((equipmentName) => {
+        if (!isAvailableAsSupplementalEquipment(gameId, equipmentName)) {
+          return;
+        }
 
-      equipmentValues.forEach((equipmentName) => {
+        getOrCreateItemRecordDraft(records, gameId, equipmentName);
+      });
+
+      Object.values(record.role.equipment.recommended).forEach((equipmentName) => {
         if (!isAvailableAsSupplementalEquipment(gameId, equipmentName)) {
           return;
         }
@@ -2730,6 +2788,10 @@ const inferGame8ItemCategory = (
   game8Type: string,
   itemName: string,
 ): ItemCategoryId => {
+  if (/^(Dragon|Rabbit|Turtle|Unicorn) Plans \d+$/i.test(itemName)) {
+    return "guardianPlan";
+  }
+
   const mappedCategory =
     GAME8_ITEM_CATEGORY_MAP[game8Type as keyof typeof GAME8_ITEM_CATEGORY_MAP];
 
